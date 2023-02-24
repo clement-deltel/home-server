@@ -1,0 +1,28 @@
+services:
+  whoami:
+    # A container that exposes an API to show its IP address
+    container_name: "whoami"
+    image: "traefik/whoami:v1.8"
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+      - "traefik.http.routers.whoami.tls=true"
+      - "traefik.http.routers.whoami.service=whoami"
+      # Services
+      - "traefik.http.services.whoami.loadbalancer.server.port=80"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "5m"
+    networks:
+      traefik-net:
+        ipv4_address: "192.168.10.20"
+    restart: "always"
+    stop_grace_period: "30s"
+
+networks:
+  traefik-net:
+    external: true
+    name: "traefik-net"
