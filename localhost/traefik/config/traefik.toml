@@ -1,0 +1,85 @@
+################################################################
+# Configuration for Traefik v2.
+#
+# Static configuration
+# Restart required if any change in this section.
+################################################################
+
+################################################################
+# Global configuration
+################################################################
+[global]
+  checkNewVersion = true
+  sendAnonymousUsage = false
+
+################################################################
+# Docker configuration backend
+################################################################
+[providers.docker]
+  endpoint = "unix:///var/run/docker.sock"
+
+  exposedByDefault = false
+
+  httpClientTimeout = 300
+  network = "traefik-net"
+  swarmMode = false
+  useBindPortIP = false
+  watch = true
+
+################################################################
+# Entrypoints configuration
+################################################################
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+    [entryPoints.web.transport]
+      [entryPoints.web.transport.lifeCycle]
+        requestAcceptGraceTimeout = 0
+        graceTimeOut = 30
+    [entryPoints.web.http]
+      [entryPoints.web.http.redirections]
+        [entryPoints.web.http.redirections.entryPoint]
+          to = "websecure"
+          scheme = "https"
+          permanent = true
+
+  [entryPoints.websecure]
+    address = ":443"
+    [entryPoints.websecure.transport]
+      [entryPoints.websecure.transport.lifeCycle]
+        requestAcceptGraceTimeout = 0
+        graceTimeOut = 30
+
+################################################################
+# Traefik logs configuration
+################################################################
+[log]
+
+  # Log level
+  # Optional, Default: "ERROR"
+  # Potential values: DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
+  #
+  level = "INFO"
+
+  filePath = "/var/log/traefik.log"
+  format = "common"
+
+################################################################
+# API and dashboard configuration
+################################################################
+[api]
+  insecure = true
+  dashboard = true
+  debug = true
+
+################################################################
+# Ping configuration
+################################################################
+[ping]
+
+################################################################
+# Configuration for Traefik v2.
+#
+# Dynamic configuration
+# No restart required if any change in this section.
+################################################################
