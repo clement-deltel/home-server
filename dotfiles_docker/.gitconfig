@@ -1,0 +1,63 @@
+[user]
+    email = ${EMAIL}
+    name = ${NAME}
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
+    eol = lf
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[alias]
+    # basic
+    br = branch
+    cl = clone
+    co = checkout
+    st = status -s
+    #st = status -sb
+
+    # config
+    cl = config --list
+    cu = config --unset
+    gl = config --global -l
+
+    # commit
+    ci = commit
+    cm = commit -m
+
+    # log
+    last = log -1 HEAD --stat
+    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an,c:%cn]" --decorate --numstat
+    #ll = log --oneline
+    #lla = log --pretty=format:"%h%x09%an%x09%s"
+
+    # remote
+    rv = remote -v
+
+    # reset
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+
+    # list all aliases
+    la = "!git config -l | grep alias | cut -c 7-"
