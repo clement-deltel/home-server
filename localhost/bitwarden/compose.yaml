@@ -1,0 +1,42 @@
+services:
+  password-manager:
+    container_name: "bitwarden"
+    env_file: "bitwarden.env"
+    hostname: "bitwarden"
+    image: "vaultwarden/server:1.27.0"
+    labels:
+      - "traefik.enable=true"
+      # Bitwarden UI
+      # Routers
+      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.docker.localhost`)"
+      - "traefik.http.routers.bitwarden.tls=true"
+      - "traefik.http.routers.bitwarden.service=bitwarden"
+      # Services
+      - "traefik.http.services.bitwarden.loadbalancer.server.port=80"
+      # Bitwarden Websocket API
+      # Routers
+      - "traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.docker.localhost`) && Path(`/notifications/hub`)"
+      - "traefik.http.routers.bitwarden-websocket.tls=true"
+      - "traefik.http.routers.bitwarden-websocket.service=bitwarden-websocket"
+      # Services
+      - "traefik.http.services.bitwarden-websocket.loadbalancer.server.port=3012"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    networks:
+        traefik-net:
+          ipv4_address: "192.168.10.4"
+    ports:
+      - "80"
+      - "3012"
+    restart: "always"
+    stop_grace_period: "10s"
+    volumes:
+      - "./persistence:/data"
+
+networks:
+  traefik-net:
+    external: true
+    name: "traefik-net"
