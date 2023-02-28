@@ -12,9 +12,13 @@ export PATH
 export HOME=/home/${USERID}
 export SERVER_HOME=/opt/home-server
 export BACKUP_HOME=${SERVER_HOME}/backups
+export LOG_HOME=${SERVER_HOME}/logs
 
 # User specific environment and startup programs
 export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
+
+# Scripts
+export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup
 
 #==============================================================================#
 #               ------- Aliases - General --------                             #
