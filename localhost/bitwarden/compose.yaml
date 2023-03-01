@@ -1,7 +1,29 @@
 services:
-  password-manager:
+  db:
+    container_name: "bitwarden-mariadb"
+    env_file: "config/db.env"
+    hostname: "bitwarden-mariadb"
+    image: "mariadb:10.5"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "5m"
+    networks:
+        app-net:
+          ipv4_address: "192.168.11.2"
+    restart: "always"
+    stop_grace_period: "10s"
+    volumes:
+      # Permissions for this folder:
+      - "./db-persistence:/var/lib/mysql"
+      - "/etc/localtime:/etc/localtime:ro"
+
+  app:
     container_name: "bitwarden"
-    env_file: "bitwarden.env"
+    depends_on:
+      - db
+    env_file: "config/app.env"
     hostname: "bitwarden"
     image: "vaultwarden/server:1.27.0"
     labels:
@@ -26,6 +48,8 @@ services:
         max-file: "5"
         max-size: "10m"
     networks:
+        app-net:
+          ipv4_address: "192.168.11.3"
         traefik-net:
           ipv4_address: "192.168.10.4"
     ports:
@@ -37,6 +61,14 @@ services:
       - "./persistence:/data"
 
 networks:
+  app-net:
+    name: "bitwarden-internal"
+    driver: "bridge"
+    ipam:
+      driver: "default"
+      config:
+        - subnet: "192.168.11.0/24"
+          gateway: "192.168.11.1"
   traefik-net:
     external: true
     name: "traefik-net"
