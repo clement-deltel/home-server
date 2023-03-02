@@ -11,28 +11,23 @@
 #DESCRIPTION: Executes all the steps to create and save a backup of the #             database.
 #==============================================================================#
 backup_database(){
-  # Evaluation of the time to perform this task: worst case scenario
+  # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Database backup start..." | tee -a ${LOG_FILE}
 
-  # Create database backup directory
-  OBJECT=$(date +%m)_bitwarden_db
-  echo "${TODAY} [INFO] mkdir ${OBJECT}"
-  mkdir ${OBJECT}
+  # Create the dump file of the database
+  echo "${TODAY} [INFO] mysqldump -h <host> -u <username> -p<password> bitwarden_db > bitwarden_db_dump.sql" | tee -a ${LOG_FILE}
+  mysqldump -h ${BITWARDEN_DB_IP} -u ${BITWARDEN_DB_USER} -p${BITWARDEN_DB_PASSWORD} bitwarden_db > bitwarden_db_dump.sql
 
-  # Backup the database
-  echo "${TODAY} [INFO] sqlite3 persistence/db.sqlite3 '.backup '${OBJECT}/db.sqlite3''"
-  sqlite3 persistence/db.sqlite3 ".backup '${OBJECT}/db.sqlite3'"
+  # Compress the dump file into an archive
+  OBJECT="$(date +%m).gz"
+  echo "${TODAY} [INFO] gzip -cv bitwarden_db_dump.sql > ${OBJECT}" | tee -a ${LOG_FILE}
+  gzip -cv bitwarden_db_dump.sql > ${OBJECT}
 
-  # Compress the directory to a TAR archive
-  echo "${TODAY} [INFO] tar -zcvf ${OBJECT}.tar.gz ${OBJECT}"
-  tar -zcvf ${OBJECT}.tar.gz ${OBJECT}
-
-  # Delete database backup directory
-  echo "${TODAY} [INFO] rm -rf ${OBJECT}"
-  rm -rf ${OBJECT}
+  # Delete the dump file
+  echo "${TODAY} [INFO] rm -f bitwarden_db_dump.sql" | tee -a ${LOG_FILE}
+  rm -f bitwarden_db_dump.sql
 
   # S3 bucket - Move the file to the backup directory
-  OBJECT=${OBJECT}.tar.gz
   echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/database/"
   aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/database/
 
