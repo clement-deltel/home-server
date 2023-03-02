@@ -18,7 +18,7 @@ export LOG_HOME=${SERVER_HOME}/logs
 export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
 
 # Scripts
-export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup
+export PATH=${PATH}:${SERVER_HOME}/scripts/common:${SERVER_HOME}/scripts/backup
 
 #==============================================================================#
 #               ------- Aliases - General --------                             #
@@ -96,14 +96,18 @@ alias bckphome='cd ${BACKUP_HOME}'
 
 # Services
 alias cdbit='cd ${SERVER_HOME}/services/bitwarden'
+alias cdnex='cd ${SERVER_HOME}/services/nextcloud'
 alias cdtra='cd ${SERVER_HOME}/services/traefik'
 
 alias svcbit='cd ${SERVER_HOME}/services/bitwarden'
+alias svcnex='cd ${SERVER_HOME}/services/nextcloud'
 alias svctra='cd ${SERVER_HOME}/services/traefik'
 
 # Scripts
 alias scrcom='cd ${SERVER_HOME}/scripts/common'
+
 alias scrbit='cd ${SERVER_HOME}/scripts/bitwarden'
+alias scrnex='cd ${SERVER_HOME}/scripts/nextcloud'
 alias scrtra='cd ${SERVER_HOME}/scripts/traefik'
 
 #==============================================================================#
