@@ -40,7 +40,7 @@ backup_database(){
 #DESCRIPTION: Executes all the steps to create and save a backup of the #             attachments.
 #==============================================================================#
 backup_attachments(){
-  # Evaluation of the time to perform this task: worst case scenario
+  # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Attachments backup start..." | tee -a ${LOG_FILE}
 
   if [[ -d "persistence/attachments" ]]; then
@@ -63,8 +63,7 @@ backup_attachments(){
 #DESCRIPTION: Executes all the steps to create and save a backup of the sends.
 #==============================================================================#
 backup_sends(){
-  # Evaluation of the time to perform this task: worst case scenario
-  # Start time: every first of the month at 1AM
+  # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Sends backup start..." | tee -a ${LOG_FILE}
 
   if [[ -d "persistence/sends" ]]; then
@@ -87,8 +86,7 @@ backup_sends(){
 #DESCRIPTION: Executes all the steps to create and save a backup of the #             configuration file.
 #==============================================================================#
 backup_config(){
-  # Evaluation of the time to perform this task: worst case scenario 1 min
-  # Start time: every first of the month at 1AM
+  # Evaluation of the time to perform this task: worst case scenario 15s
   echo "${TODAY} [INFO] Configuration file backup start..." | tee -a ${LOG_FILE}
 
   # Copy configuration file from Bitwarden persitence directory for formatting
@@ -109,8 +107,7 @@ backup_config(){
 #DESCRIPTION: Executes all the steps to create and save a backup of the #             rsa_keys.
 #==============================================================================#
 backup_rsa_keys(){
-  # Evaluation of the time to perform this task: worst case scenario
-  # Start time: every first of the month at 1AM
+  # Evaluation of the time to perform this task: worst case scenario 15s
   echo "${TODAY} [INFO] RSA keys backup start..." | tee -a ${LOG_FILE}
 
   # Compress the files to a TAR archive
@@ -131,8 +128,7 @@ backup_rsa_keys(){
 #DESCRIPTION: Executes all the steps to create and save a backup of the #             icon_cache.
 #==============================================================================#
 backup_icon_cache(){
-  # Evaluation of the time to perform this task: worst case scenario
-  # Start time: every first of the month at 1AM
+  # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Icon cache backup start..." | tee -a ${LOG_FILE}
 
   if [[ -d "persistence/icon_cache" ]]; then
