@@ -101,7 +101,7 @@ export BACKUP_HOME=${SERVER_HOME}/backups
 export LOG_HOME=${SERVER_HOME}/logs
 
 # Scripts
-export PATH=${PATH}:${SERVER_HOME}/scripts/common:${SERVER_HOME}/scripts/backup
+export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup
 
 #==============================================================================#
 #               ------- Functions ------                                       #
@@ -146,8 +146,8 @@ function ii() {
 }
 
 # Set and unset env
-function set-env-fn { export "$(grep -v '^#' "${SERVER_HOME}/env/server.env" | xargs -d '\n')"; }
-function unset-env-fn { unset "$(grep -v '^#' "${SERVER_HOME}/env/server.env" | sed -E 's/(.*)=.*/\1/' | xargs)"; }
+function set-env-fn { export $(grep -v '^#' "${SERVER_HOME}/env/server.env" | xargs -d '\n'); }
+function unset-env-fn { unset $(grep -v '^#' "${SERVER_HOME}/env/server.env" | sed -E 's/(.*)=.*/\1/' | xargs); }
 
 #==============================================================================#
 #               ------- Functions - Docker ------                              #
