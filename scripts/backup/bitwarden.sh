@@ -8,7 +8,8 @@
 
 #==============================================================================#
 #FUNCTION: backup_database
-#DESCRIPTION: Executes all the steps to create and save a backup of the #             database.
+#DESCRIPTION: Executes all the steps to create and save a backup of the
+#             database.
 #==============================================================================#
 backup_database(){
   # Evaluation of the time to perform this task: worst case scenario 1m
@@ -37,7 +38,8 @@ backup_database(){
 
 #==============================================================================#
 #FUNCTION: backup_attachments
-#DESCRIPTION: Executes all the steps to create and save a backup of the #             attachments.
+#DESCRIPTION: Executes all the steps to create and save a backup of the
+#             attachments.
 #==============================================================================#
 backup_attachments(){
   # Evaluation of the time to perform this task: worst case scenario 1m
@@ -83,7 +85,8 @@ backup_sends(){
 
 #==============================================================================#
 #FUNCTION: backup_config
-#DESCRIPTION: Executes all the steps to create and save a backup of the #             configuration file.
+#DESCRIPTION: Executes all the steps to create and save a backup of the
+#             configuration file.
 #==============================================================================#
 backup_config(){
   # Evaluation of the time to perform this task: worst case scenario 15s
@@ -104,7 +107,8 @@ backup_config(){
 
 #==============================================================================#
 #FUNCTION: backup_rsa_keys
-#DESCRIPTION: Executes all the steps to create and save a backup of the #             rsa_keys.
+#DESCRIPTION: Executes all the steps to create and save a backup of the
+#             rsa_keys.
 #==============================================================================#
 backup_rsa_keys(){
   # Evaluation of the time to perform this task: worst case scenario 15s
@@ -125,7 +129,8 @@ backup_rsa_keys(){
 
 #==============================================================================#
 #FUNCTION: backup_icon_cache
-#DESCRIPTION: Executes all the steps to create and save a backup of the #             icon_cache.
+#DESCRIPTION: Executes all the steps to create and save a backup of the
+#             icon_cache.
 #==============================================================================#
 backup_icon_cache(){
   # Evaluation of the time to perform this task: worst case scenario 1m
