@@ -116,16 +116,16 @@ function col {
 }
 
 # Add extension $1 to all files without any extension in the current directory
-function add-ext-fn { find . -type f -not -name "*.*" -exec mv "{}" "{}"."$1" \;; }
+function add-ext { find . -type f -not -name "*.*" -exec mv "{}" "{}"."$1" \;; }
 
 # Create $2 copies of file $1
-function cp-n-fn { EXT="${1##*.}"; FILENAME="${1%.*}"; for i in $(seq 1 "$2"); do cp "$1" "${FILENAME}${i}.${EXT}"; done; }
+function cp-n { EXT="${1##*.}"; FILENAME="${1%.*}"; for i in $(seq 1 "$2"); do cp "$1" "${FILENAME}${i}.${EXT}"; done; }
 
 # Execute $@ command in all the subdirectories
-function exec-subdir-fn { find . -maxdepth 1 -mindepth 1 -type d -execdir echo {} \; -execdir $@ {} \; -execdir echo \;; }
+function exec-sub { find . -maxdepth 1 -mindepth 1 -type d -execdir echo {} \; -execdir $@ {} \; -execdir echo \;; }
 
 # Make directory $1 and then cd inside
-function mkdir-cd-fn { mkdir "$1"; cd "$1" || return; }
+function mkcd { mkdir "$1"; cd "$1" || return; }
 
 
 # Host Info
@@ -194,11 +194,6 @@ function docker-stop-rm-fn { docker stop "$1"; docker rm "$1"; }
 #==============================================================================#
 #               ------- Functions - Aliases --------                           #
 #==============================================================================#
-alias add-ext=add-ext-fn
-alias cp-n=cp-n-fn
-alias exec-sub=exec-subdir-fn
-alias mkcd=mkdir-cd-fn
-
 alias dc=docker-compose-fn
 alias dcru=docker-compose-run-fn
 alias dex=docker-exec-fn
@@ -217,6 +212,7 @@ alias dsr=docker-stop-rm-fn
 alias set-env=set-env-fn
 alias unset-env=unset-env-fn
 set-env
+
 #==============================================================================#
 #               ------- Aliases --------                                       #
 #==============================================================================#
