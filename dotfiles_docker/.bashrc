@@ -1,6 +1,5 @@
 #!/bin/bash
-# Author: Clement Deltel <clement.deltel@proton.me>
-# Source: https://github.com/clement-deltel/dotfiles/.bashrc
+# .bashrc
 
 #==============================================================================#
 #               ------- Colors ------                                          #
@@ -94,6 +93,10 @@ set -o ignoreeof    # Shell doesnt quit upon reading the end of file.
 set -o notify       # Alerts the user upon background job termination
 #set -o xtrace      # Prints out command arguments during execution
 set -o vi           # Set vi mode for shell
+
+# User specific environment and startup programs
+export HOME=/home/${USER}
+export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
 
 # Server environment variables
 export SERVER_HOME=/opt/home-server
