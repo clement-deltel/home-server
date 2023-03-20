@@ -104,7 +104,7 @@ export BACKUP_HOME=${SERVER_HOME}/backups
 export LOG_HOME=${SERVER_HOME}/logs
 
 # Scripts
-export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup
+export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${SERVER_HOME}/scripts/restore
 
 #==============================================================================#
 #               ------- Functions ------                                       #
