@@ -2,6 +2,11 @@ services:
   db:
     container_name: "bitwarden-mariadb"
     env_file: "config/db.env"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: "30s"
+      timeout: "10s"
+      retries: 5
     hostname: "bitwarden-mariadb"
     image: "${DEFAULT_DB_IMAGE}"
     logging:
@@ -22,7 +27,8 @@ services:
   app:
     container_name: "bitwarden"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     env_file: "config/app.env"
     hostname: "bitwarden"
     image: "${BITWARDEN_IMAGE}"
