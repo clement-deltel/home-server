@@ -1,0 +1,18 @@
+- name: Update resolved.conf configuration file
+  become: true
+  lineinfile:
+    path: /etc/systemd/resolved.conf
+    search_string: 'DNSStubListener'
+    line: DNSStubListener=no
+    owner: root
+    group: root
+    mode: 0644
+  tags: init
+
+- name: Restart systemd-resolved service
+  become: true
+  systemd:
+    name: systemd-resolved
+    state: restarted
+    enabled: yes
+  tags: init

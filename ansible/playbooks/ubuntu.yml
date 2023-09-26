@@ -3,6 +3,13 @@
   gather_facts: true
 
   tasks:
+#--- Initialization
+
+    - name: DNS- Configuration update
+      include_tasks:
+        file: tasks/dns.yml
+      tags: init
+
     - name: SSH - Install & enable
       include_tasks:
         file: tasks/ssh.yml

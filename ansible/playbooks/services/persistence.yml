@@ -2,7 +2,7 @@
 
 - name: Create Traefik persistence directory
   file:
-    path: "{{ server_home }}/services/traefik/persistence"
+    path: "{{ services }}/traefik/persistence"
     state: present
     owner: docker
     group: docker
@@ -13,7 +13,7 @@
 
 - name: Create Bitwarden persistence directory
   file:
-    path: "{{ server_home }}/services/bitwarden/persistence"
+    path: "{{ services }}/bitwarden/persistence"
     state: present
     owner: docker
     group: docker
@@ -22,7 +22,7 @@
 
 - name: Create Bitwarden database persistence directory
   file:
-    path: "{{ server_home }}/services/bitwarden/db-persistence"
+    path: "{{ services }}/bitwarden/db-persistence"
     state: present
     owner: docker
     group: docker
@@ -33,7 +33,7 @@
 
 - name: Create Nextcloud persistence directory
   file:
-    path: "{{ server_home }}/services/nextcloud/persistence"
+    path: "{{ services }}/nextcloud/persistence"
     state: present
     owner: docker
     group: docker
@@ -42,7 +42,7 @@
 
 - name: Create Nextcloud database persistence directory
   file:
-    path: "{{ server_home }}/services/nextcloud/db-persistence"
+    path: "{{ services }}/nextcloud/db-persistence"
     state: present
     owner: docker
     group: docker
@@ -51,7 +51,36 @@
 
 - name: Create Nextcloud web persistence directory
   file:
-    path: "{{ server_home }}/services/nextcloud/web-persistence"
+    path: "{{ services }}/nextcloud/web-persistence"
+    state: present
+    owner: docker
+    group: docker
+    mode: 0744
+  tags: init
+
+#--- Pihole
+
+- name: Create Pihole log file
+  file:
+    path: "{{ services }}/pihole/pihole.log"
+    state: touch
+    owner: docker
+    group: docker
+    mode: 0744
+  tags: init
+
+- name: Create Pihole etc directory
+  file:
+    path: "{{ services }}/pihole/etc-pihole"
+    state: present
+    owner: docker
+    group: docker
+    mode: 0744
+  tags: init
+
+- name: Create Pihole dsnmasqd directory
+  file:
+    path: "{{ services }}/pihole/etc-dnsmasqd"
     state: present
     owner: docker
     group: docker

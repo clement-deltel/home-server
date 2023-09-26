@@ -68,7 +68,6 @@
     enabled: yes
   tags: init
 
-
 - name: Restart Docker service
   become: true
   systemd:

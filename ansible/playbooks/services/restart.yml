@@ -18,3 +18,10 @@
     restarted: true
     state: present
   tags: restart
+
+- name: Restart Pihole
+  docker_compose:
+    project_src: "{{ services }/pihole"
+    restarted: true
+    state: present
+  tags: restart

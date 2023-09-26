@@ -15,3 +15,9 @@
     project_src: "{{ services }}/nextcloud"
     state: absent
   tags: down
+
+- name: Remove Pihole
+  docker_compose:
+    project_src: "{{ services }}/pihole"
+    state: absent
+  tags: down

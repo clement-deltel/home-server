@@ -15,3 +15,9 @@
     project_src: "{{ services }}/nextcloud"
     state: present
   tags: up
+
+- name: Boot Pihole
+  docker_compose:
+    project_src: "{{ services }}/pihole"
+    state: present
+  tags: up

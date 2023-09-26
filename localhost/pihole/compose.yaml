@@ -1,0 +1,43 @@
+services:
+  app:
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    # cap_add:
+    #   - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    container_name: pihole
+    #domainname: pihole.${LOCAL_DOMAIN}
+    env_file: config/app.env
+    hostname: pihole
+    image: ${PIHOLE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.pihole.rule=Host(`pihole.${LOCAL_DOMAIN}`)"
+      - "traefik.http.routers.pihole.tls=true"
+      - "traefik.http.routers.pihole.service=pihole"
+      # Services
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+        traefik-net:
+          ipv4_address: ${PIHOLE_IP}
+    ports:
+      - ${PIHOLE_DNS_PORT}:53/tcp
+      - ${PIHOLE_DNS_PORT}:53/udp
+      #- 67:67/udp # Only required if you are using Pi-hole as your DHCP server
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      # Permissions for this folder:
+      # run `touch ./pihole.log` first unless you like errors
+      - ./pihole.log:/var/log/pihole.log
+      - ./etc-pihole/:/etc/pihole/
+      - ./etc-dnsmasqd/:/etc/dnsmasq.d/
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

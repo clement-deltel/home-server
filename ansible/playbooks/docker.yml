@@ -6,6 +6,8 @@
     services: " {{ server_home }}/localhost"
 
   tasks:
+#--- Initialization
+
     - name: Configure Amazon Web Services CLI
       include_tasks:
         file: tasks/aws-cli.yml
@@ -25,6 +27,8 @@
       include_tasks:
         file: services/up.yml
       tags: up
+
+#--- Docker commands
 
     - name: Restart all services
       include_tasks:

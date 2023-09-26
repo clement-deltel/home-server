@@ -25,16 +25,19 @@ Collection of tools for self hosting.
 ## 5. Services
 
 - Reverse Proxy
-  - [Traefik](services/reverse_proxy/traefik/README.md)
+  - [Traefik](services/traefik/README.md)
     - `https://traefik.${DOMAIN_NAME}/dashboard`
 - Password Manager
-  - [Bitwarden](services/password_manager/bitwarden/README.md)
+  - [Bitwarden](services/bitwarden/README.md)
     - `https://bitwarden.${DOMAIN_NAME}`
 
-## 6. Port Mapping 
+## 6. Port Mapping
 
 - TCP
+  - 53: Pihole
   - 80: Traefik HTTP
   - 443: Traefik HTTPS
   - 3012: Bitwarden WebSocket
   - 8080: Traefik Dashboard
+- UDP
+  - 53: Pihole

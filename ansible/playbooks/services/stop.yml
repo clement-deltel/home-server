@@ -18,3 +18,10 @@
     stopped: true
     state: present
   tags: stop
+
+- name: Stop Pihole
+  docker_compose:
+    project_src: "{{ services }}/pihole"
+    stopped: true
+    state: present
+  tags: stop

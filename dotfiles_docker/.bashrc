@@ -308,20 +308,22 @@ alias svr='cd ${SERVER_HOME}'
 alias svc='cd ${SERVER_HOME}/services'
 alias scr='cd ${SERVER_HOME}/scripts'
 alias cdtest='cd ${SERVER_HOME}/test'
+
 alias bckphome='cd ${BACKUP_HOME}'
+alias loghome='cd ${LOG_HOME}'
 
 # Services
 alias cdbit='cd ${SERVER_HOME}/services/bitwarden'
 alias cdnex='cd ${SERVER_HOME}/services/nextcloud'
+alias cdpih='cd ${SERVER_HOME}/services/pihole'
 alias cdtra='cd ${SERVER_HOME}/services/traefik'
 
 alias svcbit='cd ${SERVER_HOME}/services/bitwarden'
 alias svcnex='cd ${SERVER_HOME}/services/nextcloud'
+alias svcpih='cd ${SERVER_HOME}/services/pihole'
 alias svctra='cd ${SERVER_HOME}/services/traefik'
 
 # Scripts
-alias scrcom='cd ${SERVER_HOME}/scripts/common'
-
-alias scrbit='cd ${SERVER_HOME}/scripts/bitwarden'
-alias scrnex='cd ${SERVER_HOME}/scripts/nextcloud'
-alias scrtra='cd ${SERVER_HOME}/scripts/traefik'
+alias scrall='cd ${SERVER_HOME}/scripts/all'
+alias scrbck='cd ${SERVER_HOME}/scripts/backup'
+alias scrres='cd ${SERVER_HOME}/scripts/restore'
