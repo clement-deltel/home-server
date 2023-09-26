@@ -14,14 +14,14 @@
 
 - name: Restart NextCloud
   docker_compose:
-    project_src: "{{ services }/nextcloud"
+    project_src: "{{ services }}/nextcloud"
     restarted: true
     state: present
   tags: restart
 
 - name: Restart Pihole
   docker_compose:
-    project_src: "{{ services }/pihole"
+    project_src: "{{ services }}/pihole"
     restarted: true
     state: present
   tags: restart
