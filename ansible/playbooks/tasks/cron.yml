@@ -1,36 +1,37 @@
+# sudo crontab -l
 - name: Crontab configuration
   tags: init
   become: true
   block:
 
-  - name: Daily backup job, every day at 4AM
+  - name: Daily backup job
     cron:
-      name: "Backup services: Bitwarden"
+      name: "Backup services (every day at 4AM): Bitwarden"
       hour: "4"
       job: "/opt/home-server/scripts/backup/all.sh daily"
       state: "present"
 
-  - name: Weekly backup job, every Monday morning at 3AM
+  - name: Weekly backup job
     cron:
-      name: "Backup services: ..."
+      name: "Backup services (every Monday morning at 3AM): ..."
       hour: "3"
+      weekday: "1"
       job: "/opt/home-server/scripts/backup/all.sh weekly"
       state: "present"
-      weekday: "1"
 
-  - name: Monthly backup job, every 1st of the month at 2AM
+  - name: Monthly backup job
     cron:
-      name: "Backup services: ..."
+      name: "Backup services (every 1st of the month at 2AM): ..."
       day: "1"
       hour: "2"
       job: "/opt/home-server/scripts/backup/all.sh monthly"
       state: "present"
 
-  - name: Yearly backup job, every 1st of the year at 1AM
+  - name: Yearly backup job
     cron:
-      name: "Backup services: ..."
+      name: "Backup services (every 1st of the year at 1AM): ..."
       day: "1"
       hour: "1"
-      job: "/opt/home-server/scripts/backup/all.sh yearly"
       month: "1"
+      job: "/opt/home-server/scripts/backup/all.sh yearly"
       state: "present"
