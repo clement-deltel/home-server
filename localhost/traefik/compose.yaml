@@ -1,8 +1,8 @@
 services:
   reverse-proxy:
-    container_name: "traefik"
-    hostname: "traefik"
-    image: "${TRAEFIK_IMAGE}"
+    container_name: traefik
+    hostname: traefik
+    image: ${TRAEFIK_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
@@ -12,36 +12,36 @@ services:
       # Services
       - "traefik.http.services.traefik.loadbalancer.server.port=${TRAEFIK_DASHBOARD_PORT}"
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-file: "5"
-        max-size: "10m"
+        max-file: 5
+        max-size: 10m
     networks:
       app-net:
-        ipv4_address: "${TRAEFIK_IP}"
+        ipv4_address: ${TRAEFIK_IP}
     ports:
       # Format for publishing ports is hostPort:containerPort
-      - "${TRAEFIK_HTTP_PORT}:80"
-      - "${TRAEFIK_HTTPS_PORT}:443"
+      - ${TRAEFIK_HTTP_PORT}:80
+      - ${TRAEFIK_HTTPS_PORT}:443
       # Web UI / Dashboard
-      - "${TRAEFIK_DASHBOARD_PORT}:8080"
-    restart: "always"
-    stop_grace_period: "30s"
-    user: "${DOCKER_UID}:${DOCKER_GID}"
+      - ${TRAEFIK_DASHBOARD_PORT}:8080
+    restart: always
+    stop_grace_period: 30s
+    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       # Docker socket is mounted for auto-discovery of new services - read only
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       # Configuration file
-      - "./persistence/traefik.toml:/etc/traefik/traefik.toml"
+      - ./persistence/traefik.toml:/etc/traefik/traefik.toml
       # Log file
-      - "./persistence/traefik.log:/var/log/traefik.log"
+      - ./persistence/traefik.log:/var/log/traefik.log
 
 networks:
   app-net:
-    name: "traefik-net"
-    driver: "bridge"
+    name: traefik-net
+    driver: bridge
     ipam:
-      driver: "default"
+      driver: default
       config:
-        - subnet: "${TRAEFIK_NET}"
-          gateway: "${TRAEFIK_GATEWAY}"
+        - subnet: ${TRAEFIK_NET}
+          gateway: ${TRAEFIK_GATEWAY}

@@ -1,31 +1,31 @@
 services:
   db:
-    container_name: "bitwarden-mariadb"
-    env_file: "config/db.env"
+    container_name: bitwarden-mariadb
+    env_file: config/db.env
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      interval: "30s"
-      timeout: "10s"
+      interval: 30s
+      timeout: 10s
       retries: 5
-    hostname: "bitwarden-mariadb"
-    image: "${DEFAULT_DB_IMAGE}"
+    hostname: bitwarden-mariadb
+    image: ${DEFAULT_DB_IMAGE}
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-file: "5"
-        max-size: "5m"
+        max-file: 5
+        max-size: 5m
     networks:
         app-net:
-          ipv4_address: "${BITWARDEN_DB_IP}"
-    restart: "always"
-    stop_grace_period: "10s"
+          ipv4_address: ${BITWARDEN_DB_IP}
+    restart: always
+    stop_grace_period: 10s
     volumes:
       # Permissions for this folder:
-      - "./db-persistence:/var/lib/mysql"
-      - "/etc/localtime:/etc/localtime:ro"
+      - ./db-persistence:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
 
   app:
-    container_name: "bitwarden"
+    container_name: bitwarden
     depends_on:
       db:
         condition: service_healthy
@@ -33,9 +33,9 @@ services:
       - 127.0.0.1
       - 1.1.1.1
       - 1.0.0.1
-    env_file: "config/app.env"
-    hostname: "bitwarden"
-    image: "${BITWARDEN_IMAGE}"
+    env_file: config/app.env
+    hostname: bitwarden
+    image: ${BITWARDEN_IMAGE}
     labels:
       - "traefik.enable=true"
       # Bitwarden UI
@@ -53,33 +53,33 @@ services:
       # Services
       - "traefik.http.services.bitwarden-websocket.loadbalancer.server.port=${BITWARDEN_WEBSOCKET_PORT}"
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-file: "5"
-        max-size: "10m"
+        max-file: 5
+        max-size: 10m
     networks:
         app-net:
-          ipv4_address: "${BITWARDEN_INTERNAL_IP}"
+          ipv4_address: ${BITWARDEN_INTERNAL_IP}
         traefik-net:
-          ipv4_address: "${BITWARDEN_IP}"
+          ipv4_address: ${BITWARDEN_IP}
     ports:
-      - "80"
-      - "${BITWARDEN_WEBSOCKET_PORT}"
-    restart: "always"
-    stop_grace_period: "10s"
-    user: "${DOCKER_UID}:${DOCKER_GID}"
+      - 80
+      - ${BITWARDEN_WEBSOCKET_PORT}
+    restart: always
+    stop_grace_period: 10s
+    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - "./persistence:/data"
+      - ./persistence:/data
 
 networks:
   app-net:
-    name: "bitwarden-internal"
-    driver: "bridge"
+    name: bitwarden-internal
+    driver: bridge
     ipam:
-      driver: "default"
+      driver: default
       config:
-        - subnet: "${BITWARDEN_NET}"
-          gateway: "${BITWARDEN_GATEWAY}"
+        - subnet: ${BITWARDEN_NET}
+          gateway: ${BITWARDEN_GATEWAY}
   traefik-net:
     external: true
-    name: "traefik-net"
+    name: traefik-net
