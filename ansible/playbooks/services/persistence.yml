@@ -6,7 +6,7 @@
     state: present
     owner: docker
     group: docker
-    mode: '0744'
+    mode: 0744
   tags: init
 
 #--- Bitwarden
@@ -17,7 +17,7 @@
     state: present
     owner: docker
     group: docker
-    mode: '0744'
+    mode: 0744
   tags: init
 
 - name: Create Bitwarden database persistence directory
@@ -26,7 +26,7 @@
     state: present
     owner: docker
     group: docker
-    mode: '0744'
+    mode: 0744
   tags: init
 
 #--- Nextcloud
@@ -37,7 +37,7 @@
     state: present
     owner: docker
     group: docker
-    mode: '0744'
+    mode: 0744
   tags: init
 
 - name: Create Nextcloud database persistence directory
@@ -46,7 +46,7 @@
     state: present
     owner: docker
     group: docker
-    mode: '0744'
+    mode: 0744
   tags: init
 
 - name: Create Nextcloud web persistence directory
@@ -55,7 +55,7 @@
     state: present
     owner: docker
     group: docker
-    mode: '0744'
+    mode: 0744
   tags: init
 
 #---
