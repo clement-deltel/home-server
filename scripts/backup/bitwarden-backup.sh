@@ -212,5 +212,5 @@ main(){
   cd ${INIT_PWD}
 }
 
-source ~/.bash_profile
+source ~/.bashrc
 main $@
