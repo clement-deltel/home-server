@@ -1,0 +1,20 @@
+- name: Stop Traefik
+  docker_compose:
+    project_src: "{{ services }}/traefik"
+    stopped: true
+    state: present
+  tags: stop
+
+- name: Stop Bitwarden
+  docker_compose:
+    project_src: "{{ services }}/bitwarden"
+    stopped: true
+    state: present
+  tags: stop
+
+- name: Stop NextCloud
+  docker_compose:
+    project_src: "{{ services }}/nextcloud"
+    stopped: true
+    state: present
+  tags: stop

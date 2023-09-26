@@ -1,0 +1,17 @@
+- name: Remove Traefik
+  docker_compose:
+    project_src: "{{ services }}/traefik"
+    state: absent
+  tags: down
+
+- name: Remove Bitwarden
+  docker_compose:
+    project_src: "{{ services }}/bitwarden"
+    state: absent
+  tags: down
+
+- name: Remove NextCloud
+  docker_compose:
+    project_src: "{{ services }}/nextcloud"
+    state: absent
+  tags: down

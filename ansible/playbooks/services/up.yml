@@ -1,0 +1,17 @@
+- name: Boot Traefik
+  docker_compose:
+    project_src: "{{ services }}/traefik"
+    state: present
+  tags: up
+
+- name: Boot Bitwarden
+  docker_compose:
+    project_src: "{{ services }}/bitwarden"
+    state: present
+  tags: up
+
+- name: Boot NextCloud
+  docker_compose:
+    project_src: "{{ services }}/nextcloud"
+    state: present
+  tags: up
