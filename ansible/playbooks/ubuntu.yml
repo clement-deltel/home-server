@@ -1,0 +1,9 @@
+- name: Configure the instance - Home Server - Ubuntu user
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Enable SSH on Ubuntu
+      include_tasks:
+        file: ubuntu/ssh.yml
+

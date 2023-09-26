@@ -1,0 +1,20 @@
+- name: Install openssh-server package
+  become: true
+  apt:
+    pkg:
+      - openssh-server
+    state: latest
+    update_cache: true
+
+- name: Enable SSH service
+  become: true
+  systemd:
+    name: ssh
+    state: started
+    enabled: yes
+
+- name: Add rule in the firewall
+  become: true
+  ufw:
+    rule: allow
+    name: OpenSSH
