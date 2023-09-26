@@ -1,0 +1,40 @@
+- name: Update cache
+  become: true
+  apt:
+    update_cache: true
+
+- name: Install packages
+  become: true
+  apt:
+    pkg:
+      - build-essential
+      - curl
+      - git
+      - gnupg
+      - htop
+      - lsb-release
+      - mariadb-client-core-10.6
+      - net-tools
+      - openssl
+      - pwgen
+      - software-properties-common
+      - vim
+      - zip
+    state: latest
+
+# - name: Remove packages
+#   become: true
+#   apt:
+#     pkg:
+#       -
+#     state: absent
+
+- name: Remove useless packages from the cache
+  become: true
+  apt:
+    autoclean: true
+
+- name: Remove dependencies that are no longer required
+  become: true
+  apt:
+    autoremove: true

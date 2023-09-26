@@ -3,7 +3,10 @@
   gather_facts: false
 
   tasks:
-    - name: Enable SSH on Ubuntu
+    - name: Install & enable SSH
       include_tasks:
         file: ubuntu/ssh.yml
 
+    - name: Essentials tools
+      include_tasks:
+        file: ubuntu/apt.yml
