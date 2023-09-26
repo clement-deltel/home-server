@@ -5,6 +5,10 @@ services:
     #   - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     container_name: pihole
     #domainname: pihole.${LOCAL_DOMAIN}
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
     env_file: config/app.env
     hostname: pihole
     image: ${PIHOLE_IMAGE}

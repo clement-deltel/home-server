@@ -14,5 +14,42 @@
   systemd:
     name: systemd-resolved
     state: restarted
+  tags: init
+
+- name: Install resolvconf package
+  become: true
+  apt:
+    pkg:
+      - resolvconf
+    state: latest
+  tags: init
+
+- name: Enable and start resolvconf service
+  become: true
+  systemd:
+    name: resolvconf
+    state: started
     enabled: yes
+  tags: init
+
+- name: Update resolved.conf.d/head file
+  become: true
+  lineinfile:
+    path: /etc/resolvconf/resolv.conf.d/head
+    line: "{{ item.line }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - { line: '' }
+    - { line: 'nameserver 127.0.0.1' }
+    - { line: 'nameserver 1.1.1.1' }
+    - { line: 'nameserver 1.0.0.1' }
+  tags: init
+
+- name: Restart resolvconf service
+  become: true
+  systemd:
+    name: resolvconf
+    state: restarted
   tags: init

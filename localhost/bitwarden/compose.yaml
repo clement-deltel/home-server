@@ -29,6 +29,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
     env_file: "config/app.env"
     hostname: "bitwarden"
     image: "${BITWARDEN_IMAGE}"
