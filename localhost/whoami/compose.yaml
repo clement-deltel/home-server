@@ -6,7 +6,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.${LOCAL_DOMAIN}`)"
       - "traefik.http.routers.whoami.tls=true"
       - "traefik.http.routers.whoami.service=whoami"
       # Services
@@ -18,7 +18,7 @@ services:
         max-size: "5m"
     networks:
       traefik-net:
-        ipv4_address: "192.168.10.20"
+        ipv4_address: "192.168.10.50"
     restart: "always"
     stop_grace_period: "30s"
 
