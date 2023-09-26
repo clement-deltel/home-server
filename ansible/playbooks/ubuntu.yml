@@ -5,12 +5,12 @@
   tasks:
     - name: Install & enable SSH
       include_tasks:
-        file: ubuntu/ssh.yml
+        file: tasks/ssh.yml
 
     - name: Essentials tools
       include_tasks:
-        file: ubuntu/apt.yml
+        file: tasks/apt.yml
 
     - name: Install & enable Docker
       include_tasks:
-        file: ubuntu/docker.yml
+        file: tasks/docker.yml

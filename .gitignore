@@ -1,3 +1,7 @@
 log
 
-env/server.env
+ansible/playbooks/vars/*
+env/*
+
+!ansible/playbooks/vars/main.yml
+!env/template.env
