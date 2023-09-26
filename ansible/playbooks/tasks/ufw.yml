@@ -1,0 +1,66 @@
+# sudo ufw status
+- name: Enable UFW
+  become: true
+  ufw:
+    default: deny
+    state: enabled
+  tags: init
+
+- name: Set logging
+  become: true
+  ufw:
+    logging: 'on'
+  tags: init
+
+- name: Add firewall rules
+  become: true
+  tags: init
+  block:
+
+  # Deny connections if an IP address has attempted to initiate 6 or more
+  # connections in the last 30 seconds. See  http://www.debian-administration.org/articles/187 for details.
+  - name: Allow and limit SSH
+    ufw:
+      rule: limit
+      #name: OpenSSH
+      port: 22
+      protocol: tcp
+      log: true
+
+  - name: Allow DNS for Pihole (TCP)
+    ufw:
+      rule: allow
+      #name: dns
+      port: 53
+      protocol: tcp
+
+  - name: Allow DNS for Pihole (UDP)
+    ufw:
+      rule: allow
+      #name: dns
+      port: 53
+      protocol: udp
+
+  - name: Allow HTTP
+    ufw:
+      rule: allow
+      #name: http
+      port: 80
+
+  - name: Allow HTTPS
+    ufw:
+      rule: allow
+      #name: https
+      port: 443
+
+  - name: Allow Bitwarden websocket
+    ufw:
+      rule: allow
+      #name: Bitwarden
+      port: 3012
+
+  - name: Allow Traefik dashboard
+    ufw:
+      rule: allow
+      #name: Traefik
+      port: 8080
