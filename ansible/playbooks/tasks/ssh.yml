@@ -7,6 +7,7 @@
     update_cache: true
   tags: [ init, update ]
 
+# systemctl status sshd.service
 - name: Initialization
   tags: init
   block:

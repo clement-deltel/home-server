@@ -4,6 +4,7 @@
     update_cache: true
   tags: [ init, update ]
 
+# apt list --installed
 - name: Install/update packages
   become: true
   apt:
