@@ -1,6 +1,6 @@
 - name: Configure the instance - Home Server - Ubuntu user
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
 
   tasks:
     - name: Install & enable SSH
@@ -10,3 +10,7 @@
     - name: Essentials tools
       include_tasks:
         file: ubuntu/apt.yml
+
+    - name: Install & enable Docker
+      include_tasks:
+        file: ubuntu/docker.yml
