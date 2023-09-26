@@ -3,14 +3,37 @@
   gather_facts: true
 
   tasks:
-    - name: Install & enable SSH
+    - name: SSH - Install & enable
       include_tasks:
         file: tasks/ssh.yml
+      tags: init
 
-    - name: Essentials tools
+    - name: APT - Essentials tools
       include_tasks:
         file: tasks/apt.yml
+      tags: init
 
-    - name: Install & enable Docker
+    - name: Amazon Web Services CLI
+      include_tasks:
+        file: tasks/aws-cli.yml
+      tags: init
+
+    - name: Docker - Install & enable
       include_tasks:
         file: tasks/docker.yml
+      tags: init
+
+    - name: SSH - Update
+      include_tasks:
+        file: tasks/ssh.yml
+      tags: update
+
+    - name: APT - Update
+      include_tasks:
+        file: tasks/apt.yml
+      tags: update
+
+    - name: Docker - Update
+      include_tasks:
+        file: tasks/docker.yml
+      tags: update

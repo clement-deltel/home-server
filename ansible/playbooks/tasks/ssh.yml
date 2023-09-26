@@ -1,20 +1,34 @@
-- name: Install openssh-server package
+- name: Install/Update openssh-server package
   become: true
   apt:
     pkg:
       - openssh-server
     state: latest
     update_cache: true
+  tags: [ init, update ]
 
-- name: Enable SSH service
-  become: true
-  systemd:
-    name: ssh
-    state: started
-    enabled: yes
+- name: Initialization
+  tags: init
+  block:
+  - name: Enable SSH service
+    become: true
+    systemd:
+      name: ssh
+      state: started
+      enabled: yes
 
-- name: Add rule in the firewall
-  become: true
-  ufw:
-    rule: allow
-    name: OpenSSH
+  - name: Add rule in the firewall
+    become: true
+    ufw:
+      rule: allow
+      name: OpenSSH
+
+- name: Update
+  tags: update
+  block:
+  - name: Restart SSH service
+    become: true
+    systemd:
+      name: ssh
+      state: restarted
+      enabled: yes

@@ -2,8 +2,9 @@
   become: true
   apt:
     update_cache: true
+  tags: [ init, update ]
 
-- name: Install packages
+- name: Install/update packages
   become: true
   apt:
     pkg:
@@ -21,6 +22,7 @@
       - vim
       - zip
     state: latest
+  tags: [ init, update ]
 
 # - name: Remove packages
 #   become: true
@@ -33,8 +35,10 @@
   become: true
   apt:
     autoclean: true
+  tags: [ init, update ]
 
 - name: Remove dependencies that are no longer required
   become: true
   apt:
     autoremove: true
+  tags: [ init, update ]
