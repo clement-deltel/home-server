@@ -35,6 +35,11 @@
         file: tasks/docker.yml
       tags: init
 
+    - name: Firewall UFW configuration
+      include_tasks:
+        file: tasks/ufw.yml
+      tags: init
+
     - name: SSH - Update
       include_tasks:
         file: tasks/ssh.yml
