@@ -4,4 +4,7 @@ sudo add-apt-repository -y --update ppa:ansible/ansible
 sudo apt update -y
 sudo apt install -y ansible
 
-ansible-playbook -u ubuntu --ask-become-pass playbooks/ubuntu.yml
+# Possible tags: init, update, docker
+
+ansible-playbook -u ubuntu --ask-become-pass playbooks/ubuntu.yml --tags init
+ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --tags docker
