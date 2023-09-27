@@ -7,28 +7,48 @@
     update_cache: true
   tags: [ init, update ]
 
+- name: Update /etc/ssh/sshd_config file
+  tags: init
+  become: true
+  block:
+  - name: Disable root login
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      search_string: 'PermitRootLogin'
+      line: 'PermitRootLogin no'
+      owner: root
+      group: root
+      mode: 0644
+  - name: Disable empty password
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      search_string: 'PermitEmptyPasswords'
+      line: 'PermitEmptyPasswords no'
+      owner: root
+      group: root
+      mode: 0644
+
 # systemctl status sshd.service
 - name: Initialization
   tags: init
+  become: true
   block:
   - name: Enable SSH service
-    become: true
     systemd:
       name: ssh
       state: started
       enabled: yes
 
   - name: Add rule in the firewall
-    become: true
     ufw:
       rule: allow
       name: OpenSSH
 
 - name: Update
   tags: update
+  become: true
   block:
   - name: Restart SSH service
-    become: true
     systemd:
       name: ssh
       state: restarted
