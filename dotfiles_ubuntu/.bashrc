@@ -119,6 +119,8 @@ function exec-sub { find . -maxdepth 1 -mindepth 1 -type d -execdir echo {} \; -
 # Make directory $1 and then cd inside
 function mkcd { mkdir "$1"; cd "$1" || return; }
 
+# Base64 decoding
+function dec { echo "$1" | base64 --decode; }
 
 # Host Info
 
