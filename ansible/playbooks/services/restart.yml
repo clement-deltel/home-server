@@ -1,27 +1,27 @@
-- name: Restart Traefik
-  docker_compose:
-    project_src: "{{ services }}/traefik"
-    restarted: true
-    state: present
+- name: Restart home server services
   tags: restart
+  block:
 
-- name: Restart Bitwarden
-  docker_compose:
-    project_src: "{{ services }}/bitwarden"
-    restarted: true
-    state: present
-  tags: restart
+  - name: Restart Traefik
+    docker_compose:
+      project_src: "{{ services }}/traefik"
+      restarted: true
+      state: present
 
-- name: Restart NextCloud
-  docker_compose:
-    project_src: "{{ services }}/nextcloud"
-    restarted: true
-    state: present
-  tags: restart
+  - name: Restart Bitwarden
+    docker_compose:
+      project_src: "{{ services }}/bitwarden"
+      restarted: true
+      state: present
 
-- name: Restart Pihole
-  docker_compose:
-    project_src: "{{ services }}/pihole"
-    restarted: true
-    state: present
-  tags: restart
+  - name: Restart NextCloud
+    docker_compose:
+      project_src: "{{ services }}/nextcloud"
+      restarted: true
+      state: present
+
+  - name: Restart Pihole
+    docker_compose:
+      project_src: "{{ services }}/pihole"
+      restarted: true
+      state: present

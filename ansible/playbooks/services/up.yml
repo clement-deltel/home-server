@@ -1,27 +1,27 @@
-- name: Boot Traefik
-  docker_compose:
-    project_src: "{{ services }}/traefik"
-    pull: true
-    state: present
+- name: Boot home server services
   tags: up
+  block:
 
-- name: Boot Bitwarden
-  docker_compose:
-    project_src: "{{ services }}/bitwarden"
-    pull: true
-    state: present
-  tags: up
+  - name: Boot Traefik
+    docker_compose:
+      project_src: "{{ services }}/traefik"
+      pull: true
+      state: present
 
-- name: Boot NextCloud
-  docker_compose:
-    project_src: "{{ services }}/nextcloud"
-    pull: true
-    state: present
-  tags: up
+  - name: Boot Bitwarden
+    docker_compose:
+      project_src: "{{ services }}/bitwarden"
+      pull: true
+      state: present
 
-- name: Boot Pihole
-  docker_compose:
-    project_src: "{{ services }}/pihole"
-    pull: true
-    state: present
-  tags: up
+  - name: Boot NextCloud
+    docker_compose:
+      project_src: "{{ services }}/nextcloud"
+      pull: true
+      state: present
+
+  - name: Boot Pihole
+    docker_compose:
+      project_src: "{{ services }}/pihole"
+      pull: true
+      state: present
