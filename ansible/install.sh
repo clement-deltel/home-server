@@ -1,4 +1,6 @@
 SERVER_HOME='/opt/home-server'
+
+sudo apt update -y & sudo apt upgrade -y
 sudo apt install -y software-properties-common
 sudo add-apt-repository -y --update ppa:ansible/ansible
 sudo apt update -y
