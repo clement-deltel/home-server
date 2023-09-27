@@ -8,7 +8,7 @@
     cron:
       name: "Backup services (every day at 4AM): Bitwarden"
       hour: "4"
-      job: "/opt/home-server/scripts/backup/all.sh daily"
+      job: "{{ server_home }}/scripts/backup/all.sh daily"
       state: present
 
   - name: Weekly backup job
@@ -16,7 +16,7 @@
       name: "Backup services (every Monday morning at 3AM): ..."
       hour: "3"
       weekday: "1"
-      job: "/opt/home-server/scripts/backup/all.sh weekly"
+      job: "{{ server_home }}/scripts/backup/all.sh weekly"
       state: present
 
   - name: Monthly backup job
@@ -24,7 +24,7 @@
       name: "Backup services (every 1st of the month at 2AM): ..."
       day: "1"
       hour: "2"
-      job: "/opt/home-server/scripts/backup/all.sh monthly"
+      job: "{{ server_home }}/scripts/backup/all.sh monthly"
       state: present
 
   - name: Yearly backup job
@@ -33,5 +33,5 @@
       day: "1"
       hour: "1"
       month: "1"
-      job: "/opt/home-server/scripts/backup/all.sh yearly"
+      job: "{{ server_home }}/scripts/backup/all.sh yearly"
       state: present

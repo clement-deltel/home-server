@@ -15,3 +15,11 @@
     owner: docker
     group: docker
     mode: 0644
+
+- name: Update SERVER_HOME
+  tags: docker
+  lineinfile:
+      path: /home/docker/.bashrc
+      state: present
+      search_string: 'SERVER_HOME'
+      line: 'SERVER_HOME={{ server_home }}'
