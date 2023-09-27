@@ -15,6 +15,7 @@
     lineinfile:
       path: /etc/ssh/sshd_config
       search_string: 'PermitRootLogin'
+      state: present
       line: 'PermitRootLogin no'
       owner: root
       group: root
@@ -23,6 +24,7 @@
     lineinfile:
       path: /etc/ssh/sshd_config
       search_string: 'PermitEmptyPasswords'
+      state: present
       line: 'PermitEmptyPasswords no'
       owner: root
       group: root
