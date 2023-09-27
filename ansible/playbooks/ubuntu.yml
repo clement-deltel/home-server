@@ -45,6 +45,13 @@
         file: tasks/ufw.yml
       tags: init
 
+    # - name: Security good practices
+    #   include_tasks:
+    #     file: tasks/security.yml
+    #   tags: init
+
+#--- Update
+
     - name: SSH - Update
       include_tasks:
         file: tasks/ssh.yml

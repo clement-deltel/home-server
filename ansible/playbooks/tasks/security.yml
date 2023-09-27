@@ -1,0 +1,18 @@
+- name: Disable boot from external devices
+  tags: init
+  become: true
+  block:
+  - name: Create fake_usb file
+    file:
+      path: /etc/modprobe.d/fake_usb.conf
+      owner: root
+      group: root
+      mode: 0644
+      state: touch
+
+  - name: Add line for configuration
+    lineinfile:
+      path: /etc/modprobe.d/fake_usb.conf
+      state: present
+      line: install usb-storage /bin/true
+      create: true
