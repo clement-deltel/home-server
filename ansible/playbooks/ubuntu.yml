@@ -5,6 +5,11 @@
   tasks:
 #--- Initialization
 
+    - name: Set user profile
+      include_tasks:
+        file: tasks/profile.yml
+      tags: init
+
     - name: DNS- Configuration update
       include_tasks:
         file: tasks/dns.yml
