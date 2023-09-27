@@ -6,3 +6,12 @@
     owner: ubuntu
     group: ubuntu
     mode: 0644
+
+- name: Apply dotfiles for docker user
+  tags: docker
+  copy:
+    src: "{{ server_home }}/dotfiles_docker/"
+    dest: /home/docker/
+    owner: docker
+    group: docker
+    mode: 0644
