@@ -1,47 +1,43 @@
-- name: Update cache
-  become: true
-  apt:
-    update_cache: true
+- name: Run APT
   tags: [ init, update ]
-
-# apt list --installed
-- name: Install/update packages
   become: true
-  apt:
-    pkg:
-      - build-essential
-      - curl
-      - git
-      - gnupg
-      - htop
-      - lsb-release
-      - lynis
-      - mariadb-client-10.6
-      - mariadb-client-core-10.6
-      - net-tools
-      - openssl
-      - pwgen
-      - software-properties-common
-      - vim
-      - zip
-    state: latest
-  tags: [ init, update ]
+  block:
+  - name: Update cache
+    apt:
+      update_cache: true
 
-# - name: Remove packages
-#   become: true
-#   apt:
-#     pkg:
-#       -
-#     state: absent
+  # apt list --installed
+  - name: Install/update packages
+    apt:
+      pkg:
+        - build-essential
+        - curl
+        - git
+        - gnupg
+        - htop
+        - lsb-release
+        - lynis
+        - mariadb-client-10.6
+        - mariadb-client-core-10.6
+        - net-tools
+        - openssl
+        - pwgen
+        - software-properties-common
+        - vim
+        - zip
+      state: latest
 
-- name: Remove useless packages from the cache
-  become: true
-  apt:
-    autoclean: true
-  tags: [ init, update ]
+  # - name: Remove packages
+  #   become: true
+  #   apt:
+  #     pkg:
+  #       -
+  #     state: absent
 
-- name: Remove dependencies that are no longer required
-  become: true
-  apt:
-    autoremove: true
-  tags: [ init, update ]
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: true
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: true

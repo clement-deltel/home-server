@@ -1,52 +1,51 @@
 - name: Install/Update openssh-server package
+  tags: [ init, update ]
   become: true
   apt:
     pkg:
       - openssh-server
     state: latest
     update_cache: true
-  tags: [ init, update ]
 
-- name: Update /etc/ssh/sshd_config file
+- name: Initialize SSH
   tags: init
   become: true
   block:
-  - name: Disable root login
+  # cat -n /etc/ssh/sshd_config
+  - name: Update /etc/ssh/sshd_config file - Disable root login
     lineinfile:
       path: /etc/ssh/sshd_config
-      search_string: 'PermitRootLogin'
       state: present
+      search_string: 'PermitRootLogin'
       line: 'PermitRootLogin no'
       owner: root
       group: root
       mode: 0644
-  - name: Disable empty password
+  - name: Update /etc/ssh/sshd_config file - Disable empty password
     lineinfile:
       path: /etc/ssh/sshd_config
-      search_string: 'PermitEmptyPasswords'
       state: present
+      search_string: 'PermitEmptyPasswords'
       line: 'PermitEmptyPasswords no'
       owner: root
       group: root
       mode: 0644
-
-# systemctl status sshd.service
-- name: Initialization
-  tags: init
-  become: true
-  block:
+  # systemctl status sshd.service
   - name: Enable SSH service
     systemd:
       name: ssh
       state: started
       enabled: yes
-
-  - name: Add rule in the firewall
+  # sudo ufw status
+  - name: Add rule to the firewall
     ufw:
-      rule: allow
-      name: OpenSSH
+      rule: limit
+      #name: OpenSSH
+      port: 22
+      protocol: tcp
+      log: true
 
-- name: Update
+- name: Update SSH
   tags: update
   become: true
   block:

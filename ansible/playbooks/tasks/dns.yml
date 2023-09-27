@@ -1,58 +1,51 @@
-# cat /etc/systemd/resolved.conf
-- name: Update resolved.conf configuration file
-  become: true
-  lineinfile:
-    path: /etc/systemd/resolved.conf
-    search_string: 'DNSStubListener'
-    line: DNSStubListener=no
-    owner: root
-    group: root
-    mode: 0644
+- name: Initialize DNS
   tags: init
+  become: true
+  block:
+  # cat /etc/systemd/resolved.conf
+  - name: Update resolved.conf configuration file
+    lineinfile:
+      path: /etc/systemd/resolved.conf
+      search_string: 'DNSStubListener'
+      line: DNSStubListener=no
+      owner: root
+      group: root
+      mode: 0644
 
-# systemctl status systemd-resolved.service
-- name: Restart systemd-resolved service
-  become: true
-  systemd:
-    name: systemd-resolved
-    state: restarted
-  tags: init
+  # systemctl status systemd-resolved.service
+  - name: Restart systemd-resolved service
+    systemd:
+      name: systemd-resolved
+      state: restarted
 
-- name: Install resolvconf package
-  become: true
-  apt:
-    pkg:
-      - resolvconf
-    state: latest
-  tags: init
+  - name: Install resolvconf package
+    apt:
+      pkg:
+        - resolvconf
+      state: latest
 
-# systemctl status resolvconf.service
-- name: Enable and start resolvconf service
-  become: true
-  systemd:
-    name: resolvconf
-    state: started
-    enabled: yes
-  tags: init
+  # systemctl status resolvconf.service
+  - name: Enable and start resolvconf service
+    systemd:
+      name: resolvconf
+      state: started
+      enabled: yes
 
-- name: Update resolved.conf.d/head file
-  become: true
-  lineinfile:
-    path: /etc/resolvconf/resolv.conf.d/head
-    line: "{{ item.line }}"
-    owner: root
-    group: root
-    mode: 0644
-  loop:
-    - { line: '' }
-    - { line: 'nameserver 127.0.0.1' }
-    - { line: 'nameserver 1.1.1.1' }
-    - { line: 'nameserver 1.0.0.1' }
-  tags: init
+  - name: Update resolved.conf.d/head file
+    lineinfile:
+      path: /etc/resolvconf/resolv.conf.d/head
+      state: present
+      line: "{{ item.line }}"
+      owner: root
+      group: root
+      mode: 0644
+    loop:
+      - { line: '' }
+      - { line: 'nameserver 127.0.0.1' }
+      - { line: 'nameserver 1.1.1.1' }
+      - { line: 'nameserver 1.0.0.1' }
 
-- name: Restart resolvconf service
-  become: true
-  systemd:
-    name: resolvconf
-    state: restarted
-  tags: init
+  - name: Restart resolvconf service
+    systemd:
+      name: resolvconf
+      state: restarted

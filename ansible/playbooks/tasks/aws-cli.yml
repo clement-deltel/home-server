@@ -1,8 +1,8 @@
-- name: Initialization
+- name: Initialize AWS CLI
   tags: init
+  become: true
   block:
   - name: Install required system packages
-    become: true
     apt:
       pkg:
         - zip
@@ -19,7 +19,6 @@
       mode: 0755
 
   - name: Run the installer
-    become: true
     command:
     args:
       cmd: '/tmp/aws/install'
@@ -30,7 +29,7 @@
       path: /tmp/aws
       state: absent
 
-- name: Configuration
+- name: Configure AWS CLI
   tags: docker
   block:
   - name: Import configuration variables

@@ -1,8 +1,8 @@
 - name: Apply dotfiles for ubuntu user
+  tags: init
   copy:
     src: "{{ server_home }}/dotfiles_ubuntu/"
     dest: /home/ubuntu/
     owner: ubuntu
     group: ubuntu
-    mode: '0644'
-  tags: init
+    mode: 0644

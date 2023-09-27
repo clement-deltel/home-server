@@ -1,20 +1,20 @@
-# sudo ufw status
-- name: Enable UFW
-  become: true
-  ufw:
-    default: deny
-    state: enabled
+- name: Initialize ufw
   tags: init
+  become: true
+  block:
+  # sudo ufw status
+  - name: Enable UFW
+    ufw:
+      default: deny
+      state: enabled
 
-- name: Set logging
-  become: true
-  ufw:
-    logging: 'on'
-  tags: init
+  - name: Set logging
+    ufw:
+      logging: 'on'
 
 - name: Add firewall rules
-  become: true
   tags: init
+  become: true
   block:
 
   # Deny connections if an IP address has attempted to initiate 6 or more

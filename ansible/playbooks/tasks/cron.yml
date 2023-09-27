@@ -9,7 +9,7 @@
       name: "Backup services (every day at 4AM): Bitwarden"
       hour: "4"
       job: "/opt/home-server/scripts/backup/all.sh daily"
-      state: "present"
+      state: present
 
   - name: Weekly backup job
     cron:
@@ -17,7 +17,7 @@
       hour: "3"
       weekday: "1"
       job: "/opt/home-server/scripts/backup/all.sh weekly"
-      state: "present"
+      state: present
 
   - name: Monthly backup job
     cron:
@@ -25,7 +25,7 @@
       day: "1"
       hour: "2"
       job: "/opt/home-server/scripts/backup/all.sh monthly"
-      state: "present"
+      state: present
 
   - name: Yearly backup job
     cron:
@@ -34,4 +34,4 @@
       hour: "1"
       month: "1"
       job: "/opt/home-server/scripts/backup/all.sh yearly"
-      state: "present"
+      state: present
