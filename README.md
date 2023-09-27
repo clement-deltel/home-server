@@ -3,26 +3,53 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Hardware](#2-hardware)
-- [3. Domain Name](#3-domain-name)
-- [4. Operating System](#4-operating-system)
-- [5. Services](#5-services)
-- [6. Port Mapping](#6-port-mapping)
+- [2. Getting started](#2-getting-started)
+- [3. Hardware](#3-hardware)
+- [4. Domain Name](#4-domain-name)
+- [5. Operating System](#5-operating-system)
+- [6. Services](#6-services)
+- [7. Port Mapping](#7-port-mapping)
+- [8. Security notes](#8-security-notes)
 
 ## 1. Introduction
 
 Collection of tools for self hosting.
 
-## 2. Hardware
+## 2. Getting started
 
-## 3. Domain Name
+Run the following commands:
 
-## 4. Operating System
+```bash
+cd /opt
+sudo chown ubuntu:ubuntu .
+sudo apt update -y && apt install -y git
+git clone https://github.com/clement-deltel/home-server.git
+```
+
+Edit the following files to your liking:
+
+- /home-server/ansible/install.sh: SERVER_HOME variable
+- /home-server/ansible/playbooks/vars/main.yml
+- /home-server/env/template.env
+
+Run the commands below to setup and install everything:
+
+```bash
+mv ${SERVER_HOME}/ansible/playbooks/vars/main.yml ${SERVER_HOME}/ansible/playbooks/vars/aws-cli.yml
+mv ${SERVER_HOME}/env/template.env ${SERVER_HOME}/env/server.env
+./home-server/ansible/install.sh
+```
+
+## 3. Hardware
+
+## 4. Domain Name
+
+## 5. Operating System
 
 - Name: Ubuntu
 - Version: 22.04
 
-## 5. Services
+## 6. Services
 
 - Reverse Proxy
   - [Traefik](services/traefik/README.md)
@@ -31,7 +58,7 @@ Collection of tools for self hosting.
   - [Bitwarden](services/bitwarden/README.md)
     - `https://bitwarden.${DOMAIN_NAME}`
 
-## 6. Port Mapping
+## 7. Port Mapping
 
 - TCP
   - 53: Pihole
