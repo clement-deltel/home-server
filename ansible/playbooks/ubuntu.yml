@@ -50,6 +50,11 @@
     #     file: tasks/security.yml
     #   tags: init
 
+    - name: Permissions
+      include_tasks:
+        file: tasks/permissions.yml
+      tags: init
+
 #--- Update
 
     - name: SSH - Update

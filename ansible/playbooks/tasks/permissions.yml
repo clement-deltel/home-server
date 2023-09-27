@@ -1,0 +1,8 @@
+- name: Change permissions of home server directory recursively
+  tags: init
+  file:
+      path: "{{ server_home }}"
+      state: directory
+      owner: docker
+      group: docker
+      recurse: true
