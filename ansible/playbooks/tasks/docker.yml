@@ -6,7 +6,7 @@
     become: true
     group:
       name: docker
-      gid: 1001
+      gid: "{{ docker_gid }}"
       state: present
 
   # sudo useradd -c "Docker" -g docker -m -d /home/docker -s /bin/bash -u 1001 docker
@@ -19,7 +19,7 @@
       home: /home/docker
       shell: /bin/bash
       state: present
-      uid: 1001
+      uid: "{{ docker_uid }}"
 
 - name: Install/update required system packages
   become: true

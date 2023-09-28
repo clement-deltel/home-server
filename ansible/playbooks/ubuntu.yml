@@ -1,6 +1,8 @@
 - name: Configure the instance - Home Server - Ubuntu user
   hosts: localhost
   gather_facts: true
+  vars_files:
+    - vars/main.yml
 
   tasks:
 #--- Initialization

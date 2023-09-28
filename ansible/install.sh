@@ -1,4 +1,3 @@
-SERVER_HOME='/opt/home-server'
 
 sudo apt update -y && sudo apt upgrade -y
 sudo apt install -y software-properties-common
@@ -8,9 +7,8 @@ sudo apt install -y ansible
 
 # Possible tags: init, update, docker, up, restart, stop, down
 
-ansible-playbook -u ubuntu --ask-become-pass playbooks/ubuntu.yml --extra-vars server_home=${SERVER_HOME} --tags init
-
-ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --extra-vars server_home=${SERVER_HOME} --tags docker
+ansible-playbook -u ubuntu --ask-become-pass playbooks/ubuntu.yml --tags init
+ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --tags docker
 
 # Boot all services
-ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --extra-vars server_home=${SERVER_HOME} --tags up
+ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --tags up
