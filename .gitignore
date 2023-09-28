@@ -3,5 +3,6 @@ log
 ansible/playbooks/vars/*
 env/*
 
-!ansible/playbooks/vars/main.yml
+!ansible/playbooks/vars/main_template.yml
+!ansible/playbooks/vars/aws-cli_template.yml
 !env/template.env

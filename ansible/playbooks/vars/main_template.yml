@@ -1,0 +1,5 @@
+docker_gid: <docker-user-gid>
+docker_uid: <docker-user-uid>
+
+server_home: "<server-home>"
+services: "<server-home>/<services>"
