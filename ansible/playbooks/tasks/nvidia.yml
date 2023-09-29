@@ -3,9 +3,10 @@
   become: true
   block:
 
-  - name: Add NVIDIA GPG key
-    command: curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
-    ignore_errors: true  # Ignore errors if the key is already imported or if GPG is not installed.
+  - name: Add NVIDIA GPG apt key
+    apt_key:
+      url: https://nvidia.github.io/libnvidia-container/gpgkey
+      state: present
 
   - name: Add NVIDIA Container Toolkit repository
     shell: |
