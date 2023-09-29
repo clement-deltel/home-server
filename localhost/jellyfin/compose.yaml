@@ -14,7 +14,7 @@ services:
       - "traefik.http.routers.jellyfin.tls=true"
       - "traefik.http.routers.jellyfin.service=jellyfin"
       # Services
-      - "traefik.http.services.jellyfin.loadbalancer.server.port=8920"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
     logging:
       driver: json-file
       options:
@@ -24,10 +24,10 @@ services:
         traefik-net:
           ipv4_address: ${JELLYFIN_IP}
     ports:
-      - 8096:8096 #HTTP WebUI
-      - 8920:8920 #HTTPS WebUI
-      - 7359:7359/udp #Service discovery on the local network
-      #- 1900:1900/udp # Service discovery used by DNLA and clients
+      - 8096 #HTTP WebUI
+      #- 8920 #HTTPS WebUI
+      - 7359/udp #Service discovery on the local network
+      #- 1900/udp # Service discovery used by DNLA and clients
     restart: always
     stop_grace_period: 10s
     volumes:
