@@ -1,5 +1,6 @@
 - name: Change permissions of home server directory recursively
   tags: init
+  become: true
   file:
       path: "{{ server_home }}"
       state: directory
