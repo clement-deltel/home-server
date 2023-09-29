@@ -27,6 +27,7 @@ main(){
   # Every 1st of the month at 2:00AM CST
   elif [[ ${TIME} = 'monthly' ]];then
     ${SERVER_HOME}/scripts/backup/bitwarden.sh all
+    ${SERVER_HOME}/scripts/backup/jellyfin.sh all
     echo "Monthly backup activities done!"
 
   # Every January 1st at 1:00AM CST
