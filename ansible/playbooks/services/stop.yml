@@ -25,3 +25,9 @@
       project_src: "{{ services }}/pihole"
       stopped: true
       state: present
+
+  - name: Stop Jellyfin
+    docker_compose:
+      project_src: "{{ services }}/jellyfin"
+      stopped: true
+      state: present

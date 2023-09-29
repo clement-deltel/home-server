@@ -25,3 +25,9 @@
       project_src: "{{ services }}/pihole"
       restarted: true
       state: present
+
+  - name: Restart Jellyfin
+    docker_compose:
+      project_src: "{{ services }}/jellyfin"
+      restarted: true
+      state: present
