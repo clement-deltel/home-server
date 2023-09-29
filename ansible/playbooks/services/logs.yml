@@ -1,0 +1,27 @@
+- name: Initialize log directories
+  tags: docker
+  block:
+
+  #--- Logs
+  - name: Create logs directory
+    file:
+      path: "{{ server_home }}/logs"
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+
+  #--- Services
+  - name: Create log subdirectories for all services
+    file:
+      path: "{{ item }}"
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - "{{ server_home }}/logs/traefik"
+      - "{{ server_home }}/logs/bitwarden"
+      - "{{ server_home }}/logs/nextcloud"
+      - "{{ server_home }}/logs/pihole"
+      - "{{ server_home }}/logs/jellyfin"

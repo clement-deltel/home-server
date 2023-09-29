@@ -17,6 +17,11 @@
         file: tasks/profile.yml
       tags: docker
 
+    - name: Create log directories
+      include_tasks:
+        file: services/logs.yml
+      tags: docker
+
     - name: Create persistence directories
       include_tasks:
         file: services/persistence.yml
