@@ -29,7 +29,7 @@ backup_database(){
   rm -f bitwarden_db_dump.sql
 
   # S3 bucket - Move the file to the backup directory
-  echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/database/"
+  echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/database/" | tee -a ${LOG_FILE}
   aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/database/
 
   echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
@@ -48,11 +48,11 @@ backup_attachments(){
   if [[ -d "persistence/attachments" ]]; then
     # Compress the directory to a TAR archive
     OBJECT=$(date +%m)_attachments.tar.gz
-    echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/attachments"
+    echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/attachments" | tee -a ${LOG_FILE}
     tar -zcvf ${OBJECT} persistence/attachments
 
     # S3 bucket - Move the file to the backup directory
-    echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/attachments/"
+    echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/attachments/" | tee -a ${LOG_FILE}
     aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/attachments/
 
     echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
@@ -71,11 +71,11 @@ backup_sends(){
   if [[ -d "persistence/sends" ]]; then
     # Compress the directory to a TAR archive
     OBJECT=$(date +%m)_sends.tar.gz
-    echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/sends"
+    echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/sends" | tee -a ${LOG_FILE}
     tar -zcvf ${OBJECT} persistence/sends
 
     # S3 bucket - Move the file to the backup directory
-    echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/sends/"
+    echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/sends/" | tee -a ${LOG_FILE}
     aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/sends/
 
     echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
@@ -116,7 +116,7 @@ backup_rsa_keys(){
 
   # Compress the files to a TAR archive
   OBJECT=$(date +%m)_rsa_keys.tar.gz
-  echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/rsa_key*"
+  echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/rsa_key*" | tee -a ${LOG_FILE}
   tar -zcvf ${OBJECT} persistence/rsa_key*
 
   # S3 bucket - Move the file to the backup directory
@@ -139,11 +139,11 @@ backup_icon_cache(){
   if [[ -d "persistence/icon_cache" ]]; then
     # Compress the directory to a TAR archive
     OBJECT=$(date +%m)_icon_cache.tar.gz
-    echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/icon_cache"
+    echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/icon_cache" | tee -a ${LOG_FILE}
     tar -zcvf ${OBJECT} persistence/icon_cache
 
     # S3 bucket - Move the file to the backup directory
-    echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/icon_cache/"
+    echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/icon_cache/" | tee -a ${LOG_FILE}
     aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/icon_cache/
 
     echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
