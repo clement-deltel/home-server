@@ -1,4 +1,7 @@
 logs/*
+*persistence/*
+etc-pihole/*
+etc-dnsmasqd/*
 
 ansible/playbooks/vars/*
 env/*
