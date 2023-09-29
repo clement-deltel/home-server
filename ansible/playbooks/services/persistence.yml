@@ -1,7 +1,7 @@
 - name: Initialize persistence directories and files
   tags: docker
   block:
-  
+
   #--- Traefik
   - name: Create Traefik persistence directory
     file:
@@ -10,45 +10,38 @@
       owner: docker
       group: docker
       mode: 0744
+  - name: Copy Traefik configuration file
+    copy:
+      src: "{{ services }}/traefik/config/traefik.toml"
+      dest: "{{ services }}/traefik/persistence/traefik.toml"
+      owner: docker
+      group: docker
+      mode: 0644
 
   #--- Bitwarden
-  - name: Create Bitwarden persistence directory
+  - name: Create Bitwarden persistence directories
     file:
-      path: "{{ services }}/bitwarden/persistence"
+      path: "{{ item }}"
       state: directory
       owner: docker
       group: docker
       mode: 0744
-  - name: Create Bitwarden database persistence directory
-    file:
-      path: "{{ services }}/bitwarden/db-persistence"
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
+    loop:
+      - "{{ services }}/bitwarden/persistence"
+      - "{{ services }}/bitwarden/db-persistence"
 
   #--- Nextcloud
-  - name: Create Nextcloud persistence directory
+  - name: Create Nextcloud persistence directories
     file:
-      path: "{{ services }}/nextcloud/persistence"
+      path: "{{ item }}"
       state: directory
       owner: docker
       group: docker
       mode: 0744
-  - name: Create Nextcloud database persistence directory
-    file:
-      path: "{{ services }}/nextcloud/db-persistence"
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
-  - name: Create Nextcloud web persistence directory
-    file:
-      path: "{{ services }}/nextcloud/web-persistence"
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
+    loop:
+      - "{{ services }}/nextcloud/persistence"
+      - "{{ services }}/nextcloud/db-persistence"
+      - "{{ services }}/nextcloud/web-persistence"
 
   #--- Pihole
   - name: Create Pihole log file
@@ -58,19 +51,27 @@
       owner: docker
       group: docker
       mode: 0744
-  - name: Create Pihole etc directory
+  - name: Create Pihole directories
     file:
-      path: "{{ services }}/pihole/etc-pihole"
+      path: "{{ item }}"
       state: directory
       owner: docker
       group: docker
       mode: 0744
-  - name: Create Pihole dsnmasqd directory
-    file:
-      path: "{{ services }}/pihole/etc-dnsmasqd"
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
+    loop:
+      - "{{ services }}/pihole/etc-pihole"
+      - "{{ services }}/pihole/etc-dnsmasqd"
 
-  #---
+  #--- Jellyfin
+  - name: Create Jellyfin persistence directories
+    file:
+      path: "{{ item }}"
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+     - "{{ services }}/jellyfin/persistence"
+     - "{{ services }}/jellyfin/persistence/library"
+     - "{{ services }}/jellyfin/persistence/tvshows"
+     - "{{ services }}/jellyfin/persistence/movies"
