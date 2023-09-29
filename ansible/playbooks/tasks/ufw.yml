@@ -59,6 +59,13 @@
       #name: Bitwarden
       port: 3012
 
+  - name: Allow local network discovery for Jellyfin
+    ufw:
+      rule: allow
+      #name: Jellyfin Local Network Discovery
+      port: 7359
+      protocol: udp
+
   - name: Allow Traefik dashboard
     ufw:
       rule: allow
