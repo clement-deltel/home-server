@@ -42,6 +42,11 @@
         file: tasks/docker.yml
       tags: init
 
+    - name: Install NVIDIA Container Toolkit
+      include_tasks:
+        file: tasks/nvidia.yml
+      tags: init
+
     - name: Firewall UFW configuration
       include_tasks:
         file: tasks/ufw.yml
