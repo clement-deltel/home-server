@@ -1,0 +1,31 @@
+- name: Install and configure DynamicDNS
+  tags: init
+  become: true
+  block:
+
+  - name: Install ddclient
+    apt:
+      pkg:
+        - ddclient
+      state: latest
+
+  - name: Update /etc/ddclient.conf file
+    lineinfile:
+      path: /etc/ddclient.conf
+      state: present
+      owner: root
+      group: root
+      mode: 0644
+    loop:
+      - { search_string: 'protocol', line: 'protocol=dyndns2' }
+      - { search_string: 'use', line: 'use=web, web=checkip.dyndns.com' }
+      - { search_string: 'login', line: 'login={{ dyn_host_username }}' }
+      - { search_string: 'password', line: 'password={{ dyn_host_password }}' }
+      - { line: 'server={{ dyn_server }}' }
+      - { line: '*' }
+
+  - name: Restart ddclient service
+    systemd:
+      name: ddclient
+      state: restarted
+      enabled: yes

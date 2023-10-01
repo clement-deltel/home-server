@@ -1,0 +1,3 @@
+dyn_server: "<server-url>"
+dyn_host_username: "<login>"
+dyn_host_password: "<password>"

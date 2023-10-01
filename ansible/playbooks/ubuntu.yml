@@ -12,9 +12,19 @@
         file: tasks/profile.yml
       tags: init
 
-    - name: DNS- Configuration update
+    - name: DNS - Configuration update
       include_tasks:
         file: tasks/dns.yml
+      tags: init
+
+    - name: Dynamic DNS - Installation & configuration
+      include_tasks:
+        file: tasks/dyn_dns.yml
+      tags: init
+
+    - name: Firewall UFW configuration
+      include_tasks:
+        file: tasks/ufw.yml
       tags: init
 
     - name: SSH - Install & enable
@@ -45,11 +55,6 @@
     - name: Install NVIDIA Container Toolkit
       include_tasks:
         file: tasks/nvidia.yml
-      tags: init
-
-    - name: Firewall UFW configuration
-      include_tasks:
-        file: tasks/ufw.yml
       tags: init
 
     # - name: Security good practices
