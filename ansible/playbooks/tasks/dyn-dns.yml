@@ -17,14 +17,23 @@
     lineinfile:
       path: /etc/ddclient.conf
       state: present
+      search_string: '{{ item.search_string }}'
+      line: '{{ item.line }}'
       owner: root
       group: root
-      mode: 0644
+      mode: 0600
     loop:
-      - { search_string: 'protocol', line: 'protocol=dyndns2' }
-      - { search_string: 'use', line: 'use=web, web=checkip.dyndns.com' }
-      - { search_string: 'login', line: 'login={{ dyn_host_username }}' }
-      - { search_string: 'password', line: 'password={{ dyn_host_password }}' }
+      - { search_string: '^protocol', line: 'protocol=dyndns2' }
+      - { search_string: '^use', line: 'use=web, web=checkip.dyndns.com' }
+      - { search_string: '^login', line: 'login={{ dyn_host_username }}' }
+      - { search_string: '^password', line: 'password={{ dyn_host_password }}' }
+
+  - name: Update /etc/ddclient.conf file - Add a few lines
+    lineinfile:
+      path: /etc/ddclient.conf
+      state: present
+      line: '{{ item.line }}'
+    loop:
       - { line: 'server={{ dyn_server }}' }
       - { line: '*' }
 
