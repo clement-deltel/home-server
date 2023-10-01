@@ -19,7 +19,7 @@
 
     - name: Dynamic DNS - Installation & configuration
       include_tasks:
-        file: tasks/dyn_dns.yml
+        file: tasks/dyn-dns.yml
       tags: init
 
     - name: Firewall UFW configuration
