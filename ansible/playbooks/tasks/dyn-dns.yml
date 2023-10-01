@@ -9,7 +9,11 @@
         - ddclient
       state: latest
 
-  - name: Update /etc/ddclient.conf file
+  - name: Import configuration variables
+    include_vars:
+      file: vars/dyn-dns.yml
+
+  - name: Update /etc/ddclient.conf file - Replace a few lines
     lineinfile:
       path: /etc/ddclient.conf
       state: present
