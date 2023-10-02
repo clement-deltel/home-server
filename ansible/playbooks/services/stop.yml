@@ -8,34 +8,34 @@
 
   - name: Stop Traefik
     docker_compose:
-      project_src: "{{ services }}/traefik"
+      project_src: "{{ server_home }}/services/traefik"
       stopped: true
       state: present
 
   - name: Stop Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:
-      project_src: "{{ services }}/bitwarden"
+      project_src: "{{ server_home }}/services/bitwarden"
       stopped: true
       state: present
 
   - name: Stop NextCloud
     when: '{{ nextcloud_enable }}'
     docker_compose:
-      project_src: "{{ services }}/nextcloud"
+      project_src: "{{ server_home }}/services/nextcloud"
       stopped: true
       state: present
 
   - name: Stop Pihole
     when: '{{ pihole_enable }}'
     docker_compose:
-      project_src: "{{ services }}/pihole"
+      project_src: "{{ server_home }}/services/pihole"
       stopped: true
       state: present
 
   - name: Stop Jellyfin
     when: '{{ jellyfin_enable }}'
     docker_compose:
-      project_src: "{{ services }}/jellyfin"
+      project_src: "{{ server_home }}/services/jellyfin"
       stopped: true
       state: present

@@ -8,34 +8,34 @@
 
   - name: Restart Traefik
     docker_compose:
-      project_src: "{{ services }}/traefik"
+      project_src: "{{ server_home }}/services/traefik"
       restarted: true
       state: present
 
   - name: Restart Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:
-      project_src: "{{ services }}/bitwarden"
+      project_src: "{{ server_home }}/services/bitwarden"
       restarted: true
       state: present
 
   - name: Restart NextCloud
     when: '{{ nextcloud_enable }}'
     docker_compose:
-      project_src: "{{ services }}/nextcloud"
+      project_src: "{{ server_home }}/services/nextcloud"
       restarted: true
       state: present
 
   - name: Restart Pihole
     when: '{{ pihole_enable }}'
     docker_compose:
-      project_src: "{{ services }}/pihole"
+      project_src: "{{ server_home }}/services/pihole"
       restarted: true
       state: present
 
   - name: Restart Jellyfin
     when: '{{ jellyfin_enable }}'
     docker_compose:
-      project_src: "{{ services }}/jellyfin"
+      project_src: "{{ server_home }}/services/jellyfin"
       restarted: true
       state: present

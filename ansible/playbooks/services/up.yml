@@ -8,34 +8,34 @@
 
   - name: Boot Traefik
     docker_compose:
-      project_src: "{{ services }}/traefik"
+      project_src: "{{ server_home }}/services/traefik"
       pull: true
       state: present
 
   - name: Boot Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:
-      project_src: "{{ services }}/bitwarden"
+      project_src: "{{ server_home }}/services/bitwarden"
       pull: true
       state: present
 
   - name: Boot NextCloud
     when: '{{ nextcloud_enable }}'
     docker_compose:
-      project_src: "{{ services }}/nextcloud"
+      project_src: "{{ server_home }}/services/nextcloud"
       pull: true
       state: present
 
   - name: Boot Pihole
     when: '{{ pihole_enable }}'
     docker_compose:
-      project_src: "{{ services }}/pihole"
+      project_src: "{{ server_home }}/services/pihole"
       pull: true
       state: present
 
   - name: Boot Jellyfin
     when: '{{ jellyfin_enable }}'
     docker_compose:
-      project_src: "{{ services }}/jellyfin"
+      project_src: "{{ server_home }}/services/jellyfin"
       pull: true
       state: present
