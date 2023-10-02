@@ -2,6 +2,10 @@
   tags: stop
   block:
 
+  - name: Import enable flags
+    include_vars:
+      file: vars/main.yml
+
   - name: Stop Traefik
     docker_compose:
       project_src: "{{ services }}/traefik"
@@ -9,24 +13,28 @@
       state: present
 
   - name: Stop Bitwarden
+    when: '{{ bitwarden_enable }}'
     docker_compose:
       project_src: "{{ services }}/bitwarden"
       stopped: true
       state: present
 
   - name: Stop NextCloud
+    when: '{{ nextcloud_enable }}'
     docker_compose:
       project_src: "{{ services }}/nextcloud"
       stopped: true
       state: present
 
   - name: Stop Pihole
+    when: '{{ pihole_enable }}'
     docker_compose:
       project_src: "{{ services }}/pihole"
       stopped: true
       state: present
 
   - name: Stop Jellyfin
+    when: '{{ jellyfin_enable }}'
     docker_compose:
       project_src: "{{ services }}/jellyfin"
       stopped: true

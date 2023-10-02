@@ -2,6 +2,10 @@
   tags: up
   block:
 
+  - name: Import enable flags
+    include_vars:
+      file: vars/main.yml
+
   - name: Boot Traefik
     docker_compose:
       project_src: "{{ services }}/traefik"
@@ -9,24 +13,28 @@
       state: present
 
   - name: Boot Bitwarden
+    when: '{{ bitwarden_enable }}'
     docker_compose:
       project_src: "{{ services }}/bitwarden"
       pull: true
       state: present
 
   - name: Boot NextCloud
+    when: '{{ nextcloud_enable }}'
     docker_compose:
       project_src: "{{ services }}/nextcloud"
       pull: true
       state: present
 
   - name: Boot Pihole
+    when: '{{ pihole_enable }}'
     docker_compose:
       project_src: "{{ services }}/pihole"
       pull: true
       state: present
 
   - name: Boot Jellyfin
+    when: '{{ jellyfin_enable }}'
     docker_compose:
       project_src: "{{ services }}/jellyfin"
       pull: true

@@ -16,3 +16,9 @@ aws_format: yaml
 dyn_server: "<server-url>"
 dyn_host_username: "<login>"
 dyn_host_password: "<password>"
+
+# Services
+bitwarden_enable: true
+nextcloud_enable: true
+pihole_enable: true
+jellyfin_enable: true

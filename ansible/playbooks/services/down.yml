@@ -2,27 +2,35 @@
   tags: down
   block:
 
+  - name: Import enable flags
+    include_vars:
+      file: vars/main.yml
+
   - name: Remove Traefik
     docker_compose:
       project_src: "{{ services }}/traefik"
       state: absent
 
   - name: Remove Bitwarden
+    when: '{{ bitwarden_enable }}'
     docker_compose:
       project_src: "{{ services }}/bitwarden"
       state: absent
 
   - name: Remove NextCloud
+    when: '{{ nextcloud_enable }}'
     docker_compose:
       project_src: "{{ services }}/nextcloud"
       state: absent
 
   - name: Remove Pihole
+    when: '{{ pihole_enable }}'
     docker_compose:
       project_src: "{{ services }}/pihole"
       state: absent
 
   - name: Remove Jellyfin
+    when: '{{ jellyfin_enable }}'
     docker_compose:
       project_src: "{{ services }}/jellyfin"
       state: absent
