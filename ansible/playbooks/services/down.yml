@@ -8,29 +8,29 @@
 
   - name: Remove Traefik
     docker_compose:
-      project_src: "{{ server_home }}/services/traefik"
+      project_src: '{{ server_home }}/services/traefik'
       state: absent
 
   - name: Remove Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:
-      project_src: "{{ server_home }}/services/bitwarden"
+      project_src: '{{ server_home }}/services/bitwarden'
       state: absent
 
   - name: Remove NextCloud
     when: '{{ nextcloud_enable }}'
     docker_compose:
-      project_src: "{{ server_home }}/services/nextcloud"
+      project_src: '{{ server_home }}/services/nextcloud'
       state: absent
 
   - name: Remove Pihole
     when: '{{ pihole_enable }}'
     docker_compose:
-      project_src: "{{ server_home }}/services/pihole"
+      project_src: '{{ server_home }}/services/pihole'
       state: absent
 
   - name: Remove Jellyfin
     when: '{{ jellyfin_enable }}'
     docker_compose:
-      project_src: "{{ server_home }}/services/jellyfin"
+      project_src: '{{ server_home }}/services/jellyfin'
       state: absent

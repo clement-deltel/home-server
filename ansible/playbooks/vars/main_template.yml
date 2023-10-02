@@ -2,20 +2,20 @@
 docker_gid: <docker-user-gid>
 docker_uid: <docker-user-uid>
 
-server_home: "<server-home>"
+server_home: '<server-home>'
 local_domain: false
 
 # AWS
 aws_profile: default
-aws_access_key: "<aws-access-key>"
-aws_secret_key: "<aws-secret-key>"
-aws_region: "<region>"
+aws_access_key: '<aws-access-key>'
+aws_secret_key: '<aws-secret-key>'
+aws_region: '<region>'
 aws_format: yaml
 
 # DynDNS
-dyn_server: "<server-url>"
-dyn_host_username: "<login>"
-dyn_host_password: "<password>"
+dyn_server: '<server-url>'
+dyn_host_username: '<login>'
+dyn_host_password: '<password>'
 
 # Services
 bitwarden_enable: true

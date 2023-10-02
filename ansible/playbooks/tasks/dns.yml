@@ -35,7 +35,7 @@
     lineinfile:
       path: /etc/resolvconf/resolv.conf.d/head
       state: present
-      line: "{{ item.line }}"
+      line: '{{ item.line }}'
       owner: root
       group: root
       mode: 0644

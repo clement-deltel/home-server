@@ -6,32 +6,32 @@
 
   - name: Daily backup job
     cron:
-      name: "Backup services (every day at 4AM): Bitwarden"
-      hour: "4"
-      job: "{{ server_home }}/scripts/backup/all.sh daily"
+      name: 'Backup services (every day at 4AM): Bitwarden'
+      hour: '4'
+      job: '{{ server_home }}/scripts/backup/all.sh daily'
       state: present
 
   - name: Weekly backup job
     cron:
-      name: "Backup services (every Monday morning at 3AM): ..."
-      hour: "3"
-      weekday: "1"
-      job: "{{ server_home }}/scripts/backup/all.sh weekly"
+      name: 'Backup services (every Monday morning at 3AM): ...'
+      hour: '3'
+      weekday: '1'
+      job: '{{ server_home }}/scripts/backup/all.sh weekly'
       state: present
 
   - name: Monthly backup job
     cron:
-      name: "Backup services (every 1st of the month at 2AM): ..."
-      day: "1"
-      hour: "2"
-      job: "{{ server_home }}/scripts/backup/all.sh monthly"
+      name: 'Backup services (every 1st of the month at 2AM): ...'
+      day: '1'
+      hour: '2'
+      job: '{{ server_home }}/scripts/backup/all.sh monthly'
       state: present
 
   - name: Yearly backup job
     cron:
-      name: "Backup services (every 1st of the year at 1AM): ..."
-      day: "1"
-      hour: "1"
-      month: "1"
-      job: "{{ server_home }}/scripts/backup/all.sh yearly"
+      name: 'Backup services (every 1st of the year at 1AM): ...'
+      day: '1'
+      hour: '1'
+      month: '1'
+      job: '{{ server_home }}/scripts/backup/all.sh yearly'
       state: present

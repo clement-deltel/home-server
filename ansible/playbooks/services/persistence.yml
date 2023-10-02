@@ -5,7 +5,7 @@
   #--- Traefik
   - name: Create Traefik persistence directory
     file:
-      path: "{{ server_home }}/services/traefik/persistence"
+      path: '{{ server_home }}/services/traefik/persistence'
       state: directory
       owner: docker
       group: docker
@@ -13,16 +13,16 @@
   - name: Copy Traefik configuration file - Production
     when: not {{ local_domain }}
     copy:
-      src: "{{ server_home }}/services/traefik/config/traefik.toml"
-      dest: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+      src: '{{ server_home }}/services/traefik/config/traefik.toml'
+      dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
       owner: docker
       group: docker
       mode: 0644
   - name: Copy Traefik configuration file - Local Testing
     when: {{ local_domain }}
     copy:
-      src: "{{ server_home }}/services/traefik/config_local/traefik.toml"
-      dest: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+      src: '{{ server_home }}/services/traefik/config_local/traefik.toml'
+      dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
       owner: docker
       group: docker
       mode: 0644
@@ -30,57 +30,57 @@
   #--- Bitwarden
   - name: Create Bitwarden persistence directories
     file:
-      path: "{{ item }}"
+      path: '{{ item }}'
       state: directory
       owner: docker
       group: docker
       mode: 0744
     loop:
-      - "{{ server_home }}/services/bitwarden/persistence"
-      - "{{ server_home }}/services/bitwarden/db-persistence"
+      - '{{ server_home }}/services/bitwarden/persistence'
+      - '{{ server_home }}/services/bitwarden/db-persistence'
 
   #--- Nextcloud
   - name: Create Nextcloud persistence directories
     file:
-      path: "{{ item }}"
+      path: '{{ item }}'
       state: directory
       owner: docker
       group: docker
       mode: 0744
     loop:
-      - "{{ server_home }}/services/nextcloud/persistence"
-      - "{{ server_home }}/services/nextcloud/db-persistence"
-      - "{{ server_home }}/services/nextcloud/web-persistence"
+      - '{{ server_home }}/services/nextcloud/persistence'
+      - '{{ server_home }}/services/nextcloud/db-persistence'
+      - '{{ server_home }}/services/nextcloud/web-persistence'
 
   #--- Pihole
   - name: Create Pihole log file
     file:
-      path: "{{ server_home }}/services/pihole/pihole.log"
+      path: '{{ server_home }}/services/pihole/pihole.log'
       state: touch
       owner: docker
       group: docker
       mode: 0744
   - name: Create Pihole directories
     file:
-      path: "{{ item }}"
+      path: '{{ item }}'
       state: directory
       owner: docker
       group: docker
       mode: 0744
     loop:
-      - "{{ server_home }}/services/pihole/etc-pihole"
-      - "{{ server_home }}/services/pihole/etc-dnsmasqd"
+      - '{{ server_home }}/services/pihole/etc-pihole'
+      - '{{ server_home }}/services/pihole/etc-dnsmasqd'
 
   #--- Jellyfin
   - name: Create Jellyfin persistence directories
     file:
-      path: "{{ item }}"
+      path: '{{ item }}'
       state: directory
       owner: docker
       group: docker
       mode: 0744
     loop:
-     - "{{ server_home }}/services/jellyfin/persistence"
-     - "{{ server_home }}/services/jellyfin/persistence/library"
-     - "{{ server_home }}/services/jellyfin/persistence/tvshows"
-     - "{{ server_home }}/services/jellyfin/persistence/movies"
+     - '{{ server_home }}/services/jellyfin/persistence'
+     - '{{ server_home }}/services/jellyfin/persistence/library'
+     - '{{ server_home }}/services/jellyfin/persistence/tvshows'
+     - '{{ server_home }}/services/jellyfin/persistence/movies'

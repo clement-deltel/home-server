@@ -1,7 +1,7 @@
 - name: Apply dotfiles for ubuntu user
   tags: init
   copy:
-    src: "{{ server_home }}/dotfiles_ubuntu/"
+    src: '{{ server_home }}/dotfiles_ubuntu/'
     dest: /home/ubuntu/
     owner: ubuntu
     group: ubuntu
@@ -10,7 +10,7 @@
 - name: Apply dotfiles for docker user
   tags: docker
   copy:
-    src: "{{ server_home }}/dotfiles_docker/"
+    src: '{{ server_home }}/dotfiles_docker/'
     dest: /home/docker/
     owner: docker
     group: docker

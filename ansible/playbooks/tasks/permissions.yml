@@ -2,7 +2,7 @@
   tags: init
   become: true
   file:
-      path: "{{ server_home }}"
+      path: '{{ server_home }}'
       state: directory
       owner: docker
       group: docker
