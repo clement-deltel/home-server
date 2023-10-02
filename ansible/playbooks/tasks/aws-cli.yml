@@ -34,7 +34,7 @@
   block:
   - name: Import configuration variables
     include_vars:
-      file: vars/aws-cli.yml
+      file: vars/main.yml
 
   - name: Configure the tool
     shell: aws configure set {{ item.key }} {{ item.value }} --profile {{ aws_profile }}

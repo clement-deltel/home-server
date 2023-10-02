@@ -11,7 +11,7 @@
 
   - name: Import configuration variables
     include_vars:
-      file: vars/dyn-dns.yml
+      file: vars/main.yml
 
   - name: Update /etc/ddclient.conf file - Replace a few lines
     lineinfile:
