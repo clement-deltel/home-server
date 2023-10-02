@@ -4,7 +4,7 @@ services:
     # cap_add:
     #   - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     container_name: pihole
-    #domainname: pihole.${LOCAL_DOMAIN}
+    #domainname: pihole.${DOMAIN}
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -15,7 +15,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.pihole.rule=Host(`pihole.${LOCAL_DOMAIN}`)"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.${DOMAIN}`)"
       - "traefik.http.routers.pihole.tls=true"
       - "traefik.http.routers.pihole.service=pihole"
       # Services
