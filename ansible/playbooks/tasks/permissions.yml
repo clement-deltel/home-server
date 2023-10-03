@@ -1,9 +1,19 @@
-- name: Change permissions of home server directory recursively
+- name: Update permissions
   tags: init
   become: true
-  file:
-      path: '{{ server_home }}'
-      state: directory
-      owner: docker
-      group: docker
-      recurse: true
+  block:
+
+  - name: Make all scripts executable
+    file:
+        path: '{{ server_home }}/scripts'
+        state: directory
+        mode: a+x
+        recurse: true
+
+  - name: Change owner and group of home server directory recursively
+    file:
+        path: '{{ server_home }}'
+        state: directory
+        owner: docker
+        group: docker
+        recurse: true
