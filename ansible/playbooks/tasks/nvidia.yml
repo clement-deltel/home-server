@@ -3,29 +3,45 @@
   become: true
   block:
 
+  - name: Create /etc/apt/keyrings directory
+    file:
+      path: /etc/apt/keyrings
+      state: directory
+      mode: 0755
+
   - name: Add NVIDIA GPG apt key
-    apt_key:
+    get_url:
       url: https://nvidia.github.io/libnvidia-container/gpgkey
-      state: present
+      dest: /tmp/nvidia-container-toolkit-keyring.gpg
+      mode: 0644
 
-  - name: Add NVIDIA Container Toolkit repository
-    shell: |
-      curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list |
-      sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' |
-      sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-    register: add_repo_result
-    ignore_errors: true  # Ignore errors if the repository is already added.
+  - name: Import NVIDIA GPG key
+    command: gpg --dearmor -o /etc/apt/keyrings/nvidia-container-toolkit-keyring.gpg /tmp/nvidia-container-toolkit-keyring.gpg
 
-  - name: Update APT cache
-    apt:
-      update_cache: true
-    when: add_repo_result.rc == 0  # Only run if the repository was added or updated.
+  - name: Configure NVIDIA APT repository
+    block:
+    - name: Fetch NVIDIA APT repository file
+      get_url:
+        url: https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list
+        dest: /tmp/nvidia-container-toolkit.list
 
-  - name: Install NVIDIA Container Toolkit
+    - name: Modify APT repository file
+      replace:
+        path: /tmp/nvidia-container-toolkit.list
+        regexp: 'deb https://'
+        replace: 'deb [signed-by=/etc/apt/keyrings/nvidia-container-toolkit-keyring.gpg] https://'
+
+    - name: Copy repository file to /etc/apt/sources.list.d/
+      copy:
+        src: /tmp/nvidia-container-toolkit.list
+        dest: /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+  - name: Update apt cache and install NVIDIA Container Toolkit
     apt:
       pkg:
         - nvidia-container-toolkit
-      state: latest
+      state: present
+      update_cache: true
 
   - name: Run toolkit runtime configuration
     command: nvidia-ctk runtime configure --runtime=docker
