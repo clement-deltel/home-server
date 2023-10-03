@@ -7,8 +7,8 @@ sudo apt install -y ansible
 
 # Possible tags: init, update, docker, up, restart, stop, down
 
-ansible-playbook -u ubuntu --ask-become-pass playbooks/ubuntu.yml --tags init
-ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --tags docker
+ansible-playbook playbooks/ubuntu.yml --tags init --ask-become-pass
+ansible-playbook playbooks/docker.yml --tags docker
 
 # Boot all services
-ansible-playbook -u docker --ask-become-pass playbooks/docker.yml --tags up
+ansible-playbook playbooks/docker.yml --tags up

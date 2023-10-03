@@ -1,6 +1,8 @@
 - name: Configure the instance - Home Server - Docker user
   hosts: localhost
   gather_facts: true
+  become: true
+  become_user: docker
   vars_files:
     - vars/main.yml
 
