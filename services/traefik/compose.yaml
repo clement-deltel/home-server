@@ -8,7 +8,12 @@ services:
       # Routers
       - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
       - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.service=traefik"
+      # - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.traefik.tls.domains[0].main=traefik.${DOMAIN}"
+      # - "traefik.http.routers.traefik.middlewares=auth"
+      - "traefik.http.routers.traefik.service=api@internal"
+      # Middlewares
+      # - "traefik.http.middlewares.auth.basicauth.usersfile=/opt/dashboard/users.txt"
       # Services
       - "traefik.http.services.traefik.loadbalancer.server.port=${TRAEFIK_DASHBOARD_PORT}"
     logging:
@@ -31,10 +36,15 @@ services:
     volumes:
       # Docker socket is mounted for auto-discovery of new services - read only
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      # Configuration file
-      - ./persistence/traefik.toml:/etc/traefik/traefik.toml
       # Log file
       - ./persistence/traefik.log:/var/log/traefik.log
+      # Configuration file
+      - ./persistence/traefik.toml:/etc/traefik/traefik.toml
+      # users.txt - Credentials for the Traefik dashboard.
+      # - ./persistence/users.txt:/opt/dashboard/users.txt
+      # JSON file for certificates - It must have 600 file permissions.
+      # - ./persistence/acme.json:/letsencrypt/acme.json
+
 
 networks:
   app-net:

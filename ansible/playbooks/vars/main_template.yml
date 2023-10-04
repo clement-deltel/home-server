@@ -1,4 +1,6 @@
 # General
+user_email: <user-email-address>
+
 docker_gid: <docker-user-gid>
 docker_uid: <docker-user-uid>
 
@@ -16,6 +18,10 @@ aws_format: yaml
 dyn_server: '<server-url>'
 dyn_host_username: '<login>'
 dyn_host_password: '<password>'
+
+# Traefik
+traefik_user: <traefik-dashboard-user>
+traefik_password: <traefik-dashboard-password>
 
 # Services
 bitwarden_enable: true

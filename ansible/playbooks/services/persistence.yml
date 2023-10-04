@@ -10,22 +10,74 @@
       owner: docker
       group: docker
       mode: 0744
-  - name: Copy Traefik configuration file - Production
-    when: not local_domain
-    copy:
-      src: '{{ server_home }}/services/traefik/config/traefik.toml'
-      dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
+  - name: Create traefik log file
+    file:
+      path: '{{ server_home }}/services/traefik/persistence/traefik.log'
+      state: touch
       owner: docker
       group: docker
-      mode: 0644
-  - name: Copy Traefik configuration file - Local Testing
+      mode: 0640
+
+  #--- Traefik - Testing
+  - name: Traefik Testing - Copy Traefik configuration file
     when: local_domain
     copy:
       src: '{{ server_home }}/services/traefik/config_local/traefik.toml'
       dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
       owner: docker
       group: docker
-      mode: 0644
+      mode: 0640
+
+  #--- Traefik - Production
+  - name: Traefik Production
+    when: not local_domain
+    block:
+
+    - name: Create traefik certificates file
+      file:
+        path: '{{ server_home }}/services/traefik/persistence/acme.json'
+        state: touch
+        owner: docker
+        group: docker
+        mode: 0600
+
+    - name: Copy Traefik configuration file
+      copy:
+        src: '{{ server_home }}/services/traefik/config/traefik.toml'
+        dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
+        owner: docker
+        group: docker
+        mode: 0640
+
+    - name: Add email to traefik.toml
+      lineinfile:
+        path: '{{ server_home }}/services/traefik/persistence/traefik.toml'
+        state: present
+        search_string: 'email ='
+        line: 'email = "{{ user_email }}"'
+
+    - name: Uncomment labels and bind mounts in compose.yaml
+      lineinfile:
+        path: '{{ server_home }}/services/traefik/compose.yaml'
+        regexp: '^# - ("traefik|.\/persistence)'
+        line: '{{ item.line | regex_replace("^# ", "") }}'
+      with_lines: '{{ server_home }}/services/traefik/compose.yaml'
+
+    - name: Create traefik users.txt file
+      file:
+        path: '{{ server_home }}/services/traefik/persistence/users.txt'
+        state: touch
+        owner: docker
+        group: docker
+        mode: 0640
+
+    - name: Add a user users.txt
+      community.general.htpasswd:
+        path: '{{ server_home }}/services/traefik/persistence/users.txt'
+        name: '{{ traefik_user }}'
+        password: '{{ traefik_password }}'
+        hash_scheme: md5_crypt
+        state: present
 
   #--- Bitwarden
   - name: Create Bitwarden persistence directories
@@ -53,13 +105,6 @@
       - '{{ server_home }}/services/nextcloud/web-persistence'
 
   #--- Pihole
-  - name: Create Pihole log file
-    file:
-      path: '{{ server_home }}/services/pihole/pihole.log'
-      state: touch
-      owner: docker
-      group: docker
-      mode: 0744
   - name: Create Pihole directories
     file:
       path: '{{ item }}'
@@ -70,6 +115,13 @@
     loop:
       - '{{ server_home }}/services/pihole/etc-pihole'
       - '{{ server_home }}/services/pihole/etc-dnsmasqd'
+  - name: Create Pihole log file
+    file:
+      path: '{{ server_home }}/services/pihole/pihole.log'
+      state: touch
+      owner: docker
+      group: docker
+      mode: 0640
 
   #--- Jellyfin
   - name: Create Jellyfin persistence directories
