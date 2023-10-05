@@ -45,6 +45,26 @@ services:
       # JSON file for certificates - It must have 600 file permissions.
       # - ./persistence/acme.json:/letsencrypt/acme.json
 
+  robots:
+      container_name: robots
+      hostname: robots
+      image: ${ROBOTS_IMAGE}
+      labels:
+        - "traefik.enable=true"
+        # Routers
+        - "traefik.http.routers.robots.rule=HostRegexp(`{host:.*}`) && Path(`/robots.txt`)"
+        - "traefik.http.routers.robots.tls=true"
+        - "traefik.http.routers.robots.priority=99"
+      logging:
+        driver: json-file
+        options:
+          max-file: 5
+          max-size: 5m
+      networks:
+        app-net:
+          ipv4_address: ${ROBOTS_IP}
+      volumes:
+        - ./config/robots.txt:/usr/share/nginx/html/robots.txt:ro
 
 networks:
   app-net:
