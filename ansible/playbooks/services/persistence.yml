@@ -47,14 +47,14 @@
         dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
         owner: docker
         group: docker
-        mode: 0640
+        mode: 0740
 
     - name: Add email to traefik.toml
       lineinfile:
         path: '{{ server_home }}/services/traefik/persistence/traefik.toml'
         state: present
         search_string: 'email ='
-        line: 'email = "{{ user_email }}"'
+        line: '  email = "{{ user_email }}"'
 
     - name: Uncomment labels and bind mounts in compose.yaml
       lineinfile:
