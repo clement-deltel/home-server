@@ -10,12 +10,12 @@
   - name: Install/update packages
     apt:
       pkg:
+        - apache2-utils
         - build-essential
         - curl
         - git
         - gnupg
         - htop
-        - htpasswd
         - lsb-release
         - lynis
         - mariadb-client-10.6
