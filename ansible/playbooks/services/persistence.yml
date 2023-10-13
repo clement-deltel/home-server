@@ -57,11 +57,10 @@
         line: '  email = "{{ user_email }}"'
 
     - name: Uncomment labels and bind mounts in compose.yaml
-      lineinfile:
+      replace:
         path: '{{ server_home }}/services/traefik/compose.yaml'
-        regexp: '^# - ("traefik|.\/persistence)'
-        line: '{{ item.line | regex_replace("^# ", "") }}'
-      with_lines: '{{ server_home }}/services/traefik/compose.yaml'
+        regexp: '(^\s*)# -'
+        replace: '\1-'
 
     - name: Create traefik users.txt file
       file:
