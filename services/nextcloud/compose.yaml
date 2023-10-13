@@ -100,6 +100,8 @@ services:
       # Routers
       - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN}`)"
       - "traefik.http.routers.nextcloud.tls=true"
+      # - "traefik.http.routers.nextcloud.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.nextcloud.tls.domains[0].main=nextcloud.${DOMAIN}"
       - "traefik.http.routers.nextcloud.service=nextcloud"
       # Services
       - "traefik.http.services.nextcloud.loadbalancer.server.port=80"

@@ -79,6 +79,13 @@
         state: present
 
   #--- Bitwarden
+  - name: Bitwarden Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/bitwarden/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
   - name: Create Bitwarden persistence directories
     file:
       path: '{{ item }}'
@@ -91,6 +98,13 @@
       - '{{ server_home }}/services/bitwarden/db-persistence'
 
   #--- Nextcloud
+  - name: Nextcloud Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/nextcloud/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
   - name: Create Nextcloud persistence directories
     file:
       path: '{{ item }}'
@@ -104,6 +118,13 @@
       - '{{ server_home }}/services/nextcloud/web-persistence'
 
   #--- Pihole
+  - name: Pihole Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/pihole/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
   - name: Create Pihole directories
     file:
       path: '{{ item }}'
@@ -123,6 +144,13 @@
       mode: 0640
 
   #--- Jellyfin
+  - name: Jellyfin Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/jellyfin/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
   - name: Create Jellyfin persistence directories
     file:
       path: '{{ item }}'

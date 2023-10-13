@@ -17,6 +17,8 @@ services:
       # Routers
       - "traefik.http.routers.pihole.rule=Host(`pihole.${DOMAIN}`)"
       - "traefik.http.routers.pihole.tls=true"
+      # - "traefik.http.routers.pihole.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.pihole.tls.domains[0].main=pihole.${DOMAIN}"
       - "traefik.http.routers.pihole.service=pihole"
       # Services
       - "traefik.http.services.pihole.loadbalancer.server.port=80"
