@@ -12,6 +12,13 @@
       stopped: true
       state: present
 
+  - name: Stop WireGuard
+    when: '{{ wireguard_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/wireguard'
+      stopped: true
+      state: present
+
   - name: Stop Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:

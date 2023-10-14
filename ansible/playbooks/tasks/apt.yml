@@ -28,6 +28,7 @@
         - python3-pip
         - software-properties-common
         - vim
+        - wireguard
         - zip
       state: latest
 

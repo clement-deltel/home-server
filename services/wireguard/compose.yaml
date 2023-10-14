@@ -1,0 +1,43 @@
+services:
+  vpn:
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    container_name: wireguard
+    env_file: config/app.env
+    hostname: wireguard
+    image: ${WIREGUARD_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.udp.routers.wireguard.entrypoints=wireguard"
+      - "traefik.udp.routers.wireguard.rule=Host(`vpn.${DOMAIN}`)"
+      - "traefik.udp.routers.wireguard.tls=true"
+      # - "traefik.udp.routers.wireguard.tls.certresolver=letsencrypt"
+      # - "traefik.udp.routers.wireguard.tls.domains[0].main=vpn.${DOMAIN}"
+      - "traefik.udp.routers.wireguard.service=wireguard"
+      # Services
+      - "traefik.udp.services.wireguard.loadbalancer.server.port=${WIREGUARD_PORT}"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+        traefik-net:
+          ipv4_address: ${WIREGUARD_IP}
+    ports:
+      - 51820/udp
+    restart: always
+    stop_grace_period: 10s
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    volumes:
+      - ./persistence:/config
+      - /usr/src:/usr/src
+      - /lib/modules:/lib/modules
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

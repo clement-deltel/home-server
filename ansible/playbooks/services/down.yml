@@ -11,6 +11,12 @@
       project_src: '{{ server_home }}/services/traefik'
       state: absent
 
+  - name: Remove WireGuard
+    when: '{{ wireguard_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/wireguard'
+      state: absent
+
   - name: Remove Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:

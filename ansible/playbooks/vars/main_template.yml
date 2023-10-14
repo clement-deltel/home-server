@@ -24,6 +24,7 @@ traefik_user: <traefik-dashboard-user>
 traefik_password: <traefik-dashboard-password>
 
 # Services
+wireguard_enable: true
 bitwarden_enable: true
 nextcloud_enable: true
 pihole_enable: true

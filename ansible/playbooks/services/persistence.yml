@@ -10,6 +10,7 @@
       owner: docker
       group: docker
       mode: 0744
+
   - name: Create traefik log file
     file:
       path: '{{ server_home }}/services/traefik/persistence/traefik.log'
@@ -78,6 +79,22 @@
         hash_scheme: md5_crypt
         state: present
 
+  #--- WireGuard
+  - name: WireGuard Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/wireguard/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
+  - name: Create WireGuard persistence directories
+    file:
+      path: '{{ server_home }}/services/wireguard/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+
   #--- Bitwarden
   - name: Bitwarden Production - Uncomment labels in compose.yaml
     when: not local_domain
@@ -135,6 +152,7 @@
     loop:
       - '{{ server_home }}/services/pihole/etc-pihole'
       - '{{ server_home }}/services/pihole/etc-dnsmasqd'
+
   - name: Create Pihole log file
     file:
       path: '{{ server_home }}/services/pihole/pihole.log'

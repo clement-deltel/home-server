@@ -324,14 +324,18 @@ alias loghome='cd ${LOG_HOME}'
 
 # Services
 alias cdbit='cd ${SERVER_HOME}/services/bitwarden'
+alias cdjel='cd ${SERVER_HOME}/services/jellyfin'
 alias cdnex='cd ${SERVER_HOME}/services/nextcloud'
 alias cdpih='cd ${SERVER_HOME}/services/pihole'
 alias cdtra='cd ${SERVER_HOME}/services/traefik'
+alias cdwir='cd ${SERVER_HOME}/services/wireguard'
 
 alias svcbit='cd ${SERVER_HOME}/services/bitwarden'
+alias svcpih='cd ${SERVER_HOME}/services/jellyfin'
 alias svcnex='cd ${SERVER_HOME}/services/nextcloud'
 alias svcpih='cd ${SERVER_HOME}/services/pihole'
 alias svctra='cd ${SERVER_HOME}/services/traefik'
+alias svcpih='cd ${SERVER_HOME}/services/wireguard'
 
 # Scripts
 alias scrall='cd ${SERVER_HOME}/scripts/all'

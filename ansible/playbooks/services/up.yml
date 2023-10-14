@@ -12,6 +12,13 @@
       pull: true
       state: present
 
+  - name: Boot WireGuard
+    when: '{{ wireguard_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/wireguard'
+      pull: true
+      state: present
+
   - name: Boot Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:

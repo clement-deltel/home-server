@@ -50,6 +50,9 @@
         requestAcceptGraceTimeout = 0
         graceTimeOut = 30
 
+  [entryPoints.vpn]
+    address = ":51820/udp"
+
 ################################################################
 # Traefik logs configuration
 ################################################################

@@ -12,6 +12,13 @@
       restarted: true
       state: present
 
+  - name: Restart WireGuard
+    when: '{{ wireguard_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/wireguard'
+      restarted: true
+      state: present
+
   - name: Restart Bitwarden
     when: '{{ bitwarden_enable }}'
     docker_compose:
