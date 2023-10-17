@@ -1,0 +1,5 @@
+- name: Install docker-compose python package
+  tags: up
+  pip:
+    name: docker-compose
+    state: present

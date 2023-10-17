@@ -11,4 +11,5 @@ ansible-playbook playbooks/ubuntu.yml --tags init --ask-become-pass
 ansible-playbook playbooks/docker.yml --tags docker
 
 # Boot all services
-ansible-playbook playbooks/docker.yml --tags up
+# Switching to the docker user is required to run the commands below
+# ansible-playbook playbooks/docker.yml --tags up
