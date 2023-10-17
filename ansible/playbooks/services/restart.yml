@@ -46,3 +46,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       restarted: true
       state: present
+
+  - name: Restart Photoprism
+    when: '{{ photoprism_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/photoprism'
+      restarted: true
+      state: present

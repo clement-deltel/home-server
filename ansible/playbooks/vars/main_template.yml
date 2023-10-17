@@ -29,3 +29,4 @@ bitwarden_enable: true
 nextcloud_enable: true
 pihole_enable: true
 jellyfin_enable: true
+photoprism_enable: true

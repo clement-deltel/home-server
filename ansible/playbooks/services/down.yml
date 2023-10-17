@@ -40,3 +40,9 @@
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
       state: absent
+
+  - name: Remove Photoprism
+    when: '{{ photoprism_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/photoprism'
+      state: absent

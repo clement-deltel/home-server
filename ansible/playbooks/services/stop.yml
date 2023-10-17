@@ -46,3 +46,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       stopped: true
       state: present
+
+  - name: Stop Photoprism
+    when: '{{ photoprism_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/photoprism'
+      stopped: true
+      state: present

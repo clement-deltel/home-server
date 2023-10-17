@@ -26,3 +26,4 @@
       - '{{ server_home }}/logs/nextcloud'
       - '{{ server_home }}/logs/pihole'
       - '{{ server_home }}/logs/jellyfin'
+      - '{{ server_home }}/logs/photoprism'

@@ -46,3 +46,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       pull: true
       state: present
+
+  - name: Boot Photoprism
+    when: '{{ photoprism_enable }}'
+    docker_compose:
+      project_src: '{{ server_home }}/services/photoprism'
+      pull: true
+      state: present

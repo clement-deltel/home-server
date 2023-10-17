@@ -1,0 +1,133 @@
+# Example Docker Compose config file for PhotoPrism (Linux / AMD64)
+#
+# Note:
+# . Running PhotoPrism on a server with less than 4 GB of swap space or setting a memory/swap limit can cause unexpected
+#   restarts ("crashes"), for example, when the indexer temporarily needs more memory to process large files.
+# . If you install PhotoPrism on a public server outside your home network, please always run it behind a secure
+#   HTTPS reverse proxy such as Traefik or Caddy. Your files and passwords will otherwise be transmitted
+#   in clear text and can be intercepted by anyone, including your provider, hackers, and governments:
+#   https://docs.photoprism.app/getting-started/proxies/traefik/
+#
+# Setup Guides:
+# . https://docs.photoprism.app/getting-started/docker-compose/
+# . https://docs.photoprism.app/getting-started/raspberry-pi/
+# . https://www.photoprism.app/kb/activation
+#
+# Troubleshooting Checklists:
+# . https://docs.photoprism.app/getting-started/troubleshooting/
+# . https://docs.photoprism.app/getting-started/troubleshooting/docker/
+# . https://docs.photoprism.app/getting-started/troubleshooting/mariadb/
+#
+# CLI Commands:
+# - https://docs.photoprism.app/getting-started/docker-compose/#command-line-interface
+#
+# All commands may have to be prefixed with "sudo" when not running as root.
+# This will point the home directory shortcut ~ to /root in volume mounts.
+
+services:
+  ## Database Server (recommended)
+  ## see https://docs.photoprism.app/getting-started/faq/#should-i-use-sqlite-mariadb-or-mysql
+  mariadb:
+    command: mariadbd --innodb-buffer-pool-size=512M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+    container_name: photoprism-mariadb
+    env_file: config/db.env
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    hostname: photoprism-mariadb
+    image: ${DEFAULT_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 5m
+    networks:
+        app-net:
+          ipv4_address: ${PHOTOPRISM_DB_IP}
+    ## If MariaDB gets stuck in a restart loop, this points to a memory or filesystem issue:
+    ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
+    restart: always
+    security_opt: # see https://github.com/MariaDB/mariadb-docker/issues/434#issuecomment-1136151239
+      - seccomp:unconfined
+      - apparmor:unconfined
+    stop_grace_period: 10s
+    ## Never store database files on an unreliable device such as a USB flash drive, an SD card, or a shared network folder:
+    volumes:
+      - ./db-persistence:/var/lib/mysql # DO NOT REMOVE
+
+  app:
+    container_name: photoprism
+    hostname: photoprism
+    ## Use photoprism/photoprism:preview for testing preview builds:
+    image: ${PHOTOPRISM_IMAGE}
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: config/app.env
+    ## Start as non-root user before initialization (supported: 0, 33, 50-99, 500-600, and 900-1200):
+    # user: "1000:1000"
+    ## Share hardware devices with FFmpeg and TensorFlow (optional):
+    ## devices:
+    ##  - "/dev/dri:/dev/dri"                         # Intel QSV
+    ##  - "/dev/nvidia0:/dev/nvidia0"                 # Nvidia CUDA
+    ##  - "/dev/nvidiactl:/dev/nvidiactl"
+    ##  - "/dev/nvidia-modeset:/dev/nvidia-modeset"
+    ##  - "/dev/nvidia-nvswitchctl:/dev/nvidia-nvswitchctl"
+    ##  - "/dev/nvidia-uvm:/dev/nvidia-uvm"
+    ##  - "/dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"
+    ##  - "/dev/video11:/dev/video11"                 # Video4Linux Video Encode Device (h264_v4l2m2m)
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.photoprism.rule=Host(`photoprism.${DOMAIN}`)"
+      - "traefik.http.routers.photoprism.tls=true"
+      # - "traefik.http.routers.photoprism.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.photoprism.tls.domains[0].main=photoprism.${DOMAIN}"
+      - "traefik.http.routers.photoprism.service=photoprism"
+      # Services
+      - "traefik.http.services.photoprism.loadbalancer.server.port=2342"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+        app-net:
+          ipv4_address: ${PHOTOPRISM_INTERNAL_IP}
+        traefik-net:
+          ipv4_address: ${PHOTOPRISM_IP}
+    ports:
+      - 2342 # HTTP port
+    ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!
+    ## If the service gets stuck in a restart loop, this points to a memory, filesystem, network, or database issue:
+    ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
+    restart: always
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    stop_grace_period: 10s
+    volumes:
+      # Original media files (DO NOT REMOVE)
+      - ./persistence/pictures:/photoprism/originals
+      # Writable storage folder for cache, database, and sidecar files (DO NOT REMOVE)
+      - ./persistence/storage:/photoprism/storage
+      # Optional base folder from which files can be imported to originals
+      ## - ~/Import:/photoprism/import
+      # Additional media folders can be mounted like this
+      ## - /example/family:/photoprism/originals/family
+    working_dir: "/photoprism" # do not change or remove
+
+networks:
+  app-net:
+    name: photoprism-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${PHOTOPRISM_NET}
+          gateway: ${PHOTOPRISM_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net
