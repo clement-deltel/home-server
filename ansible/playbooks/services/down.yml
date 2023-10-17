@@ -12,37 +12,37 @@
       state: absent
 
   - name: Remove WireGuard
-    when: '{{ wireguard_enable }}'
+    when: wireguard_enable
     docker_compose:
       project_src: '{{ server_home }}/services/wireguard'
       state: absent
 
   - name: Remove Bitwarden
-    when: '{{ bitwarden_enable }}'
+    when: bitwarden_enable
     docker_compose:
       project_src: '{{ server_home }}/services/bitwarden'
       state: absent
 
   - name: Remove NextCloud
-    when: '{{ nextcloud_enable }}'
+    when: nextcloud_enable
     docker_compose:
       project_src: '{{ server_home }}/services/nextcloud'
       state: absent
 
   - name: Remove Pihole
-    when: '{{ pihole_enable }}'
+    when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
       state: absent
 
   - name: Remove Jellyfin
-    when: '{{ jellyfin_enable }}'
+    when: jellyfin_enable
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
       state: absent
 
   - name: Remove Photoprism
-    when: '{{ photoprism_enable }}'
+    when: photoprism_enable
     docker_compose:
       project_src: '{{ server_home }}/services/photoprism'
       state: absent

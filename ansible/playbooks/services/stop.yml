@@ -13,42 +13,42 @@
       state: present
 
   - name: Stop WireGuard
-    when: '{{ wireguard_enable }}'
+    when: wireguard_enable
     docker_compose:
       project_src: '{{ server_home }}/services/wireguard'
       stopped: true
       state: present
 
   - name: Stop Bitwarden
-    when: '{{ bitwarden_enable }}'
+    when: bitwarden_enable
     docker_compose:
       project_src: '{{ server_home }}/services/bitwarden'
       stopped: true
       state: present
 
   - name: Stop NextCloud
-    when: '{{ nextcloud_enable }}'
+    when: nextcloud_enable
     docker_compose:
       project_src: '{{ server_home }}/services/nextcloud'
       stopped: true
       state: present
 
   - name: Stop Pihole
-    when: '{{ pihole_enable }}'
+    when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
       stopped: true
       state: present
 
   - name: Stop Jellyfin
-    when: '{{ jellyfin_enable }}'
+    when: jellyfin_enable
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
       stopped: true
       state: present
 
   - name: Stop Photoprism
-    when: '{{ photoprism_enable }}'
+    when: photoprism_enable
     docker_compose:
       project_src: '{{ server_home }}/services/photoprism'
       stopped: true

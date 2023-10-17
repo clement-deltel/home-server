@@ -13,42 +13,42 @@
       state: present
 
   - name: Restart WireGuard
-    when: '{{ wireguard_enable }}'
+    when: wireguard_enable
     docker_compose:
       project_src: '{{ server_home }}/services/wireguard'
       restarted: true
       state: present
 
   - name: Restart Bitwarden
-    when: '{{ bitwarden_enable }}'
+    when: bitwarden_enable
     docker_compose:
       project_src: '{{ server_home }}/services/bitwarden'
       restarted: true
       state: present
 
   - name: Restart NextCloud
-    when: '{{ nextcloud_enable }}'
+    when: nextcloud_enable
     docker_compose:
       project_src: '{{ server_home }}/services/nextcloud'
       restarted: true
       state: present
 
   - name: Restart Pihole
-    when: '{{ pihole_enable }}'
+    when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
       restarted: true
       state: present
 
   - name: Restart Jellyfin
-    when: '{{ jellyfin_enable }}'
+    when: jellyfin_enable
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
       restarted: true
       state: present
 
   - name: Restart Photoprism
-    when: '{{ photoprism_enable }}'
+    when: photoprism_enable
     docker_compose:
       project_src: '{{ server_home }}/services/photoprism'
       restarted: true

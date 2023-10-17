@@ -13,42 +13,42 @@
       state: present
 
   - name: Boot WireGuard
-    when: '{{ wireguard_enable }}'
+    when: wireguard_enable
     docker_compose:
       project_src: '{{ server_home }}/services/wireguard'
       pull: true
       state: present
 
   - name: Boot Bitwarden
-    when: '{{ bitwarden_enable }}'
+    when: bitwarden_enable
     docker_compose:
       project_src: '{{ server_home }}/services/bitwarden'
       pull: true
       state: present
 
   - name: Boot NextCloud
-    when: '{{ nextcloud_enable }}'
+    when: nextcloud_enable
     docker_compose:
       project_src: '{{ server_home }}/services/nextcloud'
       pull: true
       state: present
 
   - name: Boot Pihole
-    when: '{{ pihole_enable }}'
+    when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
       pull: true
       state: present
 
   - name: Boot Jellyfin
-    when: '{{ jellyfin_enable }}'
+    when: jellyfin_enable
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
       pull: true
       state: present
 
   - name: Boot Photoprism
-    when: '{{ photoprism_enable }}'
+    when: photoprism_enable
     docker_compose:
       project_src: '{{ server_home }}/services/photoprism'
       pull: true
