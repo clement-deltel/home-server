@@ -57,6 +57,9 @@ backup_attachments(){
 
     echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
     echo "#===============================================================#" | tee -a ${LOG_FILE}
+  else
+    echo "${TODAY} [INFO] No data to backup! Skipping..." | tee -a ${LOG_FILE}
+    echo "#===============================================================#" | tee -a ${LOG_FILE}
   fi
 }
 
@@ -79,6 +82,9 @@ backup_sends(){
     aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/sends/
 
     echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
+    echo "#===============================================================#" | tee -a ${LOG_FILE}
+  else
+    echo "${TODAY} [INFO] No data to backup! Skipping..." | tee -a ${LOG_FILE}
     echo "#===============================================================#" | tee -a ${LOG_FILE}
   fi
 }
@@ -147,6 +153,9 @@ backup_icon_cache(){
     aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/icon_cache/
 
     echo "${TODAY} [INFO] Successful backup!" | tee -a ${LOG_FILE}
+    echo "#===============================================================#" | tee -a ${LOG_FILE}
+  else
+    echo "${TODAY} [INFO] No data to backup! Skipping..." | tee -a ${LOG_FILE}
     echo "#===============================================================#" | tee -a ${LOG_FILE}
   fi
 }
