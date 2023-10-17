@@ -154,8 +154,8 @@ function ii() {
 function cheatsheet { curl cheat.sh/"$1"; }
 
 # Set and unset env
-function set-env-fn { export $(grep -v '^#' "${SERVER_HOME}/env/server.env" | xargs -d '\n'); }
-function unset-env-fn { unset $(grep -v '^#' "${SERVER_HOME}/env/server.env" | sed -E 's/(.*)=.*/\1/' | xargs); }
+function set-env-fn { export $(grep -v '^#' "${SERVER_HOME}/env/.env" | xargs -d '\n'); }
+function unset-env-fn { unset $(grep -v '^#' "${SERVER_HOME}/env/.env" | sed -E 's/(.*)=.*/\1/' | xargs); }
 
 #==============================================================================#
 #               ------- Functions - Docker ------                              #

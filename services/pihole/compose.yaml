@@ -9,7 +9,7 @@ services:
       - 127.0.0.1
       - 1.1.1.1
       - 1.0.0.1
-    env_file: config/app.env
+    env_file: config/.env
     hostname: pihole
     image: ${PIHOLE_IMAGE}
     labels:

@@ -1,7 +1,7 @@
 services:
   db:
     container_name: bitwarden-mariadb
-    env_file: config/db.env
+    env_file: config/.env.db
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${BITWARDEN_DB_ROOT_PASSWORD}"]
       interval: 30s
@@ -33,7 +33,7 @@ services:
       - 127.0.0.1
       - 1.1.1.1
       - 1.0.0.1
-    env_file: config/app.env
+    env_file: config/.env
     hostname: bitwarden
     image: ${BITWARDEN_IMAGE}
     labels:

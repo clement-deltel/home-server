@@ -2,7 +2,7 @@ services:
   db:
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     container_name: nextcloud-mariadb
-    env_file: config/db.env
+    env_file: config/.env.db
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${NEXTCLOUD_DB_ROOT_PASSWORD}"]
       interval: 30s
@@ -71,7 +71,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    env_file: config/app.env
+    env_file: config/.env
     hostname: nextcloud
     image: ${NEXTCLOUD_IMAGE}
     logging:

@@ -7,4 +7,4 @@ ansible/playbooks/vars/*
 env/*
 
 !ansible/playbooks/vars/main_template.yml
-!env/template.env
+!env/.env.template

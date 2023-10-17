@@ -30,7 +30,7 @@ services:
   db:
     command: mariadbd --innodb-buffer-pool-size=512M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
     container_name: photoprism-mariadb
-    env_file: config/db.env
+    env_file: config/.env.db
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${PHOTOPRISM_DB_ROOT_PASSWORD}"]
       interval: 30s
@@ -65,7 +65,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file: config/app.env
+    env_file: config/.env
     ## Share hardware devices with FFmpeg and TensorFlow (optional):
     ## devices:
     ##  - "/dev/dri:/dev/dri"                         # Intel QSV
