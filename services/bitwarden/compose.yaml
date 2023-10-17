@@ -3,7 +3,7 @@ services:
     container_name: bitwarden-mariadb
     env_file: config/db.env
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${BITWARDEN_DB_ROOT_PASSWORD}"]
       interval: 30s
       timeout: 10s
       retries: 5
