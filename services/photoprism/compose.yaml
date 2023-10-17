@@ -66,8 +66,6 @@ services:
       db:
         condition: service_healthy
     env_file: config/app.env
-    ## Start as non-root user before initialization (supported: 0, 33, 50-99, 500-600, and 900-1200):
-    # user: "1000:1000"
     ## Share hardware devices with FFmpeg and TensorFlow (optional):
     ## devices:
     ##  - "/dev/dri:/dev/dri"                         # Intel QSV
@@ -108,6 +106,8 @@ services:
       - seccomp:unconfined
       - apparmor:unconfined
     stop_grace_period: 10s
+    ## Start as non-root user before initialization (supported: 0, 33, 50-99, 500-600, and 900-1200):
+    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       # Original media files (DO NOT REMOVE)
       - ./persistence/pictures:/photoprism/originals
