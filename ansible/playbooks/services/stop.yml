@@ -26,6 +26,13 @@
       stopped: true
       state: present
 
+  - name: Stop Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      stopped: true
+      state: present
+
   - name: Stop Bitwarden
     when: bitwarden_enable
     docker_compose:

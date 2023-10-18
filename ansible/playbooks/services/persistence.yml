@@ -122,6 +122,25 @@
       group: docker
       mode: 0640
 
+  #--- Grafana
+  - name: Grafana Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/grafana/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
+  - name: Create Grafana persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/grafana/persistence'
+      - '{{ server_home }}/services/grafana/influxdb-persistence'
+
   #--- Bitwarden
   - name: Bitwarden Production - Uncomment labels in compose.yaml
     when: not local_domain

@@ -26,6 +26,13 @@
       restarted: true
       state: present
 
+  - name: Restart Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      restarted: true
+      state: present
+
   - name: Restart Bitwarden
     when: bitwarden_enable
     docker_compose:

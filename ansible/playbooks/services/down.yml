@@ -23,6 +23,12 @@
       project_src: '{{ server_home }}/services/pihole'
       state: absent
 
+  - name: Remove Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      state: absent
+
   - name: Remove Bitwarden
     when: bitwarden_enable
     docker_compose:

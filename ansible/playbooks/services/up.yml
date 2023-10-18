@@ -26,6 +26,13 @@
       pull: true
       state: present
 
+  - name: Boot Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      pull: true
+      state: present
+
   - name: Boot Bitwarden
     when: bitwarden_enable
     docker_compose:
