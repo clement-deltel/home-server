@@ -1,0 +1,28 @@
+- name: Create InfluxDB retention policies
+  tags: up
+  block:
+
+  - name: Create 1 year retention policy for the Telegraf database
+    community.general.influxdb_retention_policy:
+        hostname: '127.0.0.1'
+        port: 8086
+        database_name: 'telegraf'
+        username: '{{ influxdb_admin_user }}'
+        password: '{{ influxdb_admin_user_password }}'
+        policy_name: one-year
+        duration: 365d
+        replication: 1
+        state: present
+        default: true
+
+  - name: Create 1 year retention policy for the traefik database
+    community.general.influxdb_retention_policy:
+        hostname: '127.0.0.1'
+        port: 8086
+        database_name: 'traefik'
+        username: '{{ influxdb_admin_user }}'
+        password: '{{ influxdb_admin_user_password }}'
+        policy_name: one-year
+        duration: 365d
+        replication: 1
+        state: present

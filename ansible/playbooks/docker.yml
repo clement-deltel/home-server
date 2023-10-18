@@ -39,6 +39,11 @@
         file: services/up.yml
       tags: up
 
+    - name: Create InfluxDB retention policies
+      include_tasks:
+        file: tasks/influxdb.yml
+      tags: up
+
 #--- Docker commands
 
     - name: Restart all services

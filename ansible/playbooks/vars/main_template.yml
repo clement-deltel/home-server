@@ -21,6 +21,8 @@ dyn_host_password: '<password>'
 
 # Telegraf
 hostname:  '<hostname>'
+influxdb_admin_user: '<influxdb-admin-user>'
+influxdb_admin_user_password: '<influxdb-admin-user-password>'
 influxdb_user: '<influxdb-user>'
 influxdb_user_password: '<influxdb-user-password>'
 
