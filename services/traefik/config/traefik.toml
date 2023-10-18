@@ -121,7 +121,18 @@
   # Format is either "json" or "common".
   # Optional, Default: "common"
   #
-  format = "common"
+  format = "json"
+
+  bufferingSize = 0
+
+  # [accessLog.filters]
+  #   statusCodes = "400-499"
+
+  [accessLog.fields]
+    [accessLog.fields.headers]
+      defaultMode = "drop"
+      [accessLog.fields.headers.names]
+        "User-Agent" = "keep"
 
 ################################################################
 # API and dashboard configuration
