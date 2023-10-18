@@ -19,6 +19,12 @@ dyn_server: '<server-url>'
 dyn_host_username: '<login>'
 dyn_host_password: '<password>'
 
+# Telegraf
+hostname:  '<hostname>'
+influxdb_user: '<influxdb-user>'
+influxdb_user_password: '<influxdb-user-password>'
+filecount_directories: ["", ""]
+
 # Traefik
 traefik_user: <traefik-dashboard-user>
 traefik_password: <traefik-dashboard-password>

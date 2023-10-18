@@ -54,6 +54,11 @@
         file: tasks/docker.yml
       tags: init
 
+    - name: Telegraf - Install & configure
+      include_tasks:
+        file: tasks/telegraf.yml
+      tags: init
+
     - name: Install NVIDIA Container Toolkit
       include_tasks:
         file: tasks/nvidia.yml
@@ -84,4 +89,9 @@
     - name: Docker - Update
       include_tasks:
         file: tasks/docker.yml
+      tags: update
+
+    - name: Telegraf - Update
+      include_tasks:
+        file: tasks/telegraf.yml
       tags: update
