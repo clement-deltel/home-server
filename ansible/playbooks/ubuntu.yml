@@ -18,6 +18,7 @@
       tags: init
 
     - name: Dynamic DNS - Installation & configuration
+      when: not local_domain
       include_tasks:
         file: tasks/dyn-dns.yml
       tags: init
@@ -38,6 +39,7 @@
       tags: init
 
     - name: Cron jobs
+      when: not local_domain
       include_tasks:
         file: tasks/cron.yml
       tags: init
