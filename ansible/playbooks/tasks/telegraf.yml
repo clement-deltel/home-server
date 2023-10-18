@@ -59,9 +59,9 @@
       line: '{{ item }}'
     loop:
       - 'HOSTNAME={{ hostname }}'
+      - 'SERVER_HOME={{ server_home }}'
       - 'INFLUXDB_USER={{ influxdb_user }}'
       - 'INFLUXDB_USER_PASSWORD={{ influxdb_user_password }}'
-      - 'FILECOUNT_DIRECTORIES={{ filecount_directories }}'
 
 - name: Restart Telegraf service
   tags: [ init, update ]
