@@ -11,13 +11,16 @@
       group: docker
       mode: 0744
 
-  - name: Create traefik log file
+  - name: Create traefik log files
     file:
-      path: '{{ server_home }}/services/traefik/persistence/traefik.log'
+      path: '{{ item }}'
       state: touch
       owner: docker
       group: docker
       mode: 0640
+    loop:
+      - '{{ server_home }}/services/traefik/persistence/access.log'
+      - '{{ server_home }}/services/traefik/persistence/traefik.log'
 
   #--- Traefik - Testing
   - name: Traefik Testing - Copy Traefik configuration file

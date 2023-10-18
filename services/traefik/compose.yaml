@@ -38,7 +38,8 @@ services:
     volumes:
       # Docker socket is mounted for auto-discovery of new services - read only
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      # Log file
+      # Log files
+      - ./persistence/access.log:/var/log/access.log
       - ./persistence/traefik.log:/var/log/traefik.log
       # Configuration file
       - ./persistence/traefik.toml:/etc/traefik/traefik.toml
