@@ -19,6 +19,13 @@
       pull: true
       state: present
 
+  - name: Boot Pihole
+    when: pihole_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/pihole'
+      pull: true
+      state: present
+
   - name: Boot Bitwarden
     when: bitwarden_enable
     docker_compose:
@@ -33,10 +40,10 @@
       pull: true
       state: present
 
-  - name: Boot Pihole
-    when: pihole_enable
+  - name: Boot Photoprism
+    when: photoprism_enable
     docker_compose:
-      project_src: '{{ server_home }}/services/pihole'
+      project_src: '{{ server_home }}/services/photoprism'
       pull: true
       state: present
 
@@ -44,12 +51,5 @@
     when: jellyfin_enable
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
-      pull: true
-      state: present
-
-  - name: Boot Photoprism
-    when: photoprism_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/photoprism'
       pull: true
       state: present

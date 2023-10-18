@@ -95,6 +95,33 @@
       group: docker
       mode: 0744
 
+  #--- Pihole
+  - name: Pihole Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/pihole/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
+  - name: Create Pihole directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/pihole/etc-pihole'
+      - '{{ server_home }}/services/pihole/etc-dnsmasqd'
+
+  - name: Create Pihole log file
+    file:
+      path: '{{ server_home }}/services/pihole/pihole.log'
+      state: touch
+      owner: docker
+      group: docker
+      mode: 0640
+
   #--- Bitwarden
   - name: Bitwarden Production - Uncomment labels in compose.yaml
     when: not local_domain
@@ -134,15 +161,15 @@
       - '{{ server_home }}/services/nextcloud/db-persistence'
       - '{{ server_home }}/services/nextcloud/web-persistence'
 
-  #--- Pihole
-  - name: Pihole Production - Uncomment labels in compose.yaml
+  #--- Photoprism
+  - name: Photoprism Production - Uncomment labels in compose.yaml
     when: not local_domain
     replace:
-      path: '{{ server_home }}/services/pihole/compose.yaml'
+      path: '{{ server_home }}/services/photoprism/compose.yaml'
       regexp: '(^\s*)# -'
       replace: '\1-'
 
-  - name: Create Pihole directories
+  - name: Create Photoprism persistence directories
     file:
       path: '{{ item }}'
       state: directory
@@ -150,16 +177,10 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/pihole/etc-pihole'
-      - '{{ server_home }}/services/pihole/etc-dnsmasqd'
-
-  - name: Create Pihole log file
-    file:
-      path: '{{ server_home }}/services/pihole/pihole.log'
-      state: touch
-      owner: docker
-      group: docker
-      mode: 0640
+     - '{{ server_home }}/services/photoprism/persistence'
+     - '{{ server_home }}/services/photoprism/db-persistence'
+     - '{{ server_home }}/services/photoprism/persistence/pictures'
+     - '{{ server_home }}/services/photoprism/persistence/storage'
 
   #--- Jellyfin
   - name: Jellyfin Production - Uncomment labels in compose.yaml
@@ -181,24 +202,3 @@
      - '{{ server_home }}/services/jellyfin/persistence/library'
      - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
-
-  #--- Photoprism
-  - name: Photoprism Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/photoprism/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
-  - name: Create Photoprism persistence directories
-    file:
-      path: '{{ item }}'
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
-    loop:
-     - '{{ server_home }}/services/photoprism/persistence'
-     - '{{ server_home }}/services/photoprism/db-persistence'
-     - '{{ server_home }}/services/photoprism/persistence/pictures'
-     - '{{ server_home }}/services/photoprism/persistence/storage'

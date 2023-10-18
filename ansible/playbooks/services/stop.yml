@@ -19,6 +19,13 @@
       stopped: true
       state: present
 
+  - name: Stop Pihole
+    when: pihole_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/pihole'
+      stopped: true
+      state: present
+
   - name: Stop Bitwarden
     when: bitwarden_enable
     docker_compose:
@@ -33,10 +40,10 @@
       stopped: true
       state: present
 
-  - name: Stop Pihole
-    when: pihole_enable
+  - name: Stop Photoprism
+    when: photoprism_enable
     docker_compose:
-      project_src: '{{ server_home }}/services/pihole'
+      project_src: '{{ server_home }}/services/photoprism'
       stopped: true
       state: present
 
@@ -44,12 +51,5 @@
     when: jellyfin_enable
     docker_compose:
       project_src: '{{ server_home }}/services/jellyfin'
-      stopped: true
-      state: present
-
-  - name: Stop Photoprism
-    when: photoprism_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/photoprism'
       stopped: true
       state: present
