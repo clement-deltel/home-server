@@ -31,8 +31,9 @@ traefik_password: <traefik-dashboard-password>
 
 # Services
 wireguard_enable: true
+pihole_enable: true
+grafana_enable: true
 bitwarden_enable: true
 nextcloud_enable: true
-pihole_enable: true
-jellyfin_enable: true
 photoprism_enable: true
+jellyfin_enable: true
