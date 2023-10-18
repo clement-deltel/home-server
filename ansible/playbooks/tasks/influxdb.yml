@@ -2,7 +2,7 @@
   tags: up
   block:
 
-  - name: Create 1 year retention policy for the Telegraf database
+  - name: Create 1 year retention policy for the telegraf database
     community.general.influxdb_retention_policy:
         hostname: '127.0.0.1'
         port: 8086
