@@ -25,6 +25,7 @@ influxdb_admin_user: '<influxdb-admin-user>'
 influxdb_admin_user_password: '<influxdb-admin-user-password>'
 influxdb_user: '<influxdb-user>'
 influxdb_user_password: '<influxdb-user-password>'
+open_weather_map_api_key: '<api-key>'
 
 # Traefik
 traefik_user: <traefik-dashboard-user>

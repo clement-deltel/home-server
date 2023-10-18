@@ -62,6 +62,7 @@
       - 'SERVER_HOME={{ server_home }}'
       - 'INFLUXDB_USER={{ influxdb_user }}'
       - 'INFLUXDB_USER_PASSWORD={{ influxdb_user_password }}'
+      - 'OPEN_WEATHER_MAP_API_KEY={{ open_weather_map_api_key }}'
 
 - name: Restart Telegraf service
   tags: [ init, update ]
