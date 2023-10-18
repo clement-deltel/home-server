@@ -12,10 +12,13 @@ services:
     networks:
       app-net:
         ipv4_address: ${GRAFANA_DB_IP}
+      traefik-net:
+        ipv4_address: ${INFLUXDB_IP}
     ports:
       - 8086:8086
     # Remote backups and restores
     #  - 8088:8088
+      - 8089/udp
     restart: always
     stop_grace_period: 10s
     volumes:

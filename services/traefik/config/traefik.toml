@@ -238,6 +238,24 @@
     # disablePropagationCheck = true
 
 ################################################################
+# Metrics configuration
+################################################################
+[metrics]
+  [metrics.influxDB]
+    address = "influxdb:8089"
+    protocol = "udp"
+    pushInterval = "60s"
+
+    # Not required since we are using UDP and not HTTP.
+    # database = "traefik"
+    # username = ""
+    # password = ""
+
+    addEntryPointsLabels = true
+    addRoutersLabels = true
+    addServicesLabels = true
+
+################################################################
 # Configuration for Traefik v2.
 #
 # Dynamic configuration
