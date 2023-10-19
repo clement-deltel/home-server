@@ -1,5 +1,5 @@
 logs/*
-**/*persistence/*
+**/*persistence/
 
 pihole.log
 etc-pihole/*
