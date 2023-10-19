@@ -19,7 +19,7 @@
 # . https://docs.photoprism.app/getting-started/troubleshooting/mariadb/
 #
 # CLI Commands:
-# - https://docs.photoprism.app/getting-started/docker-compose/#command-line-interface
+# . https://docs.photoprism.app/getting-started/docker-compose/#command-line-interface
 #
 # All commands may have to be prefixed with "sudo" when not running as root.
 # This will point the home directory shortcut ~ to /root in volume mounts.
