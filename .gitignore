@@ -1,5 +1,7 @@
 logs/*
 **/*persistence/*
+
+pihole.log
 etc-pihole/*
 etc-dnsmasqd/*
 
