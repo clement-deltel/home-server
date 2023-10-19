@@ -1,0 +1,26 @@
+services:
+  app:
+    command:
+      - "serve"
+    container_name: phoneinfoga
+    environment:
+      - NUMVERIFY_API_KEY=${APILAYER_API_KEY}
+    image: ${PHONEINFOGA_IMAGE}
+    networks:
+        app-net:
+          ipv4_address: ${PHONEINFOGA_IP}
+    ports:
+      - 5000:5000
+    restart: always
+    stop_grace_period: 10s
+
+networks:
+  app-net:
+    name: phoneinfoga-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${PHONEINFOGA_NET}
+          gateway: ${PHONEINFOGA_GATEWAY}
+
