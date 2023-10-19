@@ -64,6 +64,12 @@
       - 'INFLUXDB_USER_PASSWORD={{ influxdb_user_password }}'
       - 'OPEN_WEATHER_MAP_API_KEY={{ open_weather_map_api_key }}'
 
+  - name: Add existing user telegraf to group docker
+    user:
+      name: telegraf
+      groups: docker
+      append: yes
+
 - name: Restart Telegraf service
   tags: [ init, update ]
   become: true
