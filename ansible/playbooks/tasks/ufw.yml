@@ -72,6 +72,12 @@
       #name: Traefik
       port: 8080
 
+  - name: Allow Minecraft
+    ufw:
+      rule: allow
+      #name: Minecraft
+      port: 25565
+
   - name: Allow Wireguard
     ufw:
       rule: allow

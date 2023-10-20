@@ -13,27 +13,16 @@ services:
       retries: 20
     hostname: minecraft
     image: ${MINECRAFT_IMAGE}
-    labels:
-      - "traefik.enable=true"
-      # Bitwarden UI
-      # Routers
-      - "traefik.http.routers.minecraft.rule=Host(`minecraft.${DOMAIN}`)"
-      - "traefik.http.routers.minecraft.tls=true"
-      # - "traefik.http.routers.minecraft.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.minecraft.tls.domains[0].main=minecraft.${DOMAIN}"
-      - "traefik.http.routers.minecraft.service=minecraft"
-      # Services
-      - "traefik.http.services.minecraft.loadbalancer.server.port=25565"
     logging:
       driver: json-file
       options:
         max-file: 5
         max-size: 10m
     networks:
-        traefik-net:
-          ipv4_address: ${MINECRAFT_IP}
+      app-net:
+        ipv4_address: ${MINECRAFT_IP}
     ports:
-      - 25565
+      - ${MINECRAFT_PORT}:25565
     restart: always
     stop_grace_period: 330s
     user: ${DOCKER_UID}:${DOCKER_GID}
@@ -41,6 +30,11 @@ services:
       - ./persistence:/data
 
 networks:
-  traefik-net:
-    external: true
-    name: traefik-net
+  app-net:
+    name: minecraft-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${MINECRAFT_NET}
+          gateway: ${MINECRAFT_GATEWAY}
