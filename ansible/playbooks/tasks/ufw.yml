@@ -71,3 +71,9 @@
       rule: allow
       #name: Traefik
       port: 8080
+
+  - name: Allow Wireguard
+    ufw:
+      rule: allow
+      #name: Wireguard
+      port: 51820
