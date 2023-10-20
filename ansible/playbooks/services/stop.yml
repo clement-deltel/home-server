@@ -60,3 +60,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       stopped: true
       state: present
+
+  - name: Stop Minecraft
+    when: minecraft_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/minecraft'
+      stopped: true
+      state: present

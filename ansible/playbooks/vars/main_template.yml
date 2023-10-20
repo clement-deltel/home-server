@@ -39,3 +39,4 @@ bitwarden_enable: true
 nextcloud_enable: true
 photoprism_enable: true
 jellyfin_enable: true
+minecraft_enable: true

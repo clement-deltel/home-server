@@ -224,3 +224,19 @@
      - '{{ server_home }}/services/jellyfin/persistence/library'
      - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
+
+  #--- Minecraft
+  - name: Minecraft Production - Uncomment labels in compose.yaml
+    when: not local_domain
+    replace:
+      path: '{{ server_home }}/services/minecraft/compose.yaml'
+      regexp: '(^\s*)# -'
+      replace: '\1-'
+
+  - name: Create Minecraft persistence directory
+    file:
+      path: '{{ server_home }}/services/minecraft/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744

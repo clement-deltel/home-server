@@ -60,3 +60,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       pull: true
       state: present
+
+  - name: Boot Minecraft
+    when: minecraft_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/minecraft'
+      pull: true
+      state: present

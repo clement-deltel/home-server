@@ -28,3 +28,4 @@
       - '{{ server_home }}/logs/nextcloud'
       - '{{ server_home }}/logs/photoprism'
       - '{{ server_home }}/logs/jellyfin'
+      - '{{ server_home }}/logs/minecraft'

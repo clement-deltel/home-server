@@ -60,3 +60,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       restarted: true
       state: present
+
+  - name: Restart Minecraft
+    when: minecraft_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/minecraft'
+      restarted: true
+      state: present

@@ -1,0 +1,46 @@
+services:
+  app:
+    container_name: minecraft
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    healthcheck:
+      test: mc-health
+      start_period: 1m
+      interval: 5s
+      retries: 20
+    hostname: minecraft
+    image: ${MINECRAFT_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Bitwarden UI
+      # Routers
+      - "traefik.http.routers.minecraft.rule=Host(`minecraft.${DOMAIN}`)"
+      - "traefik.http.routers.minecraft.tls=true"
+      # - "traefik.http.routers.minecraft.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.minecraft.tls.domains[0].main=minecraft.${DOMAIN}"
+      - "traefik.http.routers.minecraft.service=minecraft"
+      # Services
+      - "traefik.http.services.minecraft.loadbalancer.server.port=25565"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+        traefik-net:
+          ipv4_address: ${MINECRAFT_IP}
+    ports:
+      - 25565
+    restart: always
+    stop_grace_period: 330s
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./persistence:/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
