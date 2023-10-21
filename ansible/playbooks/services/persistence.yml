@@ -82,14 +82,24 @@
         hash_scheme: md5_crypt
         state: present
 
-  #--- WireGuard
-  - name: WireGuard Production - Uncomment labels in compose.yaml
+  #--- Production Services
+  - name: Production - Uncomment labels in compose.yaml for all services
     when: not local_domain
     replace:
-      path: '{{ server_home }}/services/wireguard/compose.yaml'
+      path: '{{ item }}'
       regexp: '(^\s*)# -'
       replace: '\1-'
+    loop:
+      - '{{ server_home }}/services/wireguard/compose.yaml'
+      - '{{ server_home }}/services/pihole/compose.yaml'
+      - '{{ server_home }}/services/grafana/compose.yaml'
+      - '{{ server_home }}/services/limesurvey/compose.yaml'
+      - '{{ server_home }}/services/bitwarden/compose.yaml'
+      - '{{ server_home }}/services/nextcloud/compose.yaml'
+      - '{{ server_home }}/services/photoprism/compose.yaml'
+      - '{{ server_home }}/services/jellyfin/compose.yaml'
 
+  #--- WireGuard
   - name: Create WireGuard persistence directories
     file:
       path: '{{ server_home }}/services/wireguard/persistence'
@@ -99,13 +109,6 @@
       mode: 0744
 
   #--- Pihole
-  - name: Pihole Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/pihole/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
   - name: Create Pihole directories
     file:
       path: '{{ item }}'
@@ -126,13 +129,6 @@
       mode: 0640
 
   #--- Grafana
-  - name: Grafana Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/grafana/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
   - name: Create Grafana persistence directories
     file:
       path: '{{ item }}'
@@ -144,14 +140,20 @@
       - '{{ server_home }}/services/grafana/persistence'
       - '{{ server_home }}/services/grafana/influxdb-persistence'
 
-  #--- Bitwarden
-  - name: Bitwarden Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/bitwarden/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
+  #--- Limesurvey
+  - name: Create Limesurvey persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/limesurvey/persistence'
+      - '{{ server_home }}/services/limesurvey/db-persistence'
+      - '{{ server_home }}/services/limesurvey/surveys-persistence'
 
+  #--- Bitwarden
   - name: Create Bitwarden persistence directories
     file:
       path: '{{ item }}'
@@ -164,13 +166,6 @@
       - '{{ server_home }}/services/bitwarden/db-persistence'
 
   #--- Nextcloud
-  - name: Nextcloud Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/nextcloud/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
   - name: Create Nextcloud persistence directories
     file:
       path: '{{ item }}'
@@ -184,13 +179,6 @@
       - '{{ server_home }}/services/nextcloud/web-persistence'
 
   #--- Photoprism
-  - name: Photoprism Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/photoprism/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
   - name: Create Photoprism persistence directories
     file:
       path: '{{ item }}'
@@ -205,13 +193,6 @@
      - '{{ server_home }}/services/photoprism/persistence/storage'
 
   #--- Jellyfin
-  - name: Jellyfin Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/jellyfin/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
   - name: Create Jellyfin persistence directories
     file:
       path: '{{ item }}'
@@ -226,13 +207,6 @@
      - '{{ server_home }}/services/jellyfin/persistence/movies'
 
   #--- Minecraft
-  - name: Minecraft Production - Uncomment labels in compose.yaml
-    when: not local_domain
-    replace:
-      path: '{{ server_home }}/services/minecraft/compose.yaml'
-      regexp: '(^\s*)# -'
-      replace: '\1-'
-
   - name: Create Minecraft persistence directory
     file:
       path: '{{ server_home }}/services/minecraft/persistence'

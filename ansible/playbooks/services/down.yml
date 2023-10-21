@@ -29,6 +29,12 @@
       project_src: '{{ server_home }}/services/grafana'
       state: absent
 
+  - name: Remove Limesurvey
+    when: limesurvey_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/limesurvey'
+      state: absent
+
   - name: Remove Bitwarden
     when: bitwarden_enable
     docker_compose:

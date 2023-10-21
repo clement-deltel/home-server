@@ -33,6 +33,13 @@
       stopped: true
       state: present
 
+  - name: Stop Limesurvey
+    when: limesurvey_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/limesurvey'
+      stopped: true
+      state: present
+
   - name: Stop Bitwarden
     when: bitwarden_enable
     docker_compose:

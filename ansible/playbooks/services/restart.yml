@@ -33,6 +33,13 @@
       restarted: true
       state: present
 
+  - name: Restart Limesurvey
+    when: limesurvey_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/limesurvey'
+      restarted: true
+      state: present
+
   - name: Restart Bitwarden
     when: bitwarden_enable
     docker_compose:
