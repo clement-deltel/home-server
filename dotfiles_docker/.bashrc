@@ -341,7 +341,7 @@ alias svcnex='cd ${SERVER_HOME}/services/nextcloud'
 alias svcpho='cd ${SERVER_HOME}/services/photoprism'
 alias svcpih='cd ${SERVER_HOME}/services/pihole'
 alias svctra='cd ${SERVER_HOME}/services/traefik'
-alias svcpih='cd ${SERVER_HOME}/services/wireguard'
+alias svcwir='cd ${SERVER_HOME}/services/wireguard'
 
 # Scripts
 alias scrall='cd ${SERVER_HOME}/scripts/all'
