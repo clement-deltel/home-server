@@ -2,8 +2,8 @@ logs/*
 **/*persistence/
 
 pihole.log
-etc-pihole/*
-etc-dnsmasqd/*
+**/etc-pihole/*
+**/etc-dnsmasqd/*
 
 ansible/playbooks/vars/*
 env/*
