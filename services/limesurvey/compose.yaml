@@ -57,7 +57,9 @@ services:
     restart: always
     stop_grace_period: 10s
     volumes:
-      - ./persistence:/var/www/html
+      - ./persistence/plugins:/var/www/html/plugins
+      - ./persistence/upload:/var/www/html/upload
+      - ./persistence/config:/var/www/html/application/config
 
 networks:
   app-net:

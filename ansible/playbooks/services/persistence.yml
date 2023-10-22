@@ -150,8 +150,10 @@
       mode: 0744
     loop:
       - '{{ server_home }}/services/limesurvey/persistence'
+      - '{{ server_home }}/services/limesurvey/persistence/plugins'
+      - '{{ server_home }}/services/limesurvey/persistence/upload'
+      - '{{ server_home }}/services/limesurvey/persistence/config'
       - '{{ server_home }}/services/limesurvey/db-persistence'
-      - '{{ server_home }}/services/limesurvey/surveys-persistence'
 
   #--- Bitwarden
   - name: Create Bitwarden persistence directories
