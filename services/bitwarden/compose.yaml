@@ -51,8 +51,8 @@ services:
       # Routers
       - "traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.${DOMAIN}`) && Path(`/notifications/hub`)"
       - "traefik.http.routers.bitwarden-websocket.tls=true"
-      # - "traefik.http.routers.bitwarden-socket.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.bitwarden-socket.tls.domains[0].main=bitwarden.${DOMAIN}"
+      # - "traefik.http.routers.bitwarden-websocket.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.bitwarden-websocket.tls.domains[0].main=bitwarden.${DOMAIN}"
       - "traefik.http.routers.bitwarden-websocket.service=bitwarden-websocket"
       # Services
       - "traefik.http.services.bitwarden-websocket.loadbalancer.server.port=${BITWARDEN_WEBSOCKET_PORT}"
