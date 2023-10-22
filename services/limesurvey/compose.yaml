@@ -1,6 +1,6 @@
 services:
   db:
-    container_name: linesurvey-mariadb
+    container_name: limesurvey-mariadb
     env_file: config/.env.db
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${LIMESURVEY_DB_ROOT_PASSWORD}"]
