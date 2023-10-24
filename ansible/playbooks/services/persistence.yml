@@ -99,6 +99,7 @@
       - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/jellyfin/compose.yaml'
+      - '{{ server_home }}/services/grocy/compose.yaml'
 
   #--- WireGuard
   - name: Create WireGuard persistence directories
@@ -222,6 +223,15 @@
      - '{{ server_home }}/services/jellyfin/persistence/library'
      - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
+
+  #--- Grocy
+  - name: Create Grocy persistence directories
+    file:
+      path: '{{ server_home }}/services/grocy/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
 
   #--- Minecraft
   - name: Create Minecraft persistence directory

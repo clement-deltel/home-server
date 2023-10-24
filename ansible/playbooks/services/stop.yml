@@ -75,6 +75,13 @@
       stopped: true
       state: present
 
+  - name: Stop Grocy
+    when: grocy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grocy'
+      stopped: true
+      state: present
+
   - name: Stop Minecraft
     when: minecraft_enable
     docker_compose:

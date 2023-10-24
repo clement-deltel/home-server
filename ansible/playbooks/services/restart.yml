@@ -75,6 +75,13 @@
       restarted: true
       state: present
 
+  - name: Restart Grocy
+    when: grocy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grocy'
+      restarted: true
+      state: present
+
   - name: Restart Minecraft
     when: minecraft_enable
     docker_compose:

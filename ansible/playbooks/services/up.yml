@@ -75,6 +75,13 @@
       pull: true
       state: present
 
+  - name: Boot Grocy
+    when: grocy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grocy'
+      pull: true
+      state: present
+
   - name: Boot Minecraft
     when: minecraft_enable
     docker_compose:

@@ -65,6 +65,12 @@
       project_src: '{{ server_home }}/services/jellyfin'
       state: absent
 
+  - name: Remove Grocy
+    when: grocy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grocy'
+      state: absent
+
   - name: Remove Minecraft
     when: minecraft_enable
     docker_compose:
