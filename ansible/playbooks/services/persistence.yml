@@ -93,6 +93,7 @@
       - '{{ server_home }}/services/wireguard/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
+      - '{{ server_home }}/services/ntfy/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
       - '{{ server_home }}/services/bitwarden/compose.yaml'
       - '{{ server_home }}/services/nextcloud/compose.yaml'
@@ -139,6 +140,20 @@
     loop:
       - '{{ server_home }}/services/grafana/persistence'
       - '{{ server_home }}/services/grafana/influxdb-persistence'
+
+  #--- Ntfy
+  - name: Create Limesurvey persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/ntfy/persistence'
+      - '{{ server_home }}/services/ntfy/persistence/cache'
+      - '{{ server_home }}/services/ntfy/persistence/etc'
+      - '{{ server_home }}/services/ntfy/persistence/log'
 
   #--- Limesurvey
   - name: Create Limesurvey persistence directories

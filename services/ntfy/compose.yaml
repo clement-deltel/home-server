@@ -1,0 +1,50 @@
+services:
+  ntfy:
+    command:
+      - serve
+    container_name: ntfy
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    healthcheck: # optional: remember to adapt the host:port to your environment
+        test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
+        interval: 60s
+        timeout: 10s
+        retries: 3
+        start_period: 40s
+    image: ${NTFY_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.ntfy.rule=Host(`ntfy.${DOMAIN}`)"
+      - "traefik.http.routers.ntfy.tls=true"
+      # - "traefik.http.routers.ntfy.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.ntfy.tls.domains[0].main=ntfy.${DOMAIN}"
+      - "traefik.http.routers.ntfy.service=ntfy"
+      # Services
+      - "traefik.http.services.ntfy.loadbalancer.server.port=80"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${NTFY_IP}
+    user: ${DOCKER_UID}:${DOCKER_GID} # optional: Set custom user/group or uid/gid
+    ports:
+      - 80
+      - ${NTFY_METRICS_PORT}:81
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./persistence/cache:/var/cache/ntfy
+      - ./persistence/etc:/etc/ntfy
+      - ./persistence/log:/var/log
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

@@ -29,6 +29,12 @@
       project_src: '{{ server_home }}/services/grafana'
       state: absent
 
+  - name: Remove Ntfy
+    when: ntfy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/ntfy'
+      state: absent
+
   - name: Remove Limesurvey
     when: limesurvey_enable
     docker_compose:

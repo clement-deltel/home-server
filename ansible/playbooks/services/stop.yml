@@ -33,6 +33,13 @@
       stopped: true
       state: present
 
+  - name: Stop Ntfy
+    when: ntfy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/ntfy'
+      stopped: true
+      state: present
+
   - name: Stop Limesurvey
     when: limesurvey_enable
     docker_compose:

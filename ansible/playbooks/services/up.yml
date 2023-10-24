@@ -33,6 +33,13 @@
       pull: true
       state: present
 
+  - name: Boot Ntfy
+    when: ntfy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/ntfy'
+      pull: true
+      state: present
+
   - name: Boot Limesurvey
     when: limesurvey_enable
     docker_compose:

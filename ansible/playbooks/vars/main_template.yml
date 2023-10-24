@@ -35,6 +35,7 @@ traefik_password: <traefik-dashboard-password>
 wireguard_enable: true
 pihole_enable: true
 grafana_enable: true
+ntfy_enable: true
 limesurvey_enable: true
 bitwarden_enable: true
 nextcloud_enable: true

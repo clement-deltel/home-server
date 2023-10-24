@@ -44,6 +44,11 @@
         file: tasks/influxdb.yml
       tags: up
 
+    - name: Create Ntfy default user
+      include_tasks:
+        file: tasks/ntfy.yml
+      tags: up
+
 #--- Docker commands
 
     - name: Restart all services

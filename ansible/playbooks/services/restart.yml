@@ -33,6 +33,13 @@
       restarted: true
       state: present
 
+  - name: Restart Ntfy
+    when: ntfy_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/ntfy'
+      restarted: true
+      state: present
+
   - name: Restart Limesurvey
     when: limesurvey_enable
     docker_compose:
