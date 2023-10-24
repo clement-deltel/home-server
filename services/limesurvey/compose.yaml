@@ -15,8 +15,8 @@ services:
         max-file: "5"
         max-size: 5m
     networks:
-        app-net:
-          ipv4_address: ${LIMESURVEY_DB_IP}
+      app-net:
+        ipv4_address: ${LIMESURVEY_DB_IP}
     restart: always
     stop_grace_period: 10s
     volumes:
@@ -48,10 +48,10 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-        app-net:
-          ipv4_address: ${LIMESURVEY_INTERNAL_IP}
-        traefik-net:
-          ipv4_address: ${LIMESURVEY_IP}
+      app-net:
+        ipv4_address: ${LIMESURVEY_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${LIMESURVEY_IP}
     ports:
       - 80
     restart: always

@@ -7,8 +7,8 @@ services:
       - NUMVERIFY_API_KEY=${APILAYER_API_KEY}
     image: ${PHONEINFOGA_IMAGE}
     networks:
-        app-net:
-          ipv4_address: ${PHONEINFOGA_IP}
+      app-net:
+        ipv4_address: ${PHONEINFOGA_IP}
     ports:
       - 5000:5000
     restart: always
@@ -23,4 +23,3 @@ networks:
       config:
         - subnet: ${PHONEINFOGA_NET}
           gateway: ${PHONEINFOGA_GATEWAY}
-

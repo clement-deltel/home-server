@@ -44,8 +44,8 @@ services:
         max-file: "5"
         max-size: 5m
     networks:
-        app-net:
-          ipv4_address: ${PHOTOPRISM_DB_IP}
+      app-net:
+        ipv4_address: ${PHOTOPRISM_DB_IP}
     ## If MariaDB gets stuck in a restart loop, this points to a memory or filesystem issue:
     ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
     restart: always
@@ -92,10 +92,10 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-        app-net:
-          ipv4_address: ${PHOTOPRISM_INTERNAL_IP}
-        traefik-net:
-          ipv4_address: ${PHOTOPRISM_IP}
+      app-net:
+        ipv4_address: ${PHOTOPRISM_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${PHOTOPRISM_IP}
     ports:
       - 2342 # HTTP port
     ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!

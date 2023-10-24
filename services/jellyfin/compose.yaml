@@ -24,8 +24,8 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-        traefik-net:
-          ipv4_address: ${JELLYFIN_IP}
+      traefik-net:
+        ipv4_address: ${JELLYFIN_IP}
     ports:
       - 8096 #HTTP WebUI
       #- 8920 #HTTPS WebUI

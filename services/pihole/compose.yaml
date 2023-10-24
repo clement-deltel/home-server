@@ -28,8 +28,8 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-        traefik-net:
-          ipv4_address: ${PIHOLE_IP}
+      traefik-net:
+        ipv4_address: ${PIHOLE_IP}
     ports:
       - ${PIHOLE_DNS_PORT}:53/tcp
       - ${PIHOLE_DNS_PORT}:53/udp

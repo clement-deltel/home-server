@@ -15,8 +15,8 @@ services:
         max-file: "5"
         max-size: 5m
     networks:
-        app-net:
-          ipv4_address: ${BITWARDEN_DB_IP}
+      app-net:
+        ipv4_address: ${BITWARDEN_DB_IP}
     restart: always
     stop_grace_period: 10s
     volumes:
@@ -62,10 +62,10 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-        app-net:
-          ipv4_address: ${BITWARDEN_INTERNAL_IP}
-        traefik-net:
-          ipv4_address: ${BITWARDEN_IP}
+      app-net:
+        ipv4_address: ${BITWARDEN_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${BITWARDEN_IP}
     ports:
       - 80
       - ${BITWARDEN_WEBSOCKET_PORT}
