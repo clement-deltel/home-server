@@ -1,5 +1,5 @@
 services:
-  app:
+  minecraft:
     container_name: minecraft
     dns:
       - 127.0.0.1

@@ -1,5 +1,5 @@
 services:
-  app:
+  phoneinfoga:
     command:
       - "serve"
     container_name: phoneinfoga

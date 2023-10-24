@@ -57,7 +57,7 @@ services:
     volumes:
       - ./db-persistence:/var/lib/mysql # DO NOT REMOVE
 
-  app:
+  photoprism:
     container_name: photoprism
     hostname: photoprism
     ## Use photoprism/photoprism:preview for testing preview builds:

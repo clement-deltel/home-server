@@ -23,7 +23,7 @@ services:
       - ./db-persistence:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
-  app:
+  limesurvey:
     container_name: limesurvey
     depends_on:
       db:

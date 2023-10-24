@@ -87,7 +87,7 @@ services:
     volumes:
       - ./persistence:/var/www/html
 
-  web:
+  nextcloud:
     container_name: nextcloud-web
     depends_on:
       - app

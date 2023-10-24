@@ -1,5 +1,5 @@
 services:
-  app:
+  grocy:
     container_name: grocy
     dns:
       - 127.0.0.1
