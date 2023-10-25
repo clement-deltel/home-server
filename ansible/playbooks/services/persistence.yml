@@ -129,6 +129,7 @@
 
   #--- Pihole
   - name: Create Pihole directories
+    ignore_errors: true
     file:
       path: '{{ item }}'
       state: directory
@@ -176,7 +177,7 @@
   - name: Copy Ntfy server configuration file
     copy:
       src: '{{ server_home }}/services/ntfy/config/server.yml'
-      dest: '{{ server_home }}/services/traefik/persistence/etc/server.yml'
+      dest: '{{ server_home }}/services/ntfy/persistence/etc/server.yml'
       owner: docker
       group: docker
       mode: 0640
