@@ -51,7 +51,7 @@
         dest: '{{ server_home }}/services/traefik/persistence/traefik.toml'
         owner: docker
         group: docker
-        mode: 0740
+        mode: 0640
 
     - name: Add email to traefik.toml
       lineinfile:
@@ -59,12 +59,6 @@
         state: present
         search_string: 'email ='
         line: '  email = "{{ user_email }}"'
-
-    - name: Uncomment labels and bind mounts in compose.yaml
-      replace:
-        path: '{{ server_home }}/services/traefik/compose.yaml'
-        regexp: '(^\s*)# -'
-        replace: '\1-'
 
     - name: Create traefik users.txt file
       file:
@@ -83,14 +77,14 @@
         state: present
 
   #--- Production Services
-  - name: Production - Uncomment labels in compose.yaml for all services
+  - name: Production - Uncomment labels and bind mounts in compose.yaml for all services
     when: not local_domain
     replace:
       path: '{{ item }}'
       regexp: '(^\s*)# -'
       replace: '\1-'
     loop:
-      - '{{ server_home }}/services/wireguard/compose.yaml'
+      - '{{ server_home }}/services/traefik/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
@@ -233,7 +227,7 @@
      - '{{ server_home }}/services/jellyfin/persistence/movies'
 
   #--- Grocy
-  - name: Create Grocy persistence directories
+  - name: Create Grocy persistence directory
     file:
       path: '{{ server_home }}/services/grocy/persistence'
       state: directory
