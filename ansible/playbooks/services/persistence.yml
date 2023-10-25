@@ -113,11 +113,11 @@
       owner: docker
       group: docker
       mode: 0744
-      loop:
-        - '{{ server_home }}/services/guacamole/db-persistence'
-        - '{{ server_home }}/services/guacamole/guacd-persistence'
-        - '{{ server_home }}/services/guacamole/guacd-persistence/drive'
-        - '{{ server_home }}/services/guacamole/guacd-persistence/record'
+    loop:
+      - '{{ server_home }}/services/guacamole/db-persistence'
+      - '{{ server_home }}/services/guacamole/guacd-persistence'
+      - '{{ server_home }}/services/guacamole/guacd-persistence/drive'
+      - '{{ server_home }}/services/guacamole/guacd-persistence/record'
 
   - name: Make initdb.sql script executable
     file:
