@@ -45,6 +45,8 @@ services:
       - ./persistence/traefik.toml:/etc/traefik/traefik.toml
       # users.txt - Credentials for the Traefik dashboard.
       # - ./persistence/users.txt:/opt/dashboard/users.txt
+      # users.txt - Credentials for nfty.
+      # - ./persistence/nfty.txt:/opt/nfty/users.txt
       # JSON file for certificates - It must have 600 file permissions.
       # - ./persistence/acme.json:/letsencrypt/acme.json
 
