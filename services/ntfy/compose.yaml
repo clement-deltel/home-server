@@ -24,7 +24,7 @@ services:
       # - "traefik.http.routers.ntfy.tls.domains[0].main=ntfy.${DOMAIN}"
       - "traefik.http.routers.ntfy.service=ntfy"
       # Middlewares
-      # - "traefik.http.middlewares.auth.basicauth.usersfile=/opt/ntfy/users.txt"
+      # - "traefik.http.middlewares.ntfy-auth.basicauth.usersfile=/opt/ntfy/users.txt"
       # Services
       - "traefik.http.services.ntfy.loadbalancer.server.port=80"
     logging:
