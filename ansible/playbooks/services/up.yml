@@ -19,6 +19,13 @@
       pull: true
       state: present
 
+  - name: Boot Guacamole
+    when: guacamole_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/guacamole'
+      pull: true
+      state: present
+
   - name: Boot Pihole
     when: pihole_enable
     docker_compose:

@@ -1,0 +1,99 @@
+services:
+  db:
+    container_name: guacamole-mariadb
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${GUACAMOLE_DB_ROOT_PASSWORD}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    hostname: guacamole-mariadb
+    # mysql/mysql-server
+    image: ${DEFAULT_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${GUACAMOLE_DB_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      # docker run --rm ${GUACAMOLE_IMAGE} /opt/guacamole/bin/initdb.sh --mysql > ./init/initdb.sql
+      - ./config/initdb.sql:/initdb.sql
+      - ./db-persistence:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+
+  guacd:
+    container_name: guacd
+    hostname: guacd
+    image: ${GUACD_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${GUACD_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./guacd-persistence/drive:/drive
+      - ./guacd-persistence/record:/record
+
+  guacamole:
+    container_name: guacamole
+    depends_on:
+      db:
+        condition: service_healthy
+      guacd:
+        condition: service_started
+    env_file: config/.env
+    hostname: guacamole
+    image: ${GUACAMOLE_IMAGE}
+    labels:
+      - 'traefik.enable=true'
+      # Routers
+      - 'traefik.http.routers.guacamole.rule=Host(`guacamole.${DOMAIN}`)'
+      - 'traefik.http.routers.guacamole.tls=true'
+      # - "traefik.http.routers.guacamole.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.guacamole.tls.domains[0].main=guacamole.${DOMAIN}"
+      - "traefik.http.routers.guacamole.middlewares=guacamole"
+      - "traefik.http.routers.guacamole.service=guacamole"
+      # Middlewares
+      - "traefik.http.middlewares.guacamole.addprefix.prefix=/guacamole"
+      # Services
+      - "traefik.http.services.guacamole.loadBalancer.server.port=8080"
+    links:
+      - guacd
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${GUACAMOLE_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${GUACAMOLE_IP}
+    ports:
+      - 8080
+    restart: always
+    stop_grace_period: 10s
+    user: ${DOCKER_UID}:${DOCKER_GID}
+
+networks:
+  app-net:
+    name: guacamole-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${GUACAMOLE_NET}
+          gateway: ${GUACAMOLE_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

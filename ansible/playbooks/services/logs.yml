@@ -22,6 +22,7 @@
     loop:
       - '{{ server_home }}/logs/traefik'
       - '{{ server_home }}/logs/wireguard'
+      - '{{ server_home }}/logs/guacamole'
       - '{{ server_home }}/logs/pihole'
       - '{{ server_home }}/logs/grafana'
       - '{{ server_home }}/logs/ntfy'

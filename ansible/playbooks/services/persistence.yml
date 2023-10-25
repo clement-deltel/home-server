@@ -85,6 +85,7 @@
       replace: '\1-'
     loop:
       - '{{ server_home }}/services/traefik/compose.yaml'
+      - '{{ server_home }}/services/guacamole/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
@@ -103,6 +104,28 @@
       owner: docker
       group: docker
       mode: 0744
+
+  #--- Guacamole
+  - name: Create Guacamole persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+      loop:
+        - '{{ server_home }}/services/guacamole/db-persistence'
+        - '{{ server_home }}/services/guacamole/guacd-persistence'
+        - '{{ server_home }}/services/guacamole/guacd-persistence/drive'
+        - '{{ server_home }}/services/guacamole/guacd-persistence/record'
+
+  - name: Make initdb.sql script executable
+    file:
+      path: '{{ server_home }}/services/guacamole/config/initdb.sql'
+      state: file
+      owner: docker
+      group: docker
+      mode: 0777
 
   #--- Pihole
   - name: Create Pihole directories

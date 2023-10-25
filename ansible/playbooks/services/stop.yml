@@ -19,6 +19,13 @@
       stopped: true
       state: present
 
+  - name: Stop Guacamole
+    when: guacamole_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/guacamole'
+      stopped: true
+      state: present
+
   - name: Stop Pihole
     when: pihole_enable
     docker_compose:

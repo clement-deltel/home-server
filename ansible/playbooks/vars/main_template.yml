@@ -33,6 +33,7 @@ traefik_password: <traefik-dashboard-password>
 
 # Services
 wireguard_enable: true
+guacamole_enable: true
 pihole_enable: true
 grafana_enable: true
 ntfy_enable: true

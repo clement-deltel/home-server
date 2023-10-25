@@ -19,6 +19,13 @@
       restarted: true
       state: present
 
+  - name: Restart Guacamole
+    when: guacamole_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/guacamole'
+      restarted: true
+      state: present
+
   - name: Restart Pihole
     when: pihole_enable
     docker_compose:
