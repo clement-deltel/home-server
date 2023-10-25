@@ -143,7 +143,7 @@
       - '{{ server_home }}/services/grafana/influxdb-persistence'
 
   #--- Ntfy
-  - name: Create Limesurvey persistence directories
+  - name: Create Ntfy persistence directories
     file:
       path: '{{ item }}'
       state: directory
@@ -155,6 +155,14 @@
       - '{{ server_home }}/services/ntfy/persistence/cache'
       - '{{ server_home }}/services/ntfy/persistence/etc'
       - '{{ server_home }}/services/ntfy/persistence/log'
+
+  - name: Copy Ntfy server configuration file
+    copy:
+      src: '{{ server_home }}/services/ntfy/config/server.yml'
+      dest: '{{ server_home }}/services/traefik/persistence/etc/server.yml'
+      owner: docker
+      group: docker
+      mode: 0640
 
   #--- Limesurvey
   - name: Create Limesurvey persistence directories
