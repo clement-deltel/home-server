@@ -182,6 +182,7 @@
       mode: 0640
 
   - name: Create ntfy users.txt file
+    when: not local_domain
     file:
       path: '{{ server_home }}/services/traefik/persistence/nfty.txt'
       state: touch
@@ -190,6 +191,7 @@
       mode: 0640
 
   - name: Add a user to users.txt
+    when: not local_domain
     community.general.htpasswd:
       path: '{{ server_home }}/services/traefik/persistence/ntfy.txt'
       name: '{{ ntfy_user }}'
