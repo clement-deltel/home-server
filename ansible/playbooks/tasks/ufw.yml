@@ -66,12 +66,6 @@
       port: 7359
       protocol: udp
 
-  - name: Allow Traefik dashboard
-    ufw:
-      rule: allow
-      #name: Traefik
-      port: 8080
-
   - name: Allow Minecraft
     ufw:
       rule: allow
