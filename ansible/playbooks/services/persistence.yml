@@ -182,24 +182,6 @@
       group: docker
       mode: 0640
 
-  - name: Create ntfy users.txt file
-    when: not local_domain
-    file:
-      path: '{{ server_home }}/services/traefik/persistence/nfty.txt'
-      state: touch
-      owner: docker
-      group: docker
-      mode: 0640
-
-  - name: Add a user to users.txt
-    when: not local_domain
-    community.general.htpasswd:
-      path: '{{ server_home }}/services/traefik/persistence/ntfy.txt'
-      name: '{{ ntfy_user }}'
-      password: '{{ ntfy_password }}'
-      hash_scheme: md5_crypt
-      state: present
-
   #--- Limesurvey
   - name: Create Limesurvey persistence directories
     ignore_errors: true

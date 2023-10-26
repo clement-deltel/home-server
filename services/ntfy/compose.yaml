@@ -23,8 +23,6 @@ services:
       # - "traefik.http.routers.ntfy.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.ntfy.tls.domains[0].main=ntfy.${DOMAIN}"
       - "traefik.http.routers.ntfy.service=ntfy"
-      # Middlewares
-      # - "traefik.http.middlewares.ntfy-auth.basicauth.usersfile=/opt/ntfy/users.txt"
       # Services
       - "traefik.http.services.ntfy.loadbalancer.server.port=80"
     logging:
@@ -38,7 +36,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID} # optional: Set custom user/group or uid/gid
     ports:
       - 80
-      - ${NTFY_METRICS_PORT}:81
+      - 81
     restart: always
     stop_grace_period: 10s
     volumes:
