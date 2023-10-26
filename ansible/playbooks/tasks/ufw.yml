@@ -53,11 +53,11 @@
       #name: https
       port: 443
 
-  - name: Allow Bitwarden websocket
+  - name: Allow RDP
     ufw:
       rule: allow
-      #name: Bitwarden
-      port: 3012
+      #name: RDP
+      port: 3389
 
   - name: Allow local network discovery for Jellyfin
     ufw:
