@@ -74,6 +74,8 @@
 
   - name: Allow Wireguard
     ufw:
-      rule: allow
+      rule: limit
       #name: Wireguard
       port: 51820
+      protocol: udp
+      log: true
