@@ -30,7 +30,6 @@ services:
       - 80
     restart: always
     stop_grace_period: 10s
-    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./persistence:/config
 
