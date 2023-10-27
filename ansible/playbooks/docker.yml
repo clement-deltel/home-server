@@ -29,6 +29,11 @@
         file: services/persistence.yml
       tags: docker
 
+    - name: Create networks
+      include_tasks:
+        file: services/networks.yml
+      tags: docker
+
     - name: Install docker-compose python package
       include_tasks:
         file: tasks/python.yml
