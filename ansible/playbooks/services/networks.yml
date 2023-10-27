@@ -2,7 +2,7 @@
   tags: docker
   block:
 
-  # docker network create --driver=bridge --attachable traefik-net --subnet 192.168.10.0/24 --gateway 192.168.10.1
+  # docker network create --driver=bridge --attachable --subnet 192.168.10.0/24 --gateway 192.168.10.1 traefik-net
   - name: Create the traefik-net network
     docker_network:
       name: traefik-net
@@ -12,7 +12,7 @@
         - subnet: '{{ traefik_net }}'
           gateway: '{{ traefik_gateway }}'
 
-  # docker network create --driver=bridge --attachable monitoring-net --subnet 192.168.14.0/24 --gateway 192.168.14.1
+  # docker network create --driver=bridge --attachable --subnet 192.168.14.0/24 --gateway 192.168.14.1 monitoring-net
   - name: Create the monitoring-net network
     docker_network:
       name: monitoring-net
