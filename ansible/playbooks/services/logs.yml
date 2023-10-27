@@ -25,6 +25,7 @@
       - '{{ server_home }}/logs/guacamole'
       - '{{ server_home }}/logs/pihole'
       - '{{ server_home }}/logs/grafana'
+      - '{{ server_home }}/logs/prometheus'
       - '{{ server_home }}/logs/ntfy'
       - '{{ server_home }}/logs/limesurvey'
       - '{{ server_home }}/logs/bitwarden'

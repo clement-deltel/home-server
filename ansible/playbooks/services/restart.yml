@@ -40,6 +40,13 @@
       restarted: true
       state: present
 
+  - name: Restart Prometheus
+    when: prometheus_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/prometheus'
+      restarted: true
+      state: present
+
   - name: Restart Ntfy
     when: ntfy_enable
     docker_compose:

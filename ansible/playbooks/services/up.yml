@@ -40,6 +40,13 @@
       pull: true
       state: present
 
+  - name: Boot Prometheus
+    when: prometheus_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/prometheus'
+      pull: true
+      state: present
+
   - name: Boot Ntfy
     when: ntfy_enable
     docker_compose:
