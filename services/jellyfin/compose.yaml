@@ -1,6 +1,13 @@
 services:
   jellyfin:
     container_name: jellyfin
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     dns:
       - 127.0.0.1
       - 1.1.1.1
