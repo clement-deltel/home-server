@@ -22,7 +22,7 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-      app-net:
+      traefik-net:
         ipv4_address: ${TRAEFIK_IP}
       monitoring-net:
         ipv4_address: ${TRAEFIK_MONITORING_IP}
@@ -66,7 +66,7 @@ services:
         max-file: "5"
         max-size: 5m
     networks:
-      app-net:
+      traefik-net:
         ipv4_address: ${ROBOTS_IP}
     restart: always
     stop_grace_period: 30s
@@ -74,14 +74,9 @@ services:
       - ./config/robots.txt:/usr/share/nginx/html/robots.txt:ro
 
 networks:
-  app-net:
+  traefik-net:
+    external: true
     name: traefik-net
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${TRAEFIK_NET}
-          gateway: ${TRAEFIK_GATEWAY}
   monitoring-net:
     external: true
     name: monitoring-net

@@ -28,6 +28,12 @@ influxdb_user: '<influxdb-user>'
 influxdb_user_password: '<influxdb-user-password>'
 open_weather_map_api_key: '<api-key>'
 
+# Docker networks
+traefik_net: 192.168.10.0/24
+traefik_gateway: 192.168.10.1
+monitoring_net: 192.168.14.0/24
+monitoring_gateway: 192.168.14.1
+
 # Traefik
 traefik_user: <traefik-dashboard-user>
 traefik_password: <traefik-dashboard-password>

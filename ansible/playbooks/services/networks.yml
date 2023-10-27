@@ -1,0 +1,23 @@
+- name: Initialize docker networks
+  tags: docker
+  block:
+
+  # docker network create --driver=bridge --attachable traefik-net --subnet 192.168.10.0/24 --gateway 192.168.10.1
+  - name: Create the traefik-net network
+    docker_network:
+      name: traefik-net
+      attachable: true
+      driver: bridge
+      ipam_config:
+        - subnet: '{{ traefik_net }}'
+          gateway: '{{ traefik_gateway }}'
+
+  # docker network create --driver=bridge --attachable monitoring-net --subnet 192.168.14.0/24 --gateway 192.168.14.1
+  - name: Create the monitoring-net network
+    docker_network:
+      name: monitoring-net
+      attachable: true
+      driver: bridge
+      ipam_config:
+        - subnet: '{{ monitoring_net }}'
+          gateway: '{{ monitoring_gateway }}'

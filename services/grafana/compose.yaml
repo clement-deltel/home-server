@@ -10,8 +10,8 @@ services:
         max-file: "5"
         max-size: 5m
     networks:
-      app-net:
-        ipv4_address: ${GRAFANA_INFLUXDB_IP}
+      monitoring-net:
+        ipv4_address: ${INFLUXDB_IP}
     ports:
       - 8086:8086
     # Remote backups and restores
@@ -34,8 +34,8 @@ services:
         max-file: "5"
         max-size: 5m
     networks:
-      app-net:
-        ipv4_address: ${GRAFANA_PROMETHEUS_IP}
+      monitoring-net:
+        ipv4_address: ${PROMETHEUS_IP}
     ports:
       - 9090
     restart: always
@@ -55,7 +55,7 @@ services:
         max-file: "2"
         max-size: 5m
     networks:
-      app-net:
+      monitoring-net:
         ipv4_address: ${GRAFANA_RENDERER_IP}
     restart: always
     stop_grace_period: 10s
@@ -90,8 +90,8 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
-      app-net:
-        ipv4_address: ${GRAFANA_INTERNAL_IP}
+      monitoring-net:
+        ipv4_address: ${GRAFANA_MONITORING_IP}
       traefik-net:
         ipv4_address: ${GRAFANA_IP}
     ports:
@@ -104,14 +104,9 @@ services:
       - ./persistence:/var/lib/grafana
 
 networks:
-  app-net:
-    name: monitoring-net
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${GRAFANA_NET}
-          gateway: ${GRAFANA_GATEWAY}
   traefik-net:
     external: true
     name: traefik-net
+  monitoring-net:
+    external: true
+    name: monitoring-net
