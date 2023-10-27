@@ -159,6 +159,7 @@
     loop:
       - '{{ server_home }}/services/grafana/persistence'
       - '{{ server_home }}/services/grafana/influxdb-persistence'
+      - '{{ server_home }}/services/grafana/prometheus-persistence'
 
   #--- Ntfy
   - name: Create Ntfy persistence directories

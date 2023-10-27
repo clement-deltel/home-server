@@ -6,12 +6,6 @@
     include_vars:
       file: vars/main.yml
 
-  - name: Stop Traefik
-    docker_compose:
-      project_src: '{{ server_home }}/services/traefik'
-      stopped: true
-      state: present
-
   - name: Stop WireGuard
     when: wireguard_enable
     docker_compose:
@@ -30,13 +24,6 @@
     when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
-      stopped: true
-      state: present
-
-  - name: Stop Grafana
-    when: grafana_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/grafana'
       stopped: true
       state: present
 
@@ -93,5 +80,18 @@
     when: minecraft_enable
     docker_compose:
       project_src: '{{ server_home }}/services/minecraft'
+      stopped: true
+      state: present
+
+  - name: Stop Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      stopped: true
+      state: present
+
+  - name: Stop Traefik
+    docker_compose:
+      project_src: '{{ server_home }}/services/traefik'
       stopped: true
       state: present

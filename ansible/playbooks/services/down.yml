@@ -6,11 +6,6 @@
     include_vars:
       file: vars/main.yml
 
-  - name: Remove Traefik
-    docker_compose:
-      project_src: '{{ server_home }}/services/traefik'
-      state: absent
-
   - name: Remove WireGuard
     when: wireguard_enable
     docker_compose:
@@ -27,12 +22,6 @@
     when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
-      state: absent
-
-  - name: Remove Grafana
-    when: grafana_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/grafana'
       state: absent
 
   - name: Remove Ntfy
@@ -81,4 +70,15 @@
     when: minecraft_enable
     docker_compose:
       project_src: '{{ server_home }}/services/minecraft'
+      state: absent
+
+  - name: Remove Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      state: absent
+
+  - name: Remove Traefik
+    docker_compose:
+      project_src: '{{ server_home }}/services/traefik'
       state: absent

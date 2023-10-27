@@ -12,6 +12,13 @@
       pull: true
       state: present
 
+  - name: Boot Grafana
+    when: grafana_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/grafana'
+      pull: true
+      state: present
+
   - name: Boot WireGuard
     when: wireguard_enable
     docker_compose:
@@ -30,13 +37,6 @@
     when: pihole_enable
     docker_compose:
       project_src: '{{ server_home }}/services/pihole'
-      pull: true
-      state: present
-
-  - name: Boot Grafana
-    when: grafana_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/grafana'
       pull: true
       state: present
 

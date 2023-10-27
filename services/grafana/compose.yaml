@@ -11,9 +11,7 @@ services:
         max-size: 5m
     networks:
       app-net:
-        ipv4_address: ${GRAFANA_DB_IP}
-      traefik-net:
-        ipv4_address: ${INFLUXDB_IP}
+        ipv4_address: ${GRAFANA_INFLUXDB_IP}
     ports:
       - 8086:8086
     # Remote backups and restores
@@ -23,6 +21,28 @@ services:
     stop_grace_period: 10s
     volumes:
       - ./influxdb-persistence:/var/lib/influxdb
+
+  prometheus:
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    container_name: prometheus
+    hostname: prometheus
+    image: ${PROMETHEUS_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${GRAFANA_PROMETHEUS_IP}
+    ports:
+      - 9090
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-persistence:/prometheus
 
   renderer:
     container_name: grafana-image-renderer
@@ -44,6 +64,7 @@ services:
     container_name: grafana
     depends_on:
       - influxdb
+      - prometheus
       - renderer
     dns:
       - 127.0.0.1
@@ -84,7 +105,7 @@ services:
 
 networks:
   app-net:
-    name: grafana-internal
+    name: monitoring-net
     driver: bridge
     ipam:
       driver: default

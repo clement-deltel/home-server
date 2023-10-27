@@ -30,6 +30,8 @@ services:
     networks:
       traefik-net:
         ipv4_address: ${PIHOLE_IP}
+      monitoring-net:
+        ipv4_address: ${PIHOLE_MONITORING_IP}
     ports:
       - ${PIHOLE_DNS_PORT}:53/tcp
       - ${PIHOLE_DNS_PORT}:53/udp
@@ -47,3 +49,6 @@ networks:
   traefik-net:
     external: true
     name: traefik-net
+  monitoring-net:
+    external: true
+    name: monitoring-net
