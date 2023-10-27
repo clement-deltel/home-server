@@ -1,12 +1,11 @@
 services:
   ntfy:
-    command:
-      - serve
     container_name: ntfy
     dns:
       - 127.0.0.1
       - 1.1.1.1
       - 1.0.0.1
+    entrypoint: [ "/bin/sh", "/docker-entrypoint.sh" ]
     env_file: config/.env
     healthcheck: # optional: remember to adapt the host:port to your environment
       test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
@@ -40,6 +39,7 @@ services:
     restart: always
     stop_grace_period: 10s
     volumes:
+      - ./config/docker-entrypoint.sh:/docker-entrypoint.sh
       - ./persistence/cache:/var/cache/ntfy
       - ./persistence/etc:/etc/ntfy
       - ./persistence/log:/var/log
