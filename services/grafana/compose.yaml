@@ -22,29 +22,6 @@ services:
     volumes:
       - ./influxdb-persistence:/var/lib/influxdb
 
-  prometheus:
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    container_name: prometheus
-    hostname: prometheus
-    image: ${PROMETHEUS_IMAGE}
-    logging:
-      driver: json-file
-      options:
-        max-file: "5"
-        max-size: 5m
-    networks:
-      monitoring-net:
-        ipv4_address: ${PROMETHEUS_IP}
-    ports:
-      - 9090
-    restart: always
-    stop_grace_period: 10s
-    user: ${DOCKER_UID}:${DOCKER_GID}
-    volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus-persistence:/prometheus
-
   renderer:
     container_name: grafana-image-renderer
     env_file: config/.env.renderer
@@ -65,7 +42,6 @@ services:
     container_name: grafana
     depends_on:
       - influxdb
-      - prometheus
       - renderer
     dns:
       - 127.0.0.1
