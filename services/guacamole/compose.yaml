@@ -22,7 +22,7 @@ services:
     stop_grace_period: 10s
     volumes:
       # docker run --rm ${GUACAMOLE_IMAGE} /opt/guacamole/bin/initdb.sh --mysql > ./init/initdb.sql
-      - ./config/initdb.sql:/initdb.sql
+      - ./config/initdb.sql:/docker-entrypoint-initdb.d/init.sql
       - ./db-persistence:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
