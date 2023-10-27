@@ -24,7 +24,7 @@
       mode: 0600
     loop:
       - { search_string: '^protocol', line: 'protocol=dyndns2' }
-      - { search_string: '^use', line: 'use=web, web=checkip.dyndns.com' }
+      - { search_string: '^use', line: 'use=web, web=checkip.dyndns.com, web-skip="Current IP Address"' }
       - { search_string: '^login', line: 'login={{ dyn_host_username }}' }
       - { search_string: '^password', line: 'password={{ dyn_host_password }}' }
 
@@ -35,7 +35,7 @@
       line: '{{ item.line }}'
     loop:
       - { line: 'server={{ dyn_server }}' }
-      - { line: '*' }
+      - { line: '{{ domain }}' }
 
   - name: Restart ddclient service
     systemd:

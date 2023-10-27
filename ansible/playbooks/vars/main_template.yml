@@ -1,4 +1,5 @@
 # General
+domain: <domain-name>
 user_email: <user-email-address>
 
 docker_gid: <docker-user-gid>
