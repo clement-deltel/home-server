@@ -1,7 +1,6 @@
 # sudo crontab -l
 - name: Crontab configuration
-  tags: init
-  become: true
+  tags: docker
   block:
 
   - name: Daily backup job

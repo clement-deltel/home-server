@@ -19,6 +19,12 @@
         file: tasks/profile.yml
       tags: docker
 
+    - name: Cron jobs
+      when: not local_domain
+      include_tasks:
+        file: tasks/cron.yml
+      tags: docker
+
     - name: Create log directories
       include_tasks:
         file: services/logs.yml

@@ -43,12 +43,6 @@
         file: tasks/apt.yml
       tags: init
 
-    - name: Cron jobs
-      when: not local_domain
-      include_tasks:
-        file: tasks/cron.yml
-      tags: init
-
     - name: Amazon Web Services CLI
       include_tasks:
         file: tasks/aws-cli.yml
