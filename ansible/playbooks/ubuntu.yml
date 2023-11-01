@@ -33,6 +33,11 @@
         file: tasks/ssh.yml
       tags: init
 
+    - name: XRDP - Install & enable
+      include_tasks:
+        file: tasks/xrdp.yml
+      tags: init
+
     - name: APT - Essentials tools
       include_tasks:
         file: tasks/apt.yml
