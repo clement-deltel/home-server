@@ -1,6 +1,26 @@
 services:
+  # Used for fetching pages via Playwright+Chrome where you need Javascript support.
+  playwright-chrome:
+    container_name: playwright-chrome
+    env_file: config/.env.playwright
+    hostname: playwright-chrome
+    image: ${PLAYWRIGHT_CHROME_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${CHANGE_DETECTION_PLAYWRIGHT_CHROME_IP}
+    restart: always
+    stop_grace_period: 10s
+
   detection:
     container_name: change-detection
+    depends_on:
+      browser-chrome:
+          condition: service_started
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -24,6 +44,8 @@ services:
         max-file: "5"
         max-size: 10m
     networks:
+      app-net:
+        ipv4_address: ${CHANGE_DETECTION_INTERNAL_IP}
       traefik-net:
         ipv4_address: ${CHANGE_DETECTION_IP}
     ports:
@@ -34,6 +56,14 @@ services:
       - ./persistence:/datastore
 
 networks:
+  app-net:
+    name: change-detection-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${CHANGE_DETECTION_NET}
+          gateway: ${CHANGE_DETECTION_GATEWAY}
   traefik-net:
     external: true
     name: traefik-net
