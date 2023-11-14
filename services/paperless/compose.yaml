@@ -130,7 +130,10 @@ services:
     restart: always
     stop_grace_period: 10s
     volumes:
-      - ./persistence:/usr/src/paperless
+      - ./persistence/consume:/usr/src/paperless/consume
+      - ./persistence/data:/usr/src/paperless/data
+      - ./persistence/export:/usr/src/paperless/export
+      - ./persistence/media:/usr/src/paperless/media
 
 networks:
   app-net:

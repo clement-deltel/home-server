@@ -265,7 +265,10 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/paperless/persistence'
+      - '{{ server_home }}/services/paperless/persistence/consume'
+      - '{{ server_home }}/services/paperless/persistence/data'
+      - '{{ server_home }}/services/paperless/persistence/export'
+      - '{{ server_home }}/services/paperless/persistence/media'
       - '{{ server_home }}/services/paperless/db-persistence'
       - '{{ server_home }}/services/paperless/redis-persistence'
 
