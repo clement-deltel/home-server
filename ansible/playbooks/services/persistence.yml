@@ -90,6 +90,7 @@
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
+      - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/bitwarden/compose.yaml'
       - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/photoprism/compose.yaml'
