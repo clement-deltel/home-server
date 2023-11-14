@@ -48,6 +48,12 @@
       project_src: '{{ server_home }}/services/limesurvey'
       state: absent
 
+  - name: Remove Change Detection
+    when: change_detection_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/detection'
+      state: absent
+
   - name: Remove Bitwarden
     when: bitwarden_enable
     docker_compose:

@@ -61,6 +61,13 @@
       pull: true
       state: present
 
+  - name: Boot Change Detection
+    when: change_detection_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/detection'
+      pull: true
+      state: present
+
   - name: Boot Bitwarden
     when: bitwarden_enable
     docker_compose:

@@ -55,6 +55,13 @@
       stopped: true
       state: present
 
+  - name: Stop Change Detection
+    when: change_detection_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/detection'
+      stopped: true
+      state: present
+
   - name: Stop Bitwarden
     when: bitwarden_enable
     docker_compose:

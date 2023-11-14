@@ -61,6 +61,13 @@
       restarted: true
       state: present
 
+  - name: Restart Change Detection
+    when: change_detection_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/detection'
+      restarted: true
+      state: present
+
   - name: Restart Bitwarden
     when: bitwarden_enable
     docker_compose:

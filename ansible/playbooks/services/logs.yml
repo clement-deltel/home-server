@@ -28,6 +28,7 @@
       - '{{ server_home }}/logs/prometheus'
       - '{{ server_home }}/logs/ntfy'
       - '{{ server_home }}/logs/limesurvey'
+      - '{{ server_home }}/logs/detection'
       - '{{ server_home }}/logs/bitwarden'
       - '{{ server_home }}/logs/nextcloud'
       - '{{ server_home }}/logs/photoprism'

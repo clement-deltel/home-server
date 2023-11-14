@@ -324,6 +324,7 @@ alias loghome='cd ${LOG_HOME}'
 
 # Services
 alias cdbit='cd ${SERVER_HOME}/services/bitwarden'
+alias cddet='cd ${SERVER_HOME}/services/detection'
 alias cdgra='cd ${SERVER_HOME}/services/grafana'
 alias cdgro='cd ${SERVER_HOME}/services/grocy'
 alias cdgua='cd ${SERVER_HOME}/services/guacamole'
@@ -340,6 +341,7 @@ alias cdtra='cd ${SERVER_HOME}/services/traefik'
 alias cdwir='cd ${SERVER_HOME}/services/wireguard'
 
 alias svcbit='cd ${SERVER_HOME}/services/bitwarden'
+alias svcdet='cd ${SERVER_HOME}/services/detection'
 alias svcgra='cd ${SERVER_HOME}/services/grafana'
 alias svcgro='cd ${SERVER_HOME}/services/grocy'
 alias svcgua='cd ${SERVER_HOME}/services/guacamole'

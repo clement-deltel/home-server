@@ -207,6 +207,18 @@
       - '{{ server_home }}/services/limesurvey/persistence/config'
       - '{{ server_home }}/services/limesurvey/db-persistence'
 
+  #--- Change Detection
+  - name: Create Change Detection persistence directory
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/detection/persistence'
+
   #--- Bitwarden
   - name: Create Bitwarden persistence directories
     ignore_errors: true
