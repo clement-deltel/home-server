@@ -82,7 +82,7 @@ services:
     stop_grace_period: 10s
 
   paperless:
-    command: webserver createsuperuser --noinput --username "${PAPERLESS_ADMIN_USER}" --email "${USER_EMAIL}"
+    # createsuperuser --noinput --username "${PAPERLESS_ADMIN_USER}" --email "${USER_EMAIL}"
     container_name: paperless
     depends_on:
       db:
