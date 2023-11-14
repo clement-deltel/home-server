@@ -13,8 +13,8 @@ NC='\e[0m'
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) ;;
+    *) return;;
 esac
 
 # Shell optional behavior
@@ -44,22 +44,56 @@ export HISTCONTROL=ignoredups:ignorespace
 
 # Set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# Prompt
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:$(pwd) /> '
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+  xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]$(pwd)\[\033[00m\] /> '
+else
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:$(pwd) /> '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*)
+  ;;
+esac
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # Colored GCC warnings and errors
@@ -74,7 +108,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -97,14 +131,6 @@ set -o vi           # Set vi mode for shell
 # User specific environment and startup programs
 export HOME=/home/${USER}
 export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
-
-# Server environment variables
-export SERVER_HOME=/opt/home-server
-export BACKUP_HOME=${SERVER_HOME}/backups
-export LOG_HOME=${SERVER_HOME}/logs
-
-# Scripts
-export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${SERVER_HOME}/scripts/restore
 
 #==============================================================================#
 #               ------- Functions ------                                       #
@@ -152,70 +178,6 @@ function ii() {
 
 # Online cheatsheet
 function cheatsheet { curl cheat.sh/"$1"; }
-
-# Set and unset env
-function set-env-fn { export $(grep -v '^#' "${SERVER_HOME}/env/.env" | xargs -d '\n'); }
-function unset-env-fn { unset $(grep -v '^#' "${SERVER_HOME}/env/.env" | sed -E 's/(.*)=.*/\1/' | xargs); }
-
-#==============================================================================#
-#               ------- Functions - Docker ------                              #
-#==============================================================================#
-function docker-compose-fn { docker compose "$@"; }
-function docker-compose-run-fn { docker compose run "$@"; }
-function docker-exec-fn { docker exec -it "$1" "${2:-bash}"; }
-function docker-image-rm-fn { docker image rm "$1"; }
-function docker-inspect-fn { docker inspect "$1"; }
-function docker-ip-fn {
-  echo "IP addresses of all named running containers"
-  for DOC in $(dnames-fn)
-  do
-    IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' "$DOC")
-    OUT+=$DOC'\t'$IP'\n'
-  done
-  echo -e "$OUT" | column -t
-  unset OUT
-}
-function docker-logs-fn { docker logs -f "$1"; }
-function docker-names-fn {
-	for ID in $(docker ps | awk '{print $1}' | grep -v 'CONTAINER')
-	do
-    docker inspect "$ID" | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
-	done
-}
-function docker-pull-fn { docker pull "$1"; }
-function docker-rm-exited-fn { docker rm "$(docker ps --all -q -f status=exited)"; }
-function docker-rm-dangling-images-fn {
-  IMGS=$(docker images --filter "dangling=true" -q --no-trunc)
-  [[ -n ${IMGS} ]] && docker rmi ${IMGS} || echo "no dangling images."
-}
-function docker-rm-dangling-volumes-fn {
-  VOLS=$(docker volume ls --filter "dangling=true" -q)
-  [[ -n ${VOLS} ]] && docker volume rm ${VOLS} || echo "no dangling volumes."
-}
-function docker-run-fn { docker run -it "$1" "$2"; }
-function docker-stop-rm-fn { docker stop "$1"; docker rm "$1"; }
-
-#==============================================================================#
-#               ------- Functions - Aliases --------                           #
-#==============================================================================#
-alias dc=docker-compose-fn
-alias dcru=docker-compose-run-fn
-alias dex=docker-exec-fn
-alias di=docker-inspect-fn
-alias dip=docker-ip-fn
-alias dirm=docker-image-rm-fn
-alias dl=docker-logs-fn
-alias dnames=docker-names-fn
-alias dpu=docker-pull-fn
-alias drmc=docker-rm-exited-fn
-alias drmid=docker-rm-dangling-images-fn
-alias drmvd=docker-rm-dangling-volumes-fn
-alias drun=docker-run-fn
-alias dsr=docker-stop-rm-fn
-
-alias set-env=set-env-fn
-alias unset-env=unset-env-fn
-set-env
 
 #==============================================================================#
 #               ------- Aliases --------                                       #
@@ -274,7 +236,8 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # su
-alias root='su -'
+alias root='sudo su -'
+alias doc='sudo su - docker'
 
 # tree
 alias tree='tree -Csu'		# nice alternative to 'ls'
@@ -282,22 +245,82 @@ alias tree='tree -Csu'		# nice alternative to 'ls'
 # vim
 alias vimo='vim -o '
 
-# Docker
+#==============================================================================#
+#               ------- Aliases - Typos --------                               #
+#==============================================================================#
+alias :q='exit'
+
+#==============================================================================#
+#               ------- Functions & Aliases - Docker ------                    #
+#==============================================================================#
+function docker-exec-fn { docker exec -it "$1" "${2:-bash}"; }
+function docker-image-rm-fn { docker image rm "$1"; }
+function docker-inspect-fn { docker inspect "$1"; }
+function docker-ip-fn {
+  echo "IP addresses of all named running containers"
+  for DOC in $(dnames-fn)
+  do
+    IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' "$DOC")
+    OUT+=$DOC'\t'$IP'\n'
+  done
+  echo -e "$OUT" | column -t
+  unset OUT
+}
+function docker-logs-fn { docker logs -f "$1"; }
+function docker-names-fn {
+	for ID in $(docker ps | awk '{print $1}' | grep -v 'CONTAINER')
+	do
+    docker inspect "$ID" | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
+	done
+}
+function docker-pull-fn { docker pull "$1"; }
+function docker-rm-exited-fn { docker rm "$(docker ps --all -q -f status=exited)"; }
+function docker-rm-dangling-images-fn {
+    IMGS=$(docker images --filter "dangling=true" -q --no-trunc)
+    [[ -n ${IMGS} ]] && docker rmi ${IMGS} || echo "no dangling images."
+}
+function docker-rm-dangling-volumes-fn {
+    VOLS=$(docker volume ls --filter "dangling=true" -q)
+    [[ -n ${VOLS} ]] && docker volume rm ${VOLS} || echo "no dangling volumes."
+}
+function docker-run-fn { docker run -it "$1" "$2"; }
+function docker-stop-rm-fn { docker stop "$1"; docker rm "$1"; }
+
+alias dex=docker-exec-fn
+alias di=docker-inspect-fn
 alias dim='docker images | (sed -u 1q; sort)'
+alias dirm=docker-image-rm-fn
+alias dip=docker-ip-fn
+alias dl=docker-logs-fn
+alias dnames=docker-names-fn
+alias dnls='docker network ls'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias dpsf='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
-alias dnls='docker network ls'
+alias dpu=docker-pull-fn
+alias drmc=docker-rm-exited-fn
+alias drmid=docker-rm-dangling-images-fn
+alias drmvd=docker-rm-dangling-volumes-fn
+alias drun=docker-run-fn
 alias dsdf='docker system df -v'
 alias dsp='docker system prune --all'
+alias dsr=docker-stop-rm-fn
 alias dvls='docker volume ls'
 
-# Docker Compose file
+#==============================================================================#
+#               ------- Functions & Aliases - Docker Compose ------            #
+#==============================================================================#
+function docker-compose-fn { docker compose "$@"; }
+function docker-compose-run-fn { docker compose run "$@"; }
+
+# Compose file
 alias catco='cat compose.yaml'
 alias vico='vim compose.yaml'
 
-# Docker Compose CLI
+# CLI
+alias dc=docker-compose-fn
 alias dcd='docker compose down -v'
+alias dcru=docker-compose-run-fn
 alias dcu='docker compose up -d'
 alias dcub='docker compose up -d --build'
 alias dcr='docker compose restart'
@@ -305,9 +328,24 @@ alias dcsta='docker compose start'
 alias dcsto='docker compose stop'
 
 #==============================================================================#
-#               ------- Aliases - Typos --------                               #
+#               ------- Functions & Aliases - Server --------                  #
 #==============================================================================#
-alias :q='exit'
+
+# Environment variables
+export SERVER_HOME=/opt/home-server
+export BACKUP_HOME=${SERVER_HOME}/backups
+export LOG_HOME=${SERVER_HOME}/logs
+
+# Scripts
+export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${SERVER_HOME}/scripts/restore
+
+# Set and unset env
+function set-env-fn { export $(grep -v '^#' "${SERVER_HOME}/env/.env" | xargs -d '\n'); }
+function unset-env-fn { unset $(grep -v '^#' "${SERVER_HOME}/env/.env" | sed -E 's/(.*)=.*/\1/' | xargs); }
+
+alias set-env=set-env-fn
+alias unset-env=unset-env-fn
+set-env
 
 #==============================================================================#
 #               ------- Aliases - Directories --------                         #
