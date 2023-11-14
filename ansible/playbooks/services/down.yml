@@ -42,22 +42,10 @@
       project_src: '{{ server_home }}/services/ntfy'
       state: absent
 
-  - name: Remove Limesurvey
-    when: limesurvey_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/limesurvey'
-      state: absent
-
   - name: Remove Change Detection
     when: change_detection_enable
     docker_compose:
       project_src: '{{ server_home }}/services/detection'
-      state: absent
-
-  - name: Remove Bitwarden
-    when: bitwarden_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/bitwarden'
       state: absent
 
   - name: Remove NextCloud
@@ -90,6 +78,12 @@
       project_src: '{{ server_home }}/services/jellyfin'
       state: absent
 
+  - name: Remove Bitwarden
+    when: bitwarden_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/bitwarden'
+      state: absent
+
   - name: Remove Grocy
     when: grocy_enable
     docker_compose:
@@ -100,6 +94,12 @@
     when: minecraft_enable
     docker_compose:
       project_src: '{{ server_home }}/services/minecraft'
+      state: absent
+
+  - name: Remove Limesurvey
+    when: limesurvey_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/limesurvey'
       state: absent
 
   - name: Remove Traefik

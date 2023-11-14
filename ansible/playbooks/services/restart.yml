@@ -54,24 +54,10 @@
       restarted: true
       state: present
 
-  - name: Restart Limesurvey
-    when: limesurvey_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/limesurvey'
-      restarted: true
-      state: present
-
   - name: Restart Change Detection
     when: change_detection_enable
     docker_compose:
       project_src: '{{ server_home }}/services/detection'
-      restarted: true
-      state: present
-
-  - name: Restart Bitwarden
-    when: bitwarden_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/bitwarden'
       restarted: true
       state: present
 
@@ -110,6 +96,13 @@
       restarted: true
       state: present
 
+  - name: Restart Bitwarden
+    when: bitwarden_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/bitwarden'
+      restarted: true
+      state: present
+
   - name: Restart Grocy
     when: grocy_enable
     docker_compose:
@@ -121,5 +114,12 @@
     when: minecraft_enable
     docker_compose:
       project_src: '{{ server_home }}/services/minecraft'
+      restarted: true
+      state: present
+
+  - name: Restart Limesurvey
+    when: limesurvey_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/limesurvey'
       restarted: true
       state: present

@@ -54,24 +54,10 @@
       pull: true
       state: present
 
-  - name: Boot Limesurvey
-    when: limesurvey_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/limesurvey'
-      pull: true
-      state: present
-
   - name: Boot Change Detection
     when: change_detection_enable
     docker_compose:
       project_src: '{{ server_home }}/services/detection'
-      pull: true
-      state: present
-
-  - name: Boot Bitwarden
-    when: bitwarden_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/bitwarden'
       pull: true
       state: present
 
@@ -110,6 +96,13 @@
       pull: true
       state: present
 
+  - name: Stop Bitwarden
+    when: bitwarden_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/bitwarden'
+      stopped: true
+      state: present
+
   - name: Boot Grocy
     when: grocy_enable
     docker_compose:
@@ -121,5 +114,12 @@
     when: minecraft_enable
     docker_compose:
       project_src: '{{ server_home }}/services/minecraft'
+      pull: true
+      state: present
+
+  - name: Boot Limesurvey
+    when: limesurvey_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/limesurvey'
       pull: true
       state: present
