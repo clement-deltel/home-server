@@ -1,0 +1,73 @@
+services:
+  db:
+    container_name: docuseal-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    hostname: docuseal-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${DOCUSEAL_DB_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  docuseal:
+    container_name: docuseal
+    depends_on:
+      db:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    hostname: docuseal
+    image: ${DOCUSEAL_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.docuseal.rule=Host(`doc.${DOMAIN}`)"
+      - "traefik.http.routers.docuseal.tls=true"
+      # - "traefik.http.routers.docuseal.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.docuseal.tls.domains[0].main=doc.${DOMAIN}"
+      - "traefik.http.routers.docuseal.service=docuseal"
+      # Services
+      - "traefik.http.services.docuseal.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${DOCUSEAL_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${DOCUSEAL_IP}
+    ports:
+      - 3000
+    volumes:
+      - ./persistence:/data
+
+networks:
+  app-net:
+    name: docuseal-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${DOCUSEAL_NET}
+          gateway: ${DOCUSEAL_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

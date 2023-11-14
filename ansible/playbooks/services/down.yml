@@ -66,6 +66,18 @@
       project_src: '{{ server_home }}/services/nextcloud'
       state: absent
 
+  - name: Remove Paperless NGX
+    when: paperless_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/paperless'
+      state: absent
+
+  - name: Remove Docuseal
+    when: docuseal_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/docuseal'
+      state: absent
+
   - name: Remove Photoprism
     when: photoprism_enable
     docker_compose:

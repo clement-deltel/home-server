@@ -84,23 +84,75 @@
       regexp: '(^\s*)# -'
       replace: '\1-'
     loop:
-      - '{{ server_home }}/services/traefik/compose.yaml'
-      - '{{ server_home }}/services/guacamole/compose.yaml'
-      - '{{ server_home }}/services/pihole/compose.yaml'
-      - '{{ server_home }}/services/grafana/compose.yaml'
-      - '{{ server_home }}/services/ntfy/compose.yaml'
-      - '{{ server_home }}/services/limesurvey/compose.yaml'
-      - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/bitwarden/compose.yaml'
-      - '{{ server_home }}/services/nextcloud/compose.yaml'
-      - '{{ server_home }}/services/photoprism/compose.yaml'
-      - '{{ server_home }}/services/jellyfin/compose.yaml'
+      - '{{ server_home }}/services/detection/compose.yaml'
+      - '{{ server_home }}/services/docuseal/compose.yaml'
+      - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/grocy/compose.yaml'
+      - '{{ server_home }}/services/guacamole/compose.yaml'
+      - '{{ server_home }}/services/jellyfin/compose.yaml'
+      - '{{ server_home }}/services/limesurvey/compose.yaml'
+      - '{{ server_home }}/services/nextcloud/compose.yaml'
+      - '{{ server_home }}/services/ntfy/compose.yaml'
+      - '{{ server_home }}/services/paperless/compose.yaml'
+      - '{{ server_home }}/services/photoprism/compose.yaml'
+      - '{{ server_home }}/services/pihole/compose.yaml'
+      - '{{ server_home }}/services/traefik/compose.yaml'
 
-  #--- WireGuard
-  - name: Create WireGuard persistence directories
+  #--- Bitwarden
+  - name: Create Bitwarden persistence directories
+    ignore_errors: true
     file:
-      path: '{{ server_home }}/services/wireguard/persistence'
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/bitwarden/persistence'
+      - '{{ server_home }}/services/bitwarden/db-persistence'
+
+  #--- Detection (changedetection.io)
+  - name: Create Change Detection persistence directory
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/detection/persistence'
+
+  #--- Docuseal
+  - name: Create docuseal persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/docuseal/persistence'
+      - '{{ server_home }}/services/docuseal/db-persistence'
+
+  #--- Grafana
+  - name: Create Grafana persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/grafana/persistence'
+      - '{{ server_home }}/services/grafana/influxdb-persistence'
+
+  #--- Grocy
+  - name: Create Grocy persistence directory
+    file:
+      path: '{{ server_home }}/services/grocy/persistence'
       state: directory
       owner: docker
       group: docker
@@ -128,8 +180,22 @@
       group: docker
       mode: 0777
 
-  #--- Pihole
-  - name: Create Pihole directories
+  #--- Jellyfin
+  - name: Create Jellyfin persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+     - '{{ server_home }}/services/jellyfin/persistence'
+     - '{{ server_home }}/services/jellyfin/persistence/library'
+     - '{{ server_home }}/services/jellyfin/persistence/tvshows'
+     - '{{ server_home }}/services/jellyfin/persistence/movies'
+
+  #--- Limesurvey
+  - name: Create Limesurvey persistence directories
     ignore_errors: true
     file:
       path: '{{ item }}'
@@ -138,19 +204,24 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/pihole/etc-pihole'
-      - '{{ server_home }}/services/pihole/etc-dnsmasqd'
+      - '{{ server_home }}/services/limesurvey/persistence'
+      - '{{ server_home }}/services/limesurvey/persistence/plugins'
+      - '{{ server_home }}/services/limesurvey/persistence/upload'
+      - '{{ server_home }}/services/limesurvey/persistence/config'
+      - '{{ server_home }}/services/limesurvey/db-persistence'
 
-  - name: Create Pihole log file
+  #--- Minecraft
+  - name: Create Minecraft persistence directory
     file:
-      path: '{{ server_home }}/services/pihole/pihole.log'
-      state: touch
+      path: '{{ server_home }}/services/minecraft/persistence'
+      state: directory
       owner: docker
       group: docker
-      mode: 0640
+      mode: 0744
 
-  #--- Grafana
-  - name: Create Grafana persistence directories
+  #--- Nextcloud
+  - name: Create Nextcloud persistence directories
+    ignore_errors: true
     file:
       path: '{{ item }}'
       state: directory
@@ -158,17 +229,9 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/grafana/persistence'
-      - '{{ server_home }}/services/grafana/influxdb-persistence'
-
-  #--- Prometheus
-  - name: Create Prometheus persistence directory
-    file:
-      path: '{{ server_home }}/services/prometheus/prometheus-persistence'
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
+      - '{{ server_home }}/services/nextcloud/persistence'
+      - '{{ server_home }}/services/nextcloud/db-persistence'
+      - '{{ server_home }}/services/nextcloud/web-persistence'
 
   #--- Ntfy
   - name: Create Ntfy persistence directories
@@ -192,8 +255,8 @@
       group: docker
       mode: 0640
 
-  #--- Limesurvey
-  - name: Create Limesurvey persistence directories
+  #--- Paperless
+  - name: Create Paperless persistence directories
     ignore_errors: true
     file:
       path: '{{ item }}'
@@ -202,50 +265,9 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/limesurvey/persistence'
-      - '{{ server_home }}/services/limesurvey/persistence/plugins'
-      - '{{ server_home }}/services/limesurvey/persistence/upload'
-      - '{{ server_home }}/services/limesurvey/persistence/config'
-      - '{{ server_home }}/services/limesurvey/db-persistence'
-
-  #--- Change Detection
-  - name: Create Change Detection persistence directory
-    ignore_errors: true
-    file:
-      path: '{{ item }}'
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
-    loop:
-      - '{{ server_home }}/services/detection/persistence'
-
-  #--- Bitwarden
-  - name: Create Bitwarden persistence directories
-    ignore_errors: true
-    file:
-      path: '{{ item }}'
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
-    loop:
-      - '{{ server_home }}/services/bitwarden/persistence'
-      - '{{ server_home }}/services/bitwarden/db-persistence'
-
-  #--- Nextcloud
-  - name: Create Nextcloud persistence directories
-    ignore_errors: true
-    file:
-      path: '{{ item }}'
-      state: directory
-      owner: docker
-      group: docker
-      mode: 0744
-    loop:
-      - '{{ server_home }}/services/nextcloud/persistence'
-      - '{{ server_home }}/services/nextcloud/db-persistence'
-      - '{{ server_home }}/services/nextcloud/web-persistence'
+      - '{{ server_home }}/services/paperless/persistence'
+      - '{{ server_home }}/services/paperless/db-persistence'
+      - '{{ server_home }}/services/paperless/redis-persistence'
 
   #--- Photoprism
   - name: Create Photoprism persistence directories
@@ -262,8 +284,9 @@
      - '{{ server_home }}/services/photoprism/persistence/pictures'
      - '{{ server_home }}/services/photoprism/persistence/storage'
 
-  #--- Jellyfin
-  - name: Create Jellyfin persistence directories
+  #--- Pihole
+  - name: Create Pihole directories
+    ignore_errors: true
     file:
       path: '{{ item }}'
       state: directory
@@ -271,24 +294,30 @@
       group: docker
       mode: 0744
     loop:
-     - '{{ server_home }}/services/jellyfin/persistence'
-     - '{{ server_home }}/services/jellyfin/persistence/library'
-     - '{{ server_home }}/services/jellyfin/persistence/tvshows'
-     - '{{ server_home }}/services/jellyfin/persistence/movies'
+      - '{{ server_home }}/services/pihole/etc-pihole'
+      - '{{ server_home }}/services/pihole/etc-dnsmasqd'
 
-  #--- Grocy
-  - name: Create Grocy persistence directory
+  - name: Create Pihole log file
     file:
-      path: '{{ server_home }}/services/grocy/persistence'
+      path: '{{ server_home }}/services/pihole/pihole.log'
+      state: touch
+      owner: docker
+      group: docker
+      mode: 0640
+
+  #--- Prometheus
+  - name: Create Prometheus persistence directory
+    file:
+      path: '{{ server_home }}/services/prometheus/prometheus-persistence'
       state: directory
       owner: docker
       group: docker
       mode: 0744
 
-  #--- Minecraft
-  - name: Create Minecraft persistence directory
+  #--- WireGuard
+  - name: Create WireGuard persistence directories
     file:
-      path: '{{ server_home }}/services/minecraft/persistence'
+      path: '{{ server_home }}/services/wireguard/persistence'
       state: directory
       owner: docker
       group: docker

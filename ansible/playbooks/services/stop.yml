@@ -76,6 +76,20 @@
       stopped: true
       state: present
 
+  - name: Stop Paperless NGX
+    when: paperless_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/paperless'
+      stopped: true
+      state: present
+
+  - name: Stop Docuseal
+    when: docuseal_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/docuseal'
+      stopped: true
+      state: present
+
   - name: Stop Photoprism
     when: photoprism_enable
     docker_compose:

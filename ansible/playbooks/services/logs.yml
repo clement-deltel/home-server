@@ -31,6 +31,8 @@
       - '{{ server_home }}/logs/detection'
       - '{{ server_home }}/logs/bitwarden'
       - '{{ server_home }}/logs/nextcloud'
+      - '{{ server_home }}/logs/paperless'
+      - '{{ server_home }}/logs/docuseal'
       - '{{ server_home }}/logs/photoprism'
       - '{{ server_home }}/logs/jellyfin'
       - '{{ server_home }}/logs/grocy'

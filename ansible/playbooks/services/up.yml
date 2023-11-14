@@ -82,6 +82,20 @@
       pull: true
       state: present
 
+  - name: Boot Paperless NGX
+    when: paperless_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/paperless'
+      pull: true
+      state: present
+
+  - name: Boot Docuseal
+    when: docuseal_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/docuseal'
+      pull: true
+      state: present
+
   - name: Boot Photoprism
     when: photoprism_enable
     docker_compose:

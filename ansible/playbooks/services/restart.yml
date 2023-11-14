@@ -82,6 +82,20 @@
       restarted: true
       state: present
 
+  - name: Restart Paperless NGX
+    when: paperless_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/paperless'
+      restarted: true
+      state: present
+
+  - name: Restart Docuseal
+    when: docuseal_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/docuseal'
+      restarted: true
+      state: present
+
   - name: Restart Photoprism
     when: photoprism_enable
     docker_compose:
