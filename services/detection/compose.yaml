@@ -19,8 +19,8 @@ services:
   detection:
     container_name: change-detection
     depends_on:
-      browser-chrome:
-          condition: service_started
+      playwright-chrome:
+        condition: service_started
     dns:
       - 127.0.0.1
       - 1.1.1.1
