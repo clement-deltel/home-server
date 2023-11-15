@@ -12,7 +12,7 @@
         database_name: telegraf
         username: '{{ influxdb_admin_user }}'
         password: '{{ influxdb_admin_user_password }}'
-        policy_name: defalut_one_year
+        policy_name: default_one_year
         duration: 365d
         replication: 1
         state: present
@@ -27,7 +27,7 @@
         database_name: traefik
         username: '{{ influxdb_admin_user }}'
         password: '{{ influxdb_admin_user_password }}'
-        policy_name: defalut_one_year
+        policy_name: default_one_year
         duration: 365d
         replication: 1
         state: present

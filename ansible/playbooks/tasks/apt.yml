@@ -11,7 +11,7 @@
     apt:
       pkg:
         - apache2-utils
-        - argon2
+        - argon2 # Generate token for Vaultwarden admin interface
         - build-essential
         - curl
         - git
@@ -19,14 +19,14 @@
         - htop
         - lsb-release
         - lynis
-        - mariadb-client-10.6
+        - mariadb-client-10.6 # Execute MariaDB backups for multiple services
         - mariadb-client-core-10.6
         - net-tools
         - openssl
-        - pwgen
+        - pwgen # Easily generate random password for multiple services
         - python3
         - python3-docker
-        - python3-passlib
+        - python3-passlib # libraries used by Ansible modules
         - python3-pip
         - software-properties-common
         - vim

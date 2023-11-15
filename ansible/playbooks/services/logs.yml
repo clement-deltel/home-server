@@ -2,7 +2,7 @@
   tags: docker
   block:
 
-  #--- Logs
+  #--- Logs directory
   - name: Create logs directory
     file:
       path: '{{ server_home }}/logs'
@@ -11,7 +11,7 @@
       group: docker
       mode: 0744
 
-  #--- Services
+  #--- Services subdirectories
   - name: Create log subdirectories for all services
     file:
       path: '{{ item }}'
