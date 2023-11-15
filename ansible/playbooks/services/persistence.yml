@@ -84,7 +84,6 @@
       regexp: '(^\s*)# -'
       replace: '\1-'
     loop:
-      - '{{ server_home }}/services/bitwarden/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/docuseal/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
@@ -98,9 +97,10 @@
       - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/traefik/compose.yaml'
+      - '{{ server_home }}/services/vaultwarden/compose.yaml'
 
-  #--- Bitwarden
-  - name: Create Bitwarden persistence directories
+  #--- Vaultwarden
+  - name: Create Vaultwarden persistence directories
     ignore_errors: true
     file:
       path: '{{ item }}'
@@ -109,8 +109,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/bitwarden/persistence'
-      - '{{ server_home }}/services/bitwarden/db-persistence'
+      - '{{ server_home }}/services/vaultwarden/persistence'
+      - '{{ server_home }}/services/vaultwarden/db-persistence'
 
   #--- Detection (changedetection.io)
   - name: Create Change Detection persistence directory

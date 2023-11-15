@@ -15,7 +15,7 @@ backup_config(){
   # Evaluation of the time to perform this task: worst case scenario 15s
   echo "${TODAY} [INFO] Configuration directory backup start..." | tee -a ${LOG_FILE}
 
-  # Copy configuration file from Bitwarden persitence directory for formatting
+  # Copy configuration file from persitence directory for formatting
   OBJECT=$(date +%m)_config.tar.gz
   echo "${TODAY} [INFO] tar -zcvf ${OBJECT} persistence/library" | tee -a ${LOG_FILE}
   tar -zcvf ${OBJECT} persistence/library

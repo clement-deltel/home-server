@@ -1,13 +1,13 @@
 services:
   db:
-    container_name: bitwarden-mariadb
+    container_name: vaultwarden-mariadb
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${BITWARDEN_DB_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${VAULTWARDEN_DB_ROOT_PASSWORD}"]
       interval: 30s
       timeout: 10s
       retries: 5
-    hostname: bitwarden-mariadb
+    hostname: vaultwarden-mariadb
     image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
@@ -16,7 +16,7 @@ services:
         max-size: 5m
     networks:
       app-net:
-        ipv4_address: ${BITWARDEN_DB_IP}
+        ipv4_address: ${VAULTWARDEN_DB_IP}
     restart: always
     stop_grace_period: 10s
     volumes:
@@ -24,8 +24,8 @@ services:
       - ./db-persistence:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
-  bitwarden:
-    container_name: bitwarden
+  vaultwarden:
+    container_name: vaultwarden
     depends_on:
       db:
         condition: service_healthy
@@ -34,19 +34,18 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     env_file: config/.env
-    hostname: bitwarden
-    image: ${BITWARDEN_IMAGE}
+    hostname: vaultwarden
+    image: ${VAULTWARDEN_IMAGE}
     labels:
       - "traefik.enable=true"
-      # Bitwarden UI
       # Routers
-      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.${DOMAIN}`)"
-      - "traefik.http.routers.bitwarden.tls=true"
-      # - "traefik.http.routers.bitwarden.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.bitwarden.tls.domains[0].main=bitwarden.${DOMAIN}"
-      - "traefik.http.routers.bitwarden.service=bitwarden"
+      - "traefik.http.routers.vaultwarden.rule=Host(`vault.${DOMAIN}`)"
+      - "traefik.http.routers.vaultwarden.tls=true"
+      # - "traefik.http.routers.vaultwarden.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.vaultwarden.tls.domains[0].main=vault.${DOMAIN}"
+      - "traefik.http.routers.vaultwarden.service=vaultwarden"
       # Services
-      - "traefik.http.services.bitwarden.loadbalancer.server.port=80"
+      - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
     logging:
       driver: json-file
       options:
@@ -54,9 +53,9 @@ services:
         max-size: 10m
     networks:
       app-net:
-        ipv4_address: ${BITWARDEN_INTERNAL_IP}
+        ipv4_address: ${VAULTWARDEN_INTERNAL_IP}
       traefik-net:
-        ipv4_address: ${BITWARDEN_IP}
+        ipv4_address: ${VAULTWARDEN_IP}
     ports:
       - 80
     restart: always
@@ -67,13 +66,13 @@ services:
 
 networks:
   app-net:
-    name: bitwarden-internal
+    name: vaultwarden-internal
     driver: bridge
     ipam:
       driver: default
       config:
-        - subnet: ${BITWARDEN_NET}
-          gateway: ${BITWARDEN_GATEWAY}
+        - subnet: ${VAULTWARDEN_NET}
+          gateway: ${VAULTWARDEN_GATEWAY}
   traefik-net:
     external: true
     name: traefik-net

@@ -96,10 +96,10 @@
       restarted: true
       state: present
 
-  - name: Restart Bitwarden
-    when: bitwarden_enable
+  - name: Restart Vaultwarden
+    when: vaultwarden_enable
     docker_compose:
-      project_src: '{{ server_home }}/services/bitwarden'
+      project_src: '{{ server_home }}/services/vaultwarden'
       restarted: true
       state: present
 

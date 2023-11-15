@@ -361,7 +361,6 @@ alias bckphome='cd ${BACKUP_HOME}'
 alias loghome='cd ${LOG_HOME}'
 
 # Services
-alias cdbit='cd ${SERVER_HOME}/services/bitwarden'
 alias cddet='cd ${SERVER_HOME}/services/detection'
 alias cddoc='cd ${SERVER_HOME}/services/docuseal'
 alias cdgra='cd ${SERVER_HOME}/services/grafana'
@@ -378,9 +377,9 @@ alias cdphot='cd ${SERVER_HOME}/services/photoprism'
 alias cdpih='cd ${SERVER_HOME}/services/pihole'
 alias cdpro='cd ${SERVER_HOME}/services/prometheus'
 alias cdtra='cd ${SERVER_HOME}/services/traefik'
+alias cdvau='cd ${SERVER_HOME}/services/vaultwarden'
 alias cdwir='cd ${SERVER_HOME}/services/wireguard'
 
-alias svcbit='cd ${SERVER_HOME}/services/bitwarden'
 alias svcdet='cd ${SERVER_HOME}/services/detection'
 alias svcdoc='cd ${SERVER_HOME}/services/docuseal'
 alias svcgra='cd ${SERVER_HOME}/services/grafana'
@@ -397,6 +396,7 @@ alias svcphot='cd ${SERVER_HOME}/services/photoprism'
 alias svcpih='cd ${SERVER_HOME}/services/pihole'
 alias svcpro='cd ${SERVER_HOME}/services/prometheus'
 alias svctra='cd ${SERVER_HOME}/services/traefik'
+alias svcvau='cd ${SERVER_HOME}/services/vaultwarden'
 alias svcwir='cd ${SERVER_HOME}/services/wireguard'
 
 # Scripts

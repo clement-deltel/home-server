@@ -107,7 +107,6 @@ services:
     image: ${PAPERLESS_IMAGE}
     labels:
       - "traefik.enable=true"
-      # Bitwarden UI
       # Routers
       - "traefik.http.routers.paperless.rule=Host(`paperless.${DOMAIN}`)"
       - "traefik.http.routers.paperless.tls=true"

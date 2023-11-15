@@ -5,7 +5,7 @@
 
   - name: Daily backup job
     cron:
-      name: 'Backup services (every day at 4AM): Bitwarden'
+      name: 'Backup services (every day at 4AM): Vaultwarden'
       hour: '4'
       job: '{{ server_home }}/scripts/backup/all.sh daily'
       state: present

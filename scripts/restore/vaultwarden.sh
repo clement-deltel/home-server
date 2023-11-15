@@ -3,7 +3,7 @@
 #==============================================================================#
 #AUTHOR: Clement Deltel
 #DATE: 2023/03/16
-#DESCRIPTION: Lists all the methods to restore all elements of Bitwarden.
+#DESCRIPTION: Lists all the methods to restore all elements of Vaultwarden.
 #==============================================================================#
 
 #==============================================================================#
@@ -25,8 +25,8 @@ restore_database(){
   echo "${TODAY} [INFO] File used for database recovery: ${OBJECT}" | tee -a ${LOG_FILE}
 
   # Restore database from file
-  echo "${TODAY} [INFO] gunzip -c *.gz | mysql -h ${BITWARDEN_DB_IP} -u ${BITWARDEN_DB_USER} -p${BITWARDEN_DB_PASSWORD} bitwarden_db" | tee -a ${LOG_FILE}
-  gunzip -c *.gz | mysql -h ${BITWARDEN_DB_IP} -u ${BITWARDEN_DB_USER} -p${BITWARDEN_DB_PASSWORD} bitwarden_db
+  echo "${TODAY} [INFO] gunzip -c *.gz | mysql -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db" | tee -a ${LOG_FILE}
+  gunzip -c *.gz | mysql -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db
 
   # Delete the gzip file
   rm -f ${OBJECT}
@@ -204,7 +204,7 @@ restore_docker_image(){
 #==============================================================================#
 main(){
   RESTORE_STRATEGY="S3"
-  CONTAINER_NAME="bitwarden"
+  CONTAINER_NAME="vaultwarden"
   TASK=$1
 
   # Get the date
@@ -249,7 +249,7 @@ main(){
     restore_docker_image
   fi
 
-  # Reboot Bitwarden
+  # Reboot Vaultwarden
   echo "${TODAY} [INFO] docker restart ${CONTAINER_NAME}" | tee -a ${LOG_FILE}
   docker restart ${CONTAINER_NAME}
 

@@ -20,7 +20,6 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/logs/bitwarden'
       - '{{ server_home }}/logs/detection'
       - '{{ server_home }}/logs/docuseal'
       - '{{ server_home }}/logs/grafana'
@@ -36,4 +35,5 @@
       - '{{ server_home }}/logs/pihole'
       - '{{ server_home }}/logs/prometheus'
       - '{{ server_home }}/logs/traefik'
+      - '{{ server_home }}/logs/vaultwarden'
       - '{{ server_home }}/logs/wireguard'

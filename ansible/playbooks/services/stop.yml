@@ -90,10 +90,10 @@
       stopped: true
       state: present
 
-  - name: Stop Bitwarden
-    when: bitwarden_enable
+  - name: Stop Vaultwarden
+    when: vaultwarden_enable
     docker_compose:
-      project_src: '{{ server_home }}/services/bitwarden'
+      project_src: '{{ server_home }}/services/vaultwarden'
       stopped: true
       state: present
 

@@ -78,10 +78,10 @@
       project_src: '{{ server_home }}/services/jellyfin'
       state: absent
 
-  - name: Remove Bitwarden
-    when: bitwarden_enable
+  - name: Remove Vaultwarden
+    when: vaultwarden_enable
     docker_compose:
-      project_src: '{{ server_home }}/services/bitwarden'
+      project_src: '{{ server_home }}/services/vaultwarden'
       state: absent
 
   - name: Remove Grocy

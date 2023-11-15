@@ -3,7 +3,7 @@
 #==============================================================================#
 #AUTHOR: Clement Deltel
 #DATE: 2023/02/27
-#DESCRIPTION: Lists all the methods to backup all elements of Bitwarden.
+#DESCRIPTION: Lists all the methods to backup all elements of Vaultwarden.
 #==============================================================================#
 
 #==============================================================================#
@@ -16,17 +16,17 @@ backup_database(){
   echo "${TODAY} [INFO] Database backup start..." | tee -a ${LOG_FILE}
 
   # Create the dump file of the database
-  echo "${TODAY} [INFO] mysqldump -h <host> -u <username> -p<password> bitwarden_db > bitwarden_db_dump.sql" | tee -a ${LOG_FILE}
-  mysqldump -h ${BITWARDEN_DB_IP} -u ${BITWARDEN_DB_USER} -p${BITWARDEN_DB_PASSWORD} bitwarden_db > bitwarden_db_dump.sql
+  echo "${TODAY} [INFO] mysqldump -h <host> -u <username> -p<password> vaultwarden_db > vaultwarden_db_dump.sql" | tee -a ${LOG_FILE}
+  mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > vaultwarden_db_dump.sql
 
   # Compress the dump file into an archive
   OBJECT="$(date +%m).gz"
-  echo "${TODAY} [INFO] gzip -cv bitwarden_db_dump.sql > ${OBJECT}" | tee -a ${LOG_FILE}
-  gzip -cv bitwarden_db_dump.sql > ${OBJECT}
+  echo "${TODAY} [INFO] gzip -cv vaultwarden_db_dump.sql > ${OBJECT}" | tee -a ${LOG_FILE}
+  gzip -cv vaultwarden_db_dump.sql > ${OBJECT}
 
   # Delete the dump file
-  echo "${TODAY} [INFO] rm -f bitwarden_db_dump.sql" | tee -a ${LOG_FILE}
-  rm -f bitwarden_db_dump.sql
+  echo "${TODAY} [INFO] rm -f vaultwarden_db_dump.sql" | tee -a ${LOG_FILE}
+  rm -f vaultwarden_db_dump.sql
 
   # S3 bucket - Move the file to the backup directory
   echo "${TODAY} [INFO] aws s3 mv ${OBJECT} s3://${S3_BUCKET}/${CONTAINER_NAME}/database/" | tee -a ${LOG_FILE}
@@ -98,7 +98,7 @@ backup_config(){
   # Evaluation of the time to perform this task: worst case scenario 15s
   echo "${TODAY} [INFO] Configuration file backup start..." | tee -a ${LOG_FILE}
 
-  # Copy configuration file from Bitwarden persitence directory for formatting
+  # Copy configuration file from persitence directory for formatting
   OBJECT=$(date +%m)_config.json
   echo "${TODAY} [INFO] cp persistence/config.json ${OBJECT}" | tee -a ${LOG_FILE}
   cp persistence/config.json ${OBJECT}
@@ -173,7 +173,7 @@ backup_docker_image(){
 #==============================================================================#
 main(){
   BACKUP_STRATEGY="S3"
-  CONTAINER_NAME="bitwarden"
+  CONTAINER_NAME="vaultwarden"
   TASK=$1
 
   # Get the date

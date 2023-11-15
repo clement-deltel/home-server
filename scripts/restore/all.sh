@@ -10,8 +10,8 @@
 #FUNCTION: main
 #==============================================================================#
 main(){
-    # Restore Bitwarden
-    ./${SERVER_HOME}/scripts/restore/bitwarden.sh all
+    # Restore Vaultwarden
+    ./${SERVER_HOME}/scripts/restore/vaultwarden.sh all
 }
 
 source ~/.bashrc

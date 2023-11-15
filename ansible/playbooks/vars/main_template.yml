@@ -39,7 +39,6 @@ traefik_user: <traefik-dashboard-user>
 traefik_password: <traefik-dashboard-password>
 
 # Services
-bitwarden_enable: true
 change_detection_enable: true
 docuseal_enable: true
 grafana_enable: true
@@ -54,4 +53,5 @@ paperless_enable: true
 photoprism_enable: true
 pihole_enable: true
 prometheus_enable: true
+vaultwarden_enable: true
 wireguard_enable: true
