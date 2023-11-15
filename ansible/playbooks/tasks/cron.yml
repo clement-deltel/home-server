@@ -20,7 +20,7 @@
 
   - name: Monthly backup job
     cron:
-      name: 'Backup services (every 1st of the month at 2AM): ...'
+      name: 'Backup services (every 1st of the month at 2AM): Jellyfin'
       day: '1'
       hour: '2'
       job: '{{ server_home }}/scripts/backup/all.sh monthly'

@@ -18,6 +18,7 @@ main(){
 
   # Every day at 4:00AM CST
   elif [[ ${TIME} = 'daily' ]];then
+    ${SERVER_HOME}/scripts/backup/vaultwarden.sh all
     echo "Daily backup activities done!"
 
   # Every Monday at 03:00AM CST
@@ -26,7 +27,6 @@ main(){
 
   # Every 1st of the month at 2:00AM CST
   elif [[ ${TIME} = 'monthly' ]];then
-    ${SERVER_HOME}/scripts/backup/vaultwarden.sh all
     ${SERVER_HOME}/scripts/backup/jellyfin.sh all
     echo "Monthly backup activities done!"
 
