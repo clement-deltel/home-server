@@ -48,3 +48,8 @@ services:
       - ${SERVER_HOME}/vaultwarden/persistence/config.json:/data/vaultwarden/config.json:ro
       - ${SERVER_HOME}/vaultwarden/persistence/rsa_key*:/data/vaultwarden/rsa_key*:ro
       - ${SERVER_HOME}/vaultwarden/persistence/icon_cache:/data/vaultwarden/icon_cache:ro
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
