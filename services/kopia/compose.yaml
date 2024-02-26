@@ -1,0 +1,50 @@
+services:
+  kopia:
+    command:
+      - server
+      - start
+      - --disable-csrf-token-checks
+      - --insecure
+    container_name: kopia
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    hostname: kopia
+    image: kopia/kopia:20240223.0.204239
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.kopia.rule=Host(`kopia.${DOMAIN}`)"
+      - "traefik.http.routers.kopia.tls=true"
+      # - "traefik.http.routers.kopia.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.kopia.tls.domains[0].main=kopia.${DOMAIN}"
+      - "traefik.http.routers.kopia.service=kopia"
+      # Services
+      - "traefik.http.services.kopia.loadbalancer.server.port=51515"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${KOPIA_IP}
+    # Setup the server that provides the web gui
+    ports:
+      - 51515
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      # Mount local folders needed by kopia
+      - ./persistence/config:/app/config
+      - ./persistence/cache:/app/cache
+      - ./persistence/logs:/app/logs
+      # Mount local folders to snapshot
+      - ${SERVER_HOME}/vaultwarden/vaultwarden_db_dump.sql:/data/vaultwarden/vaultwarden_db_dump.sql:ro
+      - ${SERVER_HOME}/vaultwarden/persistence/attachments:/data/vaultwarden/attachments:ro
+      - ${SERVER_HOME}/vaultwarden/persistence/sends:/data/vaultwarden/sends:ro
+      - ${SERVER_HOME}/vaultwarden/persistence/config.json:/data/vaultwarden/config.json:ro
+      - ${SERVER_HOME}/vaultwarden/persistence/rsa_key*:/data/vaultwarden/rsa_key*:ro
+      - ${SERVER_HOME}/vaultwarden/persistence/icon_cache:/data/vaultwarden/icon_cache:ro

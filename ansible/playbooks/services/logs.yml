@@ -26,6 +26,7 @@
       - '{{ server_home }}/logs/grocy'
       - '{{ server_home }}/logs/guacamole'
       - '{{ server_home }}/logs/jellyfin'
+      - '{{ server_home }}/logs/kopia'
       - '{{ server_home }}/logs/limesurvey'
       - '{{ server_home }}/logs/minecraft'
       - '{{ server_home }}/logs/nextcloud'

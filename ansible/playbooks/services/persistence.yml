@@ -90,6 +90,7 @@
       - '{{ server_home }}/services/grocy/compose.yaml'
       - '{{ server_home }}/services/guacamole/compose.yaml'
       - '{{ server_home }}/services/jellyfin/compose.yaml'
+      - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
       - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
@@ -193,6 +194,22 @@
      - '{{ server_home }}/services/jellyfin/persistence/library'
      - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
+
+  #--- Kopia
+  - name: Create Kopia persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/kopia/persistence'
+      - '{{ server_home }}/services/kopia/persistence/config'
+      - '{{ server_home }}/services/kopia/persistence/cache'
+      - '{{ server_home }}/services/kopia/persistence/logs'
+      - '{{ server_home }}/services/kopia/persistence/data'
 
   #--- Limesurvey
   - name: Create Limesurvey persistence directories

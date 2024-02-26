@@ -103,6 +103,13 @@
       restarted: true
       state: present
 
+  - name: Restart Kopia
+    when: kopia_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/kopia'
+      restarted: true
+      state: present
+
   - name: Restart Grocy
     when: grocy_enable
     docker_compose:

@@ -103,6 +103,13 @@
       stopped: true
       state: present
 
+  - name: Stop Kopia
+    when: kopia_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/kopia'
+      stopped: true
+      state: present
+
   - name: Boot Grocy
     when: grocy_enable
     docker_compose:

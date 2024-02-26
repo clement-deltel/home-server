@@ -84,6 +84,12 @@
       project_src: '{{ server_home }}/services/vaultwarden'
       state: absent
 
+  - name: Remove Kopia
+    when: kopia_enable
+    docker_compose:
+      project_src: '{{ server_home }}/services/kopia'
+      state: absent
+
   - name: Remove Grocy
     when: grocy_enable
     docker_compose:

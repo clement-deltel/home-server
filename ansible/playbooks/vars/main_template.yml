@@ -47,6 +47,7 @@ grafana_enable: true
 grocy_enable: true
 guacamole_enable: true
 jellyfin_enable: true
+kopia_enable: true
 limesurvey_enable: true
 minecraft_enable: true
 nextcloud_enable: true
