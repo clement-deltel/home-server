@@ -43,11 +43,7 @@ services:
       - ./persistence/logs:/app/logs
       # Mount local folders to snapshot
       - ${SERVER_HOME}/vaultwarden/vaultwarden_db_dump.sql:/data/vaultwarden/vaultwarden_db_dump.sql:ro
-      - ${SERVER_HOME}/vaultwarden/persistence/attachments:/data/vaultwarden/attachments:ro
-      - ${SERVER_HOME}/vaultwarden/persistence/sends:/data/vaultwarden/sends:ro
-      - ${SERVER_HOME}/vaultwarden/persistence/config.json:/data/vaultwarden/config.json:ro
-      - ${SERVER_HOME}/vaultwarden/persistence/rsa_key*:/data/vaultwarden/rsa_key*:ro
-      - ${SERVER_HOME}/vaultwarden/persistence/icon_cache:/data/vaultwarden/icon_cache:ro
+      - ${SERVER_HOME}/vaultwarden/persistence:/data/vaultwarden:ro
 
 networks:
   traefik-net:
