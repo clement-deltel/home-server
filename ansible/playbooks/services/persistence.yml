@@ -86,6 +86,7 @@
     loop:
       - '{{ server_home }}/services/actual/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
+      - '{{ server_home }}/services/directus/compose.yaml'
       - '{{ server_home }}/services/docuseal/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/grocy/compose.yaml'
@@ -120,6 +121,21 @@
       owner: docker
       group: docker
       mode: 0744
+
+  #--- Directus
+  - name: Create Directus persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/directus/db-persistence'
+      - '{{ server_home }}/services/directus/persistence'
+      - '{{ server_home }}/services/directus/persistence/uploads'
+      - '{{ server_home }}/services/directus/persistence/extensions'
 
   #--- Docuseal
   - name: Create docuseal persistence directories

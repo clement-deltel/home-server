@@ -25,6 +25,7 @@
       - { when: photoprism_enable, project_src: '{{ server_home }}/services/photoprism' }
       - { when: jellyfin_enable, project_src: '{{ server_home }}/services/jellyfin' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
+      - { when: directus_enable, project_src: '{{ server_home }}/services/directus' }
       - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
       - { when: actual_enable, project_src: '{{ server_home }}/services/actual' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }

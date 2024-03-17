@@ -22,6 +22,7 @@
     loop:
       - '{{ server_home }}/logs/actual'
       - '{{ server_home }}/logs/detection'
+      - '{{ server_home }}/logs/directus'
       - '{{ server_home }}/logs/docuseal'
       - '{{ server_home }}/logs/grafana'
       - '{{ server_home }}/logs/grocy'
