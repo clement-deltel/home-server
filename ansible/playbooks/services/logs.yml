@@ -20,6 +20,7 @@
       group: docker
       mode: 0744
     loop:
+      - '{{ server_home }}/logs/actual'
       - '{{ server_home }}/logs/detection'
       - '{{ server_home }}/logs/docuseal'
       - '{{ server_home }}/logs/grafana'

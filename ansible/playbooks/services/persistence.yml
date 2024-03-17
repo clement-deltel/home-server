@@ -84,6 +84,7 @@
       regexp: '(^\s*)# -'
       replace: '\1-'
     loop:
+      - '{{ server_home }}/services/actual/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/docuseal/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
@@ -100,30 +101,25 @@
       - '{{ server_home }}/services/traefik/compose.yaml'
       - '{{ server_home }}/services/vaultwarden/compose.yaml'
 
-  #--- Vaultwarden
-  - name: Create Vaultwarden persistence directories
+  #--- Actual
+  - name: Create Actual persistence directories
     ignore_errors: true
     file:
-      path: '{{ item }}'
+      path: '{{ server_home }}/services/actual/persistence'
       state: directory
       owner: docker
       group: docker
       mode: 0744
-    loop:
-      - '{{ server_home }}/services/vaultwarden/persistence'
-      - '{{ server_home }}/services/vaultwarden/db-persistence'
 
   #--- Detection (changedetection.io)
   - name: Create Change Detection persistence directory
     ignore_errors: true
     file:
-      path: '{{ item }}'
+      path: '{{ server_home }}/services/detection/persistence'
       state: directory
       owner: docker
       group: docker
       mode: 0744
-    loop:
-      - '{{ server_home }}/services/detection/persistence'
 
   #--- Docuseal
   - name: Create docuseal persistence directories
@@ -333,6 +329,19 @@
       owner: docker
       group: docker
       mode: 0744
+
+  #--- Vaultwarden
+  - name: Create Vaultwarden persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/vaultwarden/persistence'
+      - '{{ server_home }}/services/vaultwarden/db-persistence'
 
   #--- WireGuard
   - name: Create WireGuard persistence directories

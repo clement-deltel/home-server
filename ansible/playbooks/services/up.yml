@@ -6,127 +6,29 @@
     include_vars:
       file: vars/main.yml
 
-  - name: Boot Traefik
+  - name: Docker compose up
+    when: '{{ item.when }}'
     docker_compose:
-      project_src: '{{ server_home }}/services/traefik'
+      project_src: '{{ item.project_src }}'
       pull: true
       state: present
-
-  - name: Boot WireGuard
-    when: wireguard_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/wireguard'
-      pull: true
-      state: present
-
-  - name: Boot Guacamole
-    when: guacamole_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/guacamole'
-      pull: true
-      state: present
-
-  - name: Boot Pihole
-    when: pihole_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/pihole'
-      pull: true
-      state: present
-
-  - name: Boot Grafana
-    when: grafana_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/grafana'
-      pull: true
-      state: present
-
-  - name: Boot Prometheus
-    when: prometheus_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/prometheus'
-      pull: true
-      state: present
-
-  - name: Boot Ntfy
-    when: ntfy_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/ntfy'
-      pull: true
-      state: present
-
-  - name: Boot Change Detection
-    when: change_detection_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/detection'
-      pull: true
-      state: present
-
-  - name: Boot NextCloud
-    when: nextcloud_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/nextcloud'
-      pull: true
-      state: present
-
-  - name: Boot Paperless NGX
-    when: paperless_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/paperless'
-      pull: true
-      state: present
-
-  - name: Boot Docuseal
-    when: docuseal_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/docuseal'
-      pull: true
-      state: present
-
-  - name: Boot Photoprism
-    when: photoprism_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/photoprism'
-      pull: true
-      state: present
-
-  - name: Boot Jellyfin
-    when: jellyfin_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/jellyfin'
-      pull: true
-      state: present
-
-  - name: Stop Vaultwarden
-    when: vaultwarden_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/vaultwarden'
-      stopped: true
-      state: present
-
-  - name: Stop Kopia
-    when: kopia_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/kopia'
-      stopped: true
-      state: present
-
-  - name: Boot Grocy
-    when: grocy_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/grocy'
-      pull: true
-      state: present
-
-  - name: Boot Minecraft
-    when: minecraft_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/minecraft'
-      pull: true
-      state: present
-
-  - name: Boot Limesurvey
-    when: limesurvey_enable
-    docker_compose:
-      project_src: '{{ server_home }}/services/limesurvey'
-      pull: true
-      state: present
+    loop:
+      - { when: true, project_src: '{{ server_home }}/services/traefik' }
+      - { when: wireguard_enable, project_src: '{{ server_home }}/services/wireguard' }
+      - { when: guacamole_enable, project_src: '{{ server_home }}/services/guacamole' }
+      - { when: pihole_enable, project_src: '{{ server_home }}/services/pihole' }
+      - { when: grafana_enable, project_src: '{{ server_home }}/services/grafana' }
+      - { when: prometheus_enable, project_src: '{{ server_home }}/services/prometheus' }
+      - { when: ntfy_enable, project_src: '{{ server_home }}/services/ntfy' }
+      - { when: change_detection_enable, project_src: '{{ server_home }}/services/detection' }
+      - { when: nextcloud_enable, project_src: '{{ server_home }}/services/nextcloud' }
+      - { when: paperless_enable, project_src: '{{ server_home }}/services/paperless' }
+      - { when: docuseal_enable, project_src: '{{ server_home }}/services/docuseal' }
+      - { when: photoprism_enable, project_src: '{{ server_home }}/services/photoprism' }
+      - { when: jellyfin_enable, project_src: '{{ server_home }}/services/jellyfin' }
+      - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
+      - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
+      - { when: actual_enable, project_src: '{{ server_home }}/services/actual' }
+      - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }
+      - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }
+      - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }

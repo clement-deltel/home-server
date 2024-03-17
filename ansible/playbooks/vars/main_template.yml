@@ -41,6 +41,7 @@ traefik_user: '<login>'
 traefik_password: '<password>'
 
 # Services
+actual_enable: true
 change_detection_enable: true
 docuseal_enable: true
 grafana_enable: true

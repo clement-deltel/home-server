@@ -1,0 +1,39 @@
+services:
+  actual:
+    container_name: actual
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    hostname: actual
+    image: ${ACTUAL_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.actual.rule=Host(`actual.${DOMAIN}`)"
+      - "traefik.http.routers.actual.tls=true"
+      # - "traefik.http.routers.actual.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.actual.tls.domains[0].main=actual.${DOMAIN}"
+      - "traefik.http.routers.actual.service=actual"
+      # Services
+      - "traefik.http.services.actual.loadbalancer.server.port=5006"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${ACTUAL_IP}
+    ports:
+      - 5006
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./persistence:/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
