@@ -5,6 +5,7 @@ services:
       - start
       - --disable-csrf-token-checks
       - --insecure
+      - --address=0.0.0.0:51515
     container_name: kopia
     dns:
       - 127.0.0.1
