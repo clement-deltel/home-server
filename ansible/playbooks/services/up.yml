@@ -24,6 +24,7 @@
       - { when: nextcloud_enable, project_src: '{{ server_home }}/services/nextcloud' }
       - { when: paperless_enable, project_src: '{{ server_home }}/services/paperless' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/docuseal' }
+      - { when: immich_enable, project_src: '{{ server_home }}/services/immich' }
       - { when: photoprism_enable, project_src: '{{ server_home }}/services/photoprism' }
       - { when: jellyfin_enable, project_src: '{{ server_home }}/services/jellyfin' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }

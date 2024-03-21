@@ -1,0 +1,153 @@
+#
+# WARNING: Make sure to use the docker-compose.yml of the current release:
+#
+# https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
+#
+# The compose file on main may not be compatible with the latest release.
+#
+services:
+  db:
+    container_name: immich-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    hostname: immich-postgres
+    image: ${IMMICH_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${IMMICH_DB_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  redis:
+    command: redis-server --requirepass ${IMMICH_REDIS_PASSWORD}
+    container_name: immich-redis
+    hostname: immich-redis
+    image: ${IMMICH_REDIS_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${IMMICH_REDIS_IP}
+    restart: always
+    stop_grace_period: 10s
+
+  immich-machine-learning:
+    container_name: immich-machine-learning
+    env_file: config/.env
+    hostname: immich-machine-learning
+    # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
+    # Example tag: ${IMMICH_VERSION:-release}-cuda
+    image: ${IMMICH_ML_IMAGE}
+    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
+    #   file: ./config/hwaccel.ml.yml
+    #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${IMMICH_ML_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./persistence/model-cache:/cache
+
+  immich-microservices:
+    command: ['start.sh', 'microservices']
+    container_name: immich-microservices
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    env_file: config/.env
+    hostname: immich-microservices
+    image: ${IMMICH_MICROSERVICES_IMAGE}
+    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/hardware-transcoding
+    #   file: ./config/hwaccel.transcoding.yml
+    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
+    logging:
+      driver: json-file
+      options:
+        max-file: "2"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${IMMICH_MICROSERVICES_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./persistence/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+
+  immich-server:
+    command: ['start.sh', 'immich']
+    container_name: immich-server
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    hostname: immich-server
+    image: ${IMMICH_SERVER_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.immich.rule=Host(`pictures.${DOMAIN}`)"
+      - "traefik.http.routers.immich.tls=true"
+      # - "traefik.http.routers.immich.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.immich.tls.domains[0].main=pictures.${DOMAIN}"
+      - "traefik.http.routers.immich.service=immich"
+      # Services
+      - "traefik.http.services.immich.loadbalancer.server.port=3001"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${IMMICH_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${IMMICH_IP}
+    ports:
+      - 3001
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./persistence/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  app-net:
+    name: immich-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IMMICH_NET}
+          gateway: ${IMMICH_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

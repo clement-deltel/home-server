@@ -91,6 +91,7 @@
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/grocy/compose.yaml'
       - '{{ server_home }}/services/guacamole/compose.yaml'
+      - '{{ server_home }}/services/immich/compose.yaml'
       - '{{ server_home }}/services/jellyfin/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
@@ -192,6 +193,20 @@
       owner: docker
       group: docker
       mode: 0777
+
+  #--- Immich
+  - name: Create Immich persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+     - '{{ server_home }}/services/immich/db-persistence'
+     - '{{ server_home }}/services/immich/persistence'
+     - '{{ server_home }}/services/immich/persistence/upload'
+     - '{{ server_home }}/services/immich/persistence/model-cache'
 
   #--- Jellyfin
   - name: Create Jellyfin persistence directories
