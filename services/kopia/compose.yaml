@@ -43,8 +43,11 @@ services:
       - ./persistence/cache:/app/cache
       - ./persistence/logs:/app/logs
       # Mount local folders to snapshot
-      - ${SERVER_HOME}/vaultwarden/vaultwarden_db_dump.sql:/data/vaultwarden/vaultwarden_db_dump.sql:ro
-      - ${SERVER_HOME}/vaultwarden/persistence:/data/vaultwarden:ro
+      - ./persistence/databases:/data/databases:ro
+      - ./persistence/files:/data/files:ro
+      #- ${SERVER_HOME}/services/immich/persistence:/data/immich:ro
+      #- ${SERVER_HOME}/services/jellyfin/persistence:/data/jellyfin:ro
+      #- ${SERVER_HOME}/services/vaultwarden/persistence:/data/vaultwarden:ro
 
 networks:
   traefik-net:
