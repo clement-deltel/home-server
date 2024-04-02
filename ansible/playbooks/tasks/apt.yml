@@ -23,6 +23,8 @@
         - mariadb-client-core-10.6
         - net-tools
         - openssl
+        - postgresql-client-common # Execute PostgreSQL backups for multiple services
+        - postgresql-client-14
         - pwgen # Easily generate random password for multiple services
         - python3
         - python3-docker
