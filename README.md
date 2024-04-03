@@ -53,9 +53,66 @@ ${SERVER_HOME}/ansible/run.sh
 
 ## 3. Hardware
 
-## 4. Domain Name
+This section covers the detail of the hardware I chose to build my home server.
 
-## 5. Operating System
+- CPU
+  - Brand: AMD
+  - Model: Ryzen 5 3600
+  - Cores: 6
+  - Threads: 12
+  - Type: Desktop Processor
+- RAM Memory
+  - Brand: Corsair
+  - Model: Vengeance LPX Black
+  - Quantity: 16GB (2x8GB)
+  - Technology: DDR4 DRAM
+  - Frequency: 3200MHz
+  - CAS: C16
+- GPU
+  - Brand: NVIDIA
+  - Model: GTX 980
+  - Video Memory: 4GB
+- Storage
+  - SSD (would be nice to upgrade for a NVMe SSD):
+    - Brand: Crucial
+    - Model: MX300
+    - Capacity: 1TB
+    - Type: M.2 (2280) SATA III
+  - Disks 1&2:
+    - Brand: Seagate
+    - Model: IronWolf
+    - Capacity: 4TB
+    - Type: NAS Internal Hard Drive HDD
+    - Size: 3.5 Inch
+    - Speed: SATA 6Gb/s 5900 RPM
+    - Cache: 64MB
+    - Use Case: RAID Network Attached Storage
+- Motherboard
+  - Brand: Asus
+  - Model: Prime B450M-A/CSM
+  - Chipset: B450
+  - CPU socket: AMD Ryzen 2 AM4
+  - Memory compatibility: DDR4
+  - Ports: HDMI, DVI, VGA, M.2, USB 3.1 Gen2
+  - Format: mATX
+- Power Supply
+  - Brand: Corsair
+  - Model: RM 550x
+  - Power: 550W
+  - Rating: 80 Plus Gold
+- Water Liquid Cooling
+  - Brand: Corsair
+  - Model: H105
+  - Size: 240mm
+- Fans
+  - Brand: beQuiet!
+  - Model: Shadow Wings
+  - Size: 120mm, 140mm
+- Case
+  - Brand: darkFlash
+  - Model: DLM21 White Mini Tower
+  - ATX Compatibility: Micro ATX, Mini ITX
+
 
 - Name: Ubuntu
 - Version: 22.04
