@@ -17,27 +17,38 @@ Collection of tools for self hosting.
 
 ## 2. Getting started
 
+This section covers how you can quickly get started with this stack and all the supported services.
+
 Run the following commands:
 
 ```bash
 cd /opt
 sudo chown ubuntu:ubuntu .
-sudo apt update -y && apt install -y git
+sudo apt update -y && sudo apt install -y git vim
 git clone https://github.com/clement-deltel/home-server.git
+cd home-server
 ```
 
 Edit the following files to your liking:
 
-- /home-server/ansible/install.sh: SERVER_HOME variable
-- /home-server/ansible/playbooks/vars/main.yml
-- /home-server/env/template.env
+- ansible/playbooks/vars/main_template.yml
+- env/template.env
 
 Run the commands below to setup and install everything:
 
 ```bash
-mv ${SERVER_HOME}/ansible/playbooks/vars/main.yml ${SERVER_HOME}/ansible/playbooks/vars/aws-cli.yml
-mv ${SERVER_HOME}/env/template.env ${SERVER_HOME}/env/server.env
-./home-server/ansible/install.sh
+mv ansible/playbooks/vars/main_template.yml ansible/playbooks/vars/main.yml
+mv env/.env.template env/.env
+cd ansible
+chmod +x install.sh run.sh
+./install.sh
+```
+
+Run all services:
+
+```bash
+sudo su - docker
+${SERVER_HOME}/ansible/run.sh
 ```
 
 ## 3. Hardware
