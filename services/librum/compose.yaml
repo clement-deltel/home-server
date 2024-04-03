@@ -60,6 +60,7 @@ services:
     restart: always
     stop_grace_period: 10s
     volumes:
+      # permissions for this directory: 999:999
       - ./persistence:/var/lib/librum-server/librum_storage
 
 networks:
