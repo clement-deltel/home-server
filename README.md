@@ -5,11 +5,11 @@
 - [1. Introduction](#1-introduction)
 - [2. Getting started](#2-getting-started)
 - [3. Hardware](#3-hardware)
-- [4. Domain Name](#4-domain-name)
-- [5. Operating System](#5-operating-system)
-- [6. Services](#6-services)
-- [7. Port Mapping](#7-port-mapping)
-- [8. Security notes](#8-security-notes)
+- [4. RAID](#4-raid)
+- [5. Domain Name](#5-domain-name)
+- [6. Operating System](#6-operating-system)
+- [7. Services](#7-services)
+- [8. Port Mapping](#8-port-mapping)
 
 ## 1. Introduction
 
@@ -113,26 +113,82 @@ This section covers the detail of the hardware I chose to build my home server.
   - Model: DLM21 White Mini Tower
   - ATX Compatibility: Micro ATX, Mini ITX
 
+## 4. RAID
+
+Disks 1 and 2 are in RAID 1 for better fault tolerance and to avoid any data loss.
+
+More information available at: [Wikipedia - Standard RAID Levels](https://en.wikipedia.org/wiki/Standard_RAID_levels).
+
+## 5. Domain Name
+
+Recommended registrars:
+- [CloudFlare](https://www.cloudflare.com/products/registrar/)
+- [OVH](https://www.ovhcloud.com/en/domains/)
+
+## 6. Operating System
 
 - Name: Ubuntu
-- Version: 22.04
+- Version: 22.04 LTS
 
-## 6. Services
+## 7. Services
+
+This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them, URL that depends on the root domain name.
 
 - Reverse Proxy
-  - [Traefik](services/traefik/README.md)
-    - `https://traefik.${DOMAIN_NAME}/dashboard`
+  - Traefik: `https://traefik.${DOMAIN}/dashboard`
+- Remote Access
+  - VPN
+    - Wireguard: `<ip-address>:51820`
+  - Web-based Gateway (SSH, RDP...)
+    - Apache Guacamole: `https://guacamole.${DOMAIN}`
+- Monitoring
+  - Ad-blocker
+    - Pi-hole: `https://pihole.${DOMAIN}`
+  - Visualization Tool
+    - Grafana: `https://grafana.${DOMAIN}`
+  - Notification Tool
+    - ntfy: `https://ntfy.${DOMAIN}`
+  - Website Change Detection
+    - changedetection.io: `https://detection.${DOMAIN}`
+- Cloud Storage
+  - Documents
+    - NextCloud: `https://nextcloud.${DOMAIN}`
+    - Paperless: `https://paperless.${DOMAIN}`
+    - Docuseal: `https://doc.${DOMAIN}`
+  - Books
+    - Librum (no web-interface, need to install the desktop app as well)
+  - Photos
+    - Immich: `https://pictures.${DOMAIN}`
+    - Photoprism: `https://photoprism.${DOMAIN}`
+  - Videos
+    - Jellyfin: `https://jellyfin.${DOMAIN}`
 - Password Manager
-  - [Bitwarden](services/bitwarden/README.md)
-    - `https://bitwarden.${DOMAIN_NAME}`
+  - Vaultwarden
+    - Administration dashboard: `https://vault.${DOMAIN}/admin`
+    - Instance: `https://vault.${DOMAIN}`
+  - Headless CMS
+    - Directus: `https://directus.${DOMAIN}`
+  - Backup solution
+    - Kopia: `https://kopia.${DOMAIN}`
+- Finances
+  - Actual: `https://actual.${DOMAIN}`
+  - Firefly-III: `https://firefly.${DOMAIN}`
+  - Maybe: `https://maybe.${DOMAIN}`
+- Home Resources Planning
+  - Grocy: `https://grocy.${DOMAIN}`
+- Survey Builder
+  - Limesurvey: `https://survey.${DOMAIN}`
+- Games
+  - Minecraft Server: `<ip-address>:25565`
 
-## 7. Port Mapping
+## 8. Port Mapping
+
+This section covers all the ports exposed to internet. Those are the ports that must be forwarded on the router to the server hosting all services.
 
 - TCP
-  - 53: Pihole
   - 80: Traefik HTTP
   - 443: Traefik HTTPS
-  - 3012: Bitwarden WebSocket
-  - 8080: Traefik Dashboard
+  - 25565: Minecraft
 - UDP
-  - 53: Pihole
+  - 25565: Minecraft
+  - 51820: Wireguard
