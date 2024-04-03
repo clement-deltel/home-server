@@ -1,0 +1,76 @@
+---
+services:
+  db:
+    container_name: librum-mariadb
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${LIBRUM_DB_ROOT_PASSWORD}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    hostname: librum-mariadb
+    image: ${DEFAULT_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${LIBRUM_DB_IP}
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./db-persistence:/var/lib/mysql
+
+  librum:
+    container_name: librum
+    depends_on:
+      db:
+        condition: service_healthy # Ensures the DB is up before the server.
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    hostname: librum
+    image: ${LIBRUM_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.librum.rule=Host(`library.${DOMAIN}`)"
+      - "traefik.http.routers.librum.tls=true"
+      # - "traefik.http.routers.librum.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.librum.tls.domains[0].main=library.${DOMAIN}"
+      - "traefik.http.routers.librum.service=librum"
+      # Services
+      - "traefik.http.services.librum.loadbalancer.server.port=5000"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${LIBRUM_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${LIBRUM_IP}
+    ports:
+      - 5000
+    restart: always
+    stop_grace_period: 10s
+    volumes:
+      - ./persistence:/var/lib/librum-server/librum_storage
+
+networks:
+  app-net:
+    name: librum-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${LIBRUM_NET}
+          gateway: ${LIBRUM_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

@@ -30,6 +30,7 @@
       - '{{ server_home }}/logs/immich'
       - '{{ server_home }}/logs/jellyfin'
       - '{{ server_home }}/logs/kopia'
+      - '{{ server_home }}/logs/librum'
       - '{{ server_home }}/logs/limesurvey'
       - '{{ server_home }}/logs/minecraft'
       - '{{ server_home }}/logs/nextcloud'

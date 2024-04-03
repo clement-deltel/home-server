@@ -238,6 +238,19 @@
       - '{{ server_home }}/services/kopia/persistence/logs'
       - '{{ server_home }}/services/kopia/persistence/data'
 
+  #--- Librum
+  - name: Create Librum persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/librum/persistence'
+      - '{{ server_home }}/services/librum/db-persistence'
+
   #--- Limesurvey
   - name: Create Limesurvey persistence directories
     ignore_errors: true

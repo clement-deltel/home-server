@@ -51,6 +51,7 @@ guacamole_enable: true
 immich_enable: true
 jellyfin_enable: true
 kopia_enable: true
+librum_enable: true
 limesurvey_enable: true
 minecraft_enable: true
 nextcloud_enable: true
