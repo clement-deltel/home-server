@@ -10,6 +10,9 @@
 - [6. Operating System](#6-operating-system)
 - [7. Services](#7-services)
 - [8. Port Mapping](#8-port-mapping)
+- [9. Monitoring](#9-monitoring)
+  - [9.1 Telegraf plugins](#91-telegraf-plugins)
+  - [9.4 Monitor your server from your phone](#94-monitor-your-server-from-your-phone)
 
 ## 1. Introduction
 
@@ -19,7 +22,7 @@ Collection of tools for self hosting.
 
 This section covers how you can quickly get started with this stack and all the supported services.
 
-Run the following commands:
+Run the below commands:
 
 ```bash
 cd /opt
@@ -34,7 +37,7 @@ Edit the following files to your liking:
 - ansible/playbooks/vars/main_template.yml
 - env/template.env
 
-Run the commands below to setup and install everything:
+Run the below commands to setup and install everything:
 
 ```bash
 mv ansible/playbooks/vars/main_template.yml ansible/playbooks/vars/main.yml
@@ -195,3 +198,49 @@ This section covers all the ports exposed to internet. Those are the ports that 
 - UDP
   - 25565: Minecraft
   - 51820: Wireguard
+
+## 9. Monitoring
+
+List of Data Sources that are currently implemented in this stack:
+
+- InfluxDB, with Telegraf as an input integration
+- Prometheus
+
+> **Note**: it is necessary to create manually the UDP database named traefik in InfluxDB.
+
+### 9.1 Telegraf plugins
+
+Run the below command to test your configuration:
+
+```bash
+telegraf --config /etc/telegraf/telegraf.conf --test
+```
+
+Telegraf plugins being used:
+
+- Default
+  - [CPU](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/cpu/README.md)
+  - [Disk](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/disk/README.md)
+  - [Disk IO](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/diskio/README.md)
+  - [Kernel](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/kernel/README.md)
+  - [Mem](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/mem/README.md)
+  - [Processes](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/processes/README.md)
+  - [Swap](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/swap/README.md)
+  - [System](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/system/README.md)
+- Additionally enabled
+  - [Docker](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/docker/README.md)
+  - [Filecount](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/filecount/README.md)
+  - [Internet Speed Monitor](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/internet_speed/README.md)
+  - [Net](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/net/README.md)
+  - [Netstat](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/netstat/README.md)
+  - [OpenWeatherMap](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/openweathermap/README.md)
+  - [Telegraf itself](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/internal/README.md)
+  - [Wireguard](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/wireguard/README.md)
+
+### 9.4 Monitor your server from your phone
+
+Since I am an iPhone user, this section covers the list of steps on iOS only.
+
+1. Install the [Glimpse 2](https://apps.apple.com/us/app/glimpse-2/id1524217845) app from the App Store.
+2. Wrap your Grafana instance website on your iOS screen via Widgets.
+
