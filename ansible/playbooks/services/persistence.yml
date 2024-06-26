@@ -95,6 +95,7 @@
       - '{{ server_home }}/services/jellyfin/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
+      - '{{ server_home }}/services/navidrome/compose.yaml'
       - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
       - '{{ server_home }}/services/paperless/compose.yaml'
@@ -148,8 +149,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/docuseal/persistence'
       - '{{ server_home }}/services/docuseal/db-persistence'
+      - '{{ server_home }}/services/docuseal/persistence'
 
   #--- Grafana
   - name: Create Grafana persistence directories
@@ -248,8 +249,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/librum/persistence'
       - '{{ server_home }}/services/librum/db-persistence'
+      - '{{ server_home }}/services/librum/persistence'
 
   #--- Limesurvey
   - name: Create Limesurvey persistence directories
@@ -261,11 +262,11 @@
       group: docker
       mode: 0744
     loop:
+      - '{{ server_home }}/services/limesurvey/db-persistence'
       - '{{ server_home }}/services/limesurvey/persistence'
       - '{{ server_home }}/services/limesurvey/persistence/plugins'
       - '{{ server_home }}/services/limesurvey/persistence/upload'
       - '{{ server_home }}/services/limesurvey/persistence/config'
-      - '{{ server_home }}/services/limesurvey/db-persistence'
 
   #--- Minecraft
   - name: Create Minecraft persistence directory
@@ -275,6 +276,19 @@
       owner: docker
       group: docker
       mode: 0744
+
+  #--- Navidrome
+  - name: Create Navidrome persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/navidrome/persistence/data'
+      - '{{ server_home }}/services/navidrome/persistence/music'
 
   #--- Nextcloud
   - name: Create Nextcloud persistence directories
@@ -286,8 +300,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/nextcloud/persistence'
       - '{{ server_home }}/services/nextcloud/db-persistence'
+      - '{{ server_home }}/services/nextcloud/persistence'
       - '{{ server_home }}/services/nextcloud/web-persistence'
 
   #--- Ntfy
@@ -322,11 +336,11 @@
       group: docker
       mode: 0744
     loop:
+      - '{{ server_home }}/services/paperless/db-persistence'
       - '{{ server_home }}/services/paperless/persistence/consume'
       - '{{ server_home }}/services/paperless/persistence/data'
       - '{{ server_home }}/services/paperless/persistence/export'
       - '{{ server_home }}/services/paperless/persistence/media'
-      - '{{ server_home }}/services/paperless/db-persistence'
       - '{{ server_home }}/services/paperless/redis-persistence'
 
   #--- Photoprism
@@ -339,10 +353,10 @@
       group: docker
       mode: 0744
     loop:
-     - '{{ server_home }}/services/photoprism/persistence'
-     - '{{ server_home }}/services/photoprism/db-persistence'
-     - '{{ server_home }}/services/photoprism/persistence/pictures'
-     - '{{ server_home }}/services/photoprism/persistence/storage'
+      - '{{ server_home }}/services/photoprism/db-persistence'
+      - '{{ server_home }}/services/photoprism/persistence'
+      - '{{ server_home }}/services/photoprism/persistence/pictures'
+      - '{{ server_home }}/services/photoprism/persistence/storage'
 
   #--- Pihole
   - name: Create Pihole directories
@@ -384,8 +398,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/vaultwarden/persistence'
       - '{{ server_home }}/services/vaultwarden/db-persistence'
+      - '{{ server_home }}/services/vaultwarden/persistence'
 
   #--- WireGuard
   - name: Create WireGuard persistence directories

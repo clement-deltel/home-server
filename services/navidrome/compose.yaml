@@ -1,0 +1,41 @@
+services:
+  navidrome:
+    container_name: navidrome
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    env_file: config/.env
+    hostname: navidrome
+    image: ${NAVIDROME_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.navidrome.rule=Host(`music.${DOMAIN}`)"
+      - "traefik.http.routers.navidrome.tls=true"
+      # - "traefik.http.routers.navidrome.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.navidrome.tls.domains[0].main=music.${DOMAIN}"
+      - "traefik.http.routers.navidrome.service=navidrome"
+      # Services
+      - "traefik.http.services.navidrome.loadbalancer.server.port=4533"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${NAVIDROME_IP}
+    ports:
+      - 4533
+    restart: always
+    stop_grace_period: 10s
+    user: ${DOCKER_UID}:${DOCKER_GID} # should be owner of volumes
+    volumes:
+      - "./persistence/data:/data"
+      - "./persistence/music/:/music:ro"
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

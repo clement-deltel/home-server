@@ -33,6 +33,7 @@
       - '{{ server_home }}/logs/librum'
       - '{{ server_home }}/logs/limesurvey'
       - '{{ server_home }}/logs/minecraft'
+      - '{{ server_home }}/logs/navidrome'
       - '{{ server_home }}/logs/nextcloud'
       - '{{ server_home }}/logs/ntfy'
       - '{{ server_home }}/logs/paperless'
