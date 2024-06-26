@@ -135,51 +135,54 @@ Recommended registrars:
 This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them, URL that depends on the root domain name.
 
 - Reverse Proxy
-  - Traefik: `https://traefik.${DOMAIN}/dashboard`
+  - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
 - Remote Access
   - VPN
-    - Wireguard: `<ip-address>:51820`
-  - Web-based Gateway (SSH, RDP...)
-    - Apache Guacamole: `https://guacamole.${DOMAIN}`
+    - [Wireguard](https://www.wireguard.com/): `<ip-address>:51820`
+  - Clientless Remote Desktop Gateway (SSH, RDP...)
+    - [Apache Guacamole](https://guacamole.apache.org/): `https://guacamole.${DOMAIN}`
 - Monitoring
   - Ad-blocker
-    - Pi-hole: `https://pihole.${DOMAIN}`
+    - [Pi-hole](https://pi-hole.net/): `https://pihole.${DOMAIN}`
   - Visualization Tool
-    - Grafana: `https://grafana.${DOMAIN}`
-  - Notification Tool
-    - ntfy: `https://ntfy.${DOMAIN}`
+    - [Grafana](https://grafana.com/): `https://grafana.${DOMAIN}`
+  - Push Notifications
+    - [ntfy](https://ntfy.sh/): `https://ntfy.${DOMAIN}`
   - Website Change Detection
-    - changedetection.io: `https://detection.${DOMAIN}`
+    - [changedetection.io](https://changedetection.io/): `https://detection.${DOMAIN}`
+- Finances
+  - [Actual](https://actualbudget.com/): `https://actual.${DOMAIN}`
+  - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
+  - [Maybe](https://github.com/maybe-finance/maybe): `https://maybe.${DOMAIN}`
 - Cloud Storage
   - Documents
-    - NextCloud: `https://nextcloud.${DOMAIN}`
-    - Paperless: `https://paperless.${DOMAIN}`
-    - Docuseal: `https://doc.${DOMAIN}`
+    - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
+    - [Paperless](https://docs.paperless-ngx.com/): `https://paperless.${DOMAIN}`
+    - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
   - Books
-    - Librum (no web-interface, need to install the desktop app as well)
+    - [Kavita](https://www.kavitareader.com): `https://library.${DOMAIN}`
+    - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
   - Photos
-    - Immich: `https://pictures.${DOMAIN}`
-    - Photoprism: `https://photoprism.${DOMAIN}`
+    - [Immich](https://immich.app/): `https://pictures.${DOMAIN}`
+    - [Photoprism](https://www.photoprism.app/): `https://photoprism.${DOMAIN}`
+  - Music
+    - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
   - Videos
-    - Jellyfin: `https://jellyfin.${DOMAIN}`
+    - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
 - Password Manager
-  - Vaultwarden
+  - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
     - Administration dashboard: `https://vault.${DOMAIN}/admin`
     - Instance: `https://vault.${DOMAIN}`
-  - Headless CMS
-    - Directus: `https://directus.${DOMAIN}`
-  - Backup solution
-    - Kopia: `https://kopia.${DOMAIN}`
-- Finances
-  - Actual: `https://actual.${DOMAIN}`
-  - Firefly-III: `https://firefly.${DOMAIN}`
-  - Maybe: `https://maybe.${DOMAIN}`
+- Backups
+  - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
+- Headless CMS
+  - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - Home Resources Planning
-  - Grocy: `https://grocy.${DOMAIN}`
+  - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
 - Survey Builder
-  - Limesurvey: `https://survey.${DOMAIN}`
+  - [Limesurvey](https://www.limesurvey.org/): `https://survey.${DOMAIN}`
 - Games
-  - Minecraft Server: `<ip-address>:25565`
+  - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
 
 ## 8. Port Mapping
 
