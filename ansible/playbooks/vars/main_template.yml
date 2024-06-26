@@ -54,6 +54,7 @@ kopia_enable: true
 librum_enable: false
 limesurvey_enable: true
 minecraft_enable: true
+navidrome_enable: true
 nextcloud_enable: true
 ntfy_enable: true
 paperless_enable: true
