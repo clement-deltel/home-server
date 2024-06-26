@@ -68,36 +68,7 @@ services:
     volumes:
       - ./persistence/model-cache:/cache
 
-  immich-microservices:
-    command: ['start.sh', 'microservices']
-    container_name: immich-microservices
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_started
-    env_file: config/.env
-    hostname: immich-microservices
-    image: ${IMMICH_MICROSERVICES_IMAGE}
-    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/hardware-transcoding
-    #   file: ./config/hwaccel.transcoding.yml
-    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
-    logging:
-      driver: json-file
-      options:
-        max-file: "2"
-        max-size: 5m
-    networks:
-      app-net:
-        ipv4_address: ${IMMICH_MICROSERVICES_IP}
-    restart: always
-    stop_grace_period: 10s
-    volumes:
-      - ./persistence/upload:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
-
   immich-server:
-    command: ['start.sh', 'immich']
     container_name: immich-server
     depends_on:
       db:
@@ -109,6 +80,9 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     env_file: config/.env
+    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/hardware-transcoding
+    #   file: ./config/hwaccel.transcoding.yml
+    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     hostname: immich-server
     image: ${IMMICH_SERVER_IMAGE}
     labels:
