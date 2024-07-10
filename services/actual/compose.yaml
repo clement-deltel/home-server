@@ -11,10 +11,10 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.actual.rule=Host(`actual.${DOMAIN}`)"
+      - "traefik.http.routers.actual.rule=Host(`finances.${DOMAIN}`)"
       - "traefik.http.routers.actual.tls=true"
       # - "traefik.http.routers.actual.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.actual.tls.domains[0].main=actual.${DOMAIN}"
+      # - "traefik.http.routers.actual.tls.domains[0].main=finances.${DOMAIN}"
       - "traefik.http.routers.actual.service=actual"
       # Services
       - "traefik.http.services.actual.loadbalancer.server.port=5006"
