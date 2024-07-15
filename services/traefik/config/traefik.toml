@@ -37,8 +37,6 @@
   # constraints =
   httpClientTimeout = 300
   network = "traefik-net"
-  swarmMode = false
-  # swarmModeRefreshSeconds = 30
   useBindPortIP = false
   watch = true
 
@@ -251,20 +249,20 @@
 ################################################################
 # Metrics configuration
 ################################################################
-[metrics]
-  [metrics.influxDB]
-    address = "influxdb:8089"
-    protocol = "udp"
-    pushInterval = "60s"
+# [metrics]
+#   [metrics.influxDB]
+#     address = "influxdb:8089"
+#     protocol = "udp"
+#     pushInterval = "60s"
 
     # Not required since we are using UDP and not HTTP.
     # database = "traefik"
     # username = ""
     # password = ""
 
-    addEntryPointsLabels = true
-    addRoutersLabels = true
-    addServicesLabels = true
+    # addEntryPointsLabels = true
+    # addRoutersLabels = true
+    # addServicesLabels = true
 
 ################################################################
 # Configuration for Traefik v2.
