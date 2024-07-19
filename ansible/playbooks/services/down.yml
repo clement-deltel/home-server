@@ -31,6 +31,7 @@
       - { when: actual_enable, project_src: '{{ server_home }}/services/actual' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/docuseal' }
+      - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/stirling-pdf' }
       - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }
       - { when: directus_enable, project_src: '{{ server_home }}/services/directus' }
       - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }

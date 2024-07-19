@@ -61,5 +61,6 @@ paperless_enable: true
 photoprism_enable: true
 pihole_enable: true
 prometheus_enable: true
+stirling_pdf_enable: true
 vaultwarden_enable: true
 wireguard_enable: true

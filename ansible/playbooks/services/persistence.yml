@@ -388,6 +388,20 @@
       group: docker
       mode: 0744
 
+  #--- Stirling PDF
+  - name: Create Stirling PDF persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/stirling-pdf/persistence'
+      - '{{ server_home }}/services/stirling-pdf/persistence/training-data'
+      - '{{ server_home }}/services/stirling-pdf/persistence/configs'
+
   #--- Vaultwarden
   - name: Create Vaultwarden persistence directories
     ignore_errors: true

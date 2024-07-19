@@ -1,0 +1,39 @@
+services:
+  stirling-pdf:
+    container_name: stirling-pdf
+    env_file: config/.env
+    hostname: stirling-pdf
+    image: ${STIRLING_PDF_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.stirling-pdf.rule=Host(`pdf.${DOMAIN}`)"
+      - "traefik.http.routers.stirling-pdf.tls=true"
+      # - "traefik.http.routers.stirling-pdf.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.stirling-pdf.tls.domains[0].main=pdf.${DOMAIN}"
+      - "traefik.http.routers.stirling-pdf.service=stirling-pdf"
+      # Services
+      - "traefik.http.services.stirling-pdf.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${STIRLING_PDF_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 10s
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./persistence/training-data:/usr/share/tessdata #Required for extra OCR languages
+      - ./persistence/configs:/configs
+#      - ./customFiles:/customFiles/
+#      - ./logs:/logs/
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
