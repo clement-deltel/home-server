@@ -153,15 +153,12 @@ This section covers all the supported services of the stack. It categorizes the 
     - [ntfy](https://ntfy.sh/): `https://ntfy.${DOMAIN}`
   - Website Change Detection
     - [changedetection.io](https://changedetection.io/): `https://detection.${DOMAIN}`
-- Finances
-  - [Actual](https://actualbudget.com/): `https://actual.${DOMAIN}`
-  - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
-  - [Maybe](https://github.com/maybe-finance/maybe): `https://maybe.${DOMAIN}`
+- Backup
+  - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
 - Cloud Storage
   - Documents
     - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
     - [Paperless](https://docs.paperless-ngx.com/): `https://paperless.${DOMAIN}`
-    - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
   - Books
     - [Kavita](https://www.kavitareader.com): `https://library.${DOMAIN}`
     - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
@@ -172,16 +169,26 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
   - Videos
     - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
+- Personal Knowledge Management System
+  - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
+  - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
+  - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
 - Password Manager
   - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
     - Administration dashboard: `https://vault.${DOMAIN}/admin`
     - Instance: `https://vault.${DOMAIN}`
-- Backups
-  - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
-- Headless CMS
-  - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
+- Bookmark Manager
+  - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
+- Finances
+  - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
+  - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
+  - [Maybe](https://github.com/maybe-finance/maybe): `https://maybe.${DOMAIN}`
 - Home Resources Planning
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
+- PDF Tools
+  - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
+- Headless CMS
+  - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - Survey Builder
   - [Limesurvey](https://www.limesurvey.org/): `https://survey.${DOMAIN}`
 - Games
