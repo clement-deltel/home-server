@@ -9,7 +9,7 @@ services:
       driver: json-file
       options:
         max-file: "5"
-        max-size: 5m
+        max-size: 10m
     networks:
       app-net:
         ipv4_address: ${PROMETHEUS_INTERNAL_IP}

@@ -13,7 +13,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: "2"
         max-size: 5m
     networks:
       app-net:
@@ -33,8 +33,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
-        max-size: 5m
+        max-file: "2"
+        max-size: 2m
     networks:
       app-net:
         ipv4_address: ${GUACD_IP}

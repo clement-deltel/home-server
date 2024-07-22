@@ -63,8 +63,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
-        max-size: 5m
+        max-file: "2"
+        max-size: 2m
     networks:
       traefik-net:
         ipv4_address: ${ROBOTS_IP}
