@@ -139,6 +139,8 @@ This section covers all the supported services of the stack. It categorizes the 
 
 - Reverse Proxy
   - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
+- Dashboard
+  - [Homarr](https://homarr.dev/): ``https://home.${DOMAIN}`
 - Remote Access
   - VPN
     - [Wireguard](https://www.wireguard.com/): `<ip-address>:51820`
@@ -155,7 +157,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [changedetection.io](https://changedetection.io/): `https://detection.${DOMAIN}`
 - Backup
   - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
-- Cloud Storage
+- Media Storage
   - Documents
     - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
     - [Paperless](https://docs.paperless-ngx.com/): `https://paperless.${DOMAIN}`

@@ -361,6 +361,8 @@ alias bckphome='cd ${BACKUP_HOME}'
 alias loghome='cd ${LOG_HOME}'
 
 # Services
+alias cdhom='cd ${SERVER_HOME}/services/dashboard/homarr'
+
 alias cdact='cd ${SERVER_HOME}/services/actual'
 alias cddet='cd ${SERVER_HOME}/services/detection'
 alias cddir='cd ${SERVER_HOME}/services/directus'
@@ -386,6 +388,8 @@ alias cdsti='cd ${SERVER_HOME}/services/stirling-pdf'
 alias cdtra='cd ${SERVER_HOME}/services/traefik'
 alias cdvau='cd ${SERVER_HOME}/services/vaultwarden'
 alias cdwir='cd ${SERVER_HOME}/services/wireguard'
+
+alias svchom='cd ${SERVER_HOME}/services/dashboard/homarr'
 
 alias svcact='cd ${SERVER_HOME}/services/actual'
 alias svcdet='cd ${SERVER_HOME}/services/detection'

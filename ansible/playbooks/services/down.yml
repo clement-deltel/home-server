@@ -12,6 +12,7 @@
       project_src: '{{ item.project_src }}'
       state: absent
     loop:
+      - { when: homarr_enable, project_src: '{{ server_home }}/services/dashboard/homarr' }
       - { when: wireguard_enable, project_src: '{{ server_home }}/services/wireguard' }
       - { when: guacamole_enable, project_src: '{{ server_home }}/services/guacamole' }
       - { when: pihole_enable, project_src: '{{ server_home }}/services/pihole' }

@@ -1,0 +1,41 @@
+services:
+  homarr:
+    container_name: homarr
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
+    hostname: homarr
+    image: ${HOMARR_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.homarr.rule=Host(`home.${DOMAIN}`)"
+      - "traefik.http.routers.homarr.tls=true"
+      # - "traefik.http.routers.homarr.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.homarr.tls.domains[0].main=home.${DOMAIN}"
+      - "traefik.http.routers.homarr.service=homarr"
+      # Services
+      - "traefik.http.services.homarr.loadbalancer.server.port=7575"
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${HOMARR_IP}
+    ports:
+      - 7575
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Optional, only if you want docker integration
+      - persistence/configs:/app/data/configs
+      - persistence/data:/data
+      - persistence/icons:/app/public/icons
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

@@ -195,6 +195,20 @@
       group: docker
       mode: 0777
 
+  #--- Homarr
+  - name: Create Homarr persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+     - '{{ server_home }}/services/dashboard/homarr/persistence'
+     - '{{ server_home }}/services/dashboard/homarr/persistence/configs'
+     - '{{ server_home }}/services/dashboard/homarr/persistence/data'
+     - '{{ server_home }}/services/dashboard/homarr/persistence/icons'
+
   #--- Immich
   - name: Create Immich persistence directories
     file:
