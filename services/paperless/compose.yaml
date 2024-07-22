@@ -23,8 +23,8 @@ services:
     networks:
       app-net:
         ipv4_address: ${PAPERLESS_DB_IP}
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./db-persistence:/var/lib/mysql
 
@@ -40,8 +40,8 @@ services:
     networks:
       app-net:
         ipv4_address: ${PAPERLESS_REDIS_IP}
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./redis-persistence:/data
 
@@ -63,8 +63,8 @@ services:
     networks:
       app-net:
         ipv4_address: ${PAPERLESS_GOTENBERG_IP}
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
 
   tika:
     container_name: paperless-tika
@@ -78,8 +78,8 @@ services:
     networks:
       app-net:
         ipv4_address: ${PAPERLESS_TIKA_IP}
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
 
   paperless:
     # createsuperuser --noinput --username "${PAPERLESS_ADMIN_USER}" --email "${USER_EMAIL}"
@@ -127,8 +127,8 @@ services:
         ipv4_address: ${PAPERLESS_IP}
     ports:
       - 8000
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./persistence/consume:/usr/src/paperless/consume
       - ./persistence/data:/usr/src/paperless/data

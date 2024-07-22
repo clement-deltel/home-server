@@ -38,8 +38,8 @@ services:
       #- 8920 #HTTPS WebUI
       - 7359/udp #Service discovery on the local network
       #- 1900/udp # Service discovery used by DNLA and clients
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./persistence/library:/config
       - ./persistence/tvshows:/data/tvshows

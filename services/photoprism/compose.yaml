@@ -48,11 +48,11 @@ services:
         ipv4_address: ${PHOTOPRISM_DB_IP}
     ## If MariaDB gets stuck in a restart loop, this points to a memory or filesystem issue:
     ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
-    restart: always
+    restart: unless-stopped
     security_opt: # see https://github.com/MariaDB/mariadb-docker/issues/434#issuecomment-1136151239
       - seccomp:unconfined
       - apparmor:unconfined
-    stop_grace_period: 10s
+    stop_grace_period: 30s
     ## Never store database files on an unreliable device such as a USB flash drive, an SD card, or a shared network folder:
     volumes:
       - ./db-persistence:/var/lib/mysql # DO NOT REMOVE
@@ -101,11 +101,11 @@ services:
     ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!
     ## If the service gets stuck in a restart loop, this points to a memory, filesystem, network, or database issue:
     ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
-    restart: always
+    restart: unless-stopped
     security_opt:
       - seccomp:unconfined
       - apparmor:unconfined
-    stop_grace_period: 10s
+    stop_grace_period: 30s
     ## Start as non-root user before initialization (supported: 0, 33, 50-99, 500-600, and 900-1200):
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:

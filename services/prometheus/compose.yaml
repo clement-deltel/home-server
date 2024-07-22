@@ -17,8 +17,8 @@ services:
         ipv4_address: ${PROMETHEUS_IP}
     ports:
       - 9090
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml

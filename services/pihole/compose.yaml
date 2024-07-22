@@ -36,8 +36,8 @@ services:
       - ${PIHOLE_DNS_PORT}:53/tcp
       - ${PIHOLE_DNS_PORT}:53/udp
       #- 67:67/udp # Only required if you are using Pi-hole as your DHCP server
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       # Permissions for this folder:
       # run `touch ./pihole.log` first unless you like errors

@@ -24,7 +24,7 @@ services:
     ports:
       - ${MINECRAFT_PORT}:25565
       - ${MINECRAFT_RCON_PORT}:25575
-    restart: always
+    restart: unless-stopped
     stop_grace_period: 330s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:

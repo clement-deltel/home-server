@@ -17,8 +17,8 @@ services:
     networks:
       app-net:
         ipv4_address: ${DIRECTUS_DB_IP}
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./db-persistence:/var/lib/postgresql/data
 
@@ -35,8 +35,8 @@ services:
     networks:
       app-net:
         ipv4_address: ${DIRECTUS_REDIS_IP}
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
 
   directus:
     container_name: directus
@@ -74,8 +74,8 @@ services:
         ipv4_address: ${DIRECTUS_IP}
     ports:
       - 8055
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./persistence/uploads:/directus/uploads
       - ./persistence/extensions:/directus/extensions

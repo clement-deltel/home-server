@@ -34,7 +34,7 @@ services:
       - 8080
       # VPN
       - ${WIREGUARD_PORT}:51820/udp
-    restart: always
+    restart: unless-stopped
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
@@ -68,7 +68,7 @@ services:
     networks:
       traefik-net:
         ipv4_address: ${ROBOTS_IP}
-    restart: always
+    restart: unless-stopped
     stop_grace_period: 30s
     volumes:
       - ./config/robots.txt:/usr/share/nginx/html/robots.txt:ro

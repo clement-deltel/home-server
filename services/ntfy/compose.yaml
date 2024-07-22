@@ -36,8 +36,8 @@ services:
     ports:
       - 80
       - 81
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./config/docker-entrypoint.sh:/docker-entrypoint.sh
       - ./persistence/cache:/var/cache/ntfy

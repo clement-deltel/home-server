@@ -28,8 +28,8 @@ services:
         ipv4_address: ${NAVIDROME_IP}
     ports:
       - 4533
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID} # should be owner of volumes
     volumes:
       - "./persistence/data:/data"

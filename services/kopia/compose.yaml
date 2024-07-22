@@ -35,8 +35,8 @@ services:
     # Setup the server that provides the web gui
     ports:
       - 51515
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       # Mount local folders needed by kopia
       - ./persistence/config:/app/config

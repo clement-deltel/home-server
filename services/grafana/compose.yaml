@@ -17,8 +17,8 @@ services:
     # Remote backups and restores
     #  - 8088:8088
       - 8089/udp
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     volumes:
       - ./influxdb-persistence:/var/lib/influxdb
 
@@ -73,8 +73,8 @@ services:
         ipv4_address: ${GRAFANA_IP}
     ports:
       - 3000
-    restart: always
-    stop_grace_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       # database and plugins
