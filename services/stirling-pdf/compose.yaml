@@ -28,7 +28,7 @@ services:
     stop_grace_period: 10s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./persistence/training-data:/usr/share/tessdata #Required for extra OCR languages
+      - ./persistence/tessdata:/usr/share/tessdata #Required for extra OCR languages
       - ./persistence/configs:/configs
 #      - ./customFiles:/customFiles/
 #      - ./logs:/logs/

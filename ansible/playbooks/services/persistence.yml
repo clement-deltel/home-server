@@ -399,8 +399,14 @@
       mode: 0744
     loop:
       - '{{ server_home }}/services/stirling-pdf/persistence'
-      - '{{ server_home }}/services/stirling-pdf/persistence/training-data'
+      - '{{ server_home }}/services/stirling-pdf/persistence/tessdata'
       - '{{ server_home }}/services/stirling-pdf/persistence/configs'
+
+  - name: Download French language pack for OCR feature
+    get_url:
+      url: https://github.com/tesseract-ocr/tessdata/blob/main/fra.traineddata
+      dest: '{{ server_home }}/services/stirling-pdf/persistence/tessdata/fra.traineddata'
+      mode: 0740
 
   #--- Vaultwarden
   - name: Create Vaultwarden persistence directories
