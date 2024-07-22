@@ -30,10 +30,10 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
+      - ./persistence/configs:/app/data/configs
+      - ./persistence/data:/data
+      - ./persistence/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro # Optional, only if you want docker integration
-      - persistence/configs:/app/data/configs
-      - persistence/data:/data
-      - persistence/icons:/app/public/icons
 
 networks:
   traefik-net:
