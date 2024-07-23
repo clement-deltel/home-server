@@ -4,19 +4,29 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Getting started](#2-getting-started)
-- [3. Hardware](#3-hardware)
-- [4. RAID](#4-raid)
-- [5. Domain Name](#5-domain-name)
-- [6. Operating System](#6-operating-system)
-- [7. Services](#7-services)
-- [8. Port Mapping](#8-port-mapping)
-- [9. Monitoring](#9-monitoring)
-  - [9.1 Telegraf plugins](#91-telegraf-plugins)
-  - [9.4 Monitor your server from your phone](#94-monitor-your-server-from-your-phone)
+- [3. Pre-requisites](#3-pre-requisites)
+- [4. Hardware](#4-hardware)
+- [5. RAID](#5-raid)
+- [6. Domain Name](#6-domain-name)
+- [7. Operating System](#7-operating-system)
+- [8. Services](#8-services)
+- [9. Port Mapping](#9-port-mapping)
+- [10. Secrets Management](#10-secrets-management)
+- [11. Observability](#11-observability)
+  - [11.1 Metrics](#111-metrics)
+    - [11.1.1 Docker](#1111-docker)
+    - [11.1.2 Telegraf](#1112-telegraf)
+    - [11.1.3 Prometheus](#1113-prometheus)
+    - [11.1.4 Other](#1114-other)
+  - [11.2 Logs](#112-logs)
+  - [11.3 Visualization](#113-visualization)
+    - [11.3.1 Grafana](#1131-grafana)
+    - [11.3.2 Monitor your server from your phone](#1132-monitor-your-server-from-your-phone)
+- [12. Security notes](#12-security-notes)
 
 ## 1. Introduction
 
-Collection of tools for self hosting.
+Collection of tools for self hosting. This stack is using external services on AWS to provide support for secret management, off-site backups, and sending emails.
 
 ## 2. Getting started
 
@@ -54,7 +64,12 @@ sudo su - docker
 ${SERVER_HOME}/ansible/run.sh
 ```
 
-## 3. Hardware
+## 3. Pre-requisites
+
+- Set up an AWS account and create an administrator user (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details)
+- Purchase a domain (see [Domain Name](#5-domain-name) section for more details)
+
+## 4. Hardware
 
 This section covers the detail of the hardware I chose to build my home server.
 
@@ -116,31 +131,34 @@ This section covers the detail of the hardware I chose to build my home server.
   - Model: DLM21 White Mini Tower
   - ATX Compatibility: Micro ATX, Mini ITX
 
-## 4. RAID
+## 5. RAID
 
 Disks 1 and 2 are in RAID 1 for better fault tolerance and to avoid any data loss.
 
 More information available at: [Wikipedia - Standard RAID Levels](https://en.wikipedia.org/wiki/Standard_RAID_levels).
 
-## 5. Domain Name
+## 6. Domain Name
 
 Recommended registrars:
 - [CloudFlare](https://www.cloudflare.com/products/registrar/)
 - [OVH](https://www.ovhcloud.com/en/domains/)
 
-## 6. Operating System
+## 7. Operating System
 
-- Name: Ubuntu
-- Version: 22.04 LTS
+- **Name**: Ubuntu
+- **Version**: 22.04 LTS (Jammy Jellyfish)
+- **LTS standard security maintenance**: until April 2027
+- **Expanded security maintenance**: until April 2032
+- **Legacy support**: until April 2034
 
-## 7. Services
+## 8. Services
 
 This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them, URL that depends on the root domain name.
 
 - Reverse Proxy
   - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
 - Dashboard
-  - [Homarr](https://homarr.dev/): ``https://home.${DOMAIN}`
+  - [Homarr](https://homarr.dev/): `https://home.${DOMAIN}`
 - Remote Access
   - VPN
     - [Wireguard](https://www.wireguard.com/): `<ip-address>:51820`
@@ -196,28 +214,122 @@ This section covers all the supported services of the stack. It categorizes the 
 - Games
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
 
-## 8. Port Mapping
+## 9. Port Mapping
 
 This section covers all the ports exposed to internet. Those are the ports that must be forwarded on the router to the server hosting all services.
 
 - TCP
-  - 80: Traefik HTTP
-  - 443: Traefik HTTPS
-  - 25565: Minecraft
+  - **80**: Traefik HTTP
+  - **443**: Traefik HTTPS
+  - **25565**: Minecraft
 - UDP
-  - 25565: Minecraft
-  - 51820: Wireguard
+  - **25565**: Minecraft
+  - **51820**: Wireguard
 
-## 9. Monitoring
+## 10. Secrets Management
 
-List of Data Sources that are currently implemented in this stack:
 
-- InfluxDB, with Telegraf as an input integration
-- Prometheus
+## 11. Observability
+
+This section covers all the tools and logic implemented to have maximum visibility on what is happening on the server at any given time.
+
+### 11.1 Metrics
+
+List of tools being used to collect metrics on this stack:
+
+- Docker health checks
+- Telegraf data collector
+- Prometheus data collector
 
 > **Note**: it is necessary to create manually the UDP database named traefik in InfluxDB.
 
-### 9.1 Telegraf plugins
+#### 11.1.1 Docker
+
+**Health checks**:
+
+Services with built-in health checks:
+- Guacamole Daemon (guacd)
+- Vaultwarden
+
+Other:
+- InfluxDB
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "curl -f http://localhost:8086/ping"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 5s
+```
+
+- Jellyfin
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "curl -i http://localhost:8096/health"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 10s
+```
+
+- MariaDB
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "mysqladmin ping -h localhost -u <user> -p<password>"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 5s
+```
+
+- Ntfy
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 5s
+```
+
+- Paperless
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "curl -f http://localhost:8000"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 5s
+```
+
+- Postgres
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "pg_isready -U <user>"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 5s
+```
+
+- Redis
+```yaml
+healthcheck:
+  test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+  interval: 20s
+  timeout: 15s
+  retries: 3
+  start_period: 60s
+  start_interval: 5s
+```
+
+#### 11.1.2 Telegraf
 
 Run the below command to test your configuration:
 
@@ -246,10 +358,68 @@ Telegraf plugins being used:
   - [Telegraf itself](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/internal/README.md)
   - [Wireguard](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/wireguard/README.md)
 
-### 9.4 Monitor your server from your phone
+
+#### 11.1.3 Prometheus
+
+
+#### 11.1.4 Other
+
+
+### 11.2 Logs
+
+List of docker compose configuration blocks to specify the amount of logs being collected based on the type of service:
+
+- Main service:
+```yaml
+logging:
+  driver: json-file
+  options:
+    max-file: 5
+    max-size: 10m
+```
+
+- Database (MariaDB, PostgreSQL...):
+```yaml
+logging:
+  driver: json-file
+  options:
+    max-file: 2
+    max-size: 5m
+```
+
+- Cache (Redis):
+```yaml
+logging:
+  driver: json-file
+  options:
+    max-file: 2
+    max-size: 2m
+```
+
+- Other:
+```yaml
+logging:
+  driver: json-file
+  options:
+    max-file: 2
+    max-size: 2m
+```
+
+### 11.3 Visualization
+
+List of tools being used to visualize metrics on this stack:
+
+- Grafana
+- iOs app
+
+#### 11.3.1 Grafana
+
+#### 11.3.2 Monitor your server from your phone
 
 Since I am an iPhone user, this section covers the list of steps on iOS only.
 
 1. Install the [Glimpse 2](https://apps.apple.com/us/app/glimpse-2/id1524217845) app from the App Store.
 2. Wrap your Grafana instance website on your iOS screen via Widgets.
+
+## 12. Security notes
 
