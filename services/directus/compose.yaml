@@ -3,16 +3,18 @@ services:
     container_name: directus-postgres
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      test: ["CMD-SHELL", "pg_isready -U ${DIRECTUS_POSTGRES_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: directus-postgres
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 5m
     networks:
       app-net:
@@ -25,12 +27,19 @@ services:
   redis:
     command: redis-server --requirepass ${DIRECTUS_REDIS_PASSWORD}
     container_name: directus-redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: directus-redis
     image: ${DEFAULT_REDIS_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -44,7 +53,7 @@ services:
       db:
         condition: service_healthy
       redis:
-        condition: service_started
+        condition: service_healthy
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -65,7 +74,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       app-net:

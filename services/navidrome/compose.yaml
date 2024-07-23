@@ -21,7 +21,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       traefik-net:
@@ -32,8 +32,8 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID} # should be owner of volumes
     volumes:
-      - "./persistence/data:/data"
-      - "./persistence/music/:/music:ro"
+      - ./persistence/data:/data
+      - ./persistence/music/:/music:ro
 
 networks:
   traefik-net:

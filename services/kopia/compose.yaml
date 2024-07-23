@@ -1,11 +1,6 @@
 services:
   kopia:
-    command:
-      - server
-      - start
-      - --disable-csrf-token-checks
-      - --insecure
-      - --address=0.0.0.0:51515
+    command: server start --disable-csrf-token-checks --insecure --address=0.0.0.0:51515
     container_name: kopia
     dns:
       - 127.0.0.1
@@ -13,7 +8,7 @@ services:
       - 1.0.0.1
     env_file: config/.env
     hostname: kopia
-    image: kopia/kopia:20240223.0.204239
+    image: ${KOPIA_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
@@ -27,7 +22,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       traefik-net:

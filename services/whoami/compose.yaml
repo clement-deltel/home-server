@@ -14,11 +14,11 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       traefik-net:
-        ipv4_address: 192.168.10.50
+        ipv4_address: 192.168.10.210
     restart: unless-stopped
     stop_grace_period: 30s
 

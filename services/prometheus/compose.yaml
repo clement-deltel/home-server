@@ -1,14 +1,13 @@
 services:
   prometheus:
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: --config.file=/etc/prometheus/prometheus.yml
     container_name: prometheus
     hostname: prometheus
     image: ${PROMETHEUS_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       app-net:

@@ -3,16 +3,18 @@ services:
     container_name: docuseal-postgres
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      test: ["CMD-SHELL", "pg_isready -U ${DOCUSEAL_POSTGRES_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: docuseal-postgres
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 5m
     networks:
       app-net:
@@ -47,7 +49,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       app-net:

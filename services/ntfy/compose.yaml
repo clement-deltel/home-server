@@ -9,10 +9,11 @@ services:
     env_file: config/.env
     healthcheck: # optional: remember to adapt the host:port to your environment
       test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
-      interval: 60s
-      timeout: 10s
+      interval: 20s
+      timeout: 15s
       retries: 3
-      start_period: 40s
+      start_period: 60s
+      start_interval: 5s
     image: ${NTFY_IMAGE}
     labels:
       - "traefik.enable=true"
@@ -27,17 +28,17 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       traefik-net:
         ipv4_address: ${NTFY_IP}
-    user: ${DOCKER_UID}:${DOCKER_GID} # optional: Set custom user/group or uid/gid
     ports:
       - 80
       - 81
     restart: unless-stopped
     stop_grace_period: 30s
+    user: ${DOCKER_UID}:${DOCKER_GID} # optional: Set custom user/group or uid/gid
     volumes:
       - ./config/docker-entrypoint.sh:/docker-entrypoint.sh
       - ./persistence/cache:/var/cache/ntfy

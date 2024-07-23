@@ -9,16 +9,18 @@ services:
     container_name: paperless-mariadb
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${PAPERLESS_DB_ROOT_PASSWORD}"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${PAPERLESS_DB_ROOT_PASSWORD}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: paperless-mariadb
     image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 5m
     networks:
       app-net:
@@ -35,7 +37,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -48,17 +50,14 @@ services:
   gotenberg:
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
-    command:
-      - "gotenberg"
-      - "--chromium-disable-javascript=true"
-      - "--chromium-allow-list=file:///tmp/.*"
+    command: gotenberg --chromium-disable-javascript=true --chromium-allow-list=file:///tmp/.*
     container_name: paperless-gotenberg
     hostname: paperless-gotenberg
     image: ${GOTENBERG_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -73,7 +72,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -99,10 +98,12 @@ services:
       - 1.0.0.1
     env_file: config/.env
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD-SHELL", "curl -f http://localhost:8000"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: paperless
     image: ${PAPERLESS_IMAGE}
     labels:
@@ -118,7 +119,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       app-net:

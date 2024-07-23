@@ -4,16 +4,18 @@ services:
     container_name: nextcloud-mariadb
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p${NEXTCLOUD_DB_ROOT_PASSWORD}"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${NEXTCLOUD_DB_ROOT_PASSWORD}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: nextcloud-mariadb
     image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 5m
     networks:
       app-net:
@@ -28,12 +30,19 @@ services:
   redis:
     command: redis-server --requirepass ${NEXTCLOUD_REDIS_PASSWORD}
     container_name: nextcloud-redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     hostname: nextcloud-redis
     image: ${DEFAULT_REDIS_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -47,14 +56,14 @@ services:
       db:
         condition: service_healthy
       redis:
-        condition: service_started
+        condition: service_healthy
     entrypoint: /cron.sh
     hostname: nextcloud-cron
     image: ${NEXTCLOUD_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -70,14 +79,14 @@ services:
       db:
         condition: service_healthy
       redis:
-        condition: service_started
+        condition: service_healthy
     env_file: config/.env
     hostname: nextcloud
     image: ${NEXTCLOUD_IMAGE}
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       app-net:
@@ -90,9 +99,12 @@ services:
   nextcloud:
     container_name: nextcloud-web
     depends_on:
-      - app
-      - db
-      - redis
+      app:
+        condition: service_started
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     hostname: nextcloud-web
     image: ${FASTCGI_SUPPORT_IMAGE}
     labels:
@@ -110,7 +122,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:

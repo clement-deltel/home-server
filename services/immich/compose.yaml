@@ -22,7 +22,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 5m
     networks:
       app-net:
@@ -38,11 +38,16 @@ services:
     hostname: immich-redis
     image: ${IMMICH_REDIS_IMAGE}
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -63,7 +68,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "2"
+        max-file: 2
         max-size: 2m
     networks:
       app-net:
@@ -103,7 +108,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: "5"
+        max-file: 5
         max-size: 10m
     networks:
       app-net:
