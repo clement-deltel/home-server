@@ -3,8 +3,8 @@ services:
     container_name: homarr
     dns:
       - 127.0.0.1
-      - 1.1.1.1
-      - 1.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
     hostname: homarr
     image: ${HOMARR_IMAGE}
     labels:

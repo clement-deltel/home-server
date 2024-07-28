@@ -61,12 +61,15 @@ services:
 
   photoprism:
     container_name: photoprism
-    hostname: photoprism
     ## Use photoprism/photoprism:preview for testing preview builds:
     image: ${PHOTOPRISM_IMAGE}
     depends_on:
       db:
         condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
     env_file: config/.env
     ## Share hardware devices with FFmpeg and TensorFlow (optional):
     ## devices:
@@ -78,6 +81,7 @@ services:
     ##  - "/dev/nvidia-uvm:/dev/nvidia-uvm"
     ##  - "/dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"
     ##  - "/dev/video11:/dev/video11"                 # Video4Linux Video Encode Device (h264_v4l2m2m)
+    hostname: photoprism
     labels:
       - "traefik.enable=true"
       # Routers

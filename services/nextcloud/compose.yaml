@@ -105,6 +105,10 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
     hostname: nextcloud-web
     image: ${FASTCGI_SUPPORT_IMAGE}
     labels:

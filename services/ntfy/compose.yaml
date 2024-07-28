@@ -3,8 +3,8 @@ services:
     container_name: ntfy
     dns:
       - 127.0.0.1
-      - 1.1.1.1
-      - 1.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
     entrypoint: [ "/bin/sh", "/docker-entrypoint.sh" ]
     env_file: config/.env
     healthcheck: # optional: remember to adapt the host:port to your environment

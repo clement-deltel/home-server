@@ -4,8 +4,8 @@ services:
     container_name: kopia
     dns:
       - 127.0.0.1
-      - 1.1.1.1
-      - 1.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
     env_file: config/.env
     hostname: kopia
     image: ${KOPIA_IMAGE}
