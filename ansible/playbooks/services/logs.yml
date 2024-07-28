@@ -43,5 +43,6 @@
       - '{{ server_home }}/logs/prometheus'
       - '{{ server_home }}/logs/stirling-pdf'
       - '{{ server_home }}/logs/traefik'
+      - '{{ server_home }}/logs/unbound'
       - '{{ server_home }}/logs/vaultwarden'
       - '{{ server_home }}/logs/wireguard'

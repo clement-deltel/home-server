@@ -157,7 +157,7 @@ Recommended registrars:
 
 ## 8. Services
 
-This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them, URL that depends on the root domain name.
+This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them (if any), URL that depends on the root domain name.
 
 - **Reverse Proxy**
   - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
@@ -168,9 +168,12 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Wireguard](https://www.wireguard.com/): `<ip-address>:51820`
   - Clientless Remote Desktop Gateway (SSH, RDP...)
     - [Apache Guacamole](https://guacamole.apache.org/): `https://guacamole.${DOMAIN}`
-- **Monitoring**
+- **DNS**
   - Ad-blocker
     - [Pi-hole](https://pi-hole.net/): `https://pihole.${DOMAIN}`
+  - Recursive DNS
+    - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/)
+- **Monitoring**
   - Visualization Tool
     - [Grafana](https://grafana.com/): `https://grafana.${DOMAIN}`
   - Push Notifications

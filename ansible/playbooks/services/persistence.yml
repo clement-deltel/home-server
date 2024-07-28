@@ -85,6 +85,7 @@
       replace: '\1-'
     loop:
       - '{{ server_home }}/services/actual/compose.yaml'
+      - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
       - '{{ server_home }}/services/docuseal/compose.yaml'
@@ -101,6 +102,7 @@
       - '{{ server_home }}/services/paperless/compose.yaml'
       - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
+      - '{{ server_home }}/services/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/traefik/compose.yaml'
       - '{{ server_home }}/services/vaultwarden/compose.yaml'
 
@@ -422,6 +424,27 @@
       dest: '{{ server_home }}/services/stirling-pdf/persistence/tessdata/fra.traineddata'
       mode: 0740
 
+  #--- Unbound
+  - name: Create Unbound persistence directory
+    ignore_errors: true
+    file:
+      path: '{{ server_home }}/services/dns/unbound/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+
+  - name: Copy Unbound server configuration files
+    copy:
+      src: '{{ item.src }}'
+      dest: '{{ item.dst }}'
+      owner: docker
+      group: docker
+      mode: 0640
+    loop:
+      - { src: '{{ server_home }}/services/dns/unbound/config/forward-records.conf', dst: '{{ server_home }}/services/dns/unbound/persistence/forward-records.conf' }
+      - { src: '{{ server_home }}/services/dns/unbound/config/unbound.conf', dst: '{{ server_home }}/services/dns/unbound/persistence/unbound.conf' }
+
   #--- Vaultwarden
   - name: Create Vaultwarden persistence directories
     ignore_errors: true
@@ -436,7 +459,7 @@
       - '{{ server_home }}/services/vaultwarden/persistence'
 
   #--- WireGuard
-  - name: Create WireGuard persistence directories
+  - name: Create WireGuard persistence directory
     file:
       path: '{{ server_home }}/services/wireguard/persistence'
       state: directory

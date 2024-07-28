@@ -18,6 +18,7 @@
       - { when: wireguard_enable, project_src: '{{ server_home }}/services/wireguard' }
       - { when: guacamole_enable, project_src: '{{ server_home }}/services/guacamole' }
       - { when: pihole_enable, project_src: '{{ server_home }}/services/pihole' }
+      - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: grafana_enable, project_src: '{{ server_home }}/services/grafana' }
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/prometheus' }
       - { when: ntfy_enable, project_src: '{{ server_home }}/services/ntfy' }
