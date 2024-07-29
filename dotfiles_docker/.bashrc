@@ -363,6 +363,7 @@ alias loghome='cd ${LOG_HOME}'
 # Services
 alias cdhom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias cdunb='cd ${SERVER_HOME}/services/dns/unbound'
+alias cdhor='cd ${SERVER_HOME}/services/inventory/hortusfox'
 
 alias cdact='cd ${SERVER_HOME}/services/actual'
 alias cddet='cd ${SERVER_HOME}/services/detection'
@@ -392,6 +393,7 @@ alias cdwir='cd ${SERVER_HOME}/services/wireguard'
 
 alias svchom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias svcunb='cd ${SERVER_HOME}/services/dns/unbound'
+alias svchor='cd ${SERVER_HOME}/services/inventory/hortusfox'
 
 alias svcact='cd ${SERVER_HOME}/services/actual'
 alias svcdet='cd ${SERVER_HOME}/services/detection'

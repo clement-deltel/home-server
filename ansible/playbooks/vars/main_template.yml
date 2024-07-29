@@ -49,6 +49,7 @@ grafana_enable: true
 grocy_enable: true
 guacamole_enable: true
 homarr_enable: true
+hortusfox_enable: true
 immich_enable: true
 jellyfin_enable: true
 kopia_enable: true

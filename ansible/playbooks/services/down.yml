@@ -32,6 +32,7 @@
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
       - { when: actual_enable, project_src: '{{ server_home }}/services/actual' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }
+      - { when: hortusfox_enable, project_src: '{{ server_home }}/services/inventory/hortusfox' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/docuseal' }
       - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/stirling-pdf' }
       - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }

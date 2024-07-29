@@ -29,6 +29,7 @@
       - '{{ server_home }}/logs/guacamole'
       - '{{ server_home }}/logs/homarr'
       - '{{ server_home }}/logs/immich'
+      - '{{ server_home }}/logs/inventory/hortusfox'
       - '{{ server_home }}/logs/jellyfin'
       - '{{ server_home }}/logs/kopia'
       - '{{ server_home }}/logs/librum'

@@ -93,6 +93,7 @@
       - '{{ server_home }}/services/grocy/compose.yaml'
       - '{{ server_home }}/services/guacamole/compose.yaml'
       - '{{ server_home }}/services/immich/compose.yaml'
+      - '{{ server_home }}/services/inventory/hortusfox/compose.yaml'
       - '{{ server_home }}/services/jellyfin/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
@@ -210,6 +211,23 @@
      - '{{ server_home }}/services/dashboard/homarr/persistence/configs'
      - '{{ server_home }}/services/dashboard/homarr/persistence/data'
      - '{{ server_home }}/services/dashboard/homarr/persistence/icons'
+
+  #--- HortusFox
+  - name: Create HortusFox persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+     - '{{ server_home }}/services/inventory/hortusfox/db-persistence'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/images'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/logs'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/backup'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/themes'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/migrate'
 
   #--- Immich
   - name: Create Immich persistence directories

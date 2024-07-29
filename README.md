@@ -212,6 +212,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Maybe](https://github.com/maybe-finance/maybe): `https://maybe.${DOMAIN}`
 - **Home Resources Planning**
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
+  - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
 - **Headless CMS**
