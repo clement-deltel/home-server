@@ -21,6 +21,7 @@
       mode: 0744
     loop:
       - '{{ server_home }}/logs/backup/kopia'
+      - '{{ server_home }}/logs/books/kavita'
       - '{{ server_home }}/logs/books/librum'
       - '{{ server_home }}/logs/dashboard/homarr'
       - '{{ server_home }}/logs/documents/nextcloud'

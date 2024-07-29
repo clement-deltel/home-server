@@ -85,6 +85,7 @@
       replace: '\1-'
     loop:
       - '{{ server_home }}/services/actual/compose.yaml'
+      - '{{ server_home }}/services/books/kavita/compose.yaml'
       - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
@@ -256,6 +257,22 @@
      - '{{ server_home }}/services/jellyfin/persistence/library'
      - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
+
+  #--- Kavita
+  - name: Create Kavita persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/books/kavita/persistence'
+      - '{{ server_home }}/services/books/kavita/persistence/books'
+      - '{{ server_home }}/services/books/kavita/persistence/comics'
+      - '{{ server_home }}/services/books/kavita/persistence/mangas'
+      - '{{ server_home }}/services/books/kavita/persistence/config'
 
   #--- Kopia
   - name: Create Kopia persistence directories

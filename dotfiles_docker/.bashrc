@@ -361,6 +361,7 @@ alias bckphome='cd ${BACKUP_HOME}'
 alias loghome='cd ${LOG_HOME}'
 
 # Services
+alias cdkav='cd ${SERVER_HOME}/services/books/kavita'
 alias cdhom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias cdunb='cd ${SERVER_HOME}/services/dns/unbound'
 alias cdhor='cd ${SERVER_HOME}/services/inventory/hortusfox'
@@ -391,6 +392,7 @@ alias cdtra='cd ${SERVER_HOME}/services/traefik'
 alias cdvau='cd ${SERVER_HOME}/services/vaultwarden'
 alias cdwir='cd ${SERVER_HOME}/services/wireguard'
 
+alias svckav='cd ${SERVER_HOME}/services/books/kavita'
 alias svchom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias svcunb='cd ${SERVER_HOME}/services/dns/unbound'
 alias svchor='cd ${SERVER_HOME}/services/inventory/hortusfox'
