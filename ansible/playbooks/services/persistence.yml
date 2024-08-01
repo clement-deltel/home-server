@@ -85,7 +85,6 @@
       replace: '\1-'
     loop:
       - '{{ server_home }}/services/actual/compose.yaml'
-      - '{{ server_home }}/services/books/kavita/compose.yaml'
       - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
@@ -98,6 +97,8 @@
       - '{{ server_home }}/services/jellyfin/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
+      - '{{ server_home }}/services/media/sharing/gokapi/compose.yaml'
+      - '{{ server_home }}/services/media/storage/books/kavita/compose.yaml'
       - '{{ server_home }}/services/navidrome/compose.yaml'
       - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
@@ -155,6 +156,19 @@
     loop:
       - '{{ server_home }}/services/docuseal/db-persistence'
       - '{{ server_home }}/services/docuseal/persistence'
+
+  #--- Gokapi
+  - name: Create Gokapi persistence directories
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/media/sharing/gokapi/persistence'
+      - '{{ server_home }}/services/media/sharing/gokapi/persistence/data'
+      - '{{ server_home }}/services/media/sharing/gokapi/persistence/config'
 
   #--- Grafana
   - name: Create Grafana persistence directories
@@ -268,11 +282,11 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/books/kavita/persistence'
-      - '{{ server_home }}/services/books/kavita/persistence/books'
-      - '{{ server_home }}/services/books/kavita/persistence/comics'
-      - '{{ server_home }}/services/books/kavita/persistence/mangas'
-      - '{{ server_home }}/services/books/kavita/persistence/config'
+      - '{{ server_home }}/services/media/storage/books/kavita/persistence'
+      - '{{ server_home }}/services/media/storage/books/kavita/persistence/books'
+      - '{{ server_home }}/services/media/storage/books/kavita/persistence/comics'
+      - '{{ server_home }}/services/media/storage/books/kavita/persistence/mangas'
+      - '{{ server_home }}/services/media/storage/books/kavita/persistence/config'
 
   #--- Kopia
   - name: Create Kopia persistence directories

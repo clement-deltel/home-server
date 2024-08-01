@@ -26,11 +26,12 @@
       - { when: nextcloud_enable, project_src: '{{ server_home }}/services/nextcloud' }
       - { when: paperless_enable, project_src: '{{ server_home }}/services/paperless' }
       - { when: librum_enable, project_src: '{{ server_home }}/services/librum' }
-      - { when: kavita_enable, project_src: '{{ server_home }}/services/books/kavita' }
+      - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
       - { when: photoprism_enable, project_src: '{{ server_home }}/services/photoprism' }
       - { when: immich_enable, project_src: '{{ server_home }}/services/immich' }
       - { when: navidrome_enable, project_src: '{{ server_home }}/services/navidrome' }
       - { when: jellyfin_enable, project_src: '{{ server_home }}/services/jellyfin' }
+      - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
       - { when: actual_enable, project_src: '{{ server_home }}/services/actual' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }

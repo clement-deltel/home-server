@@ -45,6 +45,7 @@ actual_enable: true
 change_detection_enable: true
 directus_enable: true
 docuseal_enable: true
+gokapi_enable: true
 grafana_enable: true
 grocy_enable: true
 guacamole_enable: true
