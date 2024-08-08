@@ -187,7 +187,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
     - [Paperless](https://docs.paperless-ngx.com/): `https://paperless.${DOMAIN}`
   - Books
-    - [Kavita](https://www.kavitareader.com): `https://library.${DOMAIN}`
+    - [Kavita](https://www.kavitareader.com): `https://books.${DOMAIN}`
     - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
   - Photos
     - [Immich](https://immich.app/): `https://pictures.${DOMAIN}`
@@ -196,6 +196,8 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
   - Videos
     - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
+- **Media Sharing**
+  - [Gokapi](https://github.com/Forceu/Gokapi): `https://share.${DOMAIN}`
 - **Personal Knowledge Management System (PKMS)**
   - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
   - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
@@ -215,6 +217,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
+  - [Stirling-PDF](https://stirlingtools.com): `https://pdf.${DOMAIN}`
 - **Headless CMS**
   - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - **Survey Builder**
