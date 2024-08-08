@@ -11,10 +11,10 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.grocy.rule=Host(`home.${DOMAIN}`)"
+      - "traefik.http.routers.grocy.rule=Host(`grocy.${DOMAIN}`)"
       - "traefik.http.routers.grocy.tls=true"
       # - "traefik.http.routers.grocy.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.grocy.tls.domains[0].main=home.${DOMAIN}"
+      # - "traefik.http.routers.grocy.tls.domains[0].main=grocy.${DOMAIN}"
       - "traefik.http.routers.grocy.service=grocy"
       # Services
       - "traefik.http.services.grocy.loadbalancer.server.port=80"
