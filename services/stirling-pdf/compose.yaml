@@ -30,7 +30,6 @@ services:
       - 8080
     restart: unless-stopped
     stop_grace_period: 30s
-    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./persistence/tessdata:/usr/share/tessdata #Required for extra OCR languages
       - ./persistence/configs:/configs

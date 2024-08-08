@@ -30,7 +30,6 @@ services:
       - 53842
     restart: unless-stopped
     stop_grace_period: 30s
-    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./persistence/data:/app/data
       - ./persistence/config:/app/config
