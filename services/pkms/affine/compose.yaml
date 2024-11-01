@@ -1,7 +1,7 @@
 services:
-  db:
+  postgres:
     container_name: affine-postgres
-    env_file: config/.env.db
+    env_file: config/.env.postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${AFFINE_POSTGRES_USER}"]
       interval: 20s
