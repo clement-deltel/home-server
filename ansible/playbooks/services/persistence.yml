@@ -109,6 +109,22 @@
       - '{{ server_home }}/services/traefik/compose.yaml'
       - '{{ server_home }}/services/vaultwarden/compose.yaml'
 
+  #--- Affine
+  - name: Create Affine persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/pkms/affine/db-persistence'
+      - '{{ server_home }}/services/pkms/affine/persistence'
+      - '{{ server_home }}/services/pkms/affine/persistence/config'
+      - '{{ server_home }}/services/pkms/affine/persistence/storage'
+      - '{{ server_home }}/services/pkms/affine/redis-persistence'
+
   #--- Actual
   - name: Create Actual persistence directories
     ignore_errors: true

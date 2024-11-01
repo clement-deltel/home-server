@@ -1,0 +1,107 @@
+services:
+  db:
+    container_name: affine-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${AFFINE_POSTGRES_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: affine-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${AFFINE_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  redis:
+    container_name: affine-redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    image: ${DEFAULT_REDIS_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      app-net:
+        ipv4_address: ${AFFINE_REDIS_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./redis-persistence:/data
+
+  affine:
+    command: sh -c node ./scripts/self-host-predeploy && node ./dist/index.js
+    container_name: affine
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: affine
+    image: ${AFFINE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.affine.rule=Host(`affine.${DOMAIN}`)"
+      - "traefik.http.routers.affine.tls=true"
+      # - "traefik.http.routers.affine.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.affine.tls.domains[0].main=affine.${DOMAIN}"
+      - "traefik.http.routers.affine.service=affine"
+      # Services
+      - "traefik.http.services.affine.loadbalancer.server.port=3010"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${AFFINE_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${AFFINE_IP}
+    ports:
+      - 3010
+      - 5555
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      # custom configurations
+      - ./persistence/config:/root/.affine/config
+      # blob storage
+      - ./persistence/storage:/root/.affine/storage
+
+networks:
+  app-net:
+    name: affine-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${AFFINE_NET}
+          gateway: ${AFFINE_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

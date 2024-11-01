@@ -42,6 +42,7 @@ traefik_password: '<password>'
 
 # Services
 actual_enable: true
+affine_enable: true
 change_detection_enable: true
 directus_enable: true
 docuseal_enable: true

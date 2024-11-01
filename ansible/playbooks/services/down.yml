@@ -29,8 +29,9 @@
       - { when: photoprism_enable, project_src: '{{ server_home }}/services/photoprism' }
       - { when: immich_enable, project_src: '{{ server_home }}/services/immich' }
       - { when: navidrome_enable, project_src: '{{ server_home }}/services/navidrome' }
-      - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
       - { when: jellyfin_enable, project_src: '{{ server_home }}/services/jellyfin' }
+      - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
+      - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
       - { when: actual_enable, project_src: '{{ server_home }}/services/actual' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }
