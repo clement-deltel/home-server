@@ -70,3 +70,4 @@ stirling_pdf_enable: true
 unbound_enable: true
 vaultwarden_enable: true
 wireguard_enable: true
+wishlist_enable: true

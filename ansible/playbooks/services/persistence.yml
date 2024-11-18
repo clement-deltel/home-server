@@ -108,6 +108,7 @@
       - '{{ server_home }}/services/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/traefik/compose.yaml'
       - '{{ server_home }}/services/vaultwarden/compose.yaml'
+      - '{{ server_home }}/services/wishlist/compose.yaml'
 
   #--- Actual
   - name: Create Actual persistence directories
@@ -531,3 +532,17 @@
       owner: docker
       group: docker
       mode: 0744
+
+  #--- Wishlist
+  - name: Create Wishlist persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/wishlist/persistence'
+      - '{{ server_home }}/services/wishlist/persistence/data'
+      - '{{ server_home }}/services/wishlist/persistence/uploads'

@@ -392,6 +392,7 @@ alias cdsti='cd ${SERVER_HOME}/services/stirling-pdf'
 alias cdtra='cd ${SERVER_HOME}/services/traefik'
 alias cdvau='cd ${SERVER_HOME}/services/vaultwarden'
 alias cdwir='cd ${SERVER_HOME}/services/wireguard'
+alias cdwis='cd ${SERVER_HOME}/services/wishlist'
 
 alias svchom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias svcunb='cd ${SERVER_HOME}/services/dns/unbound'
@@ -424,6 +425,7 @@ alias svcsti='cd ${SERVER_HOME}/services/stirling-pdf'
 alias svctra='cd ${SERVER_HOME}/services/traefik'
 alias svcvau='cd ${SERVER_HOME}/services/vaultwarden'
 alias svcwir='cd ${SERVER_HOME}/services/wireguard'
+alias svcwis='cd ${SERVER_HOME}/services/wishlist'
 
 # Scripts
 alias scrall='cd ${SERVER_HOME}/scripts/all'

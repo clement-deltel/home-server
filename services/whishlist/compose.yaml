@@ -1,0 +1,40 @@
+services:
+  wishlist:
+    container_name: wishlist
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: wishlist
+    image: ${WISHLIST_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.wishlist.rule=Host(`wish.${DOMAIN}`)"
+      - "traefik.http.routers.wishlist.tls=true"
+      # - "traefik.http.routers.wishlist.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.wishlist.tls.domains[0].main=wish.${DOMAIN}"
+      - "traefik.http.routers.wishlist.service=wishlist"
+      # Services
+      - "traefik.http.services.wishlist.loadbalancer.server.port=3280"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${WISHLIST_IP}
+    ports:
+      - 3280
+    volumes:
+      # This is where the sqlite database will be stored
+      - ./persistence/data:/usr/src/app/data
+      # This is where user image uploads will be stored
+      - ./persistence/uploads:/usr/src/app/uploads
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
