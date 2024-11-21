@@ -3,7 +3,7 @@ services:
     container_name: bytestash
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: config/Dockerfile
     dns:
       - 127.0.0.1
       - 45.90.28.96
