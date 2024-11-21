@@ -22,6 +22,7 @@
     loop:
       - '{{ server_home }}/logs/authentication/vaultwarden'
       - '{{ server_home }}/logs/backup/kopia'
+      - '{{ server_home }}/logs/bytestash'
       - '{{ server_home }}/logs/dashboard/homarr'
       - '{{ server_home }}/logs/dns/pihole'
       - '{{ server_home }}/logs/dns/unbound'

@@ -1,0 +1,42 @@
+services:
+  bytestash:
+    container_name: bytestash
+    build:
+      context: .
+      dockerfile: Dockerfile
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: bytestash
+    image: bytestash/bytestash:latest
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.bytestash.rule=Host(`snippets.${DOMAIN}`)"
+      - "traefik.http.routers.bytestash.tls=true"
+      # - "traefik.http.routers.bytestash.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.bytestash.tls.domains[0].main=snippets.${DOMAIN}"
+      - "traefik.http.routers.bytestash.service=bytestash"
+      # Services
+      - "traefik.http.services.bytestash.loadbalancer.server.port=5000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${BYTESTASH_IP}
+    ports:
+      - 5000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/data/snippets
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

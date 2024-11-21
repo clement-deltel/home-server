@@ -44,3 +44,4 @@
       - { when: directus_enable, project_src: '{{ server_home }}/services/directus' }
       - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }
       - { when: wishlist_enable, project_src: '{{ server_home }}/services/wishlist' }
+      - { when: bytestash_enable, project_src: '{{ server_home }}/services/bytestash' }

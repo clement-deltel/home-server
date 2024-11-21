@@ -222,6 +222,10 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - **Survey Builder**
   - [Limesurvey](https://www.limesurvey.org/): `https://survey.${DOMAIN}`
+- **Wishlist**
+  - [Wishlist](https://github.com/cmintey/wishlist): `https://wish.${DOMAIN}`
+- **Snippets Collection**
+  - [ByteStash](https://github.com/jordan-dalby/ByteStash): `https://snippets.${DOMAIN}`
 - **Games**
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
 

@@ -85,6 +85,7 @@
       replace: '\1-'
     loop:
       - '{{ server_home }}/services/actual/compose.yaml'
+      - '{{ server_home }}/services/bytestash/compose.yaml'
       - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
@@ -135,6 +136,16 @@
       - '{{ server_home }}/services/pkms/affine/persistence/storage'
       - '{{ server_home }}/services/pkms/affine/postgres-persistence'
       - '{{ server_home }}/services/pkms/affine/redis-persistence'
+
+  #--- ByteStash
+  - name: Create ByteStash persistence directory
+    ignore_errors: true
+    file:
+      path: '{{ server_home }}/services/bytestash/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
 
   #--- Detection (changedetection.io)
   - name: Create Change Detection persistence directory
