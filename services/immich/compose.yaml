@@ -104,7 +104,7 @@ services:
       # - "traefik.http.routers.immich.tls.domains[0].main=pictures.${DOMAIN}"
       - "traefik.http.routers.immich.service=immich"
       # Services
-      - "traefik.http.services.immich.loadbalancer.server.port=3001"
+      - "traefik.http.services.immich.loadbalancer.server.port=2283"
     logging:
       driver: json-file
       options:
@@ -116,7 +116,7 @@ services:
       traefik-net:
         ipv4_address: ${IMMICH_IP}
     ports:
-      - 3001
+      - 2283
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
