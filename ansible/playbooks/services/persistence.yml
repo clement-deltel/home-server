@@ -100,6 +100,7 @@
       - '{{ server_home }}/services/limesurvey/compose.yaml'
       - '{{ server_home }}/services/media/sharing/gokapi/compose.yaml'
       - '{{ server_home }}/services/media/storage/books/kavita/compose.yaml'
+      - '{{ server_home }}/services/monitoring/jetlog/compose.yaml'
       - '{{ server_home }}/services/navidrome/compose.yaml'
       - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
@@ -299,6 +300,15 @@
      - '{{ server_home }}/services/jellyfin/persistence/library'
      - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
+
+  #--- Jetlog
+  - name: Create Jetlog persistence directory
+    file:
+      path: '{{ server_home }}/services/monitoring/jetlog/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
 
   #--- Kavita
   - name: Create Kavita persistence directories

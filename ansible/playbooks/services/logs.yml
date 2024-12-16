@@ -41,6 +41,7 @@
       - '{{ server_home }}/logs/media/storage/videos/jellyfin'
       - '{{ server_home }}/logs/monitoring/detection'
       - '{{ server_home }}/logs/monitoring/grafana'
+      - '{{ server_home }}/logs/monitoring/jetlog'
       - '{{ server_home }}/logs/monitoring/ntfy'
       - '{{ server_home }}/logs/monitoring/prometheus'
       - '{{ server_home }}/logs/pdf/docuseal'

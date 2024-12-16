@@ -55,6 +55,7 @@ homarr_enable: true
 hortusfox_enable: true
 immich_enable: true
 jellyfin_enable: true
+jetlog_enable: true
 kavita_enable: true
 kopia_enable: true
 librum_enable: false

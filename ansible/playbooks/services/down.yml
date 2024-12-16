@@ -21,6 +21,7 @@
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/prometheus' }
       - { when: ntfy_enable, project_src: '{{ server_home }}/services/ntfy' }
       - { when: change_detection_enable, project_src: '{{ server_home }}/services/detection' }
+      - { when: jetlog_enable, project_src: '{{ server_home }}/services/monitoring/jetlog' }
       - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
       - { when: nextcloud_enable, project_src: '{{ server_home }}/services/nextcloud' }
       - { when: paperless_enable, project_src: '{{ server_home }}/services/paperless' }

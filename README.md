@@ -180,6 +180,8 @@ This section covers all the supported services of the stack. It categorizes the 
     - [ntfy](https://ntfy.sh/): `https://ntfy.${DOMAIN}`
   - Website Change Detection
     - [changedetection.io](https://changedetection.io/): `https://detection.${DOMAIN}`
+  - Flight Tracking
+    - [Jetlog](https://github.com/pbogre/jetlog): `https://fly.${DOMAIN}`
 - **Backup**
   - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
 - **Media Storage**
