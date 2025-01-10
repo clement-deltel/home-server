@@ -91,7 +91,7 @@
       - '{{ server_home }}/services/directus/compose.yaml'
       - '{{ server_home }}/services/docuseal/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
-      - '{{ server_home }}/services/grocy/compose.yaml'
+      - '{{ server_home }}/services/inventory/grocy/compose.yaml'
       - '{{ server_home }}/services/inventory/hortusfox/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
@@ -216,7 +216,7 @@
   #--- Grocy
   - name: Create Grocy persistence directory
     file:
-      path: '{{ server_home }}/services/grocy/persistence'
+      path: '{{ server_home }}/services/inventory/grocy/persistence'
       state: directory
       owner: docker
       group: docker
