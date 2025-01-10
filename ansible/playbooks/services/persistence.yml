@@ -185,8 +185,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/docuseal/db-persistence'
-      - '{{ server_home }}/services/docuseal/persistence'
+      - '{{ server_home }}/services/pdf/docuseal/db-persistence'
+      - '{{ server_home }}/services/pdf/docuseal/persistence'
 
   #--- Gokapi
   - name: Create Gokapi persistence directories
@@ -503,9 +503,9 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/stirling-pdf/persistence'
-      - '{{ server_home }}/services/stirling-pdf/persistence/configs'
-      - '{{ server_home }}/services/stirling-pdf/persistence/tessdata'
+      - '{{ server_home }}/services/pdf/stirling-pdf/persistence'
+      - '{{ server_home }}/services/pdf/stirling-pdf/persistence/configs'
+      - '{{ server_home }}/services/pdf/stirling-pdf/persistence/tessdata'
 
   - name: Download French language pack for OCR feature
     get_url:
