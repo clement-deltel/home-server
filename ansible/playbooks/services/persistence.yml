@@ -87,6 +87,7 @@
       - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
+      - '{{ server_home }}/services/dns/pihole/compose.yaml'
       - '{{ server_home }}/services/finances/actual/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/inventory/grocy/compose.yaml'
@@ -107,7 +108,6 @@
       - '{{ server_home }}/services/ntfy/compose.yaml'
       - '{{ server_home }}/services/pdf/docuseal/compose.yaml'
       - '{{ server_home }}/services/pdf/stirling-pdf/compose.yaml'
-      - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/remote/guacamole/compose.yaml'
       - '{{ server_home }}/services/remote/wg-easy/compose.yaml'
       - '{{ server_home }}/services/security/wazuh/compose.yaml'
@@ -210,8 +210,9 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/grafana/persistence'
+      - '{{ server_home }}/services/grafana/db-persistence'
       - '{{ server_home }}/services/grafana/influxdb-persistence'
+      - '{{ server_home }}/services/grafana/persistence'
 
   #--- Grocy
   - name: Create Grocy persistence directory
@@ -473,8 +474,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/pihole/etc-pihole'
-      - '{{ server_home }}/services/pihole/etc-dnsmasqd'
+      - '{{ server_home }}/services/dns/pihole/etc-pihole'
+      - '{{ server_home }}/services/dns/pihole/etc-dnsmasqd'
 
   - name: Create Pihole log file
     file:

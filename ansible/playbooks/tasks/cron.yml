@@ -24,7 +24,7 @@
       state: present
     loop:
       - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/detection/persistence/changedetection-backup-* ${SERVER_HOME}/services/kopia/persistence/files/changedetection.zip
-      - 'source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/pihole/etc-pihole/pi-hole-pihole-teleporter_* ${SERVER_HOME}/services/kopia/persistence/files/pihole.tar.gz; docker exec pihole /bin/bash -c "rm -f /etc/pihole/pi-hole-*"'
+      - 'source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* ${SERVER_HOME}/services/kopia/persistence/files/pihole.tar.gz; docker exec pihole /bin/bash -c "rm -f /etc/pihole/pi-hole-*"'
 
   - name: Minecraft backup job
     cron:
