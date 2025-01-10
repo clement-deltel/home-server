@@ -40,8 +40,8 @@ services:
       # Mount local folders to snapshot
       - ./persistence/databases:/data/databases:ro
       - ./persistence/files:/data/files:ro
-      #- ${SERVER_HOME}/services/immich/persistence:/data/immich:ro
-      #- ${SERVER_HOME}/services/jellyfin/persistence:/data/jellyfin:ro
+      #- ${SERVER_HOME}/services/media/storage/pictures/immich/persistence:/data/immich:ro
+      #- ${SERVER_HOME}/services/media/storage/videos/jellyfin/persistence:/data/jellyfin:ro
       #- ${SERVER_HOME}/services/vaultwarden/persistence:/data/vaultwarden:ro
 
 networks:
