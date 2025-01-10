@@ -107,6 +107,7 @@
       - '{{ server_home }}/services/paperless/compose.yaml'
       - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
+      - '{{ server_home }}/services/remote/wg-easy/compose.yaml'
       - '{{ server_home }}/services/security/wazuh/compose.yaml'
       - '{{ server_home }}/services/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/traefik/compose.yaml'
@@ -573,6 +574,15 @@
       - '{{ server_home }}/services/security/wazuh/dashboard-persistence'
       - '{{ server_home }}/services/security/wazuh/dashboard-persistence/config'
       - '{{ server_home }}/services/security/wazuh/dashboard-persistence/custom'
+
+  #--- Wireguard Easy
+  - name: Create WireGuard Easy persistence directory
+    file:
+      path: '{{ server_home }}/services/remote/wg-easy/persistence'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
 
   #--- WireGuard
   - name: Create WireGuard persistence directory

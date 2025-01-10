@@ -166,6 +166,7 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Remote Access**
   - VPN
     - [Wireguard](https://www.wireguard.com/): `<ip-address>:51820`
+    - [Wireguard Easy](https://github.com/wg-easy/wg-easy): `<ip-address>:51820`
   - Clientless Remote Desktop Gateway (SSH, RDP...)
     - [Apache Guacamole](https://guacamole.apache.org/): `https://guacamole.${DOMAIN}`
 - **DNS**
@@ -184,6 +185,8 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Jetlog](https://github.com/pbogre/jetlog): `https://fly.${DOMAIN}`
 - **Backup**
   - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
+- **Security**
+  - [Wazuh](https://wazuh.com): `https://seim.${DOMAIN}`
 - **Media Storage**
   - Documents
     - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
@@ -238,8 +241,13 @@ This section covers all the ports exposed to internet. Those are the ports that 
 - **TCP**
   - **80**: Traefik HTTP
   - **443**: Traefik HTTPS
+  - **1514**: Wazuh
+  - **1515**: Wazuh
+  - **9200**: Wazuh Indexer
   - **25565**: Minecraft
+  - **55000**: Wazuh API
 - **UDP**
+  - **514**: Wazuh
   - **25565**: Minecraft
   - **51820**: Wireguard
 

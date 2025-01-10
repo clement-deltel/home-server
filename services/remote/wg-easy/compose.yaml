@@ -1,0 +1,50 @@
+services:
+  wireguard-easy:
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+      # - NET_RAW # ⚠️ Uncomment if using Podman
+    container_name: wireguard-easy
+    env_file: config/.env
+    image: ${WIREGUARD_EASY_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.wireguard.rule=Host(`vpn.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard.tls=true"
+      # - "traefik.http.routers.wireguard.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.wireguard.tls.domains[0].main=vpn.${DOMAIN}"
+      - "traefik.http.routers.wireguard.service=wireguard"
+      - "traefik.udp.routers.wireguard.entrypoints=vpn"
+      - "traefik.udp.routers.wireguard.service=wireguard"
+      # Services
+      - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
+      - "traefik.udp.services.wireguard.loadbalancer.server.port=${WIREGUARD_PORT}"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${WIREGUARD_EASY_IP}
+      monitoring-net:
+        ipv4_address: ${WIREGUARD_MONITORING_IP}
+    ports:
+      - 51820/udp
+      - 51821/tcp
+    restart: unless-stopped
+    stop_grace_period: 30s
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+    volumes:
+      - ./persistence:/etc/wireguard
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
+  monitoring-net:
+    external: true
+    name: monitoring-net

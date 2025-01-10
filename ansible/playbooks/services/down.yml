@@ -43,6 +43,7 @@
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
       - { when: wazuh_enable, project_src: '{{ server_home }}/services/security/wazuh' }
+      - { when: wireguard_easy_enable, project_src: '{{ server_home }}/services/remote/wg-easy' }
       - { when: wireguard_enable, project_src: '{{ server_home }}/services/wireguard' }
       - { when: wishlist_enable, project_src: '{{ server_home }}/services/wishlist' }
       - { when: true, project_src: '{{ server_home }}/services/traefik' }
