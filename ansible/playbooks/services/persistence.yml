@@ -587,7 +587,7 @@
   #--- WireGuard
   - name: Create WireGuard persistence directory
     file:
-      path: '{{ server_home }}/services/wireguard/persistence'
+      path: '{{ server_home }}/services/remote/wireguard/persistence'
       state: directory
       owner: docker
       group: docker
