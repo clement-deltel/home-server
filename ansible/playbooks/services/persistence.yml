@@ -84,17 +84,17 @@
       regexp: '(^\s*)# -'
       replace: '\1-'
     loop:
-      - '{{ server_home }}/services/actual/compose.yaml'
-      - '{{ server_home }}/services/bytestash/compose.yaml'
       - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
       - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
-      - '{{ server_home }}/services/docuseal/compose.yaml'
+      - '{{ server_home }}/services/finances/actual/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/inventory/grocy/compose.yaml'
       - '{{ server_home }}/services/inventory/hortusfox/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
+      - '{{ server_home }}/services/management/code/bytestash/compose.yaml'
+      - '{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml'
       - '{{ server_home }}/services/media/sharing/gokapi/compose.yaml'
       - '{{ server_home }}/services/media/storage/books/kavita/compose.yaml'
       - '{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml'
@@ -105,20 +105,20 @@
       - '{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml'
       - '{{ server_home }}/services/monitoring/jetlog/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
+      - '{{ server_home }}/services/pdf/docuseal/compose.yaml'
+      - '{{ server_home }}/services/pdf/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/remote/guacamole/compose.yaml'
       - '{{ server_home }}/services/remote/wg-easy/compose.yaml'
       - '{{ server_home }}/services/security/wazuh/compose.yaml'
-      - '{{ server_home }}/services/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/traefik/compose.yaml'
-      - '{{ server_home }}/services/vaultwarden/compose.yaml'
       - '{{ server_home }}/services/wishlist/compose.yaml'
 
   #--- Actual
   - name: Create Actual persistence directories
     ignore_errors: true
     file:
-      path: '{{ server_home }}/services/actual/persistence'
+      path: '{{ server_home }}/services/finances/actual/persistence'
       state: directory
       owner: docker
       group: docker
@@ -144,7 +144,7 @@
   - name: Create ByteStash persistence directory
     ignore_errors: true
     file:
-      path: '{{ server_home }}/services/bytestash/persistence'
+      path: '{{ server_home }}/services/management/code/bytestash/persistence'
       state: directory
       owner: docker
       group: docker
@@ -544,8 +544,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/vaultwarden/db-persistence'
-      - '{{ server_home }}/services/vaultwarden/persistence'
+      - '{{ server_home }}/services/management/passwords/vaultwarden/db-persistence'
+      - '{{ server_home }}/services/management/passwords/vaultwarden/persistence'
 
   #--- Wazuh
   - name: Create Wazuh persistence directories

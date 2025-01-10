@@ -42,7 +42,7 @@ services:
       - ./persistence/files:/data/files:ro
       #- ${SERVER_HOME}/services/media/storage/pictures/immich/persistence:/data/immich:ro
       #- ${SERVER_HOME}/services/media/storage/videos/jellyfin/persistence:/data/jellyfin:ro
-      #- ${SERVER_HOME}/services/vaultwarden/persistence:/data/vaultwarden:ro
+      #- ${SERVER_HOME}/services/management/passwords/vaultwarden/persistence:/data/vaultwarden:ro
 
 networks:
   traefik-net:

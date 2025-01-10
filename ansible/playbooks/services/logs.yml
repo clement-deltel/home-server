@@ -29,7 +29,7 @@
       - '{{ server_home }}/logs/inventory/grocy'
       - '{{ server_home }}/logs/inventory/hortusfox'
       - '{{ server_home }}/logs/management/code/bytestash'
-      - '{{ server_home }}/logs/management/password/vaultwarden'
+      - '{{ server_home }}/logs/management/passwords/vaultwarden'
       - '{{ server_home }}/logs/media/sharing/gokapi'
       - '{{ server_home }}/logs/media/storage/books/kavita'
       - '{{ server_home }}/logs/media/storage/books/librum'
