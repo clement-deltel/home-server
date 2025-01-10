@@ -354,8 +354,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/librum/db-persistence'
-      - '{{ server_home }}/services/librum/persistence'
+      - '{{ server_home }}/services/media/storage/books/librum/db-persistence'
+      - '{{ server_home }}/services/media/storage/books/librum/persistence'
 
   #--- Limesurvey
   - name: Create Limesurvey persistence directories
