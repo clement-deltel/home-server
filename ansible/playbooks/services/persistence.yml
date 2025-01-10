@@ -85,7 +85,6 @@
       replace: '\1-'
     loop:
       - '{{ server_home }}/services/dashboard/homarr/compose.yaml'
-      - '{{ server_home }}/services/detection/compose.yaml'
       - '{{ server_home }}/services/directus/compose.yaml'
       - '{{ server_home }}/services/dns/pihole/compose.yaml'
       - '{{ server_home }}/services/finances/actual/compose.yaml'
@@ -104,8 +103,9 @@
       - '{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml'
       - '{{ server_home }}/services/media/storage/music/navidrome/compose.yaml'
       - '{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml'
+      - '{{ server_home }}/services/monitoring/detection/compose.yaml'
       - '{{ server_home }}/services/monitoring/jetlog/compose.yaml'
-      - '{{ server_home }}/services/ntfy/compose.yaml'
+      - '{{ server_home }}/services/monitoring/ntfy/compose.yaml'
       - '{{ server_home }}/services/pdf/docuseal/compose.yaml'
       - '{{ server_home }}/services/pdf/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/remote/guacamole/compose.yaml'
@@ -154,7 +154,7 @@
   - name: Create Change Detection persistence directory
     ignore_errors: true
     file:
-      path: '{{ server_home }}/services/detection/persistence'
+      path: '{{ server_home }}/services/monitoring/detection/persistence'
       state: directory
       owner: docker
       group: docker
@@ -419,10 +419,10 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/ntfy/persistence'
-      - '{{ server_home }}/services/ntfy/persistence/cache'
-      - '{{ server_home }}/services/ntfy/persistence/etc'
-      - '{{ server_home }}/services/ntfy/persistence/log'
+      - '{{ server_home }}/services/monitoring/ntfy/persistence'
+      - '{{ server_home }}/services/monitoring/ntfy/persistence/cache'
+      - '{{ server_home }}/services/monitoring/ntfy/persistence/etc'
+      - '{{ server_home }}/services/monitoring/ntfy/persistence/log'
 
   - name: Copy Ntfy server configuration file
     copy:
@@ -488,7 +488,7 @@
   #--- Prometheus
   - name: Create Prometheus persistence directory
     file:
-      path: '{{ server_home }}/services/prometheus/prometheus-persistence'
+      path: '{{ server_home }}/services/monitoring/prometheus/prometheus-persistence'
       state: directory
       owner: docker
       group: docker
