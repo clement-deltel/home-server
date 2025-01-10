@@ -284,10 +284,10 @@
       group: docker
       mode: 0744
     loop:
-     - '{{ server_home }}/services/immich/db-persistence'
-     - '{{ server_home }}/services/immich/persistence'
-     - '{{ server_home }}/services/immich/persistence/model-cache'
-     - '{{ server_home }}/services/immich/persistence/upload'
+     - '{{ server_home }}/services/media/storage/pictures/immich/db-persistence'
+     - '{{ server_home }}/services/media/storage/pictures/immich/persistence'
+     - '{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache'
+     - '{{ server_home }}/services/media/storage/pictures/immich/persistence/upload'
 
   #--- Jellyfin
   - name: Create Jellyfin persistence directories
@@ -458,10 +458,10 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/photoprism/db-persistence'
-      - '{{ server_home }}/services/photoprism/persistence'
-      - '{{ server_home }}/services/photoprism/persistence/pictures'
-      - '{{ server_home }}/services/photoprism/persistence/storage'
+      - '{{ server_home }}/services/media/storage/pictures/photoprism/db-persistence'
+      - '{{ server_home }}/services/media/storage/pictures/photoprism/persistence'
+      - '{{ server_home }}/services/media/storage/pictures/photoprism/persistence/pictures'
+      - '{{ server_home }}/services/media/storage/pictures/photoprism/persistence/storage'
 
   #--- Pihole
   - name: Create Pihole directories
