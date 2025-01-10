@@ -21,22 +21,22 @@
       - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
       - { when: grafana_enable, project_src: '{{ server_home }}/services/grafana' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/grocy' }
-      - { when: guacamole_enable, project_src: '{{ server_home }}/services/guacamole' }
+      - { when: guacamole_enable, project_src: '{{ server_home }}/services/remote/guacamole' }
       - { when: homarr_enable, project_src: '{{ server_home }}/services/dashboard/homarr' }
       - { when: hortusfox_enable, project_src: '{{ server_home }}/services/inventory/hortusfox' }
-      - { when: immich_enable, project_src: '{{ server_home }}/services/immich' }
-      - { when: jellyfin_enable, project_src: '{{ server_home }}/services/jellyfin' }
+      - { when: immich_enable, project_src: '{{ server_home }}/services/media/storage/pictures/immich' }
+      - { when: jellyfin_enable, project_src: '{{ server_home }}/services/media/storage/videos/jellyfin' }
       - { when: jetlog_enable, project_src: '{{ server_home }}/services/monitoring/jetlog' }
       - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
       - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
-      - { when: librum_enable, project_src: '{{ server_home }}/services/librum' }
+      - { when: librum_enable, project_src: '{{ server_home }}/services/media/storage/books/librum' }
       - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }
       - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }
-      - { when: navidrome_enable, project_src: '{{ server_home }}/services/navidrome' }
-      - { when: nextcloud_enable, project_src: '{{ server_home }}/services/nextcloud' }
+      - { when: navidrome_enable, project_src: '{{ server_home }}/services/media/storage/music/navidrome' }
+      - { when: nextcloud_enable, project_src: '{{ server_home }}/services/media/storage/documents/nextcloud' }
       - { when: ntfy_enable, project_src: '{{ server_home }}/services/ntfy' }
-      - { when: paperless_enable, project_src: '{{ server_home }}/services/paperless' }
-      - { when: photoprism_enable, project_src: '{{ server_home }}/services/photoprism' }
+      - { when: paperless_enable, project_src: '{{ server_home }}/services/media/storage/documents/paperless' }
+      - { when: photoprism_enable, project_src: '{{ server_home }}/services/media/storage/pictures/photoprism' }
       - { when: pihole_enable, project_src: '{{ server_home }}/services/pihole' }
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/prometheus' }
       - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/stirling-pdf' }
@@ -44,6 +44,6 @@
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }
       - { when: wazuh_enable, project_src: '{{ server_home }}/services/security/wazuh' }
       - { when: wireguard_easy_enable, project_src: '{{ server_home }}/services/remote/wg-easy' }
-      - { when: wireguard_enable, project_src: '{{ server_home }}/services/wireguard' }
+      - { when: wireguard_enable, project_src: '{{ server_home }}/services/remote/wireguard' }
       - { when: wishlist_enable, project_src: '{{ server_home }}/services/wishlist' }
       - { when: true, project_src: '{{ server_home }}/services/traefik' }

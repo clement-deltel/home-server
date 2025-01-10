@@ -92,21 +92,21 @@
       - '{{ server_home }}/services/docuseal/compose.yaml'
       - '{{ server_home }}/services/grafana/compose.yaml'
       - '{{ server_home }}/services/grocy/compose.yaml'
-      - '{{ server_home }}/services/guacamole/compose.yaml'
-      - '{{ server_home }}/services/immich/compose.yaml'
       - '{{ server_home }}/services/inventory/hortusfox/compose.yaml'
-      - '{{ server_home }}/services/jellyfin/compose.yaml'
       - '{{ server_home }}/services/kopia/compose.yaml'
       - '{{ server_home }}/services/limesurvey/compose.yaml'
       - '{{ server_home }}/services/media/sharing/gokapi/compose.yaml'
       - '{{ server_home }}/services/media/storage/books/kavita/compose.yaml'
       - '{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml'
       - '{{ server_home }}/services/media/storage/documents/paperless/compose.yaml'
+      - '{{ server_home }}/services/media/storage/pictures/immich/compose.yaml'
+      - '{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml'
+      - '{{ server_home }}/services/media/storage/music/navidrome/compose.yaml'
+      - '{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml'
       - '{{ server_home }}/services/monitoring/jetlog/compose.yaml'
-      - '{{ server_home }}/services/navidrome/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
-      - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
+      - '{{ server_home }}/services/remote/guacamole/compose.yaml'
       - '{{ server_home }}/services/remote/wg-easy/compose.yaml'
       - '{{ server_home }}/services/security/wazuh/compose.yaml'
       - '{{ server_home }}/services/stirling-pdf/compose.yaml'
@@ -231,14 +231,14 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/guacamole/db-persistence'
-      - '{{ server_home }}/services/guacamole/guacd-persistence'
-      - '{{ server_home }}/services/guacamole/guacd-persistence/drive'
-      - '{{ server_home }}/services/guacamole/guacd-persistence/record'
+      - '{{ server_home }}/services/remote/guacamole/db-persistence'
+      - '{{ server_home }}/services/remote/guacamole/guacd-persistence'
+      - '{{ server_home }}/services/remote/guacamole/guacd-persistence/drive'
+      - '{{ server_home }}/services/remote/guacamole/guacd-persistence/record'
 
   - name: Make initdb.sql script executable
     file:
-      path: '{{ server_home }}/services/guacamole/config/initdb.sql'
+      path: '{{ server_home }}/services/remote/guacamole/config/initdb.sql'
       state: file
       owner: docker
       group: docker
