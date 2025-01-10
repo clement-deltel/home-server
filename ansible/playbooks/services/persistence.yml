@@ -298,10 +298,10 @@
       group: docker
       mode: 0744
     loop:
-     - '{{ server_home }}/services/jellyfin/persistence'
-     - '{{ server_home }}/services/jellyfin/persistence/library'
-     - '{{ server_home }}/services/jellyfin/persistence/movies'
-     - '{{ server_home }}/services/jellyfin/persistence/tvshows'
+     - '{{ server_home }}/services/media/storage/videos/jellyfin/persistence'
+     - '{{ server_home }}/services/media/storage/videos/jellyfin/persistence/library'
+     - '{{ server_home }}/services/media/storage/videos/jellyfin/persistence/movies'
+     - '{{ server_home }}/services/media/storage/videos/jellyfin/persistence/tvshows'
 
   #--- Jetlog
   - name: Create Jetlog persistence directory
@@ -392,8 +392,8 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/navidrome/persistence/data'
-      - '{{ server_home }}/services/navidrome/persistence/music'
+      - '{{ server_home }}/services/media/storage/music/navidrome/persistence/data'
+      - '{{ server_home }}/services/media/storage/music/navidrome/persistence/music'
 
   #--- Nextcloud
   - name: Create Nextcloud persistence directories
