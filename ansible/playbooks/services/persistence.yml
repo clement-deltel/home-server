@@ -107,6 +107,7 @@
       - '{{ server_home }}/services/paperless/compose.yaml'
       - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
+      - '{{ server_home }}/services/security/wazuh/compose.yaml'
       - '{{ server_home }}/services/stirling-pdf/compose.yaml'
       - '{{ server_home }}/services/traefik/compose.yaml'
       - '{{ server_home }}/services/vaultwarden/compose.yaml'
@@ -170,8 +171,8 @@
     loop:
       - '{{ server_home }}/services/directus/db-persistence'
       - '{{ server_home }}/services/directus/persistence'
-      - '{{ server_home }}/services/directus/persistence/uploads'
       - '{{ server_home }}/services/directus/persistence/extensions'
+      - '{{ server_home }}/services/directus/persistence/uploads'
 
   #--- Docuseal
   - name: Create docuseal persistence directories
@@ -196,8 +197,8 @@
       mode: 0744
     loop:
       - '{{ server_home }}/services/media/sharing/gokapi/persistence'
-      - '{{ server_home }}/services/media/sharing/gokapi/persistence/data'
       - '{{ server_home }}/services/media/sharing/gokapi/persistence/config'
+      - '{{ server_home }}/services/media/sharing/gokapi/persistence/data'
 
   #--- Grafana
   - name: Create Grafana persistence directories
@@ -267,11 +268,11 @@
     loop:
      - '{{ server_home }}/services/inventory/hortusfox/db-persistence'
      - '{{ server_home }}/services/inventory/hortusfox/persistence'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/backup'
      - '{{ server_home }}/services/inventory/hortusfox/persistence/images'
      - '{{ server_home }}/services/inventory/hortusfox/persistence/logs'
-     - '{{ server_home }}/services/inventory/hortusfox/persistence/backup'
-     - '{{ server_home }}/services/inventory/hortusfox/persistence/themes'
      - '{{ server_home }}/services/inventory/hortusfox/persistence/migrate'
+     - '{{ server_home }}/services/inventory/hortusfox/persistence/themes'
 
   #--- Immich
   - name: Create Immich persistence directories
@@ -284,8 +285,8 @@
     loop:
      - '{{ server_home }}/services/immich/db-persistence'
      - '{{ server_home }}/services/immich/persistence'
-     - '{{ server_home }}/services/immich/persistence/upload'
      - '{{ server_home }}/services/immich/persistence/model-cache'
+     - '{{ server_home }}/services/immich/persistence/upload'
 
   #--- Jellyfin
   - name: Create Jellyfin persistence directories
@@ -298,8 +299,8 @@
     loop:
      - '{{ server_home }}/services/jellyfin/persistence'
      - '{{ server_home }}/services/jellyfin/persistence/library'
-     - '{{ server_home }}/services/jellyfin/persistence/tvshows'
      - '{{ server_home }}/services/jellyfin/persistence/movies'
+     - '{{ server_home }}/services/jellyfin/persistence/tvshows'
 
   #--- Jetlog
   - name: Create Jetlog persistence directory
@@ -323,8 +324,8 @@
       - '{{ server_home }}/services/media/storage/books/kavita/persistence'
       - '{{ server_home }}/services/media/storage/books/kavita/persistence/books'
       - '{{ server_home }}/services/media/storage/books/kavita/persistence/comics'
-      - '{{ server_home }}/services/media/storage/books/kavita/persistence/mangas'
       - '{{ server_home }}/services/media/storage/books/kavita/persistence/config'
+      - '{{ server_home }}/services/media/storage/books/kavita/persistence/mangas'
 
   #--- Kopia
   - name: Create Kopia persistence directories
@@ -337,10 +338,10 @@
       mode: 0744
     loop:
       - '{{ server_home }}/services/kopia/persistence'
-      - '{{ server_home }}/services/kopia/persistence/config'
       - '{{ server_home }}/services/kopia/persistence/cache'
-      - '{{ server_home }}/services/kopia/persistence/logs'
+      - '{{ server_home }}/services/kopia/persistence/config'
       - '{{ server_home }}/services/kopia/persistence/data'
+      - '{{ server_home }}/services/kopia/persistence/logs'
 
   #--- Librum
   - name: Create Librum persistence directories
@@ -367,9 +368,9 @@
     loop:
       - '{{ server_home }}/services/limesurvey/db-persistence'
       - '{{ server_home }}/services/limesurvey/persistence'
+      - '{{ server_home }}/services/limesurvey/persistence/config'
       - '{{ server_home }}/services/limesurvey/persistence/plugins'
       - '{{ server_home }}/services/limesurvey/persistence/upload'
-      - '{{ server_home }}/services/limesurvey/persistence/config'
 
   #--- Minecraft
   - name: Create Minecraft persistence directory
@@ -502,8 +503,8 @@
       mode: 0744
     loop:
       - '{{ server_home }}/services/stirling-pdf/persistence'
-      - '{{ server_home }}/services/stirling-pdf/persistence/tessdata'
       - '{{ server_home }}/services/stirling-pdf/persistence/configs'
+      - '{{ server_home }}/services/stirling-pdf/persistence/tessdata'
 
   - name: Download French language pack for OCR feature
     get_url:
@@ -544,6 +545,34 @@
     loop:
       - '{{ server_home }}/services/vaultwarden/db-persistence'
       - '{{ server_home }}/services/vaultwarden/persistence'
+
+  #--- Wazuh
+  - name: Create Wazuh persistence directories
+    ignore_errors: true
+    file:
+      path: '{{ item }}'
+      state: directory
+      owner: docker
+      group: docker
+      mode: 0744
+    loop:
+      - '{{ server_home }}/services/security/wazuh/persistence'
+      - '{{ server_home }}/services/security/wazuh/persistence/api_configuration'
+      - '{{ server_home }}/services/security/wazuh/persistence/etc'
+      - '{{ server_home }}/services/security/wazuh/persistence/logs'
+      - '{{ server_home }}/services/security/wazuh/persistence/queue'
+      - '{{ server_home }}/services/security/wazuh/persistence/var_multigroups'
+      - '{{ server_home }}/services/security/wazuh/persistence/integrations'
+      - '{{ server_home }}/services/security/wazuh/persistence/active_response'
+      - '{{ server_home }}/services/security/wazuh/persistence/agentless'
+      - '{{ server_home }}/services/security/wazuh/persistence/wodles'
+      - '{{ server_home }}/services/security/wazuh/filebeat-persistence'
+      - '{{ server_home }}/services/security/wazuh/filebeat-persistence/etc'
+      - '{{ server_home }}/services/security/wazuh/filebeat-persistence/var'
+      - '{{ server_home }}/services/security/wazuh/indexer-persistence'
+      - '{{ server_home }}/services/security/wazuh/dashboard-persistence'
+      - '{{ server_home }}/services/security/wazuh/dashboard-persistence/config'
+      - '{{ server_home }}/services/security/wazuh/dashboard-persistence/custom'
 
   #--- WireGuard
   - name: Create WireGuard persistence directory

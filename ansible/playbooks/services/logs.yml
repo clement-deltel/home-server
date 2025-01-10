@@ -20,9 +20,7 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/logs/authentication/vaultwarden'
       - '{{ server_home }}/logs/backup/kopia'
-      - '{{ server_home }}/logs/bytestash'
       - '{{ server_home }}/logs/dashboard/homarr'
       - '{{ server_home }}/logs/dns/pihole'
       - '{{ server_home }}/logs/dns/unbound'
@@ -30,6 +28,8 @@
       - '{{ server_home }}/logs/games/minecraft'
       - '{{ server_home }}/logs/inventory/grocy'
       - '{{ server_home }}/logs/inventory/hortusfox'
+      - '{{ server_home }}/logs/management/code/bytestash'
+      - '{{ server_home }}/logs/management/password/vaultwarden'
       - '{{ server_home }}/logs/media/sharing/gokapi'
       - '{{ server_home }}/logs/media/storage/books/kavita'
       - '{{ server_home }}/logs/media/storage/books/librum'
@@ -50,6 +50,7 @@
       - '{{ server_home }}/logs/remote-access/guacamole'
       - '{{ server_home }}/logs/remote-access/wireguard'
       - '{{ server_home }}/logs/reverse-proxy/traefik'
+      - '{{ server_home }}/logs/security/wazuh'
       - '{{ server_home }}/logs/directus'
       - '{{ server_home }}/logs/limesurvey'
       - '{{ server_home }}/logs/wishlist'
