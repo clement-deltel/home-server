@@ -100,11 +100,11 @@
       - '{{ server_home }}/services/limesurvey/compose.yaml'
       - '{{ server_home }}/services/media/sharing/gokapi/compose.yaml'
       - '{{ server_home }}/services/media/storage/books/kavita/compose.yaml'
+      - '{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml'
+      - '{{ server_home }}/services/media/storage/documents/paperless/compose.yaml'
       - '{{ server_home }}/services/monitoring/jetlog/compose.yaml'
       - '{{ server_home }}/services/navidrome/compose.yaml'
-      - '{{ server_home }}/services/nextcloud/compose.yaml'
       - '{{ server_home }}/services/ntfy/compose.yaml'
-      - '{{ server_home }}/services/paperless/compose.yaml'
       - '{{ server_home }}/services/photoprism/compose.yaml'
       - '{{ server_home }}/services/pihole/compose.yaml'
       - '{{ server_home }}/services/remote/wg-easy/compose.yaml'
@@ -405,9 +405,9 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/nextcloud/db-persistence'
-      - '{{ server_home }}/services/nextcloud/persistence'
-      - '{{ server_home }}/services/nextcloud/web-persistence'
+      - '{{ server_home }}/services/media/storage/documents/nextcloud/db-persistence'
+      - '{{ server_home }}/services/media/storage/documents/nextcloud/persistence'
+      - '{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence'
 
   #--- Ntfy
   - name: Create Ntfy persistence directories
@@ -441,12 +441,12 @@
       group: docker
       mode: 0744
     loop:
-      - '{{ server_home }}/services/paperless/db-persistence'
-      - '{{ server_home }}/services/paperless/persistence/consume'
-      - '{{ server_home }}/services/paperless/persistence/data'
-      - '{{ server_home }}/services/paperless/persistence/export'
-      - '{{ server_home }}/services/paperless/persistence/media'
-      - '{{ server_home }}/services/paperless/redis-persistence'
+      - '{{ server_home }}/services/media/storage/documents/paperless/db-persistence'
+      - '{{ server_home }}/services/media/storage/documents/paperless/persistence/consume'
+      - '{{ server_home }}/services/media/storage/documents/paperless/persistence/data'
+      - '{{ server_home }}/services/media/storage/documents/paperless/persistence/export'
+      - '{{ server_home }}/services/media/storage/documents/paperless/persistence/media'
+      - '{{ server_home }}/services/media/storage/documents/paperless/redis-persistence'
 
   #--- Photoprism
   - name: Create Photoprism persistence directories
