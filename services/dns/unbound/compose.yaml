@@ -5,7 +5,6 @@ services:
       - 127.0.0.1
       - 45.90.28.96
       - 45.90.30.96
-    env_file: config/.env
     image: ${UNBOUND_IMAGE}
     logging:
       driver: json-file
