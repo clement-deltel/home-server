@@ -20,9 +20,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/unbound.conf:/opt/unbound/etc/unbound/unbound.conf
-      - ./persistence/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf
-      # - ./persistence/a-records.conf:/opt/unbound/etc/unbound/a-records.conf
+      - ./persistence:/opt/unbound/etc/unbound
+      # - ./persistence/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf:ro
+      # - ./persistence/a-records.conf:/opt/unbound/etc/unbound/a-records.conf:ro
 
 networks:
   dns-net:
