@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.navidrome.entrypoints=web,websecure"
       - "traefik.http.routers.navidrome.rule=Host(`music.${DOMAIN}`)"
       - "traefik.http.routers.navidrome.tls=true"
       # - "traefik.http.routers.navidrome.tls.certresolver=letsencrypt"

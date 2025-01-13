@@ -10,6 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.wireguard.entrypoints=web,websecure"
       - "traefik.http.routers.wireguard.rule=Host(`vpn.${DOMAIN}`)"
       - "traefik.http.routers.wireguard.tls=true"
       # - "traefik.http.routers.wireguard.tls.certresolver=letsencrypt"

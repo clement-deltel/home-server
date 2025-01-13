@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.actual.entrypoints=web,websecure"
       - "traefik.http.routers.actual.rule=Host(`finances.${DOMAIN}`)"
       - "traefik.http.routers.actual.tls=true"
       # - "traefik.http.routers.actual.tls.certresolver=letsencrypt"

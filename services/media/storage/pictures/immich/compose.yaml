@@ -98,6 +98,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.immich.entrypoints=web,websecure"
       - "traefik.http.routers.immich.rule=Host(`pictures.${DOMAIN}`)"
       - "traefik.http.routers.immich.tls=true"
       # - "traefik.http.routers.immich.tls.certresolver=letsencrypt"

@@ -39,6 +39,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.limesurvey.entrypoints=web,websecure"
       - "traefik.http.routers.limesurvey.rule=Host(`survey.${DOMAIN}`)"
       - "traefik.http.routers.limesurvey.tls=true"
       # - "traefik.http.routers.limesurvey.tls.certresolver=letsencrypt"

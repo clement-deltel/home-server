@@ -89,6 +89,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.wazuh.entrypoints=web,websecure"
       - "traefik.http.routers.wazuh.rule=Host(`wazuh.${DOMAIN}`)"
       - "traefik.http.routers.wazuh.tls=true"
       # - "traefik.http.routers.wazuh.tls.certresolver=letsencrypt"

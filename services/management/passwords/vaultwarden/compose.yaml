@@ -41,6 +41,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.vaultwarden.entrypoints=web,websecure"
       - "traefik.http.routers.vaultwarden.rule=Host(`vault.${DOMAIN}`)"
       - "traefik.http.routers.vaultwarden.tls=true"
       # - "traefik.http.routers.vaultwarden.tls.certresolver=letsencrypt"

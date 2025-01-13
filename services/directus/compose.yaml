@@ -64,6 +64,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.directus.entrypoints=web,websecure"
       - "traefik.http.routers.directus.rule=Host(`directus.${DOMAIN}`)"
       - "traefik.http.routers.directus.tls=true"
       # - "traefik.http.routers.directus.tls.certresolver=letsencrypt"

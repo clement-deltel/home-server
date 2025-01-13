@@ -12,6 +12,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.kopia.entrypoints=web,websecure"
       - "traefik.http.routers.kopia.rule=Host(`kopia.${DOMAIN}`)"
       - "traefik.http.routers.kopia.tls=true"
       # - "traefik.http.routers.kopia.tls.certresolver=letsencrypt"

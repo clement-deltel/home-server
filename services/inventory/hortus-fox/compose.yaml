@@ -40,6 +40,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.hortusfox.entrypoints=web,websecure"
       - "traefik.http.routers.hortusfox.rule=Host(`plants.${DOMAIN}`)"
       - "traefik.http.routers.hortusfox.tls=true"
       # - "traefik.http.routers.hortusfox.tls.certresolver=letsencrypt"

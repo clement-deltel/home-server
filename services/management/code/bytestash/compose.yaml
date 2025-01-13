@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.bytestash.entrypoints=web,websecure"
       - "traefik.http.routers.bytestash.rule=Host(`snippets.${DOMAIN}`)"
       - "traefik.http.routers.bytestash.tls=true"
       # - "traefik.http.routers.bytestash.tls.certresolver=letsencrypt"

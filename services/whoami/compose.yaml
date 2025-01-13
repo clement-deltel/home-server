@@ -6,6 +6,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.whoami.entrypoints=web,websecure"
       - "traefik.http.routers.whoami.rule=Host(`whoami.${DOMAIN}`)"
       - "traefik.http.routers.whoami.tls=true"
       - "traefik.http.routers.whoami.service=whoami"

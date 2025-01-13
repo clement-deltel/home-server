@@ -10,6 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.kavita.entrypoints=web,websecure"
       - "traefik.http.routers.kavita.rule=Host(`books.${DOMAIN}`)"
       - "traefik.http.routers.kavita.tls=true"
       # - "traefik.http.routers.kavita.tls.certresolver=letsencrypt"

@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.gokapi.entrypoints=web,websecure"
       - "traefik.http.routers.gokapi.rule=Host(`share.${DOMAIN}`)"
       - "traefik.http.routers.gokapi.tls=true"
       # - "traefik.http.routers.gokapi.tls.certresolver=letsencrypt"

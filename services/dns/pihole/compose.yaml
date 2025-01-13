@@ -15,6 +15,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.pihole.entrypoints=web,websecure"
       - "traefik.http.routers.pihole.rule=Host(`pihole.${DOMAIN}`)"
       - "traefik.http.routers.pihole.tls=true"
       # - "traefik.http.routers.pihole.tls.certresolver=letsencrypt"

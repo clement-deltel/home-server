@@ -63,6 +63,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.guacamole.entrypoints=web,websecure"
       - "traefik.http.routers.guacamole.rule=Host(`guacamole.${DOMAIN}`)"
       - "traefik.http.routers.guacamole.tls=true"
       # - "traefik.http.routers.guacamole.tls.certresolver=letsencrypt"

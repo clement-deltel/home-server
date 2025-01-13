@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.stirling-pdf.entrypoints=web,websecure"
       - "traefik.http.routers.stirling-pdf.rule=Host(`pdf.${DOMAIN}`)"
       - "traefik.http.routers.stirling-pdf.tls=true"
       # - "traefik.http.routers.stirling-pdf.tls.certresolver=letsencrypt"

@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.grocy.entrypoints=web,websecure"
       - "traefik.http.routers.grocy.rule=Host(`grocy.${DOMAIN}`)"
       - "traefik.http.routers.grocy.tls=true"
       # - "traefik.http.routers.grocy.tls.certresolver=letsencrypt"

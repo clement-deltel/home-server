@@ -11,6 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.jetlog.entrypoints=web,websecure"
       - "traefik.http.routers.jetlog.rule=Host(`fly.${DOMAIN}`)"
       - "traefik.http.routers.jetlog.tls=true"
       # - "traefik.http.routers.jetlog.tls.certresolver=letsencrypt"

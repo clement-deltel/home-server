@@ -40,6 +40,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.librum.entrypoints=web,websecure"
       - "traefik.http.routers.librum.rule=Host(`library.${DOMAIN}`)"
       - "traefik.http.routers.librum.tls=true"
       # - "traefik.http.routers.librum.tls.certresolver=letsencrypt"
