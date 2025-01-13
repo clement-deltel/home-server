@@ -49,8 +49,6 @@ services:
       - "traefik.tcp.services.rustdesk-rd5.loadbalancer.server.port=21115"
       - "traefik.tcp.services.rustdesk-rd6.loadbalancer.server.port=21116"
       - "traefik.tcp.services.rustdesk-rd7.loadbalancer.server.port=21117"
-      # UDP
-      - "traefik.udp.services.rustdesk-rd6.loadbalancer.server.port=21116"
     logging:
       driver: json-file
       options:
