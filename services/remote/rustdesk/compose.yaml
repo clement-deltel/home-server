@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.rustdesk-rd8.service=rustdesk-rd8"
       # HTTP: 21119 - Relay Server - Web client
       - "traefik.http.routers.rustdesk-rd9.rule=Host(`rustdesk.${DOMAIN}`) && PathPrefix(`/ws/relay`)"
-      # - "traefik.http.routers.rustdesk-rd.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.rustdesk-rd9.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.rustdesk-rd9.tls.domains[0].main=rustdesk.${DOMAIN}"
       - "traefik.http.routers.rustdesk-rd9.middlewares=rustdesk-headers"
       - "traefik.http.routers.rustdesk-rd9.service=rustdesk-rd9"
