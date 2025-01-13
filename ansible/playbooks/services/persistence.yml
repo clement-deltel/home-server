@@ -494,14 +494,18 @@
       group: docker
       mode: 0744
 
-  #--- Rustdesk
-  - name: Create Rustdesk persistence directory
+  #--- RustDesk
+  - name: Create RustDesk persistence directories
+    ignore_errors: true
     file:
-      path: '{{ server_home }}/services/remote/rustdesk/persistence'
+      path: '{{ item }}'
       state: directory
       owner: docker
       group: docker
       mode: 0744
+    loop:
+      - '{{ server_home }}/services/remote/rustdesk/persistence'
+      - '{{ server_home }}/services/remote/rustdesk/db-persistence'
 
   #--- Stirling PDF
   - name: Create Stirling PDF persistence directories
