@@ -41,6 +41,7 @@
       - { when: photoprism_enable, project_src: '{{ server_home }}/services/media/storage/pictures/photoprism' }
       - { when: pihole_enable, project_src: '{{ server_home }}/services/pihole' }
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/prometheus' }
+      - { when: rustdesk_enable, project_src: '{{ server_home }}/services/remote/rustdesk' }
       - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/stirling-pdf' }
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/vaultwarden' }

@@ -1,0 +1,75 @@
+services:
+  rustdesk:
+    container_name: rustdesk
+    env_file: config/.env
+    hostname: rustdesk
+    image: ${RUSTDESK_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      # HTTP: 21118 - ID Server - Web client
+      - "traefik.http.routers.rustdesk-rd8.rule=Host(`rustdesk.${DOMAIN}`) && PathPrefix(`/ws/id`)"
+      # - "traefik.http.routers.rustdesk-rd8.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.rustdesk-rd8.tls.domains[0].main=rustdesk.${DOMAIN}"
+      - "traefik.http.routers.rustdesk-rd8.middlewares=rustdesk-headers"
+      - "traefik.http.routers.rustdesk-rd8.service=rustdesk-rd8"
+      # HTTP: 21119 - Relay Server - Web client
+      - "traefik.http.routers.rustdesk-rd9.rule=Host(`rustdesk.${DOMAIN}`) && PathPrefix(`/ws/relay`)"
+      # - "traefik.http.routers.rustdesk-rd.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.rustdesk-rd9.tls.domains[0].main=rustdesk.${DOMAIN}"
+      - "traefik.http.routers.rustdesk-rd9.middlewares=rustdesk-headers"
+      - "traefik.http.routers.rustdesk-rd9.service=rustdesk-rd9"
+      # TCP: 21115 - ID Server - NAT type test
+      - "traefik.tcp.routers.rustdesk-rd5.entrypoints=rd5-tcp"
+      - "traefik.tcp.routers.rustdesk-rd5.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.rustdesk-rd5.tls=false"
+      - "traefik.tcp.routers.rustdesk-rd5.tls.passthrough=true"
+      - "traefik.tcp.routers.rustdesk-rd5.service=rustdesk-rd5"
+      # TCP: 21116 - ID Server - TCP hole punching
+      - "traefik.tcp.routers.rustdesk-rd6.entrypoints=rd6-tcp"
+      - "traefik.tcp.routers.rustdesk-rd6.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.${SERVICE_NAME}-rd6.tls=false"
+      - "traefik.tcp.routers.rustdesk-rd6.tls.passthrough=true"
+      - "traefik.tcp.routers.rustdesk-rd6.service=rustdesk-rd6"
+      # TCP: 21117 - Relay Server - Relay services
+      - "traefik.tcp.routers.rustdesk-rd7.entrypoints=rd7-tcp"
+      - "traefik.tcp.routers.rustdesk-rd7.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.rustdesk-rd7.tls=false"
+      - "traefik.tcp.routers.rustdesk-rd7.tls.passthrough=true"
+      - "traefik.tcp.routers.rustdesk-rd7.service=rustdesk-rd7"
+      # Middlewares
+      - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.X-Forwarded-Proto=https"
+      - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.X-Real-IP=true"
+      - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.Host=Host(`rustdesk.${DOMAIN}`)"
+      # Services
+      # HTTP
+      - "traefik.http.services.rustdesk-rd8.loadbalancer.server.port=21118"
+      - "traefik.http.services.rustdesk-rd9.loadbalancer.server.port=21119"
+      # TCP
+      - "traefik.tcp.services.rustdesk-rd5.loadbalancer.server.port=21115"
+      - "traefik.tcp.services.rustdesk-rd6.loadbalancer.server.port=21116"
+      - "traefik.tcp.services.rustdesk-rd7.loadbalancer.server.port=21117"
+      # UDP
+      - "traefik.udp.services.rustdesk-rd6.loadbalancer.server.port=21116"
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      traefik-net:
+        ipv4_address: ${RUSTDESK_IP}
+    ports:
+      # Note that 21116/udp is causing connections issue with Rustdesk so we
+      # directly open the port in the rustdesk container instead of going through Traefik.
+      - 21116:21116/udp # ID Server - ID registration and heartbeat
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/db
+      - ./persistence:/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

@@ -32,6 +32,10 @@ services:
       - ${TRAEFIK_HTTPS_PORT}:443
       # Web UI / Dashboard
       - 8080
+      # RustDesk
+      - ${RUSTDESK_ID_NAT_TT_PORT}:21115/tcp # ID Server - NAT type test
+      - ${RUSTDESK_ID_TCP_HP_PORT}:21116/tcp # ID Server - TCP hole punching
+      - ${RUSTDESK_RELAY_PORT}:21117/tcp # Relay Server - Relay services
       # VPN
       - ${WIREGUARD_PORT}:51820/udp
     restart: unless-stopped

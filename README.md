@@ -165,10 +165,12 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Homarr](https://homarr.dev/): `https://home.${DOMAIN}`
 - **Remote Access**
   - VPN
-    - [Wireguard](https://www.wireguard.com/): `<ip-address>:51820`
-    - [Wireguard Easy](https://github.com/wg-easy/wg-easy): `<ip-address>:51820`
+    - [Wireguard](https://www.wireguard.com/): `vpn.${DOMAIN}`
+    - [Wireguard Easy](https://github.com/wg-easy/wg-easy): `vpn.${DOMAIN}`
   - Clientless Remote Desktop Gateway (SSH, RDP...)
     - [Apache Guacamole](https://guacamole.apache.org/): `https://guacamole.${DOMAIN}`
+  - Remote Control Server
+    - [RustDesk](https://rustdesk.com):`rustdesk.${DOMAIN}`
 - **DNS**
   - Ad-blocker
     - [Pi-hole](https://pi-hole.net/): `https://pihole.${DOMAIN}`

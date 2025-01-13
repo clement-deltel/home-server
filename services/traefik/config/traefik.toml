@@ -76,6 +76,15 @@
     [entryPoints.websecure.http.tls]
       certResolver = "letsencrypt"
 
+  [entryPoints.rd5-tcp]
+    address = ":21115/tcp"
+
+  [entryPoints.rd6-tcp]
+    address = ":21116/tcp"
+
+  [entryPoints.rd7-tcp]
+    address = ":21117/tcp"
+
   [entryPoints.vpn]
     address = ":51820/udp"
 
