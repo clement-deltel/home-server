@@ -89,10 +89,10 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.wazuh.rule=Host(`seim.${DOMAIN}`)"
+      - "traefik.http.routers.wazuh.rule=Host(`wazuh.${DOMAIN}`)"
       - "traefik.http.routers.wazuh.tls=true"
       # - "traefik.http.routers.wazuh.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.wazuh.tls.domains[0].main=seim.${DOMAIN}"
+      # - "traefik.http.routers.wazuh.tls.domains[0].main=wazuh.${DOMAIN}"
       - "traefik.http.routers.wazuh.service=wazuh"
       # Services
       - "traefik.http.services.wazuh.loadbalancer.server.port=5601"
