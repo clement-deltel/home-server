@@ -28,7 +28,7 @@ services:
       # TCP: 21116 - ID Server - TCP hole punching
       - "traefik.tcp.routers.rustdesk-rd6.entrypoints=rd6-tcp"
       - "traefik.tcp.routers.rustdesk-rd6.rule=HostSNI(`*`)"
-      - "traefik.tcp.routers.${SERVICE_NAME}-rd6.tls=false"
+      - "traefik.tcp.routers.rustdesk-rd6.tls=false"
       - "traefik.tcp.routers.rustdesk-rd6.tls.passthrough=true"
       - "traefik.tcp.routers.rustdesk-rd6.service=rustdesk-rd6"
       # TCP: 21117 - Relay Server - Relay services
