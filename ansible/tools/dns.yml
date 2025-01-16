@@ -1,0 +1,57 @@
+- name: DNS
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+  - name: Initialize DNS
+    tags: init
+    become: true
+    block:
+    # cat /etc/systemd/resolved.conf
+    - name: Update resolved.conf configuration file
+      ansible.builtin.lineinfile:
+        path: /etc/systemd/resolved.conf
+        search_string: "DNSStubListener"
+        line: DNSStubListener=no
+        owner: root
+        group: root
+        mode: 0644
+
+    # systemctl status systemd-resolved.service
+    - name: Restart systemd-resolved service
+      ansible.builtin.systemd:
+        name: systemd-resolved
+        state: restarted
+
+    - name: Install resolvconf package
+      ansible.builtin.apt:
+        pkg:
+          - resolvconf
+        state: latest
+
+    # systemctl status resolvconf.service
+    - name: Enable and start resolvconf service
+      ansible.builtin.systemd:
+        name: resolvconf
+        state: started
+        enabled: yes
+
+    - name: Update resolved.conf.d/head file
+      ansible.builtin.lineinfile:
+        path: /etc/resolvconf/resolv.conf.d/head
+        state: present
+        line: "{{ item }}"
+        owner: root
+        group: root
+        mode: 0644
+      loop:
+        - ""
+        - "nameserver 127.0.0.1"
+        - "nameserver 45.90.28.96"
+        - "nameserver 45.90.30.96"
+
+    - name: Restart resolvconf service
+      ansible.builtin.systemd:
+        name: resolvconf
+        state: restarted

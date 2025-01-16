@@ -1,0 +1,178 @@
+- name: Docker
+  hosts: all
+  gather_facts: true
+  vars:
+    dependencies:
+      - ca-certificates
+      - curl
+      - gnupg
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+  # Users
+  - name: Users
+    tags: init
+    block:
+
+    # sudo groupadd -g 1001 docker
+    - name: Create group
+      ansible.builtin.group:
+        name: docker
+        gid: "{{ docker_gid }}"
+        state: present
+
+    # sudo useradd -c "Docker" -g docker -m -d /home/docker -s /bin/bash -u 1001 docker
+    - name: Create user
+      ansible.builtin.user:
+        name: docker
+        uid: "{{ docker_uid }}"
+        group: docker
+        home: /home/docker
+        shell: /bin/bash
+        comment: Docker
+        state: present
+
+    # sudo usermod -a -G docker ubuntu
+    - name: Add ubuntu user to group
+      ansible.builtin.user:
+        name: ubuntu
+        groups: docker
+        append: true
+
+  # Dependencies
+  - name: Dependencies
+    block:
+
+    - name: List dependencies
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "dependencies: {{ dependencies }}"
+
+    # sudo apt update -y && sudo apt install -y
+    - name: Install dependencies
+      tags: init
+      ansible.builtin.apt:
+        name: "{{ dependencies }}"
+        state: present
+        update_cache: true
+
+    # sudo apt update -y && sudo apt upgrade -y
+    - name: Upgrade dependencies
+      tags: update
+      ansible.builtin.apt:
+        name: "{{ dependencies }}"
+        state: latest
+        update_cache: true
+
+  # Repository
+  - name: Repository
+    tags: init
+    block:
+
+    - name: Create /etc/apt/keyrings directory
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: 0755
+
+    # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    - name: Download GPG apt key
+      ansible.builtin.uri:
+        method: GET
+        url: https://download.docker.com/{{ ansible_system | lower }}/{{ ansible_distribution | lower }}/gpg
+        dest: /tmp/docker.gpg
+        follow_redirects: safe
+        mode: 0644
+
+    - name: Import GPG key
+      ansible.builtin.command:
+        cmd: gpg --dearmor --output /etc/apt/keyrings/docker.gpg --yes /tmp/docker.gpg
+
+    # echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    - name: Add apt repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch={{ deb_architecture[ansible_architecture] }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/{{ ansible_system | lower }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+
+    - name: Remove GPG temporary key
+      ansible.builtin.file:
+        path: /tmp/docker.gpg
+        state: absent
+
+  # Packages
+  - name: Packages
+    block:
+
+    - name: List packages
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "packages: {{ packages }}"
+
+    # sudo apt update -y && sudo apt install -y
+    - name: Install
+      tags: init
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: true
+
+    # sudo apt update -y && sudo apt upgrade -y
+    - name: Upgrade
+      tags: update
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: true
+
+  # Service
+  - name: Service
+    block:
+
+    # sudo systemctl enable docker && sudo systemctl start docker
+    - name: Enable service
+      tags: init
+      ansible.builtin.systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    # sudo systemctl restart docker
+    - name: Restart service
+      tags: update
+      ansible.builtin.systemd:
+        name: docker
+        enabled: yes
+        state: restarted
+
+  # Version
+  - name: Version
+    tags: [init, update]
+    block:
+
+    - name: Docker - Confirm version
+      ansible.builtin.command:
+        cmd: docker --version
+      register: version
+      changed_when: false
+
+    - name: Docker - Show version
+      when: version is defined
+      ansible.builtin.debug:
+        msg: "Installed version: {{ version.stdout }}"
+
+    - name: Docker Compose - Confirm version
+      ansible.builtin.command:
+        cmd: docker compose version
+      register: version
+      changed_when: false
+
+    - name: Docker Compose - Show version
+      when: version is defined
+      ansible.builtin.debug:
+        msg: "Installed version: {{ version.stdout }}"

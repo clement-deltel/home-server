@@ -1,0 +1,80 @@
+- name: Configure the instance - Home Server - Ubuntu user
+  hosts: all
+  gather_facts: false
+
+# Tasks
+- name: Set user profile
+  import_playbook: tasks/profile.yml
+
+# Packages
+- name: APT - Essentials tools
+  import_playbook: packages/apt.yml
+
+# Security
+- name: Security good practices
+  import_playbook: security/security.yml
+- name: UFW
+  import_playbook: security/ufw.yml
+
+# Remote
+- name: SSH
+  import_playbook: remote/ssh.yml
+- name: XRDP
+  import_playbook: remote/xrdp.yml
+
+# Tools
+- name: DNS
+  import_playbook: tasks/dns.yml
+- name: Dynamic DNS
+  when: not local_domain
+  import_playbook: tasks/dyn-dns.yml
+- name: Install NVIDIA Container Toolkit
+  import_playbook: tasks/nvidia.yml
+
+# Languages
+- name: Python
+  import_playbook: languages/python.yml
+
+# Orchestration
+- name: Docker
+  import_playbook: orchestration/docker.yml
+
+# Monitoring
+- name: Telegraf
+  import_playbook: tasks/telegraf.yml
+
+# Infrastructure as Code - IAC
+- name: Terraform
+  import_playbook: iac/terraform.yml
+
+# Cloud
+- name: AWS
+  import_playbook: cloud/aws.yml
+
+# Tasks
+- name: Permissions
+  import_playbook: tasks/permissions.yml
+
+
+
+#--- Update
+
+- name: SSH - Update
+  include_tasks:
+    file: tasks/ssh.yml
+  tags: update
+
+- name: APT - Update
+  include_tasks:
+    file: tasks/apt.yml
+  tags: update
+
+- name: Docker - Update
+  include_tasks:
+    file: tasks/docker.yml
+  tags: update
+
+- name: Telegraf - Update
+  include_tasks:
+    file: tasks/telegraf.yml
+  tags: update

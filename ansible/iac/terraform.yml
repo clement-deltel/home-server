@@ -6,7 +6,7 @@
       - gnupg
       - software-properties-common
   vars_files:
-    - ../playbooks/vars/main.yml
+    - ../vars/main.yml
 
   tasks:
   # Dependencies

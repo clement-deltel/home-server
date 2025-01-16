@@ -1,0 +1,38 @@
+- name: Configure machine - Docker user
+  hosts: all
+  gather_facts: false
+  become: true
+  become_user: docker
+
+# Tasks
+- name: User Profile
+  import_playbook: tasks/profile.yml
+
+# Tools
+- name: Cron
+  when: not local_domain
+  import_playbook: tools/cron.yml
+
+# Cloud
+- name: AWS
+  import_playbook: cloud/aws-cli.yml
+
+# Services
+- name: Create log directories
+  import_playbook: services/logs.yml
+
+- name: Create persistence directories
+  import_playbook: services/persistence.yml
+
+- name: Create networks
+  import_playbook: services/networks.yml
+
+- name: Initialize and boot all services
+  import_playbook: services/management.yml
+
+- name: Create InfluxDB retention policies
+  import_playbook: monitoring/influxdb.yml
+
+# Docker commands
+- name: Manage all services
+  import_playbook: services/management.yml

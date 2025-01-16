@@ -117,8 +117,8 @@ pihole.log
 **/etc-pihole/*
 **/etc-dnsmasqd/*
 
-ansible/playbooks/vars/*
+ansible/vars/*
 env/*
 
-!ansible/playbooks/vars/main_template.yml
+!ansible/vars/main_template.yml
 !env/.env.template

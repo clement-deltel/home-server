@@ -1,0 +1,85 @@
+- name: APT
+  hosts: all
+  gather_facts: false
+  vars:
+    packages:
+      - apache2-utils
+      - argon2 # token generation for Vaultwarden admin interface
+      - build-essential
+      - curl
+      - git # gold standard version control system
+      - gnupg
+      - htop # resources monitoring
+      - lm-sensors # tool to monitor sensors temperature
+      - lsb-release
+      - lynis
+      - mariadb-client-10.6 # execute MariaDB backups for multiple services
+      - mariadb-client-core-10.6
+      - net-tools
+      - nvme-cli # allows to monitor NVMe SSDs additionally to smartmontools
+      - openssl
+      - postgresql-client-common # execute PostgreSQL backups for multiple services
+      - postgresql-client-14
+      - pwgen # random password generator
+      - python3
+      - python3-docker
+      - python3-passlib # libraries used by Ansible modules
+      - python3-pip
+      - smartmontools # tools based on SMART "technology", protocol for monitoring the status of hard drives
+      - software-properties-common
+      - vim # text editor of choice
+      - wireguard # VPN
+      - zip
+
+  tasks:
+  # Packages
+  - name: Packages
+    block:
+
+    # sudo apt update -y
+    - name: Update cache
+      tags: [init, update]
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: List packages
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "packages: {{ packages }}"
+
+    # sudo apt install -y
+    - name: Install packages
+      tags: init
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: present
+
+    # sudo apt remove -y
+    # - name: Remove packages
+    #   tags: init
+    #   ansible.builtin.apt:
+    #     name:
+    #       -
+    #     state: absent
+
+    # sudo apt upgrade -y
+    - name: Upgrade packages
+      tags: update
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: latest
+
+  # Cleaning
+  - name: Cleaning
+    tags: clean
+    block:
+
+    # apt autoclean
+    - name: Cleans the local repository of package files that can no longer be downloaded
+      ansible.builtin.apt:
+        autoclean: true
+
+    # apt autoremove
+    - name: Remove unused dependencies
+      ansible.builtin.apt:
+        autoremove: true

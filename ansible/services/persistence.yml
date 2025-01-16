@@ -1,0 +1,643 @@
+- name: Docker Persistence
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+  - name: Initialize persistence directories and files
+    tags: docker
+    block:
+
+    #--- Traefik
+    - name: Create Traefik persistence directory
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/traefik/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    - name: Create traefik log files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: touch
+        owner: docker
+        group: docker
+        mode: 0640
+      loop:
+        - "{{ server_home }}/services/traefik/persistence/access.log"
+        - "{{ server_home }}/services/traefik/persistence/traefik.log"
+
+    #--- Traefik - Testing
+    - name: Traefik Testing - Copy Traefik configuration file
+      when: local_domain
+      ansible.builtin.copy:
+        src: "{{ server_home }}/services/traefik/config_local/traefik.toml"
+        dest: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+        owner: docker
+        group: docker
+        mode: 0640
+
+    #--- Traefik - Production
+    - name: Traefik Production
+      when: not local_domain
+      block:
+
+      - name: Create traefik certificates file
+        ansible.builtin.file:
+          path: "{{ server_home }}/services/traefik/persistence/acme.json"
+          state: touch
+          owner: docker
+          group: docker
+          mode: 0600
+
+      - name: Copy Traefik configuration file
+        ansible.builtin.copy:
+          src: "{{ server_home }}/services/traefik/config/traefik.toml"
+          dest: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Add email to traefik.toml
+        ansible.builtin.lineinfile:
+          path: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+          state: present
+          search_string: "email ="
+          line: "  email = '{{ user_email }}'"
+
+      - name: Create traefik users.txt file
+        ansible.builtin.file:
+          path: "{{ server_home }}/services/traefik/persistence/users.txt"
+          state: touch
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Add a user to users.txt
+        community.general.htpasswd:
+          path: "{{ server_home }}/services/traefik/persistence/users.txt"
+          name: "{{ traefik_user }}"
+          password: "{{ traefik_password }}"
+          hash_scheme: md5_crypt
+          state: present
+
+    #--- Production Services
+    - name: Production - Uncomment labels and bind mounts in compose.yaml for all services
+      when: not local_domain
+      ansible.builtin.replace:
+        path: "{{ item }}"
+        regexp: '(^\s*)# -'
+        replace: '\1-'
+      loop:
+        - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
+        - "{{ server_home }}/services/directus/compose.yaml"
+        - "{{ server_home }}/services/dns/pihole/compose.yaml"
+        - "{{ server_home }}/services/finances/actual/compose.yaml"
+        - "{{ server_home }}/services/grafana/compose.yaml"
+        - "{{ server_home }}/services/inventory/grocy/compose.yaml"
+        - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
+        - "{{ server_home }}/services/kopia/compose.yaml"
+        - "{{ server_home }}/services/limesurvey/compose.yaml"
+        - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
+        - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+        - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
+        - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"
+        - "{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml"
+        - "{{ server_home }}/services/media/storage/documents/paperless/compose.yaml"
+        - "{{ server_home }}/services/media/storage/pictures/immich/compose.yaml"
+        - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
+        - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
+        - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
+        - "{{ server_home }}/services/monitoring/detection/compose.yaml"
+        - "{{ server_home }}/services/monitoring/jetlog/compose.yaml"
+        - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
+        - "{{ server_home }}/services/pdf/docuseal/compose.yaml"
+        - "{{ server_home }}/services/pdf/stirling-pdf/compose.yaml"
+        - "{{ server_home }}/services/remote/guacamole/compose.yaml"
+        - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+        - "{{ server_home }}/services/security/wazuh/compose.yaml"
+        - "{{ server_home }}/services/traefik/compose.yaml"
+        - "{{ server_home }}/services/wishlist/compose.yaml"
+
+    #--- Actual
+    - name: Create Actual persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/finances/actual/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Affine
+    - name: Create Affine persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/pkms/affine/persistence"
+        - "{{ server_home }}/services/pkms/affine/persistence/config"
+        - "{{ server_home }}/services/pkms/affine/persistence/storage"
+        - "{{ server_home }}/services/pkms/affine/postgres-persistence"
+        - "{{ server_home }}/services/pkms/affine/redis-persistence"
+
+    #--- ByteStash
+    - name: Create ByteStash persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/management/code/bytestash/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Detection (changedetection.io)
+    - name: Create Change Detection persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/monitoring/detection/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Directus
+    - name: Create Directus persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/directus/db-persistence"
+        - "{{ server_home }}/services/directus/persistence"
+        - "{{ server_home }}/services/directus/persistence/extensions"
+        - "{{ server_home }}/services/directus/persistence/uploads"
+
+    #--- Docuseal
+    - name: Create docuseal persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/pdf/docuseal/db-persistence"
+        - "{{ server_home }}/services/pdf/docuseal/persistence"
+
+    #--- Gokapi
+    - name: Create Gokapi persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/sharing/gokapi/persistence"
+        - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
+        - "{{ server_home }}/services/media/sharing/gokapi/persistence/data"
+
+    #--- Grafana
+    - name: Create Grafana persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/grafana/db-persistence"
+        - "{{ server_home }}/services/grafana/influxdb-persistence"
+        - "{{ server_home }}/services/grafana/persistence"
+
+    #--- Grocy
+    - name: Create Grocy persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/inventory/grocy/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Guacamole
+    - name: Create Guacamole persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/remote/guacamole/db-persistence"
+        - "{{ server_home }}/services/remote/guacamole/guacd-persistence"
+        - "{{ server_home }}/services/remote/guacamole/guacd-persistence/drive"
+        - "{{ server_home }}/services/remote/guacamole/guacd-persistence/record"
+
+    - name: Make initdb.sql script executable
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/remote/guacamole/config/initdb.sql"
+        state: file
+        owner: docker
+        group: docker
+        mode: 0777
+
+    #--- Homarr
+    - name: Create Homarr persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+      - "{{ server_home }}/services/dashboard/homarr/persistence"
+      - "{{ server_home }}/services/dashboard/homarr/persistence/configs"
+      - "{{ server_home }}/services/dashboard/homarr/persistence/data"
+      - "{{ server_home }}/services/dashboard/homarr/persistence/icons"
+
+    #--- HortusFox
+    - name: Create HortusFox persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+      - "{{ server_home }}/services/inventory/hortusfox/db-persistence"
+      - "{{ server_home }}/services/inventory/hortusfox/persistence"
+      - "{{ server_home }}/services/inventory/hortusfox/persistence/backup"
+      - "{{ server_home }}/services/inventory/hortusfox/persistence/images"
+      - "{{ server_home }}/services/inventory/hortusfox/persistence/logs"
+      - "{{ server_home }}/services/inventory/hortusfox/persistence/migrate"
+      - "{{ server_home }}/services/inventory/hortusfox/persistence/themes"
+
+    #--- Immich
+    - name: Create Immich persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+      - "{{ server_home }}/services/media/storage/pictures/immich/db-persistence"
+      - "{{ server_home }}/services/media/storage/pictures/immich/persistence"
+      - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
+      - "{{ server_home }}/services/media/storage/pictures/immich/persistence/upload"
+
+    #--- Jellyfin
+    - name: Create Jellyfin persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence"
+      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/library"
+      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/movies"
+      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/tvshows"
+
+    #--- Jetlog
+    - name: Create Jetlog persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/monitoring/jetlog/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Kavita
+    - name: Create Kavita persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/storage/books/kavita/persistence"
+        - "{{ server_home }}/services/media/storage/books/kavita/persistence/books"
+        - "{{ server_home }}/services/media/storage/books/kavita/persistence/comics"
+        - "{{ server_home }}/services/media/storage/books/kavita/persistence/config"
+        - "{{ server_home }}/services/media/storage/books/kavita/persistence/mangas"
+
+    #--- Kopia
+    - name: Create Kopia persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/kopia/persistence"
+        - "{{ server_home }}/services/kopia/persistence/cache"
+        - "{{ server_home }}/services/kopia/persistence/config"
+        - "{{ server_home }}/services/kopia/persistence/data"
+        - "{{ server_home }}/services/kopia/persistence/logs"
+
+    #--- Librum
+    - name: Create Librum persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/storage/books/librum/db-persistence"
+        - "{{ server_home }}/services/media/storage/books/librum/persistence"
+
+    #--- Limesurvey
+    - name: Create Limesurvey persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/limesurvey/db-persistence"
+        - "{{ server_home }}/services/limesurvey/persistence"
+        - "{{ server_home }}/services/limesurvey/persistence/config"
+        - "{{ server_home }}/services/limesurvey/persistence/plugins"
+        - "{{ server_home }}/services/limesurvey/persistence/upload"
+
+    #--- Minecraft
+    - name: Create Minecraft persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/minecraft/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Navidrome
+    - name: Create Navidrome persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/storage/music/navidrome/persistence/data"
+        - "{{ server_home }}/services/media/storage/music/navidrome/persistence/music"
+
+    #--- Nextcloud
+    - name: Create Nextcloud persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/storage/documents/nextcloud/db-persistence"
+        - "{{ server_home }}/services/media/storage/documents/nextcloud/persistence"
+        - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
+
+    #--- Ntfy
+    - name: Create Ntfy persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/monitoring/ntfy/persistence"
+        - "{{ server_home }}/services/monitoring/ntfy/persistence/cache"
+        - "{{ server_home }}/services/monitoring/ntfy/persistence/etc"
+        - "{{ server_home }}/services/monitoring/ntfy/persistence/log"
+
+    - name: Copy Ntfy server configuration file
+      ansible.builtin.copy:
+        src: "{{ server_home }}/services/ntfy/config/server.yml"
+        dest: "{{ server_home }}/services/ntfy/persistence/etc/server.yml"
+        owner: docker
+        group: docker
+        mode: 0640
+
+    #--- Paperless
+    - name: Create Paperless persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/storage/documents/paperless/db-persistence"
+        - "{{ server_home }}/services/media/storage/documents/paperless/persistence/consume"
+        - "{{ server_home }}/services/media/storage/documents/paperless/persistence/data"
+        - "{{ server_home }}/services/media/storage/documents/paperless/persistence/export"
+        - "{{ server_home }}/services/media/storage/documents/paperless/persistence/media"
+        - "{{ server_home }}/services/media/storage/documents/paperless/redis-persistence"
+
+    #--- Photoprism
+    - name: Create Photoprism persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/media/storage/pictures/photoprism/db-persistence"
+        - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence"
+        - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/pictures"
+        - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/storage"
+
+    #--- Pihole
+    - name: Create Pihole directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/dns/pihole/etc-pihole"
+        - "{{ server_home }}/services/dns/pihole/etc-dnsmasqd"
+
+    - name: Create Pihole log file
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/pihole/pihole.log"
+        state: touch
+        owner: docker
+        group: docker
+        mode: 0640
+
+    #--- Prometheus
+    - name: Create Prometheus persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- RustDesk
+    - name: Create RustDesk persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/remote/rustdesk/persistence"
+        - "{{ server_home }}/services/remote/rustdesk/db-persistence"
+
+    #--- Stirling PDF
+    - name: Create Stirling PDF persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/pdf/stirling-pdf/persistence"
+        - "{{ server_home }}/services/pdf/stirling-pdf/persistence/configs"
+        - "{{ server_home }}/services/pdf/stirling-pdf/persistence/tessdata"
+
+    - name: Download French language pack for OCR feature
+      get_url:
+        url: https://github.com/tesseract-ocr/tessdata/blob/main/fra.traineddata
+        dest: "{{ server_home }}/services/stirling-pdf/persistence/tessdata/fra.traineddata"
+        mode: 0740
+
+    #--- Unbound
+    - name: Create Unbound persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/dns/unbound/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    - name: Copy Unbound server configuration files
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dst }}"
+        owner: docker
+        group: docker
+        mode: 0640
+      loop:
+        - { src: "{{ server_home }}/services/dns/unbound/config/forward-records.conf", dst: "{{ server_home }}/services/dns/unbound/persistence/forward-records.conf" }
+        - { src: "{{ server_home }}/services/dns/unbound/config/unbound.conf", dst: "{{ server_home }}/services/dns/unbound/persistence/unbound.conf" }
+
+    #--- Vaultwarden
+    - name: Create Vaultwarden persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/management/passwords/vaultwarden/db-persistence"
+        - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
+
+    #--- Wazuh
+    - name: Create Wazuh persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/security/wazuh/persistence"
+        - "{{ server_home }}/services/security/wazuh/persistence/api_configuration"
+        - "{{ server_home }}/services/security/wazuh/persistence/etc"
+        - "{{ server_home }}/services/security/wazuh/persistence/logs"
+        - "{{ server_home }}/services/security/wazuh/persistence/queue"
+        - "{{ server_home }}/services/security/wazuh/persistence/var_multigroups"
+        - "{{ server_home }}/services/security/wazuh/persistence/integrations"
+        - "{{ server_home }}/services/security/wazuh/persistence/active_response"
+        - "{{ server_home }}/services/security/wazuh/persistence/agentless"
+        - "{{ server_home }}/services/security/wazuh/persistence/wodles"
+        - "{{ server_home }}/services/security/wazuh/filebeat-persistence"
+        - "{{ server_home }}/services/security/wazuh/filebeat-persistence/etc"
+        - "{{ server_home }}/services/security/wazuh/filebeat-persistence/var"
+        - "{{ server_home }}/services/security/wazuh/indexer-persistence"
+        - "{{ server_home }}/services/security/wazuh/dashboard-persistence"
+        - "{{ server_home }}/services/security/wazuh/dashboard-persistence/config"
+        - "{{ server_home }}/services/security/wazuh/dashboard-persistence/custom"
+
+    #--- Wireguard Easy
+    - name: Create WireGuard Easy persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/remote/wg-easy/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- WireGuard
+    - name: Create WireGuard persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/remote/wireguard/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Wishlist
+    - name: Create Wishlist persistence directories
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/services/wishlist/persistence"
+        - "{{ server_home }}/services/wishlist/persistence/data"
+        - "{{ server_home }}/services/wishlist/persistence/uploads"

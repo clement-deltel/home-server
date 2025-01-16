@@ -1,0 +1,87 @@
+- name: UFW
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+  - name: Initialize ufw
+    tags: init
+    become: true
+    block:
+    # sudo ufw status
+    - name: Enable UFW
+      community.general.ufw:
+        default: deny
+        state: enabled
+
+    - name: Set logging
+      community.general.ufw:
+        logging: "on"
+
+  - name: Add firewall rules
+    tags: init
+    become: true
+    block:
+
+    # Deny connections if an IP address has attempted to initiate 6 or more
+    # connections in the last 30 seconds. See  http://www.debian-administration.org/articles/187 for details.
+    - name: Allow and limit SSH
+      community.general.ufw:
+        rule: limit
+        #name: OpenSSH
+        port: 22
+        protocol: tcp
+        log: true
+
+    - name: Allow DNS for Pihole (TCP)
+      community.general.ufw:
+        rule: allow
+        #name: dns
+        port: 53
+        protocol: tcp
+
+    - name: Allow DNS for Pihole (UDP)
+      community.general.ufw:
+        rule: allow
+        #name: dns
+        port: 53
+        protocol: udp
+
+    - name: Allow HTTP
+      community.general.ufw:
+        rule: allow
+        #name: http
+        port: 80
+
+    - name: Allow HTTPS
+      community.general.ufw:
+        rule: allow
+        #name: https
+        port: 443
+
+    - name: Allow RDP
+      community.general.ufw:
+        rule: allow
+        #name: RDP
+        port: 3389
+
+    - name: Allow local network discovery for Jellyfin
+      community.general.ufw:
+        rule: allow
+        #name: Jellyfin Local Network Discovery
+        port: 7359
+        protocol: udp
+
+    - name: Allow Minecraft
+      community.general.ufw:
+        rule: allow
+        #name: Minecraft
+        port: 25565
+
+    - name: Allow Wireguard
+      community.general.ufw:
+        rule: limit
+        #name: Wireguard
+        port: 51820
+        protocol: udp
+        log: true

@@ -8,4 +8,4 @@
 #==============================================================================#
 
 # Possible tags: up, restart, stop, down
-ansible-playbook playbooks/docker.yml --tags up
+ansible-playbook --ask-become-pass --become --connection local --inventory "localhost," --tags up docker.yml

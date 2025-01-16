@@ -1,0 +1,27 @@
+- name: Permissions
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+
+  - name: Update permissions
+    tags: init
+    become: true
+    block:
+
+    - name: Make all scripts executable
+      ansible.builtin.file:
+        path: '{{ server_home }}/scripts'
+        state: directory
+        mode: a+x
+        recurse: true
+
+    - name: Change owner and group of home server directory recursively
+      ansible.builtin.file:
+        path: '{{ server_home }}'
+        state: directory
+        owner: docker
+        group: docker
+        recurse: true

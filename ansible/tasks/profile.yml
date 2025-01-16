@@ -1,0 +1,33 @@
+- name: User profiles
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+
+  - name: Apply dotfiles for ubuntu user
+    tags: init
+    ansible.builtin.copy:
+      src: "{{ server_home }}/dotfiles_ubuntu/"
+      dest: /home/ubuntu/
+      owner: ubuntu
+      group: ubuntu
+      mode: 0644
+
+  - name: Apply dotfiles for docker user
+    tags: docker
+    ansible.builtin.copy:
+      src: "{{ server_home }}/dotfiles_docker/"
+      dest: /home/docker/
+      owner: docker
+      group: docker
+      mode: 0644
+
+  - name: Update SERVER_HOME
+    tags: docker
+    ansible.builtin.lineinfile:
+      path: /home/docker/.bashrc
+      state: present
+      search_string: "SERVER_HOME"
+      line: "SERVER_HOME={{ server_home }}"
