@@ -67,7 +67,7 @@ ${SERVER_HOME}/ansible/run.sh
 ## 3. Pre-requisites
 
 - Set up an AWS account and create an administrator user (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details)
-- Purchase a domain (see [Domain Name](#5-domain-name) section for more details)
+- Purchase a domain (see [Domain Name](#6-domain-name) section for more details)
 
 ## 4. Hardware
 
@@ -144,6 +144,7 @@ More information available at: [Wikipedia - Standard RAID Levels](https://en.wik
 ## 6. Domain Name
 
 Recommended registrars:
+
 - [CloudFlare](https://www.cloudflare.com/products/registrar/)
 - [OVH](https://www.ovhcloud.com/en/domains/)
 
@@ -205,16 +206,20 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
 - **Media Sharing**
   - [Gokapi](https://github.com/Forceu/Gokapi): `https://share.${DOMAIN}`
-- **Personal Knowledge Management System (PKMS)**
-  - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
-  - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
-  - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
-- **Password Manager**
-  - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
-    - Administration dashboard: `https://vault.${DOMAIN}/admin`
-    - Instance: `https://vault.${DOMAIN}`
-- **Bookmark Manager**
-  - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
+- **Management**
+  - Bookmarks
+    - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
+  - Code
+    - [ByteStash](https://github.com/jordan-dalby/ByteStash): `https://snippets.${DOMAIN}`
+    - [IT-Tools](https://github.com/CorentinTh/it-tools): `https://it-tools.${DOMAIN}`
+  - Passwords
+    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+      - Administration dashboard: `https://vault.${DOMAIN}/admin`
+      - Instance: `https://vault.${DOMAIN}`
+  - Personal Knowledge Management System (PKMS)
+    - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
+    - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
+    - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
   - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
@@ -231,8 +236,6 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Limesurvey](https://www.limesurvey.org/): `https://survey.${DOMAIN}`
 - **Wishlist**
   - [Wishlist](https://github.com/cmintey/wishlist): `https://wish.${DOMAIN}`
-- **Snippets Collection**
-  - [ByteStash](https://github.com/jordan-dalby/ByteStash): `https://snippets.${DOMAIN}`
 - **Games**
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
 
@@ -246,10 +249,16 @@ This section covers all the ports exposed to internet. Those are the ports that 
   - **1514**: Wazuh
   - **1515**: Wazuh
   - **9200**: Wazuh Indexer
+  - **21115**: ID Server - NAT type test
+  - **21116**: ID Server - TCP hole punching
+  - **21117**: Relay Server - Relay services
+  - **21118**: RustDesk ID Server - Web client
+  - **21119**: RustDesk Relay Server - Web client
   - **25565**: Minecraft
   - **55000**: Wazuh API
 - **UDP**
   - **514**: Wazuh
+  - **21116**: ID Server - ID registration and heartbeat
   - **25565**: Minecraft
   - **51820**: Wireguard
 
@@ -275,11 +284,14 @@ List of tools being used to collect metrics on this stack:
 **Health checks**:
 
 Services with built-in health checks:
+
 - Guacamole Daemon (guacd)
 - Vaultwarden
 
 Other:
+
 - InfluxDB
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "curl -f http://localhost:8086/ping"]
@@ -291,6 +303,7 @@ healthcheck:
 ```
 
 - Jellyfin
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "curl -i http://localhost:8096/health"]
@@ -302,6 +315,7 @@ healthcheck:
 ```
 
 - MariaDB
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "mysqladmin ping -h localhost -u <user> -p<password>"]
@@ -313,6 +327,7 @@ healthcheck:
 ```
 
 - Ntfy
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
@@ -324,6 +339,7 @@ healthcheck:
 ```
 
 - Paperless
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "curl -f http://localhost:8000"]
@@ -335,6 +351,7 @@ healthcheck:
 ```
 
 - Postgres
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "pg_isready -U <user>"]
@@ -346,6 +363,7 @@ healthcheck:
 ```
 
 - Redis
+
 ```yaml
 healthcheck:
   test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
@@ -397,6 +415,7 @@ Telegraf plugins being used:
 List of docker compose configuration blocks to specify the amount of logs being collected based on the type of service:
 
 - Main service:
+
 ```yaml
 logging:
   driver: json-file
@@ -406,6 +425,7 @@ logging:
 ```
 
 - Database (MariaDB, PostgreSQL...):
+
 ```yaml
 logging:
   driver: json-file
@@ -415,6 +435,7 @@ logging:
 ```
 
 - Cache (Redis):
+
 ```yaml
 logging:
   driver: json-file
@@ -424,6 +445,7 @@ logging:
 ```
 
 - Other:
+
 ```yaml
 logging:
   driver: json-file
