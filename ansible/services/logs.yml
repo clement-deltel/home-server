@@ -60,6 +60,7 @@
         - "{{ server_home }}/logs/remote/wg-easy"
         - "{{ server_home }}/logs/remote/wireguard"
         - "{{ server_home }}/logs/reverse-proxy/traefik"
+        - "{{ server_home }}/logs/security/enclosed"
         - "{{ server_home }}/logs/security/wazuh"
         - "{{ server_home }}/logs/directus"
         - "{{ server_home }}/logs/limesurvey"

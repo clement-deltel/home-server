@@ -195,6 +195,16 @@
         - "{{ server_home }}/services/pdf/docuseal/db-persistence"
         - "{{ server_home }}/services/pdf/docuseal/persistence"
 
+    #--- Enclosed
+    - name: Create Enclosed persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/security/enclosed/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
     #--- Gokapi
     - name: Create Gokapi persistence directories
       ignore_errors: true

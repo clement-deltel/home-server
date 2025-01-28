@@ -17,6 +17,8 @@
         project_src: '{{ server_home }}/services/directus'
       - when: docuseal_enable
         project_src: '{{ server_home }}/services/pdf/docuseal'
+      - when: enclosed_enable
+        project_src: '{{ server_home }}/services/security/enclosed'
       - when: gokapi_enable
         project_src: '{{ server_home }}/services/media/sharing/gokapi'
       - when: grafana_enable

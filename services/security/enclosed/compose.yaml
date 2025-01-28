@@ -1,0 +1,36 @@
+services:
+  enclosed:
+    container_name: enclosed
+    env_file: config/.env
+    hostname: enclosed
+    image: ${ENCLOSED_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.enclosed.entrypoints=web,websecure"
+      - "traefik.http.routers.enclosed.rule=Host(`notes.${DOMAIN}`)"
+      - "traefik.http.routers.enclosed.tls=true"
+      # - "traefik.http.routers.enclosed.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.enclosed.tls.domains[0].main=notes.${DOMAIN}"
+      - "traefik.http.routers.enclosed.service=enclosed"
+      # Services
+      - "traefik.http.services.enclosed.loadbalancer.server.port=8787"
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      traefik-net:
+        ipv4_address: ${ENCLOSED_IP}
+    ports:
+      - 8787
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/app/.data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
