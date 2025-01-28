@@ -190,6 +190,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
 - **Security**
   - [Wazuh](https://wazuh.com): `https://seim.${DOMAIN}`
+  - [Enclosed](https://github.com/CorentinTh/enclosed): `https://notes.${DOMAIN}`
 - **Media Storage**
   - Documents
     - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
