@@ -27,6 +27,7 @@
         group: docker
         mode: 0744
       loop:
+        - "{{ server_home }}/logs/ai/open-webui"
         - "{{ server_home }}/logs/backup/kopia"
         - "{{ server_home }}/logs/dashboard/homarr"
         - "{{ server_home }}/logs/dns/pihole"

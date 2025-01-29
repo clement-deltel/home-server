@@ -50,6 +50,7 @@ bytestash_enable: true
 change_detection_enable: true
 directus_enable: true
 docuseal_enable: true
+enclosed_enable: true
 gokapi_enable: true
 grafana_enable: true
 grocy_enable: true
@@ -68,6 +69,7 @@ minecraft_enable: true
 navidrome_enable: true
 nextcloud_enable: true
 ntfy_enable: true
+open_webui_enable: true
 paperless_enable: true
 photoprism_enable: true
 pihole_enable: true

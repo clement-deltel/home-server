@@ -1,0 +1,47 @@
+services:
+  open-webui:
+    container_name: open-webui
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    hostname: open-webui
+    image: ${OPEN_WEBUI_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.open-webui.entrypoints=web,websecure"
+      - "traefik.http.routers.open-webui.rule=Host(`ai.${DOMAIN}`)"
+      - "traefik.http.routers.open-webui.tls=true"
+      # - "traefik.http.routers.open-webui.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.open-webui.tls.domains[0].main=ai.${DOMAIN}"
+      - "traefik.http.routers.open-webui.service=open-webui"
+      # Services
+      - "traefik.http.services.open-webui.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${OPEN_WEBUI_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./ollama:/root/.ollama
+      - ./persistence:/app/backend/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

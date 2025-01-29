@@ -221,6 +221,8 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
     - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
     - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
+- **Artificial Intelligence**
+  - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
   - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
