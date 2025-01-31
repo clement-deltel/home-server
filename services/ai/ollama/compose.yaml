@@ -1,0 +1,45 @@
+services:
+  ollama:
+    cap_add:
+      - SYS_NICE
+    cap_drop:
+      - ALL
+    container_name: ollama
+    cpus: 4
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    hostname: ollama
+    image: ${OLLAMA_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    mem_limit: 8g
+    memswap_limit: 8g
+    networks:
+      ai-net:
+        ipv4_address: ${OLLAMA_AI_IP}
+    ports:
+      - 11434:11434
+    read_only: true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges
+    stop_grace_period: 30s
+    volumes:
+      - ./ollama:/root/.ollama
+
+networks:
+  ai-net:
+    external: true
+    name: ai-net

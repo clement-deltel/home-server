@@ -28,3 +28,13 @@
         ipam_config:
           - subnet: "{{ monitoring_net }}"
             gateway: "{{ monitoring_gateway }}"
+
+    # docker network create --driver=bridge --attachable --subnet 192.168.210.0/24 --gateway 192.168.210.1 ai-net
+    - name: Create the ai-net network
+      community.docker.docker_network:
+        name: ai-net
+        attachable: true
+        driver: bridge
+        ipam_config:
+          - subnet: "{{ ai_net }}"
+            gateway: "{{ ai_gateway }}"

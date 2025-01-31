@@ -460,18 +460,25 @@
         group: docker
         mode: 0640
 
-    #--- Open WebUI
-    - name: Create Open WebUI persistence directories
+    #--- Ollama
+    - name: Create Ollama persistence directory
       ignore_errors: true
       ansible.builtin.file:
-        path: "{{ item }}"
+        path: "{{ server_home }}/services/ai/ollama/ollama"
         state: directory
         owner: docker
         group: docker
         mode: 0744
-      loop:
-        - "{{ server_home }}/services/ai/open-webui/ollama"
-        - "{{ server_home }}/services/ai/open-webui/persistence"
+
+    #--- Open WebUI
+    - name: Create Open WebUI persistence directory
+      ignore_errors: true
+      ansible.builtin.file:
+        path: "{{ server_home }}/services/ai/open-webui/persistence"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
 
     #--- Paperless
     - name: Create Paperless persistence directories

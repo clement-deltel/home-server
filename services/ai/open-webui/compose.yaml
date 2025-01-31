@@ -33,15 +33,19 @@ services:
     networks:
       traefik-net:
         ipv4_address: ${OPEN_WEBUI_IP}
+      ai-net:
+        ipv4_address: ${OPEN_WEBUI_AI_IP}
     ports:
       - 8080
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./ollama:/root/.ollama
       - ./persistence:/app/backend/data
 
 networks:
   traefik-net:
     external: true
     name: traefik-net
+  ai-net:
+    external: true
+    name: ai-net

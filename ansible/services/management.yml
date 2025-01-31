@@ -55,6 +55,8 @@
         project_src: '{{ server_home }}/services/media/storage/documents/nextcloud'
       - when: ntfy_enable
         project_src: '{{ server_home }}/services/monitoring/ntfy'
+      - when: ollama_enable
+        project_src: '{{ server_home }}/services/ai/ollama'
       - when: open_webui_enable
         project_src: '{{ server_home }}/services/ai/open-webui'
       - when: paperless_enable

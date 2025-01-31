@@ -361,6 +361,7 @@ alias bckphome='cd ${BACKUP_HOME}'
 alias loghome='cd ${LOG_HOME}'
 
 # Services
+alias cdoll='cd ${SERVER_HOME}/services/ai/ollama'
 alias cdowu='cd ${SERVER_HOME}/services/ai/open-webui'
 alias cdhom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias cdpih='cd ${SERVER_HOME}/services/dns/pihole'
@@ -403,6 +404,7 @@ alias cdtra='cd ${SERVER_HOME}/services/traefik'
 alias cdwis='cd ${SERVER_HOME}/services/wishlist'
 
 
+alias svcoll='cd ${SERVER_HOME}/services/ai/ollama'
 alias svcowu='cd ${SERVER_HOME}/services/ai/open-webui'
 alias svchom='cd ${SERVER_HOME}/services/dashboard/homarr'
 alias svcpih='cd ${SERVER_HOME}/services/dns/pihole'
