@@ -5,6 +5,10 @@ services:
       - 127.0.0.1
       - 45.90.28.96
       - 45.90.30.96
+    healthcheck:
+      test: ["CMD", "drill", "@127.0.0.11", "cloudflare.com"]
+      interval: 60s
+      timeout: 10s
     image: ${UNBOUND_IMAGE}
     logging:
       driver: json-file
