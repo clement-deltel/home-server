@@ -6,7 +6,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities: [gpu]
     dns:
       - 127.0.0.1
