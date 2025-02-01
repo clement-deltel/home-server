@@ -29,10 +29,10 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
-        ipv4_address: ${PIHOLE_DNS_IP}
       traefik-net:
         ipv4_address: ${PIHOLE_IP}
+      dns-net:
+        ipv4_address: ${PIHOLE_DNS_IP}
       monitoring-net:
         ipv4_address: ${PIHOLE_MONITORING_IP}
     ports:
@@ -49,17 +49,12 @@ services:
       - ./etc-dnsmasqd/:/etc/dnsmasq.d/
 
 networks:
-  app-net:
-    name: dns-net
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${DNS_NET}
-          gateway: ${DNS_GATEWAY}
   traefik-net:
     external: true
     name: traefik-net
+  dns-net:
+    external: true
+    name: dns-net
   monitoring-net:
     external: true
     name: monitoring-net

@@ -19,6 +19,16 @@
           - subnet: "{{ traefik_net }}"
             gateway: "{{ traefik_gateway }}"
 
+    # docker network create --driver=bridge --attachable --subnet 192.168.30.0/24 --gateway 192.168.30.1 dns-net
+    - name: Create the dns-net network
+      community.docker.docker_network:
+        name: dns-net
+        attachable: true
+        driver: bridge
+        ipam_config:
+          - subnet: "{{ dns_net }}"
+            gateway: "{{ dns_gateway }}"
+
     # docker network create --driver=bridge --attachable --subnet 192.168.40.0/24 --gateway 192.168.40.1 monitoring-net
     - name: Create the monitoring-net network
       community.docker.docker_network:
