@@ -85,24 +85,22 @@ curl -fLSs https://raw.githubusercontent.com/${GITHUB_USERNAME}/home-server/refs
     - Cloud
       - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
-- ansible/playbooks/vars/main_template.yml
-- env/template.env
+5. Log in as the docker user and edit the configuration files:
 
-Run the below commands to setup and install everything:
+- ansible/vars/main_template.yml
+- env/.env.template
+
+6. Configure Docker user and services:
 
 ```bash
 mv ansible/playbooks/vars/main_template.yml ansible/playbooks/vars/main.yml
 mv env/.env.template env/.env
-cd ansible
-chmod +x install.sh run.sh
-./install.sh
+ansible-playbook --connection local --inventory "localhost," --tags docker docker.yml
 ```
 
-Run all services:
-
 ```bash
-sudo su - docker
-${SERVER_HOME}/ansible/run.sh
+# Possible tags: up, restart, stop, down
+ansible-playbook --connection local --inventory "localhost," --tags up docker.yml
 ```
 
 If you want to test this setup, you need to have Docker installed and then you can run the commands below:
