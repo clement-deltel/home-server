@@ -6,8 +6,8 @@
 
   - name: Disable boot from external devices
     tags: init
-    become: true
     block:
+
     - name: Create fake_usb file
       ansible.builtin.file:
         path: /etc/modprobe.d/fake_usb.conf

@@ -1,26 +1,51 @@
 - name: XRDP
   hosts: all
   gather_facts: false
+  vars:
+    packages:
+      - xrdp
 
   tasks:
-
-  - name: Install and configure XRDP
-    tags: init
-    become: true
+  # Packages
+  - name: Packages
     block:
 
-    - name: Install xrdp
-      ansible.builtin.apt:
-        pkg:
-          - xrdp
-        state: latest
+    - name: List packages
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "packages: {{ packages }}"
 
-    - name: Enable xrdp service
+    # sudo apt update -y && sudo apt install -y
+    - name: Install
+      tags: init
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: true
+
+    # sudo apt update -y && sudo apt upgrade -y
+    - name: Upgrade
+      tags: update
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: true
+
+  # Service
+  - name: Service
+    block:
+
+    # systemctl status xrdp.service
+    - name: Start xrdp service
+      tags: init
       ansible.builtin.systemd:
         name: xrdp
-        enabled: true
+        state: started
+        enabled: yes
 
     - name: Restart xrdp service
+      tags: update
       ansible.builtin.systemd:
         name: xrdp
         state: restarted
+        enabled: yes

@@ -8,10 +8,14 @@ LABEL org.opencontainers.image.description="Collection of self hosted services f
 # Not persisted into the built image
 ARG ID="1000"
 ARG USER="ubuntu"
+ARG GITHUB_USERNAME
+ARG SERVER_ROOT
 ARG TZ
 
 # Persisted into the built image
 ENV DEBIAN_FRONTEND=noninteractive
+ENV GITHUB_USERNAME=${GITHUB_USERNAME}
+ENV SERVER_ROOT=${SERVER_ROOT}
 ENV TZ=${TZ}
 
 # Install dependencies

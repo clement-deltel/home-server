@@ -32,8 +32,8 @@ function install_ansible(){
 #==============================================================================#
 function clone_repository(){
   echo "[INFO] Cloning 'home-server' repository onto the system..."
-  sudo chown ubuntu:ubuntu /opt
-  git clone https://github.com/clement-deltel/home-server.git /opt/home-server
+  sudo chown ubuntu:ubuntu ${SERVER_ROOT}
+  git clone https://github.com/${GITHUB_USERNAME}/home-server.git ${SERVER_ROOT}/home-server
 }
 
 #==============================================================================#
@@ -42,7 +42,7 @@ function clone_repository(){
 #==============================================================================#
 function run_playbooks(){
   echo "[INFO] Running Ansible Playbooks..."
-  cd /opt/home-server/ansible
+  cd ${SERVER_ROOT}/home-server/ansible
   ansible-playbook --become --connection local --inventory "localhost," --tags init ubuntu.yml
   ansible-playbook --become --connection local --inventory "localhost," --tags clean ubuntu.yml
 }

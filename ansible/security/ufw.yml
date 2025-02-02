@@ -6,7 +6,6 @@
 
   - name: Initialize ufw
     tags: init
-    become: true
     block:
     # sudo ufw status
     - name: Enable UFW
@@ -18,70 +17,34 @@
       community.general.ufw:
         logging: "on"
 
+  # limit: deny connections if an IP address has attempted to initiate 6 or more
+  # connections in the last 30 seconds. See  http://www.debian-administration.org/articles/187 for details.
   - name: Add firewall rules
     tags: init
-    become: true
-    block:
-
-    # Deny connections if an IP address has attempted to initiate 6 or more
-    # connections in the last 30 seconds. See  http://www.debian-administration.org/articles/187 for details.
-    - name: Allow and limit SSH
-      community.general.ufw:
-        rule: limit
-        #name: OpenSSH
-        port: 22
-        protocol: tcp
-        log: true
-
-    - name: Allow DNS for Pihole (TCP)
-      community.general.ufw:
-        rule: allow
-        #name: dns
-        port: 53
-        protocol: tcp
-
-    - name: Allow DNS for Pihole (UDP)
-      community.general.ufw:
-        rule: allow
-        #name: dns
-        port: 53
-        protocol: udp
-
-    - name: Allow HTTP
-      community.general.ufw:
-        rule: allow
-        #name: http
-        port: 80
-
-    - name: Allow HTTPS
-      community.general.ufw:
-        rule: allow
-        #name: https
-        port: 443
-
-    - name: Allow RDP
-      community.general.ufw:
-        rule: allow
-        #name: RDP
-        port: 3389
-
-    - name: Allow local network discovery for Jellyfin
-      community.general.ufw:
-        rule: allow
-        #name: Jellyfin Local Network Discovery
-        port: 7359
-        protocol: udp
-
-    - name: Allow Minecraft
-      community.general.ufw:
-        rule: allow
-        #name: Minecraft
-        port: 25565
-
-    - name: Allow Wireguard
-      community.general.ufw:
-        rule: limit
-        #name: Wireguard
-        port: 51820
-        protocol: udp
-        log: true
+    community.general.ufw:
+      comment: "{{ item.comment }}"
+      rule: "{{ item.rule}}"
+      port: "{{ item.port }}"
+      protocol: "{{ item.protocol }}"
+      log: "{{ item.log }}"
+    loop:
+      - {comment: "SSH (TCP)", rule: limit, port: 22, protocol: "tcp", log: true}
+      - {comment: "Pihole DNS (TCP)", port: 53, protocol: "tcp", log: false}
+      - {comment: "Traefik HTTP", port: 80, protocol: "any", log: false}
+      - {comment: "Traefik HTTPS", port: 443, protocol: "any", log: false}
+      - {comment: "Wazuh (TCP)", port: 1514, protocol: "tcp", log: false}
+      - {comment: "Wazuh (TCP)", port: 1515, protocol: "tcp", log: false}
+      - {comment: "Guacamole RDP", port: 3389, protocol: "any", log: false}
+      - {comment: "Wazuh Indexer (TCP)", port: 9200, protocol: "tcp", log: false}
+      - {comment: "ID Server - NAT type test (TCP)", port: 21115, protocol: "tcp", log: false}
+      - {comment: "ID Server - TCP hole punching (TCP)", port: 21116, protocol: "tcp", log: false}
+      - {comment: "Relay Server - Relay services (TCP)", port: 21117, protocol: "tcp", log: false}
+      - {comment: "RustDesk ID Server - Web client (TCP)", port: 21118, protocol: "tcp", log: false}
+      - {comment: "RustDesk Relay Server - Web client (TCP)", port: 21119, protocol: "tcp", log: false}
+      - {comment: "Minecraft", port: 25565, protocol: "any", log: false}
+      - {comment: "Wazuh API (TCP)", port: 55000, protocol: "tcp", log: false}
+      - {comment: "Pihole DNS (UDP)", port: 53, protocol: "udp", log: false}
+      - {comment: "Wazuh (UDP)", port: 514, protocol: "udp", log: false}
+      - {comment: "Jellyfin local network discovery (UDP)", port: 7359, protocol: "udp", log: false}
+      - {comment: "ID Server - ID registration and heartbeat (UDP)", port: 21116, protocol: "udp", log: false}
+      - {comment: "Wireguard (UDP)", rule: limit, port: 51820, protocol: "udp", log: true}

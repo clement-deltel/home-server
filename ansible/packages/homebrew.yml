@@ -1,0 +1,101 @@
+- name: Homebrew
+  hosts: all
+  gather_facts: false
+  vars:
+    dependencies:
+      - build-essential
+      - curl
+      - git
+      - language-pack-en
+      - locales
+    formulas:
+      - btop
+      - lazydocker
+      - lazygit
+      - lnav
+      - tlrc
+    install_tmp: /tmp/homebrew
+    install_url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+
+  tasks:
+  # Dependencies
+  - name: Dependencies
+    block:
+
+    - name: List dependencies
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "dependencies: {{ dependencies }}"
+
+    # sudo apt update -y && sudo apt install -y
+    - name: Install dependencies
+      tags: init
+      ansible.builtin.apt:
+        name: "{{ dependencies }}"
+        state: present
+        update_cache: true
+
+    # sudo apt update -y && sudo apt upgrade -y
+    - name: Upgrade dependencies
+      tags: update
+      ansible.builtin.apt:
+        name: "{{ dependencies }}"
+        state: latest
+        update_cache: true
+
+  # Homebrew
+  - name: Homebrew
+    tags: [init, update]
+    become_user: ubuntu
+    block:
+
+    - name: Create temporary directory
+      ansible.builtin.file:
+        path: "{{ install_tmp }}"
+        state: directory
+        mode: 0700
+
+    - name: Download install script
+      ansible.builtin.uri:
+        method: GET
+        url: "{{ install_url }}"
+        dest: "{{ install_tmp }}/install.sh"
+        follow_redirects: safe
+        mode: 0700
+
+    - name: Install
+      ansible.builtin.command:
+        cmd: /bin/bash -c {{ install_tmp }}/install.sh
+      register: install_result
+      changed_when: install_result.rc == 0
+
+    - name: Remove temporary directory
+      ansible.builtin.file:
+        path: "{{ install_tmp }}"
+        state: absent
+
+  # Formulas
+  - name: Formulas
+    become_user: ubuntu
+    block:
+
+    - name: List formulas
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "Formulas: {{ formulas }}"
+
+    # brew install
+    - name: Install formulas
+      tags: init
+      community.general.homebrew:
+        name: "{{ formulas }}"
+        state: present
+        update_homebrew: true
+
+    # brew upgrade
+    - name: Upgrade formulas
+      tags: update
+      community.general.homebrew:
+        name: "{{ formulas }}"
+        state: latest
+        update_homebrew: true

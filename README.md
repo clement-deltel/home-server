@@ -1,48 +1,89 @@
 # Home Server <!-- omit in toc -->
 
+Collection of self hosted services for my home server setup.
+
 ## Table of Contents <!-- omit in toc -->
 
-- [1. Introduction](#1-introduction)
-- [2. Getting started](#2-getting-started)
-- [3. Pre-requisites](#3-pre-requisites)
-- [4. Hardware](#4-hardware)
-- [5. RAID](#5-raid)
-- [6. Domain Name](#6-domain-name)
-- [7. Operating System](#7-operating-system)
-- [8. Services](#8-services)
-- [9. Port Mapping](#9-port-mapping)
-- [10. Secrets Management](#10-secrets-management)
-- [11. Observability](#11-observability)
-  - [11.1 Metrics](#111-metrics)
-    - [11.1.1 Docker](#1111-docker)
-    - [11.1.2 Telegraf](#1112-telegraf)
-    - [11.1.3 Prometheus](#1113-prometheus)
-    - [11.1.4 Other](#1114-other)
-  - [11.2 Logs](#112-logs)
-  - [11.3 Visualization](#113-visualization)
-    - [11.3.1 Grafana](#1131-grafana)
-    - [11.3.2 Monitor your server from your phone](#1132-monitor-your-server-from-your-phone)
-- [12. Security notes](#12-security-notes)
+- [Pre-requisites](#pre-requisites)
+- [Getting Started](#getting-started)
+- [Hardware](#hardware)
+- [RAID](#raid)
+- [Domain Name](#domain-name)
+- [Port Mapping](#port-mapping)
+- [Operating System](#operating-system)
+- [Services](#services)
+- [Secrets Management](#secrets-management)
+- [Observability](#observability)
+  - [Metrics](#metrics)
+    - [Docker](#docker)
+    - [Telegraf](#telegraf)
+    - [Prometheus](#prometheus)
+    - [Other](#other)
+  - [Logs](#logs)
+  - [Visualization](#visualization)
+    - [Grafana](#grafana)
+    - [Monitor your server from your phone](#monitor-your-server-from-your-phone)
+## Pre-requisites
 
-## 1. Introduction
+Here is a non-exhaustive list of tasks to perform prior deploying the stack:
 
-Collection of tools for self hosting. This stack is using external services on AWS to provide support for secret management, off-site backups, and sending emails.
+- Purchase the server hardware (refer to the [Hardware](#hardware) section more details)
+- Purchase a domain (refer to the [Domain Name](#domain-name) section for more details)
+- Build the server, optionally with RAID support (refer to the [RAID](#raid) section for more details)
+- Configure port forwarding on your router (refer to the [Port Mapping](#port-mapping) section for more details)
+- Install the operating system of your choice on your server (refer to the [Operating System](#operating-system) section for more details)
 
-## 2. Getting started
+Create the accounts below:
 
-This section covers how you can quickly get started with this stack and all the supported services.
+- AWS account (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details)
+- Infiscal account for secret management
 
-Run the below commands:
+I use the below AWS services:
+
+- **S3**: perform regular off-site backups of my services to a dedicated bucket
+- **SES**: send services-related emails to my users
+
+## Getting Started
+
+1. Export required environment variables:
 
 ```bash
-cd /opt
-sudo chown ubuntu:ubuntu .
-sudo apt update -y && sudo apt install -y git vim
-git clone https://github.com/clement-deltel/home-server.git
-cd home-server
+export GITHUB_USERNAME=clement-deltel
+export SERVER_ROOT='/opt'
 ```
 
-Edit the following files to your liking:
+2. Install dependencies and run installation script:
+
+```bash
+sudo apt update -y && sudo apt install -y curl
+curl -fLSs https://raw.githubusercontent.com/${GITHUB_USERNAME}/home-server/refs/heads/main/docker/install.sh | bash
+```
+
+3. After pulling and configuring the home-server, the script install ansible, and then run playbooks.
+4. Ansible playbooks automatically install and configure the tools listed below:
+    - Packages Managers
+      - apt
+        - [argon2](https://github.com/P-H-C/phc-winner-argon2)
+        - [htop](https://github.com/htop-dev/htop): interactive process viewer.
+        - [lm-sensors](https://github.com/lm-sensors/lm-sensors)
+        - [nvme-cli](https://github.com/linux-nvme/nvme-cli)
+        - [smartmontools](https://github.com/smartmontools/smartmontools)
+        - [vim](https://github.com/vim/vim)
+        - [wireguard](https://github.com/WireGuard/wireguard-linux)
+      - [homebrew](https://github.com/Homebrew/brew): the missing package manager for Linux.
+        - [btop](https://github.com/aristocratos/btop): monitor of resources.
+        - [lazydocker](https://github.com/jesseduffield/lazydocker): lazier way to manage everything Docker.
+        - [lazygit](https://github.com/jesseduffield/lazygit): simple terminal UI for git commands.
+        - [lnav](https://github.com/tstack/lnav): log file navigator.
+        - [tldr](https://github.com/tldr-pages/tlrc): tldr client written in Rust.
+    - Languages
+      - Python
+    - Orchestration
+      - Docker
+    - Infrastructure as Code (IaC)
+      - [Terraform](https://github.com/hashicorp/terraform): safely and predictably create, change, and improve infrastructure.
+    - Cloud
+      - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 - ansible/playbooks/vars/main_template.yml
 - env/template.env
@@ -64,12 +105,15 @@ sudo su - docker
 ${SERVER_HOME}/ansible/run.sh
 ```
 
-## 3. Pre-requisites
+If you want to test this setup, you need to have Docker installed and then you can run the commands below:
 
-- Set up an AWS account and create an administrator user (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details)
-- Purchase a domain (see [Domain Name](#6-domain-name) section for more details)
+```bash
+# Use option --progress=plain to see steps in more details
+docker build --build-arg GITHUB_USERNAME --build-arg SERVER_ROOT --file docker/Dockerfile --tag home-server docker
+docker run --interactive --name home-server --tty --rm home-server
+```
 
-## 4. Hardware
+## Hardware
 
 This section covers the detail of the hardware I chose to build my home server.
 
@@ -135,20 +179,45 @@ This section covers the detail of the hardware I chose to build my home server.
   - Model: DLM21 White Mini Tower
   - ATX Compatibility: Micro ATX, Mini ITX
 
-## 5. RAID
+## RAID
 
 Disks 1 and 2 are in RAID 1 for better fault tolerance and to avoid any data loss.
 
 More information available at: [Wikipedia - Standard RAID Levels](https://en.wikipedia.org/wiki/Standard_RAID_levels).
 
-## 6. Domain Name
+## Domain Name
 
 Recommended registrars:
 
 - [CloudFlare](https://www.cloudflare.com/products/registrar/)
 - [OVH](https://www.ovhcloud.com/en/domains/)
 
-## 7. Operating System
+## Port Mapping
+
+This section covers all the ports exposed to internet. Those are the ports that must be forwarded on the router to the server hosting all services.
+
+- **TCP**
+  - **53**: Pihole
+  - **80**: Traefik HTTP
+  - **443**: Traefik HTTPS
+  - **1514**: Wazuh
+  - **1515**: Wazuh
+  - **9200**: Wazuh Indexer
+  - **21115**: ID Server - NAT type test
+  - **21116**: ID Server - TCP hole punching
+  - **21117**: Relay Server - Relay services
+  - **21118**: RustDesk ID Server - Web client
+  - **21119**: RustDesk Relay Server - Web client
+  - **25565**: Minecraft
+  - **55000**: Wazuh API
+- **UDP**
+  - **53**: Pihole
+  - **514**: Wazuh
+  - **21116**: ID Server - ID registration and heartbeat
+  - **25565**: Minecraft
+  - **51820**: Wireguard
+
+## Operating System
 
 - **Name**: Ubuntu
 - **Version**: 22.04 LTS (Jammy Jellyfish)
@@ -156,7 +225,7 @@ Recommended registrars:
 - **Expanded security maintenance**: until April 2032
 - **Legacy support**: until April 2034
 
-## 8. Services
+## Services
 
 This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them (if any), URL that depends on the root domain name.
 
@@ -242,37 +311,11 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Games**
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
 
-## 9. Port Mapping
-
-This section covers all the ports exposed to internet. Those are the ports that must be forwarded on the router to the server hosting all services.
-
-- **TCP**
-  - **80**: Traefik HTTP
-  - **443**: Traefik HTTPS
-  - **1514**: Wazuh
-  - **1515**: Wazuh
-  - **9200**: Wazuh Indexer
-  - **21115**: ID Server - NAT type test
-  - **21116**: ID Server - TCP hole punching
-  - **21117**: Relay Server - Relay services
-  - **21118**: RustDesk ID Server - Web client
-  - **21119**: RustDesk Relay Server - Web client
-  - **25565**: Minecraft
-  - **55000**: Wazuh API
-- **UDP**
-  - **514**: Wazuh
-  - **21116**: ID Server - ID registration and heartbeat
-  - **25565**: Minecraft
-  - **51820**: Wireguard
-
-## 10. Secrets Management
-
-
-## 11. Observability
+## Observability
 
 This section covers all the tools and logic implemented to have maximum visibility on what is happening on the server at any given time.
 
-### 11.1 Metrics
+### Metrics
 
 List of tools being used to collect metrics on this stack:
 
@@ -282,7 +325,7 @@ List of tools being used to collect metrics on this stack:
 
 > **Note**: it is necessary to create manually the UDP database named traefik in InfluxDB.
 
-#### 11.1.1 Docker
+#### Docker
 
 **Health checks**:
 
@@ -377,7 +420,7 @@ healthcheck:
   start_interval: 5s
 ```
 
-#### 11.1.2 Telegraf
+#### Telegraf
 
 Run the below command to test your configuration:
 
@@ -407,13 +450,9 @@ Telegraf plugins being used:
   - [Wireguard](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/wireguard/README.md)
 
 
-#### 11.1.3 Prometheus
 
-
-#### 11.1.4 Other
-
-
-### 11.2 Logs
+#### Prometheus
+### Logs
 
 List of docker compose configuration blocks to specify the amount of logs being collected based on the type of service:
 
@@ -457,21 +496,20 @@ logging:
     max-size: 2m
 ```
 
-### 11.3 Visualization
+### Visualization
 
 List of tools being used to visualize metrics on this stack:
 
 - Grafana
 - iOs app
 
-#### 11.3.1 Grafana
+#### Grafana
 
-#### 11.3.2 Monitor your server from your phone
+#### Monitor your server from your phone
 
 Since I am an iPhone user, this section covers the list of steps on iOS only.
 
 1. Install the [Glimpse 2](https://apps.apple.com/us/app/glimpse-2/id1524217845) app from the App Store.
 2. Wrap your Grafana instance website on your iOS screen via Widgets.
 
-## 12. Security notes
-
+## Security notes

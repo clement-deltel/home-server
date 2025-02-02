@@ -1,4 +1,4 @@
-- name: Configure the instance - Home Server - Ubuntu user
+- name: Configure machine - ubuntu user
   hosts: all
   gather_facts: false
 
@@ -9,6 +9,12 @@
 # Packages
 - name: APT - Essentials tools
   import_playbook: packages/apt.yml
+- name: Homebrew
+  import_playbook: packages/homebrew.yml
+
+# Languages
+- name: Python
+  import_playbook: languages/python.yml
 
 # Security
 - name: Security good practices
@@ -30,10 +36,6 @@
   import_playbook: tasks/dyn-dns.yml
 - name: Install NVIDIA Container Toolkit
   import_playbook: tasks/nvidia.yml
-
-# Languages
-- name: Python
-  import_playbook: languages/python.yml
 
 # Orchestration
 - name: Docker
