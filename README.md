@@ -225,7 +225,6 @@ Recommended registrars:
 This section covers all the ports exposed to internet. Those are the ports that must be forwarded on the router to the server hosting all services.
 
 - **TCP**
-  - **53**: Pihole
   - **80**: Traefik HTTP
   - **443**: Traefik HTTPS
   - **1514**: Wazuh
@@ -234,12 +233,9 @@ This section covers all the ports exposed to internet. Those are the ports that 
   - **21115**: ID Server - NAT type test
   - **21116**: ID Server - TCP hole punching
   - **21117**: Relay Server - Relay services
-  - **21118**: RustDesk ID Server - Web client
-  - **21119**: RustDesk Relay Server - Web client
   - **25565**: Minecraft
   - **55000**: Wazuh API
 - **UDP**
-  - **53**: Pihole
   - **514**: Wazuh
   - **21116**: ID Server - ID registration and heartbeat
   - **25565**: Minecraft

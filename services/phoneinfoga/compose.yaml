@@ -14,7 +14,7 @@ services:
       app-net:
         ipv4_address: ${PHONEINFOGA_IP}
     ports:
-      - 5000:5000
+      - ${PHONEINFOGA_PORT}:5000
     restart: unless-stopped
     stop_grace_period: 30s
 

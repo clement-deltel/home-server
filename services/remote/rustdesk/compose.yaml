@@ -60,7 +60,7 @@ services:
     ports:
       # Note that 21116/udp is causing connections issue with Rustdesk so we
       # directly open the port in the rustdesk container instead of going through Traefik.
-      - 21116:21116/udp # ID Server - ID registration and heartbeat
+      - ${RUSTDESK_ID_HP_PORT}:21116/udp # ID Server - ID registration and heartbeat
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:

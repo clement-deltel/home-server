@@ -30,7 +30,7 @@ services:
       ai-net:
         ipv4_address: ${OLLAMA_AI_IP}
     ports:
-      - 11434:11434
+      - ${OLLAMA_PORT}:11434
     read_only: true
     restart: unless-stopped
     security_opt:

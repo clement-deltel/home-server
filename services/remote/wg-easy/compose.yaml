@@ -20,7 +20,7 @@ services:
       - "traefik.udp.routers.wireguard.service=wireguard"
       # Services
       - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
-      - "traefik.udp.services.wireguard.loadbalancer.server.port=${WIREGUARD_PORT}"
+      - "traefik.udp.services.wireguard.loadbalancer.server.port=51820"
     logging:
       driver: json-file
       options:
@@ -32,8 +32,8 @@ services:
       monitoring-net:
         ipv4_address: ${WIREGUARD_MONITORING_IP}
     ports:
-      - 51820/udp
       - 51821/tcp
+      - 51820/udp
     restart: unless-stopped
     stop_grace_period: 30s
     sysctls:
