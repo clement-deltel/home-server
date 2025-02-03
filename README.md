@@ -102,7 +102,7 @@ Here are some guidelines on how to fill those configuration files:
   - **1**: number of password generated
 - specific use cases:
   - secrets.yml
-    - **aws\***: generate key pair for your AWS account.
+    - **aws_\***: generate key pair for your AWS account.
     - **dyn_\***: enable dynamic DNS on your domain name registrar and retrieve the credentials.
     - **open_weather_map_api_key**: create an [OpenWeather](https://openweathermap.org) account and generate API credentials.
   - secrets.env
@@ -115,7 +115,7 @@ Here are some guidelines on how to fill those configuration files:
     - **RUSTDESK_PRIVATE_KEY**: run `openssl genpkey -algorithm Ed25519 -out private.key`.
     - **RUSTDESK_PUBLIC_KEY**: run `openssl pkey -in private.key -pubout -out public.key`.
     - **VAULTWARDEN_PUSH_\***: follow guidelines [here](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification).
-    - **WG_EASY*_PASSWORD**: follow guidelines [here](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md).
+    - **WG_EASY\*_PASSWORD**: follow guidelines [here](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md).
 
 6. Run Docker user playbooks and apply Terraform configuration:
 
