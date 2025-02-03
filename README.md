@@ -87,42 +87,42 @@ curl -fLSs https://raw.githubusercontent.com/${GITHUB_USERNAME}/home-server/refs
     - Cloud
       - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
-5. Log in as the docker user and edit the configuration files:
+5. Log in as the Docker user and edit the configuration files:
 
-- ansible/vars/main_template.yml
+- ansible/vars/secrets.yml
 - env/secrets.env
 
 Here are some guidelines on how to fill those configuration files:
 
-- use pwgen for most of the credentials: `pwgen -cns 25 1`
+- use pwgen for most of the credentials: `pwgen -cns 30 1`
   - **-c**: Include at least one capital letter in the password
   - **-n**: Include at least one number in the password
   - **-s**: Generate completely random passwords
   - **25**: password length
   - **1**: number of password generated
 - specific use cases:
-  - main_template.yml
+  - secrets.yml
+    - **aws\***: generate key pair for your AWS account.
+    - **dyn_\***: enable dynamic DNS on your domain name registrar and retrieve the credentials.
+    - **open_weather_map_api_key**: create an [OpenWeather](https://openweathermap.org) account and generate API credentials.
   - secrets.env
     - **BYTESTASH_JWT_TOKEN**: use [jwt.io](https://jwt.io).
     - **BYTESTASH_JWT_SECRET**: run `pwgen -Ans 512 1`.
     - **ENCLOSED_JWT_SECRET**: run `pwgen -Ans 512 1`.
     - **ENCLOSED_USER_PASSWORD**: use [User Authentication Key Generator](https://docs.enclosed.cc/self-hosting/users-authentication-key-generator).
-    - **NAVIDROME_SPOTIFY_CLIENT_ID**: create a [Spotify](accounts.spotify.com/en/login) account and generate API credentials.
-    - **NAVIDROME_SPOTIFY_CLIENT_SECRET**: create a [Spotify](accounts.spotify.com/en/login) account and generate API credentials.
+    - **NAVIDROME_SPOTIFY_CLIENT_\***: create a [Spotify](accounts.spotify.com/en/login) account and generate API credentials.
     - **OPEN_WEBUI_OPENAI_API_KEY**: create a [Open AI](auth.openai.com/authorize) account and generate API credentials.
     - **RUSTDESK_PRIVATE_KEY**: run `openssl genpkey -algorithm Ed25519 -out private.key`.
     - **RUSTDESK_PUBLIC_KEY**: run `openssl pkey -in private.key -pubout -out public.key`.
-    - **VAULTWARDEN_PUSH_ID**: follow guidelines [here](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification).
-    - **VAULTWARDEN_PUSH_KEY**: follow guidelines [here](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification).
-    - **WG_EASY_PASSWORD**: follow guidelines [here](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md).
-    - **WG_EASY_PROMETHEUS_METRICS_PASSWORD**: follow guidelines [here](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md).
+    - **VAULTWARDEN_PUSH_\***: follow guidelines [here](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification).
+    - **WG_EASY*_PASSWORD**: follow guidelines [here](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md).
 
-6. Configure Docker user and services:
+6. Run Docker user playbooks and apply Terraform configuration:
 
 ```bash
-mv ansible/vars/main_template.yml ansible/vars/main.yml
-mv env/.env.template env/.env
-ansible-playbook --connection local --inventory "localhost," --tags docker docker.yml
+cd ${SERVER_HOME}
+ansible-playbook --connection local --inventory "localhost," --tags docker ansible/docker.yml
+terraform apply
 ```
 
 7. Start services:
@@ -130,6 +130,16 @@ ansible-playbook --connection local --inventory "localhost," --tags docker docke
 ```bash
 # Possible tags: up, restart, stop, down
 ansible-playbook --connection local --inventory "localhost," --tags up docker.yml
+```
+
+8. After creating a Vaultwarden account, optionally move the secret files to the vault:
+
+```bash
+# bwload /path/to/file bw_item_name
+bwc ${SERVER_HOME}/env/secrets.env home_sever_env
+bwc ${SERVER_HOME}/ansible/vars/secrets.yml home_sever_yml
+rm ${SERVER_HOME}/env/secrets.env
+rm ${SERVER_HOME}/ansible/vars/secrets.yml
 ```
 
 If you want to test this setup, you need to have Docker installed and then you can run the commands below:

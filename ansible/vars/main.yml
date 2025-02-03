@@ -1,37 +1,10 @@
 # General
-domain: <domain-name>
-user_email: <user-email-address>
-
-docker_gid: <docker-user-gid>
-docker_uid: <docker-user-uid>
-
-server_home: '<server-home>'
+docker_gid: 1001
+docker_uid: 1001
 local_domain: false
 
 # Ansible
 deb_architecture: { "armv6l": "armhf", "armv7l": "armhf", "aarch64": "arm64", "x86_64": "amd64", "i386": "i386" }
-
-# AWS
-aws_profile: default
-aws_access_key: '<aws-access-key>'
-aws_secret_key: '<aws-secret-key>'
-aws_region: <region>
-aws_format: yaml
-
-# DynDNS
-dyn_server: '<server-url>'
-dyn_host_username: '<login>'
-dyn_host_password: '<password>'
-
-# Telegraf
-hostname:  <hostname>
-influxdb_admin_user: '<login>'
-influxdb_admin_user_password: '<password>'
-influxdb_user: '<login>'
-influxdb_user_password: '<password>'
-minecraft_rcon_password: '<password>'
-minecraft_rcon_port: <port>
-open_weather_map_api_key: '<api-key>'
 
 # Docker networks
 traefik_net: 192.168.10.0/24
@@ -43,16 +16,11 @@ monitoring_gateway: 192.168.40.1
 ai_net: 192.168.210.0/24
 ai_gateway: 192.168.210.1
 
-# Traefik
-traefik_user: '<login>'
-traefik_password: '<password>'
-
 # Services
 actual_enable: true
 affine_enable: true
 bytestash_enable: true
 change_detection_enable: true
-directus_enable: true
 docuseal_enable: true
 enclosed_enable: true
 gokapi_enable: true
@@ -67,16 +35,11 @@ jellyfin_enable: true
 jetlog_enable: true
 kavita_enable: true
 kopia_enable: true
-librum_enable: false
-limesurvey_enable: true
 minecraft_enable: true
 navidrome_enable: true
-nextcloud_enable: true
 ntfy_enable: true
-ollama_enable: true
 open_webui_enable: true
 paperless_enable: true
-photoprism_enable: true
 pihole_enable: true
 prometheus_enable: true
 rustdesk_enable: true
@@ -85,5 +48,13 @@ unbound_enable: true
 vaultwarden_enable: true
 wazuh_enable: false
 wireguard_easy_enable: true
-wireguard_enable: true
 wishlist_enable: true
+
+directus_enable: false
+firefly_enable: false
+librum_enable: false
+limesurvey_enable: false
+nextcloud_enable: false
+ollama_enable: false
+photoprism_enable: false
+wireguard_enable: false

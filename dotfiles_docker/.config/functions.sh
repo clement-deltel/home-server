@@ -104,16 +104,22 @@ function bitwarden-open-fn {
   bitwarden-create-session-fn
 }
 
-function bitwarden-create-env-fn {
+function bitwarden-create-item-notes-fn {
     bitwarden-create-session-fn
-    notes=$(grep -v '^#' "${SERVER_HOME}/env/secrets.env")
-    bw get template item | jq ".type = 1 | .name='home_server_env' | .notes='${notes}'" | bw create item
+    notes=$(grep -v '^#' "$1")
+    bw get template item | jq ".type = 1 | .name='$2' | .notes='${notes}'" | bw create item
     unset BW_SESSION
 }
 
 function bitwarden-load-env-fn {
     bitwarden-create-session-fn
-    export $(bw get notes home_server_env | xargs -d '\n');
+    export $(bw get notes home_server_env | xargs -d '\n')
+    unset BW_SESSION
+}
+
+function bitwarden-load-yml-fn {
+    bitwarden-create-session-fn
+    bw get notes home_server_yml > ${SERVER_HOME}/ansible/vars/secrets.yml
     unset BW_SESSION
 }
 
