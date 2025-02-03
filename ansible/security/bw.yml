@@ -1,0 +1,74 @@
+- name: Bitwarden CLI
+  hosts: all
+  gather_facts: true
+  vars:
+    dependencies:
+      - curl
+      - jq
+      - libsecret-1-0
+
+  tasks:
+  # Dependencies
+  - name: Dependencies
+    block:
+
+    - name: List dependencies
+      tags: [init, update]
+      ansible.builtin.debug:
+        msg: "dependencies: {{ dependencies }}"
+
+    # sudo apt update -y && sudo apt install -y
+    - name: Install dependencies
+      tags: init
+      ansible.builtin.apt:
+        name: "{{ dependencies }}"
+        state: present
+        update_cache: true
+
+    # sudo apt update -y && sudo apt upgrade -y
+    - name: Upgrade dependencies
+      tags: update
+      ansible.builtin.apt:
+        name: "{{ dependencies }}"
+        state: latest
+        update_cache: true
+
+  # Bitwarden CLI
+  - name: Bitwarden CLI
+    tags: [init, update]
+    block:
+
+    - name: Fetch Bitwarden releases from GitHub API
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/bitwarden/clients/releases
+        headers:
+          Accept: application/vnd.github+json
+        return_content: yes
+      register: releases
+
+    - name: Extract the latest Bitwarden CLI version
+      ansible.builtin.set_fact:
+        versions: >-
+          {{
+            releases.json |
+            json_query('[].{name: name, published_at: published_at}') |
+            selectattr('name', 'search', 'CLI') |
+            sort(attribute='published_at', reverse=True) |
+            map(attribute='name')
+          }}
+
+    - name: Filter out version strings and get the latest version
+      ansible.builtin.set_fact:
+        latest_version: >-
+          {{ versions | map('regex_replace', '.*CLI v') | list | first }}
+
+    - name: Debug the extracted version
+      ansible.builtin.debug:
+        msg: "The latest Bitwarden CLI version is {{ latest_version }}"
+
+    - name: Install
+      ansible.builtin.unarchive:
+        src: "https://github.com/bitwarden/clients/releases/download/cli-v{{ latest_version }}/bw-{{ ansible_system | lower }}-{{ latest_version }}.zip"
+        dest: "/usr/local/bin"
+        remote_src: true
+        mode: 0755
