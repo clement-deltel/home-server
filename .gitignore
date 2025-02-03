@@ -116,6 +116,3 @@ logs/*
 pihole.log
 **/etc-pihole/*
 **/etc-dnsmasqd/*
-
-ansible/vars/*
-!ansible/vars/main_template.yml
