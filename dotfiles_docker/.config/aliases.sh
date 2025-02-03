@@ -163,11 +163,13 @@ alias af='ansible localhost -m ansible.builtin.setup'
 #==============================================================================#
 #               ------- Bitwarden CLI ------                                   #
 #==============================================================================#
-alias bwc='bw lock && bw logout'
+alias bwc=bitwarden-create-env-fn
 alias bwl='bw lock'
 alias bwli=bitwarden-login-fn
 alias bwlo='bw logout'
+alias bwload=bitwarden-load-env-fn
 alias bwo=bitwarden-open-fn
+alias bwq='bw lock && bw logout'
 alias bws=bitwarden-create-session-fn
 alias bwst='bw status | jq'
 alias bwsy='bw sync'
