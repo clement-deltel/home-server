@@ -1,6 +1,6 @@
 [user]
-    email = ${EMAIL}
-    name = ${NAME}
+    name = ${USER_NAME}
+    email = 38040315+clement-deltel@users.noreply.github.com
 [init]
 	defaultBranch = main
 [core]
