@@ -118,7 +118,4 @@ pihole.log
 **/etc-dnsmasqd/*
 
 ansible/vars/*
-env/*
-
 !ansible/vars/main_template.yml
-!env/.env.template

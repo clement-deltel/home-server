@@ -54,8 +54,11 @@ function cheatsheet { curl cheat.sh/"$1"; }
 #==============================================================================#
 #               ------- Server - Environment ------                            #
 #==============================================================================#
-function set-env-fn { export $(grep -v '^#' "${SERVER_HOME}/env/.env" | xargs -d '\n'); }
-function unset-env-fn { unset $(grep -v '^#' "${SERVER_HOME}/env/.env" | sed -E 's/(.*)=.*/\1/' | xargs); }
+function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
+function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
+
+function set-env { load_env ${SERVER_HOME}/env/services.env; load_env ${SERVER_HOME}/env/secrets.env; }
+function unset-env-fn { unload_env ${SERVER_HOME}/env/services.env; unload_env ${SERVER_HOME}/env/secrets.env; }
 
 #==============================================================================#
 #               ------- Bitwarden CLI ------                                   #
@@ -99,6 +102,19 @@ function bitwarden-login-fn {
 function bitwarden-open-fn {
   bitwarden-login-fn
   bitwarden-create-session-fn
+}
+
+function bitwarden-create-env-fn {
+    bitwarden-create-session-fn
+    notes=$(grep -v '^#' "${SERVER_HOME}/env/secrets.env")
+    bw get template item | jq ".type = 1 | .name='home_server_env' | .notes='${notes}'" | bw create item
+    unset BW_SESSION
+}
+
+function bitwarden-load-env-fn {
+    bitwarden-create-session-fn
+    export $(bw get notes home_server_env | xargs -d '\n');
+    unset BW_SESSION
 }
 
 #==============================================================================#
