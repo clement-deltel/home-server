@@ -33,10 +33,9 @@ Here is a non-exhaustive list of tasks to perform prior deploying the stack:
 - Configure port forwarding on your router (refer to the [Port Mapping](#port-mapping) section for more details)
 - Install the operating system of your choice on your server (refer to the [Operating System](#operating-system) section for more details)
 
-Create the accounts below:
+Create the account below:
 
 - AWS account (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details)
-- Infiscal account for secret management
 
 I use the below AWS services:
 

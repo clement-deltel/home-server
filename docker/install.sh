@@ -15,6 +15,23 @@ function install_dependencies(){
 }
 
 #==============================================================================#
+#FUNCTION: install_bitwarden
+#DESCRIPTION: Install Bitwarden CLI on the system.
+#==============================================================================#
+function install_bitwarden(){
+  echo "[INFO] Getting Bitwarden CLI latest version..."
+  export BW_VERSION=$(curl -H "Accept: application/vnd.github+json" https://api.github.com/repos/bitwarden/clients/releases | jq  -r 'sort_by(.published_at) | reverse | .[].name | select( index("CLI") )' | sed "s:.*CLI v::" | head -n 1)
+
+  echo "[INFO] Installing Bitwarden CLI ${BW_VERSION}..."
+  curl -L --remote-name "https://github.com/bitwarden/clients/releases/download/cli-v${BW_VERSION}/bw-linux-${BW_VERSION}.zip"
+  sudo unzip -d /usr/local/bin -o bw-linux-*.zip
+  sudo chmod +x /usr/local/bin/bw
+  echo "[INFO] Bitwarden CLI successfully installed"
+
+  rm -f bw-linux-*.zip
+}
+
+#==============================================================================#
 #FUNCTION: install_ansible
 #DESCRIPTION: Install ansible on the system.
 #==============================================================================#
@@ -54,6 +71,7 @@ function main(){
   set -e # -e: exit on error
 
   install_dependencies
+  install_bitwarden
   install_ansible
   clone_repository
   # run_playbooks
