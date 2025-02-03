@@ -3,7 +3,7 @@
   gather_facts: false
   vars:
     packages:
-      - apache2-utils
+      - apache2-utils # htpasswd utility
       - argon2 # token generation for Vaultwarden admin interface
       - build-essential
       - curl
