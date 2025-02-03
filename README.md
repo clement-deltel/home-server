@@ -101,6 +101,7 @@ Here are some guidelines on how to fill those configuration files:
 - specific use cases:
   - main_template.yml
   - .env.secret
+    - **TIMEZONE**: see all options and more details at [Wikipedia - List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     - **BYTESTASH_JWT_TOKEN**: use [jwt.io](https://jwt.io).
     - **BYTESTASH_JWT_SECRET**: run `pwgen -Ans 512 1`.
     - **ENCLOSED_JWT_SECRET**: run `pwgen -Ans 512 1`.
