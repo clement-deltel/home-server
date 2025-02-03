@@ -78,6 +78,8 @@ curl -fLSs https://raw.githubusercontent.com/${GITHUB_USERNAME}/home-server/refs
         - [tldr](https://github.com/tldr-pages/tlrc): tldr client written in Rust.
     - Languages
       - Python
+    - Security
+      - [Bitwarden CLI](https://bitwarden.com/help/cli/)
     - Orchestration
       - Docker
     - Infrastructure as Code (IaC)

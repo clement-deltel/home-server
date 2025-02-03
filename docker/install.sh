@@ -9,7 +9,7 @@
 #DESCRIPTION: Install pre-requisites on the system.
 #==============================================================================#
 function install_dependencies(){
-  echo "[INFO] Installing dependencies: curl, git..."
+  echo "[INFO] Installing dependencies: curl, git, jq, libsecret-1-0, unzip..."
   sudo apt update -y
   sudo apt install -y curl git
 }

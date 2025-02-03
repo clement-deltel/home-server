@@ -19,6 +19,8 @@
 # Security
 - name: Security good practices
   import_playbook: security/security.yml
+- name: Bitwarden CLI
+  import_playbook: security/bw.yml
 - name: UFW
   import_playbook: security/ufw.yml
 
