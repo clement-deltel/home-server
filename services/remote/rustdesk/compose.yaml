@@ -8,15 +8,15 @@ services:
       - "traefik.enable=true"
       # Routers
       # HTTP: 21118 - ID Server - Web client
-      - "traefik.http.routers.rustdesk-rd8.rule=Host(`rustdesk.${DOMAIN}`) && PathPrefix(`/ws/id`)"
+      - "traefik.http.routers.rustdesk-rd8.rule=Host(`remote.${DOMAIN}`) && PathPrefix(`/ws/id`)"
       # - "traefik.http.routers.rustdesk-rd8.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.rustdesk-rd8.tls.domains[0].main=rustdesk.${DOMAIN}"
+      # - "traefik.http.routers.rustdesk-rd8.tls.domains[0].main=remote.${DOMAIN}"
       - "traefik.http.routers.rustdesk-rd8.middlewares=rustdesk-headers"
       - "traefik.http.routers.rustdesk-rd8.service=rustdesk-rd8"
       # HTTP: 21119 - Relay Server - Web client
-      - "traefik.http.routers.rustdesk-rd9.rule=Host(`rustdesk.${DOMAIN}`) && PathPrefix(`/ws/relay`)"
+      - "traefik.http.routers.rustdesk-rd9.rule=Host(`remote.${DOMAIN}`) && PathPrefix(`/ws/relay`)"
       # - "traefik.http.routers.rustdesk-rd9.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.rustdesk-rd9.tls.domains[0].main=rustdesk.${DOMAIN}"
+      # - "traefik.http.routers.rustdesk-rd9.tls.domains[0].main=remote.${DOMAIN}"
       - "traefik.http.routers.rustdesk-rd9.middlewares=rustdesk-headers"
       - "traefik.http.routers.rustdesk-rd9.service=rustdesk-rd9"
       # TCP: 21115 - ID Server - NAT type test
@@ -40,7 +40,7 @@ services:
       # Middlewares
       - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.X-Forwarded-Proto=https"
       - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.X-Real-IP=true"
-      - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.Host=Host(`rustdesk.${DOMAIN}`)"
+      - "traefik.http.middlewares.rustdesk-headers.headers.customRequestHeaders.Host=Host(`remote.${DOMAIN}`)"
       # Services
       # HTTP
       - "traefik.http.services.rustdesk-rd8.loadbalancer.server.port=21118"
