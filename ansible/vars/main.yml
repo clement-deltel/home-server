@@ -38,6 +38,7 @@ kopia_enable: true
 minecraft_enable: true
 navidrome_enable: true
 ntfy_enable: true
+obsidian_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true
