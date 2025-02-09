@@ -57,8 +57,8 @@ function cheatsheet { curl cheat.sh/"$1"; }
 function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
 function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
 
-function set-env { load_env ${SERVER_HOME}/env/services.env; load_env ${SERVER_HOME}/env/secrets.env; }
-function unset-env { unload_env ${SERVER_HOME}/env/services.env; unload_env ${SERVER_HOME}/env/secrets.env; }
+function set-env { load-env ${SERVER_HOME}/env/services.env; load-env ${SERVER_HOME}/env/secrets.env; }
+function unset-env { unload-env ${SERVER_HOME}/env/services.env; unload-env ${SERVER_HOME}/env/secrets.env; }
 
 #==============================================================================#
 #               ------- Bitwarden CLI ------                                   #
