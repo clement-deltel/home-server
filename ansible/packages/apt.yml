@@ -10,6 +10,7 @@
       - git # gold standard version control system
       - gnupg
       - htop # resources monitoring
+      - lightdm # RustDesk remote access pre-requisite
       - lm-sensors # tool to monitor sensors temperature
       - lsb-release
       - lynis
@@ -25,6 +26,7 @@
       - software-properties-common
       - vim # text editor of choice
       - wireguard # VPN
+      - xserver-xorg-video-dummy # RustDesk remote access pre-requisite
       - zip
 
   tasks:
