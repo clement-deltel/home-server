@@ -96,12 +96,6 @@ alias scr='cd ${SERVER_HOME}/scripts'
 alias loghome='cd {SERVER_HOME}/logs'
 
 #==============================================================================#
-#               ------- Server - Environment --------                          #
-#==============================================================================#
-alias set-env=set-env-fn
-alias unset-env=unset-env-fn
-
-#==============================================================================#
 #               ------- Server - Services --------                             #
 #==============================================================================#
 alias {cd,svc}oll='cd ${SERVER_HOME}/services/ai/ollama'
@@ -167,10 +161,10 @@ alias af='ansible localhost -m ansible.builtin.setup'
 #==============================================================================#
 alias bwc=bitwarden-create-item-notes-fn
 alias bwl='bw lock'
+alias bwle=bitwarden-load-env-fn
 alias bwli=bitwarden-login-fn
 alias bwlo='bw logout'
-alias bwloe=bitwarden-load-env-fn
-alias bwloy=bitwarden-load-yml-fn
+alias bwly=bitwarden-load-yml-fn
 alias bwo=bitwarden-open-fn
 alias bwq='bw lock && bw logout'
 alias bws=bitwarden-create-session-fn

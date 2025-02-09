@@ -31,12 +31,12 @@ function tailc { tail -f "$1" | batcat -l log --paging=never; }
 # Host Info
 
 # IP adresses
-function my-ip (){
+function my-ip {
   MY_IP=$(/sbin/ifconfig enp8s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
 }
 
 # Full summary
-function ii (){
+function ii {
   echo -e "\nYou are logged on ${RED}$(hostname)"
   echo -e "\nAdditionnal information:$NC" ; uname -a
   echo -e "\n${RED}Users logged on:$NC" ; w -h
@@ -58,7 +58,7 @@ function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
 function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
 
 function set-env { load_env ${SERVER_HOME}/env/services.env; load_env ${SERVER_HOME}/env/secrets.env; }
-function unset-env-fn { unload_env ${SERVER_HOME}/env/services.env; unload_env ${SERVER_HOME}/env/secrets.env; }
+function unset-env { unload_env ${SERVER_HOME}/env/services.env; unload_env ${SERVER_HOME}/env/secrets.env; }
 
 #==============================================================================#
 #               ------- Bitwarden CLI ------                                   #
