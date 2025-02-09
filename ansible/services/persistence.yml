@@ -27,6 +27,7 @@
       - "{{ server_home }}/services/pdf/docuseal/persistence"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
+      - "{{ server_home }}/services/security/enclosed/postgres-persistence"
       # FreshRSS
       - "{{ server_home }}/services/news/freshrss/persistence"
       # Gokapi
