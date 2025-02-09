@@ -27,6 +27,8 @@
       - "{{ server_home }}/services/pdf/docuseal/persistence"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
+      # FreshRSS
+      - "{{ server_home }}/services/news/freshrss/persistence"
       # Gokapi
       - "{{ server_home }}/services/media/sharing/gokapi/persistence"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
@@ -333,4 +335,3 @@
       loop:
         - { src: "{{ server_home }}/services/dns/unbound/config/forward-records.conf", dst: "{{ server_home }}/services/dns/unbound/persistence/forward-records.conf" }
         - { src: "{{ server_home }}/services/dns/unbound/config/unbound.conf", dst: "{{ server_home }}/services/dns/unbound/persistence/unbound.conf" }
-        

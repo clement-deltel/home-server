@@ -98,7 +98,7 @@ Here are some guidelines on how to fill those configuration files:
   - **-c**: Include at least one capital letter in the password
   - **-n**: Include at least one number in the password
   - **-s**: Generate completely random passwords
-  - **25**: password length
+  - **30**: password length
   - **1**: number of password generated
 - specific use cases:
   - secrets.yml
@@ -309,6 +309,11 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
 - **Media Sharing**
   - [Gokapi](https://github.com/Forceu/Gokapi): `https://share.${DOMAIN}`
+- **Personal Knowledge Management System (PKMS)**
+  - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
+  - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
+  - [Obsidian](https://obsidian.md): `https://obsidian.${DOMAIN}` (LiveSync plugin)
+  - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
 - **Management**
   - Bookmarks
     - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
@@ -319,22 +324,20 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
       - Administration dashboard: `https://vault.${DOMAIN}/admin`
       - Instance: `https://vault.${DOMAIN}`
-  - Personal Knowledge Management System (PKMS)
-    - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
-    - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
-    - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
-- **Artificial Intelligence**
-  - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
   - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
   - [Maybe](https://github.com/maybe-finance/maybe): `https://maybe.${DOMAIN}`
-- **Home Resources Planning**
+- **Inventory**
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
   - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
   - [Stirling-PDF](https://stirlingtools.com): `https://pdf.${DOMAIN}`
+- **Artificial Intelligence**
+  - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
+- **News**
+  - [FreshRSS](https://freshrss.org/index.html): `https://rss.${DOMAIN}`
 - **Headless CMS**
   - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - **Survey Builder**
