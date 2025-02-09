@@ -19,6 +19,8 @@
         project_src: '{{ server_home }}/services/pdf/docuseal'
       - when: enclosed_enable
         project_src: '{{ server_home }}/services/security/enclosed'
+      - when: freshrss_enable
+        project_src: '{{ server_home }}/services/news/freshrss'
       - when: gokapi_enable
         project_src: '{{ server_home }}/services/media/sharing/gokapi'
       - when: grafana_enable

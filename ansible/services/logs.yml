@@ -54,6 +54,7 @@
         - "{{ server_home }}/logs/monitoring/jetlog"
         - "{{ server_home }}/logs/monitoring/ntfy"
         - "{{ server_home }}/logs/monitoring/prometheus"
+        - "{{ server_home }}/logs/news/freshrss"
         - "{{ server_home }}/logs/pdf/docuseal"
         - "{{ server_home }}/logs/pdf/stirling-pdf"
         - "{{ server_home }}/logs/pkms/affine"
