@@ -1,0 +1,41 @@
+services:
+  obsidian-livesync:
+    container_name: obsidian-livesync
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: obsidian-livesync
+    image: ${OBSIDIAN_COUCHDB_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.obsidian.entrypoints=web,websecure"
+      - "traefik.http.routers.obsidian.rule=Host(`obsidian.${DOMAIN}`)"
+      - "traefik.http.routers.obsidian.tls=true"
+      # - "traefik.http.routers.obsidian.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.obsidian.tls.domains[0].main=obsidian.${DOMAIN}"
+      - "traefik.http.routers.obsidian.service=obsidian"
+      # Services
+      - "traefik.http.services.obsidian.loadbalancer.server.port=5984"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${OBSIDIAN_IP}
+    ports:
+      - 5984
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence/couchdb-data:/opt/couchdb/data
+      - ./persistence/couchdb-etc:/opt/couchdb/etc/local.d
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
