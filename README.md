@@ -116,6 +116,8 @@ Here are some guidelines on how to fill those configuration files:
     - **RUSTDESK_PUBLIC_KEY**: run `openssl pkey -in private.key -pubout -out public.key`.
     - **VAULTWARDEN_PUSH_\***: follow guidelines [here](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification).
     - **WG_EASY\*_PASSWORD**: follow guidelines [here](https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md).
+  - cron.env
+    - Variables in this env file should have the same value as in secrets.env, they are required for proper backup cronjobs execution
 
 6. Run Docker user playbooks and apply Terraform configuration:
 

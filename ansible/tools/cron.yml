@@ -16,8 +16,8 @@
         job: "{{ item }}"
         state: present
       loop:
-        - "source ${SERVER_HOME}/env/.env; export PGPASSWORD=${IMMICH_POSTGRES_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_POSTGRES_USER} -l immich_db > ${SERVER_HOME}/services/kopia/persistence/databases/immich.sql"
-        - "source ${SERVER_HOME}/env/.env; mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > ${SERVER_HOME}/services/kopia/persistence/databases/vaultwarden.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_POSTGRES_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_POSTGRES_USER} -l immich_db > ${SERVER_HOME}/services/kopia/persistence/databases/immich.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > ${SERVER_HOME}/services/kopia/persistence/databases/vaultwarden.sql"
 
     - name: Files backup job
       ansible.builtin.cron:
@@ -28,7 +28,7 @@
         job: "{{ item }}"
         state: present
       loop:
-        - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/detection/persistence/changedetection-backup-* ${SERVER_HOME}/services/kopia/persistence/files/changedetection.zip
+        - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* ${SERVER_HOME}/services/kopia/persistence/files/changedetection.zip
         - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* ${SERVER_HOME}/services/kopia/persistence/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
 
     - name: Minecraft backup job
