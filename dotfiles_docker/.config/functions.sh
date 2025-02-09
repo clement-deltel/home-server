@@ -113,7 +113,7 @@ function bitwarden-create-item-notes-fn {
 
 function bitwarden-load-env-fn {
     bitwarden-create-session-fn
-    export $(bw get notes home_server_env | xargs -d '\n')
+    eval "$(bw get notes home_server_env)"
     unset BW_SESSION
 }
 
