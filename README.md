@@ -23,6 +23,9 @@ Collection of self hosted services for my home server setup.
   - [Visualization](#visualization)
     - [Grafana](#grafana)
     - [Monitor your server from your phone](#monitor-your-server-from-your-phone)
+- [Security notes](#security-notes)
+- [Future enhancements](#future-enhancements)
+
 ## Pre-requisites
 
 Here is a non-exhaustive list of tasks to perform prior deploying the stack:
@@ -311,11 +314,6 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
 - **Media Sharing**
   - [Gokapi](https://github.com/Forceu/Gokapi): `https://share.${DOMAIN}`
-- **Personal Knowledge Management System (PKMS)**
-  - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
-  - [Anytype](https://anytype.io/): `https://anytype.${DOMAIN}`
-  - [Obsidian](https://obsidian.md): `https://obsidian.${DOMAIN}` (LiveSync plugin)
-  - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
 - **Management**
   - Bookmarks
     - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
@@ -326,20 +324,19 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
       - Administration dashboard: `https://vault.${DOMAIN}/admin`
       - Instance: `https://vault.${DOMAIN}`
+  - Personal Knowledge Management System (PKMS)
+    - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
+    - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
+- **Artificial Intelligence**
+  - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
-  - [Firefly-III](https://www.firefly-iii.org/): `https://firefly.${DOMAIN}`
-  - [Maybe](https://github.com/maybe-finance/maybe): `https://maybe.${DOMAIN}`
 - **Inventory**
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
   - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
   - [Stirling-PDF](https://stirlingtools.com): `https://pdf.${DOMAIN}`
-- **Artificial Intelligence**
-  - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
-- **News**
-  - [FreshRSS](https://freshrss.org/index.html): `https://rss.${DOMAIN}`
 - **Headless CMS**
   - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - **Survey Builder**
@@ -551,3 +548,75 @@ Since I am an iPhone user, this section covers the list of steps on iOS only.
 2. Wrap your Grafana instance website on your iOS screen via Widgets.
 
 ## Security notes
+
+## Future enhancements
+
+Here is a list of tools that could be interesting and further enhance the stack:
+
+- **Containers**
+  - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose): docker-compose for testing any-sync.
+  - [CAdvisor](https://github.com/google/cadvisor): analyzes resource usage and performance characteristics of running containers.
+  - [Dozzle](https://github.com/amir20/dozzle): realtime log viewer for docker containers.
+- **Dashboard**
+  - [Heimdall](https://github.com/linuxserver/Heimdall)
+  - [Homer](https://github.com/bastienwirtz/homer): very simple static homepage for your server.
+- **Finances**
+  - [Firefly III](https://github.com/firefly-iii/firefly-iii)
+  - [Invoice Ninja](https://github.com/invoiceninja/invoiceninja)
+  - [Maybe](https://github.com/maybe-finance/maybe): the OS for your personal finances.
+  - [Wallos](https://github.com/ellite/Wallos)
+- **Health**
+  - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, self-hosted, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
+- **Home Automation**
+  - [Home Assistant](https://github.com/home-assistant/core)
+- **Inventory**
+  - [Homebox](https://github.com/sysadminsmedia/homebox): inventory and organization system built for the home user.
+- **Management**
+  - Bookmarks
+    - [Hoarder](https://github.com/hoarder-app/hoarder): bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search.
+    - [Linkwarden](https://github.com/linkwarden/linkwarden): collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents.
+- **Media**
+  - Management
+    - [ConvertX](https://github.com/C4illin/ConvertX): Self-hosted online file converter. Supports 1000+ formats.
+    - [Lidarr](https://github.com/Lidarr/Lidarr): Looks and smells like Sonarr but made for music.
+    - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
+    - [Radarr](https://github.com/Radarr/Radarr): Movie organizer/manager for usenet and torrent users.
+    - [Sonarr](https://github.com/Sonarr/Sonarr): Smart PVR for newsgroup and bittorrent users.
+    - [Syncthing](https://github.com/syncthing/syncthing): open source continuous file synchronization.
+  - Storage
+    - Photos
+      - [Photoview](https://github.com/photoview/photoview): photo gallery for self-hosted personal servers.
+    - Music
+      - [Ampache](https://github.com/ampache/ampache): web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device.
+      - [Finamp (Jellyfin music client for mobile)](https://github.com/jmshrv/finamp)
+      - [Koel](https://github.com/koel/koel): a personal music streaming server that works.
+    - Videos
+      - [Plex](https://github.com/plexinc/pms-docker): Plex Media Server Docker repo, for all your PMS docker needs.
+- **Monitoring**
+  - [Keep](https://github.com/keephq/keep): open-source AIOps and alert management platform.
+  - [Uptime Kuma](https://github.com/louislam/uptime-kuma): fancy self-hosted monitoring tool.
+- **PKMS**
+  - [Anytype](https://anytype.io/)
+  - [Joplin](https://github.com/laurent22/joplin): privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS.
+- **Trello alternative**
+  - [Focalboard](https://github.com/mattermost-community/focalboard)
+  - [Kanboard](https://github.com/kanboard/kanboard): Kanban project management software.
+  - [Leantime](https://github.com/Leantime/leantime)
+  - [Taiga](https://github.com/taigaio/taiga-docker)
+  - [Vikunja](https://github.com/go-vikunja/vikunja)
+  - [Wekan](https://github.com/wekan/wekan/tree/main)
+- **Remote**
+  - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
+- **Wishlist**
+  - [Christmas Community](https://github.com/Wingysam/Christmas-Community): Christmas lists for families.
+- **Other**
+  - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf): Run iperf in client or server mode on kubernetes and ECS.
+  - [Code Server](https://github.com/coder/code-server): VS Code in the browser.
+  - [Garage](https://git.deuxfleurs.fr/Deuxfleurs/garage): S3-compatible distributed object storage service.
+  - [Monica](https://github.com/monicahq/monica): Personal CRM. Remember everything about your friends, family and business relationships.
+  - [Plausible](https://github.com/plausible/analytics): simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics.
+  - [Sentry](https://github.com/getsentry/self-hosted): feature-complete and packaged up for low-volume deployments and proofs-of-concept.
+  - [Scrutiny](https://github.com/AnalogJ/scrutiny): hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds.
+  - TunnelMole:
+    - [Client](https://github.com/robbie-cahill/tunnelmole-client)
+    - [Service](https://github.com/robbie-cahill/tunnelmole-service)
