@@ -319,6 +319,9 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
   - Code
     - [ByteStash](https://github.com/jordan-dalby/ByteStash): `https://snippets.${DOMAIN}`
+    - [Gitlab](https://gitlab.com/gitlab-org/gitlab)
+      - Instance: `https://gitlab.${DOMAIN}`
+      - Registry: `https://registry.gitlab.${DOMAIN}`
     - [IT-Tools](https://github.com/CorentinTh/it-tools): `https://it-tools.${DOMAIN}`
   - Passwords
     - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
@@ -345,6 +348,8 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Wishlist](https://github.com/cmintey/wishlist): `https://wish.${DOMAIN}`
 - **Games**
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
+
+## Secrets Management
 
 ## Observability
 

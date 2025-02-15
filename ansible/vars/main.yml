@@ -24,6 +24,7 @@ change_detection_enable: true
 docuseal_enable: true
 enclosed_enable: true
 freshrss_enable: true
+gitlab_enable: true
 gokapi_enable: true
 grafana_enable: true
 grocy_enable: true

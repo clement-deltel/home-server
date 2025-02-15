@@ -30,6 +30,11 @@
       - "{{ server_home }}/services/security/enclosed/postgres-persistence"
       # FreshRSS
       - "{{ server_home }}/services/news/freshrss/persistence"
+      # GitLab
+      - "{{ server_home }}/services/management/code/gitlab/persistence"
+      - "{{ server_home }}/services/management/code/gitlab/persistence/config"
+      - "{{ server_home }}/services/management/code/gitlab/persistence/logs"
+      - "{{ server_home }}/services/management/code/gitlab/persistence/data"
       # Gokapi
       - "{{ server_home }}/services/media/sharing/gokapi/persistence"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
@@ -261,6 +266,7 @@
         regexp: '(^\s*)# -'
         replace: '\1-'
       loop:
+        - "{{ server_home }}/services/ai/open-webui/compose.yaml"
         - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
         - "{{ server_home }}/services/directus/compose.yaml"
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
@@ -271,6 +277,8 @@
         - "{{ server_home }}/services/kopia/compose.yaml"
         - "{{ server_home }}/services/limesurvey/compose.yaml"
         - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
+        - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
+        - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
         - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
         - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"
@@ -283,10 +291,15 @@
         - "{{ server_home }}/services/monitoring/detection/compose.yaml"
         - "{{ server_home }}/services/monitoring/jetlog/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
+        - "{{ server_home }}/services/news/freshrss/compose.yaml"
         - "{{ server_home }}/services/pdf/docuseal/compose.yaml"
         - "{{ server_home }}/services/pdf/stirling-pdf/compose.yaml"
+        - "{{ server_home }}/services/pkms/affine/compose.yaml"
+        - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
         - "{{ server_home }}/services/remote/guacamole/compose.yaml"
+        - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+        - "{{ server_home }}/services/security/enclosed/compose.yaml"
         - "{{ server_home }}/services/security/wazuh/compose.yaml"
         - "{{ server_home }}/services/traefik/compose.yaml"
         - "{{ server_home }}/services/wishlist/compose.yaml"
