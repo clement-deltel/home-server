@@ -18,7 +18,7 @@ services:
         gitlab_rails['lfs_enabled'] = true
         # Pages
         gitlab_pages['inplace_chroot'] = true
-        gitlab_pages['external_http'] = ['gitlab:5201']
+        gitlab_pages['external_http'] = ['gitlab:3444']
         # Reverse proxy
         #- General
         nginx['listen_port'] = 80
@@ -36,7 +36,7 @@ services:
         nginx['hsts_include_subdomains'] = true
         #- Registry
         registry_nginx['enable'] = true
-        registry_nginx['listen_port'] = 5000
+        registry_nginx['listen_port'] = 5050
         registry_nginx['listen_https'] = false
         registry_nginx['proxy_set_headers'] = {
           "Host" => "$$http_host",
@@ -47,7 +47,7 @@ services:
         }
         #- Pages
         pages_nginx['enable'] = true
-        pages_nginx['listen_port'] = 5200
+        pages_nginx['listen_port'] = 3443
         pages_nginx['listen_https'] = false
         pages_nginx['proxy_set_headers'] = {
           "Host" => "$$http_host",
@@ -84,28 +84,28 @@ services:
       # - "traefik.http.routers.gitlab.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.gitlab.tls.domains[0].main=gitlab.${DOMAIN}"
       - "traefik.http.routers.gitlab.service=gitlab"
-      #-- Registry
-      - "traefik.http.routers.gitlab-registry.entrypoints=web,websecure"
-      - "traefik.http.routers.gitlab-registry.rule=Host(`registry.gitlab.${DOMAIN}`)"
-      - "traefik.http.routers.gitlab-registry.tls=true"
-      # - "traefik.http.routers.gitlab-registry.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gitlab-registry.tls.domains[0].main=gitlab.${DOMAIN}"
-      - "traefik.http.routers.gitlab-registry.service=gitlab-registry"
       #-- Pages
       - "traefik.http.routers.gitlab-pages.entrypoints=web,websecure"
       - "traefik.http.routers.gitlab-pages.rule=Host(`pages.gitlab.${DOMAIN}`)"
       - "traefik.http.routers.gitlab-pages.tls=true"
       # - "traefik.http.routers.gitlab-pages.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gitlab-pages.tls.domains[0].main=gitlab.${DOMAIN}"
+      # - "traefik.http.routers.gitlab-pages.tls.domains[0].main=pages.gitlab.${DOMAIN}"
       - "traefik.http.routers.gitlab-pages.service=gitlab-pages"
+      #-- Registry
+      - "traefik.http.routers.gitlab-registry.entrypoints=web,websecure"
+      - "traefik.http.routers.gitlab-registry.rule=Host(`registry.gitlab.${DOMAIN}`)"
+      - "traefik.http.routers.gitlab-registry.tls=true"
+      # - "traefik.http.routers.gitlab-registry.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.gitlab-registry.tls.domains[0].main=registry.gitlab.${DOMAIN}"
+      - "traefik.http.routers.gitlab-registry.service=gitlab-registry"
       #- TCP
       - "traefik.tcp.routers.gitlab-ssh.entrypoints=ssh"
       - "traefik.tcp.routers.gitlab-ssh.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.gitlab-ssh.service=gitlab-ssh"
       # Services
       - "traefik.http.services.gitlab.loadbalancer.server.port=80"
-      - "traefik.http.services.gitlab-registry.loadbalancer.server.port=5000"
-      - "traefik.http.services.gitlab-pages.loadbalancer.server.port=5201"
+      - "traefik.http.services.gitlab-pages.loadbalancer.server.port=3444"
+      - "traefik.http.services.gitlab-registry.loadbalancer.server.port=5050"
       - "traefik.tcp.services.gitlab-ssh.loadbalancer.server.port=22"
     logging:
       driver: json-file
@@ -118,8 +118,8 @@ services:
     ports:
       - 22
       - 80
-      - 5000
-      - 5201
+      - 3444
+      - 5050
     restart: always
     shm_size: 256m
     stop_grace_period: 30s
