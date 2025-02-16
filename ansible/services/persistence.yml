@@ -55,6 +55,8 @@
       - "{{ server_home }}/services/dashboard/homarr/persistence/configs"
       - "{{ server_home }}/services/dashboard/homarr/persistence/data"
       - "{{ server_home }}/services/dashboard/homarr/persistence/icons"
+      # Homebox
+      - "{{ server_home }}/services/inventory/homebox/persistence"
       # HortusFox
       - "{{ server_home }}/services/inventory/hortusfox/db-persistence"
       - "{{ server_home }}/services/inventory/hortusfox/persistence"
@@ -273,6 +275,7 @@
         - "{{ server_home }}/services/finances/actual/compose.yaml"
         - "{{ server_home }}/services/grafana/compose.yaml"
         - "{{ server_home }}/services/inventory/grocy/compose.yaml"
+        - "{{ server_home }}/services/inventory/homebox/compose.yaml"
         - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
         - "{{ server_home }}/services/kopia/compose.yaml"
         - "{{ server_home }}/services/limesurvey/compose.yaml"

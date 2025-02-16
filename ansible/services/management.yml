@@ -33,6 +33,8 @@
         project_src: '{{ server_home }}/services/remote/guacamole'
       - when: homarr_enable
         project_src: '{{ server_home }}/services/dashboard/homarr'
+      - when: homebox_enable
+        project_src: '{{ server_home }}/services/inventory/homebox'
       - when: hortusfox_enable
         project_src: '{{ server_home }}/services/inventory/hortusfox'
       - when: immich_enable

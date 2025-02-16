@@ -1,0 +1,40 @@
+services:
+  homebox:
+    container_name: homebox
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: homebox
+    image: ${HOMEBOX_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.homebox.entrypoints=web,websecure"
+      - "traefik.http.routers.homebox.rule=Host(`homebox.${DOMAIN}`)"
+      - "traefik.http.routers.homebox.tls=true"
+      # - "traefik.http.routers.homebox.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.homebox.tls.domains[0].main=homebox.${DOMAIN}"
+      - "traefik.http.routers.homebox.service=homebox"
+      # Services
+      - "traefik.http.services.homebox.loadbalancer.server.port=7745"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${HOMEBOX_IP}
+    ports:
+      - 7745
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

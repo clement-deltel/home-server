@@ -337,6 +337,7 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Inventory**
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
   - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
+  - [Homebox](https://homebox.software/en/): inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox).
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
   - [Stirling-PDF](https://stirlingtools.com): `https://pdf.${DOMAIN}`
@@ -574,8 +575,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, self-hosted, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
 - **Home Automation**
   - [Home Assistant](https://github.com/home-assistant/core)
-- **Inventory**
-  - [Homebox](https://github.com/sysadminsmedia/homebox): inventory and organization system built for the home user.
 - **Management**
   - Bookmarks
     - [Hoarder](https://github.com/hoarder-app/hoarder): bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search.
