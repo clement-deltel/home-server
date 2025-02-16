@@ -32,6 +32,8 @@ services:
       - ${TRAEFIK_HTTPS_PORT}:443
       # Web UI / Dashboard
       - 8080
+      # GitLab
+      - "${GITLAB_SSH_PORT}:22/tcp"
       # RustDesk
       - ${RUSTDESK_ID_NAT_TT_PORT}:21115/tcp # ID Server - NAT type test
       - ${RUSTDESK_ID_HP_PORT}:21116/tcp # ID Server - TCP hole punching

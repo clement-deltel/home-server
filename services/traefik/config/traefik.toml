@@ -76,6 +76,9 @@
     [entryPoints.websecure.http.tls]
       certResolver = "letsencrypt"
 
+  [entryPoints.ssh]
+    address = ":2222/tcp"
+
   [entryPoints.rd5-tcp]
     address = ":21115/tcp"
 
