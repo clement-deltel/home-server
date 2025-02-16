@@ -586,7 +586,9 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [Lidarr](https://github.com/Lidarr/Lidarr): Looks and smells like Sonarr but made for music.
     - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
     - [Radarr](https://github.com/Radarr/Radarr): Movie organizer/manager for usenet and torrent users.
+    - [Slskd](https://github.com/slskd/slskd): modern client-server application for the Soulseek file sharing network.
     - [Sonarr](https://github.com/Sonarr/Sonarr): Smart PVR for newsgroup and bittorrent users.
+    - [Soularr](https://github.com/mrusse/soularr): Python script that connects Lidarr with Soulseek.
     - [Syncthing](https://github.com/syncthing/syncthing): open source continuous file synchronization.
   - Storage
     - Photos
@@ -603,6 +605,12 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **PKMS**
   - [Anytype](https://anytype.io/)
   - [Joplin](https://github.com/laurent22/joplin): privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS.
+- **Project Management**
+  - [Worklenz](https://github.com/Worklenz/worklenz): all in one project management tool for efficient teams
+- **Remote**
+  - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
+- **Security**
+  - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns): Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy.
 - **Trello alternative**
   - [Focalboard](https://github.com/mattermost-community/focalboard)
   - [Kanboard](https://github.com/kanboard/kanboard): Kanban project management software.
@@ -610,8 +618,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Taiga](https://github.com/taigaio/taiga-docker)
   - [Vikunja](https://github.com/go-vikunja/vikunja)
   - [Wekan](https://github.com/wekan/wekan/tree/main)
-- **Remote**
-  - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
 - **Wishlist**
   - [Christmas Community](https://github.com/Wingysam/Christmas-Community): Christmas lists for families.
 - **Other**
