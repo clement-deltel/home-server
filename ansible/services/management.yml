@@ -83,6 +83,8 @@
         project_src: '{{ server_home }}/services/dns/unbound'
       - when: vaultwarden_enable
         project_src: '{{ server_home }}/services/management/passwords/vaultwarden'
+      - when: wallos_enable
+        project_src: '{{ server_home }}/services/finances/wallos'
       - when: wazuh_enable
         project_src: '{{ server_home }}/services/security/wazuh'
       - when: wireguard_easy_enable
