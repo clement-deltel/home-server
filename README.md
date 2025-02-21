@@ -334,6 +334,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
+  - [Wallos](https://wallosapp.com/): open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/Wallos).
 - **Inventory**
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
   - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
@@ -570,7 +571,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Firefly III](https://github.com/firefly-iii/firefly-iii)
   - [Invoice Ninja](https://github.com/invoiceninja/invoiceninja)
   - [Maybe](https://github.com/maybe-finance/maybe): the OS for your personal finances.
-  - [Wallos](https://github.com/ellite/Wallos)
+  - [Wapy.dev](https://github.com/meceware/wapy.dev): track, manage and optimize your recurring expenses in one powerful and human readable dashboard.
 - **Health**
   - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, self-hosted, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
 - **Home Automation**
