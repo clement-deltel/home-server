@@ -21,6 +21,7 @@
       - openssl
       - postgresql-client-common # execute PostgreSQL backups for multiple services
       - postgresql-client-14
+      - postgresql-client-15
       - pwgen # random password generator
       - smartmontools # tools based on SMART "technology", protocol for monitoring the status of hard drives
       - software-properties-common
@@ -30,6 +31,25 @@
       - zip
 
   tasks:
+  # Repository
+  - name: Repository
+    tags: init
+    block:
+
+    # wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
+    - name: Download apt key
+      ansible.builtin.uri:
+        method: GET
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        dest: /etc/apt/trusted.gpg.d/pgdg.asc
+        follow_redirects: safe
+        mode: 0644
+
+    # echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/pgdg.asc] http://apt.postgresql.org/pub/repos/apt $(lsb\_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list > /dev/null
+    - name: Add apt repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch={{ deb_architecture[ansible_architecture] }} signed-by=/etc/apt/trusted.gpg.d/pgdg.asc] http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main
+
   # Packages
   - name: Packages
     block:

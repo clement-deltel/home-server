@@ -32,7 +32,7 @@
 
     - name: Files monthly backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every month before 3AM): Change Detection, Pihole"
+        name: "Backup databases and files (every month before 3AM): FreshRSS, Guacamole, Change Detection, Pihole"
         minute: 30
         hour: 2
         day: 1
