@@ -4,13 +4,13 @@ services:
     container_name: freshrss-postgres
     env_file: config/.env.postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${FRESHRSS_POSTGRES_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U ${FRESHRSS_DB_USER}"]
       interval: 20s
       timeout: 15s
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: affine-postgres
+    hostname: freshrss-postgres
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
@@ -19,7 +19,7 @@ services:
         max-size: 5m
     networks:
       app-net:
-        ipv4_address: ${FRESHRSS_POSTGRES_IP}
+        ipv4_address: ${FRESHRSS_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:

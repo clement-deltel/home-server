@@ -11,7 +11,7 @@ services:
     container_name: immich-postgres
     env_file: config/.env.db
     healthcheck:
-      test: pg_isready --dbname='immich_db' --username='${IMMICH_POSTGRES_USER}' || exit 1; Chksum="$$(psql --dbname='immich_db' --username='${IMMICH_POSTGRES_USER}' --tuples-only --no-align --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')"; echo "checksum failure count is $$Chksum"; [ "$$Chksum" = '0' ] || exit 1
+      test: pg_isready --dbname='immich_db' --username='${IMMICH_DB_USER}' || exit 1; Chksum="$$(psql --dbname='immich_db' --username='${IMMICH_DB_USER}' --tuples-only --no-align --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')"; echo "checksum failure count is $$Chksum"; [ "$$Chksum" = '0' ] || exit 1
       interval: 1m
       timeout: 10s
       retries: 5

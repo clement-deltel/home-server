@@ -27,18 +27,20 @@
         job: "{{ item }}"
         state: present
       loop:
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_POSTGRES_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_POSTGRES_USER} -l immich_db > ${SERVER_HOME}/services/kopia/persistence/databases/immich.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_DB_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_DB_USER} -l immich_db > ${SERVER_HOME}/services/kopia/persistence/databases/immich.sql"
         - GITLAB_BACKUP_DIR=${SERVER_HOME}/services/kopia/persistence/files/gitlab; mkdir -p ${GITLAB_BACKUP_DIR}; docker exec -t gitlab gitlab-backup create BACKUP=dump; docker cp gitlab:/var/opt/gitlab/backups/dump_gitlab_backup.tar ${GITLAB_BACKUP_DIR}; docker cp gitlab:/etc/gitlab/gitlab.rb ${GITLAB_BACKUP_DIR}; docker cp gitlab:/etc/gitlab/gitlab-secrets.json ${GITLAB_BACKUP_DIR}
 
     - name: Files monthly backup job
       ansible.builtin.cron:
-        name: "Backup files (every month before 3AM): Change Detection, Pihole"
+        name: "Backup databases and files (every month before 3AM): Change Detection, Pihole"
         minute: 30
         hour: 2
         day: 1
         job: "{{ item }}"
         state: present
       loop:
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${FRESHRSS_DB_PASSWORD}; pg_dumpall -c -h ${FRESHRSS_DB_IP} -U ${FRESHRSS_DB_USER} -l postgres > ${SERVER_HOME}/services/kopia/persistence/databases/freshrss.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${GUACAMOLE_DB_IP} -u ${GUACAMOLE_DB_USER} -p${GUACAMOLE_DB_PASSWORD} guacamole_db > ${SERVER_HOME}/services/kopia/persistence/databases/guacamole.sql"
         - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* ${SERVER_HOME}/services/kopia/persistence/files/changedetection.zip
         - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* ${SERVER_HOME}/services/kopia/persistence/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
 
