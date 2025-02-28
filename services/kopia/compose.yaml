@@ -41,6 +41,7 @@ services:
       # Mount local folders to snapshot
       - ./persistence/databases:/data/databases:ro
       - ./persistence/files:/data/files:ro
+      #- ${SERVER_HOME}/services/inventory/hortusfox/persistence/backup:/data/hortusfox:ro
       #- ${SERVER_HOME}/services/media/storage/pictures/immich/persistence:/data/immich:ro
       #- ${SERVER_HOME}/services/media/storage/videos/jellyfin/persistence:/data/jellyfin:ro
       #- ${SERVER_HOME}/services/media/storage/music/navidrome/persistence/backup:/data/navidrome:ro
