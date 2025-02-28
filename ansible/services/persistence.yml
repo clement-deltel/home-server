@@ -101,6 +101,8 @@
       # Minecraft
       - "{{ server_home }}/services/minecraft/persistence"
       # Navidrome
+      - "{{ server_home }}/services/media/storage/music/navidrome/persistence"
+      - "{{ server_home }}/services/media/storage/music/navidrome/persistence/backup"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/data"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/music"
       # Nextcloud
@@ -122,6 +124,7 @@
       - "{{ server_home }}/services/ai/open-webui/persistence"
       # Paperless
       - "{{ server_home }}/services/media/storage/documents/paperless/db-persistence"
+      - "{{ server_home }}/services/media/storage/documents/paperless/persistence"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/consume"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/data"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/export"

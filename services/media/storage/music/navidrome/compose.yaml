@@ -33,6 +33,7 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID} # should be owner of volumes
     volumes:
+      - ./persistence/backup:/backup
       - ./persistence/data:/data
       - ./persistence/music/:/music:ro
 
