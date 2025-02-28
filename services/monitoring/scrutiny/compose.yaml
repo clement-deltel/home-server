@@ -1,0 +1,49 @@
+services:
+  scrutiny:
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RAWIO
+    container_name: scrutiny
+    devices:
+      - /dev/nvme0n1p3
+      - /dev/sda1
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: scrutiny
+    image: ${SCRUTINY_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.scrutiny.entrypoints=web,websecure"
+      - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.${DOMAIN}`)"
+      - "traefik.http.routers.scrutiny.tls=true"
+      # - "traefik.http.routers.scrutiny.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.scrutiny.tls.domains[0].main=scrutiny.${DOMAIN}"
+      - "traefik.http.routers.scrutiny.service=scrutiny"
+      # Services
+      - "traefik.http.services.scrutiny.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${SCRUTINY_IP}
+    ports:
+      - 8080
+      - 8086
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence/config:/opt/scrutiny/config
+      - ./persistence/influxdb:/opt/scrutiny/influxdb
+      - /run/udev:/run/udev:ro
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

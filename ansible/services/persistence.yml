@@ -143,6 +143,10 @@
       # RustDesk
       - "{{ server_home }}/services/remote/rustdesk/persistence"
       - "{{ server_home }}/services/remote/rustdesk/db-persistence"
+      # Scrutiny
+      - "{{ server_home }}/services/monitoring/scrutiny/persistence"
+      - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
+      - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
       # Stirling PDF
       - "{{ server_home }}/services/pdf/stirling-pdf/persistence"
       - "{{ server_home }}/services/pdf/stirling-pdf/persistence/configs"

@@ -77,6 +77,8 @@
         project_src: '{{ server_home }}/services/monitoring/prometheus'
       - when: rustdesk_enable
         project_src: '{{ server_home }}/services/remote/rustdesk'
+      - when: scrutiny_enable
+        project_src: '{{ server_home }}/services/monitoring/scrutiny'
       - when: stirling_pdf_enable
         project_src: '{{ server_home }}/services/pdf/stirling-pdf'
       - when: unbound_enable
