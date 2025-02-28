@@ -5,8 +5,8 @@ services:
       - SYS_RAWIO
     container_name: scrutiny
     devices:
-      - /dev/nvme0n1p3
-      - /dev/sda1
+      - /dev/nvme0
+      - /dev/sda
     dns:
       - 127.0.0.1
       - 45.90.28.96
