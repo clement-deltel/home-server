@@ -11,7 +11,6 @@ services:
       - 127.0.0.1
       - 45.90.28.96
       - 45.90.30.96
-    env_file: config/.env
     hostname: scrutiny
     image: ${SCRUTINY_IMAGE}
     labels:
@@ -22,7 +21,10 @@ services:
       - "traefik.http.routers.scrutiny.tls=true"
       # - "traefik.http.routers.scrutiny.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.scrutiny.tls.domains[0].main=scrutiny.${DOMAIN}"
+      - "traefik.http.routers.scrutiny.middlewares=scrutiny"
       - "traefik.http.routers.scrutiny.service=scrutiny"
+      # Middlewares
+      - "traefik.http.middlewares.scrutiny.basicauth.users=${SCRUTINY_USER}:${SCRUTINY_PASSWORD}"
       # Services
       - "traefik.http.services.scrutiny.loadbalancer.server.port=8080"
     logging:
