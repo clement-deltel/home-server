@@ -285,14 +285,11 @@ This section covers all the supported services of the stack. It categorizes the 
   - Recursive DNS
     - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/)
 - **Monitoring**
-  - Visualization Tool
-    - [Grafana](https://grafana.com/): `https://grafana.${DOMAIN}`
-  - Push Notifications
-    - [ntfy](https://ntfy.sh/): `https://ntfy.${DOMAIN}`
-  - Website Change Detection
-    - [changedetection.io](https://changedetection.io/): `https://detection.${DOMAIN}`
-  - Flight Tracking
-    - [Jetlog](https://github.com/pbogre/jetlog): `https://fly.${DOMAIN}`
+  - [changedetection.io](https://changedetection.io/): web page change detection, website watcher, restock monitor and notification service. Deployed on `https://detection.${DOMAIN}`. Source code available [here](https://github.com/dgtlmoon/changedetection.io).
+  - [Grafana](https://grafana.com): open and composable observability and data visualization platform. Deployed on `https://grafana.${DOMAIN}`. Source code available [here](https://github.com/grafana/grafana).
+  - [Jetlog](https://github.com/pbogre/jetlog): personal flight tracker and viewer. Deployed on `https://fly.${DOMAIN}`.
+  - [ntfy](https://ntfy.sh/): send push notifications to your phone or desktop using PUT/POST. Deployed on `https://ntfy.${DOMAIN}`. Source code available [here](https://github.com/binwiederhier/ntfy).
+  - [Scrutiny](https://github.com/AnalogJ/scrutiny): hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. Deployed on `https://scrutiny.${DOMAIN}`.
 - **Backup**
   - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
 - **Security**
@@ -329,6 +326,7 @@ This section covers all the supported services of the stack. It categorizes the 
       - Instance: `https://vault.${DOMAIN}`
   - Personal Knowledge Management System (PKMS)
     - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
+    - [Mathesar](https://mathesar.org): spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. Deployed on `https://mathesar.${DOMAIN}`. Source code available [here](https://github.com/mathesar-foundation/mathesar).
     - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
 - **Artificial Intelligence**
   - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
@@ -627,7 +625,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Monica](https://github.com/monicahq/monica): Personal CRM. Remember everything about your friends, family and business relationships.
   - [Plausible](https://github.com/plausible/analytics): simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics.
   - [Sentry](https://github.com/getsentry/self-hosted): feature-complete and packaged up for low-volume deployments and proofs-of-concept.
-  - [Scrutiny](https://github.com/AnalogJ/scrutiny): hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds.
   - TunnelMole:
     - [Client](https://github.com/robbie-cahill/tunnelmole-client)
     - [Service](https://github.com/robbie-cahill/tunnelmole-service)

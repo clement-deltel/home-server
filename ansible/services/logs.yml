@@ -62,6 +62,7 @@
         - "{{ server_home }}/logs/pdf/docuseal"
         - "{{ server_home }}/logs/pdf/stirling-pdf"
         - "{{ server_home }}/logs/pkms/affine"
+        - "{{ server_home }}/logs/pkms/mathesar"
         - "{{ server_home }}/logs/pkms/obsidian"
         - "{{ server_home }}/logs/remote/guacamole"
         - "{{ server_home }}/logs/remote/rustdesk"

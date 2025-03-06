@@ -98,6 +98,11 @@
       - "{{ server_home }}/services/limesurvey/persistence/config"
       - "{{ server_home }}/services/limesurvey/persistence/plugins"
       - "{{ server_home }}/services/limesurvey/persistence/upload"
+      # Mathesar
+      - "{{ server_home }}/services/pkms/mathesar/db-persistence"
+      - "{{ server_home }}/services/pkms/mathesar/persistence"
+      - "{{ server_home }}/services/pkms/mathesar/persistence/static"
+      - "{{ server_home }}/services/pkms/mathesar/persistence/media"
       # Minecraft
       - "{{ server_home }}/services/minecraft/persistence"
       # Navidrome

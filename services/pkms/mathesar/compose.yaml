@@ -1,0 +1,84 @@
+services:
+  db:
+    container_name: mathesar-pkms-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_PKMS_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: mathesar-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${MATHESAR_PKMS_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  mathesar:
+    container_name: mathesar
+    depends_on:
+      db:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    healthcheck:
+      test: curl -f http://localhost:8000
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
+    image: ${MATHESAR_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.mathesar.entrypoints=web,websecure"
+      - "traefik.http.routers.mathesar.rule=Host(`mathesar.${DOMAIN}`)"
+      - "traefik.http.routers.mathesar.tls=true"
+      # - "traefik.http.routers.mathesar.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.mathesar.tls.domains[0].main=mathesar.${DOMAIN}"
+      - "traefik.http.routers.mathesar.service=mathesar"
+      # Services
+      - "traefik.http.services.mathesar.loadbalancer.server.port=8000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${MATHESAR_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${MATHESAR_IP}
+    ports:
+      - 8000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence/static:/code/static
+      - ./persistence/media:/code/media
+
+networks:
+  app-net:
+    name: mathesar-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${MATHESAR_NET}
+          gateway: ${MATHESAR_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net
