@@ -10,13 +10,14 @@
 
     - name: Daily backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every day before 1AM): Vaultwarden, Paperless"
+        name: "Backup databases and files (every day before 1AM): Vaultwarden, Mathesar PKMS, Paperless"
         minute: 30
         hour: 0
         job: "{{ item }}"
         state: present
       loop:
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > ${SERVER_HOME}/services/kopia/persistence/databases/vaultwarden.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${MATHESAR_PKMS_DB_PASSWORD}; pg_dumpall -c -h ${MATHESAR_PKMS_DB_IP} -U ${MATHESAR_PKMS_DB_USER} -l immich_db > ${SERVER_HOME}/services/kopia/persistence/databases/mathesar-pkms.sql"
         - docker exec -T paperless document_exporter ../export --no-progress-bar; tar -zcf ${SERVER_HOME}/services/kopia/persistence/files/paperless.tar.gz ${SERVER_HOME}/services/media/storage/documents/paperless/persistence/export
 
     - name: Weekly backup job
