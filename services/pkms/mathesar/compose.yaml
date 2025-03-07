@@ -1,7 +1,7 @@
 services:
-  db:
+  pkms-db:
     container_name: mathesar-pkms-postgres
-    env_file: config/.env.db
+    env_file: config/.env.pkms.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_PKMS_DB_USER}"]
       interval: 20s
@@ -9,7 +9,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: mathesar-postgres
+    hostname: mathesar-pkms-postgres
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
@@ -22,11 +22,38 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
+      - ./pkms-db-persistence:/var/lib/postgresql/data
+
+  db:
+    container_name: mathesar-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: mathesar-postgres
+    image: ${MATHESAR_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${MATHESAR_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
       - ./db-persistence:/var/lib/postgresql/data
 
   mathesar:
     container_name: mathesar
     depends_on:
+      pkms-db:
+        condition: service_healthy
       db:
         condition: service_healthy
     dns:
