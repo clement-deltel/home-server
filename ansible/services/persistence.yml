@@ -103,6 +103,7 @@
       - "{{ server_home }}/services/pkms/mathesar/persistence"
       - "{{ server_home }}/services/pkms/mathesar/persistence/static"
       - "{{ server_home }}/services/pkms/mathesar/persistence/media"
+      - "{{ server_home }}/services/pkms/mathesar/pkms-db-persistence"
       # Minecraft
       - "{{ server_home }}/services/minecraft/persistence"
       # Navidrome
