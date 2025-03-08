@@ -63,7 +63,7 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      monitoring-net:
         ipv4_address: ${GRAFANA_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
