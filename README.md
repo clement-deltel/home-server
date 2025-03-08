@@ -566,9 +566,13 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Heimdall](https://github.com/linuxserver/Heimdall)
   - [Homer](https://github.com/bastienwirtz/homer): very simple static homepage for your server.
 - **Finances**
+  - [DollarDollar](https://github.com/harung1993/dollardollar): expense splitting.
   - [Firefly III](https://github.com/firefly-iii/firefly-iii)
+  - [Investbrain](https://github.com/investbrainapp/investbrain): investment tracker that consolidates and monitors market performance across your different brokerages.
   - [Invoice Ninja](https://github.com/invoiceninja/invoiceninja)
-  - [Maybe](https://github.com/maybe-finance/maybe): the OS for your personal finances.
+  - [Maybe](https://github.com/maybe-finance/maybe): OS for your personal finances.
+  - [Monetr](https://github.com/monetr/monetr): budgeting application focused on planning for recurring expenses.
+  - [Subscription Manager](https://github.com/dh1011/subscription-manager): keep track of your subscriptions and manage your expenses.
   - [Wapy.dev](https://github.com/meceware/wapy.dev): track, manage and optimize your recurring expenses in one powerful and human readable dashboard.
 - **Health**
   - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, self-hosted, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
@@ -598,8 +602,10 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - Videos
       - [Plex](https://github.com/plexinc/pms-docker): Plex Media Server Docker repo, for all your PMS docker needs.
 - **Monitoring**
+  - [Beszel](https://github.com/henrygd/beszel): lightweight server monitoring hub with historical data, docker stats, and alerts.
   - [Keep](https://github.com/keephq/keep): open-source AIOps and alert management platform.
   - [Uptime Kuma](https://github.com/louislam/uptime-kuma): fancy self-hosted monitoring tool.
+  - [VFD](https://github.com/kiinami/vfd): flight price tracking script.
 - **PKMS**
   - [Anytype](https://anytype.io/)
   - [Joplin](https://github.com/laurent22/joplin): privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS.
