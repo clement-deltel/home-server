@@ -46,7 +46,7 @@
 
     - name: Copy Telegraf configuration file
       ansible.builtin.copy:
-        src: "{{ server_home }}/services/grafana/config/telegraf.conf"
+        src: "{{ server_home }}/services/monitoring/grafana/config/telegraf.conf"
         dest: /etc/telegraf/telegraf.conf
         owner: root
         group: root

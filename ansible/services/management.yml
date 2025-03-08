@@ -26,7 +26,7 @@
       - when: gokapi_enable
         project_src: '{{ server_home }}/services/media/sharing/gokapi'
       - when: grafana_enable
-        project_src: '{{ server_home }}/services/grafana'
+        project_src: '{{ server_home }}/services/monitoring/grafana'
       - when: grocy_enable
         project_src: '{{ server_home }}/services/inventory/grocy'
       - when: guacamole_enable
