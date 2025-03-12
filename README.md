@@ -303,7 +303,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Kavita](https://www.kavitareader.com): `https://books.${DOMAIN}`
     - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
   - Photos
-    - [Immich](https://immich.app/): `https://pictures.${DOMAIN}`
+    - [Immich](https://immich.app/): high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich).
     - [Photoprism](https://www.photoprism.app/): `https://photoprism.${DOMAIN}`
   - Music
     - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
@@ -315,13 +315,13 @@ This section covers all the supported services of the stack. It categorizes the 
   - Bookmarks
     - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
   - Code
-    - [ByteStash](https://github.com/jordan-dalby/ByteStash): `https://snippets.${DOMAIN}`
+    - [ByteStash](https://github.com/jordan-dalby/bytestash): a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash).
     - [Gitlab](https://gitlab.com/gitlab-org/gitlab)
       - Instance: `https://gitlab.${DOMAIN}`
       - Registry: `https://registry.gitlab.${DOMAIN}`
-    - [IT-Tools](https://github.com/CorentinTh/it-tools): `https://it-tools.${DOMAIN}`
+    - [IT-Tools](https://it-tools.tech/): collection of handy online tools for developers, with great UX. Deployed on `https://it-tools.${DOMAIN}`. Source code available [here](https://github.com/corentinth/it-tools).
   - Passwords
-    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden): unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs. Source code available [here](https://github.com/dani-garcia/vaultwarden).
       - Administration dashboard: `https://vault.${DOMAIN}/admin`
       - Instance: `https://vault.${DOMAIN}`
   - Personal Knowledge Management System (PKMS)
@@ -332,7 +332,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
-  - [Wallos](https://wallosapp.com/): open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/Wallos).
+  - [Wallos](https://wallosapp.com/): open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos).
 - **Inventory**
   - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
   - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
