@@ -329,7 +329,9 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Mathesar](https://mathesar.org): spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. Deployed on `https://mathesar.${DOMAIN}`. Source code available [here](https://github.com/mathesar-foundation/mathesar).
     - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
 - **Artificial Intelligence**
-  - [Open WebUI](https://openwebui.com): `https://ai.${DOMAIN}`
+  - [LiteLLM](https://www.litellm.ai/): Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. Deployed on `https://llm.${DOMAIN}`. Source code available [here](https://github.com/BerriAI/litellm).
+  - [Ollama](https://ollama.com): get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. Source code available [here](https://github.com/ollama/ollama).
+  - [Open WebUI](https://openwebui.com): user-friendly AI Interface (supports Ollama, OpenAI API, ...). Deployed on `https://ai.${DOMAIN}`. Source code available [here](https://github.com/open-webui/open-webui).
 - **Finances**
   - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
   - [Wallos](https://wallosapp.com/): open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos).
