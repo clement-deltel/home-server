@@ -98,6 +98,7 @@ alias loghome='cd {SERVER_HOME}/logs'
 #==============================================================================#
 #               ------- Server - Services --------                             #
 #==============================================================================#
+alias {cd,svc}llm='cd ${SERVER_HOME}/services/ai/litellm'
 alias {cd,svc}oll='cd ${SERVER_HOME}/services/ai/ollama'
 alias {cd,svc}owu='cd ${SERVER_HOME}/services/ai/open-webui'
 alias {cd,svc}hom='cd ${SERVER_HOME}/services/dashboard/homarr'
