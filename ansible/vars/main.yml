@@ -39,10 +39,12 @@ jetlog_enable: true
 kavita_enable: true
 kopia_enable: true
 mathesar_enable: true
+litellm_enable: true
 minecraft_enable: true
 navidrome_enable: true
 ntfy_enable: true
 obsidian_enable: true
+ollama_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true
@@ -62,6 +64,5 @@ firefly_enable: false
 librum_enable: false
 limesurvey_enable: false
 nextcloud_enable: false
-ollama_enable: false
 photoprism_enable: false
 wireguard_enable: false

@@ -1,0 +1,119 @@
+services:
+  db:
+    container_name: litellm-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LITELLM_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: litellm-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${LITELLM_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  redis:
+    command: redis-server --requirepass ${LITELLM_REDIS_PASSWORD}
+    container_name: litellm-redis
+    hostname: litellm-redis
+    image: ${DEFAULT_REDIS_IMAGE}
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      app-net:
+        ipv4_address: ${LITELLM_REDIS_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  litellm:
+    container_name: litellm
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    healthcheck:  # Defines the health check configuration for the container
+      test: [ "CMD", "curl", "-f", "http://localhost:4000/health/liveliness || exit 1" ]  # Command to execute for health check
+      interval: 30s  # Perform health check every 30 seconds
+      timeout: 10s   # Health check command times out after 10 seconds
+      retries: 3     # Retry up to 3 times if health check fails
+      start_period: 40s  # Wait 40 seconds after container start before beginning health checks
+    hostname: litellm
+    image: ${LITELLM_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.litellm.entrypoints=web,websecure"
+      - "traefik.http.routers.litellm.rule=Host(`llm.${DOMAIN}`)"
+      - "traefik.http.routers.litellm.tls=true"
+      # - "traefik.http.routers.litellm.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.litellm.tls.domains[0].main=llm.${DOMAIN}"
+      - "traefik.http.routers.litellm.service=litellm"
+      # Services
+      - "traefik.http.services.litellm.loadbalancer.server.port=4000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${LITELLM_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${LITELLM_IP}
+      ai-net:
+        ipv4_address: ${LITELLM_AI_IP}
+      monitoring-net:
+        ipv4_address: ${LITELLM_MONITORING_IP}
+    ports:
+      - 4000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    # volumes:
+    #   - ./litellm-config.yaml:/app/config.yaml # Mount the local configuration file
+
+networks:
+  app-net:
+    name: litellm-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${LITELLM_NET}
+          gateway: ${LITELLM_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net
+  ai-net:
+    external: true
+    name: ai-net
+  monitoring-net:
+    external: true
+    name: monitoring-net

@@ -53,6 +53,8 @@
         project_src: '{{ server_home }}/services/media/storage/books/librum'
       - when: limesurvey_enable
         project_src: '{{ server_home }}/services/limesurvey'
+      - when: litellm_enable
+        project_src: '{{ server_home }}/services/ai/litellm'
       - when: mathesar_enable
         project_src: '{{ server_home }}/services/pkms/mathesar'
       - when: minecraft_enable

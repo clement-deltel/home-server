@@ -98,6 +98,8 @@
       - "{{ server_home }}/services/limesurvey/persistence/config"
       - "{{ server_home }}/services/limesurvey/persistence/plugins"
       - "{{ server_home }}/services/limesurvey/persistence/upload"
+      # LiteLLM
+      - "{{ server_home }}/services/ai/litellm/db-persistence"
       # Mathesar
       - "{{ server_home }}/services/pkms/mathesar/db-persistence"
       - "{{ server_home }}/services/pkms/mathesar/persistence"
@@ -285,12 +287,12 @@
         regexp: '(^\s*)# -'
         replace: '\1-'
       loop:
+        - "{{ server_home }}/services/ai/litellm/compose.yaml"
         - "{{ server_home }}/services/ai/open-webui/compose.yaml"
         - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
         - "{{ server_home }}/services/directus/compose.yaml"
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
         - "{{ server_home }}/services/finances/actual/compose.yaml"
-        - "{{ server_home }}/services/grafana/compose.yaml"
         - "{{ server_home }}/services/inventory/grocy/compose.yaml"
         - "{{ server_home }}/services/inventory/homebox/compose.yaml"
         - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
@@ -309,12 +311,14 @@
         - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
         - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
         - "{{ server_home }}/services/monitoring/detection/compose.yaml"
+        - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
         - "{{ server_home }}/services/monitoring/jetlog/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
         - "{{ server_home }}/services/news/freshrss/compose.yaml"
         - "{{ server_home }}/services/pdf/docuseal/compose.yaml"
         - "{{ server_home }}/services/pdf/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/pkms/affine/compose.yaml"
+        - "{{ server_home }}/services/pkms/mathesar/compose.yaml"
         - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
         - "{{ server_home }}/services/remote/guacamole/compose.yaml"
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
