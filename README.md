@@ -270,7 +270,8 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Reverse Proxy**
   - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
 - **Dashboard**
-  - [Homarr](https://homarr.dev/): `https://home.${DOMAIN}`
+  - [Homarr](https://homarr.dev/): modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr).
+  - [Homer](https://homer-demo.netlify.app): very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer)
 - **Remote Access**
   - VPN
     - [Wireguard](https://www.wireguard.com/): `vpn.${DOMAIN}`
@@ -565,8 +566,9 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [CAdvisor](https://github.com/google/cadvisor): analyzes resource usage and performance characteristics of running containers.
   - [Dozzle](https://github.com/amir20/dozzle): realtime log viewer for docker containers.
 - **Dashboard**
-  - [Heimdall](https://github.com/linuxserver/Heimdall)
-  - [Homer](https://github.com/bastienwirtz/homer): very simple static homepage for your server.
+  - [Dashy](https://dashy.to/): personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more. Source code available [here](https://github.com/Lissy93/dashy).
+  - [Heimdall](https://github.com/linuxserver/Heimdall): application dashboard and launcher.
+  - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
 - **Finances**
   - [DollarDollar](https://github.com/harung1993/dollardollar): expense splitting.
   - [Firefly III](https://github.com/firefly-iii/firefly-iii)
@@ -588,7 +590,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - Management
     - [ConvertX](https://github.com/C4illin/ConvertX): Self-hosted online file converter. Supports 1000+ formats.
     - [Lidarr](https://github.com/Lidarr/Lidarr): Looks and smells like Sonarr but made for music.
-    - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
     - [Radarr](https://github.com/Radarr/Radarr): Movie organizer/manager for usenet and torrent users.
     - [Slskd](https://github.com/slskd/slskd): modern client-server application for the Soulseek file sharing network.
     - [Sonarr](https://github.com/Sonarr/Sonarr): Smart PVR for newsgroup and bittorrent users.
