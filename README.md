@@ -275,9 +275,9 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Remote Access**
   - VPN
     - [Wireguard](https://www.wireguard.com/): `vpn.${DOMAIN}`
-    - [Wireguard Easy](https://github.com/wg-easy/wg-easy): `vpn.${DOMAIN}`
+    - [Wireguard Easy](https://github.com/wg-easy/wg-easy): easiest way to run WireGuard VPN + Web-based Admin UI. Deployed on `vpn.${DOMAIN}`. Source code available [here](https://github.com/wg-easy/wg-easy).
   - Clientless Remote Desktop Gateway (SSH, RDP...)
-    - [Apache Guacamole](https://guacamole.apache.org/): `https://guacamole.${DOMAIN}`
+    - [Apache Guacamole](https://guacamole.apache.org/): clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. Deployed on `https://guacamole.${DOMAIN}`.
   - Remote Control Server
     - [RustDesk](https://rustdesk.com): `rustdesk.${DOMAIN}`
 - **DNS**
@@ -292,7 +292,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [ntfy](https://ntfy.sh/): send push notifications to your phone or desktop using PUT/POST. Deployed on `https://ntfy.${DOMAIN}`. Source code available [here](https://github.com/binwiederhier/ntfy).
   - [Scrutiny](https://github.com/AnalogJ/scrutiny): hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. Deployed on `https://scrutiny.${DOMAIN}`.
 - **Backup**
-  - [Kopia](https://kopia.io/): `https://kopia.${DOMAIN}`
+  - [Kopia](https://kopia.io/): cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included. Deployed on `https://kopia.${DOMAIN}`. Source code available [here](https://github.com/kopia/kopia/).
 - **Security**
   - [Wazuh](https://wazuh.com): `https://seim.${DOMAIN}`
   - [Enclosed](https://github.com/CorentinTh/enclosed): `https://notes.${DOMAIN}`
@@ -334,15 +334,15 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Ollama](https://ollama.com): get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. Source code available [here](https://github.com/ollama/ollama).
   - [Open WebUI](https://openwebui.com): user-friendly AI Interface (supports Ollama, OpenAI API, ...). Deployed on `https://ai.${DOMAIN}`. Source code available [here](https://github.com/open-webui/open-webui).
 - **Finances**
-  - [Actual](https://actualbudget.com/): `https://finances.${DOMAIN}`
+  - [Actual](https://actualbudget.com/): local-first personal finance app. Deployed on `https://finances.${DOMAIN}`. Source code available [here](https://github.com/actualbudget/actual).
   - [Wallos](https://wallosapp.com/): open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos).
 - **Inventory**
-  - [Grocy](https://grocy.info/): `https://grocy.${DOMAIN}`
-  - [HortusFox](https://hortusfox.github.io): `https://plants.${DOMAIN}`
+  - [Grocy](https://grocy.info/): groceries & household management solution for your home. Deployed on `https://grocy.${DOMAIN}`. Source code available [here](https://github.com/grocy/grocy).
+  - [HortusFox](https://hortusfox.github.io): collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
   - [Homebox](https://homebox.software/en/): inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox).
 - **PDF Tools**
-  - [Docuseal](https://www.docuseal.co/): `https://doc.${DOMAIN}`
-  - [Stirling-PDF](https://stirlingtools.com): `https://pdf.${DOMAIN}`
+  - [Docuseal](https://www.docuseal.co/): open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal).
+  - [Stirling-PDF](https://stirlingtools.com): allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF).
 - **Headless CMS**
   - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
 - **Survey Builder**
@@ -567,6 +567,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Dozzle](https://github.com/amir20/dozzle): realtime log viewer for docker containers.
 - **Dashboard**
   - [Dashy](https://dashy.to/): personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more. Source code available [here](https://github.com/Lissy93/dashy).
+  - [Glance](https://github.com/glanceapp/glance): dashboard that puts all your feeds in one place. Source code available [here](https://github.com/glanceapp/glance).
   - [Heimdall](https://github.com/linuxserver/Heimdall): application dashboard and launcher.
   - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
 - **Finances**
