@@ -71,7 +71,7 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.litellm.entrypoints=web,websecure"
-      - "traefik.http.routers.litellm.rule=Host(`llm.${DOMAIN}`)"
+      - "traefik.http.routers.litellm.rule=Host(`llm.${DOMAIN}`) && PathRegexp(`^/.*`)"
       - "traefik.http.routers.litellm.tls=true"
       # - "traefik.http.routers.litellm.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.litellm.tls.domains[0].main=llm.${DOMAIN}"
