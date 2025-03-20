@@ -16,15 +16,31 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      ## Default
       - "traefik.http.routers.scrutiny.entrypoints=web,websecure"
-      - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.${DOMAIN}`)"
+      - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.${DOMAIN}`) && !ClientIP(`${PUBLIC_IP}`)"
       - "traefik.http.routers.scrutiny.tls=true"
       # - "traefik.http.routers.scrutiny.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.scrutiny.tls.domains[0].main=scrutiny.${DOMAIN}"
-      - "traefik.http.routers.scrutiny.middlewares=scrutiny"
+      # - "traefik.http.routers.scrutiny.middlewares=scrutiny"
       - "traefik.http.routers.scrutiny.service=scrutiny"
+      ## API access router without authentication
+      - "traefik.http.routers.scrutiny-homer.entrypoints=web,websecure"
+      - "traefik.http.routers.scrutiny-homer.rule=Host(`scrutiny.${DOMAIN}`) && ClientIP(`${PUBLIC_IP}`) && PathPrefix(`/api/summary`)"
+      - "traefik.http.routers.scrutiny-homer.tls=true"
+      # - "traefik.http.routers.scrutiny-homer.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.scrutiny-homer.tls.domains[0].main=scrutiny.${DOMAIN}"
+      - "traefik.http.routers.scrutiny-homer.middlewares=scrutiny-cors"
+      - "traefik.http.routers.scrutiny-homer.service=scrutiny"
       # Middlewares
-      - "traefik.http.middlewares.scrutiny.basicauth.users=${SCRUTINY_USER}:${SCRUTINY_PASSWORD}"
+      ## Auth
+      # - "traefik.http.middlewares.scrutiny.basicauth.users=${SCRUTINY_USER}:${SCRUTINY_PASSWORD}"
+      ## CORS
+      - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowOriginList=https://homer.${DOMAIN}"
+      - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowMethods=GET,OPTIONS"
+      - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowHeaders=Content-Type,Authorization"
+      - "traefik.http.middlewares.scrutiny-cors.headers.accessControlMaxAge=100"
+      - "traefik.http.middlewares.scrutiny-cors.headers.addVaryHeader=true"
       # Services
       - "traefik.http.services.scrutiny.loadbalancer.server.port=8080"
     logging:

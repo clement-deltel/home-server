@@ -137,6 +137,9 @@ export HOME=/home/${USER}
 #==============================================================================#
 export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
 
+# IP
+export PUBLIC_IP=$(curl https://ipinfo.io/ip)
+
 # Server
 export SERVER_HOME=/opt/home-server
 
