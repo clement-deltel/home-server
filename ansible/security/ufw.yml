@@ -35,6 +35,7 @@
       - {comment: "Wazuh (TCP)", port: 1514, protocol: "tcp", log: false}
       - {comment: "Wazuh (TCP)", port: 1515, protocol: "tcp", log: false}
       - {comment: "Guacamole RDP", port: 3389, protocol: "any", log: false}
+      - {comment: "Home Assistant (TCP)", port: 8123, protocol: "tcp", log: false}
       - {comment: "Wazuh Indexer (TCP)", port: 9200, protocol: "tcp", log: false}
       - {comment: "ID Server - NAT type test (TCP)", port: 21115, protocol: "tcp", log: false}
       - {comment: "ID Server - TCP hole punching (TCP)", port: 21116, protocol: "tcp", log: false}
