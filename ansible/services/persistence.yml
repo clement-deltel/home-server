@@ -60,7 +60,7 @@
       # Homer
       - "{{ server_home }}/services/dashboard/homer/persistence"
       # Home Assistant
-      - "{{ server_home }}/services/home-assistant/persistence"
+      - "{{ server_home }}/services/home/home-assistant/persistence"
       # HortusFox
       - "{{ server_home }}/services/inventory/hortusfox/db-persistence"
       - "{{ server_home }}/services/inventory/hortusfox/persistence"
@@ -165,6 +165,8 @@
       - "{{ server_home }}/services/pdf/stirling-pdf/persistence/tessdata"
       # Unbound
       - "{{ server_home }}/services/dns/unbound/persistence"
+      # UpSnap
+      - "{{ server_home }}/services/home/upsnap/persistence"
       # Vaultwarden
       - "{{ server_home }}/services/management/passwords/vaultwarden/db-persistence"
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
@@ -297,6 +299,8 @@
         - "{{ server_home }}/services/directus/compose.yaml"
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
         - "{{ server_home }}/services/finances/actual/compose.yaml"
+        - "{{ server_home }}/services/home/home-assistant/compose.yaml"
+        - "{{ server_home }}/services/home/upsnap/compose.yaml"
         - "{{ server_home }}/services/inventory/grocy/compose.yaml"
         - "{{ server_home }}/services/inventory/homebox/compose.yaml"
         - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"

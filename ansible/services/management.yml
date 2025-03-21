@@ -38,7 +38,7 @@
       - when: homer_enable
         project_src: '{{ server_home }}/services/dashboard/homer'
       - when: home_assistant_enable
-        project_src: '{{ server_home }}/services/home-assistant'
+        project_src: '{{ server_home }}/services/home/home-assistant'
       - when: hortusfox_enable
         project_src: '{{ server_home }}/services/inventory/hortusfox'
       - when: immich_enable
@@ -91,6 +91,8 @@
         project_src: '{{ server_home }}/services/pdf/stirling-pdf'
       - when: unbound_enable
         project_src: '{{ server_home }}/services/dns/unbound'
+      - when: upsnap_enable
+        project_src: '{{ server_home }}/services/home/upsnap'
       - when: vaultwarden_enable
         project_src: '{{ server_home }}/services/management/passwords/vaultwarden'
       - when: wallos_enable

@@ -55,6 +55,7 @@ rustdesk_enable: true
 scrutiny_enable: true
 stirling_pdf_enable: true
 unbound_enable: true
+upsnap_enable: true
 vaultwarden_enable: true
 wallos_enable: true
 wazuh_enable: false

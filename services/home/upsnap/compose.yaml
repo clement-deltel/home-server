@@ -1,0 +1,39 @@
+services:
+  upsnap:
+    container_name: upsnap
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+      - ${PIHOLE_IP}
+    healthcheck:
+      test: curl -fs "http://localhost:8090/api/health" || exit 1
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: upsnap
+    image: ${UPSNAP_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.upsnap.entrypoints=web,websecure"
+      - "traefik.http.routers.upsnap.rule=Host(`wol.${DOMAIN}`)"
+      - "traefik.http.routers.upsnap.tls=true"
+      # - "traefik.http.routers.upsnap.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.upsnap.tls.domains[0].main=wol.${DOMAIN}"
+      - "traefik.http.routers.upsnap.service=upsnap"
+      # Services
+      - "traefik.http.services.upsnap.loadbalancer.server.port=8090"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    network_mode: host
+    restart: unless-stopped
+    stop_grace_period: 30s
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./persistence:/app/pb_data
