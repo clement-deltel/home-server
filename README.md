@@ -272,6 +272,8 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Dashboard**
   - [Homarr](https://homarr.dev/): modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr).
   - [Homer](https://homer-demo.netlify.app): very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer)
+- **Home Automation**
+  - [Home Assistant](https://www.home-assistant.io/): home automation that puts local control and privacy first. Deployed on `https://ha.${DOMAIN}`. Source code available [here](https://www.home-assistant.io/).
 - **Remote Access**
   - VPN
     - [Wireguard](https://www.wireguard.com/): `vpn.${DOMAIN}`

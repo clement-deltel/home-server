@@ -38,6 +38,7 @@
         - "{{ server_home }}/logs/finances/actual"
         - "{{ server_home }}/logs/finances/wallos"
         - "{{ server_home }}/logs/games/minecraft"
+        - "{{ server_home }}/logs/home-assistant"
         - "{{ server_home }}/logs/inventory/grocy"
         - "{{ server_home }}/logs/inventory/homebox"
         - "{{ server_home }}/logs/inventory/hortusfox"

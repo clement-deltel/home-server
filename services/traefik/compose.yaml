@@ -1,6 +1,8 @@
 services:
   reverse-proxy:
     container_name: traefik
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
     hostname: traefik
     image: ${TRAEFIK_IMAGE}
     labels:

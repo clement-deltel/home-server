@@ -56,9 +56,11 @@
       - "{{ server_home }}/services/dashboard/homarr/persistence/data"
       - "{{ server_home }}/services/dashboard/homarr/persistence/icons"
       # Homebox
-      - "{{ server_home }}/services/dashboard/homer/persistence"
-      # Homebox
       - "{{ server_home }}/services/inventory/homebox/persistence"
+      # Homer
+      - "{{ server_home }}/services/dashboard/homer/persistence"
+      # Home Assistant
+      - "{{ server_home }}/services/home-assistant/persistence"
       # HortusFox
       - "{{ server_home }}/services/inventory/hortusfox/db-persistence"
       - "{{ server_home }}/services/inventory/hortusfox/persistence"

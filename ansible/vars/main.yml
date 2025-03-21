@@ -32,6 +32,7 @@ guacamole_enable: true
 homarr_enable: true
 homebox_enable: true
 homer_enable: true
+home_assistant_enable: true
 hortusfox_enable: true
 immich_enable: true
 it_tools_enable: true
