@@ -271,7 +271,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
 - **Dashboard**
   - [Homarr](https://homarr.dev/): modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr).
-  - [Homer](https://homer-demo.netlify.app): very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer)
+  - [Homer](https://homer-demo.netlify.app): very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer).
 - **Home Automation**
   - [Home Assistant](https://www.home-assistant.io/): home automation that puts local control and privacy first. Deployed on `https://ha.${DOMAIN}`. Source code available [here](https://www.home-assistant.io/).
   - [UpSnap](https://github.com/seriousm4x/UpSnap): simple wake on lan web app written with SvelteKit, Go and PocketBase. Deployed on `https://wol.${DOMAIN}`. Source code available [here](https://github.com/seriousm4x/UpSnap).
@@ -282,10 +282,10 @@ This section covers all the supported services of the stack. It categorizes the 
   - Clientless Remote Desktop Gateway (SSH, RDP...)
     - [Apache Guacamole](https://guacamole.apache.org/): clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. Deployed on `https://guacamole.${DOMAIN}`.
   - Remote Control Server
-    - [RustDesk](https://rustdesk.com): `rustdesk.${DOMAIN}`
+    - [RustDesk](https://rustdesk.com): remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. Source code available [here](https://github.com/rustdesk/rustdesk-server).
 - **DNS**
   - Ad-blocker
-    - [Pi-hole](https://pi-hole.net/): `https://pihole.${DOMAIN}`
+    - [Pi-hole](https://pi-hole.net/): a black hole for Internet advertisements. Deployed on `https://pihole.${DOMAIN}`. Source code available [here](https://github.com/pi-hole/pi-hole).
   - Recursive DNS
     - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/)
 - **Monitoring**
