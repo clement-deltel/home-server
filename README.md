@@ -268,7 +268,7 @@ This section covers all the ports exposed to internet. Those are the ports that 
 This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them (if any), URL that depends on the root domain name.
 
 - **Reverse Proxy**
-  - [Traefik](https://traefik.io/traefik/): `https://traefik.${DOMAIN}/dashboard`
+  - [Traefik](https://traefik.io/traefik/) [Go]: `https://traefik.${DOMAIN}/dashboard`
 - **Dashboard**
   - [Homarr](https://homarr.dev/): modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr).
   - [Homer](https://homer-demo.netlify.app): very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer).
@@ -276,17 +276,17 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Home Assistant](https://www.home-assistant.io/): home automation that puts local control and privacy first. Deployed on `https://ha.${DOMAIN}`. Source code available [here](https://www.home-assistant.io/).
   - [UpSnap](https://github.com/seriousm4x/UpSnap): simple wake on lan web app written with SvelteKit, Go and PocketBase. Deployed on `https://wol.${DOMAIN}`. Source code available [here](https://github.com/seriousm4x/UpSnap).
 - **Remote Access**
-  - VPN
+  - **VPN**
     - [Wireguard](https://www.wireguard.com/): `vpn.${DOMAIN}`
     - [Wireguard Easy](https://github.com/wg-easy/wg-easy): easiest way to run WireGuard VPN + Web-based Admin UI. Deployed on `vpn.${DOMAIN}`. Source code available [here](https://github.com/wg-easy/wg-easy).
-  - Clientless Remote Desktop Gateway (SSH, RDP...)
+  - **Clientless Remote Desktop Gateway (SSH, RDP...)**
     - [Apache Guacamole](https://guacamole.apache.org/): clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. Deployed on `https://guacamole.${DOMAIN}`.
-  - Remote Control Server
-    - [RustDesk](https://rustdesk.com): remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. Source code available [here](https://github.com/rustdesk/rustdesk-server).
+  - **Remote Control Server**
+    - [RustDesk](https://rustdesk.com) [Rust]: remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. Source code available [here](https://github.com/rustdesk/rustdesk-server).
 - **DNS**
-  - Ad-blocker
+  - **Ad-blocker**
     - [Pi-hole](https://pi-hole.net/): a black hole for Internet advertisements. Deployed on `https://pihole.${DOMAIN}`. Source code available [here](https://github.com/pi-hole/pi-hole).
-  - Recursive DNS
+  - **Recursive DNS**
     - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/)
 - **Monitoring**
   - [changedetection.io](https://changedetection.io/): web page change detection, website watcher, restock monitor and notification service. Deployed on `https://detection.${DOMAIN}`. Source code available [here](https://github.com/dgtlmoon/changedetection.io).
@@ -300,35 +300,35 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Wazuh](https://wazuh.com): `https://seim.${DOMAIN}`
   - [Enclosed](https://github.com/CorentinTh/enclosed): `https://notes.${DOMAIN}`
 - **Media Storage**
-  - Documents
+  - **Documents**
     - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
     - [Paperless](https://docs.paperless-ngx.com/): `https://paperless.${DOMAIN}`
-  - Books
+  - **Books**
     - [Kavita](https://www.kavitareader.com): `https://books.${DOMAIN}`
     - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
-  - Photos
+  - **Photos**
     - [Immich](https://immich.app/): high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich).
     - [Photoprism](https://www.photoprism.app/): `https://photoprism.${DOMAIN}`
-  - Music
+  - **Music**
     - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
-  - Videos
+  - **Videos**
     - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
 - **Media Sharing**
   - [Gokapi](https://github.com/Forceu/Gokapi): `https://share.${DOMAIN}`
 - **Management**
-  - Bookmarks
+  - **Bookmarks**
     - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
-  - Code
+  - **Code**
     - [ByteStash](https://github.com/jordan-dalby/bytestash): a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash).
-    - [Gitlab](https://gitlab.com/gitlab-org/gitlab)
+    - [Gitlab](https://gitlab.com/gitlab-org/gitlab) [Ruby]
       - Instance: `https://gitlab.${DOMAIN}`
       - Registry: `https://registry.gitlab.${DOMAIN}`
     - [IT-Tools](https://it-tools.tech/): collection of handy online tools for developers, with great UX. Deployed on `https://it-tools.${DOMAIN}`. Source code available [here](https://github.com/corentinth/it-tools).
-  - Passwords
-    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden): unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs. Source code available [here](https://github.com/dani-garcia/vaultwarden).
+  - **Passwords**
+    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden) [Rust]: unofficial Bitwarden compatible server, formerly known as bitwarden_rs. Source code available [here](https://github.com/dani-garcia/vaultwarden).
       - Administration dashboard: `https://vault.${DOMAIN}/admin`
       - Instance: `https://vault.${DOMAIN}`
-  - Personal Knowledge Management System (PKMS)
+  - **Personal Knowledge Management System (PKMS)**
     - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
     - [Mathesar](https://mathesar.org): spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. Deployed on `https://mathesar.${DOMAIN}`. Source code available [here](https://github.com/mathesar-foundation/mathesar).
     - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
@@ -347,7 +347,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Docuseal](https://www.docuseal.co/): open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal).
   - [Stirling-PDF](https://stirlingtools.com): allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF).
 - **Headless CMS**
-  - [Directus](https://directus.io/): `https://directus.${DOMAIN}`
+  - [Directus](https://directus.io/) [TypeScript]: backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. Source code available [here](https://github.com/directus/directus).
 - **Survey Builder**
   - [Limesurvey](https://www.limesurvey.org/): `https://survey.${DOMAIN}`
 - **Wishlist**
@@ -567,13 +567,14 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Containers**
   - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose): docker-compose for testing any-sync.
   - [CAdvisor](https://github.com/google/cadvisor): analyzes resource usage and performance characteristics of running containers.
-  - [Dozzle](https://github.com/amir20/dozzle): realtime log viewer for docker containers.
+  - [Dozzle](https://github.com/amir20/dozzle) [Go]: realtime log viewer for docker containers.
 - **Dashboard**
   - [Dashy](https://dashy.to/): personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more. Source code available [here](https://github.com/Lissy93/dashy).
   - [Glance](https://github.com/glanceapp/glance): dashboard that puts all your feeds in one place. Source code available [here](https://github.com/glanceapp/glance).
   - [Heimdall](https://github.com/linuxserver/Heimdall): application dashboard and launcher.
   - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
 - **Finances**
+  - [Actual AI](https://github.com/sakowicz/actual-ai) [TypeScript]: categorize transactions in Actual Budget using AI.
   - [DollarDollar](https://github.com/harung1993/dollardollar): expense splitting.
   - [Firefly III](https://github.com/firefly-iii/firefly-iii)
   - [Investbrain](https://github.com/investbrainapp/investbrain): investment tracker that consolidates and monitors market performance across your different brokerages.
@@ -583,45 +584,94 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Subscription Manager](https://github.com/dh1011/subscription-manager): keep track of your subscriptions and manage your expenses.
   - [Wapy.dev](https://github.com/meceware/wapy.dev): track, manage and optimize your recurring expenses in one powerful and human readable dashboard.
 - **Health**
-  - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, self-hosted, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
+  - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
 - **Home Automation**
-  - [Home Assistant](https://github.com/home-assistant/core)
+  - [Wol](https://github.com/Trugamr/wol) [Go]: Wake-On-LAN tool that works via CLI and web interface.
+- **Inventory**
+  - [Bar Assistant](https://github.com/karlomikus/bar-assistant) [PHP]: home bar management.
+  - [Lubelogger](https://github.com/hargata/lubelog) [JavaScript]: vehicle maintenance and fuel mileage tracker.
+  - [Warracker](https://github.com/sassanix/Warracker) [JavaScript]: web application to manage product warranties, track expiration dates, and store related documents.
+- **Mail**
+  - [Maddy](https://github.com/foxcpp/maddy) [Go]: composable all-in-one mail server.
 - **Management**
-  - Bookmarks
-    - [Hoarder](https://github.com/hoarder-app/hoarder): bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search.
-    - [Linkwarden](https://github.com/linkwarden/linkwarden): collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents.
+  - **Ads**
+    - [Umami](https://github.com/umami-software/umami) [TypeScript]: modern, privacy-focused alternative to Google Analytics.
+  - **Bookmarks**
+    - [Hoarder](https://github.com/hoarder-app/hoarder) [TypeScript]: bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search.
+    - [Linkwarden](https://github.com/linkwarden/linkwarden) [TypeScript]: collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents.
+  - **Code**
+    - [Bugsink](https://github.com/bugsink/bugsink) [Python]: error tracking.
+    - [Wakapi](https://github.com/muety/wakapi) [Go]: minimalist WakaTime-compatible backend for coding statistics.
+    - [Ziit](https://github.com/0PandaDEV/Ziit) [TypeScript]: swiss army knife of code time tracking.
+  - **Location**
+    - [Dawarich](https://github.com/Freika/dawarich) [Ruby]: alternative to Google location history (Google Maps timeline).
+    - [Statistics for Strava](https://github.com/robiningelbrecht/statistics-for-strava) [HTML]: statistics generated using Strava data.
+    - [Wanderer](https://github.com/Flomp/wanderer) [HTML]: trail database, save your adventures.
+  - **Travel**
+    - [AdventureLog](https://github.com/seanmorley15/AdventureLog) [Python]: travel tracker and trip planner.
+    - [Scratch Map](https://github.com/ad3m3r5/scratch-map) [JavaScript]: scratch-off style map to track your travels.
+    - [VFD](https://github.com/kiinami/vfd): flight price tracking script.
+  - **Passwords**
+    - [AliasVault](https://github.com/lanedirt/AliasVault) [C#]: end-to-end encrypted password manager with a built-in alias generator and email server.
 - **Media**
-  - Management
-    - [ConvertX](https://github.com/C4illin/ConvertX): Self-hosted online file converter. Supports 1000+ formats.
-    - [Lidarr](https://github.com/Lidarr/Lidarr): Looks and smells like Sonarr but made for music.
-    - [Radarr](https://github.com/Radarr/Radarr): Movie organizer/manager for usenet and torrent users.
+  - **Management**
+    - [ConvertX](https://github.com/C4illin/ConvertX): online file converter. Supports 1000+ formats.
+    - [DeepSubX](https://github.com/garanda21/deepsubx) [TypeScript]: uses the DeepL API to translate subtitles for TV shows and movies in your library.
+    - [Lidarr](https://github.com/Lidarr/Lidarr): looks and smells like Sonarr but made for music.
+    - [Lidify](https://github.com/TheWicklowWolf/Lidify) [Python]: music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM.
+    - [MeTube](https://github.com/alexta69/metube) [Python/TypeScript]: YouTube downloader (web UI for youtube-dl / yt-dlp).
+    - [Radarr](https://github.com/Radarr/Radarr): movie organizer/manager for usenet and torrent users.
     - [Slskd](https://github.com/slskd/slskd): modern client-server application for the Soulseek file sharing network.
-    - [Sonarr](https://github.com/Sonarr/Sonarr): Smart PVR for newsgroup and bittorrent users.
-    - [Soularr](https://github.com/mrusse/soularr): Python script that connects Lidarr with Soulseek.
+    - [Sonarr](https://github.com/Sonarr/Sonarr): smart PVR for newsgroup and bittorrent users.
+    - [Soularr](https://github.com/mrusse/soularr) [Python]: script that connects Lidarr with Soulseek.
     - [Syncthing](https://github.com/syncthing/syncthing): open source continuous file synchronization.
-  - Storage
-    - Photos
-      - [Photoview](https://github.com/photoview/photoview): photo gallery for self-hosted personal servers.
-    - Music
+    - [Tubifarry](https://github.com/TypNull/Tubifarry) [C#]: Lidarr plugin that enhances your music library by fetching music from YouTube, integrating with Slskd for Soulseek access, automating Spotify playlist imports, converting files, and retrieving soundtracks from Radarr and Sonarr.
+  - **Storage**
+    - **Documents**
+      - [myDrive](https://github.com/subnub/myDrive) [TypeScript]: node.js and mongoDB Google Drive clone.
+      - [Paperless AI](https://github.com/clusterzx/paperless-ai) [JavaScript]: automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents.
+    - **Photos**
+      - [Meme Search](https://github.com/neonwatty/meme-search) [Ruby]: meme search engine and finder.
+      - [Photoview](https://github.com/photoview/photoview) [TypeScript]: photo gallery for personal servers.
+      - [WeddingShare](https://github.com/Cirx08/WeddingShare) [JavaScript]: place for guests to view and drop pictures of the big day.
+    - **Music**
       - [Ampache](https://github.com/ampache/ampache): web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device.
       - [Finamp (Jellyfin music client for mobile)](https://github.com/jmshrv/finamp)
       - [Koel](https://github.com/koel/koel): a personal music streaming server that works.
-    - Videos
+    - **Videos**
+      - [BitPlay](https://github.com/aculix/bitplay) [Go]: stream video torrents in your web browser with ease.
       - [Plex](https://github.com/plexinc/pms-docker): Plex Media Server Docker repo, for all your PMS docker needs.
+      - [Streamystats](https://github.com/fredrikburmester/streamystats) [TypeScript]: statistics service for Jellyfin, providing analytics and data visualization.
 - **Monitoring**
-  - [Beszel](https://github.com/henrygd/beszel): lightweight server monitoring hub with historical data, docker stats, and alerts.
-  - [Keep](https://github.com/keephq/keep): open-source AIOps and alert management platform.
-  - [Uptime Kuma](https://github.com/louislam/uptime-kuma): fancy self-hosted monitoring tool.
-  - [VFD](https://github.com/kiinami/vfd): flight price tracking script.
+  - [Beszel](https://github.com/henrygd/beszel) [Go]: lightweight server monitoring hub with historical data, docker stats, and alerts.
+  - [Healthchecks](https://github.com/healthchecks/healthchecks) [Python]: cron job and background task monitoring service.
+  - [Keep](https://github.com/keephq/keep) [Python]: open-source AIOps and alert management platform.
+  - [LibreSpeed](https://github.com/librespeed/speedtest) [PHP]: speed test for HTML5 and more.
+  - [NetAlertX](https://github.com/jokob-sk/NetAlertX) [JavaScript]: network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found.
+  - [Uptime Kuma](https://github.com/louislam/uptime-kuma) [JavaScript]: fancy monitoring tool.
+  - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) [TypeScript]: lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history.
 - **PKMS**
   - [Anytype](https://anytype.io/)
-  - [Joplin](https://github.com/laurent22/joplin): privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS.
+  - [Excalidraw](https://github.com/excalidraw/excalidraw) [TypeScript]: virtual whiteboard for sketching hand-drawn like diagrams.
+  - [Grist](https://github.com/gristlabs/grist-core) [TypeScript]: modern relational spreadsheet.
+  - [Joplin](https://github.com/laurent22/joplin) [TypeScript]: privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS.
+  - [NocoDB](https://github.com/nocodb/nocodb) [TypeScript]: open source Airtable alternative.
+  - [Teable](https://github.com/teableio/teable) [TypeScript]: next gen Airtable alternative, no-code Postgres.
 - **Project Management**
-  - [Worklenz](https://github.com/Worklenz/worklenz): all in one project management tool for efficient teams
+  - [Worklenz](https://github.com/Worklenz/worklenz): all in one project management tool for efficient teams.
 - **Remote**
+  - [Pangolin](https://github.com/fosrl/pangolin) [TypeScript]: tunneled mesh reverse proxy server with identity and access control and dashboard UI.
   - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
+  - TunnelMole:
+    - [Client](https://github.com/robbie-cahill/tunnelmole-client)
+    - [Service](https://github.com/robbie-cahill/tunnelmole-service)
+- **Search**
+  - [SearXNG](https://github.com/searxng/searxng) [Python]: free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled.
 - **Security**
+  - [Certwarden](https://github.com/gregtwallace/certwarden):  centralized ACME client.
+  - [Crowdsec](https://github.com/crowdsecurity/crowdsec) [Go]: open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI.
   - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns): Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy.
+  - [Tinyauth](https://github.com/steveiliop56/tinyauth) [Go]: simplest way to protect your apps with a login screen.
 - **Trello alternative**
   - [Focalboard](https://github.com/mattermost-community/focalboard)
   - [Kanboard](https://github.com/kanboard/kanboard): Kanban project management software.
@@ -638,6 +688,3 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Monica](https://github.com/monicahq/monica): Personal CRM. Remember everything about your friends, family and business relationships.
   - [Plausible](https://github.com/plausible/analytics): simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics.
   - [Sentry](https://github.com/getsentry/self-hosted): feature-complete and packaged up for low-volume deployments and proofs-of-concept.
-  - TunnelMole:
-    - [Client](https://github.com/robbie-cahill/tunnelmole-client)
-    - [Service](https://github.com/robbie-cahill/tunnelmole-service)
