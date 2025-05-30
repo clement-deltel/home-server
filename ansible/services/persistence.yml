@@ -178,6 +178,8 @@
       # Vaultwarden
       - "{{ server_home }}/services/management/passwords/vaultwarden/db-persistence"
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
+      # Wakapi
+      - "{{ server_home }}/services/management/code/wakapi/db-persistence"
       # Wallos
       - "{{ server_home }}/services/finances/wallos/persistence"
       - "{{ server_home }}/services/finances/wallos/persistence/db"

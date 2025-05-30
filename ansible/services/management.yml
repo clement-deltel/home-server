@@ -51,6 +51,7 @@
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: upsnap_enable, project_src: '{{ server_home }}/services/home/upsnap' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/management/passwords/vaultwarden' }
+      - { when: wakapi_enable, project_src: '{{ server_home }}/services/management/code/wakapi' }
       - { when: wallos_enable, project_src: '{{ server_home }}/services/finances/wallos' }
       - { when: wazuh_enable, project_src: '{{ server_home }}/services/security/wazuh' }
       - { when: wireguard_easy_enable, project_src: '{{ server_home }}/services/remote/wg-easy' }

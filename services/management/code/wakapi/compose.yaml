@@ -1,0 +1,75 @@
+# https://github.com/muety/wakapi
+services:
+  db:
+    container_name: wakapi-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${WAKAPI_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: wakapi-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${WAKAPI_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  wakapi:
+    container_name: wakapi
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: wakapi
+    image: ${WAKAPI_IMAGE}
+    init: true
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.wakapi.entrypoints=web,websecure"
+      - "traefik.http.routers.wakapi.rule=Host(`wakapi.${DOMAIN}`)"
+      - "traefik.http.routers.wakapi.tls=true"
+      # - "traefik.http.routers.wakapi.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.wakapi.tls.domains[0].main=wakapi.${DOMAIN}"
+      - "traefik.http.routers.wakapi.service=wakapi"
+      # Services
+      - "traefik.http.services.wakapi.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${WAKAPI_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${WAKAPI_IP}
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  app-net:
+    name: wakapi-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${WAKAPI_NET}
+          gateway: ${WAKAPI_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

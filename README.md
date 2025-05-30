@@ -326,6 +326,7 @@ This section covers all the supported services of the stack. It categorizes the 
       - Instance: `https://gitlab.${DOMAIN}`
       - Registry: `https://registry.gitlab.${DOMAIN}`
     - [IT-Tools](https://it-tools.tech/): collection of handy online tools for developers, with great UX. Deployed on `https://it-tools.${DOMAIN}`. Source code available [here](https://github.com/corentinth/it-tools).
+    - [Wakapi](https://wakapi.dev) [Go]: minimalist, self-hosted WakaTime-compatible backend for coding statistics. Deployed on `https://wakapi.${DOMAIN}`. Source code available [here](https://github.com/muety/wakapi).
   - **Passwords**
     - [Vaultwarden](https://github.com/dani-garcia/vaultwarden) [Rust]: unofficial Bitwarden compatible server, formerly known as bitwarden_rs. Source code available [here](https://github.com/dani-garcia/vaultwarden).
       - Administration dashboard: `https://vault.${DOMAIN}/admin`
