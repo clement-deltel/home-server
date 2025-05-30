@@ -308,7 +308,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
   - **Photos**
     - [Immich](https://immich.app/): high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich).
-    - [Meme Search](https://github.com/neonwatty/meme-search) [Ruby]: meme search engine and finder. Deployed on `https://memes.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search).
+    - [Meme Search](https://github.com/neonwatty/meme-search) [Ruby]: meme search engine and finder. Deployed on `https://golden-book.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search).
     - [Photoprism](https://www.photoprism.app/): `https://photoprism.${DOMAIN}`
   - **Music**
     - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
