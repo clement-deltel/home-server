@@ -27,6 +27,9 @@ services:
 
   wakapi:
     container_name: wakapi
+    depends_on:
+      db:
+        condition: service_healthy
     dns:
       - 127.0.0.1
       - 45.90.28.96
