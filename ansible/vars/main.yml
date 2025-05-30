@@ -42,7 +42,6 @@ kavita_enable: true
 kopia_enable: true
 litellm_enable: true
 mathesar_enable: true
-meme_search_enable: true
 minecraft_enable: true
 navidrome_enable: true
 ntfy_enable: true
@@ -51,6 +50,7 @@ ollama_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true
+pinry_enable: true
 prometheus_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
@@ -67,6 +67,7 @@ directus_enable: false
 firefly_enable: false
 librum_enable: false
 limesurvey_enable: false
+meme_search_enable: false
 nextcloud_enable: false
 photoprism_enable: false
 wireguard_enable: false

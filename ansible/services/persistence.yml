@@ -156,6 +156,8 @@
       # Pihole
       - "{{ server_home }}/services/dns/pihole/etc-pihole"
       - "{{ server_home }}/services/dns/pihole/etc-dnsmasqd"
+      # Pinry
+      - "{{ server_home }}/services/media/storage/pictures/pinry/persistence"
       # Prometheus
       - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
       # RustDesk

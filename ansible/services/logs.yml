@@ -56,6 +56,7 @@
         - "{{ server_home }}/logs/media/storage/pictures/immich"
         - "{{ server_home }}/logs/media/storage/pictures/meme-search"
         - "{{ server_home }}/logs/media/storage/pictures/photoprism"
+        - "{{ server_home }}/logs/media/storage/pictures/pinry"
         - "{{ server_home }}/logs/media/storage/videos/jellyfin"
         - "{{ server_home }}/logs/monitoring/detection"
         - "{{ server_home }}/logs/monitoring/grafana"

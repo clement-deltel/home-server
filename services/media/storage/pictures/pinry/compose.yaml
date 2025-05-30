@@ -1,0 +1,40 @@
+# https://github.com/pinry/pinry
+services:
+  pinry:
+    container_name: pinry
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    hostname: pinry
+    image: ${PINRY_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.pinry.entrypoints=web,websecure"
+      - "traefik.http.routers.pinry.rule=Host(`golden-book.${DOMAIN}`)"
+      - "traefik.http.routers.pinry.tls=true"
+      # - "traefik.http.routers.pinry.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.pinry.tls.domains[0].main=golden-book.${DOMAIN}"
+      - "traefik.http.routers.pinry.service=pinry"
+      # Services
+      - "traefik.http.services.pinry.loadbalancer.server.port=80"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      traefik-net:
+        ipv4_address: ${PINRY_IP}
+    ports:
+      - 80
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

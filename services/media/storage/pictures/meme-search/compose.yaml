@@ -71,10 +71,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.meme-search.entrypoints=web,websecure"
-      - "traefik.http.routers.meme-search.rule=Host(`golden-book.${DOMAIN}`)"
+      - "traefik.http.routers.meme-search.rule=Host(`memes.${DOMAIN}`)"
       - "traefik.http.routers.meme-search.tls=true"
       # - "traefik.http.routers.meme-search.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.meme-search.tls.domains[0].main=golden-book.${DOMAIN}"
+      # - "traefik.http.routers.meme-search.tls.domains[0].main=memes.${DOMAIN}"
       - "traefik.http.routers.meme-search.middlewares=meme-search"
       - "traefik.http.routers.meme-search.service=meme-search"
       # Middlewares
