@@ -40,8 +40,9 @@ jellyfin_enable: true
 jetlog_enable: true
 kavita_enable: true
 kopia_enable: true
-mathesar_enable: true
 litellm_enable: true
+mathesar_enable: true
+meme_search_enable: true
 minecraft_enable: true
 navidrome_enable: true
 ntfy_enable: true

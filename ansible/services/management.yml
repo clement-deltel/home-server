@@ -3,108 +3,58 @@
   gather_facts: false
   vars:
     services:
-      - when: true
-        project_src: '{{ server_home }}/services/traefik'
-      - when: actual_enable
-        project_src: '{{ server_home }}/services/finances/actual'
-      - when: affine_enable
-        project_src: '{{ server_home }}/services/pkms/affine'
-      - when: bytestash_enable
-        project_src: '{{ server_home }}/services/management/code/bytestash'
-      - when: change_detection_enable
-        project_src: '{{ server_home }}/services/monitoring/detection'
-      - when: directus_enable
-        project_src: '{{ server_home }}/services/directus'
-      - when: docuseal_enable
-        project_src: '{{ server_home }}/services/pdf/docuseal'
-      - when: enclosed_enable
-        project_src: '{{ server_home }}/services/security/enclosed'
-      - when: freshrss_enable
-        project_src: '{{ server_home }}/services/news/freshrss'
-      - when: gitlab_enable
-        project_src: '{{ server_home }}/services/management/code/gitlab'
-      - when: gokapi_enable
-        project_src: '{{ server_home }}/services/media/sharing/gokapi'
-      - when: grafana_enable
-        project_src: '{{ server_home }}/services/monitoring/grafana'
-      - when: grocy_enable
-        project_src: '{{ server_home }}/services/inventory/grocy'
-      - when: guacamole_enable
-        project_src: '{{ server_home }}/services/remote/guacamole'
-      - when: homarr_enable
-        project_src: '{{ server_home }}/services/dashboard/homarr'
-      - when: homebox_enable
-        project_src: '{{ server_home }}/services/inventory/homebox'
-      - when: homer_enable
-        project_src: '{{ server_home }}/services/dashboard/homer'
-      - when: home_assistant_enable
-        project_src: '{{ server_home }}/services/home/home-assistant'
-      - when: hortusfox_enable
-        project_src: '{{ server_home }}/services/inventory/hortusfox'
-      - when: immich_enable
-        project_src: '{{ server_home }}/services/media/storage/pictures/immich'
-      - when: it_tools_enable
-        project_src: '{{ server_home }}/services/management/code/it-tools'
-      - when: jellyfin_enable
-        project_src: '{{ server_home }}/services/media/storage/videos/jellyfin'
-      - when: jetlog_enable
-        project_src: '{{ server_home }}/services/monitoring/jetlog'
-      - when: kavita_enable
-        project_src: '{{ server_home }}/services/media/storage/books/kavita'
-      - when: kopia_enable
-        project_src: '{{ server_home }}/services/kopia'
-      - when: librum_enable
-        project_src: '{{ server_home }}/services/media/storage/books/librum'
-      - when: limesurvey_enable
-        project_src: '{{ server_home }}/services/limesurvey'
-      - when: litellm_enable
-        project_src: '{{ server_home }}/services/ai/litellm'
-      - when: mathesar_enable
-        project_src: '{{ server_home }}/services/pkms/mathesar'
-      - when: minecraft_enable
-        project_src: '{{ server_home }}/services/minecraft'
-      - when: navidrome_enable
-        project_src: '{{ server_home }}/services/media/storage/music/navidrome'
-      - when: nextcloud_enable
-        project_src: '{{ server_home }}/services/media/storage/documents/nextcloud'
-      - when: ntfy_enable
-        project_src: '{{ server_home }}/services/monitoring/ntfy'
-      - when: obsidian_enable
-        project_src: '{{ server_home }}/services/pkms/obsidian'
-      - when: ollama_enable
-        project_src: '{{ server_home }}/services/ai/ollama'
-      - when: open_webui_enable
-        project_src: '{{ server_home }}/services/ai/open-webui'
-      - when: paperless_enable
-        project_src: '{{ server_home }}/services/media/storage/documents/paperless'
-      - when: photoprism_enable
-        project_src: '{{ server_home }}/services/media/storage/pictures/photoprism'
-      - when: pihole_enable
-        project_src: '{{ server_home }}/services/dns/pihole'
-      - when: prometheus_enable
-        project_src: '{{ server_home }}/services/monitoring/prometheus'
-      - when: rustdesk_enable
-        project_src: '{{ server_home }}/services/remote/rustdesk'
-      - when: scrutiny_enable
-        project_src: '{{ server_home }}/services/monitoring/scrutiny'
-      - when: stirling_pdf_enable
-        project_src: '{{ server_home }}/services/pdf/stirling-pdf'
-      - when: unbound_enable
-        project_src: '{{ server_home }}/services/dns/unbound'
-      - when: upsnap_enable
-        project_src: '{{ server_home }}/services/home/upsnap'
-      - when: vaultwarden_enable
-        project_src: '{{ server_home }}/services/management/passwords/vaultwarden'
-      - when: wallos_enable
-        project_src: '{{ server_home }}/services/finances/wallos'
-      - when: wazuh_enable
-        project_src: '{{ server_home }}/services/security/wazuh'
-      - when: wireguard_easy_enable
-        project_src: '{{ server_home }}/services/remote/wg-easy'
-      - when: wireguard_enable
-        project_src: '{{ server_home }}/services/remote/wireguard'
-      - when: wishlist_enable
-        project_src: '{{ server_home }}/services/wishlist'
+      - { when: true, project_src: '{{ server_home }}/services/traefik' }
+      - { when: actual_enable, project_src: '{{ server_home }}/services/finances/actual' }
+      - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
+      - { when: bytestash_enable, project_src: '{{ server_home }}/services/management/code/bytestash' }
+      - { when: change_detection_enable, project_src: '{{ server_home }}/services/monitoring/detection' }
+      - { when: directus_enable, project_src: '{{ server_home }}/services/directus' }
+      - { when: docuseal_enable, project_src: '{{ server_home }}/services/pdf/docuseal' }
+      - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
+      - { when: freshrss_enable, project_src: '{{ server_home }}/services/news/freshrss' }
+      - { when: gitlab_enable, project_src: '{{ server_home }}/services/management/code/gitlab' }
+      - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
+      - { when: grafana_enable, project_src: '{{ server_home }}/services/monitoring/grafana' }
+      - { when: grocy_enable, project_src: '{{ server_home }}/services/inventory/grocy' }
+      - { when: guacamole_enable, project_src: '{{ server_home }}/services/remote/guacamole' }
+      - { when: homarr_enable, project_src: '{{ server_home }}/services/dashboard/homarr' }
+      - { when: homebox_enable, project_src: '{{ server_home }}/services/inventory/homebox' }
+      - { when: homer_enable, project_src: '{{ server_home }}/services/dashboard/homer' }
+      - { when: home_assistant_enable, project_src: '{{ server_home }}/services/home/home-assistant' }
+      - { when: hortusfox_enable, project_src: '{{ server_home }}/services/inventory/hortusfox' }
+      - { when: immich_enable, project_src: '{{ server_home }}/services/media/storage/pictures/immich' }
+      - { when: it_tools_enable, project_src: '{{ server_home }}/services/management/code/it-tools' }
+      - { when: jellyfin_enable, project_src: '{{ server_home }}/services/media/storage/videos/jellyfin' }
+      - { when: jetlog_enable, project_src: '{{ server_home }}/services/monitoring/jetlog' }
+      - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
+      - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
+      - { when: librum_enable, project_src: '{{ server_home }}/services/media/storage/books/librum' }
+      - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }
+      - { when: litellm_enable, project_src: '{{ server_home }}/services/ai/litellm' }
+      - { when: mathesar_enable, project_src: '{{ server_home }}/services/pkms/mathesar' }
+      - { when: meme_search_enable, project_src: '{{ server_home }}/services/media/storage/pictures/meme-search' }
+      - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }
+      - { when: navidrome_enable, project_src: '{{ server_home }}/services/media/storage/music/navidrome' }
+      - { when: nextcloud_enable, project_src: '{{ server_home }}/services/media/storage/documents/nextcloud' }
+      - { when: ntfy_enable, project_src: '{{ server_home }}/services/monitoring/ntfy' }
+      - { when: obsidian_enable, project_src: '{{ server_home }}/services/pkms/obsidian' }
+      - { when: ollama_enable, project_src: '{{ server_home }}/services/ai/ollama' }
+      - { when: open_webui_enable, project_src: '{{ server_home }}/services/ai/open-webui' }
+      - { when: paperless_enable, project_src: '{{ server_home }}/services/media/storage/documents/paperless' }
+      - { when: photoprism_enable, project_src: '{{ server_home }}/services/media/storage/pictures/photoprism' }
+      - { when: pihole_enable, project_src: '{{ server_home }}/services/dns/pihole' }
+      - { when: prometheus_enable, project_src: '{{ server_home }}/services/monitoring/prometheus' }
+      - { when: rustdesk_enable, project_src: '{{ server_home }}/services/remote/rustdesk' }
+      - { when: scrutiny_enable, project_src: '{{ server_home }}/services/monitoring/scrutiny' }
+      - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/pdf/stirling-pdf' }
+      - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
+      - { when: upsnap_enable, project_src: '{{ server_home }}/services/home/upsnap' }
+      - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/management/passwords/vaultwarden' }
+      - { when: wallos_enable, project_src: '{{ server_home }}/services/finances/wallos' }
+      - { when: wazuh_enable, project_src: '{{ server_home }}/services/security/wazuh' }
+      - { when: wireguard_easy_enable, project_src: '{{ server_home }}/services/remote/wg-easy' }
+      - { when: wireguard_enable, project_src: '{{ server_home }}/services/remote/wireguard' }
+      - { when: wishlist_enable, project_src: '{{ server_home }}/services/wishlist' }
   vars_files:
     - ../vars/main.yml
 

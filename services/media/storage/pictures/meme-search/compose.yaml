@@ -1,0 +1,107 @@
+services:
+  db:
+    container_name: meme-search-pgvector
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    hostname: meme-search-pgvector
+    image: ${MEME_SEARCH_PGVECTOR_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${MEME_SEARCH_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  # img_to_txt_generator:
+  #   container_name: meme-search-img-to-txt
+  #   deploy:
+  #     resources:
+  #       limits: # <-- roughly tested min memory for cpu usage
+  #         memory: 12GB
+  #       # reservations: # <-- uncomment for gpu usage
+  #       #   devices:
+  #       #     - driver: nvidia
+  #       #       count: 1
+  #       #       capabilities: [gpu]
+  #   env_file: config/.env.itt
+  #   hostname: meme-search-img-to-txt
+  #   image: ${MEME_SEARCH_IMG_TO_TXT_IMAGE}
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-file: 2
+  #       max-size: 2m
+  #   networks:
+  #     app-net:
+  #       ipv4_address: ${MEME_SEARCH_IMG_TO_TXT_IP}
+  #   restart: unless-stopped
+  #   stop_grace_period: 30s
+  #   volumes:
+  #     - ./persistence/memes:/app/public/memes
+  #     - ./persistence/itt-db:/app/db
+  #     - ./persistence/models:/root/.cache/huggingface
+
+  meme_search_pro:
+    container_name: meme-search
+    depends_on:
+      db:
+        condition: service_healthy
+      # img_to_txt_generator:
+      #   condition: service_started
+    dns:
+      - 127.0.0.1
+      - 45.90.28.96
+      - 45.90.30.96
+    env_file: config/.env
+    hostname: meme-search
+    image: ${MEME_SEARCH_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.meme-search.entrypoints=web,websecure"
+      - "traefik.http.routers.meme-search.rule=Host(`memes.${DOMAIN}`)"
+      - "traefik.http.routers.meme-search.tls=true"
+      # - "traefik.http.routers.meme-search.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.meme-search.tls.domains[0].main=pictures.${DOMAIN}"
+      - "traefik.http.routers.meme-search.service=meme-search"
+      # Services
+      - "traefik.http.services.meme-search.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${MEME_SEARCH_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${MEME_SEARCH_IP}
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence/memes:/rails/public/memes
+
+networks:
+  app-net:
+    name: meme-search-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${MEME_SEARCH_NET}
+          gateway: ${MEME_SEARCH_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

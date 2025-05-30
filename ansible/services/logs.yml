@@ -54,6 +54,7 @@
         - "{{ server_home }}/logs/media/storage/documents/paperless"
         - "{{ server_home }}/logs/media/storage/music/navidrome"
         - "{{ server_home }}/logs/media/storage/pictures/immich"
+        - "{{ server_home }}/logs/media/storage/pictures/meme-search"
         - "{{ server_home }}/logs/media/storage/pictures/photoprism"
         - "{{ server_home }}/logs/media/storage/videos/jellyfin"
         - "{{ server_home }}/logs/monitoring/detection"

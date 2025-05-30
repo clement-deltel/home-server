@@ -110,6 +110,12 @@
       - "{{ server_home }}/services/pkms/mathesar/persistence/static"
       - "{{ server_home }}/services/pkms/mathesar/persistence/media"
       - "{{ server_home }}/services/pkms/mathesar/pkms-db-persistence"
+      # Meme Search
+      - "{{ server_home }}/services/media/storage/pictures/meme-search/db-persistence"
+      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence"
+      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/memes"
+      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/itt-db"
+      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/models"
       # Minecraft
       - "{{ server_home }}/services/minecraft/persistence"
       # Navidrome

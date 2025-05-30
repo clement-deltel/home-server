@@ -308,6 +308,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
   - **Photos**
     - [Immich](https://immich.app/): high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich).
+    - [Meme Search](https://github.com/neonwatty/meme-search) [Ruby]: meme search engine and finder. Deployed on `https://memes.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search).
     - [Photoprism](https://www.photoprism.app/): `https://photoprism.${DOMAIN}`
   - **Music**
     - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
@@ -631,7 +632,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
       - [myDrive](https://github.com/subnub/myDrive) [TypeScript]: node.js and mongoDB Google Drive clone.
       - [Paperless AI](https://github.com/clusterzx/paperless-ai) [JavaScript]: automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents.
     - **Photos**
-      - [Meme Search](https://github.com/neonwatty/meme-search) [Ruby]: meme search engine and finder.
       - [Photoview](https://github.com/photoview/photoview) [TypeScript]: photo gallery for personal servers.
       - [WeddingShare](https://github.com/Cirx08/WeddingShare) [JavaScript]: place for guests to view and drop pictures of the big day.
     - **Music**
