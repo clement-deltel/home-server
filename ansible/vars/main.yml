@@ -18,6 +18,7 @@ ai_gateway: 192.168.210.1
 
 # Services
 actual_enable: true
+adventurelog_enable: true
 affine_enable: true
 bytestash_enable: true
 change_detection_enable: true

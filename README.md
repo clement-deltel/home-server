@@ -346,6 +346,8 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Grocy](https://grocy.info/): groceries & household management solution for your home. Deployed on `https://grocy.${DOMAIN}`. Source code available [here](https://github.com/grocy/grocy).
   - [HortusFox](https://hortusfox.github.io): collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
   - [Homebox](https://homebox.software/en/): inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox).
+- **Travel**
+  - [AdventureLog](https://adventurelog.app) - travel tracker and trip planner. Deployed on `https://travel.${DOMAIN}`. Source code available [here](https://github.com/seanmorley15/AdventureLog). `Svelte` `Python`
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co/): open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal).
   - [Stirling-PDF](https://stirlingtools.com): allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF).

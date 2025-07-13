@@ -5,6 +5,7 @@
     services:
       - { when: true, project_src: '{{ server_home }}/services/traefik' }
       - { when: actual_enable, project_src: '{{ server_home }}/services/finances/actual' }
+      - { when: adventurelog_enable, project_src: '{{ server_home }}/services/travel/adventurelog' }
       - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
       - { when: bytestash_enable, project_src: '{{ server_home }}/services/management/code/bytestash' }
       - { when: change_detection_enable, project_src: '{{ server_home }}/services/monitoring/detection' }

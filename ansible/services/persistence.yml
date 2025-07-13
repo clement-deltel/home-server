@@ -7,6 +7,9 @@
       - "{{ server_home }}/services/traefik/persistence"
       # Actual
       - "{{ server_home }}/services/finances/actual/persistence"
+      # AdventureLog
+      - "{{ server_home }}/services/travel/adventurelog/persistence"
+      - "{{ server_home }}/services/travel/adventurelog/db-persistence"
       # Affine
       - "{{ server_home }}/services/pkms/affine/persistence"
       - "{{ server_home }}/services/pkms/affine/persistence/config"

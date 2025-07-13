@@ -147,6 +147,7 @@ alias {cd,svc}wge='cd ${SERVER_HOME}/services/remote/wg-easy'
 alias {cd,svc}wir='cd ${SERVER_HOME}/services/remote/wireguard'
 alias {cd,svc}enc='cd ${SERVER_HOME}/services/security/enclosed'
 alias {cd,svc}waz='cd ${SERVER_HOME}/services/security/wazuh'
+alias {cd,svc}adv='cd ${SERVER_HOME}/services/travel/adventurelog'
 
 alias {cd,svc}dir='cd ${SERVER_HOME}/services/directus'
 alias {cd,svc}kop='cd ${SERVER_HOME}/services/kopia'
