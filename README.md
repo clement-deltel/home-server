@@ -268,97 +268,97 @@ This section covers all the ports exposed to internet. Those are the ports that 
 This section covers all the supported services of the stack. It categorizes the services and provides the URL to access them (if any), URL that depends on the root domain name.
 
 - **Reverse Proxy**
-  - [Traefik](https://traefik.io/traefik/) [Go]: `https://traefik.${DOMAIN}/dashboard`
+  - [Traefik](https://traefik.io/traefik) - cloud native application proxy. Deployed on `https://traefik.${DOMAIN}/dashboard`. Source code available [here](https://github.com/traefik/traefik). `Go`
 - **Dashboard**
-  - [Homarr](https://homarr.dev/): modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr).
-  - [Homer](https://homer-demo.netlify.app): very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer).
+  - [Homarr](https://homarr.dev) - modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr). `TypeScript`
+  - [Homer](https://homer-demo.netlify.app) - very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer). `Vue` `JavaScript`
 - **Home Automation**
-  - [Home Assistant](https://www.home-assistant.io/): home automation that puts local control and privacy first. Deployed on `https://ha.${DOMAIN}`. Source code available [here](https://www.home-assistant.io/).
-  - [UpSnap](https://github.com/seriousm4x/UpSnap): simple wake on lan web app written with SvelteKit, Go and PocketBase. Deployed on `https://wol.${DOMAIN}`. Source code available [here](https://github.com/seriousm4x/UpSnap).
+  - [Home Assistant](https://www.home-assistant.io) - home automation that puts local control and privacy first. Deployed on `https://ha.${DOMAIN}`. Source code available [here](https://github.com/home-assistant/core). `Python`
+  - [UpSnap](https://github.com/seriousm4x/UpSnap) - simple wake on lan web app. Deployed on `https://wol.${DOMAIN}`. Source code available [here](https://github.com/seriousm4x/UpSnap). `Svelte` `Go`
 - **Remote Access**
   - **VPN**
-    - [Wireguard](https://www.wireguard.com/): `vpn.${DOMAIN}`
-    - [Wireguard Easy](https://github.com/wg-easy/wg-easy): easiest way to run WireGuard VPN + Web-based Admin UI. Deployed on `vpn.${DOMAIN}`. Source code available [here](https://github.com/wg-easy/wg-easy).
+    - [Wireguard](https://www.wireguard.com) - `vpn.${DOMAIN}`
+    - [Wireguard Easy](https://github.com/wg-easy/wg-easy) - easiest way to run WireGuard VPN + Web-based Admin UI. Deployed on `vpn.${DOMAIN}`. Source code available [here](https://github.com/wg-easy/wg-easy). `TypeScript` `Vue`
   - **Clientless Remote Desktop Gateway (SSH, RDP...)**
-    - [Apache Guacamole](https://guacamole.apache.org/): clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. Deployed on `https://guacamole.${DOMAIN}`.
+    - [Apache Guacamole](https://guacamole.apache.org) - clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. Deployed on `https://guacamole.${DOMAIN}`. Source code available [here](https://github.com/apache/guacamole-server). `C`
   - **Remote Control Server**
-    - [RustDesk](https://rustdesk.com) [Rust]: remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. Source code available [here](https://github.com/rustdesk/rustdesk-server).
+    - [RustDesk](https://rustdesk.com) - remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. Source code available [here](https://github.com/rustdesk/rustdesk-server). `Rust`
 - **DNS**
   - **Ad-blocker**
-    - [Pi-hole](https://pi-hole.net/): a black hole for Internet advertisements. Deployed on `https://pihole.${DOMAIN}`. Source code available [here](https://github.com/pi-hole/pi-hole).
+    - [Pi-hole](https://pi-hole.net) - a black hole for Internet advertisements. Deployed on `https://pihole.${DOMAIN}`. Source code available [here](https://github.com/pi-hole/pi-hole). `Shell` `Python`
   - **Recursive DNS**
-    - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/)
+    - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about)
 - **Monitoring**
-  - [changedetection.io](https://changedetection.io/): web page change detection, website watcher, restock monitor and notification service. Deployed on `https://detection.${DOMAIN}`. Source code available [here](https://github.com/dgtlmoon/changedetection.io).
-  - [Grafana](https://grafana.com): open and composable observability and data visualization platform. Deployed on `https://grafana.${DOMAIN}`. Source code available [here](https://github.com/grafana/grafana).
-  - [Jetlog](https://github.com/pbogre/jetlog): personal flight tracker and viewer. Deployed on `https://fly.${DOMAIN}`.
-  - [ntfy](https://ntfy.sh/): send push notifications to your phone or desktop using PUT/POST. Deployed on `https://ntfy.${DOMAIN}`. Source code available [here](https://github.com/binwiederhier/ntfy).
-  - [Scrutiny](https://github.com/AnalogJ/scrutiny): hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. Deployed on `https://scrutiny.${DOMAIN}`.
+  - [changedetection.io](https://changedetection.io) - web page change detection, website watcher, restock monitor and notification service. Deployed on `https://detection.${DOMAIN}`. Source code available [here](https://github.com/dgtlmoon/changedetection.io). `Python`
+  - [Grafana](https://grafana.com) - open and composable observability and data visualization platform. Deployed on `https://grafana.${DOMAIN}`. Source code available [here](https://github.com/grafana/grafana). `TypeScript` `Go`
+  - [ntfy](https://ntfy.sh) - send push notifications to your phone or desktop using PUT/POST. Deployed on `https://ntfy.${DOMAIN}`. Source code available [here](https://github.com/binwiederhier/ntfy). `Go` `JavaScript`
+  - [Scrutiny](https://github.com/AnalogJ/scrutiny) - hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. Deployed on `https://scrutiny.${DOMAIN}`. Source code available [here](https://github.com/AnalogJ/scrutiny). `Go`
 - **Backup**
-  - [Kopia](https://kopia.io/): cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included. Deployed on `https://kopia.${DOMAIN}`. Source code available [here](https://github.com/kopia/kopia/).
+  - [Kopia](https://kopia.io) - cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included. Deployed on `https://kopia.${DOMAIN}`. Source code available [here](https://github.com/kopia/kopia). `Go`
 - **Security**
-  - [Wazuh](https://wazuh.com): `https://seim.${DOMAIN}`
-  - [Enclosed](https://github.com/CorentinTh/enclosed): `https://notes.${DOMAIN}`
+  - [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. Deployed on `https://wazuh.${DOMAIN}`. Soruce code available [here](https://github.com/wazuh/wazuh). `C` `C++` `Python`
+  - [Enclosed](https://enclosed.cc) - Minimalistic web app designed for sending private and secure notes. Deployed on `https://notes.${DOMAIN}`. Source code available [here](https://github.com/CorentinTh/enclosed). `TypeScript`
 - **Media Storage**
   - **Documents**
-    - [NextCloud](https://nextcloud.com/): `https://nextcloud.${DOMAIN}`
-    - [Paperless](https://docs.paperless-ngx.com/): `https://paperless.${DOMAIN}`
+    - [NextCloud](https://nextcloud.com) - a safe home for all your data. Deployed on `https://nextcloud.${DOMAIN}`. Source code available [here](https://github.com/nextcloud/server). `PHP` `JavaScript`
+    - [Paperless](https://docs.paperless-ngx.com) - document management system: scan, index and archive all your documents. Deployed on `https://paperless.${DOMAIN}`. Source code available [here](https://github.com/paperless-ngx/paperless-ngx). `Python` `TypeScript`
   - **Books**
-    - [Kavita](https://www.kavitareader.com): `https://books.${DOMAIN}`
-    - [Librum](https://librumreader.com/) (no web-interface, need to install the desktop app as well)
+    - [Kavita](https://www.kavitareader.com) - fast, feature rich, cross platform reading server. Deployed on `https://books.${DOMAIN}`. Source code available [here](https://github.com/Kareadita/Kavita). `C#` `TypeScript`
+    - [Librum](https://librumreader.com) - manage your own online library and access it from any device anytime, anywhere. No web-interface, need to install the desktop app as well. Source code available [here](https://github.com/Librum-Reader/Librum). `C++` `QML`
   - **Photos**
-    - [Immich](https://immich.app/): high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich).
-    - [Meme Search](https://github.com/neonwatty/meme-search) [Ruby]: meme search engine and finder. Deployed on `https://memes.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search).
-    - [Photoprism](https://www.photoprism.app/): `https://photoprism.${DOMAIN}`
-    - [Pinry](https://github.com/pinry/pinry) [Python]: tiling image board system for people who want to save, tag, and share images, videos and webpages in an easy to skim through format. Deployed on `https://golden-book.${DOMAIN}`. Source code available [here](https://github.com/pinry/pinry).
+    - [Immich](https://immich.app) - high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich). `TypeScript` `Dart` `Svelte`
+    - [Meme Search](https://github.com/neonwatty/meme-search) - meme search engine and finder. Deployed on `https://memes.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search). `Ruby` `Python`
+    - [Photoprism](https://www.photoprism.app) - photos app for the decentralized web. Deployed on `https://photoprism.${DOMAIN}`. Source code available [here](https://github.com/photoprism/photoprism). `Go` `JavaScript`
+    - [Pinry](https://github.com/pinry/pinry) - tiling image board system for people who want to save, tag, and share images, videos and webpages in an easy to skim through format. Deployed on `https://golden-book.${DOMAIN}`. Source code available [here](https://github.com/pinry/pinry). `Python`
   - **Music**
-    - [Navidrome](https://www.navidrome.org/): `https://music.${DOMAIN}`
+    - [Navidrome](https://www.navidrome.org) - personal streaming service. Deployed on `https://music.${DOMAIN}`. Source code available [here](https://github.com/navidrome/navidrome). `Go` `JavaScript`
   - **Videos**
-    - [Jellyfin](https://jellyfin.org/): `https://jellyfin.${DOMAIN}`
+    - [Jellyfin](https://jellyfin.org) - free software media system. Deployed on `https://jellyfin.${DOMAIN}`. Source code available [here](https://github.com/jellyfin/jellyfin). `C#`
 - **Media Sharing**
-  - [Gokapi](https://github.com/Forceu/Gokapi): `https://share.${DOMAIN}`
+  - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. `https://share.${DOMAIN}`. Source code available [here](https://github.com/Forceu/Gokapi). `Go` `JavaScript`
 - **Management**
   - **Bookmarks**
-    - [Linkace](https://www.linkace.org/): `https://linkace.${DOMAIN}`
+    - [Linkace](https://www.linkace.org) - archive to collect links of your favorite websites. Deployed on `https://linkace.${DOMAIN}`. Source code available [here](https://github.com/Kovah/LinkAce). `PHP` `Blade`
   - **Code**
-    - [ByteStash](https://github.com/jordan-dalby/bytestash): a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash).
-    - [Gitlab](https://gitlab.com/gitlab-org/gitlab) [Ruby]
+    - [ByteStash](https://github.com/jordan-dalby/bytestash) - a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash). `TypeScript`
+    - [Gitlab](https://gitlab.com/gitlab-org/gitlab) `Ruby`
       - Instance: `https://gitlab.${DOMAIN}`
       - Registry: `https://registry.gitlab.${DOMAIN}`
-    - [IT-Tools](https://it-tools.tech/): collection of handy online tools for developers, with great UX. Deployed on `https://it-tools.${DOMAIN}`. Source code available [here](https://github.com/corentinth/it-tools).
-    - [Wakapi](https://wakapi.dev) [Go]: minimalist, self-hosted WakaTime-compatible backend for coding statistics. Deployed on `https://wakapi.${DOMAIN}`. Source code available [here](https://github.com/muety/wakapi).
+    - [IT-Tools](https://it-tools.tech) - collection of handy online tools for developers, with great UX. Deployed on `https://it-tools.${DOMAIN}`. Source code available [here](https://github.com/corentinth/it-tools). `Vue` `TypeScript`
+    - [Wakapi](https://wakapi.dev) - minimalist, self-hosted WakaTime-compatible backend for coding statistics. Deployed on `https://wakapi.${DOMAIN}`. Source code available [here](https://github.com/muety/wakapi). `Go`
   - **Passwords**
-    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden) [Rust]: unofficial Bitwarden compatible server, formerly known as bitwarden_rs. Source code available [here](https://github.com/dani-garcia/vaultwarden).
+    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - unofficial Bitwarden compatible server, formerly known as bitwarden_rs. Source code available [here](https://github.com/dani-garcia/vaultwarden). `Rust`
       - Administration dashboard: `https://vault.${DOMAIN}/admin`
       - Instance: `https://vault.${DOMAIN}`
   - **Personal Knowledge Management System (PKMS)**
-    - [Affine](https://affine.pro/): `https://affine.${DOMAIN}`
-    - [Mathesar](https://mathesar.org): spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. Deployed on `https://mathesar.${DOMAIN}`. Source code available [here](https://github.com/mathesar-foundation/mathesar).
-    - [Siyuan](https://b3log.org/siyuan/en/): `https://siyuan.${DOMAIN}`
+    - [Affine](https://affine.pro) - knowledge base that brings planning, sorting, creating all together. Privacy first and open-source. Deployed on `https://affine.${DOMAIN}`. Source code available [here](https://github.com/toeverything/AFFiNE). `TypeScript`
+    - [Mathesar](https://mathesar.org) - spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. Deployed on `https://mathesar.${DOMAIN}`. Source code available [here](https://github.com/mathesar-foundation/mathesar). `Svelte` `TypeScript` `Python`
+    - [Siyuan](https://b3log.org/siyuan/en) - privacy-first, self-hosted, fully open source personal knowledge management software. Deployed on `https://siyuan.${DOMAIN}`. Source code available [here](https://github.com/siyuan-note/siyuan). `TypeScript` `Go`
 - **Artificial Intelligence**
-  - [LiteLLM](https://www.litellm.ai/): Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. Deployed on `https://llm.${DOMAIN}`. Source code available [here](https://github.com/BerriAI/litellm).
-  - [Ollama](https://ollama.com): get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. Source code available [here](https://github.com/ollama/ollama).
-  - [Open WebUI](https://openwebui.com): user-friendly AI Interface (supports Ollama, OpenAI API, ...). Deployed on `https://ai.${DOMAIN}`. Source code available [here](https://github.com/open-webui/open-webui).
+  - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. Deployed on `https://llm.${DOMAIN}`. Source code available [here](https://github.com/BerriAI/litellm). `Python`
+  - [Ollama](https://ollama.com) - get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. Source code available [here](https://github.com/ollama/ollama). `Go`
+  - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). Deployed on `https://ai.${DOMAIN}`. Source code available [here](https://github.com/open-webui/open-webui). `JavaScript` `Svelte` `Python`
 - **Finances**
-  - [Actual](https://actualbudget.com/): local-first personal finance app. Deployed on `https://finances.${DOMAIN}`. Source code available [here](https://github.com/actualbudget/actual).
-  - [Wallos](https://wallosapp.com/): open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos).
+  - [Actual](https://actualbudget.com) - local-first personal finance app. Deployed on `https://finances.${DOMAIN}`. Source code available [here](https://github.com/actualbudget/actual). `TypeScript`
+  - [Wallos](https://wallosapp.com) - open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos). `PHP` `JavaScript`
 - **Inventory**
-  - [Grocy](https://grocy.info/): groceries & household management solution for your home. Deployed on `https://grocy.${DOMAIN}`. Source code available [here](https://github.com/grocy/grocy).
-  - [HortusFox](https://hortusfox.github.io): collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
-  - [Homebox](https://homebox.software/en/): inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox).
+  - [Grocy](https://grocy.info) - groceries & household management solution for your home. Deployed on `https://grocy.${DOMAIN}`. Source code available [here](https://github.com/grocy/grocy). `Blade` `TypeScript` `PHP`
+  - [HortusFox](https://hortusfox.github.io) - collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
+  - [Homebox](https://homebox.software/en) - inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox). `Go` `Vue` `TypeScript`
 - **Travel**
   - [AdventureLog](https://adventurelog.app) - travel tracker and trip planner. Deployed on `https://travel.${DOMAIN}`. Source code available [here](https://github.com/seanmorley15/AdventureLog). `Svelte` `Python`
+  - [Jetlog](https://github.com/pbogre/jetlog) - personal flight tracker and viewer. Deployed on `https://fly.${DOMAIN}`. Source code available [here](https://github.com/pbogre/jetlog). `TypeScript` `Python`
 - **PDF Tools**
-  - [Docuseal](https://www.docuseal.co/): open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal).
-  - [Stirling-PDF](https://stirlingtools.com): allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF).
+  - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal). `Ruby` `Vue` `JavaScript`
+  - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF). `Java` `JavaScript`
 - **Headless CMS**
-  - [Directus](https://directus.io/) [TypeScript]: backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. Source code available [here](https://github.com/directus/directus).
+  - [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. Source code available [here](https://github.com/directus/directus). `TypeScript`
 - **Survey Builder**
-  - [Limesurvey](https://www.limesurvey.org/): `https://survey.${DOMAIN}`
+  - [Limesurvey](https://www.limesurvey.org) - alternative to SurveyMonkey, Typeform, Qualtrics, and Google Forms, making it simple to create online surveys and forms with unmatched flexibility. Deployed on `https://survey.${DOMAIN}`. Source code available [here](https://github.com/LimeSurvey/LimeSurvey). `JavaScript`  `PHP`
 - **Wishlist**
-  - [Wishlist](https://github.com/cmintey/wishlist): `https://wish.${DOMAIN}`
+  - [Wishlist](https://github.com/cmintey/wishlist) - wishlist application that you can share with your friends and family. Deployed on `https://wish.${DOMAIN}`. Source code available [here](https://github.com/cmintey/wishlist) `Svelte` `TypeScript`
 - **Games**
-  - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest/): `<ip-address>:25565`
+  - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest) - Minecraft Server for Java Edition that automatically downloads selected version at startup. Deployed on `<ip-address>:25565`. Source code available [here](https://github.com/itzg/docker-minecraft-server). `Shell`
 
 ## Secrets Management
 
