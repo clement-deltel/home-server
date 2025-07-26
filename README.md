@@ -82,7 +82,7 @@ curl -fLSs https://raw.githubusercontent.com/${GITHUB_USERNAME}/home-server/refs
     - Languages
       - Python
     - Security
-      - [Bitwarden CLI](https://bitwarden.com/help/cli/)
+      - [Bitwarden CLI](https://bitwarden.com/help/cli)
     - Orchestration
       - Docker
     - Infrastructure as Code (IaC)
@@ -570,125 +570,131 @@ Since I am an iPhone user, this section covers the list of steps on iOS only.
 Here is a list of tools that could be interesting and further enhance the stack:
 
 - **Containers**
-  - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose): docker-compose for testing any-sync.
-  - [CAdvisor](https://github.com/google/cadvisor): analyzes resource usage and performance characteristics of running containers.
-  - [Dozzle](https://github.com/amir20/dozzle) [Go]: realtime log viewer for docker containers.
+  - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose) - docker-compose for testing any-sync. Source code available [here](https://github.com/anyproto/any-sync-dockercompose). `Shell` `Python`
+  - [CAdvisor](https://github.com/google/cadvisor) - analyzes resource usage and performance characteristics of running containers. Source code available [here](https://github.com/google/cadvisor). `Go`
+  - [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. Source code available [here](https://github.com/amir20/dozzle). `Go` `Vue` `TypeScript`
 - **Dashboard**
-  - [Dashy](https://dashy.to/): personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more. Source code available [here](https://github.com/Lissy93/dashy).
-  - [Glance](https://github.com/glanceapp/glance): dashboard that puts all your feeds in one place. Source code available [here](https://github.com/glanceapp/glance).
-  - [Heimdall](https://github.com/linuxserver/Heimdall): application dashboard and launcher.
-  - [Organizr](https://github.com/causefx/Organizr): HTPC/Homelab Services Organizer - Written in PHP.
+  - [Astroluma](https://getastroluma.com) - dashboard designed to help you manage multiple aspects of your daily tasks and services. Source code available [here](https://github.com/Sanjeet990/Astroluma). `JavaScript`
+  - [Dashy](https://dashy.to) - personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more. Source code available [here](https://github.com/Lissy93/dashy). `Vue` `JavaScript`
+  - [Glance](https://github.com/glanceapp/glance) - dashboard that puts all your feeds in one place. Source code available [here](https://github.com/glanceapp/glance). `Go` `JavaScript`
+  - [Heimdall](https://heimdall.site) - application dashboard and launcher. Source code available [here](https://github.com/linuxserver/Heimdall). `PHP`
+  - [Organizr](https://demo.organizr.app) - HTPC/Homelab Services Organizer - Written in PHP. Source code available [here](https://github.com/causefx/Organizr). `PHP` `JavaScript`
 - **Finances**
-  - [Actual AI](https://github.com/sakowicz/actual-ai) [TypeScript]: categorize transactions in Actual Budget using AI.
-  - [DollarDollar](https://github.com/harung1993/dollardollar): expense splitting.
-  - [Firefly III](https://github.com/firefly-iii/firefly-iii)
-  - [Investbrain](https://github.com/investbrainapp/investbrain): investment tracker that consolidates and monitors market performance across your different brokerages.
-  - [Invoice Ninja](https://github.com/invoiceninja/invoiceninja)
-  - [Maybe](https://github.com/maybe-finance/maybe): OS for your personal finances.
-  - [Monetr](https://github.com/monetr/monetr): budgeting application focused on planning for recurring expenses.
-  - [Subscription Manager](https://github.com/dh1011/subscription-manager): keep track of your subscriptions and manage your expenses.
-  - [Wapy.dev](https://github.com/meceware/wapy.dev): track, manage and optimize your recurring expenses in one powerful and human readable dashboard.
+  - [Actual AI](https://github.com/sakowicz/actual-ai) - categorize transactions in Actual Budget using AI. Source code available [here](https://github.com/sakowicz/actual-ai). `TypeScript`
+  - [DollarDollar](https://ddby.finforward.xyz/dashboard) - expense splitting. Source code available [here](https://github.com/harung1993/dollardollar). `JavaScript` `Python`
+  - [Firefly III](https://firefly-iii.org) - personal finances manager. Source code available [here](https://github.com/firefly-iii/firefly-iii). `PHP` `JavaScript`
+  - [Investbrain](https://investbra.in) - investment tracker that consolidates and monitors market performance across your different brokerages. Source code available [here](https://github.com/investbrainapp/investbrain). `PHP`
+  - [Invoice Ninja](https://invoiceninja.com) - invoice, quote, project and time-tracking app. Source code available [here](https://github.com/invoiceninja/invoiceninja). `PHP`
+  - [Maybe](https://github.com/maybe-finance/maybe) - OS for your personal finances. Source code available [here](https://github.com/maybe-finance/maybe). `Ruby`
+  - [Monetr](https://monetr.app) - budgeting application focused on planning for recurring expenses. Source code available [here](https://github.com/monetr/monetr). `Go` `TypeScript`
+  - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. Source code available [here](https://github.com/dh1011/subscription-manager). `JavaScript` `Python`
+  - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. Source code available [here](https://github.com/meceware/wapy.dev). `JavaScript`
 - **Health**
-  - [Fasten Health](https://github.com/fastenhealth/fasten-onprem): Fasten is an open-source, personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics.
+  - [Fasten Health](https://www.fastenhealth.com) - personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics. Source code available [here](https://github.com/fastenhealth/fasten-onprem). `Go` `TypeScript`
 - **Home Automation**
-  - [Wol](https://github.com/Trugamr/wol) [Go]: Wake-On-LAN tool that works via CLI and web interface.
+  - [Wol](https://github.com/Trugamr/wol) - Wake-On-LAN tool that works via CLI and web interface. Source code available [here](https://github.com/Trugamr/wol). `Go`
 - **Inventory**
-  - [Bar Assistant](https://github.com/karlomikus/bar-assistant) [PHP]: home bar management.
-  - [Lubelogger](https://github.com/hargata/lubelog) [JavaScript]: vehicle maintenance and fuel mileage tracker.
-  - [Warracker](https://github.com/sassanix/Warracker) [JavaScript]: web application to manage product warranties, track expiration dates, and store related documents.
+  - [Bar Assistant](https://barassistant.app) - home bar management. Source code available [here](https://github.com/karlomikus/bar-assistant). `PHP`
+  - [Lubelogger](https://lubelogger.com) - vehicle maintenance and fuel mileage tracker. Source code available [here](https://github.com/hargata/lubelog). `JavaScript` `C#`
+  - [VoucherVault](https://github.com/l4rm4nd/VoucherVault/wiki) - store and manage vouchers, coupons, loyalty and gift cards digitally. Source code available [here](https://github.com/l4rm4nd/VoucherVault). `Python`
+  - [Warracker](https://warracker.com) - web application to manage product warranties, track expiration dates, and store related documents. Source code available [here](https://github.com/sassanix/Warracker). `JavaScript` `Python`
 - **Mail**
-  - [Maddy](https://github.com/foxcpp/maddy) [Go]: composable all-in-one mail server.
+  - [Maddy](https://maddy.email) - composable all-in-one mail server. Source code available [here](https://github.com/foxcpp/maddy). `Go`
 - **Management**
   - **Ads**
-    - [Umami](https://github.com/umami-software/umami) [TypeScript]: modern, privacy-focused alternative to Google Analytics.
+    - [Plausible](https://plausible.io) - simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics. Source code available [here](https://github.com/plausible/analytics). `Elixir`
+    - [Umami](https://github.com/umami-software/umami) - modern, privacy-focused alternative to Google Analytics. Source code available [here](https://github.com/umami-software/umami). `TypeScript`
   - **Bookmarks**
-    - [Hoarder](https://github.com/hoarder-app/hoarder) [TypeScript]: bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search.
-    - [Linkwarden](https://github.com/linkwarden/linkwarden) [TypeScript]: collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents.
+    - [Karakeep](https://karakeep.app/) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. Source code available [here](https://github.com/karakeep-app/karakeep). `TypeScript`
+    - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. Source code available [here](https://github.com/linkwarden/linkwarden). `TypeScript`
   - **Code**
-    - [Bugsink](https://github.com/bugsink/bugsink) [Python]: error tracking.
-    - [Wakapi](https://github.com/muety/wakapi) [Go]: minimalist WakaTime-compatible backend for coding statistics.
-    - [Ziit](https://github.com/0PandaDEV/Ziit) [TypeScript]: swiss army knife of code time tracking.
+    - [Bugsink](https://www.bugsink.com) - error tracking. Source code available [here](https://github.com/bugsink/bugsink). `Python`
+    - [Code Server](https://coder.com) - VS Code in the browser. Source code available [here](https://github.com/coder/code-server). `TypeScript` `Shell`
+    - [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
+    - [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. Source code available [here](https://github.com/getsentry/self-hosted). `Shell` `Python`
+    - [Ziit](https://ziit.app/login) - swiss army knife of code time tracking. Source code available [here](https://github.com/0PandaDEV/Ziit). `TypeScript` `Vue`
   - **Location**
-    - [Dawarich](https://github.com/Freika/dawarich) [Ruby]: alternative to Google location history (Google Maps timeline).
-    - [Statistics for Strava](https://github.com/robiningelbrecht/statistics-for-strava) [HTML]: statistics generated using Strava data.
-    - [Wanderer](https://github.com/Flomp/wanderer) [HTML]: trail database, save your adventures.
+    - [Dawarich](https://dawarich.app) - alternative to Google location history (Google Maps timeline). Source code available [here](https://github.com/Freika/dawarich). `Ruby` `JavaScript`
+    - [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. Source code available [here](https://github.com/robiningelbrecht/statistics-for-strava). `PHP`
+    - [Wanderer](https://wanderer.to) - trail database, save your adventures. Source code available [here](https://github.com/Flomp/wanderer). `Svelte` `Go` `TypeScript`
   - **Travel**
-    - [AdventureLog](https://github.com/seanmorley15/AdventureLog) [Python]: travel tracker and trip planner.
-    - [Scratch Map](https://github.com/ad3m3r5/scratch-map) [JavaScript]: scratch-off style map to track your travels.
-    - [VFD](https://github.com/kiinami/vfd): flight price tracking script.
+    - [Scratch Map](https://github.com/ad3m3r5/scratch-map) - scratch-off style map to track your travels. Source code available [here](https://github.com/ad3m3r5/scratch-map). `JavaScript`
+    - [VFD](https://github.com/kiinami/vfd) - flight price tracking script. Source code available [here](https://github.com/kiinami/vfd). `Python`
   - **Passwords**
-    - [AliasVault](https://github.com/lanedirt/AliasVault) [C#]: end-to-end encrypted password manager with a built-in alias generator and email server.
+    - [AliasVault](https://www.aliasvault.net) - end-to-end encrypted password manager with a built-in alias generator and email server. Source code available [here](https://github.com/lanedirt/AliasVault). `C#` `TypeScript`
 - **Media**
   - **Management**
-    - [ConvertX](https://github.com/C4illin/ConvertX): online file converter. Supports 1000+ formats.
-    - [DeepSubX](https://github.com/garanda21/deepsubx) [TypeScript]: uses the DeepL API to translate subtitles for TV shows and movies in your library.
-    - [Lidarr](https://github.com/Lidarr/Lidarr): looks and smells like Sonarr but made for music.
-    - [Lidify](https://github.com/TheWicklowWolf/Lidify) [Python]: music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM.
-    - [MeTube](https://github.com/alexta69/metube) [Python/TypeScript]: YouTube downloader (web UI for youtube-dl / yt-dlp).
-    - [Radarr](https://github.com/Radarr/Radarr): movie organizer/manager for usenet and torrent users.
-    - [Slskd](https://github.com/slskd/slskd): modern client-server application for the Soulseek file sharing network.
-    - [Sonarr](https://github.com/Sonarr/Sonarr): smart PVR for newsgroup and bittorrent users.
-    - [Soularr](https://github.com/mrusse/soularr) [Python]: script that connects Lidarr with Soulseek.
-    - [Syncthing](https://github.com/syncthing/syncthing): open source continuous file synchronization.
-    - [Tubifarry](https://github.com/TypNull/Tubifarry) [C#]: Lidarr plugin that enhances your music library by fetching music from YouTube, integrating with Slskd for Soulseek access, automating Spotify playlist imports, converting files, and retrieving soundtracks from Radarr and Sonarr.
+    - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. Source code available [here](https://github.com/C4illin/ConvertX). `TypeScript`
+    - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. Source code available [here](https://github.com/garanda21/deepsubx). `TypeScript` `JavaScript`
+    - [Lidarr](https://lidarr.audio) - looks and smells like Sonarr but made for music. Source code available [here](https://github.com/Lidarr/Lidarr). `C#` `JavaScript`
+    - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. Source code available [here](https://github.com/TheWicklowWolf/Lidify). `Python` `JavaScript`
+    - [MeTube](https://github.com/alexta69/metube) - YouTube downloader (web UI for youtube-dl / yt-dlp). Source code available [here](https://github.com/alexta69/metube). `TypeScript` `Python`
+    - [Radarr](https://radarr.video) - movie organizer/manager for usenet and torrent users. Source code available [here](https://github.com/Radarr/Radarr). `C#` `TypeScript`
+    - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. Source code available [here](https://github.com/slskd/slskd). `C#`
+    - [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. Source code available [here](https://github.com/Sonarr/Sonarr). `C#` `TypeScript`
+    - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. Source code available [here](https://github.com/mrusse/soularr). `Python`
+    - [Spotizerr](https://github.com/Xoconoch/spotizerr) - spotify music downloader with a lossless twist, based on the deezspot library. Source code available [here](https://github.com/Xoconoch/spotizerr). `Python` `TypeScript`
+    - [Syncthing](https://syncthing.net) - open source continuous file synchronization. Source code available [here](https://github.com/syncthing/syncthing). `Go`
+    - [Tubifarry](https://github.com/TypNull/Tubifarry) - Lidarr plugin that enhances your music library by fetching music from YouTube, integrating with Slskd for Soulseek access, automating Spotify playlist imports, converting files, and retrieving soundtracks from Radarr and Sonarr. Source code available [here](https://github.com/TypNull/Tubifarry). `C#`
+    - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - feature-rich command-line audio/video downloader. Source code available [here](https://github.com/yt-dlp/yt-dlp). `Python`
   - **Storage**
     - **Documents**
-      - [myDrive](https://github.com/subnub/myDrive) [TypeScript]: node.js and mongoDB Google Drive clone.
-      - [Paperless AI](https://github.com/clusterzx/paperless-ai) [JavaScript]: automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents.
+      - [myDrive](https://mydrive-storage.com) - node.js and mongoDB Google Drive clone. Source code available [here](https://github.com/subnub/myDrive). `TypeScript`
+      - [Paperless AI](https://clusterzx.github.io/paperless-ai) - automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents. Source code available [here](https://github.com/clusterzx/paperless-ai). `JavaScript`
     - **Photos**
-      - [Photoview](https://github.com/photoview/photoview) [TypeScript]: photo gallery for personal servers.
-      - [WeddingShare](https://github.com/Cirx08/WeddingShare) [JavaScript]: place for guests to view and drop pictures of the big day.
+      - [Photoview](https://photoview.github.io) - photo gallery for personal servers. Source code available [here](https://github.com/photoview/photoview). `TypeScript` `Go`
+      - [WeddingShare](https://docs.wedding-share.org) - place for guests to view and drop pictures of the big day. Source code available [here](https://github.com/Cirx08/WeddingShare). `JavaScript` `C#`
     - **Music**
-      - [Ampache](https://github.com/ampache/ampache): web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device.
+      - [Ampache](https://ampache.org) - web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device. Source code available [here](https://github.com/ampache/ampache). `PHP`
       - [Finamp (Jellyfin music client for mobile)](https://github.com/jmshrv/finamp)
-      - [Koel](https://github.com/koel/koel): a personal music streaming server that works.
+      - [Koel](https://koel.dev) - a personal music streaming server that works. Source code available [here](https://github.com/koel/koel). `PHP` `TypeScript`
     - **Videos**
-      - [BitPlay](https://github.com/aculix/bitplay) [Go]: stream video torrents in your web browser with ease.
-      - [Plex](https://github.com/plexinc/pms-docker): Plex Media Server Docker repo, for all your PMS docker needs.
-      - [Streamystats](https://github.com/fredrikburmester/streamystats) [TypeScript]: statistics service for Jellyfin, providing analytics and data visualization.
+      - [BitPlay](https://github.com/aculix/bitplay) - stream video torrents in your web browser with ease. Source code available [here](https://github.com/aculix/bitplay). `Go`
+      - [Plex](https://www.plex.tv) - Plex Media Server Docker repo, for all your PMS docker needs. Source code available [here](https://github.com/plexinc/pms-docker).
+      - [Streamystats](https://github.com/fredrikburmester/streamystats) - statistics service for Jellyfin, providing analytics and data visualization. Source code available [here](https://github.com/fredrikburmester/streamystats). `TypeScript`
 - **Monitoring**
-  - [Beszel](https://github.com/henrygd/beszel) [Go]: lightweight server monitoring hub with historical data, docker stats, and alerts.
-  - [Healthchecks](https://github.com/healthchecks/healthchecks) [Python]: cron job and background task monitoring service.
-  - [Keep](https://github.com/keephq/keep) [Python]: open-source AIOps and alert management platform.
-  - [LibreSpeed](https://github.com/librespeed/speedtest) [PHP]: speed test for HTML5 and more.
-  - [NetAlertX](https://github.com/jokob-sk/NetAlertX) [JavaScript]: network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found.
-  - [Uptime Kuma](https://github.com/louislam/uptime-kuma) [JavaScript]: fancy monitoring tool.
-  - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) [TypeScript]: lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history.
+  - [Beszel](https://beszel.dev/) - lightweight server monitoring hub with historical data, docker stats, and alerts. Source code available [here](https://github.com/henrygd/beszel). `Go`
+  - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. Source code available [here](https://github.com/Markbnj/cluster-iperf).
+  - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. Source code available [here](https://github.com/healthchecks/healthchecks). `Python`
+  - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. Source code available [here](https://github.com/keephq/keep). `Python` `TypeScript`
+  - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. Source code available [here](https://github.com/librespeed/speedtest). `PHP` `JavaScript`
+  - [NetAlertX](https://netalertx.com/) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. Source code available [here](https://github.com/jokob-sk/NetAlertX). `JavaScript` `Python` `PHP`
+  - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. Source code available [here](https://github.com/louislam/uptime-kuma). `JavaScript` `Vue`
+  - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) - lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history. Source code available [here](https://github.com/aceberg/WatchYourLAN). `TypeScript` `Go`
 - **PKMS**
-  - [Anytype](https://anytype.io/)
-  - [Excalidraw](https://github.com/excalidraw/excalidraw) [TypeScript]: virtual whiteboard for sketching hand-drawn like diagrams.
-  - [Grist](https://github.com/gristlabs/grist-core) [TypeScript]: modern relational spreadsheet.
-  - [Joplin](https://github.com/laurent22/joplin) [TypeScript]: privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS.
-  - [NocoDB](https://github.com/nocodb/nocodb) [TypeScript]: open source Airtable alternative.
-  - [Teable](https://github.com/teableio/teable) [TypeScript]: next gen Airtable alternative, no-code Postgres.
+  - [Anytype](https://anytype.io) - the everything app for those who celebrate trust & autonomy. Source code available [here](https://github.com/anyproto/anytype-ts). `TypeScript`
+  - [ApiTable](https://aitable.ai/) - API-oriented low-code platform for building collaborative apps and better than all other Airtable open-source alternatives. Source code available [here](https://github.com/apitable/apitable). `TypeScript` `Java`
+  - [Excalidraw](https://excalidraw.com) - virtual whiteboard for sketching hand-drawn like diagrams. Source code available [here](https://github.com/excalidraw/excalidraw). `TypeScript`
+  - [Grist](https://www.getgrist.com) - modern relational spreadsheet. Source code available [here](https://github.com/gristlabs/grist-core). `TypeScript` `Python`
+  - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. Source code available [here](https://github.com/laurent22/joplin). `TypeScript` `JavaScript`
+  - [NocoDB](https://nocodb.com) - open source Airtable alternative. Source code available [here](https://github.com/nocodb/nocodb). `TypeScript` `Vue`
+  - [Teable](https://teable.io) - next gen Airtable alternative, no-code Postgres. Source code available [here](https://github.com/teableio/teable). `TypeScript`
 - **Project Management**
-  - [Worklenz](https://github.com/Worklenz/worklenz): all in one project management tool for efficient teams.
+  - [Rustical](https://lennart-k.github.io/rustical) - calendar server aiming to be simple, fast and passwordless. Source code available [here](https://github.com/lennart-k/rustical). `Rust`
+  - [Worklenz](https://worklenz.com) - all in one project management tool for efficient teams. Source code available [here](https://github.com/Worklenz/worklenz). `TypeScript` `JavaScript`
 - **Remote**
-  - [Pangolin](https://github.com/fosrl/pangolin) [TypeScript]: tunneled mesh reverse proxy server with identity and access control and dashboard UI.
+  - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. Source code available [here](https://github.com/fosrl/pangolin). `TypeScript`
   - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
   - TunnelMole:
     - [Client](https://github.com/robbie-cahill/tunnelmole-client)
     - [Service](https://github.com/robbie-cahill/tunnelmole-service)
 - **Search**
-  - [SearXNG](https://github.com/searxng/searxng) [Python]: free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled.
+  - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. Source code available [here](https://github.com/searxng/searxng). `Python`
 - **Security**
-  - [Certwarden](https://github.com/gregtwallace/certwarden):  centralized ACME client.
-  - [Crowdsec](https://github.com/crowdsecurity/crowdsec) [Go]: open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI.
-  - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns): Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy.
-  - [Tinyauth](https://github.com/steveiliop56/tinyauth) [Go]: simplest way to protect your apps with a login screen.
-- **Trello alternative**
-  - [Focalboard](https://github.com/mattermost-community/focalboard)
-  - [Kanboard](https://github.com/kanboard/kanboard): Kanban project management software.
-  - [Leantime](https://github.com/Leantime/leantime)
-  - [Taiga](https://github.com/taigaio/taiga-docker)
-  - [Vikunja](https://github.com/go-vikunja/vikunja)
-  - [Wekan](https://github.com/wekan/wekan/tree/main)
+  - [Certwarden](https://www.certwarden.com) -  centralized ACME client. Source code available [here](https://github.com/gregtwallace/certwarden).
+  - [Crowdsec](https://www.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. Source code available [here](https://github.com/crowdsecurity/crowdsec). `Go` `Shell`
+  - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns) - Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy. Source code available [here](https://github.com/fabriziosalmi/patterns). `Python`
+  - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. Source code available [here](https://github.com/steveiliop56/tinyauth). `Go` `TypeScript`
+- **Trello alternative** - [Find a kanban board](https://github.com/NatoBoram/docker-compose/issues/44)
+  - [Focalboard](https://github.com/mattermost-community/focalboard) - Source code available [here](https://github.com/mattermost-community/focalboard).
+  - [Kan](https://kan.bn) - open source Trello alternative. Source code available [here](https://github.com/kanbn/kan). `TypeScript`
+  - [Kanboard](https://kanboard.org) - Kanban project management software. Source code available [here](https://github.com/kanboard/kanboard). `PHP`
+  - [Leantime](https://leantime.io) - goals focused project management system for non-project managers. Source code available [here](https://github.com/Leantime/leantime). `PHP` `JavaScript`
+  - [Taiga](https://github.com/taigaio/taiga-docker) - Source code available [here](https://github.com/taigaio/taiga-docker). `Shell`
+  - [Vikunja](https://vikunja.io) - to-do app to organize your life. Source code available [here](https://github.com/go-vikunja/vikunja). `Go` `Vue` `TypeScript`
+  - [Wekan](https://wekan.fi) - open-source kanban. Source code available [here](https://github.com/wekan/wekan). `JavaScript`
 - **Wishlist**
-  - [Christmas Community](https://github.com/Wingysam/Christmas-Community): Christmas lists for families.
+  - [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. Source code available [here](https://github.com/Wingysam/Christmas-Community).
 - **Other**
-  - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf): Run iperf in client or server mode on kubernetes and ECS.
-  - [Code Server](https://github.com/coder/code-server): VS Code in the browser.
-  - [Garage](https://git.deuxfleurs.fr/Deuxfleurs/garage): S3-compatible distributed object storage service.
-  - [Monica](https://github.com/monicahq/monica): Personal CRM. Remember everything about your friends, family and business relationships.
-  - [Plausible](https://github.com/plausible/analytics): simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics.
-  - [Sentry](https://github.com/getsentry/self-hosted): feature-complete and packaged up for low-volume deployments and proofs-of-concept.
+  - [Garage](https://garagehq.deuxfleurs.fr) - S3-compatible distributed object storage service. Source code available [here](https://git.deuxfleurs.fr/Deuxfleurs/garage). `Rust`
+  - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. Source code available [here](https://github.com/monicahq/monica). `PHP`
