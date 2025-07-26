@@ -1,13 +1,41 @@
 # .gitignore
-#==============================================================================#
-#               ------- Windows ------                                         #
-#==============================================================================#
-Thumbs.db
+# ---------------------------------------------------------------------------- #
+#               ------- Windows ------
+# ---------------------------------------------------------------------------- #
+# https://www.gitignore.io/?templates=windows
 
-#==============================================================================#
-#               ------- Linux ------                                           #
-#==============================================================================#
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# ---------------------------------------------------------------------------- #
+#               ------- Linux ------
+# ---------------------------------------------------------------------------- #
+# https://www.gitignore.io/?templates=linux
+
 *~
+
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
 
@@ -20,9 +48,11 @@ Thumbs.db
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-#==============================================================================#
-#               ------- Mac OS ------                                          #
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
+#               ------- Mac OS ------
+# ---------------------------------------------------------------------------- #
+# https://www.gitignore.io/?templates=macos
+
 # General
 .DS_Store
 .AppleDouble
@@ -50,9 +80,16 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#==============================================================================#
-#               ------- Visual Studio Code ------                              #
-#==============================================================================#
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
+
+# ---------------------------------------------------------------------------- #
+#               ------- Visual Studio Code ------
+# ---------------------------------------------------------------------------- #
+# https://www.toptal.com/developers/gitignore/?templates=visualstudiocode
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -66,9 +103,16 @@ Temporary Items
 # Built Visual Studio Code Extensions
 *.vsix
 
-#==============================================================================#
-#               ------- Terraform ------                                       #
-#==============================================================================#
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# ---------------------------------------------------------------------------- #
+#               ------- Terraform ------
+# ---------------------------------------------------------------------------- #
+# https://www.toptal.com/developers/gitignore/?templates=terraform
+
 # Local .terraform directories
 **/.terraform/*
 
@@ -107,9 +151,9 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-#==============================================================================#
-#               ------- Home Server ------                                     #
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
+#               ------- Repository ------
+# ---------------------------------------------------------------------------- #
 logs/*
 **/*persistence/
 

@@ -1,16 +1,16 @@
 #!/bin/bash
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #AUTHOR: Clement Deltel
 #DATE: 2023/03/16
 #DESCRIPTION: Lists all the methods to restore all elements of Vaultwarden.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_database
 #DESCRIPTION: Executes all the steps to restore from an existing backup of the
 #             database.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_database(){
   # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Database recovery start..." | tee -a ${LOG_FILE}
@@ -35,11 +35,11 @@ restore_database(){
   echo "#===============================================================#" | tee -a ${LOG_FILE}
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_attachments
 #DESCRIPTION: Executes all the steps to restore from an existing backup of the
 #             attachments.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_attachments(){
   # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Attachments recovery start..." | tee -a ${LOG_FILE}
@@ -69,11 +69,11 @@ restore_attachments(){
   fi
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_sends
 #DESCRIPTION: Executes all the steps to restore from an existing backup of the
 #             sends.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_sends(){
   # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Sends recovery start..." | tee -a ${LOG_FILE}
@@ -103,11 +103,11 @@ restore_sends(){
   fi
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_config
 #DESCRIPTION: Executes all the steps to restore from an existing backup of the
 #             configuration file.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_config(){
   # Evaluation of the time to perform this task: worst case scenario 15s
   echo "${TODAY} [INFO] Configuration file recovery start..." | tee -a ${LOG_FILE}
@@ -123,11 +123,11 @@ restore_config(){
   echo "#===============================================================#" | tee -a ${LOG_FILE}
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_rsa_keys
 #DESCRIPTION: Executes all the steps to restore from an existing backup of the
 #             rsa_keys.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_rsa_keys(){
   # Evaluation of the time to perform this task: worst case scenario 15s
   echo "${TODAY} [INFO] RSA keys recovery start..." | tee -a ${LOG_FILE}
@@ -157,11 +157,11 @@ restore_rsa_keys(){
   fi
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_icon_cache
 #DESCRIPTION: Executes all the steps to restore from an existing backup of the
 #             icon_cache.
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_icon_cache(){
   # Evaluation of the time to perform this task: worst case scenario 1m
   echo "${TODAY} [INFO] Icon cache recovery start..." | tee -a ${LOG_FILE}
@@ -191,17 +191,17 @@ restore_icon_cache(){
   fi
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: restore_docker_image
 #DESCRIPTION:
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 restore_docker_image(){
   true
 }
 
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 #FUNCTION: main
-#==============================================================================#
+# ---------------------------------------------------------------------------- #
 main(){
   RESTORE_STRATEGY="S3"
   CONTAINER_NAME="vaultwarden"
