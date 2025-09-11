@@ -298,6 +298,10 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Security**
   - [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. Deployed on `https://wazuh.${DOMAIN}`. Soruce code available [here](https://github.com/wazuh/wazuh). `C` `C++` `Python`
   - [Enclosed](https://enclosed.cc) - Minimalistic web app designed for sending private and secure notes. Deployed on `https://notes.${DOMAIN}`. Source code available [here](https://github.com/CorentinTh/enclosed). `TypeScript`
+- **Search**
+  - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. Source code available [here](https://github.com/searxng/searxng). `Python`
+- **News**
+  - [FreshRSS](https://freshrss.org/index.html) -  news aggregator. Source code available [here](https://github.com/FreshRSS/FreshRSS). `PHP`
 - **Media Storage**
   - **Documents**
     - [NextCloud](https://nextcloud.com) - a safe home for all your data. Deployed on `https://nextcloud.${DOMAIN}`. Source code available [here](https://github.com/nextcloud/server). `PHP` `JavaScript`
@@ -679,7 +683,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [Client](https://github.com/robbie-cahill/tunnelmole-client)
     - [Service](https://github.com/robbie-cahill/tunnelmole-service)
 - **Search**
-  - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. Source code available [here](https://github.com/searxng/searxng). `Python`
+  - [Whoogle](https://pypi.org/project/whoogle-search) - ad-free, privacy-respecting metasearch engine. Source code available [here](https://github.com/benbusby/whoogle-search). `Python`
 - **Security**
   - [Certwarden](https://www.certwarden.com) -  centralized ACME client. Source code available [here](https://github.com/gregtwallace/certwarden).
   - [Crowdsec](https://www.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. Source code available [here](https://github.com/crowdsecurity/crowdsec). `Go` `Shell`

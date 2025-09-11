@@ -1,0 +1,36 @@
+services:
+  searngx:
+    container_name: searngx
+    env_file: config/.env
+    hostname: searngx
+    image: ${SEARNGX_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.searngx.entrypoints=web,websecure"
+      - "traefik.http.routers.searngx.rule=Host(`search.${DOMAIN}`)"
+      - "traefik.http.routers.searngx.tls=true"
+      # - "traefik.http.routers.searngx.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.searngx.tls.domains[0].main=search.${DOMAIN}"
+      - "traefik.http.routers.searngx.service=searngx"
+      # Services
+      - "traefik.http.services.searngx.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      traefik-net:
+        ipv4_address: ${SEARNGX_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/searngx/data
+
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net

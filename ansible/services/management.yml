@@ -48,6 +48,7 @@
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/monitoring/prometheus' }
       - { when: rustdesk_enable, project_src: '{{ server_home }}/services/remote/rustdesk' }
       - { when: scrutiny_enable, project_src: '{{ server_home }}/services/monitoring/scrutiny' }
+      - { when: searngx_enable, project_src: '{{ server_home }}/services/search/searngx' }
       - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/pdf/stirling-pdf' }
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: upsnap_enable, project_src: '{{ server_home }}/services/home/upsnap' }

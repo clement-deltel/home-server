@@ -170,6 +170,8 @@
       - "{{ server_home }}/services/monitoring/scrutiny/persistence"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
+      # SearNGX
+      - "{{ server_home }}/services/search/searngx/persistence"
       # Stirling PDF
       - "{{ server_home }}/services/pdf/stirling-pdf/persistence"
       - "{{ server_home }}/services/pdf/stirling-pdf/persistence/configs"

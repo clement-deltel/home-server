@@ -55,6 +55,7 @@ pinry_enable: true
 prometheus_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
+searngx_enable: true
 stirling_pdf_enable: true
 unbound_enable: true
 upsnap_enable: true
