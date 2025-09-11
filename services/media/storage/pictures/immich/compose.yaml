@@ -95,7 +95,14 @@ services:
       - "traefik.http.routers.immich.tls=true"
       # - "traefik.http.routers.immich.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.immich.tls.domains[0].main=pictures.${DOMAIN}"
+      - "traefik.http.routers.immich.middlewares=immich-cors"
       - "traefik.http.routers.immich.service=immich"
+      # Middlewares
+      - "traefik.http.middlewares.immich-cors.headers.accesscontrolallowmethods=GET"
+      - "traefik.http.middlewares.immich-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.immich-cors.headers.accesscontrolalloworiginlist=https://homer.${DOMAIN}.com"
+      - "traefik.http.middlewares.immich-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.immich-cors.headers.addvaryheader=true"
       # Services
       - "traefik.http.services.immich.loadbalancer.server.port=2283"
     logging:
