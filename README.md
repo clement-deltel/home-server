@@ -344,6 +344,8 @@ This section covers all the supported services of the stack. It categorizes the 
   - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. Deployed on `https://llm.${DOMAIN}`. Source code available [here](https://github.com/BerriAI/litellm). `Python`
   - [Ollama](https://ollama.com) - get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. Source code available [here](https://github.com/ollama/ollama). `Go`
   - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). Deployed on `https://ai.${DOMAIN}`. Source code available [here](https://github.com/open-webui/open-webui). `JavaScript` `Svelte` `Python`
+- **Automation**
+  - [n8n](https://n8n.io) -  workflow automation platform with native AI capabilities, combine visual building with custom code, self-host or cloud, 400+ integrations. Source code available [here](https://github.com/n8n-io/n8n). `TypeScript`
 - **Finances**
   - [Actual](https://actualbudget.com) - local-first personal finance app. Deployed on `https://finances.${DOMAIN}`. Source code available [here](https://github.com/actualbudget/actual). `TypeScript`
   - [Wallos](https://wallosapp.com) - open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos). `PHP` `JavaScript`

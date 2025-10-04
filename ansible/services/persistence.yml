@@ -126,6 +126,8 @@
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/models"
       # Minecraft
       - "{{ server_home }}/services/minecraft/persistence"
+      # n8n
+      - "{{ server_home }}/services/automation/n8n/persistence"
       # Navidrome
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/backup"
