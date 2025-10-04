@@ -318,7 +318,8 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Navidrome](https://www.navidrome.org) - personal streaming service. Deployed on `https://music.${DOMAIN}`. Source code available [here](https://github.com/navidrome/navidrome). `Go` `JavaScript`
   - **Videos**
     - [Jellyfin](https://jellyfin.org) - free software media system. Deployed on `https://jellyfin.${DOMAIN}`. Source code available [here](https://github.com/jellyfin/jellyfin). `C#`
-- **Media Sharing**
+- **Media Tools**
+  - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. Source code available [here](https://github.com/C4illin/ConvertX). `TypeScript`
   - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. `https://share.${DOMAIN}`. Source code available [here](https://github.com/Forceu/Gokapi). `Go` `JavaScript`
 - **Management**
   - **Bookmarks**
@@ -628,7 +629,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [AliasVault](https://www.aliasvault.net) - end-to-end encrypted password manager with a built-in alias generator and email server. Source code available [here](https://github.com/lanedirt/AliasVault). `C#` `TypeScript`
 - **Media**
   - **Management**
-    - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. Source code available [here](https://github.com/C4illin/ConvertX). `TypeScript`
     - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. Source code available [here](https://github.com/garanda21/deepsubx). `TypeScript` `JavaScript`
     - [Lidarr](https://lidarr.audio) - looks and smells like Sonarr but made for music. Source code available [here](https://github.com/Lidarr/Lidarr). `C#` `JavaScript`
     - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. Source code available [here](https://github.com/TheWicklowWolf/Lidify). `Python` `JavaScript`

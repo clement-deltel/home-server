@@ -128,6 +128,7 @@ alias {cd,svc}mem='cd ${SERVER_HOME}/services/media/storage/pictures/meme-search
 alias {cd,svc}phot='cd ${SERVER_HOME}/services/media/storage/pictures/photoprism'
 alias {cd,svc}pin='cd ${SERVER_HOME}/services/media/storage/pictures/pinry'
 alias {cd,svc}jel='cd ${SERVER_HOME}/services/media/storage/videos/jellyfin'
+alias {cd,svc}con='cd ${SERVER_HOME}/services/media/tools/convertx'
 alias {cd,svc}det='cd ${SERVER_HOME}/services/monitoring/detection'
 alias {cd,svc}gra='cd ${SERVER_HOME}/services/monitoring/grafana'
 alias {cd,svc}jet='cd ${SERVER_HOME}/services/monitoring/jetlog'

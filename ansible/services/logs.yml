@@ -59,6 +59,7 @@
         - "{{ server_home }}/logs/media/storage/pictures/photoprism"
         - "{{ server_home }}/logs/media/storage/pictures/pinry"
         - "{{ server_home }}/logs/media/storage/videos/jellyfin"
+        - "{{ server_home }}/logs/media/tools/convertx"
         - "{{ server_home }}/logs/monitoring/detection"
         - "{{ server_home }}/logs/monitoring/grafana"
         - "{{ server_home }}/logs/monitoring/jetlog"

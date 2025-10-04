@@ -22,6 +22,7 @@ adventurelog_enable: true
 affine_enable: true
 bytestash_enable: true
 change_detection_enable: true
+convertx_enable: true
 docuseal_enable: true
 enclosed_enable: true
 freshrss_enable: true

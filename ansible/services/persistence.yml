@@ -18,8 +18,10 @@
       - "{{ server_home }}/services/pkms/affine/redis-persistence"
       # Bytestash
       - "{{ server_home }}/services/management/code/bytestash/persistence"
-      # Detection (changedetection.io)
+      # Change Detection
       - "{{ server_home }}/services/monitoring/detection/persistence"
+      # ConvertX
+      - "{{ server_home }}/services/media/tools/convertx/persistence"
       # Directus
       - "{{ server_home }}/services/directus/db-persistence"
       - "{{ server_home }}/services/directus/persistence"
