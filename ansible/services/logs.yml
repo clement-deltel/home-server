@@ -49,6 +49,7 @@
         - "{{ server_home }}/logs/management/code/wakapi"
         - "{{ server_home }}/logs/management/passwords/vaultwarden"
         - "{{ server_home }}/logs/media/sharing/gokapi"
+        - "{{ server_home }}/logs/media/storage/bookmarks/karakeep"
         - "{{ server_home }}/logs/media/storage/books/kavita"
         - "{{ server_home }}/logs/media/storage/books/librum"
         - "{{ server_home }}/logs/media/storage/documents/nextcloud"

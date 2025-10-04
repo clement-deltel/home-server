@@ -303,27 +303,28 @@ This section covers all the supported services of the stack. It categorizes the 
 - **News**
   - [FreshRSS](https://freshrss.org/index.html) -  news aggregator. Source code available [here](https://github.com/FreshRSS/FreshRSS). `PHP`
 - **Media Storage**
-  - **Documents**
-    - [NextCloud](https://nextcloud.com) - a safe home for all your data. Deployed on `https://nextcloud.${DOMAIN}`. Source code available [here](https://github.com/nextcloud/server). `PHP` `JavaScript`
-    - [Paperless](https://docs.paperless-ngx.com) - document management system: scan, index and archive all your documents. Deployed on `https://paperless.${DOMAIN}`. Source code available [here](https://github.com/paperless-ngx/paperless-ngx). `Python` `TypeScript`
+  - **Bookmarks**
+    - [Karakeep](https://karakeep.app/) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. Source code available [here](https://github.com/karakeep-app/karakeep). `TypeScript`
+    - [Linkace](https://www.linkace.org) - archive to collect links of your favorite websites. Deployed on `https://linkace.${DOMAIN}`. Source code available [here](https://github.com/Kovah/LinkAce). `PHP` `Blade`
   - **Books**
     - [Kavita](https://www.kavitareader.com) - fast, feature rich, cross platform reading server. Deployed on `https://books.${DOMAIN}`. Source code available [here](https://github.com/Kareadita/Kavita). `C#` `TypeScript`
     - [Librum](https://librumreader.com) - manage your own online library and access it from any device anytime, anywhere. No web-interface, need to install the desktop app as well. Source code available [here](https://github.com/Librum-Reader/Librum). `C++` `QML`
-  - **Photos**
+  - **Documents**
+    - [NextCloud](https://nextcloud.com) - a safe home for all your data. Deployed on `https://nextcloud.${DOMAIN}`. Source code available [here](https://github.com/nextcloud/server). `PHP` `JavaScript`
+    - [Paperless](https://docs.paperless-ngx.com) - document management system: scan, index and archive all your documents. Deployed on `https://paperless.${DOMAIN}`. Source code available [here](https://github.com/paperless-ngx/paperless-ngx). `Python` `TypeScript`
+  - **Music**
+    - [Navidrome](https://www.navidrome.org) - personal streaming service. Deployed on `https://music.${DOMAIN}`. Source code available [here](https://github.com/navidrome/navidrome). `Go` `JavaScript`
+  - **Pictures**
     - [Immich](https://immich.app) - high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich). `TypeScript` `Dart` `Svelte`
     - [Meme Search](https://github.com/neonwatty/meme-search) - meme search engine and finder. Deployed on `https://memes.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search). `Ruby` `Python`
     - [Photoprism](https://www.photoprism.app) - photos app for the decentralized web. Deployed on `https://photoprism.${DOMAIN}`. Source code available [here](https://github.com/photoprism/photoprism). `Go` `JavaScript`
     - [Pinry](https://github.com/pinry/pinry) - tiling image board system for people who want to save, tag, and share images, videos and webpages in an easy to skim through format. Deployed on `https://golden-book.${DOMAIN}`. Source code available [here](https://github.com/pinry/pinry). `Python`
-  - **Music**
-    - [Navidrome](https://www.navidrome.org) - personal streaming service. Deployed on `https://music.${DOMAIN}`. Source code available [here](https://github.com/navidrome/navidrome). `Go` `JavaScript`
   - **Videos**
     - [Jellyfin](https://jellyfin.org) - free software media system. Deployed on `https://jellyfin.${DOMAIN}`. Source code available [here](https://github.com/jellyfin/jellyfin). `C#`
 - **Media Tools**
   - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. Source code available [here](https://github.com/C4illin/ConvertX). `TypeScript`
   - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. `https://share.${DOMAIN}`. Source code available [here](https://github.com/Forceu/Gokapi). `Go` `JavaScript`
 - **Management**
-  - **Bookmarks**
-    - [Linkace](https://www.linkace.org) - archive to collect links of your favorite websites. Deployed on `https://linkace.${DOMAIN}`. Source code available [here](https://github.com/Kovah/LinkAce). `PHP` `Blade`
   - **Code**
     - [ByteStash](https://github.com/jordan-dalby/bytestash) - a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash). `TypeScript`
     - [Gitlab](https://gitlab.com/gitlab-org/gitlab) `Ruby`
@@ -610,7 +611,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [Plausible](https://plausible.io) - simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics. Source code available [here](https://github.com/plausible/analytics). `Elixir`
     - [Umami](https://github.com/umami-software/umami) - modern, privacy-focused alternative to Google Analytics. Source code available [here](https://github.com/umami-software/umami). `TypeScript`
   - **Bookmarks**
-    - [Karakeep](https://karakeep.app/) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. Source code available [here](https://github.com/karakeep-app/karakeep). `TypeScript`
     - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. Source code available [here](https://github.com/linkwarden/linkwarden). `TypeScript`
   - **Code**
     - [Bugsink](https://www.bugsink.com) - error tracking. Source code available [here](https://github.com/bugsink/bugsink). `Python`

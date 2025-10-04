@@ -40,6 +40,7 @@ immich_enable: true
 it_tools_enable: true
 jellyfin_enable: true
 jetlog_enable: true
+karakeep_enable: true
 kavita_enable: true
 kopia_enable: true
 litellm_enable: true

@@ -1,0 +1,92 @@
+services:
+  # https://github.com/karakeep-app/karakeep
+  karakeep:
+    container_name: karakeep
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: karakeep
+    image: ${KARAKEEP_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.karakeep.entrypoints=web,websecure"
+      - "traefik.http.routers.karakeep.rule=Host(`bookmarks.${DOMAIN}`)"
+      - "traefik.http.routers.karakeep.tls=true"
+      # - "traefik.http.routers.karakeep.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.karakeep.tls.domains[0].main=bookmarks.${DOMAIN}"
+      - "traefik.http.routers.karakeep.service=karakeep"
+      # Services
+      - "traefik.http.services.karakeep.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${KARAKEEP_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${KARAKEEP_IP}
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/data
+
+  chrome:
+    command:
+      - --no-sandbox
+      - --disable-gpu
+      - --disable-dev-shm-usage
+      - --remote-debugging-address=0.0.0.0
+      - --remote-debugging-port=9222
+      - --hide-scrollbars
+    container_name: karakeep-chrome
+    hostname: karakeep-chrome
+    image: ${KARAKEEP_CHROME_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${KARAKEEP_CHROME_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  # https://github.com/meilisearch/meilisearch
+  meilisearch:
+    container_name: karakeep-meilisearch
+    env_file: config/.env
+    hostname: karakeep-meilisearch
+    image: ${MEILISEARCH_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${KARAKEEP_MEILISEARCH_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./meilisearch-persistence:/meili_data
+
+networks:
+  app-net:
+    name: karakeep-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${KARAKEEP_NET}
+          gateway: ${KARAKEEP_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

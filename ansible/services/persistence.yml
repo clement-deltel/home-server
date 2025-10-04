@@ -86,6 +86,9 @@
       - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/tvshows"
       # Jetlog
       - "{{ server_home }}/services/monitoring/jetlog/persistence"
+      # Karakeep
+      - "{{ server_home }}/services/media/storage/bookmarks/karakeep/persistence"
+      - "{{ server_home }}/services/media/storage/bookmarks/karakeep/meilisearch-persistence"
       # Kavita
       - "{{ server_home }}/services/media/storage/books/kavita/persistence"
       - "{{ server_home }}/services/media/storage/books/kavita/persistence/books"

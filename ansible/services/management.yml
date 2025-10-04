@@ -28,6 +28,7 @@
       - { when: it_tools_enable, project_src: '{{ server_home }}/services/management/code/it-tools' }
       - { when: jellyfin_enable, project_src: '{{ server_home }}/services/media/storage/videos/jellyfin' }
       - { when: jetlog_enable, project_src: '{{ server_home }}/services/monitoring/jetlog' }
+      - { when: karakeep_enable, project_src: '{{ server_home }}/services/media/storage/bookmarks/karakeep' }
       - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
       - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
       - { when: librum_enable, project_src: '{{ server_home }}/services/media/storage/books/librum' }
