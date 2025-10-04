@@ -1,6 +1,6 @@
 services:
-  # https://github.com/karakeep-app/karakeep
   karakeep:
+    # https://github.com/karakeep-app/karakeep
     container_name: karakeep
     dns:
       - 127.0.0.1
@@ -59,8 +59,8 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
 
-  # https://github.com/meilisearch/meilisearch
   meilisearch:
+    # https://github.com/meilisearch/meilisearch
     container_name: karakeep-meilisearch
     env_file: config/.env
     hostname: karakeep-meilisearch

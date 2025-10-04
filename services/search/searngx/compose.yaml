@@ -1,6 +1,11 @@
 services:
   searngx:
+    # https://github.com/searxng/searxng
     container_name: searngx
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: searngx
     image: ${SEARNGX_IMAGE}
@@ -18,8 +23,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-file: 2
-        max-size: 5m
+        max-file: 5
+        max-size: 10m
     networks:
       traefik-net:
         ipv4_address: ${SEARNGX_IP}
