@@ -44,6 +44,12 @@
         "files.insertFinalNewline": true,
         "files.trimFinalNewlines": true,
         "files.trimTrailingWhitespace": true,
+        // Extension - Code Spell Checker
+        "cSpell.words": [
+            "pastebin",
+            "strava",
+            "umami"
+        ],
         // Extension - Git
         "git.allowForcePush": true,
         "git.autofetch": true,

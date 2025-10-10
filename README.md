@@ -361,7 +361,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF). `Java` `JavaScript`
 - **Headless CMS**
   - [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. Source code available [here](https://github.com/directus/directus). `TypeScript`
-- **Survey Builder**
+- **Surveys**
   - [Limesurvey](https://www.limesurvey.org) - alternative to SurveyMonkey, Typeform, Qualtrics, and Google Forms, making it simple to create online surveys and forms with unmatched flexibility. Deployed on `https://survey.${DOMAIN}`. Source code available [here](https://github.com/LimeSurvey/LimeSurvey). `JavaScript`  `PHP`
 - **Wishlist**
   - [Wishlist](https://github.com/cmintey/wishlist) - wishlist application that you can share with your friends and family. Deployed on `https://wish.${DOMAIN}`. Source code available [here](https://github.com/cmintey/wishlist) `Svelte` `TypeScript`
@@ -577,6 +577,8 @@ Since I am an iPhone user, this section covers the list of steps on iOS only.
 
 Here is a list of tools that could be interesting and further enhance the stack:
 
+- **Artificial Intelligence**
+  - [firecrawl](https://github.com/firecrawl/firecrawl) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. `TypeScript` `Python`
 - **Containers**
   - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose) - docker-compose for testing any-sync. Source code available [here](https://github.com/anyproto/any-sync-dockercompose). `Shell` `Python`
   - [CAdvisor](https://github.com/google/cadvisor) - analyzes resource usage and performance characteristics of running containers. Source code available [here](https://github.com/google/cadvisor). `Go`
@@ -589,6 +591,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Organizr](https://demo.organizr.app) - HTPC/Homelab Services Organizer - Written in PHP. Source code available [here](https://github.com/causefx/Organizr). `PHP` `JavaScript`
 - **Finances**
   - [Actual AI](https://github.com/sakowicz/actual-ai) - categorize transactions in Actual Budget using AI. Source code available [here](https://github.com/sakowicz/actual-ai). `TypeScript`
+  - [Cents per Point](https://github.com/ayostepht/Cents-Per-Point) - track credit card point redemptions and calculate Cents Per Point (CPP) values to optimize your rewards strategy. Source code available [here](https://github.com/ayostepht/Cents-Per-Point). `JavaScript`
   - [DollarDollar](https://ddby.finforward.xyz/dashboard) - expense splitting. Source code available [here](https://github.com/harung1993/dollardollar). `JavaScript` `Python`
   - [Firefly III](https://firefly-iii.org) - personal finances manager. Source code available [here](https://github.com/firefly-iii/firefly-iii). `PHP` `JavaScript`
   - [Investbrain](https://investbra.in) - investment tracker that consolidates and monitors market performance across your different brokerages. Source code available [here](https://github.com/investbrainapp/investbrain). `PHP`
@@ -597,8 +600,12 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Monetr](https://monetr.app) - budgeting application focused on planning for recurring expenses. Source code available [here](https://github.com/monetr/monetr). `Go` `TypeScript`
   - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. Source code available [here](https://github.com/dh1011/subscription-manager). `JavaScript` `Python`
   - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. Source code available [here](https://github.com/meceware/wapy.dev). `JavaScript`
+- **Games**
+  - [Sunshine](https://app.lizardbyte.dev/Sunshine/?lng=en) - game stream host for Moonlight. Source code available [here](https://github.com/LizardByte/Sunshine) `C++`
+  - [Wolf](https://games-on-whales.github.io/wolf/stable) - stream virtual desktops and games running in Docker. Source code available [here](https://github.com/games-on-whales/wolf). `C++`
 - **Health**
   - [Fasten Health](https://www.fastenhealth.com) - personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics. Source code available [here](https://github.com/fastenhealth/fasten-onprem). `Go` `TypeScript`
+  - [OpenEMR](https://www.open-emr.org) - electronic health records and medical practice management solution. Source code available [here](https://github.com/openemr/openemr). `PHP`
 - **Home Automation**
   - [Wol](https://github.com/Trugamr/wol) - Wake-On-LAN tool that works via CLI and web interface. Source code available [here](https://github.com/Trugamr/wol). `Go`
 - **Inventory**
@@ -608,6 +615,9 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Warracker](https://warracker.com) - web application to manage product warranties, track expiration dates, and store related documents. Source code available [here](https://github.com/sassanix/Warracker). `JavaScript` `Python`
 - **Mail**
   - [Maddy](https://maddy.email) - composable all-in-one mail server. Source code available [here](https://github.com/foxcpp/maddy). `Go`
+  - [OpenArchiver](https://openarchiver.com) - platform for legally compliant email archiving. Source code available [here](https://github.com/LogicLabs-OU/OpenArchiver). `TypeScript` `Svelte`
+  - [Piler](https://www.mailpiler.org) - email archiving application. Source code available [here](https://github.com/jsuto/piler). `PHP`
+  - [simple-login](https://simplelogin.io) - simple login back-end and web app. Source code available [here](https://github.com/simple-login/app). `Python` `JavaScript`
 - **Management**
   - **Ads**
     - [Plausible](https://plausible.io) - simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics. Source code available [here](https://github.com/plausible/analytics). `Elixir`
@@ -617,6 +627,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - **Code**
     - [Bugsink](https://www.bugsink.com) - error tracking. Source code available [here](https://github.com/bugsink/bugsink). `Python`
     - [Code Server](https://coder.com) - VS Code in the browser. Source code available [here](https://github.com/coder/code-server). `TypeScript` `Shell`
+    - [OpenGist](https://opengist.io) - pastebin powered by Git, open-source alternative to Github Gist. Source code available [here](https://github.com/thomiceli/opengist). `Go` `TypeScript`
     - [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
     - [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. Source code available [here](https://github.com/getsentry/self-hosted). `Shell` `Python`
     - [Ziit](https://ziit.app/login) - swiss army knife of code time tracking. Source code available [here](https://github.com/0PandaDEV/Ziit). `TypeScript` `Vue`
@@ -658,9 +669,15 @@ Here is a list of tools that could be interesting and further enhance the stack:
       - [BitPlay](https://github.com/aculix/bitplay) - stream video torrents in your web browser with ease. Source code available [here](https://github.com/aculix/bitplay). `Go`
       - [Plex](https://www.plex.tv) - Plex Media Server Docker repo, for all your PMS docker needs. Source code available [here](https://github.com/plexinc/pms-docker).
       - [Streamystats](https://github.com/fredrikburmester/streamystats) - statistics service for Jellyfin, providing analytics and data visualization. Source code available [here](https://github.com/fredrikburmester/streamystats). `TypeScript`
+    - Web
+      - [ArchiveBox](https://archivebox.io) - web archiving that takes URLs/browser history/bookmarks/Pocket/Pinboard/etc. Source code available [here](https://github.com/ArchiveBox/ArchiveBox). `Python`
+  - **Tools**
+    - [Mazanoke](https://mazanoke.com) - local image optimizer that runs in your browser. Source code available [here](https://github.com/civilblur/mazanoke). `JavaScript`
+    - [SmartTube](https://github.com/yuliskov/SmartTube) - browse media content with your own rules on Android TV. `Java`
 - **Monitoring**
   - [Beszel](https://beszel.dev/) - lightweight server monitoring hub with historical data, docker stats, and alerts. Source code available [here](https://github.com/henrygd/beszel). `Go`
   - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. Source code available [here](https://github.com/Markbnj/cluster-iperf).
+  - [Domain Monitor](https://github.com/nwesterhausen/domain-monitor) - monitor WHOIS records for specified domains. Source code available [here](https://github.com/nwesterhausen/domain-monitor). `Go`
   - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. Source code available [here](https://github.com/healthchecks/healthchecks). `Python`
   - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. Source code available [here](https://github.com/keephq/keep). `Python` `TypeScript`
   - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. Source code available [here](https://github.com/librespeed/speedtest). `PHP` `JavaScript`
@@ -670,9 +687,11 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **PKMS**
   - [Anytype](https://anytype.io) - the everything app for those who celebrate trust & autonomy. Source code available [here](https://github.com/anyproto/anytype-ts). `TypeScript`
   - [ApiTable](https://aitable.ai/) - API-oriented low-code platform for building collaborative apps and better than all other Airtable open-source alternatives. Source code available [here](https://github.com/apitable/apitable). `TypeScript` `Java`
+  - [BookStack](https://www.bookstackapp.com) - platform to create documentation/wiki content. Source code available [here](https://github.com/BookStackApp/BookStack). `PHP` `TypeScript`
   - [Excalidraw](https://excalidraw.com) - virtual whiteboard for sketching hand-drawn like diagrams. Source code available [here](https://github.com/excalidraw/excalidraw). `TypeScript`
   - [Grist](https://www.getgrist.com) - modern relational spreadsheet. Source code available [here](https://github.com/gristlabs/grist-core). `TypeScript` `Python`
   - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. Source code available [here](https://github.com/laurent22/joplin). `TypeScript` `JavaScript`
+  - [Memos](https://www.usememos.com) - knowledge management and note-taking platform designed for privacy-conscious users and organizations. Source code available [here](https://github.com/usememos/memos). `Go` `TypeScript`
   - [NocoDB](https://nocodb.com) - open source Airtable alternative. Source code available [here](https://github.com/nocodb/nocodb). `TypeScript` `Vue`
   - [Teable](https://teable.io) - next gen Airtable alternative, no-code Postgres. Source code available [here](https://github.com/teableio/teable). `TypeScript`
 - **Project Management**
@@ -691,6 +710,12 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Crowdsec](https://www.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. Source code available [here](https://github.com/crowdsecurity/crowdsec). `Go` `Shell`
   - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns) - Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy. Source code available [here](https://github.com/fabriziosalmi/patterns). `Python`
   - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. Source code available [here](https://github.com/steveiliop56/tinyauth). `Go` `TypeScript`
+- **Storage**
+  - [RustFS](https://rustfs.com/download) - high-performance distributed object storage for MinIO alternative. Source code available [here](https://github.com/rustfs/rustfs). `Rust`
+- **Surveys**
+  - [Formbricks](https://formbricks.com) - open source Qualtrics alternative. Source code available [here](https://github.com/formbricks/formbricks). `TypeScript`
+- **Tools**
+  - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. Source code available [here](https://github.com/iib0011/omni-tools). `TypeScript`
 - **Trello alternative** - [Find a kanban board](https://github.com/NatoBoram/docker-compose/issues/44)
   - [Focalboard](https://github.com/mattermost-community/focalboard) - Source code available [here](https://github.com/mattermost-community/focalboard).
   - [Kan](https://kan.bn) - open source Trello alternative. Source code available [here](https://github.com/kanbn/kan). `TypeScript`
