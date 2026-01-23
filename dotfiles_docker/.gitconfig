@@ -1,54 +1,116 @@
+# .gitconfig
+
 [user]
     name = ${USER_NAME}
     email = 38040315+clement-deltel@users.noreply.github.com
-[init]
-	defaultBranch = main
+
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
 [core]
 	editor = vim
     eol = lf
+    # excludesfile = ~/.gitignore
+    filemode = false
+    fsmonitor = true
+    pager=less -x4
+    untrackedCache = true
+    whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[commit]
+    # template = ~/.gitmessage.txt
+    verbose = true
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+	process = git-lfs filter-process --skip
+    required = true
+	smudge = git-lfs smudge --skip -- %f
+[help]
+    autocorrect = 20
+[init]
+	defaultBranch = main
+[merge]
+    # git < 2.35.0
+    conflictstyle = diff3
+    # git >= 2.35.0
+    # conflictstyle = zdiff3
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+[pull]
+    default = current
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[rerere]
+    autoupdate = true
+    enabled = true
+[tag]
+    sort = version:refname
+
 [color]
     branch = auto
     diff = auto
     status = auto
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+	current = green bold
+	local = yellow bold
+	remote = red bold
+    upstream = blue bold
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
+    frag = cyan bold
+	meta = magenta bold
+    new = green bold
 	old = red bold
-	new = green bold
 	whitespace = red reverse
 [color "status"]
 	added = green bold
+    branch = green bold
 	changed = yellow bold
+    unmerged = magenta
 	untracked = red bold
+
 [alias]
     # basic
-    br = branch
     cl = clone
-    co = checkout
+    co = checkout -b
     st = status -s
-    #st = status -sb
 
-    # config
-    cl = config --list
-    cu = config --unset
-    gl = config --global -l
+    # author
+    ua = "!git log --all --raw | grep "^Author: " | sort | uniq -c"
+
+    # branch
+    br = branch
+    bra = branch --all
 
     # commit
     ci = commit
     cm = commit -m
 
+    # config
+    cla = "!git config --list | grep alias | cut -c 7-"
+    cli = config --list
+    cls = config --list --show-origin
+    clu = "!git config --list --show-origin | grep user"
+
+    # garbage collection
+    gcna = gc --prune=now --aggressive
+
     # log
-    last = log -1 HEAD --stat
-    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an,c:%cn]" --decorate --numstat
-    #ll = log --oneline
-    #lla = log --pretty=format:"%h%x09%an%x09%s"
+    lg = log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I:%S' --pretty=format:'%C(03)%>|(15)%h%C(reset) %C(04)%ad%C(reset) %C(green)%<(16,trunc)%an%C(reset) %C(auto)%d%C(reset) %C(bold 0)%>|(1)%s%C(reset)'
+    lga = log --all --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I:%S' --pretty=format:'%C(03)%>|(15)%h%C(reset) %C(04)%ad%C(reset) %C(green)%<(16,trunc)%an%C(reset) %C(auto)%d%C(reset) %C(bold 0)%>|(1)%s%C(reset)'
+    lgo = log --graph --oneline --decorate
+    lo = log --oneline --decorate
 
     # remote
+    rs = remote show
     rv = remote -v
 
     # reset
@@ -59,5 +121,8 @@
     rh1 = reset HEAD^ --hard
     rh2 = reset HEAD^^ --hard
 
-    # list all aliases
-    la = "!git config -l | grep alias | cut -c 7-"
+    # rev-list
+    rlcm = rev-list --count main
+
+    # zip
+    zip = "!git archive --format=zip HEAD ':!*.gitignore' -o ${PWD##*/}.zip"

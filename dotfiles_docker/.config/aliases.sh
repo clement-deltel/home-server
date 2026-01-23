@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ---------------------------------------------------------------------------- #
-#               ------- Common --------                                        #
+#               ------- Common --------
 # ---------------------------------------------------------------------------- #
 alias c='clear'
 alias cls='clear'
@@ -12,14 +12,20 @@ alias t='time'
 # cd
 alias home='cd ~'
 alias ..='cd ..'
-alias ...='cd ..; cd ..'
-alias ....='cd ..; cd ..; cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias 2..='cd ../..'
+alias 3..='cd ../../..'
+alias 4..='cd ../../../..'
+alias 5..='cd ../../../../..'
 
 # cp
 alias cp='cp -i'
 
 # du
-alias du-sort='du -sh * | sort -h'
+alias dus='du -sh * | sort -h'
 
 # env
 alias env='clear && env | sort'
@@ -47,7 +53,15 @@ alias tree='tree -Csu'
 alias vimo='vim -o'
 
 # ---------------------------------------------------------------------------- #
-#               ------- ls --------                                            #
+#               ------- bat - cat --------
+# ---------------------------------------------------------------------------- #
+alias bat='batcat'
+alias cat='batcat --paging=never'
+
+alias release='cat /etc/*-release'
+
+# ---------------------------------------------------------------------------- #
+#               ------- ls --------
 # ---------------------------------------------------------------------------- #
 
 # colorls
@@ -73,8 +87,11 @@ alias lk='ls -lSr'
 alias lx='ls -lXB'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Typos --------                                         #
+#               ------- Typos --------
 # ---------------------------------------------------------------------------- #
+alias ,,='cd ..'
+alias ..l='cd .. && ls'
+alias cd..='cd ..'
 alias :q='exit'
 
 # ---------------------------------------------------------------------------- #
@@ -82,96 +99,6 @@ alias :q='exit'
 # ---------------------------------------------------------------------------- #
 alias root='sudo su -'
 alias doc='sudo su - docker'
-
-# ---------------------------------------------------------------------------- #
-#               ------- Server - Directories --------                          #
-# ---------------------------------------------------------------------------- #
-alias {cd,d,svr}home='cd ${SERVER_HOME}'
-alias svr='cd ${SERVER_HOME}'
-
-alias cdsvc='cd ${SERVER_HOME}/services'
-alias svc='cd ${SERVER_HOME}/services'
-
-alias scr='cd ${SERVER_HOME}/scripts'
-alias loghome='cd {SERVER_HOME}/logs'
-
-# ---------------------------------------------------------------------------- #
-#               ------- Server - Services --------                             #
-# ---------------------------------------------------------------------------- #
-alias {cd,svc}llm='cd ${SERVER_HOME}/services/ai/litellm'
-alias {cd,svc}oll='cd ${SERVER_HOME}/services/ai/ollama'
-alias {cd,svc}owu='cd ${SERVER_HOME}/services/ai/open-webui'
-alias {cd,svc}n8n='cd ${SERVER_HOME}/services/automation/n8n'
-alias {cd,svc}hoa='cd ${SERVER_HOME}/services/dashboard/homarr'
-alias {cd,svc}hoe='cd ${SERVER_HOME}/services/dashboard/homer'
-alias {cd,svc}pih='cd ${SERVER_HOME}/services/dns/pihole'
-alias {cd,svc}unb='cd ${SERVER_HOME}/services/dns/unbound'
-alias {cd,svc}act='cd ${SERVER_HOME}/services/finances/actual'
-alias {cd,svc}wal='cd ${SERVER_HOME}/services/finances/wallos'
-alias {cd,svc}ha='cd ${SERVER_HOME}/services/home/home-assistant'
-alias {cd,svc}up='cd ${SERVER_HOME}/services/home/upsnap'
-alias {cd,svc}gro='cd ${SERVER_HOME}/services/inventory/grocy'
-alias {cd,svc}hob='cd ${SERVER_HOME}/services/inventory/homebox'
-alias {cd,svc}hor='cd ${SERVER_HOME}/services/inventory/hortusfox'
-alias {cd,svc}byt='cd ${SERVER_HOME}/services/management/code/bytestash'
-alias {cd,svc}git='cd ${SERVER_HOME}/services/management/code/gitlab'
-alias {cd,svc}itt='cd ${SERVER_HOME}/services/management/code/it-tools'
-alias {cd,svc}wak='cd ${SERVER_HOME}/services/management/code/wakapi'
-alias {cd,svc}vau='cd ${SERVER_HOME}/services/management/passwords/vaultwarden'
-alias {cd,svc}gok='cd ${SERVER_HOME}/services/media/sharing/gokapi'
-alias {cd,svc}kar='cd ${SERVER_HOME}/services/media/storage/bookmarks/karakeep'
-alias {cd,svc}kav='cd ${SERVER_HOME}/services/media/storage/books/kavita'
-alias {cd,svc}lib='cd ${SERVER_HOME}/services/media/storage/books/librum'
-alias {cd,svc}nex='cd ${SERVER_HOME}/services/media/storage/documents/nextcloud'
-alias {cd,svc}pap='cd ${SERVER_HOME}/services/media/storage/documents/paperless'
-alias {cd,svc}nav='cd ${SERVER_HOME}/services/media/storage/music/navidrome'
-alias {cd,svc}imm='cd ${SERVER_HOME}/services/media/storage/pictures/immich'
-alias {cd,svc}mem='cd ${SERVER_HOME}/services/media/storage/pictures/meme-search'
-alias {cd,svc}phot='cd ${SERVER_HOME}/services/media/storage/pictures/photoprism'
-alias {cd,svc}pin='cd ${SERVER_HOME}/services/media/storage/pictures/pinry'
-alias {cd,svc}jel='cd ${SERVER_HOME}/services/media/storage/videos/jellyfin'
-alias {cd,svc}con='cd ${SERVER_HOME}/services/media/tools/convertx'
-alias {cd,svc}det='cd ${SERVER_HOME}/services/monitoring/detection'
-alias {cd,svc}gra='cd ${SERVER_HOME}/services/monitoring/grafana'
-alias {cd,svc}jet='cd ${SERVER_HOME}/services/monitoring/jetlog'
-alias {cd,svc}ntf='cd ${SERVER_HOME}/services/monitoring/ntfy'
-alias {cd,svc}pro='cd ${SERVER_HOME}/services/monitoring/prometheus'
-alias {cd,svc}scr='cd ${SERVER_HOME}/services/monitoring/scrutiny'
-alias {cd,svc}fre='cd ${SERVER_HOME}/services/news/freshrss'
-alias {cd,svc}doc='cd ${SERVER_HOME}/services/pdf/docuseal'
-alias {cd,svc}sti='cd ${SERVER_HOME}/services/pdf/stirling-pdf'
-alias {cd,svc}aff='cd ${SERVER_HOME}/services/pkms/affine'
-alias {cd,svc}mat='cd ${SERVER_HOME}/services/pkms/mathesar'
-alias {cd,svc}obs='cd ${SERVER_HOME}/services/pkms/obsidian'
-alias {cd,svc}siy='cd ${SERVER_HOME}/services/pkms/siyuan'
-alias {cd,svc}gua='cd ${SERVER_HOME}/services/remote/guacamole'
-alias {cd,svc}rus='cd ${SERVER_HOME}/services/remote/rustdesk'
-alias {cd,svc}wge='cd ${SERVER_HOME}/services/remote/wg-easy'
-alias {cd,svc}wir='cd ${SERVER_HOME}/services/remote/wireguard'
-alias {cd,svc}sea='cd ${SERVER_HOME}/services/search/searngx'
-alias {cd,svc}enc='cd ${SERVER_HOME}/services/security/enclosed'
-alias {cd,svc}waz='cd ${SERVER_HOME}/services/security/wazuh'
-alias {cd,svc}adv='cd ${SERVER_HOME}/services/travel/adventurelog'
-
-alias {cd,svc}dir='cd ${SERVER_HOME}/services/directus'
-alias {cd,svc}kop='cd ${SERVER_HOME}/services/kopia'
-alias {cd,svc}lim='cd ${SERVER_HOME}/services/limesurvey'
-alias {cd,svc}min='cd ${SERVER_HOME}/services/minecraft'
-alias {cd,svc}phon='cd ${SERVER_HOME}/services/phoneinfoga'
-alias {cd,svc}tra='cd ${SERVER_HOME}/services/traefik'
-alias {cd,svc}wis='cd ${SERVER_HOME}/services/wishlist'
-
-# ---------------------------------------------------------------------------- #
-#               ------- Server - Scripts --------                              #
-# ---------------------------------------------------------------------------- #
-alias scrall='cd ${SERVER_HOME}/scripts/all'
-alias scrbck='cd ${SERVER_HOME}/scripts/backup'
-alias scrres='cd ${SERVER_HOME}/scripts/restore'
-
-# ---------------------------------------------------------------------------- #
-#               ------- Ansible --------                                       #
-# ---------------------------------------------------------------------------- #
-alias af='ansible localhost -m ansible.builtin.setup'
 
 # ---------------------------------------------------------------------------- #
 #               ------- Bitwarden CLI ------                                   #
@@ -201,7 +128,7 @@ alias dirmd=docker-image-rm-dangling-fn
 alias dl=docker-logs-fn
 alias dnames=docker-names-fn
 alias dnrm=docker-network-rm-fn
-alias dpsf='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
+alias dpsf='docker ps -a --format "table {{ "{{" }}.ID{{ "}}" }}\t{{ "{{" }}.Image{{ "}}" }}\t{{ "{{" }}.Names{{ "}}" }}\t{{ "{{" }}.Status{{ "}}" }}"'
 alias dpu=docker-pull-fn
 alias drun=docker-run-fn
 alias dsdf='docker system df -v'
@@ -216,6 +143,8 @@ alias dnls='docker network ls'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias dvls='docker volume ls'
+
+alias lzd='lazydocker'
 
 # ---------------------------------------------------------------------------- #
 #               ------- Docker Compose ------                                  #

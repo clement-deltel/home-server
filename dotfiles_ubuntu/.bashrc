@@ -129,123 +129,34 @@ set -o notify       # Alerts the user upon background job termination
 set -o vi           # Set vi mode for shell
 
 # User specific environment and startup programs
+export USER=$(whoami)
 export HOME=/home/${USER}
-export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
 
 # ---------------------------------------------------------------------------- #
-#               ------- Functions ------                                       #
+#               ------- Ansible ------
 # ---------------------------------------------------------------------------- #
-
-# Print only column x of output
-function col {
-  awk -v col="$1" '{print $col}'
+function ansible-update {
+  ansible-playbook --become --connection local --inventory "localhost," --tags update ~/ansible/linux.yml
+  ansible-playbook --become --connection local --inventory "localhost," --tags clean ~/ansible/linux.yml
 }
 
-# Add extension $1 to all files without any extension in the current directory
-function add-ext { find . -type f -not -name "*.*" -exec mv "{}" "{}"."$1" \;; }
-
-# Create $2 copies of file $1
-function cp-n { EXT="${1##*.}"; FILENAME="${1%.*}"; for i in $(seq 1 "$2"); do cp "$1" "${FILENAME}${i}.${EXT}"; done; }
-
-# Execute $@ command in all the subdirectories
-function exec-sub { find . -maxdepth 1 -mindepth 1 -type d -execdir echo {} \; -execdir $@ {} \; -execdir echo \;; }
-
-# Make directory $1 and then cd inside
-function mkcd { mkdir "$1"; cd "$1" || return; }
-
-# Base64 decoding
-function dec { echo "$1" | base64 --decode; }
-
-# Host Info
-
-# IP adresses
-function my-ip(){
-    MY_IP=$(/sbin/ifconfig enp0s3 | awk '/inet/ { print $2 } ' | sed -e s/addr://)
-}
-
-# Full summary
-function ii() {
-    echo -e "\nYou are logged on ${RED}$(hostname)"
-    echo -e "\nAdditionnal information:$NC " ; uname -a
-    echo -e "\n${RED}Users logged on:$NC " ; w -h
-    echo -e "\n${RED}Current date :$NC " ; date
-    echo -e "\n${RED}Machine stats :$NC " ; uptime
-    echo -e "\n${RED}Memory stats :$NC " ; free
-    my-ip 2>&- ;
-    echo -e "\n${RED}Local IP Address :$NC" ; echo "${MY_IP:-"Not connected"}"
-    echo
-}
-
-# Online cheatsheet
-function cheatsheet { curl cheat.sh/"$1"; }
+alias af='ansible localhost -m ansible.builtin.setup'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Aliases --------                                       #
+#               ------- Homebrew --------
 # ---------------------------------------------------------------------------- #
+export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Global
-alias c='clear'
-alias cls='clear'
-alias d='date'
-alias k='kill'
-alias q='exit'
-alias t='time'
+# ---------------------------------------------------------------------------- #
+#               ------- Environment ------
+# ---------------------------------------------------------------------------- #
+export PATH=${HOME}/.local/bin:${HOME}/bin:${PATH}
 
-# bashrc
-alias vib='vi ~/.bashrc'
-alias srb='source ~/.bashrc'
-alias cab='cat ~/.bashrc'
+export EDITOR='vim'
 
-# cd
-alias home='cd ~'
-alias ..='cd ..'
-alias ...='cd ..; cd ..'
-alias ....='cd ..; cd ..; cd ..'
-
-# cp
-alias cp='cp -i'
-
-# du
-alias du-sort='du -sh * | sort -h'
-
-# env
-alias env='clear && env | sort'
-
-# grep
-alias grep='grep --color=auto'
-
-# history
-alias h='clear && history | tail -50'
-
-# ls
-alias ll='ls -l --color=auto'
-alias la='ls -Al --color=auto'
-alias lah='ls -Ahl --color=auto'
-alias lk='ls -lSr'          # sort by size
-alias lr='ls -lR'           # recursive ls
-alias ltr='ls -ltr'         # sort by date
-alias lx='ls -lXB'          # sort by extension
-
-# lsof - List open ports
-alias lsop='lsof -i -n -P | grep LISTEN'
-
-# mv
-alias mv='mv -i'
-
-# rm
-alias rm='rm -i'
-
-# su
+# ---------------------------------------------------------------------------- #
+#               ------- Aliases - Users --------                               #
+# ---------------------------------------------------------------------------- #
 alias root='sudo su -'
 alias doc='sudo su - docker'
-
-# tree
-alias tree='tree -Csu'		# nice alternative to 'ls'
-
-# vim
-alias vimo='vim -o '
-
-# ---------------------------------------------------------------------------- #
-#               ------- Aliases - Typos --------                               #
-# ---------------------------------------------------------------------------- #
-alias :q='exit'

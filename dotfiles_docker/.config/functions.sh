@@ -11,7 +11,11 @@ function add-ext { find . -type f -not -name "*.*" -exec mv "{}" "{}"."$1" \;; }
 function col { awk -v col="$1" "{print $col}"; }
 
 # Create $2 copies of file $1
-function cp-n { EXT="${1##*.}"; FILENAME="${1%.*}"; for i in $(seq 1 "$2"); do cp "$1" "${FILENAME}${i}.${EXT}"; done; }
+function cp-n {
+  EXT="${1##*.}"
+  FILENAME="${1%.*}"
+  for i in $(seq 1 "$2"); do cp "$1" "${FILENAME}${i}.${EXT}"; done
+}
 
 # Base64 decoding
 function dec { echo "$1" | base64 --decode; }
@@ -23,33 +27,52 @@ function exec-sub { find . -maxdepth 1 -mindepth 1 -type d -execdir echo {} \; -
 function lsdp { find . -maxdepth "$1" -ls -path "./.git*" -prune; }
 
 # Make directory $1 and then cd inside
-function mkcd { mkdir "$1"; cd "$1" || return; }
+function mkcd {
+  mkdir -p "$1"
+  cd "$1" || return
+}
+
+# Replace separator in CSV file from ';' to ','
+function sep { find . -name '*.csv' -exec sed -i 's/;/,/g' {} \;; }
 
 # Tail with continuous monitoring of a given file with syntax highlighting
 function tailc { tail -f "$1" | batcat -l log --paging=never; }
 
 # Host Info
 
-# IP adresses
+# IP addresses
 function my-ip {
   MY_IP=$(/sbin/ifconfig enp8s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
 }
 
 # Full summary
 function ii {
+  RED='\e[31m'
+  NC='\e[39m'
   echo -e "\nYou are logged on ${RED}$(hostname)"
-  echo -e "\nAdditionnal information:$NC" ; uname -a
-  echo -e "\n${RED}Users logged on:$NC" ; w -h
-  echo -e "\n${RED}Current date:$NC" ; date
-  echo -e "\n${RED}Machine stats:$NC" ; uptime
-  echo -e "\n${RED}Memory stats:$NC" ; free
-  my-ip 2>&- ;
-  echo -e "\n${RED}Local IP Address:$NC" ; echo "${MY_IP:-"Not connected"}"
+  echo -e "\nAdditional information:$NC"
+  uname -a
+  echo -e "\n${RED}Users logged on:$NC"
+  w -h
+  echo -e "\n${RED}Current date:$NC"
+  date
+  echo -e "\n${RED}Machine stats:$NC"
+  uptime
+  echo -e "\n${RED}Memory stats:$NC"
+  free
+  my-ip 2>&-
+  echo -e "\n${RED}Local IP Address:$NC"
+  echo "${MY_IP:-"Not connected"}"
+  echo -e "\n${RED}Public IP Address:$NC"
+  echo "$(curl -s ifconfig.me)"
   echo
 }
 
 # Online cheatsheet
 function cheatsheet { curl cheat.sh/"$1"; }
+
+# Weather
+function weather { curl wttr.in/"$1"; }
 
 # ---------------------------------------------------------------------------- #
 #               ------- Server - Environment ------                            #
@@ -66,8 +89,10 @@ function bw-env { load-env ${SERVER_HOME}/env/services.env; bitwarden-load-env-f
 #               ------- Bitwarden CLI ------                                   #
 # ---------------------------------------------------------------------------- #
 function bitwarden-create-session-fn {
+  echo 'Syncing with Bitwarden vault...'
+  bw sync
   # Prompt for the Bitwarden password securely
-  echo -n 'Enter your Bitwarden password: '
+  echo -n 'Enter your password: '
   read -s BW_PASSWORD
   echo
   export BW_PASSWORD

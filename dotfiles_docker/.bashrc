@@ -135,16 +135,30 @@ export HOME=/home/${USER}
 # ---------------------------------------------------------------------------- #
 #               ------- Environment --------                                   #
 # ---------------------------------------------------------------------------- #
-export PATH=${PATH}:${HOME}/.local/bin:${HOME}/bin
+export PATH=${HOME}/.local/bin:${HOME}/bin:${PATH}
 
-# IP
-export PUBLIC_IP=$(curl -s https://ipinfo.io/ip)
+export EDITOR='vim'
 
-# Server
+# Bat
+export BAT_THEME="Visual Studio Dark+"
+
+# fzf
+export FZF_BASE=/home/linuxbrew/.linuxbrew/bin/fzf
+export FZF_DEFAULT_COMMAND='fzf'
+
+DISABLE_FZF_AUTO_COMPLETION="false"
+DISABLE_FZF_KEY_BINDINGS="false"
+
+# Zoxide
+eval "$(zoxide init zsh --cmd cd)"
+
+# ---------------------------------------------------------------------------- #
+#               ------- Server --------                                        #
+# ---------------------------------------------------------------------------- #
 export SERVER_HOME=/opt/home-server
 
-# Scripts
-export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${SERVER_HOME}/scripts/restore
+export PUBLIC_IP=$(curl -s https://ipinfo.io/ip)
+export PATH=${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${SERVER_HOME}/scripts/restore:${PATH}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Personal Aliases & Functions --------                  #
@@ -152,6 +166,7 @@ export PATH=${PATH}:${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${S
 function source_if_exists (){ if test -r "$1"; then source "$1"; fi; }
 
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/aliases.sh
+source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/completions.sh
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/functions.sh
 
 set-env
