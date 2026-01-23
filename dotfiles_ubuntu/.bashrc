@@ -172,6 +172,8 @@ export FZF_DEFAULT_COMMAND='fzf'
 DISABLE_FZF_AUTO_COMPLETION="false"
 DISABLE_FZF_KEY_BINDINGS="false"
 
+eval "$(fzf --bash)"
+
 # Zoxide
 eval "$(zoxide init bash --cmd cd)"
 
@@ -214,3 +216,10 @@ alias lx='ls -lXB'
 # ---------------------------------------------------------------------------- #
 alias root='sudo su -'
 alias doc='sudo su - docker'
+
+# ---------------------------------------------------------------------------- #
+#               ------- Bash --------                                          #
+# ---------------------------------------------------------------------------- #
+alias vib='vi ~/.bashrc'
+alias srb='source ~/.bashrc'
+alias cab='cat ~/.bashrc'
