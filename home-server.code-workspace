@@ -46,7 +46,12 @@
         "files.trimTrailingWhitespace": true,
         // Extension - Code Spell Checker
         "cSpell.words": [
+            "dawarich",
+            "gping",
+            "lnav",
             "pastebin",
+            "procs",
+            "sidekiq",
             "strava",
             "umami"
         ],

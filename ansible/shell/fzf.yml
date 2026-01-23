@@ -1,0 +1,28 @@
+- name: Fzf
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  # Completions & Key Bindings
+  - name: Completions & Key Bindings
+    become: true
+    tags: [init, update]
+    block:
+
+    - name: Create /usr/share/doc/fzf/examples directory
+      ansible.builtin.file:
+        path: /usr/share/doc/fzf/examples
+        state: directory
+        mode: 0755
+
+    - name: Download completion and key-bindings
+      ansible.builtin.uri:
+        method: GET
+        url: "https://raw.githubusercontent.com/junegunn/fzf/refs/heads/master/shell/{{ item }}"
+        dest: "/usr/share/doc/fzf/examples/{{ item }}"
+        follow_redirects: safe
+      loop:
+      - completion.bash
+      - completion.zsh
+      - key-bindings.bash
+      - key-bindings.zsh

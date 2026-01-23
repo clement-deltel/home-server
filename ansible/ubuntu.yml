@@ -7,10 +7,18 @@
   import_playbook: tasks/profile.yml
 
 # Packages
-- name: APT - Essentials tools
+- name: APT
   import_playbook: packages/apt.yml
 - name: Homebrew
   import_playbook: packages/homebrew.yml
+
+# Shell
+- name: Eza
+  import_playbook: shell/eza.yml
+- name: Fzf
+  import_playbook: shell/fzf.yml
+- name: Zoxide
+  import_playbook: shell/zoxide.yml
 
 # Languages
 - name: Python

@@ -1,94 +1,38 @@
 - name: APT
   hosts: all
   gather_facts: false
-  vars:
-    packages:
-      - apache2-utils # htpasswd utility
-      - argon2 # token generation for Vaultwarden admin interface
-      - build-essential
-      - curl
-      - git # gold standard version control system
-      - gnupg
-      - htop # resources monitoring
-      - lightdm # RustDesk remote access pre-requisite
-      - lm-sensors # tool to monitor sensors temperature
-      - lsb-release
-      - lynis
-      - mariadb-client-10.6 # execute MariaDB backups for multiple services
-      - mariadb-client-core-10.6
-      - net-tools
-      - nvme-cli # allows to monitor NVMe SSDs additionally to smartmontools
-      - openssl
-      - postgresql-client-common # execute PostgreSQL backups for multiple services
-      - postgresql-client-14
-      - postgresql-client-15
-      - pwgen # random password generator
-      - smartmontools # tools based on SMART "technology", protocol for monitoring the status of hard drives
-      - software-properties-common
-      - vim # text editor of choice
-      - wireguard # VPN
-      - xserver-xorg-video-dummy # RustDesk remote access pre-requisite
-      - zip
+  vars_files:
+    - ../vars/main.yml
 
   tasks:
-  # Repository
-  - name: Repository
+  # Repositories
+  - name: Repositories
     tags: init
     block:
 
+    # PostgreSQL
     # wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
-    - name: Download apt key
-      ansible.builtin.uri:
-        method: GET
-        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-        dest: /etc/apt/trusted.gpg.d/pgdg.asc
-        follow_redirects: safe
-        mode: 0644
-
     # echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/pgdg.asc] http://apt.postgresql.org/pub/repos/apt $(lsb\_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list > /dev/null
-    - name: Add apt repository
-      ansible.builtin.apt_repository:
-        repo: deb [arch={{ deb_architecture[ansible_architecture] }} signed-by=/etc/apt/trusted.gpg.d/pgdg.asc] http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main
+    - name: Repository
+      tags: init
+      ansible.builtin.include_tasks:
+        file: ../tasks/repository.yml
+      vars:
+        key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        key_output: /etc/apt/keyrings/pgdg.asc
+        repository: "deb [arch={{ deb_architecture[ansible_architecture] }} signed-by=/etc/apt/keyrings/pgdg.asc] http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
 
   # Packages
   - name: Packages
-    block:
-
-    # sudo apt update -y
-    - name: Update cache
-      tags: [init, update]
-      ansible.builtin.apt:
-        update_cache: true
-
-    - name: List packages
-      tags: [init, update]
-      ansible.builtin.debug:
-        msg: "packages: {{ packages }}"
-
-    # sudo apt install -y
-    - name: Install packages
-      tags: init
-      ansible.builtin.apt:
-        name: "{{ packages }}"
-        state: present
-
-    # sudo apt remove -y
-    # - name: Remove packages
-    #   tags: init
-    #   ansible.builtin.apt:
-    #     name:
-    #       -
-    #     state: absent
-
-    # sudo apt upgrade -y
-    - name: Upgrade packages
-      tags: update
-      ansible.builtin.apt:
-        name: "{{ packages }}"
-        state: latest
+    tags: [init, update]
+    ansible.builtin.include_tasks:
+      file: ../tasks/packages.yml
+    vars:
+      package_list: "{{ apt_packages }}"
 
   # Cleaning
   - name: Cleaning
+    become: true
     tags: clean
     block:
 

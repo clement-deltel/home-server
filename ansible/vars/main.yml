@@ -1,12 +1,96 @@
-# General
-docker_gid: 1001
-docker_uid: 1001
+# ---------------------------------------------------------------------------- #
+#               ------- General ------
+# ---------------------------------------------------------------------------- #
 local_domain: false
 
-# Ansible
+# ---------------------------------------------------------------------------- #
+#               ------- Ansible ------
+# ---------------------------------------------------------------------------- #
 deb_architecture: { "armv6l": "armhf", "armv7l": "armhf", "aarch64": "arm64", "x86_64": "amd64", "i386": "i386" }
 
-# Docker networks
+# ---------------------------------------------------------------------------- #
+#               ------- APT ------
+# ---------------------------------------------------------------------------- #
+apt_packages:
+# Databases
+- mariadb-client-10.6        # execute MariaDB backups for multiple services
+- mariadb-client-core-10.6
+- postgresql-client-common   # execute PostgreSQL backups for multiple services
+- postgresql-client-14
+- postgresql-client-15
+# Hardware Utilities
+- lm-sensors                 # tool to monitor sensors temperature
+- nvme-cli                   # monitor NVMe SSDs additionally to smartmontools
+- smartmontools              # protocol SMART "technology" for monitoring the status of hard drives
+# Modern Replacements
+- bat
+- ripgrep
+# Monitoring
+- htop # resources monitoring
+# Network
+- ethtool
+- mtr
+- net-tools                  # networking toolkit
+# Remote Access
+- lightdm                    # RustDesk remote access pre-requisite
+- wireguard                  # VPN
+- xserver-xorg-video-dummy   # RustDesk remote access pre-requisite
+# Search
+- jq
+# Security
+- argon2                     # token generation for Vaultwarden admin interface
+- gnupg                      # GNU privacy guard
+- openssl
+# Software Development
+- build-essential            # informational list of build-essential packages
+# Version Control System (VCS)
+- git
+# Other
+- lsb-release
+- lynis
+- pwgen                      # random password generator
+- vim                        # text editor of choice
+# Dependencies
+- apache2-utils              # htpasswd utility
+- curl                       # command line tool for transferring data with URL syntax
+- software-properties-common # manage the repositories that you install software from
+- unzip                      # de-archiver for .zip files
+- zip                        # archiver for .zip files
+
+# ---------------------------------------------------------------------------- #
+#               ------- Bitwarden ------
+# ---------------------------------------------------------------------------- #
+bitwarden_dependencies:
+- curl          # command line tool for transferring data with URL syntax
+- jq
+- libsecret-1-0 # secret store
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker ------
+# ---------------------------------------------------------------------------- #
+docker_gid: 1001
+docker_uid: 1001
+
+docker_dependencies:
+- ca-certificates # common CA certificates
+- curl            # command line tool for transferring data with URL syntax
+- gnupg           # GNU privacy guard
+docker_packages:
+- docker-ce
+- docker-ce-cli
+- containerd.io
+- docker-buildx-plugin
+- docker-compose-plugin
+docker_formulas:
+- dive
+- goodwithtech/r/dockle
+- grype
+- lazydocker
+- trivy
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Networks ------
+# ---------------------------------------------------------------------------- #
 traefik_net: 192.168.10.0/24
 traefik_gateway: 192.168.10.1
 dns_net: 192.168.30.0/24
@@ -16,7 +100,46 @@ monitoring_gateway: 192.168.40.1
 ai_net: 192.168.210.0/24
 ai_gateway: 192.168.210.1
 
-# Services
+# ---------------------------------------------------------------------------- #
+#               ------- Eza ------
+# ---------------------------------------------------------------------------- #
+eza_dependencies:
+- gpg # GNU privacy guard
+eza_packages:
+- eza
+
+# ---------------------------------------------------------------------------- #
+#               ------- Homebrew ------
+# ---------------------------------------------------------------------------- #
+homebrew_dependencies:
+- build-essential  # informational list of build-essential packages
+- curl             # command line tool for transferring data with URL syntax
+- git
+- language-pack-en # translation updates for language English
+- locales          # GNU C Library: National Language (locale) data
+homebrew_install_url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+
+homebrew_formulas:
+# Log Analysis
+- gonzo
+- lnav
+# Modern Replacements
+- dua-cli
+- procs
+# Monitoring
+- btop
+- fastfetch
+- gping
+# Search
+- fzf
+- grex
+# Other
+- tlrc
+- yq
+
+# ---------------------------------------------------------------------------- #
+#               ------- Services ------
+# ---------------------------------------------------------------------------- #
 actual_enable: true
 adventurelog_enable: true
 affine_enable: true
@@ -79,3 +202,8 @@ meme_search_enable: false
 nextcloud_enable: false
 photoprism_enable: false
 wireguard_enable: false
+
+# ---------------------------------------------------------------------------- #
+#               ------- Zoxide ------
+# ---------------------------------------------------------------------------- #
+zoxide_install_url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh

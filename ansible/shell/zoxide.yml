@@ -1,0 +1,25 @@
+- name: Zoxide
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+  # Installation
+  # curl -fsSL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  - name: Installation
+    tags: [init, update]
+    ansible.builtin.include_tasks:
+      file: ../tasks/script.yml
+    vars:
+      root: true
+      url: "{{ zoxide_install_url }}"
+      cmd: /bin/sh -c /tmp/install.sh
+
+  # Version
+  - name: Version
+    tags: [init, update]
+    ansible.builtin.include_tasks:
+      file: ../tasks/version.yml
+    vars:
+      cmd: ~/.local/bin/zoxide --version
