@@ -1,0 +1,171 @@
+# https://github.com/Freika/dawarich
+services:
+  db:
+    container_name: dawarich-db
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DAWARICH_DB_USER}}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: dawarich-db
+    image: ${DAWARICH_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${DAWARICH_DB_IP}
+    restart: unless-stopped
+    shm_size: 1G
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+      - ./shared-persistence:/var/shared
+
+  redis:
+    command: redis-server
+    container_name: dawarich-redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: dawarich-redis
+    image: ${DAWARICH_REDIS_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      app-net:
+        ipv4_address: ${DAWARICH_REDIS_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./shared-persistence:/data
+
+  sidekiq:
+    command: ["sidekiq"]
+    container_name: dawarich-sidekiq
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      redis:
+        condition: service_healthy
+        restart: true
+      dawarich:
+        condition: service_healthy
+        restart: true
+    entrypoint: sidekiq-entrypoint.sh
+    env_file: config/.env
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f sidekiq"]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    hostname: dawarich-sidekiq
+    image: ${DAWARICH_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      app-net:
+        ipv4_address: ${DAWARICH_SIDEKIQ_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence/public:/var/app/public
+      - ./persistence/storage:/var/app/storage
+      - ./persistence/watched:/var/app/tmp/imports/watched
+
+  dawarich:
+    command: ["bin/rails", "server", "-p", "3000", "-b", "::"]
+    container_name: dawarich
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      redis:
+        condition: service_healthy
+        restart: true
+    deploy:
+      resources:
+        limits:
+          cpus: ${DAWARICH_CPU_LIMIT:-0.50}
+          memory: ${DAWARICH_MEMORY_LIMIT:-4G}
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    entrypoint: web-entrypoint.sh
+    env_file: config/.env
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'",
+        ]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    hostname: dawarich
+    image: ${DAWARICH_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.dawarich.entrypoints=web,websecure"
+      - "traefik.http.routers.dawarich.rule=Host(`map.${DOMAIN}`)"
+      - "traefik.http.routers.dawarich.tls=true"
+      # - "traefik.http.routers.dawarich.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.dawarich.tls.domains[0].main=map.${DOMAIN}"
+      - "traefik.http.routers.dawarich.service=dawarich"
+      # Services
+      - "traefik.http.services.dawarich.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${DAWARICH_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${DAWARICH_IP}
+    ports:
+      - 3000
+      # - "${PROMETHEUS_PORT:-9394}:9394" # Prometheus exporter, uncomment if needed
+    # stdin_open: true
+    # tty: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/dawarich_db_data
+      - ./persistence/public:/var/app/public
+      - ./persistence/storage:/var/app/storage
+      - ./persistence/watched:/var/app/tmp/imports/watched
+
+networks:
+  app-net:
+    name: dawarich-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${DAWARICH_NET}
+          gateway: ${DAWARICH_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net

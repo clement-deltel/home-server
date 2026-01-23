@@ -353,8 +353,10 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Grocy](https://grocy.info) - groceries & household management solution for your home. Deployed on `https://grocy.${DOMAIN}`. Source code available [here](https://github.com/grocy/grocy). `Blade` `TypeScript` `PHP`
   - [HortusFox](https://hortusfox.github.io) - collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
   - [Homebox](https://homebox.software/en) - inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox). `Go` `Vue` `TypeScript`
+  - [Mealie](https://docs.mealie.io) - recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. Deployed on `https://recipes.${DOMAIN}`. Source code available [here](https://github.com/mealie-recipes/mealie). `Python` `Vue` `TypeScript`
 - **Travel**
   - [AdventureLog](https://adventurelog.app) - travel tracker and trip planner. Deployed on `https://travel.${DOMAIN}`. Source code available [here](https://github.com/seanmorley15/AdventureLog). `Svelte` `Python`
+  - [Dawarich](https://dawarich.app) - alternative to Google location history (Google Maps timeline). Source code available [here](https://github.com/Freika/dawarich). `Ruby` `JavaScript`
   - [Jetlog](https://github.com/pbogre/jetlog) - personal flight tracker and viewer. Deployed on `https://fly.${DOMAIN}`. Source code available [here](https://github.com/pbogre/jetlog). `TypeScript` `Python`
 - **PDF Tools**
   - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal). `Ruby` `Vue` `JavaScript`
@@ -594,13 +596,16 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Cents per Point](https://github.com/ayostepht/Cents-Per-Point) - track credit card point redemptions and calculate Cents Per Point (CPP) values to optimize your rewards strategy. Source code available [here](https://github.com/ayostepht/Cents-Per-Point). `JavaScript`
   - [DollarDollar](https://ddby.finforward.xyz/dashboard) - expense splitting. Source code available [here](https://github.com/harung1993/dollardollar). `JavaScript` `Python`
   - [Firefly III](https://firefly-iii.org) - personal finances manager. Source code available [here](https://github.com/firefly-iii/firefly-iii). `PHP` `JavaScript`
+  - [Ghostfolio](https://ghostfol.io/en/start) - wealth management software. Source code available [here](https://github.com/ghostfolio/ghostfolio). `TypeScript`
   - [Investbrain](https://investbra.in) - investment tracker that consolidates and monitors market performance across your different brokerages. Source code available [here](https://github.com/investbrainapp/investbrain). `PHP`
   - [Invoice Ninja](https://invoiceninja.com) - invoice, quote, project and time-tracking app. Source code available [here](https://github.com/invoiceninja/invoiceninja). `PHP`
   - [Maybe](https://github.com/maybe-finance/maybe) - OS for your personal finances. Source code available [here](https://github.com/maybe-finance/maybe). `Ruby`
   - [Monetr](https://monetr.app) - budgeting application focused on planning for recurring expenses. Source code available [here](https://github.com/monetr/monetr). `Go` `TypeScript`
+  - [OpenBB](https://openbb.co) - financial data platform for analysts, quants and AI agents. Source code available [here](https://github.com/OpenBB-finance/OpenBB). `Python`
   - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. Source code available [here](https://github.com/dh1011/subscription-manager). `JavaScript` `Python`
   - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. Source code available [here](https://github.com/meceware/wapy.dev). `JavaScript`
 - **Games**
+  - [Paper](https://papermc.io/software/paper) - high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies. Source code available [here](https://github.com/PaperMC/Paper). `Java`
   - [Sunshine](https://app.lizardbyte.dev/Sunshine/?lng=en) - game stream host for Moonlight. Source code available [here](https://github.com/LizardByte/Sunshine) `C++`
   - [Wolf](https://games-on-whales.github.io/wolf/stable) - stream virtual desktops and games running in Docker. Source code available [here](https://github.com/games-on-whales/wolf). `C++`
 - **Health**
@@ -632,7 +637,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. Source code available [here](https://github.com/getsentry/self-hosted). `Shell` `Python`
     - [Ziit](https://ziit.app/login) - swiss army knife of code time tracking. Source code available [here](https://github.com/0PandaDEV/Ziit). `TypeScript` `Vue`
   - **Location**
-    - [Dawarich](https://dawarich.app) - alternative to Google location history (Google Maps timeline). Source code available [here](https://github.com/Freika/dawarich). `Ruby` `JavaScript`
     - [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. Source code available [here](https://github.com/robiningelbrecht/statistics-for-strava). `PHP`
     - [Wanderer](https://wanderer.to) - trail database, save your adventures. Source code available [here](https://github.com/Flomp/wanderer). `Svelte` `Go` `TypeScript`
   - **Travel**
@@ -682,6 +686,8 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. Source code available [here](https://github.com/keephq/keep). `Python` `TypeScript`
   - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. Source code available [here](https://github.com/librespeed/speedtest). `PHP` `JavaScript`
   - [NetAlertX](https://netalertx.com/) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. Source code available [here](https://github.com/jokob-sk/NetAlertX). `JavaScript` `Python` `PHP`
+  - [Scanopy](https://scanopy.net) - clean network diagrams. Source code available [here](https://github.com/scanopy/scanopy). `Rust` `Svelte`
+  - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. Source code available [here](https://github.com/SigNoz/signoz). `TypeScript` `Go`
   - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. Source code available [here](https://github.com/louislam/uptime-kuma). `JavaScript` `Vue`
   - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) - lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history. Source code available [here](https://github.com/aceberg/WatchYourLAN). `TypeScript` `Go`
 - **PKMS**
@@ -708,6 +714,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Security**
   - [Certwarden](https://www.certwarden.com) -  centralized ACME client. Source code available [here](https://github.com/gregtwallace/certwarden).
   - [Crowdsec](https://www.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. Source code available [here](https://github.com/crowdsecurity/crowdsec). `Go` `Shell`
+  - [Maltrail](https://github.com/stamparm/maltrail) - malicious traffic detection system. Source code available [here](https://github.com/stamparm/maltrail). `Python` `JavaScript`
   - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns) - Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy. Source code available [here](https://github.com/fabriziosalmi/patterns). `Python`
   - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. Source code available [here](https://github.com/steveiliop56/tinyauth). `Go` `TypeScript`
 - **Storage**
@@ -727,5 +734,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Wishlist**
   - [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. Source code available [here](https://github.com/Wingysam/Christmas-Community).
 - **Other**
+  - [Coolify](https://coolify.io/) - self-hostable PaaS alternative to Vercel, Heroku & Netlify. Source code available [here](https://github.com/coollabsio/coolify). `PHP` `Blade`
   - [Garage](https://garagehq.deuxfleurs.fr) - S3-compatible distributed object storage service. Source code available [here](https://git.deuxfleurs.fr/Deuxfleurs/garage). `Rust`
   - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. Source code available [here](https://github.com/monicahq/monica). `PHP`

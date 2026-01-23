@@ -23,6 +23,7 @@ affine_enable: true
 bytestash_enable: true
 change_detection_enable: true
 convertx_enable: true
+dawarich_enable: true
 docuseal_enable: true
 enclosed_enable: true
 freshrss_enable: true
@@ -45,6 +46,7 @@ kavita_enable: true
 kopia_enable: true
 litellm_enable: true
 mathesar_enable: true
+mealie_enable: true
 minecraft_enable: true
 n8n_enable: true
 navidrome_enable: true

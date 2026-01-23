@@ -84,6 +84,7 @@
         - "{{ server_home }}/logs/security/enclosed"
         - "{{ server_home }}/logs/security/wazuh"
         - "{{ server_home }}/logs/travel/adventurelog"
+        - "{{ server_home }}/logs/travel/dawarich"
         - "{{ server_home }}/logs/directus"
         - "{{ server_home }}/logs/limesurvey"
         - "{{ server_home }}/logs/wishlist"
