@@ -156,7 +156,7 @@ DISABLE_FZF_AUTO_COMPLETION="false"
 DISABLE_FZF_KEY_BINDINGS="false"
 
 # Zoxide
-eval "$(zoxide init zsh --cmd cd)"
+eval "$(zoxide init bash --cmd cd)"
 
 # ---------------------------------------------------------------------------- #
 #               ------- Server --------                                        #
