@@ -162,8 +162,52 @@ export PATH=${HOME}/.local/bin:${HOME}/bin:${PATH}
 
 export EDITOR='vim'
 
+# Bat
+export BAT_THEME="Visual Studio Dark+"
+
+# fzf
+export FZF_BASE=/home/linuxbrew/.linuxbrew/bin/fzf
+export FZF_DEFAULT_COMMAND='fzf'
+
+DISABLE_FZF_AUTO_COMPLETION="false"
+DISABLE_FZF_KEY_BINDINGS="false"
+
 # Zoxide
 eval "$(zoxide init bash --cmd cd)"
+
+# ---------------------------------------------------------------------------- #
+#               ------- Aliases - bat - cat --------
+# ---------------------------------------------------------------------------- #
+alias bat='batcat'
+alias cat='batcat --paging=never'
+
+alias release='cat /etc/*-release'
+
+# ---------------------------------------------------------------------------- #
+#               ------- Aliases - ls --------
+# ---------------------------------------------------------------------------- #
+
+# colorls
+if [ -x "$(command -v colorls)" ]; then
+    alias ls='colorls --color=auto'
+else
+    alias ls='ls --color=auto'
+fi
+
+# ls - list
+alias ll='ls -l'
+# ls - do not ignore entries starting with '.', do not list '.' and '..'
+alias la='ls -Al'
+# ls - list
+alias lah='ls -Ahl'
+# ls - recursive ls
+alias lr='ls -lR'
+# ls - sort by date
+alias lrt='ls -ltr'
+# ls - sort by size
+alias lk='ls -lSr'
+# ls - sort by extension
+alias lx='ls -lXB'
 
 # ---------------------------------------------------------------------------- #
 #               ------- Aliases - Users --------                               #
