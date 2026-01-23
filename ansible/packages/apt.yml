@@ -1,6 +1,6 @@
 - name: APT
   hosts: all
-  gather_facts: false
+  gather_facts: true
   vars_files:
     - ../vars/main.yml
 
@@ -19,8 +19,8 @@
         file: ../tasks/repository.yml
       vars:
         key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-        key_output: /etc/apt/keyrings/pgdg.asc
-        repository: "deb [arch={{ deb_architecture[ansible_architecture] }} signed-by=/etc/apt/keyrings/pgdg.asc] http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
+        key_output: /etc/apt/trusted.gpg.d/pgdg.gpg
+        repository: "deb [arch={{ deb_architecture[ansible_architecture] }} signed-by=/etc/apt/trusted.gpg.d/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
 
   # Packages
   - name: Packages
