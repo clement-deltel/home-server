@@ -143,10 +143,17 @@ function ansible-update {
 alias af='ansible localhost -m ansible.builtin.setup'
 
 # ---------------------------------------------------------------------------- #
+#               ------- APT ------                                        #
+# ---------------------------------------------------------------------------- #
+alias aguu='sudo apt update && sudo apt upgrade'
+
+# ---------------------------------------------------------------------------- #
 #               ------- Homebrew --------
 # ---------------------------------------------------------------------------- #
 export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+alias bup='brew upgrade'
 
 # ---------------------------------------------------------------------------- #
 #               ------- Environment ------
