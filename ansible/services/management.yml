@@ -35,6 +35,7 @@
       - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }
       - { when: litellm_enable, project_src: '{{ server_home }}/services/ai/litellm' }
       - { when: mathesar_enable, project_src: '{{ server_home }}/services/pkms/mathesar' }
+      - { when: mealie_enable, project_src: '{{ server_home }}/services/inventory/mealie' }
       - { when: meme_search_enable, project_src: '{{ server_home }}/services/media/storage/pictures/meme-search' }
       - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }
       - { when: n8n_enable, project_src: '{{ server_home }}/services/automation/n8n' }

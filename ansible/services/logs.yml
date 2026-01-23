@@ -44,6 +44,7 @@
         - "{{ server_home }}/logs/inventory/grocy"
         - "{{ server_home }}/logs/inventory/homebox"
         - "{{ server_home }}/logs/inventory/hortusfox"
+        - "{{ server_home }}/logs/inventory/mealie"
         - "{{ server_home }}/logs/management/code/bytestash"
         - "{{ server_home }}/logs/management/code/gitlab"
         - "{{ server_home }}/logs/management/code/it-tools"

@@ -1,0 +1,85 @@
+# https://github.com/mealie-recipes/mealie
+services:
+  db:
+    container_name: mealie-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${MEALIE_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: mealie-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      app-net:
+        ipv4_address: ${MEALIE_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./db-persistence:/var/lib/postgresql/data
+
+  mealie:
+    container_name: mealie
+    depends_on:
+      db:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: mealie
+    image: ${MEALIE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.mealie.entrypoints=web,websecure"
+      - "traefik.http.routers.mealie.rule=Host(`recipes.${DOMAIN}`)"
+      - "traefik.http.routers.mealie.tls=true"
+      # - "traefik.http.routers.mealie.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.mealie.tls.domains[0].main=recipes.${DOMAIN}"
+      - "traefik.http.routers.mealie.middlewares=mealie"
+      - "traefik.http.routers.mealie.service=mealie"
+      # Middlewares
+      - "traefik.http.middlewares.mealie.ratelimit.average=50"
+      - "traefik.http.middlewares.mealie.ratelimit.period=1s"
+      - "traefik.http.middlewares.mealie.ratelimit.burst=100"
+      # Services
+      - "traefik.http.services.mealie.loadbalancer.server.port=9000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: ${MEALIE_INTERNAL_IP}
+      traefik-net:
+        ipv4_address: ${MEALIE_IP}
+    ports:
+      - 9000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/app/data
+
+
+networks:
+  app-net:
+    name: mealie-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${MEALIE_NET}
+          gateway: ${MEALIE_GATEWAY}
+  traefik-net:
+    external: true
+    name: traefik-net
