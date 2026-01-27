@@ -38,6 +38,7 @@
       - { when: mathesar_enable, project_src: '{{ server_home }}/services/pkms/mathesar' }
       - { when: mealie_enable, project_src: '{{ server_home }}/services/inventory/mealie' }
       - { when: meme_search_enable, project_src: '{{ server_home }}/services/media/storage/pictures/meme-search' }
+      - { when: memos_enable, project_src: '{{ server_home }}/services/pkms/memos' }
       - { when: minecraft_enable, project_src: '{{ server_home }}/services/minecraft' }
       - { when: n8n_enable, project_src: '{{ server_home }}/services/automation/n8n' }
       - { when: navidrome_enable, project_src: '{{ server_home }}/services/media/storage/music/navidrome' }

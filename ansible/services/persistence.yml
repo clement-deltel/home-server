@@ -134,6 +134,9 @@
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/memes"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/itt-db"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/models"
+      # Memos
+      - "{{ server_home }}/services/pkms/memos/db-persistence"
+      - "{{ server_home }}/services/pkms/memos/persistence"
       # Minecraft
       - "{{ server_home }}/services/minecraft/persistence"
       # n8n

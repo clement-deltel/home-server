@@ -339,6 +339,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - **Personal Knowledge Management System (PKMS)**
     - [Affine](https://affine.pro) - knowledge base that brings planning, sorting, creating all together. Privacy first and open-source. Deployed on `https://affine.${DOMAIN}`. Source code available [here](https://github.com/toeverything/AFFiNE). `TypeScript`
     - [Mathesar](https://mathesar.org) - spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. Deployed on `https://mathesar.${DOMAIN}`. Source code available [here](https://github.com/mathesar-foundation/mathesar). `Svelte` `TypeScript` `Python`
+    - [Memos](https://github.com/usememos/memos) - note-taking service, your thoughts, your data, your control — no tracking, no ads, no subscription fees. `Go` `TypeScript`
     - [Siyuan](https://b3log.org/siyuan/en) - privacy-first, self-hosted, fully open source personal knowledge management software. Deployed on `https://siyuan.${DOMAIN}`. Source code available [here](https://github.com/siyuan-note/siyuan). `TypeScript` `Go`
 - **Artificial Intelligence**
   - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. Deployed on `https://llm.${DOMAIN}`. Source code available [here](https://github.com/BerriAI/litellm). `Python`

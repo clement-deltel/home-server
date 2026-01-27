@@ -170,6 +170,7 @@ kopia_enable: true
 litellm_enable: true
 mathesar_enable: true
 mealie_enable: true
+memos_enable: true
 minecraft_enable: true
 n8n_enable: true
 navidrome_enable: true
