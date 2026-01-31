@@ -170,7 +170,6 @@ kopia_enable: true
 litellm_enable: true
 mathesar_enable: true
 mealie_enable: true
-memos_enable: true
 minecraft_enable: true
 n8n_enable: true
 navidrome_enable: true
@@ -200,6 +199,7 @@ firefly_enable: false
 librum_enable: false
 limesurvey_enable: false
 meme_search_enable: false
+memos_enable: false
 nextcloud_enable: false
 photoprism_enable: false
 wireguard_enable: false
