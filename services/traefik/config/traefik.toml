@@ -70,6 +70,9 @@
   [entryPoints.websecure]
     address = ":443"
     [entryPoints.websecure.transport]
+      respondingTimeouts.readTimeout = "600s"
+      respondingTimeouts.writeTimeout = "600s"
+      respondingTimeouts.idleTimeout = "600s"
       [entryPoints.websecure.transport.lifeCycle]
         requestAcceptGraceTimeout = 0
         graceTimeOut = 30
