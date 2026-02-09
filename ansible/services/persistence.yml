@@ -232,9 +232,9 @@
       # Wireguard
       - "{{ server_home }}/services/remote/wireguard/persistence"
       #Wishlist
-      - "{{ server_home }}/services/wishlist/persistence"
-      - "{{ server_home }}/services/wishlist/persistence/data"
-      - "{{ server_home }}/services/wishlist/persistence/uploads"
+      - "{{ server_home }}/services/inventory/wishlist/persistence"
+      - "{{ server_home }}/services/inventory/wishlist/persistence/data"
+      - "{{ server_home }}/services/inventory/wishlist/persistence/uploads"
   vars_files:
     - ../vars/main.yml
 
@@ -338,6 +338,8 @@
         - "{{ server_home }}/services/inventory/grocy/compose.yaml"
         - "{{ server_home }}/services/inventory/homebox/compose.yaml"
         - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
+        - "{{ server_home }}/services/inventory/mealie/compose.yaml"
+        - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
         - "{{ server_home }}/services/kopia/compose.yaml"
         - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
@@ -369,7 +371,6 @@
         - "{{ server_home }}/services/security/enclosed/compose.yaml"
         - "{{ server_home }}/services/security/wazuh/compose.yaml"
         - "{{ server_home }}/services/traefik/compose.yaml"
-        - "{{ server_home }}/services/wishlist/compose.yaml"
 
     #--- Guacamole
     - name: Make initdb.sql script executable
