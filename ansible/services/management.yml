@@ -11,7 +11,7 @@
       - { when: change_detection_enable, project_src: '{{ server_home }}/services/monitoring/detection' }
       - { when: convertx_enable, project_src: '{{ server_home }}/services/media/tools/convertx' }
       - { when: dawarich_enable, project_src: '{{ server_home }}/services/travel/dawarich' }
-      - { when: directus_enable, project_src: '{{ server_home }}/services/directus' }
+      - { when: directus_enable, project_src: '{{ server_home }}/services/other/directus' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/pdf/docuseal' }
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
       - { when: freshrss_enable, project_src: '{{ server_home }}/services/news/freshrss' }
@@ -33,7 +33,7 @@
       - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
       - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
       - { when: librum_enable, project_src: '{{ server_home }}/services/media/storage/books/librum' }
-      - { when: limesurvey_enable, project_src: '{{ server_home }}/services/limesurvey' }
+      - { when: limesurvey_enable, project_src: '{{ server_home }}/services/other/limesurvey' }
       - { when: litellm_enable, project_src: '{{ server_home }}/services/ai/litellm' }
       - { when: mathesar_enable, project_src: '{{ server_home }}/services/pkms/mathesar' }
       - { when: mealie_enable, project_src: '{{ server_home }}/services/inventory/mealie' }

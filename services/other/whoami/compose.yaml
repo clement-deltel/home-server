@@ -19,7 +19,7 @@ services:
         max-size: 2m
     networks:
       traefik-net:
-        ipv4_address: 192.168.10.210
+        ipv4_address: 192.168.10.255
     restart: unless-stopped
     stop_grace_period: 30s
 
