@@ -323,7 +323,9 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Jellyfin](https://jellyfin.org) - free software media system. Deployed on `https://jellyfin.${DOMAIN}`. Source code available [here](https://github.com/jellyfin/jellyfin). `C#`
 - **Media Tools**
   - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. Source code available [here](https://github.com/C4illin/ConvertX). `TypeScript`
+  - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal). `Ruby` `Vue` `JavaScript`
   - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. `https://share.${DOMAIN}`. Source code available [here](https://github.com/Forceu/Gokapi). `Go` `JavaScript`
+  - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF). `Java` `JavaScript`
 - **Management**
   - **Code**
     - [ByteStash](https://github.com/jordan-dalby/bytestash) - a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash). `TypeScript`
@@ -355,19 +357,15 @@ This section covers all the supported services of the stack. It categorizes the 
   - [HortusFox](https://hortusfox.github.io) - collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
   - [Homebox](https://homebox.software/en) - inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox). `Go` `Vue` `TypeScript`
   - [Mealie](https://docs.mealie.io) - recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. Deployed on `https://recipes.${DOMAIN}`. Source code available [here](https://github.com/mealie-recipes/mealie). `Python` `Vue` `TypeScript`
+  - [Wishlist](https://github.com/cmintey/wishlist) - wishlist application that you can share with your friends and family. Deployed on `https://wish.${DOMAIN}`. Source code available [here](https://github.com/cmintey/wishlist) `Svelte` `TypeScript`
 - **Travel**
   - [AdventureLog](https://adventurelog.app) - travel tracker and trip planner. Deployed on `https://travel.${DOMAIN}`. Source code available [here](https://github.com/seanmorley15/AdventureLog). `Svelte` `Python`
   - [Dawarich](https://dawarich.app) - alternative to Google location history (Google Maps timeline). Source code available [here](https://github.com/Freika/dawarich). `Ruby` `JavaScript`
   - [Jetlog](https://github.com/pbogre/jetlog) - personal flight tracker and viewer. Deployed on `https://fly.${DOMAIN}`. Source code available [here](https://github.com/pbogre/jetlog). `TypeScript` `Python`
-- **PDF Tools**
-  - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. Deployed on `https://doc.${DOMAIN}`. Source code available [here](https://github.com/docusealco/docuseal). `Ruby` `Vue` `JavaScript`
-  - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. Deployed on `https://pdf.${DOMAIN}`. Source code available [here](https://github.com/Stirling-Tools/Stirling-PDF). `Java` `JavaScript`
 - **Headless CMS**
   - [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. Source code available [here](https://github.com/directus/directus). `TypeScript`
 - **Surveys**
   - [Limesurvey](https://www.limesurvey.org) - alternative to SurveyMonkey, Typeform, Qualtrics, and Google Forms, making it simple to create online surveys and forms with unmatched flexibility. Deployed on `https://survey.${DOMAIN}`. Source code available [here](https://github.com/LimeSurvey/LimeSurvey). `JavaScript`  `PHP`
-- **Wishlist**
-  - [Wishlist](https://github.com/cmintey/wishlist) - wishlist application that you can share with your friends and family. Deployed on `https://wish.${DOMAIN}`. Source code available [here](https://github.com/cmintey/wishlist) `Svelte` `TypeScript`
 - **Games**
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest) - Minecraft Server for Java Edition that automatically downloads selected version at startup. Deployed on `<ip-address>:25565`. Source code available [here](https://github.com/itzg/docker-minecraft-server). `Shell`
 
