@@ -269,6 +269,11 @@ This section covers all the supported services of the stack. It categorizes the 
 
 - **Reverse Proxy**
   - [Traefik](https://traefik.io/traefik) - cloud native application proxy. Deployed on `https://traefik.${DOMAIN}/dashboard`. Source code available [here](https://github.com/traefik/traefik). `Go`
+- **DNS**
+  - **Ad-blocker**
+    - [Pi-hole](https://pi-hole.net) - a black hole for Internet advertisements. Deployed on `https://pihole.${DOMAIN}`. Source code available [here](https://github.com/pi-hole/pi-hole). `Shell` `Python`
+  - **Recursive DNS**
+    - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about)
 - **Dashboard**
   - [Homarr](https://homarr.dev) - modern and easy to use dashboard. Deployed on `https://home.${DOMAIN}`. Source code available [here](https://github.com/homarr-labs/homarr). `TypeScript`
   - [Homer](https://homer-demo.netlify.app) - very simple static homepage for your server. Deployed on `https://homer.${DOMAIN}`. Source code available [here](https://github.com/bastienwirtz/homer). `Vue` `JavaScript`
@@ -283,11 +288,6 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Apache Guacamole](https://guacamole.apache.org) - clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. Deployed on `https://guacamole.${DOMAIN}`. Source code available [here](https://github.com/apache/guacamole-server). `C`
   - **Remote Control Server**
     - [RustDesk](https://rustdesk.com) - remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. Source code available [here](https://github.com/rustdesk/rustdesk-server). `Rust`
-- **DNS**
-  - **Ad-blocker**
-    - [Pi-hole](https://pi-hole.net) - a black hole for Internet advertisements. Deployed on `https://pihole.${DOMAIN}`. Source code available [here](https://github.com/pi-hole/pi-hole). `Shell` `Python`
-  - **Recursive DNS**
-    - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about)
 - **Monitoring**
   - [changedetection.io](https://changedetection.io) - web page change detection, website watcher, restock monitor and notification service. Deployed on `https://detection.${DOMAIN}`. Source code available [here](https://github.com/dgtlmoon/changedetection.io). `Python`
   - [Grafana](https://grafana.com) - open and composable observability and data visualization platform. Deployed on `https://grafana.${DOMAIN}`. Source code available [here](https://github.com/grafana/grafana). `TypeScript` `Go`
@@ -583,7 +583,10 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Containers**
   - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose) - docker-compose for testing any-sync. Source code available [here](https://github.com/anyproto/any-sync-dockercompose). `Shell` `Python`
   - [CAdvisor](https://github.com/google/cadvisor) - analyzes resource usage and performance characteristics of running containers. Source code available [here](https://github.com/google/cadvisor). `Go`
+  - [Dockge](https://dockge.kuma.pet) - docker compose.yaml stack-oriented manager. Source code available [here](https://github.com/louislam/dockge). `TypeScript`
   - [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. Source code available [here](https://github.com/amir20/dozzle). `Go` `Vue` `TypeScript`
+  - [Komodo](https://komo.do) - tool to build and deploy software on many servers. Source code available [here](https://github.com/moghtech/komodo). `Rust` `TypeScript`
+  - [Portainer](https://www.portainer.io) - making Docker and Kubernetes management easy. source code available [here](https://github.com/portainer/portainer). `TypeScript` `Go`
 - **Dashboard**
   - [Astroluma](https://getastroluma.com) - dashboard designed to help you manage multiple aspects of your daily tasks and services. Source code available [here](https://github.com/Sanjeet990/Astroluma). `JavaScript`
   - [Dashy](https://dashy.to) - personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more. Source code available [here](https://github.com/Lissy93/dashy). `Vue` `JavaScript`
@@ -603,6 +606,8 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [OpenBB](https://openbb.co) - financial data platform for analysts, quants and AI agents. Source code available [here](https://github.com/OpenBB-finance/OpenBB). `Python`
   - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. Source code available [here](https://github.com/dh1011/subscription-manager). `JavaScript` `Python`
   - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. Source code available [here](https://github.com/meceware/wapy.dev). `JavaScript`
+- **Fitness**
+  - [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. Source code available [here](https://github.com/endurain-project/endurain). `Python`
 - **Games**
   - [Paper](https://papermc.io/software/paper) - high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies. Source code available [here](https://github.com/PaperMC/Paper). `Java`
   - [Sunshine](https://app.lizardbyte.dev/Sunshine/?lng=en) - game stream host for Moonlight. Source code available [here](https://github.com/LizardByte/Sunshine) `C++`
@@ -617,6 +622,11 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Lubelogger](https://lubelogger.com) - vehicle maintenance and fuel mileage tracker. Source code available [here](https://github.com/hargata/lubelog). `JavaScript` `C#`
   - [VoucherVault](https://github.com/l4rm4nd/VoucherVault/wiki) - store and manage vouchers, coupons, loyalty and gift cards digitally. Source code available [here](https://github.com/l4rm4nd/VoucherVault). `Python`
   - [Warracker](https://warracker.com) - web application to manage product warranties, track expiration dates, and store related documents. Source code available [here](https://github.com/sassanix/Warracker). `JavaScript` `Python`
+- **Location & Travel**
+  - [Scratch Map](https://github.com/ad3m3r5/scratch-map) - scratch-off style map to track your travels. Source code available [here](https://github.com/ad3m3r5/scratch-map). `JavaScript`
+  - [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. Source code available [here](https://github.com/robiningelbrecht/statistics-for-strava). `PHP`
+  - [VFD](https://github.com/kiinami/vfd) - flight price tracking script. Source code available [here](https://github.com/kiinami/vfd). `Python`
+  - [Wanderer](https://wanderer.to) - trail database, save your adventures. Source code available [here](https://github.com/Flomp/wanderer). `Svelte` `Go` `TypeScript`
 - **Mail**
   - [Maddy](https://maddy.email) - composable all-in-one mail server. Source code available [here](https://github.com/foxcpp/maddy). `Go`
   - [OpenArchiver](https://openarchiver.com) - platform for legally compliant email archiving. Source code available [here](https://github.com/LogicLabs-OU/OpenArchiver). `TypeScript` `Svelte`
@@ -626,8 +636,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - **Ads**
     - [Plausible](https://plausible.io) - simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics. Source code available [here](https://github.com/plausible/analytics). `Elixir`
     - [Umami](https://github.com/umami-software/umami) - modern, privacy-focused alternative to Google Analytics. Source code available [here](https://github.com/umami-software/umami). `TypeScript`
-  - **Bookmarks**
-    - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. Source code available [here](https://github.com/linkwarden/linkwarden). `TypeScript`
   - **Code**
     - [Bugsink](https://www.bugsink.com) - error tracking. Source code available [here](https://github.com/bugsink/bugsink). `Python`
     - [Code Server](https://coder.com) - VS Code in the browser. Source code available [here](https://github.com/coder/code-server). `TypeScript` `Shell`
@@ -635,12 +643,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
     - [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. Source code available [here](https://github.com/getsentry/self-hosted). `Shell` `Python`
     - [Ziit](https://ziit.app/login) - swiss army knife of code time tracking. Source code available [here](https://github.com/0PandaDEV/Ziit). `TypeScript` `Vue`
-  - **Location**
-    - [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. Source code available [here](https://github.com/robiningelbrecht/statistics-for-strava). `PHP`
-    - [Wanderer](https://wanderer.to) - trail database, save your adventures. Source code available [here](https://github.com/Flomp/wanderer). `Svelte` `Go` `TypeScript`
-  - **Travel**
-    - [Scratch Map](https://github.com/ad3m3r5/scratch-map) - scratch-off style map to track your travels. Source code available [here](https://github.com/ad3m3r5/scratch-map). `JavaScript`
-    - [VFD](https://github.com/kiinami/vfd) - flight price tracking script. Source code available [here](https://github.com/kiinami/vfd). `Python`
   - **Passwords**
     - [AliasVault](https://www.aliasvault.net) - end-to-end encrypted password manager with a built-in alias generator and email server. Source code available [here](https://github.com/lanedirt/AliasVault). `C#` `TypeScript`
 - **Media**
@@ -658,6 +660,8 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [Tubifarry](https://github.com/TypNull/Tubifarry) - Lidarr plugin that enhances your music library by fetching music from YouTube, integrating with Slskd for Soulseek access, automating Spotify playlist imports, converting files, and retrieving soundtracks from Radarr and Sonarr. Source code available [here](https://github.com/TypNull/Tubifarry). `C#`
     - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - feature-rich command-line audio/video downloader. Source code available [here](https://github.com/yt-dlp/yt-dlp). `Python`
   - **Storage**
+    - **Bookmarks**
+      - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. Source code available [here](https://github.com/linkwarden/linkwarden). `TypeScript`
     - **Documents**
       - [myDrive](https://mydrive-storage.com) - node.js and mongoDB Google Drive clone. Source code available [here](https://github.com/subnub/myDrive). `TypeScript`
       - [Paperless AI](https://clusterzx.github.io/paperless-ai) - automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents. Source code available [here](https://github.com/clusterzx/paperless-ai). `JavaScript`
@@ -699,12 +703,17 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Memos](https://www.usememos.com) - knowledge management and note-taking platform designed for privacy-conscious users and organizations. Source code available [here](https://github.com/usememos/memos). `Go` `TypeScript`
   - [NocoDB](https://nocodb.com) - open source Airtable alternative. Source code available [here](https://github.com/nocodb/nocodb). `TypeScript` `Vue`
   - [Teable](https://teable.io) - next gen Airtable alternative, no-code Postgres. Source code available [here](https://github.com/teableio/teable). `TypeScript`
+  - [TypeMill](https://typemill.net) - flat-file CMS based on Markdown and designed for informational websites like documentation, manuals, and handbooks. Source code available [here](https://github.com/typemill/typemill). `JavaScript` `PHP`
 - **Project Management**
   - [Rustical](https://lennart-k.github.io/rustical) - calendar server aiming to be simple, fast and passwordless. Source code available [here](https://github.com/lennart-k/rustical). `Rust`
   - [Worklenz](https://worklenz.com) - all in one project management tool for efficient teams. Source code available [here](https://github.com/Worklenz/worklenz). `TypeScript` `JavaScript`
-- **Remote**
+- **Proxy**
   - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. Source code available [here](https://github.com/fosrl/pangolin). `TypeScript`
+  - [Traefik Log Dashboard](https://github.com/hhftechnology/traefik-log-dashboard) - real-time dashboard for analyzing Traefik logs with IP geolocation, status code analysis, and service metrics. Source code available [here](https://github.com/hhftechnology/traefik-log-dashboard). `TypeScript` `Go`
+- **Remote**
+  - [Defguard](https://defguard.net) - zero-trust access management with true WireGuard® 2FA/MFA. Source code available [here](https://github.com/DefGuard/defguard). `Rust` `TypeScript`
   - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
+  - [Termix](https://termix.site) - Termix is a web-based server management platform with SSH terminal, tunneling, and file editing capabilities. Source code available [here](https://github.com/Termix-SSH/Termix). `TypeScript`
   - TunnelMole:
     - [Client](https://github.com/robbie-cahill/tunnelmole-client)
     - [Service](https://github.com/robbie-cahill/tunnelmole-service)
@@ -716,7 +725,12 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Maltrail](https://github.com/stamparm/maltrail) - malicious traffic detection system. Source code available [here](https://github.com/stamparm/maltrail). `Python` `JavaScript`
   - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns) - Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy. Source code available [here](https://github.com/fabriziosalmi/patterns). `Python`
   - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. Source code available [here](https://github.com/steveiliop56/tinyauth). `Go` `TypeScript`
+  - [Web-Check](https://web-check.xyz) - all-in-one OSINT tool for analyzing any website. Source Code available [here](https://github.com/Lissy93/web-check). `TypeScript` `JavaScript`
+- **Software Development**
+  - [Coolify](https://coolify.io/) - self-hostable PaaS alternative to Vercel, Heroku & Netlify. Source code available [here](https://github.com/coollabsio/coolify). `PHP` `Blade`
+  - [DevPush](https://devpu.sh) - like Vercel, but open source and for all languages. Source code available [here](https://github.com/hunvreus/devpush). `Python`
 - **Storage**
+  - [Garage](https://garagehq.deuxfleurs.fr) - S3-compatible distributed object storage service. Source code available [here](https://git.deuxfleurs.fr/Deuxfleurs/garage). `Rust`
   - [RustFS](https://rustfs.com/download) - high-performance distributed object storage for MinIO alternative. Source code available [here](https://github.com/rustfs/rustfs). `Rust`
 - **Surveys**
   - [Formbricks](https://formbricks.com) - open source Qualtrics alternative. Source code available [here](https://github.com/formbricks/formbricks). `TypeScript`
@@ -733,6 +747,5 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Wishlist**
   - [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. Source code available [here](https://github.com/Wingysam/Christmas-Community).
 - **Other**
-  - [Coolify](https://coolify.io/) - self-hostable PaaS alternative to Vercel, Heroku & Netlify. Source code available [here](https://github.com/coollabsio/coolify). `PHP` `Blade`
-  - [Garage](https://garagehq.deuxfleurs.fr) - S3-compatible distributed object storage service. Source code available [here](https://git.deuxfleurs.fr/Deuxfleurs/garage). `Rust`
   - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. Source code available [here](https://github.com/monicahq/monica). `PHP`
+  - [Puter](https://puter.com) - The Internet Computer, free, open-source, and self-hostable. Source code available [here](https://github.com/HeyPuter/puter). `JavaScript`
