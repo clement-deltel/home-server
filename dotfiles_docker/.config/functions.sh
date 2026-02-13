@@ -80,10 +80,10 @@ function weather { curl wttr.in/"$1"; }
 function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
 function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
 
-function set-env { load-env ${SERVER_HOME}/env/services.env; load-env ${SERVER_HOME}/env/secrets.env; }
+function set-env { load-env ${SERVER_HOME}/env/secrets.env; load-env ${SERVER_HOME}/env/services.env; }
 function unset-env { unload-env ${SERVER_HOME}/env/services.env; unload-env ${SERVER_HOME}/env/secrets.env; }
 
-function bw-env { load-env ${SERVER_HOME}/env/services.env; bitwarden-load-env-fn; }
+function bw-env { bitwarden-load-env-fn; load-env ${SERVER_HOME}/env/services.env; }
 
 # ---------------------------------------------------------------------------- #
 #               ------- Bitwarden CLI ------                                   #
