@@ -105,15 +105,16 @@ alias doc='sudo su - docker'
 # ---------------------------------------------------------------------------- #
 alias bwc=bitwarden-create-item-notes-fn
 alias bwl='bw lock'
-alias bwle=bitwarden-load-env-fn
 alias bwli=bitwarden-login-fn
 alias bwlo='bw logout'
-alias bwly=bitwarden-load-yml-fn
 alias bwo=bitwarden-open-fn
 alias bwq='bw lock && bw logout'
 alias bws=bitwarden-create-session-fn
 alias bwst='bw status | jq'
 alias bwsy='bw sync'
+
+alias bwle=bitwarden-load-env-fn
+alias bwly=bitwarden-load-yml-fn
 
 # ---------------------------------------------------------------------------- #
 #               ------- Docker ------                                          #
