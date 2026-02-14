@@ -174,3 +174,5 @@ function source_if_exists (){ if test -r "$1"; then source "$1"; fi; }
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/aliases.sh
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/completions.sh
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/functions.sh
+
+set-env
