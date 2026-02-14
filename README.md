@@ -593,6 +593,8 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Glance](https://github.com/glanceapp/glance) - dashboard that puts all your feeds in one place. Source code available [here](https://github.com/glanceapp/glance). `Go` `JavaScript`
   - [Heimdall](https://heimdall.site) - application dashboard and launcher. Source code available [here](https://github.com/linuxserver/Heimdall). `PHP`
   - [Organizr](https://demo.organizr.app) - HTPC/Homelab Services Organizer - Written in PHP. Source code available [here](https://github.com/causefx/Organizr). `PHP` `JavaScript`
+- DNS
+  - [Blocky](https://0xerr0r.github.io/blocky/latest) - fast and lightweight DNS proxy as ad-blocker for local network with many features. Source code available [here](https://github.com/0xERR0R/blocky). `Go`
 - **Finances**
   - [Actual AI](https://github.com/sakowicz/actual-ai) - categorize transactions in Actual Budget using AI. Source code available [here](https://github.com/sakowicz/actual-ai). `TypeScript`
   - [Cents per Point](https://github.com/ayostepht/Cents-Per-Point) - track credit card point redemptions and calculate Cents Per Point (CPP) values to optimize your rewards strategy. Source code available [here](https://github.com/ayostepht/Cents-Per-Point). `JavaScript`
@@ -638,7 +640,8 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [Umami](https://github.com/umami-software/umami) - modern, privacy-focused alternative to Google Analytics. Source code available [here](https://github.com/umami-software/umami). `TypeScript`
   - **Code**
     - [Bugsink](https://www.bugsink.com) - error tracking. Source code available [here](https://github.com/bugsink/bugsink). `Python`
-    - [Code Server](https://coder.com) - VS Code in the browser. Source code available [here](https://github.com/coder/code-server). `TypeScript` `Shell`
+    - [Cyber Chef](https://gchq.github.io/CyberChef) - web app for encryption, encoding, compression and data analysis. Source code available [here](https://github.com/gchq/CyberChef). `JavaScript`
+    - [Networking Toolbox](https://networkingtoolbox.net) - . Source code available [here](https://github.com/Lissy93/networking-toolbox). `Svelte` `TypeScript`
     - [OpenGist](https://opengist.io) - pastebin powered by Git, open-source alternative to Github Gist. Source code available [here](https://github.com/thomiceli/opengist). `Go` `TypeScript`
     - [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
     - [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. Source code available [here](https://github.com/getsentry/self-hosted). `Shell` `Python`
@@ -665,6 +668,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - **Documents**
       - [myDrive](https://mydrive-storage.com) - node.js and mongoDB Google Drive clone. Source code available [here](https://github.com/subnub/myDrive). `TypeScript`
       - [Paperless AI](https://clusterzx.github.io/paperless-ai) - automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents. Source code available [here](https://github.com/clusterzx/paperless-ai). `JavaScript`
+      - [Papra](https://demo.papra.app) - minimalistic document archiving platform. Source code available [here](https://github.com/papra-hq/papra). `TypeScript`
     - **Photos**
       - [Photoview](https://photoview.github.io) - photo gallery for personal servers. Source code available [here](https://github.com/photoview/photoview). `TypeScript` `Go`
       - [WeddingShare](https://docs.wedding-share.org) - place for guests to view and drop pictures of the big day. Source code available [here](https://github.com/Cirx08/WeddingShare). `JavaScript` `C#`
@@ -679,12 +683,18 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - Web
       - [ArchiveBox](https://archivebox.io) - web archiving that takes URLs/browser history/bookmarks/Pocket/Pinboard/etc. Source code available [here](https://github.com/ArchiveBox/ArchiveBox). `Python`
   - **Tools**
+    - [BentoPDF](https://bentopdf.com) - . Source code available [here](https://github.com/alam00000/bentopdf). `JavaScript` `Fluent` `TypeScript`
+    - [Invidious](https://invidious.io) - alternative front-end to YouTube. Source code available [here](https://github.com/iv-org/invidious). `Crystal`
     - [Mazanoke](https://mazanoke.com) - local image optimizer that runs in your browser. Source code available [here](https://github.com/civilblur/mazanoke). `JavaScript`
+    - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. Source code available [here](https://github.com/iib0011/omni-tools). `TypeScript`
     - [SmartTube](https://github.com/yuliskov/SmartTube) - browse media content with your own rules on Android TV. `Java`
+    - [Vert](https://vert.sh) - next-generation file converter. Source code available [here](https://github.com/VERT-sh/VERT). `Svelte` `TypeScript`
+    - [WithoutBG](https://withoutbg.com) - image background removal toolkit. Source code available [here](https://github.com/withoutbg/withoutbg). `Python` `JavaScript`
 - **Monitoring**
   - [Beszel](https://beszel.dev/) - lightweight server monitoring hub with historical data, docker stats, and alerts. Source code available [here](https://github.com/henrygd/beszel). `Go`
   - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. Source code available [here](https://github.com/Markbnj/cluster-iperf).
   - [Domain Monitor](https://github.com/nwesterhausen/domain-monitor) - monitor WHOIS records for specified domains. Source code available [here](https://github.com/nwesterhausen/domain-monitor). `Go`
+  - [Gatus](https://gatus.io) - automated developer-oriented status page with alerting and incident support. Source code available [here](https://github.com/TwiN/gatus). `Go`
   - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. Source code available [here](https://github.com/healthchecks/healthchecks). `Python`
   - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. Source code available [here](https://github.com/keephq/keep). `Python` `TypeScript`
   - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. Source code available [here](https://github.com/librespeed/speedtest). `PHP` `JavaScript`
@@ -727,15 +737,15 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. Source code available [here](https://github.com/steveiliop56/tinyauth). `Go` `TypeScript`
   - [Web-Check](https://web-check.xyz) - all-in-one OSINT tool for analyzing any website. Source Code available [here](https://github.com/Lissy93/web-check). `TypeScript` `JavaScript`
 - **Software Development**
-  - [Coolify](https://coolify.io/) - self-hostable PaaS alternative to Vercel, Heroku & Netlify. Source code available [here](https://github.com/coollabsio/coolify). `PHP` `Blade`
+  - [ChartDB](https://chartdb.io) - . Source code available [here](https://github.com/chartdb/chartdb). `TypeScript`
+  - [Code Server](https://coder.com) - VS Code in the browser. Source code available [here](https://github.com/coder/code-server). `TypeScript` `Shell`
+  - [Coolify](https://coolify.io) - self-hostable PaaS alternative to Vercel, Heroku & Netlify. Source code available [here](https://github.com/coollabsio/coolify). `PHP` `Blade`
   - [DevPush](https://devpu.sh) - like Vercel, but open source and for all languages. Source code available [here](https://github.com/hunvreus/devpush). `Python`
 - **Storage**
   - [Garage](https://garagehq.deuxfleurs.fr) - S3-compatible distributed object storage service. Source code available [here](https://git.deuxfleurs.fr/Deuxfleurs/garage). `Rust`
   - [RustFS](https://rustfs.com/download) - high-performance distributed object storage for MinIO alternative. Source code available [here](https://github.com/rustfs/rustfs). `Rust`
 - **Surveys**
   - [Formbricks](https://formbricks.com) - open source Qualtrics alternative. Source code available [here](https://github.com/formbricks/formbricks). `TypeScript`
-- **Tools**
-  - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. Source code available [here](https://github.com/iib0011/omni-tools). `TypeScript`
 - **Trello alternative** - [Find a kanban board](https://github.com/NatoBoram/docker-compose/issues/44)
   - [Focalboard](https://github.com/mattermost-community/focalboard) - Source code available [here](https://github.com/mattermost-community/focalboard).
   - [Kan](https://kan.bn) - open source Trello alternative. Source code available [here](https://github.com/kanbn/kan). `TypeScript`
