@@ -1,0 +1,45 @@
+# https://github.com/crowdsecurity/crowdsec
+services:
+  crowdsec:
+    container_name: crowdsec
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    expose:
+      - 8080 # http api for bouncers
+      - 6060 # metrics endpoint for prometheus
+      - 7422 # appsec waf endpoint
+    hostname: crowdsec
+    image: ${CROWDSEC_IMAGE}
+    labels:
+      traefik.enable: false
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      monitoring-net:
+        ipv4_address: ${CROWDSEC_MONITORING_IP}
+      proxy-net:
+        ipv4_address: ${CROWDSEC_IP}
+    ports:
+      - 127.0.0.1:9876:8080 # port mapping for local firewall bouncers
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence/data:/var/lib/crowdsec/data
+      - ./persistence/etc:/etc/crowdsec
+      - /var/log/auth.log:/var/log/auth.log:ro
+      - /var/log/syslog:/var/log/syslog:ro
+      - ${SERVER_HOME}/services/traefik/persistence/log:/var/log/traefik:ro
+
+networks:
+  monitoring-net:
+    external: true
+    name: monitoring-net
+  proxy-net:
+    external: true
+    name: traefik-net

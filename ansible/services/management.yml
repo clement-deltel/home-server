@@ -10,6 +10,7 @@
       - { when: bytestash_enable, project_src: '{{ server_home }}/services/management/code/bytestash' }
       - { when: change_detection_enable, project_src: '{{ server_home }}/services/monitoring/detection' }
       - { when: convertx_enable, project_src: '{{ server_home }}/services/media/tools/convertx' }
+      - { when: crowdsec_enable, project_src: '{{ server_home }}/services/security/crowdsec' }
       - { when: dawarich_enable, project_src: '{{ server_home }}/services/travel/dawarich' }
       - { when: directus_enable, project_src: '{{ server_home }}/services/other/directus' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/pdf/docuseal' }

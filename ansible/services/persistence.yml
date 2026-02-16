@@ -22,6 +22,10 @@
       - "{{ server_home }}/services/monitoring/detection/persistence"
       # ConvertX
       - "{{ server_home }}/services/media/tools/convertx/persistence"
+      # CrowdSec
+      - "{{ server_home }}/services/security/crowdsec/persistence"
+      - "{{ server_home }}/services/security/crowdsec/persistence/data"
+      - "{{ server_home }}/services/security/crowdsec/persistence/etc"
       # Dawarich
       - "{{ server_home }}/services/travel/dawarich/db-persistence"
       - "{{ server_home }}/services/travel/dawarich/shared-persistence"
