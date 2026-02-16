@@ -296,8 +296,9 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Backup**
   - [Kopia](https://kopia.io) - cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included. Deployed on `https://kopia.${DOMAIN}`. Source code available [here](https://github.com/kopia/kopia). `Go`
 - **Security**
-  - [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. Deployed on `https://wazuh.${DOMAIN}`. Soruce code available [here](https://github.com/wazuh/wazuh). `C` `C++` `Python`
+  - [CrowdSec](https://app.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. Source code available [here](https://github.com/crowdsecurity/crowdsec). `Go` `Shell`
   - [Enclosed](https://enclosed.cc) - Minimalistic web app designed for sending private and secure notes. Deployed on `https://notes.${DOMAIN}`. Source code available [here](https://github.com/CorentinTh/enclosed). `TypeScript`
+  - [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. Deployed on `https://wazuh.${DOMAIN}`. Soruce code available [here](https://github.com/wazuh/wazuh). `C` `C++` `Python`
 - **Search**
   - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. Source code available [here](https://github.com/searxng/searxng). `Python`
 - **News**
