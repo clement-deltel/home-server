@@ -1,0 +1,94 @@
+- name: Service Logs
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../vars/main.yml
+
+  tasks:
+  - name: Initialize log directories
+    tags: docker
+    block:
+
+    #--- Log directory
+    - name: Create log root directory
+      ansible.builtin.file:
+        path: "{{ server_home }}/log"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+
+    #--- Services subdirectories
+    - name: Create log subdirectories for all services
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: docker
+        group: docker
+        mode: 0744
+      loop:
+        - "{{ server_home }}/log/ai/litellm"
+        - "{{ server_home }}/log/ai/ollama"
+        - "{{ server_home }}/log/ai/open-webui"
+        - "{{ server_home }}/log/automation/n8n"
+        - "{{ server_home }}/log/backup/kopia"
+        - "{{ server_home }}/log/dashboard/homarr"
+        - "{{ server_home }}/log/dashboard/homer"
+        - "{{ server_home }}/log/dns/pihole"
+        - "{{ server_home }}/log/dns/unbound"
+        - "{{ server_home }}/log/finances/actual"
+        - "{{ server_home }}/log/finances/wallos"
+        - "{{ server_home }}/log/games/minecraft"
+        - "{{ server_home }}/log/home/home-assistant"
+        - "{{ server_home }}/log/home/upsnap"
+        - "{{ server_home }}/log/inventory/grocy"
+        - "{{ server_home }}/log/inventory/homebox"
+        - "{{ server_home }}/log/inventory/hortusfox"
+        - "{{ server_home }}/log/inventory/mealie"
+        - "{{ server_home }}/log/inventory/wishlist"
+        - "{{ server_home }}/log/management/code/bytestash"
+        - "{{ server_home }}/log/management/code/forgejo"
+        - "{{ server_home }}/log/management/code/gitlab"
+        - "{{ server_home }}/log/management/code/it-tools"
+        - "{{ server_home }}/log/management/code/wakapi"
+        - "{{ server_home }}/log/management/passwords/vaultwarden"
+        - "{{ server_home }}/log/media/sharing/gokapi"
+        - "{{ server_home }}/log/media/storage/bookmarks/karakeep"
+        - "{{ server_home }}/log/media/storage/books/kavita"
+        - "{{ server_home }}/log/media/storage/books/librum"
+        - "{{ server_home }}/log/media/storage/documents/nextcloud"
+        - "{{ server_home }}/log/media/storage/documents/paperless"
+        - "{{ server_home }}/log/media/storage/music/navidrome"
+        - "{{ server_home }}/log/media/storage/pictures/immich"
+        - "{{ server_home }}/log/media/storage/pictures/meme-search"
+        - "{{ server_home }}/log/media/storage/pictures/photoprism"
+        - "{{ server_home }}/log/media/storage/pictures/pinry"
+        - "{{ server_home }}/log/media/storage/videos/jellyfin"
+        - "{{ server_home }}/log/media/tools/convertx"
+        - "{{ server_home }}/log/media/tools/docuseal"
+        - "{{ server_home }}/log/media/tools/stirling-pdf"
+        - "{{ server_home }}/log/monitoring/detection"
+        - "{{ server_home }}/log/monitoring/grafana"
+        - "{{ server_home }}/log/monitoring/ntfy"
+        - "{{ server_home }}/log/monitoring/prometheus"
+        - "{{ server_home }}/log/monitoring/scrutiny"
+        - "{{ server_home }}/log/news/freshrss"
+        - "{{ server_home }}/log/other/directus"
+        - "{{ server_home }}/log/other/limesurvey"
+        - "{{ server_home }}/log/pkms/affine"
+        - "{{ server_home }}/log/pkms/mathesar"
+        - "{{ server_home }}/log/pkms/memos"
+        - "{{ server_home }}/log/pkms/obsidian"
+        - "{{ server_home }}/log/proxy/traefik"
+        - "{{ server_home }}/log/remote/guacamole"
+        - "{{ server_home }}/log/remote/rustdesk"
+        - "{{ server_home }}/log/remote/wg-easy"
+        - "{{ server_home }}/log/remote/wireguard"
+        - "{{ server_home }}/log/search/searngx"
+        - "{{ server_home }}/log/security/authentik"
+        - "{{ server_home }}/log/security/crowdsec"
+        - "{{ server_home }}/log/security/enclosed"
+        - "{{ server_home }}/log/security/wazuh"
+        - "{{ server_home }}/log/travel/adventurelog"
+        - "{{ server_home }}/log/travel/dawarich"
+        - "{{ server_home }}/log/travel/jetlog"

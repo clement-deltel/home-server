@@ -19,7 +19,7 @@
 
 # Services
 - name: Create log directories
-  import_playbook: services/logs.yml
+  import_playbook: services/log.yml
 
 - name: Create persistence directories
   import_playbook: services/persistence.yml

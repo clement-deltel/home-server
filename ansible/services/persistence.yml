@@ -39,8 +39,8 @@
       - "{{ server_home }}/services/other/directus/persistence/extensions"
       - "{{ server_home }}/services/other/directus/persistence/uploads"
       # Docuseal
-      - "{{ server_home }}/services/pdf/docuseal/db-persistence"
-      - "{{ server_home }}/services/pdf/docuseal/persistence"
+      - "{{ server_home }}/services/media/tools/docuseal/db-persistence"
+      - "{{ server_home }}/services/media/tools/docuseal/persistence"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
       - "{{ server_home }}/services/security/enclosed/postgres-persistence"
@@ -96,7 +96,7 @@
       - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/movies"
       - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/tvshows"
       # Jetlog
-      - "{{ server_home }}/services/monitoring/jetlog/persistence"
+      - "{{ server_home }}/services/travel/jetlog/persistence"
       # Karakeep
       - "{{ server_home }}/services/media/storage/bookmarks/karakeep/persistence"
       - "{{ server_home }}/services/media/storage/bookmarks/karakeep/meilisearch-persistence"
@@ -197,9 +197,9 @@
       # SearNGX
       - "{{ server_home }}/services/search/searngx/persistence"
       # Stirling PDF
-      - "{{ server_home }}/services/pdf/stirling-pdf/persistence"
-      - "{{ server_home }}/services/pdf/stirling-pdf/persistence/configs"
-      - "{{ server_home }}/services/pdf/stirling-pdf/persistence/tessdata"
+      - "{{ server_home }}/services/media/tools/stirling-pdf/persistence"
+      - "{{ server_home }}/services/media/tools/stirling-pdf/persistence/configs"
+      - "{{ server_home }}/services/media/tools/stirling-pdf/persistence/tessdata"
       # Unbound
       - "{{ server_home }}/services/dns/unbound/persistence"
       # UpSnap
@@ -357,10 +357,14 @@
         - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
         - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
         - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
+        - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
+        - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
+        - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/monitoring/detection/compose.yaml"
         - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
         - "{{ server_home }}/services/monitoring/jetlog/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
+        - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
         - "{{ server_home }}/services/news/freshrss/compose.yaml"
         - "{{ server_home }}/services/other/directus/compose.yaml"
         - "{{ server_home }}/services/other/limesurvey/compose.yaml"
@@ -372,6 +376,7 @@
         - "{{ server_home }}/services/remote/guacamole/compose.yaml"
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+        # no labels for security/crowdsec
         - "{{ server_home }}/services/security/enclosed/compose.yaml"
         - "{{ server_home }}/services/security/wazuh/compose.yaml"
         - "{{ server_home }}/services/traefik/compose.yaml"

@@ -13,8 +13,6 @@ services:
       - 7422 # appsec waf endpoint
     hostname: crowdsec
     image: ${CROWDSEC_IMAGE}
-    labels:
-      traefik.enable: false
     logging:
       driver: json-file
       options:
