@@ -1,0 +1,718 @@
+# ---------------------------------------------------------------------------- #
+# Configuration for Traefik v3.
+#
+# Static configuration
+# Restart required if any change in this section.
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/configuration-options
+
+# ---------------------------------------------------------------------------- #
+#               ------- Global --------
+# ---------------------------------------------------------------------------- #
+global:
+  # Periodically check if a new version has been released
+  # default: true
+  checkNewVersion: true
+
+  # Periodically send anonymous usage statistics. If the option is not
+  # specified, it will be disabled by default
+  # default: false
+  sendAnonymousUsage: false
+
+# ---------------------------------------------------------------------------- #
+#               ------- Providers --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/providers/docker
+providers:
+  docker:
+    #-Specify the Docker API endpoint. Can be a tcp or a unix socket endpoint
+    #-required, default: unix:///var/run/docker.sock
+    endpoint: unix:///var/run/docker.sock
+
+    #-Username for Basic HTTP authentication
+    #-optional, default: ""
+    # username: ""
+
+    #-Password for Basic HTTP authentication
+    #-optional, default: ""
+    # password: ""
+
+    #-Instruct Traefik to use the IP/Port attached to the container's binding
+    #-instead of its inner network IP/Port.
+    #-optional, default: false
+    useBindPortIP: false
+
+    #-Expose containers by default through Traefik
+    #-optional, default: true
+    exposedByDefault: false
+
+    #-Default docker network to use for connections to all containers
+    #-optional, default: ""
+    network: traefik-net
+
+    #-Routing rule to apply to a container if no rule is defined by a label
+    #-optional, default: "Host(`{{ normalize .Name }}`)"
+    # defaultRule: "Host(`{{ normalize .Name }}`)"
+
+    #-Client timeout (in seconds) for HTTP connections
+    #-optional, default: "0"
+    httpClientTimeout: "300"
+
+    #-Watch Docker events or not
+    #-optional, default: true
+    watch: true
+
+    #-Expression that Traefik matches against the container labels to determine
+    #-whether to create any route for that container.
+    #-optional, default: ""
+    # constraints:
+
+    #-Create any servers load balancer defined for Docker containers regardless
+    #-of the healthiness of the corresponding containers
+    #-optional, default: false
+    allowEmptyServices: false
+
+    # tls:
+      #-Path to the certificate authority used for the secure connection to
+      #-Docker, it defaults to the system bundle
+      #-default: ""
+      # ca: ""
+
+      #-Path to the public certificate used for the secure connection to Docker
+      #-required, default: ""
+      # cert: ""
+
+      #-Path to the private key used for the secure connection to Docker
+      #-required, default: ""
+      # key: ""
+
+      #-Accept any certificate presented by the Docker server when establishing
+      #-a TLS connection, regardless of the hostnames the certificate covers
+      #-optional, default: false
+      # insecureSkipVerify: false
+
+# ---------------------------------------------------------------------------- #
+#               ------- Entrypoints --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/entrypoints
+entryPoints:
+
+  web:
+    #-Port, and optionally hostname, on which to listen for incoming connections
+    #-and packets. Also define the protocol to use (TCP or UDP). If no protocol
+    #-is specified, the default is TCP. The format is:`[host]:port[/tcp|/udp]
+    #-required, default:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          #- Target element to enable (permanent) redirecting of all incoming
+          #-requests on an entry point to another one
+          #-required, default:
+          to: websecure
+          #-Target scheme to use for (permanent) redirection of all incoming
+          #-requests
+          #-optional, default: https
+          scheme: https
+          #-Enable permanent redirecting of all incoming requests on an entry
+          #-point to another one changing the scheme
+          #-optional, default: false
+          permanent: true
+      #-Enable the request path sanitization.
+      #-optional, default: false
+      sanitizePath: true
+      # middlewares:
+      #   - crowdsec-bouncer@file
+    observability:
+      #-Whether a router attached to this EntryPoint produces access-logs by default
+      #-optional, default: true
+      accessLogs: true
+      #-Whether a router attached to this EntryPoint produces metrics by default
+      #-optional, default: true
+      metrics: false
+      #-Whether a router attached to this EntryPoint produces traces by default
+      #-optional, default: true
+      tracing: false
+      #-Tracing verbosity level for routers attached to this EntryPoint
+      traceVerbosity: minimal
+    transport:
+      respondingTimeouts:
+        #-Set the timeouts for incoming requests. This is the maximum duration
+        #-for reading the entire request, including the body
+        #-optional, default: 60s
+        readTimeout: 60s
+        #-Maximum duration before timing out writes of the response. It covers
+        #-the time from the end of the request header read to the end of the
+        #-response write. If zero, no timeout exists
+        #-optional, default: 0s
+        writeTimeout: 0s
+        #-Maximum duration an idle (keep-alive) connection will remain idle
+        #-before closing itself
+        #-optional, default: 180s
+        idleTimeout: 180s
+      lifeCycle:
+        #-Set the duration to give active requests a chance to finish before
+        #-Traefik stops
+        #-optional, default: 10s
+        graceTimeOut: 30s
+        #-Set the duration to keep accepting requests prior to initiating the
+        #-graceful termination period
+        #-optional, default: 0s
+        requestAcceptGraceTimeout: 0s
+      #-Set the maximum number of requests Traefik can handle before sending a
+      #-Connection: Close header to the client. Zero means no limit
+      #-optional, default: 0
+      keepAliveMaxRequests: 0
+      #-Set the maximum duration Traefik can handle requests before sending a
+      #-Connection: Close header to the client. Zero means no limit
+      #-optional, default: 0s
+      keepAliveMaxTime: 0s
+    udp:
+      #-Define how long to wait on an idle session before releasing the related
+      #-resources. Value must be greater than zero
+      #-optional, default: 3s
+      timeout: 3s
+
+  websecure:
+    address: :443
+    #-Mark the entryPoint to be in the list of default entryPoints
+    #-optional, default: false
+    asDefault: true
+    http:
+      sanitizePath: true
+      # middlewares:
+      #   - crowdsec-bouncer@file
+      tls:
+        #-Apply a certificate resolver on every router attached to the entryPoint. The TLS options can be overridden per router
+        #-optional, default:
+        certResolver: letsencrypt
+    observability:
+      accessLogs: true
+    transport:
+      lifeCycle:
+        graceTimeOut: 30s
+
+  web-external:
+    address: :81
+    http:
+      redirections:
+        entryPoint:
+          to: websecure-external
+          scheme: https
+          permanent: true
+      sanitizePath: true
+      # middlewares:
+      #   - crowdsec-bouncer@file
+    observability:
+      accessLogs: true
+    transport:
+      lifeCycle:
+        graceTimeOut: 30s
+
+  websecure-external:
+    address: :444
+    http:
+      sanitizePath: true
+      # middlewares:
+      #   - crowdsec-bouncer@file
+      tls:
+        certResolver: letsencrypt
+    observability:
+      accessLogs: true
+    transport:
+      respondingTimeouts:
+        readTimeout: 300s
+        writeTimeout: 300s
+        idleTimeout: 300s
+      lifeCycle:
+        graceTimeOut: 30s
+
+  ssh:
+    address: :2222/tcp
+    observability:
+      accessLogs: true
+
+  tcp-rd5:
+    address: :21115/tcp
+    observability:
+      accessLogs: true
+
+  tcp-rd6:
+    address: :21116/tcp
+    observability:
+      accessLogs: true
+
+  tcp-rd7:
+    address: :21117/tcp
+    observability:
+      accessLogs: true
+
+  vpn:
+    address: :51820/udp
+    observability:
+      accessLogs: true
+
+# ---------------------------------------------------------------------------- #
+#               ------- API & Dashboard --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/api-dashboard
+api:
+  #-Define the base path where the API and Dashboard will be exposed.
+  #-optional, default: /
+  basepath: /
+  #-Enable dashboard.
+  #-optional, default: false
+  dashboard: true
+  #-Enable additional endpoints for debugging and profiling, served under
+  #-/debug/.
+  #-optional, default: false
+  debug: true
+  #-Disable the advertisement from the dashboard.
+  #-optional, default: false
+  disableDashboardAd: true
+  #-Enable the API and the dashboard on the entryPoint named traefik.
+  #-optional, default: false
+  insecure: false
+
+# ---------------------------------------------------------------------------- #
+#               ------- Certificates Resolvers - TLS & ACME --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/tls/certificate-resolvers/acme
+certificatesResolvers:
+
+  letsencrypt:
+    acme:
+      #-Email address used for registration.
+      #-required, default: ""
+      email: ""
+      #-CA server to use.
+      #-optional, default: https://acme-v02.api.letsencrypt.org/directory
+      # caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+
+      #-Preferred chain to use. If the CA offers multiple certificate chains,
+      #-prefer the chain with an issuer matching this Subject Common Name.
+      #-If no match, the default offered chain will be used.
+      #-optional, default: ""
+      # preferredChain: ""
+
+      #-KeyType to use.
+      #-optional, default: RSA4096
+      #-available values : "EC256", "EC384", "RSA2048", "RSA4096", "RSA8192"
+      keyType: RSA4096
+
+      #-Disable common name inside CSR and certificates
+      #-optional, default: false
+      # disableCommonName: false
+
+      #-Certificate profile to use
+      #-optional, default: ""
+      # profile:
+
+      #-Specify the paths to PEM encoded CA Certificates that can be used to
+      #-authenticate an ACME server with an HTTPS certificate not issued by a CA
+      #- in the system-wide trusted root list
+      #-optional, default: []
+      # caCertificates:
+
+      #-Define if the certificates pool must use a copy of the system cert pool
+      #-optional, default: false
+      # caSystemCertPool: false
+
+      #-Specify the CA server name that can be used to authenticate an ACME
+      #-server with an HTTPS certificate not issued by a CA in the system-wide
+      #-trusted root list
+      #-optional, default: ""
+      # caServerName:
+
+      #-CSR email addresses to use
+      #-optional, default: ""
+      # emailAddresses:
+
+      #-Enable external account binding
+      #-optional
+      # eab:
+        #-Key identifier from External CA
+        #-optional, default: ""
+        # kid:
+        #-HMAC key from External CA, should be in Base64 URL Encoding without
+        #-padding format
+        #-optional, default: ""
+        # hmacEncoded:
+
+      #-The certificates' duration in hours, exclusively used to determine
+      #-renewal dates. It defaults to 2160 hours (90 days) to follow Let's
+      #-Encrypt certificates' duration
+      #-optional, default: 2160
+      certificatesDuration: 2160
+
+      #-Timeout for HTTP Client used to communicate with the ACME server
+      #-optional, default: 2m
+      clientTimeout: 2m
+
+      #-Timeout for response headers for HTTP Client used to communicate with
+      #-the ACME server
+      #-optional, default: 30s
+      clientResponseHeaderTimeout: 30s
+
+      #-Enable DNS-01 challenge
+      #-optional
+      # dnsChallenge:
+        #-DNS provider to use
+        #-optional, default: ""
+        # provider:
+        #-DNS servers to resolve the FQDN authority
+        #-optional, default: []
+        # resolvers:
+        # propagation:
+          #-The provider will verify the TXT DNS challenge record before letting
+          #-ACME verify. If delayBeforeCheck is greater than zero, this check
+          #-is delayed for the configured duration in seconds
+          #-optional, default: 0s
+          # delayBeforeChecks: 0s
+          #-Disable the challenge TXT record propagation checks, before
+          #-notifying ACME that the DNS challenge is ready
+          #-optional, default: false
+          # disableChecks: false
+          #-Enable the challenge TXT record to be propagated to all recursive
+          #-nameservers
+          #-optional, default: false
+          # requireAllRNS: false
+          #-Disable the challenge TXT record propagation checks against
+          #-authoritative nameservers
+          #-optional, default: false
+          # disableANSChecks: false
+
+      #-Enable HTTP-01 challenge
+      httpChallenge:
+        #-EntryPoint to use, must be reachable by Let's Encrypt through port 80
+        #-required, default: ""
+        entryPoint: web
+        #-Delay between the creation of the challenge and the validation. A
+        #-value lower than or equal to zero means no delay
+        #-optional, default: 0
+        delay: "0"
+
+      #-Enable TLS-ALPN-01 challenge. Traefik must be reachable by Let's Encrypt
+      #-through port 443
+      # tlsChallenge:
+        #-delay between the creation of the challenge and the validation. A
+        #-value lower than or equal to zero means no delay
+        #-optional, default: 0
+        # delay: 0
+
+      #-File or key used for certificates storage.
+      #-required, default:
+      storage: /letsencrypt/acme.json
+
+# ---------------------------------------------------------------------------- #
+#               ------- Metrics --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/observability/metrics
+# metrics:
+
+  #-Enable metrics for internal resources
+  #-optional, default: false
+  # addInternals: true
+
+  # oltp:
+    #-Define the service name resource attribute
+    #-optional, default: traefik
+    # serviceName: traefik
+    #-Define additional resource attributes to be sent to the collector
+    #-optional, default: []
+    # resourceAttributes: []
+    #-Enable metrics on entry points
+    #-optional, default: true
+    # addEntryPointsLabels: true
+    #-Enable metrics on routers
+    #-optional, default: false
+    # addRoutersLabels: true
+    #-Enable metrics on services
+    #-optional, default: true
+    # addServicesLabels: true
+
+    #-Explicit boundaries for Histogram data points
+    #-optional, default: .005, .01, .025, .05, .1, .25, .5, 1, 2.5, 5, 10
+    # explicitBoundaries: .005, .01, .025, .05, .1, .25, .5, 1, 2.5, 5, 10
+    #-Interval at which metrics are sent to the OpenTelemetry Collector
+    #-optional, default: 10s
+    # pushInterval: 10s
+
+    # http:
+      #-URL of the OpenTelemetry Collector to send metrics to
+      #-required, default: https://localhost:4318/v1/metrics
+      # endpoint: https://localhost:4318/v1/metrics
+      #-Additional headers sent with metrics by the exporter to the
+      #-OpenTelemetry Collector
+      #-optional, default:
+      # headers:
+      # tls:
+        #-Path to the certificate authority used for the secure connection to
+        #-the OpenTelemetry Collector, it defaults to the system bundle
+        #-optional, default: ""
+        # ca:
+        #-Path to the public certificate used for the secure connection to the
+        #-OpenTelemetry Collector
+        #-optional, default: ""
+        # cert:
+        #-This instructs the exporter to send the metrics to the OpenTelemetry
+        #-Collector using HTTP
+        #-optional, default:
+        # key:
+        #-Allow the TLS connection to the OpenTelemetry Collector accepts any
+        #-certificate presented by the server regardless of the hostnames it
+        #-covers
+        #-required, default: false
+        # insecureSkipVerify:
+
+    # grpc:
+      #-Address of the OpenTelemetry Collector to send metrics to
+      #-required, default: localhost:4317
+      # endpoint: localhost:4317
+      # headers:
+      #-Allows exporter to send metrics to the OpenTelemetry Collector without
+      #-using a secured protocol
+      #-optional, default:
+      # insecure:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+
+  # influxDB2:
+    # addEntryPointsLabels: true
+    # addRoutersLabels: true
+    # addServicesLabels: true
+    #-Additional labels (InfluxDB tags) on all metrics
+    #-optional, default:
+    # additionalLabels:
+
+    #-The interval used by the exporter to push metrics to InfluxDB server
+    #-optional, default: 10s
+    # pushInterval: 10s
+
+    #-Address of the InfluxDB v2 instance
+    #-required, default: http://localhost:8086
+    # address: influxdb:8089
+    #-Token with which to connect to InfluxDB v2
+    #-required, default:
+    # token:
+    #-required, default:
+    # org:
+    #-Bucket where metrics will be stored
+    #-required, default:
+    # bucket:
+
+# ---------------------------------------------------------------------------- #
+#               ------- Tracing --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/observability/tracing
+# tracing:
+
+  # addInternals: true
+
+  # serviceName: traefik
+  # resourceAttributes: []
+
+  #-Proportion of requests to trace, specified between 0.0 and 1.0
+  #-optional, default: 1.0
+  # sampleRate:
+  #-Define the list of request headers to add as attributes
+  #-optional, default: []
+  # capturedRequestHeaders: []
+  #-Define the list of response headers to add as attributes
+  #-optional, default: []
+  # capturedResponseHeaders: []
+  #-Define the list of query parameters to not redact since all query parameters
+  #-are redacted by default
+  #-optional, default: []
+  # safeQueryParams: []
+
+  # oltp:
+    # http:
+      # endpoint:
+      # headers:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+    # grpc:
+      # endpoint:
+      # headers:
+      # insecure:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+
+# ---------------------------------------------------------------------------- #
+#               ------- Log --------
+# ---------------------------------------------------------------------------- #
+# https://doc.traefik.io/traefik/reference/install-configuration/observability/logs-and-accesslogs
+log:
+
+  #-Logs are written to the standard output by default
+  #-optional, default:
+  filePath: "/var/log/traefik.log"
+  #-Log format (common or json). The fields displayed with the format common
+  #-cannot be customized
+  #-optional, default: common
+  format: json
+  #-Log level (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, and PANIC)
+  #-optional, default: ERROR
+  level: WARN
+  #-When using the format common, disables the colorized output
+  #-optional, default: false
+  noColor: false
+  #-Maximum size in megabytes of the log file before it gets rotated
+  #-optional, default: 100
+  maxSize: 10
+  #-Maximum number of days to retain old log files based on the timestamp
+  #-encoded in their filename
+  #-optional, default:
+  maxAge: 0
+  #-Maximum number of old log files to retain
+  #-optional, default:
+  maxBackups: 5
+  #-Compress log files in gzip after rotation
+  #-optional, default: false
+  compress: true
+
+  # oltp:
+    # serviceName: traefik
+    # resourceAttributes: []
+
+    # http:
+      # endpoint:
+      # headers:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+    # grpc:
+      # endpoint:
+      # headers:
+      # insecure:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+
+#-By default it will write to stdout and produce logs in the textual
+#-Common Log Format (CLF), extended with additional fields.
+#-Optional
+#
+accessLog:
+
+  #-Access logs are written to the standard output by default
+  #-optional, default:
+  filePath: "/var/log/access.log"
+  #-logs are written using the Traefik Common Log Format (CLF). Available
+  #-formats: common (Traefik extended CLF), genericCLF (standard CLF compatible
+  #-with analyzers), or json
+  #-optional, default: common
+  format: "json"
+
+  #-Specify a bufferingSize option to write the logs in an asynchronous fashion
+  #-optional, default:
+  bufferingSize: 0
+
+  addInternals: true
+
+  filters:
+    #-Limit the access logs to requests with a status codes in the specified
+    #-range
+    #-optional, default: []
+    # statusCodes:
+    #   - "400-409"
+    #   - "500"
+    #-Keep the access logs when at least one retry has happened
+    #-optional, default: false
+    retryAttempts: true
+    #-Keep access logs when requests take longer than the specified duration
+    #-optional, default: "0"
+    minDuration: "0"
+
+  fields:
+    #-Mode to apply by default to the access logs fields
+    #-optional, default: keep
+    #-available values: keep, redact, drop
+    defaultMode: keep
+    #-Set the fields list to display in the access logs
+    #-optional, default: []
+    # names:
+    headers:
+      #-Mode to apply by default to the access logs headers
+      #-optional, default: keep
+      #-available values: keep, redact, drop
+      defaultMode: keep
+      #-Set the headers list to display in the access logs
+      #-optional, default: []
+      # names:
+
+  # oltp:
+    # serviceName:
+    # resourceAttributes:
+
+    # http:
+      # endpoint:
+      # headers:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+    # grpc:
+      # endpoint:
+      # headers:
+      # insecure:
+      # tls:
+        # ca:
+        # cert:
+        # key:
+        # insecureSkipVerify:
+
+# ---------------------------------------------------------------------------- #
+#               ------- Ping --------
+# ---------------------------------------------------------------------------- #
+ping:
+  #-Enable /ping on a dedicated EntryPoint
+  #-optional, default: traefik
+  entryPoint: traefik
+  #-Disable the default internal router in order to allow one to create a custom router for the ping@internal service when set to true
+  #-optional, default: false
+  manualRouting: false
+  #-Define the status code for the ping handler during a graceful shut down
+  #-optional, default: 503
+  terminatingStatusCode: 503
+
+# ---------------------------------------------------------------------------- #
+#               ------- Plugins --------
+# ---------------------------------------------------------------------------- #
+# experimental:
+  # plugins:
+    #-https://github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+    # crowdsec-bouncer:
+      # moduleName: "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
+      # version: "v1.5.0"
+
+# ---------------------------------------------------------------------------- #
+# Configuration for Traefik v3.
+#
+# Dynamic configuration
+# No restart required if any change in this section.
+# ---------------------------------------------------------------------------- #
+
+#TODO middleware ip-whitelist
+# http:
+#   middlewares:
+#     ip-whitelist:
+#       ip-whitelist:
+#         sourceRange:
+#           - "192.168.68.10"
