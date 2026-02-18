@@ -1,21 +1,22 @@
+# https://github.com/bastienwirtz/homer
 services:
   homer:
     container_name: homer
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: homer
     image: ${HOMER_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.homer.entrypoints=web,websecure"
-      - "traefik.http.routers.homer.rule=Host(`homer.${DOMAIN}`)"
+      - "traefik.http.routers.homer.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.homer.rule=Host(`dashboard.${DOMAIN}`)"
       - "traefik.http.routers.homer.tls=true"
       # - "traefik.http.routers.homer.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.homer.tls.domains[0].main=homer.${DOMAIN}"
+      # - "traefik.http.routers.homer.tls.domains[0].main=dashboard.${DOMAIN}"
       - "traefik.http.routers.homer.middlewares=homer"
       - "traefik.http.routers.homer.service=homer"
       # Middlewares
@@ -28,7 +29,7 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${HOMER_IP}
     ports:
       - 8080
@@ -39,6 +40,6 @@ services:
       - ./persistence:/www/assets
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net
