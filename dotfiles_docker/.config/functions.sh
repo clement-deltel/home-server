@@ -83,6 +83,9 @@ function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs
 function set-env { load-env ${SERVER_HOME}/env/secrets.env; load-env ${SERVER_HOME}/env/services.env; }
 function unset-env { unload-env ${SERVER_HOME}/env/services.env; unload-env ${SERVER_HOME}/env/secrets.env; }
 
+function set-services { load-env ${SERVER_HOME}/env/services.env; }
+function unset-services { unload-env ${SERVER_HOME}/env/services.env; }
+
 function bw-env { bitwarden-load-env-fn; load-env ${SERVER_HOME}/env/services.env; }
 
 # ---------------------------------------------------------------------------- #
