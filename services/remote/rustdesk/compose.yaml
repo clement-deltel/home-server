@@ -20,19 +20,19 @@ services:
       - "traefik.http.routers.rustdesk-rd9.middlewares=rustdesk-headers"
       - "traefik.http.routers.rustdesk-rd9.service=rustdesk-rd9"
       # TCP: 21115 - ID Server - NAT type test
-      - "traefik.tcp.routers.rustdesk-rd5.entrypoints=rd5-tcp"
+      - "traefik.tcp.routers.rustdesk-rd5.entrypoints=rd5"
       - "traefik.tcp.routers.rustdesk-rd5.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.rustdesk-rd5.tls=false"
       - "traefik.tcp.routers.rustdesk-rd5.tls.passthrough=true"
       - "traefik.tcp.routers.rustdesk-rd5.service=rustdesk-rd5"
       # TCP: 21116 - ID Server - TCP hole punching
-      - "traefik.tcp.routers.rustdesk-rd6.entrypoints=rd6-tcp"
+      - "traefik.tcp.routers.rustdesk-rd6.entrypoints=rd6"
       - "traefik.tcp.routers.rustdesk-rd6.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.rustdesk-rd6.tls=false"
       - "traefik.tcp.routers.rustdesk-rd6.tls.passthrough=true"
       - "traefik.tcp.routers.rustdesk-rd6.service=rustdesk-rd6"
       # TCP: 21117 - Relay Server - Relay services
-      - "traefik.tcp.routers.rustdesk-rd7.entrypoints=rd7-tcp"
+      - "traefik.tcp.routers.rustdesk-rd7.entrypoints=rd7"
       - "traefik.tcp.routers.rustdesk-rd7.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.rustdesk-rd7.tls=false"
       - "traefik.tcp.routers.rustdesk-rd7.tls.passthrough=true"

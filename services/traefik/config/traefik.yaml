@@ -232,17 +232,17 @@ entryPoints:
     observability:
       accessLogs: true
 
-  tcp-rd5:
+  rd5:
     address: :21115/tcp
     observability:
       accessLogs: true
 
-  tcp-rd6:
+  rd6:
     address: :21116/tcp
     observability:
       accessLogs: true
 
-  tcp-rd7:
+  rd7:
     address: :21117/tcp
     observability:
       accessLogs: true
