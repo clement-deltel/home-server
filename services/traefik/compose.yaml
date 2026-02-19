@@ -83,7 +83,8 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.robots.rule=HostRegexp(`{host:.*}`) && Path(`/robots.txt`)"
+      - "traefik.http.routers.robots.entrypoints=web,websecure,web-external,websecure-external"
+      - "traefik.http.routers.robots.rule=HostRegexp(`[a-z0-9-]+\\.${DOMAIN}`) && Path(`/robots.txt`)"
       - "traefik.http.routers.robots.tls=true"
       - "traefik.http.routers.robots.priority=99"
     logging:
