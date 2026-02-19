@@ -29,9 +29,11 @@
       log: "{{ item.log }}"
     loop:
       - {comment: "SSH (TCP)", rule: limit, port: 22, protocol: "tcp", log: true}
-      - {comment: "Pihole DNS (TCP)", port: 53, protocol: "tcp", log: false}
+      - {comment: "Pihole DNS", port: 53, protocol: "any", log: false}
       - {comment: "Traefik HTTP", port: 80, protocol: "any", log: false}
+      - {comment: "Traefik HTTP External", port: 81, protocol: "any", log: false}
       - {comment: "Traefik HTTPS", port: 443, protocol: "any", log: false}
+      - {comment: "Traefik HTTPS External", port: 444, protocol: "any", log: false}
       - {comment: "Wazuh (TCP)", port: 1514, protocol: "tcp", log: false}
       - {comment: "Wazuh (TCP)", port: 1515, protocol: "tcp", log: false}
       - {comment: "Guacamole RDP", port: 3389, protocol: "any", log: false}
@@ -45,7 +47,6 @@
       - {comment: "RustDesk Relay Server - Web client (TCP)", port: 21119, protocol: "tcp", log: false}
       - {comment: "Minecraft", port: 25565, protocol: "any", log: false}
       - {comment: "Wazuh API (TCP)", port: 55000, protocol: "tcp", log: false}
-      - {comment: "Pihole DNS (UDP)", port: 53, protocol: "udp", log: false}
       - {comment: "Wazuh (UDP)", port: 514, protocol: "udp", log: false}
       - {comment: "Jellyfin local network discovery (UDP)", port: 7359, protocol: "udp", log: false}
       - {comment: "ID Server - ID registration and heartbeat (UDP)", port: 21116, protocol: "udp", log: false}
