@@ -16,11 +16,8 @@ services:
       # - "traefik.http.routers.wireguard.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.wireguard.tls.domains[0].main=vpn.${DOMAIN}"
       - "traefik.http.routers.wireguard.service=wireguard"
-      - "traefik.udp.routers.wireguard.entrypoints=vpn"
-      - "traefik.udp.routers.wireguard.service=wireguard"
       # Services
       - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
-      - "traefik.udp.services.wireguard.loadbalancer.server.port=51820"
     logging:
       driver: json-file
       options:
@@ -33,7 +30,7 @@ services:
         ipv4_address: ${WIREGUARD_MONITORING_IP}
     ports:
       - 51821/tcp
-      - 51820/udp
+      - ${WIREGUARD_PORT}:51820/udp
     restart: unless-stopped
     stop_grace_period: 30s
     sysctls:

@@ -58,8 +58,6 @@ services:
       - ${RUSTDESK_ID_NAT_TT_PORT}:21115/tcp # ID Server - NAT type test
       - ${RUSTDESK_ID_HP_PORT}:21116/tcp # ID Server - TCP hole punching
       - ${RUSTDESK_RELAY_PORT}:21117/tcp # Relay Server - Relay services
-      # VPN
-      - ${WIREGUARD_PORT}:51820/udp
     restart: unless-stopped
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
