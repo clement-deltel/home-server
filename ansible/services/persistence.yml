@@ -5,16 +5,17 @@
     directories:
       # Traefik
       - "{{ server_home }}/services/traefik/persistence"
+      - "{{ server_home }}/services/traefik/persistence/log"
       # Actual
       - "{{ server_home }}/services/finances/actual/persistence"
       # AdventureLog
-      - "{{ server_home }}/services/travel/adventurelog/persistence"
       - "{{ server_home }}/services/travel/adventurelog/db-persistence"
+      - "{{ server_home }}/services/travel/adventurelog/persistence"
       # Affine
+      - "{{ server_home }}/services/pkms/affine/db-persistence"
       - "{{ server_home }}/services/pkms/affine/persistence"
       - "{{ server_home }}/services/pkms/affine/persistence/config"
       - "{{ server_home }}/services/pkms/affine/persistence/storage"
-      - "{{ server_home }}/services/pkms/affine/postgres-persistence"
       - "{{ server_home }}/services/pkms/affine/redis-persistence"
       # Bytestash
       - "{{ server_home }}/services/management/code/bytestash/persistence"
@@ -28,11 +29,11 @@
       - "{{ server_home }}/services/security/crowdsec/persistence/etc"
       # Dawarich
       - "{{ server_home }}/services/travel/dawarich/db-persistence"
-      - "{{ server_home }}/services/travel/dawarich/shared-persistence"
       - "{{ server_home }}/services/travel/dawarich/persistence"
       - "{{ server_home }}/services/travel/dawarich/persistence/public"
       - "{{ server_home }}/services/travel/dawarich/persistence/storage"
       - "{{ server_home }}/services/travel/dawarich/persistence/watched"
+      - "{{ server_home }}/services/travel/dawarich/shared-persistence"
       # Directus
       - "{{ server_home }}/services/other/directus/db-persistence"
       - "{{ server_home }}/services/other/directus/persistence"
@@ -43,9 +44,9 @@
       - "{{ server_home }}/services/media/tools/docuseal/persistence"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
-      - "{{ server_home }}/services/security/enclosed/postgres-persistence"
       # FreshRSS
-      - "{{ server_home }}/services/news/freshrss/persistence"
+      - "{{ server_home }}/services/media/storage/news/freshrss/db-persistence"
+      - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
       # GitLab
       - "{{ server_home }}/services/management/code/gitlab/persistence"
       - "{{ server_home }}/services/management/code/gitlab/persistence/config"
@@ -188,8 +189,8 @@
       # Prometheus
       - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
       # RustDesk
-      - "{{ server_home }}/services/remote/rustdesk/persistence"
       - "{{ server_home }}/services/remote/rustdesk/db-persistence"
+      - "{{ server_home }}/services/remote/rustdesk/persistence"
       # Scrutiny
       - "{{ server_home }}/services/monitoring/scrutiny/persistence"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
@@ -214,28 +215,28 @@
       - "{{ server_home }}/services/finances/wallos/persistence/db"
       - "{{ server_home }}/services/finances/wallos/persistence/logos"
       # Wazuh
-      - "{{ server_home }}/services/security/wazuh/persistence"
-      - "{{ server_home }}/services/security/wazuh/persistence/api_configuration"
-      - "{{ server_home }}/services/security/wazuh/persistence/etc"
-      - "{{ server_home }}/services/security/wazuh/persistence/logs"
-      - "{{ server_home }}/services/security/wazuh/persistence/queue"
-      - "{{ server_home }}/services/security/wazuh/persistence/var_multigroups"
-      - "{{ server_home }}/services/security/wazuh/persistence/integrations"
-      - "{{ server_home }}/services/security/wazuh/persistence/active_response"
-      - "{{ server_home }}/services/security/wazuh/persistence/agentless"
-      - "{{ server_home }}/services/security/wazuh/persistence/wodles"
+      - "{{ server_home }}/services/security/wazuh/dashboard-persistence"
+      - "{{ server_home }}/services/security/wazuh/dashboard-persistence/config"
+      - "{{ server_home }}/services/security/wazuh/dashboard-persistence/custom"
       - "{{ server_home }}/services/security/wazuh/filebeat-persistence"
       - "{{ server_home }}/services/security/wazuh/filebeat-persistence/etc"
       - "{{ server_home }}/services/security/wazuh/filebeat-persistence/var"
       - "{{ server_home }}/services/security/wazuh/indexer-persistence"
-      - "{{ server_home }}/services/security/wazuh/dashboard-persistence"
-      - "{{ server_home }}/services/security/wazuh/dashboard-persistence/config"
-      - "{{ server_home }}/services/security/wazuh/dashboard-persistence/custom"
+      - "{{ server_home }}/services/security/wazuh/persistence"
+      - "{{ server_home }}/services/security/wazuh/persistence/active_response"
+      - "{{ server_home }}/services/security/wazuh/persistence/agentless"
+      - "{{ server_home }}/services/security/wazuh/persistence/api_configuration"
+      - "{{ server_home }}/services/security/wazuh/persistence/etc"
+      - "{{ server_home }}/services/security/wazuh/persistence/integrations"
+      - "{{ server_home }}/services/security/wazuh/persistence/logs"
+      - "{{ server_home }}/services/security/wazuh/persistence/queue"
+      - "{{ server_home }}/services/security/wazuh/persistence/var_multigroups"
+      - "{{ server_home }}/services/security/wazuh/persistence/wodles"
       # Wireguard Easy
       - "{{ server_home }}/services/remote/wg-easy/persistence"
       # Wireguard
       - "{{ server_home }}/services/remote/wireguard/persistence"
-      #Wishlist
+      # Wishlist
       - "{{ server_home }}/services/inventory/wishlist/persistence"
       - "{{ server_home }}/services/inventory/wishlist/persistence/data"
       - "{{ server_home }}/services/inventory/wishlist/persistence/uploads"
@@ -267,15 +268,15 @@
         group: docker
         mode: 0640
       loop:
-        - "{{ server_home }}/services/traefik/persistence/access.log"
-        - "{{ server_home }}/services/traefik/persistence/traefik.log"
+        - "{{ server_home }}/services/traefik/persistence/log/access.log"
+        - "{{ server_home }}/services/traefik/persistence/log/traefik.log"
 
     #--- Traefik - Testing
     - name: Traefik Testing - Copy Traefik configuration file
       when: local_domain
       ansible.builtin.copy:
-        src: "{{ server_home }}/services/traefik/config_local/traefik.toml"
-        dest: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+        src: "{{ server_home }}/services/traefik/config_local/traefik.yaml"
+        dest: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
         owner: docker
         group: docker
         mode: 0640
@@ -295,18 +296,18 @@
 
       - name: Copy Traefik configuration file
         ansible.builtin.copy:
-          src: "{{ server_home }}/services/traefik/config/traefik.toml"
-          dest: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+          src: "{{ server_home }}/services/traefik/config/traefik.yaml"
+          dest: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
           owner: docker
           group: docker
           mode: 0640
 
-      - name: Add email to traefik.toml
+      - name: Add email to traefik.yaml
         ansible.builtin.lineinfile:
-          path: "{{ server_home }}/services/traefik/persistence/traefik.toml"
+          path: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
           state: present
-          search_string: "email ="
-          line: "  email = '{{ user_email }}'"
+          search_string: 'email: ""'
+          line: '  email: "{{ user_email }}"'
 
       - name: Create traefik users.txt file
         ansible.builtin.file:
@@ -335,8 +336,10 @@
         - "{{ server_home }}/services/ai/litellm/compose.yaml"
         - "{{ server_home }}/services/ai/open-webui/compose.yaml"
         - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
+        - "{{ server_home }}/services/dashboard/homer/compose.yaml"
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
         - "{{ server_home }}/services/finances/actual/compose.yaml"
+        - "{{ server_home }}/services/finances/wallos/compose.yaml"
         - "{{ server_home }}/services/home/home-assistant/compose.yaml"
         - "{{ server_home }}/services/home/upsnap/compose.yaml"
         - "{{ server_home }}/services/inventory/grocy/compose.yaml"
@@ -350,36 +353,41 @@
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
         - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
+        - "{{ server_home }}/services/media/storage/bookmarks/karakeep/compose.yaml"
         - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"
         - "{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml"
         - "{{ server_home }}/services/media/storage/documents/paperless/compose.yaml"
-        - "{{ server_home }}/services/media/storage/pictures/immich/compose.yaml"
-        - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
         - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
+        - "{{ server_home }}/services/media/storage/news/freshrss/compose.yaml"
+        - "{{ server_home }}/services/media/storage/pictures/immich/compose.yaml"
+        - "{{ server_home }}/services/media/storage/pictures/meme-search/compose.yaml"
+        - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
+        - "{{ server_home }}/services/media/storage/pictures/pinry/compose.yaml"
         - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
         - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/monitoring/detection/compose.yaml"
         - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
-        - "{{ server_home }}/services/monitoring/jetlog/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
         - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
-        - "{{ server_home }}/services/news/freshrss/compose.yaml"
         - "{{ server_home }}/services/other/directus/compose.yaml"
         - "{{ server_home }}/services/other/limesurvey/compose.yaml"
-        - "{{ server_home }}/services/pdf/docuseal/compose.yaml"
-        - "{{ server_home }}/services/pdf/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/pkms/affine/compose.yaml"
         - "{{ server_home }}/services/pkms/mathesar/compose.yaml"
+        - "{{ server_home }}/services/pkms/memos/compose.yaml"
         - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
+        - "{{ server_home }}/services/proxy/traefik/compose.yaml"
         - "{{ server_home }}/services/remote/guacamole/compose.yaml"
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+        - "{{ server_home }}/services/search/searngx/compose.yaml"
         # no labels for security/crowdsec
         - "{{ server_home }}/services/security/enclosed/compose.yaml"
         - "{{ server_home }}/services/security/wazuh/compose.yaml"
-        - "{{ server_home }}/services/traefik/compose.yaml"
+        - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
+        - "{{ server_home }}/services/travel/dawarich/compose.yaml"
+        - "{{ server_home }}/services/travel/jetlog/compose.yaml"
 
     #--- Guacamole
     - name: Make initdb.sql script executable
@@ -393,8 +401,8 @@
     #--- Ntfy
     - name: Copy Ntfy server configuration file
       ansible.builtin.copy:
-        src: "{{ server_home }}/services/ntfy/config/server.yml"
-        dest: "{{ server_home }}/services/ntfy/persistence/etc/server.yml"
+        src: "{{ server_home }}/services/monitoring/ntfy/config/server.yml"
+        dest: "{{ server_home }}/services/monitoring/ntfy/persistence/etc/server.yml"
         owner: docker
         group: docker
         mode: 0640
@@ -402,7 +410,7 @@
     #--- Pihole
     - name: Create Pihole log file
       ansible.builtin.file:
-        path: "{{ server_home }}/services/pihole/pihole.log"
+        path: "{{ server_home }}/services/dns/pihole/pihole.log"
         state: touch
         owner: docker
         group: docker
@@ -412,7 +420,7 @@
     - name: Download French language pack for OCR feature
       ansible.builtin.get_url:
         url: https://github.com/tesseract-ocr/tessdata/blob/main/fra.traineddata
-        dest: "{{ server_home }}/services/stirling-pdf/persistence/tessdata/fra.traineddata"
+        dest: "{{ server_home }}/services/media/tools/stirling-pdf/persistence/tessdata/fra.traineddata"
         mode: 0740
 
     #--- Unbound

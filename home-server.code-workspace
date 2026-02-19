@@ -46,13 +46,21 @@
         "files.trimTrailingWhitespace": true,
         // Extension - Code Spell Checker
         "cSpell.words": [
+            "appsec",
+            "authentik",
+            "codeberg",
+            "crowdsec",
+            "crowdsecurity",
             "dawarich",
+            "forgejo",
             "gping",
             "lnav",
             "pastebin",
+            "pinry",
             "procs",
             "sidekiq",
             "strava",
+            "sysctls",
             "umami"
         ],
         // Extension - Git

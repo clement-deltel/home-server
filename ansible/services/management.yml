@@ -15,7 +15,7 @@
       - { when: directus_enable, project_src: '{{ server_home }}/services/other/directus' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/media/tools/docuseal' }
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
-      - { when: freshrss_enable, project_src: '{{ server_home }}/services/news/freshrss' }
+      - { when: freshrss_enable, project_src: '{{ server_home }}/services/media/storage/news/freshrss' }
       - { when: gitlab_enable, project_src: '{{ server_home }}/services/management/code/gitlab' }
       - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
       - { when: grafana_enable, project_src: '{{ server_home }}/services/monitoring/grafana' }
