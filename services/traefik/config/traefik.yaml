@@ -387,7 +387,7 @@ certificatesResolvers:
       httpChallenge:
         #-EntryPoint to use, must be reachable by Let's Encrypt through port 80
         #-required, default: ""
-        entryPoint: web
+        entryPoint: web-external
         #-Delay between the creation of the challenge and the validation. A
         #-value lower than or equal to zero means no delay
         #-optional, default: 0
