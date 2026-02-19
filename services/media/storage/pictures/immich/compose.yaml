@@ -94,7 +94,7 @@ services:
       # Middlewares
       - "traefik.http.middlewares.immich-cors.headers.accesscontrolallowmethods=GET"
       - "traefik.http.middlewares.immich-cors.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.immich-cors.headers.accesscontrolalloworiginlist=https://dashboard.${DOMAIN}.com"
+      - "traefik.http.middlewares.immich-cors.headers.accesscontrolalloworiginlist=https://dashboard.${DOMAIN}"
       - "traefik.http.middlewares.immich-cors.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.immich-cors.headers.addvaryheader=true"
       # Services
