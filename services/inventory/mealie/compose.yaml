@@ -18,7 +18,7 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${MEALIE_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
@@ -59,9 +59,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${MEALIE_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${MEALIE_IP}
     ports:
       - 9000
@@ -70,16 +70,15 @@ services:
     volumes:
       - ./persistence:/app/data
 
-
 networks:
-  app-net:
-    name: mealie-internal
+  internal-net:
+    name: internal-mealie
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${MEALIE_NET}
           gateway: ${MEALIE_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

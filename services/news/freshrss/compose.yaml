@@ -24,6 +24,7 @@ services:
     stop_grace_period: 30s
     volumes:
       - ./postgres-persistence:/var/lib/postgresql/data
+      
   freshrss:
     container_name: freshrss
     depends_on:
