@@ -5,7 +5,9 @@
     directories:
       # Traefik
       - "{{ server_home }}/services/traefik/persistence"
+      - "{{ server_home }}/services/traefik/persistence/dynamic"
       - "{{ server_home }}/services/traefik/persistence/log"
+      - "{{ server_home }}/services/traefik/persistence/plugins"
       # Actual
       - "{{ server_home }}/services/finances/actual/persistence"
       # AdventureLog
@@ -294,7 +296,7 @@
           group: docker
           mode: 0600
 
-      - name: Copy Traefik configuration file
+      - name: Copy Traefik static configuration file
         ansible.builtin.copy:
           src: "{{ server_home }}/services/traefik/config/traefik.yaml"
           dest: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
@@ -308,6 +310,21 @@
           state: present
           search_string: 'email: ""'
           line: '  email: "{{ user_email }}"'
+
+      - name: Copy Traefik dynamic configuration file
+        ansible.builtin.copy:
+          src: "{{ server_home }}/services/traefik/config/dynamic.yaml"
+          dest: "{{ server_home }}/services/traefik/persistence/dynamic/dynamic.yaml"
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Add CrowdSec API key to dynamic.yaml
+        ansible.builtin.lineinfile:
+          path: "{{ server_home }}/services/traefik/persistence/dynamic/dynamic.yaml"
+          state: present
+          search_string: 'crowdsecLapiKey: ""'
+          line: '          crowdsecLapiKey: "{{ crowdsec_api_key }}"'
 
       - name: Create traefik users.txt file
         ansible.builtin.file:

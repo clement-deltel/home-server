@@ -28,10 +28,6 @@ services:
       - "traefik.http.routers.traefik.service=api@internal"
       # Middlewares
       # - "traefik.http.middlewares.auth.basicauth.usersfile=/opt/dashboard/users.txt"
-      # - traefik.http.middlewares.crowdsec-root.plugin.crowdsec-bouncer.enabled=true
-      # - traefik.http.middlewares.crowdsec-root.plugin.crowdsec-bouncer.crowdseclapikey=${CROWDSEC_TRAEFIK_BOUNCER_API_KEY}
-      # - traefik.http.middlewares.crowdsec-root.plugin.crowdsec-bouncer.crowdseclapischeme=http
-      # - traefik.http.middlewares.crowdsec-root.plugin.crowdsec-bouncer.crowdseclapihost=crowdsec:8080
       # Services
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
     logging:
@@ -67,8 +63,12 @@ services:
       # Log files
       - ./persistence/log/access.log:/var/log/access.log
       - ./persistence/log/traefik.log:/var/log/traefik.log
-      # Configuration file
+      # Static configuration file
       - ./persistence/traefik.yaml:/etc/traefik/traefik.yaml
+      # Dynamic configuration directory
+      - ./persistence/dynamic:/etc/traefik/dynamic:ro
+      # Plugins directory
+      - ./persistence/plugins:/plugins-storage
       # users.txt - Credentials for the Traefik dashboard.
       # - ./persistence/users.txt:/opt/dashboard/users.txt
       # JSON file for certificates - It must have 600 file permissions.
