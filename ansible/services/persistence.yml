@@ -19,6 +19,12 @@
       - "{{ server_home }}/services/pkms/affine/persistence/config"
       - "{{ server_home }}/services/pkms/affine/persistence/storage"
       - "{{ server_home }}/services/pkms/affine/redis-persistence"
+      # Authentik
+      - "{{ server_home }}/services/security/authentik/db-persistence"
+      - "{{ server_home }}/services/security/authentik/persistence"
+      - "{{ server_home }}/services/security/authentik/persistence/certs"
+      - "{{ server_home }}/services/security/authentik/persistence/custom-templates"
+      - "{{ server_home }}/services/security/authentik/persistence/data"
       # Bytestash
       - "{{ server_home }}/services/management/code/bytestash/persistence"
       # Change Detection
@@ -399,6 +405,7 @@
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
         - "{{ server_home }}/services/search/searngx/compose.yaml"
+        - "{{ server_home }}/services/security/authentik/compose.yaml"
         # no labels for security/crowdsec
         - "{{ server_home }}/services/security/enclosed/compose.yaml"
         - "{{ server_home }}/services/security/wazuh/compose.yaml"
