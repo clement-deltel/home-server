@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./postgres-persistence:/var/lib/postgresql/data
+      - ./db-persistence:/var/lib/postgresql/data
 
   redis:
     container_name: affine-redis
