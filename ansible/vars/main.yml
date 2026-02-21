@@ -145,7 +145,6 @@ homebrew_formulas:
 # ---------------------------------------------------------------------------- #
 actual_enable: true
 adventurelog_enable: true
-affine_enable: true
 authentik_enable: true
 bytestash_enable: true
 change_detection_enable: true
@@ -155,12 +154,10 @@ dawarich_enable: true
 docuseal_enable: true
 enclosed_enable: true
 freshrss_enable: true
-gitlab_enable: true
 gokapi_enable: true
 grafana_enable: true
 grocy_enable: true
 guacamole_enable: true
-homarr_enable: true
 homebox_enable: true
 homer_enable: true
 home_assistant_enable: true
@@ -184,7 +181,6 @@ ollama_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true
-pinry_enable: true
 prometheus_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
@@ -199,14 +195,18 @@ wazuh_enable: false
 wireguard_easy_enable: true
 wishlist_enable: true
 
+affine_enable: false
 directus_enable: false
 firefly_enable: false
+gitlab_enable: false
+homarr_enable: false
 librum_enable: false
 limesurvey_enable: false
 meme_search_enable: false
 memos_enable: false
 nextcloud_enable: false
 photoprism_enable: false
+pinry_enable: false
 wireguard_enable: false
 
 # ---------------------------------------------------------------------------- #
