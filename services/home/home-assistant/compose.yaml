@@ -3,14 +3,14 @@ services:
     container_name: home-assistant
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     hostname: home-assistant
     image: ${HOME_ASSISTANT_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.home-assistant.entrypoints=web,websecure"
+      - "traefik.http.routers.home-assistant.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.home-assistant.rule=Host(`ha.${DOMAIN}`)"
       - "traefik.http.routers.home-assistant.tls=true"
       # - "traefik.http.routers.home-assistant.tls.certresolver=letsencrypt"
