@@ -151,7 +151,7 @@
       - "{{ server_home }}/services/pkms/memos/db-persistence"
       - "{{ server_home }}/services/pkms/memos/persistence"
       # Minecraft
-      - "{{ server_home }}/services/minecraft/persistence"
+      - "{{ server_home }}/services/games/minecraft/persistence"
       # n8n
       - "{{ server_home }}/services/automation/n8n/persistence"
       # Navidrome
