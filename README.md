@@ -7,6 +7,7 @@ Collection of self hosted services for my home server setup.
 - [Pre-requisites](#pre-requisites)
 - [Getting Started](#getting-started)
 - [Hardware](#hardware)
+- [Power Supply Dimensioning](#power-supply-dimensioning)
 - [RAID](#raid)
 - [Domain Name](#domain-name)
 - [Port Mapping](#port-mapping)
@@ -356,7 +357,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Wallos](https://wallosapp.com) - open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. Source code available [here](https://github.com/ellite/wallos). `PHP` `JavaScript`
 - **Inventory**
   - [Grocy](https://grocy.info) - groceries & household management solution for your home. Deployed on `https://grocy.${DOMAIN}`. Source code available [here](https://github.com/grocy/grocy). `Blade` `TypeScript` `PHP`
-  - [HortusFox](https://hortusfox.github.io) - collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/hortusfox/hortusfox.github.io).
+  - [HortusFox](https://hortusfox.com) - collaborative plant management platform. Deployed on `https://plants.${DOMAIN}`. Source code available [here](https://github.com/danielbrendel/hortusfox-web).
   - [Homebox](https://homebox.software/en) - inventory and organization system built for the home user. Deployed on `https://homebox.${DOMAIN}`. Source code available [here](https://github.com/sysadminsmedia/homebox). `Go` `Vue` `TypeScript`
   - [Mealie](https://docs.mealie.io) - recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. Deployed on `https://recipes.${DOMAIN}`. Source code available [here](https://github.com/mealie-recipes/mealie). `Python` `Vue` `TypeScript`
   - [Wishlist](https://github.com/cmintey/wishlist) - wishlist application that you can share with your friends and family. Deployed on `https://wish.${DOMAIN}`. Source code available [here](https://github.com/cmintey/wishlist) `Svelte` `TypeScript`
