@@ -23,8 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      # Permissions for this folder:
-      - ./db-persistence:/var/lib/mysql
+      - /mnt/databases/vaultwarden:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
   vaultwarden:

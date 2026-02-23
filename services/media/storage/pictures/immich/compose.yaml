@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/databases/immich:/var/lib/postgresql/data
 
   redis:
     command: redis-server --requirepass ${IMMICH_REDIS_PASSWORD}

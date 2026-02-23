@@ -95,7 +95,7 @@
       - "{{ server_home }}/services/inventory/hortusfox/persistence/migrate"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/themes"
       # Immich
-      - "{{ server_home }}/services/media/storage/pictures/immich/db-persistence"
+      - "/mnt/databases/immich"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/upload"
@@ -214,7 +214,7 @@
       # UpSnap
       - "{{ server_home }}/services/home/upsnap/persistence"
       # Vaultwarden
-      - "{{ server_home }}/services/management/passwords/vaultwarden/db-persistence"
+      - "/mnt/databases/vaultwarden"
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
       # Wakapi
       - "{{ server_home }}/services/management/code/wakapi/db-persistence"
