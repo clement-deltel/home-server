@@ -11,6 +11,9 @@ deb_architecture: { "armv6l": "armhf", "armv7l": "armhf", "aarch64": "arm64", "x
 # ---------------------------------------------------------------------------- #
 #               ------- APT ------
 # ---------------------------------------------------------------------------- #
+apt_repositories:
+- ppa:jonmagon/kdiskmark
+
 apt_packages:
 # Databases
 - mariadb-client-10.6        # execute MariaDB backups for multiple services
@@ -19,6 +22,7 @@ apt_packages:
 - postgresql-client-14
 - postgresql-client-15
 # Hardware Utilities
+- kdiskmark                  # disk benchmark tool
 - lm-sensors                 # tool to monitor sensors temperature
 - nvme-cli                   # monitor NVMe SSDs additionally to smartmontools
 - smartmontools              # protocol SMART "technology" for monitoring the status of hard drives
@@ -153,6 +157,7 @@ crowdsec_enable: true
 dawarich_enable: true
 docuseal_enable: true
 enclosed_enable: true
+forgejo_enable: true
 freshrss_enable: true
 gokapi_enable: true
 grafana_enable: true

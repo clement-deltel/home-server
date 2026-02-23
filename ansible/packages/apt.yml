@@ -10,10 +10,21 @@
     tags: init
     block:
 
+    - name: List repositories
+      ansible.builtin.debug:
+        msg: "Repositories: {{ apt_repositories }}"
+
+    # add-apt-repository
+    - name: Add repositories
+      become: true
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+      loop: "{{ apt_repositories }}"
+
     # PostgreSQL
     # wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
     # echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/pgdg.asc] http://apt.postgresql.org/pub/repos/apt $(lsb\_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list > /dev/null
-    - name: Repository
+    - name: PostgreSQL repository
       tags: init
       ansible.builtin.include_tasks:
         file: ../tasks/repository.yml
