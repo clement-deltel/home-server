@@ -1,6 +1,6 @@
+# https://github.com/C4illin/ConvertX
 services:
   convertx:
-    # https://github.com/C4illin/ConvertX
     container_name: convertx
     dns:
       - 127.0.0.1
@@ -26,7 +26,7 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${CONVERTX_IP}
     ports:
       - 3000
@@ -36,6 +36,6 @@ services:
       - ./persistence:/app/data
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net
