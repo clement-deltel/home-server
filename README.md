@@ -303,8 +303,6 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. Deployed on `https://wazuh.${DOMAIN}`. Soruce code available [here](https://github.com/wazuh/wazuh). `C` `C++` `Python`
 - **Search**
   - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. Source code available [here](https://github.com/searxng/searxng). `Python`
-- **News**
-  - [FreshRSS](https://freshrss.org/index.html) -  news aggregator. Source code available [here](https://github.com/FreshRSS/FreshRSS). `PHP`
 - **Media Storage**
   - **Bookmarks**
     - [Karakeep](https://karakeep.app/) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. Source code available [here](https://github.com/karakeep-app/karakeep). `TypeScript`
@@ -317,6 +315,8 @@ This section covers all the supported services of the stack. It categorizes the 
     - [Paperless](https://docs.paperless-ngx.com) - document management system: scan, index and archive all your documents. Deployed on `https://paperless.${DOMAIN}`. Source code available [here](https://github.com/paperless-ngx/paperless-ngx). `Python` `TypeScript`
   - **Music**
     - [Navidrome](https://www.navidrome.org) - personal streaming service. Deployed on `https://music.${DOMAIN}`. Source code available [here](https://github.com/navidrome/navidrome). `Go` `JavaScript`
+  - **News**
+    - [FreshRSS](https://freshrss.org/index.html) -  news aggregator. Source code available [here](https://github.com/FreshRSS/FreshRSS). `PHP`
   - **Pictures**
     - [Immich](https://immich.app) - high performance self-hosted photo and video management solution. Deployed on `https://pictures.${DOMAIN}`. Source code available [here](https://github.com/immich-app/immich). `TypeScript` `Dart` `Svelte`
     - [Meme Search](https://github.com/neonwatty/meme-search) - meme search engine and finder. Deployed on `https://memes.${DOMAIN}`. Source code available [here](https://github.com/neonwatty/meme-search). `Ruby` `Python`
@@ -583,6 +583,9 @@ Here is a list of tools that could be interesting and further enhance the stack:
 
 - **Artificial Intelligence**
   - [firecrawl](https://github.com/firecrawl/firecrawl) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. `TypeScript` `Python`
+- **Backup**
+  - [Backrest](https://github.com/garethgeorge/backrest) - Backrest is a web UI and orchestrator for restic backup. Source code available [here](https://github.com/garethgeorge/backrest). `Go` `TypeScript`
+  - [Zerobyte](https://github.com/nicotsx/zerobyte) - backup automation for self-hosting, built on top of restic. Source code available [here](https://github.com/nicotsx/zerobyte). `TypeScript`
 - **Containers**
   - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose) - docker-compose for testing any-sync. Source code available [here](https://github.com/anyproto/any-sync-dockercompose). `Shell` `Python`
   - [CAdvisor](https://github.com/google/cadvisor) - analyzes resource usage and performance characteristics of running containers. Source code available [here](https://github.com/google/cadvisor). `Go`
@@ -614,8 +617,14 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Fitness**
   - [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. Source code available [here](https://github.com/endurain-project/endurain). `Python`
 - **Games**
+  - [Factorio](https://hub.docker.com/r/factoriotools/factorio) - headless server in a Docker container. Source code available [here](https://github.com/factoriotools/factorio-docker). `Shell` `Python` `C`
+  - [GameVault](https://gamevau.lt) - self-hosted gaming platform for drm-free games. Source code available [here](https://github.com/Phalcode/gamevault-backend). `TypeScript`
+  - [Lodestone](https://www.lodestone.cc) - server hosting tool for Minecraft and other multiplayer games. Source code available [here](https://github.com/Lodestone-Team/lodestone). `Rust` `TypeScript`
   - [Paper](https://papermc.io/software/paper) - high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies. Source code available [here](https://github.com/PaperMC/Paper). `Java`
+  - [Romm](https://romm.app) - beautiful, powerful, self-hosted rom manager and player. Source code available [here](https://github.com/rommapp/romm). `Python` `Vue`
+  - [Satisfactory](https://hub.docker.com/r/wolveix/satisfactory-server) - containerized version of the Satisfactory dedicated server. Source code available [here](https://github.com/wolveix/satisfactory-server). `Shell` `Go`
   - [Sunshine](https://app.lizardbyte.dev/Sunshine/?lng=en) - game stream host for Moonlight. Source code available [here](https://github.com/LizardByte/Sunshine) `C++`
+  - [Valheim](https://github.com/Nimdy/Dedicated_Valheim_Server_Script) - Valheim server manager. Source code available [here](https://github.com/Nimdy/Dedicated_Valheim_Server_Script). `Shell`
   - [Wolf](https://games-on-whales.github.io/wolf/stable) - stream virtual desktops and games running in Docker. Source code available [here](https://github.com/games-on-whales/wolf). `C++`
 - **Health**
   - [Fasten Health](https://www.fastenhealth.com) - personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics. Source code available [here](https://github.com/fastenhealth/fasten-onprem). `Go` `TypeScript`
@@ -644,6 +653,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - **Code**
     - [Bugsink](https://www.bugsink.com) - error tracking. Source code available [here](https://github.com/bugsink/bugsink). `Python`
     - [Cyber Chef](https://gchq.github.io/CyberChef) - web app for encryption, encoding, compression and data analysis. Source code available [here](https://github.com/gchq/CyberChef). `JavaScript`
+    - [Gitea](https://gitea.com) - all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD. Source code available [here](https://github.com/go-gitea/gitea). `Go`
     - [Networking Toolbox](https://networkingtoolbox.net) - . Source code available [here](https://github.com/Lissy93/networking-toolbox). `Svelte` `TypeScript`
     - [OpenGist](https://opengist.io) - pastebin powered by Git, open-source alternative to Github Gist. Source code available [here](https://github.com/thomiceli/opengist). `Go` `TypeScript`
     - [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
@@ -653,25 +663,35 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [AliasVault](https://www.aliasvault.net) - end-to-end encrypted password manager with a built-in alias generator and email server. Source code available [here](https://github.com/lanedirt/AliasVault). `C#` `TypeScript`
 - **Media**
   - **Management**
+    - [Bazarr](https://www.bazarr.media) - manage and download subtitles based on your requirements. Source code available [here](https://github.com/morpheus65535/bazarr). `Python`
+    - [Cleanuparr](https://github.com/Cleanuparr/Cleanuparr) - tool for automating the cleanup of unwanted or blocked files in Sonarr, Radarr, and supported download clients like qBittorrent. Source code available [here](https://github.com/Cleanuparr/Cleanuparr). `C#`
     - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. Source code available [here](https://github.com/garanda21/deepsubx). `TypeScript` `JavaScript`
     - [Lidarr](https://lidarr.audio) - looks and smells like Sonarr but made for music. Source code available [here](https://github.com/Lidarr/Lidarr). `C#` `JavaScript`
     - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. Source code available [here](https://github.com/TheWicklowWolf/Lidify). `Python` `JavaScript`
     - [MeTube](https://github.com/alexta69/metube) - YouTube downloader (web UI for youtube-dl / yt-dlp). Source code available [here](https://github.com/alexta69/metube). `TypeScript` `Python`
+    - [Profilarr](https://dictionarry.dev) - configuration management platform for Radarr/Sonarr. Source code available [here](https://github.com/Dictionarry-Hub/profilarr). `TypeScript` `Svelte`
+    - [Prowlarr](https://prowlarr.com) - . Source code available [here](https://github.com/Prowlarr/Prowlarr). `C#` `JavaScript`
     - [Radarr](https://radarr.video) - movie organizer/manager for usenet and torrent users. Source code available [here](https://github.com/Radarr/Radarr). `C#` `TypeScript`
+    - [Seerr](https://docs.seerr.dev) - media request and discovery manager for Jellyfin, Plex, and Emby. Source code available [here](https://github.com/seerr-team/seerr)
     - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. Source code available [here](https://github.com/slskd/slskd). `C#`
     - [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. Source code available [here](https://github.com/Sonarr/Sonarr). `C#` `TypeScript`
     - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. Source code available [here](https://github.com/mrusse/soularr). `Python`
     - [Spotizerr](https://github.com/Xoconoch/spotizerr) - spotify music downloader with a lossless twist, based on the deezspot library. Source code available [here](https://github.com/Xoconoch/spotizerr). `Python` `TypeScript`
     - [Syncthing](https://syncthing.net) - open source continuous file synchronization. Source code available [here](https://github.com/syncthing/syncthing). `Go`
+    - [Tdarr](https://home.tdarr.io) - distributed transcode automation using FFmpeg/HandBrake + audio/video library analytics + video health checking. Source code available [here](https://github.com/HaveAGitGat/Tdarr). `Makefile`
     - [Tubifarry](https://github.com/TypNull/Tubifarry) - Lidarr plugin that enhances your music library by fetching music from YouTube, integrating with Slskd for Soulseek access, automating Spotify playlist imports, converting files, and retrieving soundtracks from Radarr and Sonarr. Source code available [here](https://github.com/TypNull/Tubifarry). `C#`
     - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - feature-rich command-line audio/video downloader. Source code available [here](https://github.com/yt-dlp/yt-dlp). `Python`
   - **Storage**
+    - Audiobooks
+      - [Audiobookshelf](https://audiobookshelf.org) - audiobook and podcast server. Source code available [here](https://github.com/advplyr/audiobookshelf). `JavaScript` `Vue`
     - **Bookmarks**
       - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. Source code available [here](https://github.com/linkwarden/linkwarden). `TypeScript`
     - **Documents**
       - [myDrive](https://mydrive-storage.com) - node.js and mongoDB Google Drive clone. Source code available [here](https://github.com/subnub/myDrive). `TypeScript`
+      - [OxiCloud](https://github.com/DioCrafts/OxiCloud) - ultra-fast, secure & lightweight self-hosted cloud storage — your files, photos, calendars & contacts, all in one place. Source code available [here](https://github.com/DioCrafts/OxiCloud). `Rust` `JavaScript`
       - [Paperless AI](https://clusterzx.github.io/paperless-ai) - automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents. Source code available [here](https://github.com/clusterzx/paperless-ai). `JavaScript`
       - [Papra](https://demo.papra.app) - minimalistic document archiving platform. Source code available [here](https://github.com/papra-hq/papra). `TypeScript`
+      - [Seafile](http://seafile.com) - beyond file syncing and sharing, a new way to organize your files with extensible file properties and flexible views. Source code available [here](https://github.com/haiwen/seafile). `C` `Python`
     - **Photos**
       - [Photoview](https://photoview.github.io) - photo gallery for personal servers. Source code available [here](https://github.com/photoview/photoview). `TypeScript` `Go`
       - [WeddingShare](https://docs.wedding-share.org) - place for guests to view and drop pictures of the big day. Source code available [here](https://github.com/Cirx08/WeddingShare). `JavaScript` `C#`
@@ -679,14 +699,18 @@ Here is a list of tools that could be interesting and further enhance the stack:
       - [Ampache](https://ampache.org) - web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device. Source code available [here](https://github.com/ampache/ampache). `PHP`
       - [Finamp (Jellyfin music client for mobile)](https://github.com/jmshrv/finamp)
       - [Koel](https://koel.dev) - a personal music streaming server that works. Source code available [here](https://github.com/koel/koel). `PHP` `TypeScript`
+    - **News**
+      - [Miniflux](https://miniflux.app) - minimalist and opinionated feed reader. Source code available [here](https://github.com/miniflux/v2). `Go`
     - **Videos**
       - [BitPlay](https://github.com/aculix/bitplay) - stream video torrents in your web browser with ease. Source code available [here](https://github.com/aculix/bitplay). `Go`
+      - [Kodi](https://kodi.tv) - open source home theater/media center software and entertainment hub for digital media. Source code available [here](https://github.com/xbmc/xbmc). `C++`
       - [Plex](https://www.plex.tv) - Plex Media Server Docker repo, for all your PMS docker needs. Source code available [here](https://github.com/plexinc/pms-docker).
       - [Streamystats](https://github.com/fredrikburmester/streamystats) - statistics service for Jellyfin, providing analytics and data visualization. Source code available [here](https://github.com/fredrikburmester/streamystats). `TypeScript`
     - Web
       - [ArchiveBox](https://archivebox.io) - web archiving that takes URLs/browser history/bookmarks/Pocket/Pinboard/etc. Source code available [here](https://github.com/ArchiveBox/ArchiveBox). `Python`
   - **Tools**
-    - [BentoPDF](https://bentopdf.com) - . Source code available [here](https://github.com/alam00000/bentopdf). `JavaScript` `Fluent` `TypeScript`
+    - [BentoPDF](https://bentopdf.com) - privacy first PDF toolkit. Source code available [here](https://github.com/alam00000/bentopdf). `JavaScript` `Fluent` `TypeScript`
+    - [Cobalt](https://cobalt.tools) - best way to save what you love. Source code available [here](https://github.com/imputnet/cobalt). `Svelte` `JavaScript` `TypeScript`
     - [Invidious](https://invidious.io) - alternative front-end to YouTube. Source code available [here](https://github.com/iv-org/invidious). `Crystal`
     - [Mazanoke](https://mazanoke.com) - local image optimizer that runs in your browser. Source code available [here](https://github.com/civilblur/mazanoke). `JavaScript`
     - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. Source code available [here](https://github.com/iib0011/omni-tools). `TypeScript`
@@ -733,11 +757,14 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Search**
   - [Whoogle](https://pypi.org/project/whoogle-search) - ad-free, privacy-respecting metasearch engine. Source code available [here](https://github.com/benbusby/whoogle-search). `Python`
 - **Security**
+  - [Authelia](https://www.authelia.com) - single sign-on multi-factor portal for web apps, now OpenID certified. Source code available [here](https://github.com/authelia/authelia). `Go` `TypeScript`
   - [Certwarden](https://www.certwarden.com) -  centralized ACME client. Source code available [here](https://github.com/gregtwallace/certwarden).
+  - [Keycloak](https://www.keycloak.org) - identity and access management for modern applications and services. Source code available [here](https://github.com/keycloak/keycloak). `Java`
   - [Maltrail](https://github.com/stamparm/maltrail) - malicious traffic detection system. Source code available [here](https://github.com/stamparm/maltrail). `Python` `JavaScript`
   - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns) - Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy. Source code available [here](https://github.com/fabriziosalmi/patterns). `Python`
   - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. Source code available [here](https://github.com/steveiliop56/tinyauth). `Go` `TypeScript`
   - [Web-Check](https://web-check.xyz) - all-in-one OSINT tool for analyzing any website. Source Code available [here](https://github.com/Lissy93/web-check). `TypeScript` `JavaScript`
+  - [Zitadel](https://zitadel.com) - identity infrastructure, simplified for you. Source code available [here](https://github.com/zitadel/zitadel). `Go` `TypScript`
 - **Software Development**
   - [ChartDB](https://chartdb.io) - . Source code available [here](https://github.com/chartdb/chartdb). `TypeScript`
   - [Code Server](https://coder.com) - VS Code in the browser. Source code available [here](https://github.com/coder/code-server). `TypeScript` `Shell`
@@ -759,5 +786,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Wishlist**
   - [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. Source code available [here](https://github.com/Wingysam/Christmas-Community).
 - **Other**
+  - [Aeterna](https://github.com/alpyxn/aeterna) - lightweight dead man's switch. Source code available [here](https://github.com/alpyxn/aeterna). `JavaScript` `Go`
   - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. Source code available [here](https://github.com/monicahq/monica). `PHP`
   - [Puter](https://puter.com) - The Internet Computer, free, open-source, and self-hostable. Source code available [here](https://github.com/HeyPuter/puter). `JavaScript`
