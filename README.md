@@ -371,6 +371,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Limesurvey](https://www.limesurvey.org) - alternative to SurveyMonkey, Typeform, Qualtrics, and Google Forms, making it simple to create online surveys and forms with unmatched flexibility. Deployed on `https://survey.${DOMAIN}`. Source code available [here](https://github.com/LimeSurvey/LimeSurvey). `JavaScript`  `PHP`
 - **Games**
   - [Minecraft Server](https://docker-minecraft-server.readthedocs.io/en/latest) - Minecraft Server for Java Edition that automatically downloads selected version at startup. Deployed on `<ip-address>:25565`. Source code available [here](https://github.com/itzg/docker-minecraft-server). `Shell`
+  - [Romm](https://romm.app) - beautiful, powerful, self-hosted rom manager and player. Source code available [here](https://github.com/rommapp/romm). `Python` `Vue`
 
 ## Secrets Management
 
@@ -621,7 +622,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [GameVault](https://gamevau.lt) - self-hosted gaming platform for drm-free games. Source code available [here](https://github.com/Phalcode/gamevault-backend). `TypeScript`
   - [Lodestone](https://www.lodestone.cc) - server hosting tool for Minecraft and other multiplayer games. Source code available [here](https://github.com/Lodestone-Team/lodestone). `Rust` `TypeScript`
   - [Paper](https://papermc.io/software/paper) - high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies. Source code available [here](https://github.com/PaperMC/Paper). `Java`
-  - [Romm](https://romm.app) - beautiful, powerful, self-hosted rom manager and player. Source code available [here](https://github.com/rommapp/romm). `Python` `Vue`
   - [Satisfactory](https://hub.docker.com/r/wolveix/satisfactory-server) - containerized version of the Satisfactory dedicated server. Source code available [here](https://github.com/wolveix/satisfactory-server). `Shell` `Go`
   - [Sunshine](https://app.lizardbyte.dev/Sunshine/?lng=en) - game stream host for Moonlight. Source code available [here](https://github.com/LizardByte/Sunshine) `C++`
   - [Valheim](https://github.com/Nimdy/Dedicated_Valheim_Server_Script) - Valheim server manager. Source code available [here](https://github.com/Nimdy/Dedicated_Valheim_Server_Script). `Shell`
