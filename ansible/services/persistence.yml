@@ -95,7 +95,7 @@
       - "{{ server_home }}/services/inventory/hortusfox/persistence/migrate"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/themes"
       # Immich
-      - "/mnt/databases/immich"
+      - "/mnt/ssd/databases/immich"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/upload"
@@ -196,6 +196,15 @@
       - "{{ server_home }}/services/media/storage/pictures/pinry/persistence"
       # Prometheus
       - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
+      # Romm
+      - "/mnt/ssd/cache/romm"
+      - "/mnt/ssd/databases/romm"
+      - "/mnt/ssd/romm-library/bios"
+      - "/mnt/ssd/romm-library/roms"
+      - "{{ server_home }}/services/games/romm/persistence"
+      - "{{ server_home }}/services/games/romm/persistence/assets"
+      - "{{ server_home }}/services/games/romm/persistence/config"
+      - "{{ server_home }}/services/games/romm/persistence/resources"
       # RustDesk
       - "{{ server_home }}/services/remote/rustdesk/db-persistence"
       - "{{ server_home }}/services/remote/rustdesk/persistence"
@@ -214,7 +223,7 @@
       # UpSnap
       - "{{ server_home }}/services/home/upsnap/persistence"
       # Vaultwarden
-      - "/mnt/databases/vaultwarden"
+      - "/mnt/ssd/databases/vaultwarden"
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
       # Wakapi
       - "{{ server_home }}/services/management/code/wakapi/db-persistence"
@@ -363,6 +372,7 @@
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
         - "{{ server_home }}/services/finances/actual/compose.yaml"
         - "{{ server_home }}/services/finances/wallos/compose.yaml"
+        - "{{ server_home }}/services/games/romm/compose.yaml"
         - "{{ server_home }}/services/home/home-assistant/compose.yaml"
         - "{{ server_home }}/services/home/upsnap/compose.yaml"
         - "{{ server_home }}/services/inventory/grocy/compose.yaml"

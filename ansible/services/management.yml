@@ -54,6 +54,7 @@
       - { when: pihole_enable, project_src: '{{ server_home }}/services/dns/pihole' }
       - { when: pinry_enable, project_src: '{{ server_home }}/services/media/storage/pictures/pinry' }
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/monitoring/prometheus' }
+      - { when: romm_enable, project_src: '{{ server_home }}/services/games/romm' }
       - { when: rustdesk_enable, project_src: '{{ server_home }}/services/remote/rustdesk' }
       - { when: scrutiny_enable, project_src: '{{ server_home }}/services/monitoring/scrutiny' }
       - { when: searngx_enable, project_src: '{{ server_home }}/services/search/searngx' }

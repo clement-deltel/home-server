@@ -39,6 +39,7 @@
         - "{{ server_home }}/log/finances/actual"
         - "{{ server_home }}/log/finances/wallos"
         - "{{ server_home }}/log/games/minecraft"
+        - "{{ server_home }}/log/games/romm"
         - "{{ server_home }}/log/home/home-assistant"
         - "{{ server_home }}/log/home/upsnap"
         - "{{ server_home }}/log/inventory/grocy"

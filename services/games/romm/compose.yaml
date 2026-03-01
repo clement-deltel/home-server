@@ -1,0 +1,111 @@
+# https://github.com/rommapp/romm
+services:
+  cache:
+    container_name: romm-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--requirepass ${ROMM_CACHE_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: romm-valkey
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${ROMM_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/romm:/data
+      - ./cache-persistence:/etc/valkey
+
+  db:
+    container_name: romm-mariadb
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    hostname: romm-mariadb
+    image: ${DEFAULT_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${ROMM_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/romm:/var/lib/mysql
+
+  romm:
+    container_name: romm
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: romm
+    image: ${ROMM_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.romm.entrypoints=web,websecure"
+      - "traefik.http.routers.romm.rule=Host(`romm.${DOMAIN}`)"
+      - "traefik.http.routers.romm.tls=true"
+      # - "traefik.http.routers.romm.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.romm.tls.domains[0].main=romm.${DOMAIN}"
+      - "traefik.http.routers.romm.service=romm"
+      # Services
+      - "traefik.http.services.romm.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${ROMM_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${ROMM_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/romm-library:/romm/library # Your game library. Check https://docs.romm.app/latest/Getting-Started/Folder-Structure/ for more details.
+      - /mnt/ssd/cache/romm:/redis-data # Cached data for background tasks
+      - ./persistence/resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - ./persistence/assets:/romm/assets # Uploaded saves, states, etc.
+      - ./persistence/config:/romm/config # (Optional) Path where config.yml is stored
+
+networks:
+  internal-net:
+    name: internal-romm
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${ROMM_NET}
+          gateway: ${ROMM_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
