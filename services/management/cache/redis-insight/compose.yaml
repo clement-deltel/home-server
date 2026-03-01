@@ -1,0 +1,46 @@
+# https://github.com/redis/RedisInsight
+# https://hub.docker.com/r/redis/redisinsight
+services:
+  redis-insight:
+    container_name: redis-insight
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    environment:
+      - RI_REDIS_HOST0=cache
+      - RI_REDIS_PORT0=6379
+      # - RI_REDIS_ALIAS0=
+      - RI_REDIS_USERNAME0=default
+      - RI_REDIS_PASSWORD0=
+    hostname: redis-insight
+    image: ${TROUBLESHOOTING_CACHE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.redis-insight.entrypoints=web,websecure"
+      - "traefik.http.routers.redis-insight.rule=Host(`cache.${DOMAIN}`)"
+      - "traefik.http.routers.redis-insight.tls=true"
+      # - "traefik.http.routers.redis-insight.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.redis-insight.tls.domains[0].main=cache.${DOMAIN}"
+      - "traefik.http.routers.redis-insight.service=redis-insight"
+      # Services
+      - "traefik.http.services.redis-insight.loadbalancer.server.port=5540"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      - service-net
+    ports:
+      - 5540
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/data
+
+networks:
+  service-net:
+    external: true
+    name: internal-

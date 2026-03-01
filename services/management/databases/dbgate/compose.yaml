@@ -1,0 +1,52 @@
+# https://github.com/dbgate/dbgate
+# https://hub.docker.com/r/dbgate/dbgate
+services:
+  dbgate:
+    container_name: dbgate
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    environment:
+      - CONNECTIONS=0
+      - LABEL_0=ConnectionName
+      - SERVER_0=db
+      - USER_0=username
+      - PASSWORD_0=
+      # Supported values: 3306, 5432
+      - PORT_0=3306
+      # Supported values: mysql@dbgate-plugin-mysql, postgres@dbgate-plugin-postgres, sqlite@dbgate-plugin-sqlite, mongo@dbgate-plugin-mongo
+      - ENGINE_0=mysql@dbgate-plugin-mysql
+      #- FILE_0=/path/to/db.sqlite
+      #- URL_0=mongodb://mongo:27017
+    hostname: dbgate
+    image: ${TROUBLESHOOTING_DB_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.dbgate.entrypoints=web,websecure"
+      - "traefik.http.routers.dbgate.rule=Host(`db.${DOMAIN}`)"
+      - "traefik.http.routers.dbgate.tls=true"
+      # - "traefik.http.routers.dbgate.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.dbgate.tls.domains[0].main=db.${DOMAIN}"
+      - "traefik.http.routers.dbgate.service=dbgate"
+      # Services
+      - "traefik.http.services.dbgate.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      - service-net
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/root/.dbgate
+
+networks:
+  service-net:
+    external: true
+    name: internal-

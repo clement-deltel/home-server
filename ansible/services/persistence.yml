@@ -35,6 +35,8 @@
       - "{{ server_home }}/services/security/crowdsec/persistence"
       - "{{ server_home }}/services/security/crowdsec/persistence/data"
       - "{{ server_home }}/services/security/crowdsec/persistence/etc"
+      # DBGate
+      - "{{ server_home }}/services/management/databases/dbgate/persistence"
       # Dawarich
       - "{{ server_home }}/services/travel/dawarich/db-persistence"
       - "{{ server_home }}/services/travel/dawarich/persistence"
@@ -196,6 +198,8 @@
       - "{{ server_home }}/services/media/storage/pictures/pinry/persistence"
       # Prometheus
       - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
+      # Redis Insight
+      - "{{ server_home }}/services/management/cache/redis-insight/persistence"
       # Romm
       - "/mnt/ssd/cache/romm"
       - "/mnt/ssd/databases/romm"
