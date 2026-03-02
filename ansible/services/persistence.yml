@@ -57,6 +57,8 @@
       # FreshRSS
       - "{{ server_home }}/services/media/storage/news/freshrss/db-persistence"
       - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
+      # Gitea Mirror
+      - "{{ server_home }}/services/management/code/gitea-mirror/persistence"
       # GitLab
       - "{{ server_home }}/services/management/code/gitlab/persistence"
       - "{{ server_home }}/services/management/code/gitlab/persistence/config"
@@ -386,6 +388,7 @@
         - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
         - "{{ server_home }}/services/kopia/compose.yaml"
         - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
+        - "{{ server_home }}/services/management/code/gitea-mirror/compose.yaml"
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"

@@ -1,0 +1,48 @@
+# https://github.com/RayLabsHQ/gitea-mirror
+services:
+  gitea-mirror:
+    container_name: gitea-mirror
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://localhost:4321/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+    hostname: gitea-mirror
+    image: ${GITEA_MIRROR_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.gitea-mirror.entrypoints=web,websecure"
+      - "traefik.http.routers.gitea-mirror.rule=Host(`code-mirror.${DOMAIN}`)"
+      - "traefik.http.routers.gitea-mirror.tls=true"
+      # - "traefik.http.routers.gitea-mirror.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.gitea-mirror.tls.domains[0].main=code-mirror.${DOMAIN}"
+      - "traefik.http.routers.gitea-mirror.service=gitea-mirror"
+      # Services
+      - "traefik.http.services.gitea-mirror.loadbalancer.server.port=4321"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${GITEA_MIRROR_IP}
+    ports:
+      - 4321
+    restart: unless-stopped
+    stop_grace_period: 30s
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./persistence:/app/data
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net

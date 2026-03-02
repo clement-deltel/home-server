@@ -50,6 +50,7 @@
         - "{{ server_home }}/log/management/cache/redis-insight"
         - "{{ server_home }}/log/management/code/bytestash"
         - "{{ server_home }}/log/management/code/forgejo"
+        - "{{ server_home }}/log/management/code/gitea-mirror"
         - "{{ server_home }}/log/management/code/gitlab"
         - "{{ server_home }}/log/management/code/it-tools"
         - "{{ server_home }}/log/management/code/wakapi"
