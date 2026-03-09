@@ -332,6 +332,7 @@ This section covers all the supported services of the stack. It categorizes the 
 - **Management**
   - **Code**
     - [ByteStash](https://github.com/jordan-dalby/bytestash) - a code snippet storage solution written in React & node.js. Deployed on `https://snippets.${DOMAIN}`. Source code available [here](https://github.com/jordan-dalby/bytestash). `TypeScript`
+    - [Forgejo](https://forgejo.org) - Beyond coding, we forge. Deployed on `https://forgejo.${DOMAIN}`. Source code available [here](https://codeberg.org/forgejo/forgejo). `Go`
     - [Gitea Mirror](https://giteamirror.com) - auto-syncs GitHub repos to your self-hosted Gitea/Forgejo, with a sleek Web UI and easy Docker deployment. Deployed on `https://code-mirror.${DOMAIN}`. Source code available [here](https://github.com/RayLabsHQ/gitea-mirror). `TypeScript`
     - [Gitlab](https://gitlab.com/gitlab-org/gitlab) `Ruby`
       - Instance: `https://gitlab.${DOMAIN}`

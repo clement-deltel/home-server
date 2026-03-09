@@ -54,6 +54,8 @@
       - "{{ server_home }}/services/media/tools/docuseal/persistence"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
+      # Forgejo
+      - "{{ server_home }}/services/management/code/forgejo/persistence"
       # FreshRSS
       - "{{ server_home }}/services/media/storage/news/freshrss/db-persistence"
       - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
@@ -388,6 +390,7 @@
         - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
         - "{{ server_home }}/services/kopia/compose.yaml"
         - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
+        - "{{ server_home }}/services/management/code/forgejo/compose.yaml"
         - "{{ server_home }}/services/management/code/gitea-mirror/compose.yaml"
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
