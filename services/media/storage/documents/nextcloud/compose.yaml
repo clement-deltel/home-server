@@ -28,7 +28,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
   redis:
-    command: redis-server --requirepass ${NEXTCLOUD_REDIS_PASSWORD}
+    command: redis-server --requirepass ${NEXTCLOUD_CACHE_PASSWORD}
     container_name: nextcloud-redis
     healthcheck:
       test: ["CMD-SHELL", "redis-cli --raw INCR PING"]

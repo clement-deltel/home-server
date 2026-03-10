@@ -3,7 +3,7 @@ services:
     command: serve
     container_name: phoneinfoga
     environment:
-      - NUMVERIFY_API_KEY=${APILAYER_API_KEY}
+      - NUMVERIFY_API_KEY=${NUMVERIFY_API_KEY}
     image: ${PHONEINFOGA_IMAGE}
     logging:
       driver: json-file
