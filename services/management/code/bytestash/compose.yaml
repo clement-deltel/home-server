@@ -1,12 +1,20 @@
 # https://github.com/jordan-dalby/ByteStash
 services:
   bytestash:
+    cap_drop:
+      - ALL
     container_name: bytestash
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
     env_file: config/.env
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider --timeout=10 http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     hostname: bytestash
     image: ${BYTESTASH_IMAGE}
     labels:
@@ -30,10 +38,14 @@ services:
         ipv4_address: ${BYTESTASH_IP}
     ports:
       - 5000
+    read_only: true
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
+    user: ${USER_UID}:${USER_GID}
     volumes:
-      - ./persistence:/data/snippets
+      - ./persistence:/data/snippets:rw
 
 networks:
   proxy-net:
