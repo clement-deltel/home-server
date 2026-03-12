@@ -66,6 +66,8 @@
       - "{{ server_home }}/services/management/code/gitlab/persistence/config"
       - "{{ server_home }}/services/management/code/gitlab/persistence/logs"
       - "{{ server_home }}/services/management/code/gitlab/persistence/data"
+      # Gluetun
+      - "{{ server_home }}/services/security/gluetun/persistence"
       # Gokapi
       - "{{ server_home }}/services/media/sharing/gokapi/persistence"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
@@ -428,6 +430,7 @@
         - "{{ server_home }}/services/security/authentik/compose.yaml"
         # no labels for security/crowdsec
         - "{{ server_home }}/services/security/enclosed/compose.yaml"
+        - "{{ server_home }}/services/security/gluetun/compose.yaml"
         - "{{ server_home }}/services/security/wazuh/compose.yaml"
         - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
         - "{{ server_home }}/services/travel/dawarich/compose.yaml"

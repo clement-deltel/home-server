@@ -20,6 +20,7 @@
       - { when: freshrss_enable, project_src: '{{ server_home }}/services/media/storage/news/freshrss' }
       - { when: gitea_mirror_enable, project_src: '{{ server_home }}/services/management/code/gitea-mirror' }
       - { when: gitlab_enable, project_src: '{{ server_home }}/services/management/code/gitlab' }
+      - { when: gluetun_enable, project_src: '{{ server_home }}/services/security/gluetun' }
       - { when: gokapi_enable, project_src: '{{ server_home }}/services/media/sharing/gokapi' }
       - { when: grafana_enable, project_src: '{{ server_home }}/services/monitoring/grafana' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/inventory/grocy' }

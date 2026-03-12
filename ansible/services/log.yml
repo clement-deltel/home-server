@@ -92,6 +92,7 @@
         - "{{ server_home }}/log/security/authentik"
         - "{{ server_home }}/log/security/crowdsec"
         - "{{ server_home }}/log/security/enclosed"
+        - "{{ server_home }}/log/security/gluetun"
         - "{{ server_home }}/log/security/wazuh"
         - "{{ server_home }}/log/travel/adventurelog"
         - "{{ server_home }}/log/travel/dawarich"

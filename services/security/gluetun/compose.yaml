@@ -1,0 +1,53 @@
+# https://github.com/qdm12/gluetun
+services:
+  gluetun:
+    cap_add:
+      - NET_ADMIN
+    container_name: gluetun
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: gluetun
+    image: qmcgaw/gluetun
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      # - "traefik.http.routers.gluetun.entrypoints=web,websecure"
+      - "traefik.http.routers.gluetun.rule=Host(`${GLUETUN_HOST}`)"
+      # - "traefik.http.routers.gluetun.tls=true"
+      # - "traefik.http.routers.gluetun.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.gluetun.tls.domains[0].main=${GLUETUN_HOST}"
+      - "traefik.http.routers.gluetun.service=gluetun"
+      # Services
+      - "traefik.http.services.gluetun.loadbalancer.server.port=8000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      arr-net:
+        ipv4_address: ${GLUETUN_ARR_IP}
+      proxy-net:
+        ipv4_address: ${GLUETUN_IP}
+    ports:
+      - 8000
+      # - 8388:8388/tcp # Shadowsocks
+      # - 8388:8388/udp # Shadowsocks
+      # - 8888:8888/tcp # HTTP proxy
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./persistence:/gluetun
+
+networks:
+  arr-net:
+    external: true
+    name: arr-net
+  proxy-net:
+    external: true
+    name: traefik-net

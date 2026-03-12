@@ -104,6 +104,9 @@ dns_gateway: 192.168.30.1
 monitoring_net: 192.168.40.0/24
 monitoring_gateway: 192.168.40.1
 
+arr_net: 192.168.130.0/24
+arr_gateway: 192.168.130.1
+
 ai_net: 192.168.220.0/24
 ai_gateway: 192.168.220.1
 
@@ -160,6 +163,7 @@ enclosed_enable: true
 forgejo_enable: true
 freshrss_enable: true
 gitea_mirror_enable: true
+gluetun_enable: true
 gokapi_enable: true
 grafana_enable: true
 grocy_enable: true
