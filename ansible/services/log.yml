@@ -72,7 +72,7 @@
         - "{{ server_home }}/log/media/tools/convertx"
         - "{{ server_home }}/log/media/tools/docuseal"
         - "{{ server_home }}/log/media/tools/stirling-pdf"
-        - "{{ server_home }}/log/monitoring/detection"
+        - "{{ server_home }}/log/monitoring/change-detection"
         - "{{ server_home }}/log/monitoring/grafana"
         - "{{ server_home }}/log/monitoring/ntfy"
         - "{{ server_home }}/log/monitoring/prometheus"

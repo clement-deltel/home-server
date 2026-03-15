@@ -9,7 +9,7 @@
       - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
       - { when: authentik_enable, project_src: '{{ server_home }}/services/security/authentik' }
       - { when: bytestash_enable, project_src: '{{ server_home }}/services/management/code/bytestash' }
-      - { when: change_detection_enable, project_src: '{{ server_home }}/services/monitoring/detection' }
+      - { when: change_detection_enable, project_src: '{{ server_home }}/services/monitoring/change-detection' }
       - { when: convertx_enable, project_src: '{{ server_home }}/services/media/tools/convertx' }
       - { when: crowdsec_enable, project_src: '{{ server_home }}/services/security/crowdsec' }
       - { when: dawarich_enable, project_src: '{{ server_home }}/services/travel/dawarich' }

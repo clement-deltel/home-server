@@ -28,7 +28,7 @@
       # Bytestash
       - "{{ server_home }}/services/management/code/bytestash/persistence"
       # Change Detection
-      - "{{ server_home }}/services/monitoring/detection/persistence"
+      - "{{ server_home }}/services/monitoring/change-detection/persistence"
       # ConvertX
       - "{{ server_home }}/services/media/tools/convertx/persistence"
       # CrowdSec
@@ -412,7 +412,7 @@
         - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
-        - "{{ server_home }}/services/monitoring/detection/compose.yaml"
+        - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
         - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
         - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
