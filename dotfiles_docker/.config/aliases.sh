@@ -112,8 +112,6 @@ alias bws=bitwarden-create-session-fn
 alias bwst='bw status | jq'
 alias bwsy='bw sync'
 
-alias bwly=bitwarden-load-yml-fn
-
 # ---------------------------------------------------------------------------- #
 #               ------- Docker ------                                          #
 # ---------------------------------------------------------------------------- #
@@ -181,6 +179,8 @@ alias dpsc=doppler-scope-fn
 alias dpsd='doppler secrets download --format docker --no-file'
 alias dpsg=doppler-secret-get-fn
 alias dpt='doppler tui'
+
+alias dply="doppler secrets download --config ansible --format yaml --name-transformer lower-snake --no-file > ${SERVER_HOME}/ansible/vars/secrets.yml"
 
 # ---------------------------------------------------------------------------- #
 #               ------- Terraform ------                                       #

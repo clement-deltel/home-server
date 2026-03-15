@@ -69,7 +69,7 @@
         - "HOSTNAME={{ hostname }}"
         - "SERVER_HOME={{ server_home }}"
         - "INFLUXDB_USER={{ influxdb_user }}"
-        - "INFLUXDB_USER_PASSWORD={{ influxdb_user_password }}"
+        - "INFLUXDB_USER_PASSWORD={{ influxdb_password }}"
         - "MINECRAFT_RCON_PASSWORD={{ minecraft_rcon_password }}"
         - "MINECRAFT_RCON_PORT={{ minecraft_rcon_port }}"
         - "OPEN_WEATHER_MAP_API_KEY={{ open_weather_map_api_key }}"

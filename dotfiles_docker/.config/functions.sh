@@ -132,12 +132,6 @@ function bitwarden-open-fn {
   bitwarden-create-session-fn
 }
 
-function bitwarden-load-yml-fn {
-    bitwarden-create-session-fn
-    bw get notes home_server_yml > ${SERVER_HOME}/ansible/vars/secrets.yml
-    unset BW_SESSION
-}
-
 # ---------------------------------------------------------------------------- #
 #               ------- Docker ------                                          #
 # ---------------------------------------------------------------------------- #
