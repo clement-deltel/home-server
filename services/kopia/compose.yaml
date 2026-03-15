@@ -4,8 +4,8 @@ services:
     container_name: kopia
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: kopia
     image: ${KOPIA_IMAGE}
@@ -13,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.kopia.entrypoints=web,websecure"
-      - "traefik.http.routers.kopia.rule=Host(`kopia.${DOMAIN}`)"
+      - "traefik.http.routers.kopia.rule=Host(`backups.${DOMAIN}`)"
       - "traefik.http.routers.kopia.tls=true"
       # - "traefik.http.routers.kopia.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.kopia.tls.domains[0].main=kopia.${DOMAIN}"
+      # - "traefik.http.routers.kopia.tls.domains[0].main=backups.${DOMAIN}"
       - "traefik.http.routers.kopia.service=kopia"
       # Services
       - "traefik.http.services.kopia.loadbalancer.server.port=51515"
@@ -26,7 +26,7 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${KOPIA_IP}
     # Setup the server that provides the web gui
     ports:
@@ -48,6 +48,6 @@ services:
       #- ${SERVER_HOME}/services/management/passwords/vaultwarden/persistence:/data/vaultwarden:ro
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net
