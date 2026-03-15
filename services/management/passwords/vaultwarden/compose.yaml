@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/databases/vaultwarden:/var/lib/mysql
+      - /mnt/ssd/databases/vaultwarden:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
   vaultwarden:
