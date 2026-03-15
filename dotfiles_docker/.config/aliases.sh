@@ -103,7 +103,6 @@ alias doc='sudo su - docker'
 # ---------------------------------------------------------------------------- #
 #               ------- Bitwarden CLI ------                                   #
 # ---------------------------------------------------------------------------- #
-alias bwc=bitwarden-create-item-notes-fn
 alias bwl='bw lock'
 alias bwli=bitwarden-login-fn
 alias bwlo='bw logout'
@@ -113,7 +112,6 @@ alias bws=bitwarden-create-session-fn
 alias bwst='bw status | jq'
 alias bwsy='bw sync'
 
-alias bwle=bitwarden-load-env-fn
 alias bwly=bitwarden-load-yml-fn
 
 # ---------------------------------------------------------------------------- #
@@ -155,13 +153,34 @@ alias vico='vim compose.yaml'
 
 # CLI
 alias dc=docker-compose-fn
-alias dcd='docker compose down -v'
-alias dcr='docker compose restart'
+# alias dcd='docker compose down -v'
+# alias dcr='docker compose restart'
 alias dcru=docker-compose-run-fn
 alias dcsta='docker compose start'
 alias dcsto='docker compose stop'
-alias dcu='docker compose up -d'
+# alias dcu='docker compose up -d'
 alias dcub='docker compose up -d --build'
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Compose + Doppler ------
+# ---------------------------------------------------------------------------- #
+alias dcd='doppler run -- docker compose down -v'
+alias dcr='doppler run -- docker compose restart'
+alias dcu='doppler run -- docker compose up -d'
+
+# ---------------------------------------------------------------------------- #
+#               ------- Doppler ------
+# ---------------------------------------------------------------------------- #
+alias dp='doppler'
+alias dpc='doppler configure'
+alias dpgt='doppler configure get token --plain'
+alias dpl="doppler login --scope $(pwd)"
+alias dpm='doppler me'
+alias dps='doppler secrets'
+alias dpsc=doppler-scope-fn
+alias dpsd='doppler secrets download --format docker --no-file'
+alias dpsg=doppler-secret-get-fn
+alias dpt='doppler tui'
 
 # ---------------------------------------------------------------------------- #
 #               ------- Terraform ------                                       #

@@ -175,4 +175,4 @@ source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/aliases.sh
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/completions.sh
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/functions.sh
 
-set-env
+set_services

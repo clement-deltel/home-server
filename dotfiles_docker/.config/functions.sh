@@ -86,8 +86,6 @@ function unset-env { unload-env ${SERVER_HOME}/env/services.env; unload-env ${SE
 function set-services { load-env ${SERVER_HOME}/env/services.env; }
 function unset-services { unload-env ${SERVER_HOME}/env/services.env; }
 
-function bw-env { bitwarden-load-env-fn; load-env ${SERVER_HOME}/env/services.env; }
-
 # ---------------------------------------------------------------------------- #
 #               ------- Bitwarden CLI ------                                   #
 # ---------------------------------------------------------------------------- #
@@ -132,19 +130,6 @@ function bitwarden-login-fn {
 function bitwarden-open-fn {
   bitwarden-login-fn
   bitwarden-create-session-fn
-}
-
-function bitwarden-create-item-notes-fn {
-    bitwarden-create-session-fn
-    notes=$(grep -v '^#' "$1")
-    bw get template item | jq ".type = 1 | .name='$2' | .notes='${notes}'" | bw create item
-    unset BW_SESSION
-}
-
-function bitwarden-load-env-fn {
-    bitwarden-create-session-fn
-    eval "$(bw get notes home_server_env)"
-    unset BW_SESSION
 }
 
 function bitwarden-load-yml-fn {
@@ -198,6 +183,22 @@ function docker-image-rm-fn { docker image rm "$@"; }
 # ---------------------------------------------------------------------------- #
 function docker-compose-fn { docker compose "$@"; }
 function docker-compose-run-fn { docker compose run "$@"; }
+
+# ---------------------------------------------------------------------------- #
+#               ------- Doppler ------
+# ---------------------------------------------------------------------------- #
+doppler-scope-fn () {
+  perform_reset=$1
+  if [ "$perform_reset" = "reset" ]; then
+    unset D_SCOPE
+    unset DOPPLER_TOKEN
+  else
+    export D_SCOPE="$(find ~/code -maxdepth 2 | fzf)"
+    export DOPPLER_TOKEN=$(doppler --scope "$D_SCOPE" configure get token --plain)
+  fi
+}
+
+doppler-secret-get-fn () { doppler secrets get "$1"; }
 
 # ---------------------------------------------------------------------------- #
 #               ------- Terraform ------                                       #
