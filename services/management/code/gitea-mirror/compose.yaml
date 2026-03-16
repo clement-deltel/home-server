@@ -19,10 +19,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.gitea-mirror.entrypoints=web,websecure"
-      - "traefik.http.routers.gitea-mirror.rule=Host(`code-mirror.${DOMAIN}`)"
+      - "traefik.http.routers.gitea-mirror.rule=Host(`${GITEA_MIRROR_HOST}`)"
       - "traefik.http.routers.gitea-mirror.tls=true"
       # - "traefik.http.routers.gitea-mirror.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gitea-mirror.tls.domains[0].main=code-mirror.${DOMAIN}"
+      # - "traefik.http.routers.gitea-mirror.tls.domains[0].main=${GITEA_MIRROR_HOST}"
       - "traefik.http.routers.gitea-mirror.service=gitea-mirror"
       # Services
       - "traefik.http.services.gitea-mirror.loadbalancer.server.port=4321"

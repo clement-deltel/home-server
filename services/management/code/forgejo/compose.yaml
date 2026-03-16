@@ -68,7 +68,7 @@ services:
       - "traefik.enable=true"
       # Routers
       #- HTTP
-      - "traefik.http.routers.forgejo.entrypoints=web,websecure"
+      - "traefik.http.routers.forgejo.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.forgejo.rule=Host(`${FORGEJO_HOST}`)"
       - "traefik.http.routers.forgejo.tls=true"
       # - "traefik.http.routers.forgejo.tls.certresolver=letsencrypt"
