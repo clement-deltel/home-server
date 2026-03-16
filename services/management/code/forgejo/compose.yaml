@@ -73,11 +73,18 @@ services:
       - "traefik.http.routers.forgejo.tls=true"
       # - "traefik.http.routers.forgejo.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.forgejo.tls.domains[0].main=${FORGEJO_HOST}"
+      - "traefik.http.routers.forgejo.middlewares=forgejo-cors"
       - "traefik.http.routers.forgejo.service=forgejo"
       #- TCP
       - "traefik.tcp.routers.forgejo-ssh.entrypoints=ssh"
       - "traefik.tcp.routers.forgejo-ssh.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.forgejo-ssh.service=forgejo-ssh"
+      # Middlewares
+      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolallowmethods=GET"
+      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolalloworiginlist=https://${HOMER_HOST}"
+      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.forgejo-cors.headers.addvaryheader=true"
       # Services
       - "traefik.http.services.forgejo.loadbalancer.server.port=3000"
       - "traefik.tcp.services.forgejo-ssh.loadbalancer.server.port=22"

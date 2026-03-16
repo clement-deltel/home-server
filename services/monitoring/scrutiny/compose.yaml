@@ -36,7 +36,7 @@ services:
       ## Auth
       # - "traefik.http.middlewares.scrutiny.basicauth.users=${SCRUTINY_USER}:${SCRUTINY_PASSWORD}"
       ## CORS
-      - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowOriginList=https://homer.${DOMAIN}"
+      - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowOriginList=https://${HOMER_HOST}"
       - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowMethods=GET,OPTIONS"
       - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowHeaders=Content-Type,Authorization"
       - "traefik.http.middlewares.scrutiny-cors.headers.accessControlMaxAge=100"
