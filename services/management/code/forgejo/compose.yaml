@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: romm-valkey
+    hostname: forgejo-valkey
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -69,10 +69,10 @@ services:
       # Routers
       #- HTTP
       - "traefik.http.routers.forgejo.entrypoints=web,websecure"
-      - "traefik.http.routers.forgejo.rule=Host(`forgejo.${DOMAIN}`)"
+      - "traefik.http.routers.forgejo.rule=Host(`${FORGEJO_HOST}`)"
       - "traefik.http.routers.forgejo.tls=true"
       # - "traefik.http.routers.forgejo.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.forgejo.tls.domains[0].main=forgejo.${DOMAIN}"
+      # - "traefik.http.routers.forgejo.tls.domains[0].main=${FORGEJO_HOST}"
       - "traefik.http.routers.forgejo.service=forgejo"
       #- TCP
       - "traefik.tcp.routers.forgejo-ssh.entrypoints=ssh"
