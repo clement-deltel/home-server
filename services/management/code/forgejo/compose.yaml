@@ -98,8 +98,8 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./persistence/data:/var/lib/gitea
       - ./persistence/conf:/etc/gitea
+      - ./persistence/data:/var/lib/gitea
       - ./persistence/lfs:/data/lfs
       - ./persistence/log:/var/log/forgejo
       - /etc/localtime:/etc/localtime:ro

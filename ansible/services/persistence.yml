@@ -55,7 +55,14 @@
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
       # Forgejo
+      - "/mnt/ssd/cache/forgejo"
+      - "/mnt/ssd/databases/forgejo"
+      - "{{ server_home }}/services/management/code/forgejo/cache-persistence"
       - "{{ server_home }}/services/management/code/forgejo/persistence"
+      - "{{ server_home }}/services/management/code/forgejo/persistence/conf"
+      - "{{ server_home }}/services/management/code/forgejo/persistence/data"
+      - "{{ server_home }}/services/management/code/forgejo/persistence/lfs"
+      - "{{ server_home }}/services/management/code/forgejo/persistence/log"
       # FreshRSS
       - "{{ server_home }}/services/media/storage/news/freshrss/db-persistence"
       - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
