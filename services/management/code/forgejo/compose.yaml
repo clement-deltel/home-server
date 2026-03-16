@@ -45,7 +45,7 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${FORGEJO_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
