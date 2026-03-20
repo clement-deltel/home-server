@@ -13,7 +13,7 @@
       - { when: convertx_enable, project_src: '{{ server_home }}/services/media/tools/convertx' }
       - { when: crowdsec_enable, project_src: '{{ server_home }}/services/security/crowdsec' }
       - { when: dawarich_enable, project_src: '{{ server_home }}/services/travel/dawarich' }
-      - { when: directus_enable, project_src: '{{ server_home }}/services/other/directus' }
+      - { when: directus_enable, project_src: '{{ server_home }}/services/development/directus' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/media/tools/docuseal' }
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
       - { when: forgejo_enable, project_src: '{{ server_home }}/services/management/code/forgejo' }

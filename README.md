@@ -356,6 +356,8 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). Deployed on `https://ai.${DOMAIN}`. ([Source Code](https://github.com/open-webui/open-webui)) `JavaScript` `Svelte` `Python`
 - **Automation**
   - [n8n](https://n8n.io) -  workflow automation platform with native AI capabilities, combine visual building with custom code, self-host or cloud, 400+ integrations. ([Source Code](https://github.com/n8n-io/n8n)) `TypeScript`
+- **Development & Projects**
+  - [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. ([Source Code](https://github.com/directus/directus)) `TypeScript`
 - **Finances**
   - [Actual](https://actualbudget.com) - local-first personal finance app. Deployed on `https://finances.${DOMAIN}`. ([Source Code](https://github.com/actualbudget/actual)) `TypeScript`
   - [Wallos](https://wallosapp.com) - open-source personal subscription tracker. Deployed on `https://wallos.${DOMAIN}`. ([Source Code](https://github.com/ellite/wallos)) `PHP` `JavaScript`
@@ -369,8 +371,6 @@ This section covers all the supported services of the stack. It categorizes the 
   - [AdventureLog](https://adventurelog.app) - travel tracker and trip planner. Deployed on `https://travel.${DOMAIN}`. ([Source Code](https://github.com/seanmorley15/AdventureLog)) `Svelte` `Python`
   - [Dawarich](https://dawarich.app) - alternative to Google location history (Google Maps timeline). Deployed on `https://maps.${DOMAIN}`. ([Source Code](https://github.com/Freika/dawarich)) `Ruby` `JavaScript`
   - [Jetlog](https://github.com/pbogre/jetlog) - personal flight tracker and viewer. Deployed on `https://fly.${DOMAIN}`. ([Source Code](https://github.com/pbogre/jetlog)) `TypeScript` `Python`
-- **Headless CMS**
-  - [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. Deployed on `https://directus.${DOMAIN}`. ([Source Code](https://github.com/directus/directus)) `TypeScript`
 - **Surveys**
   - [Limesurvey](https://www.limesurvey.org) - alternative to SurveyMonkey, Typeform, Qualtrics, and Google Forms, making it simple to create online surveys and forms with unmatched flexibility. Deployed on `https://survey.${DOMAIN}`. ([Source Code](https://github.com/LimeSurvey/LimeSurvey)) `JavaScript`  `PHP`
 - **Games**

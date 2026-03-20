@@ -46,9 +46,9 @@
       - "{{ server_home }}/services/travel/dawarich/shared-persistence"
       # Directus
       - "/mnt/ssd/databases/directus"
-      - "{{ server_home }}/services/other/directus/persistence"
-      - "{{ server_home }}/services/other/directus/persistence/extensions"
-      - "{{ server_home }}/services/other/directus/persistence/uploads"
+      - "{{ server_home }}/services/development/directus/persistence"
+      - "{{ server_home }}/services/development/directus/persistence/extensions"
+      - "{{ server_home }}/services/development/directus/persistence/uploads"
       # Docuseal
       - "/mnt/ssd/databases/docuseal"
       - "{{ server_home }}/services/media/tools/docuseal/persistence"
