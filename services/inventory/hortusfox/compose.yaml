@@ -1,3 +1,4 @@
+# https://github.com/danielbrendel/hortusfox-web
 services:
   db:
     container_name: hortusfox-mariadb
@@ -22,7 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/mysql
+      - /mnt/ssd/databases/hortusfox:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
   hortusfox:
@@ -41,10 +42,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.hortusfox.entrypoints=web,websecure"
-      - "traefik.http.routers.hortusfox.rule=Host(`plants.${DOMAIN}`)"
+      - "traefik.http.routers.hortusfox.rule=Host(`${HORTUSFOX_HOST}`)"
       - "traefik.http.routers.hortusfox.tls=true"
       # - "traefik.http.routers.hortusfox.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.hortusfox.tls.domains[0].main=plants.${DOMAIN}"
+      # - "traefik.http.routers.hortusfox.tls.domains[0].main=${HORTUSFOX_HOST}"
       - "traefik.http.routers.hortusfox.service=hortusfox"
       # Services
       - "traefik.http.services.hortusfox.loadbalancer.server.port=80"

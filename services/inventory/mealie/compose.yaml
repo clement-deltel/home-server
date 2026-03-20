@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/mealie:/var/lib/postgresql/data
 
   mealie:
     container_name: mealie
@@ -41,10 +41,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.mealie.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.mealie.rule=Host(`recipes.${DOMAIN}`)"
+      - "traefik.http.routers.mealie.rule=Host(`${MEALIE_HOST}`)"
       - "traefik.http.routers.mealie.tls=true"
       # - "traefik.http.routers.mealie.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.mealie.tls.domains[0].main=recipes.${DOMAIN}"
+      # - "traefik.http.routers.mealie.tls.domains[0].main=${MEALIE_HOST}"
       - "traefik.http.routers.mealie.middlewares=mealie"
       - "traefik.http.routers.mealie.service=mealie"
       # Middlewares

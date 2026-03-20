@@ -18,12 +18,12 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${WAKAPI_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/wakapi:/var/lib/postgresql/data
 
   wakapi:
     container_name: wakapi
@@ -32,8 +32,8 @@ services:
         condition: service_healthy
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: wakapi
     image: ${WAKAPI_IMAGE}
@@ -42,10 +42,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.wakapi.entrypoints=web,websecure"
-      - "traefik.http.routers.wakapi.rule=Host(`wakapi.${DOMAIN}`)"
+      - "traefik.http.routers.wakapi.rule=Host(`${WAKAPI_HOST}`)"
       - "traefik.http.routers.wakapi.tls=true"
       # - "traefik.http.routers.wakapi.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.wakapi.tls.domains[0].main=wakapi.${DOMAIN}"
+      # - "traefik.http.routers.wakapi.tls.domains[0].main=${WAKAPI_HOST}"
       - "traefik.http.routers.wakapi.service=wakapi"
       # Services
       - "traefik.http.services.wakapi.loadbalancer.server.port=3000"
@@ -55,9 +55,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${WAKAPI_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${WAKAPI_IP}
     ports:
       - 3000
@@ -65,14 +65,14 @@ services:
     stop_grace_period: 30s
 
 networks:
-  app-net:
-    name: wakapi-internal
+  internal-net:
+    name: internal-wakapi
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${WAKAPI_NET}
           gateway: ${WAKAPI_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

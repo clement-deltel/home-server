@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/authentik:/var/lib/postgresql/data
 
   authentik_worker:
     command: worker
@@ -69,10 +69,10 @@ services:
       - "traefik.enable=true"
       # Routers
       # - "traefik.http.routers.authentik.entrypoints=web,websecure"
-      - "traefik.http.routers.authentik.rule=Host(`auth.${DOMAIN}`)"
+      - "traefik.http.routers.authentik.rule=Host(`${AUTHENTIK_HOST}`)"
       # - "traefik.http.routers.authentik.tls=true"
       # - "traefik.http.routers.authentik.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.authentik.tls.domains[0].main=auth.${DOMAIN}"
+      # - "traefik.http.routers.authentik.tls.domains[0].main=${AUTHENTIK_HOST}"
       - "traefik.http.routers.authentik.service=authentik"
       # Services
       - "traefik.http.services.authentik.loadbalancer.server.port=9300"

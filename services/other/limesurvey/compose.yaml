@@ -1,3 +1,4 @@
+# https://github.com/limesurvey/limesurvey
 services:
   db:
     container_name: limesurvey-mariadb
@@ -17,12 +18,12 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${LIMESURVEY_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/mysql
+      - /mnt/ssd/databases/limesurvey:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
   limesurvey:
@@ -32,18 +33,18 @@ services:
         condition: service_healthy
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     image: ${LIMESURVEY_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.limesurvey.entrypoints=web,websecure"
-      - "traefik.http.routers.limesurvey.rule=Host(`survey.${DOMAIN}`)"
+      - "traefik.http.routers.limesurvey.rule=Host(`${LIMESURVEY_HOST}`)"
       - "traefik.http.routers.limesurvey.tls=true"
       # - "traefik.http.routers.limesurvey.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.limesurvey.tls.domains[0].main=survey.${DOMAIN}"
+      # - "traefik.http.routers.limesurvey.tls.domains[0].main=${LIMESURVEY_HOST}"
       - "traefik.http.routers.limesurvey.service=limesurvey"
       # Services
       - "traefik.http.services.limesurvey.loadbalancer.server.port=80"
@@ -55,9 +56,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${LIMESURVEY_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${LIMESURVEY_IP}
     ports:
       - 80
@@ -69,14 +70,14 @@ services:
       - ./persistence/config:/var/www/html/application/config
 
 networks:
-  app-net:
-    name: limesurvey-internal
+  internal-net:
+    name: internal-limesurvey
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${LIMESURVEY_NET}
           gateway: ${LIMESURVEY_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

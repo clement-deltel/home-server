@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./pkms-db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/mathesar-pkms:/var/lib/postgresql/data
 
   db:
     container_name: mathesar-postgres
@@ -48,7 +48,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/mathesar:/var/lib/postgresql/data
 
   mathesar:
     container_name: mathesar
@@ -73,10 +73,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.mathesar.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.mathesar.rule=Host(`mathesar.${DOMAIN}`)"
+      - "traefik.http.routers.mathesar.rule=Host(`${MATHESAR_HOST}`)"
       - "traefik.http.routers.mathesar.tls=true"
       # - "traefik.http.routers.mathesar.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.mathesar.tls.domains[0].main=mathesar.${DOMAIN}"
+      # - "traefik.http.routers.mathesar.tls.domains[0].main=${MATHESAR_HOST}"
       - "traefik.http.routers.mathesar.service=mathesar"
       # Services
       - "traefik.http.services.mathesar.loadbalancer.server.port=8000"

@@ -18,12 +18,12 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${MEMOS_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/memos:/var/lib/postgresql/data
 
   memos:
     container_name: memos
@@ -41,10 +41,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.memos.entrypoints=web,websecure"
-      - "traefik.http.routers.memos.rule=Host(`memos.${DOMAIN}`)"
+      - "traefik.http.routers.memos.rule=Host(`${MEMOS_HOST}`)"
       - "traefik.http.routers.memos.tls=true"
       # - "traefik.http.routers.memos.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.memos.tls.domains[0].main=memos.${DOMAIN}"
+      # - "traefik.http.routers.memos.tls.domains[0].main=${MEMOS_HOST}"
       - "traefik.http.routers.memos.service=memos"
       # Services
       - "traefik.http.services.memos.loadbalancer.server.port=5230"
@@ -54,9 +54,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${MEMOS_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${MEMOS_IP}
     ports:
       - 5230
@@ -66,14 +66,14 @@ services:
       - ./memos:/var/opt/memos
 
 networks:
-  app-net:
-    name: memos-internal
+  internal-net:
+    name: internal-memos
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${MEMOS_NET}
           gateway: ${MEMOS_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

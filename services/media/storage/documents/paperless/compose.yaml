@@ -3,8 +3,25 @@
 #   is configured to use these services. These provide support for consuming
 #   Office documents (Word, Excel, Power Point and their LibreOffice counter-
 #   parts.
-
+# https://github.com/paperless-ngx/paperless-ngx
 services:
+  cache:
+    container_name: paperless-redis
+    hostname: paperless-redis
+    image: ${DEFAULT_REDIS_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${PAPERLESS_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ./redis-persistence:/data
+
   db:
     container_name: paperless-mariadb
     env_file: config/.env.db
@@ -23,29 +40,12 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${PAPERLESS_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/mysql
-
-  broker:
-    container_name: paperless-redis
-    hostname: paperless-redis
-    image: ${DEFAULT_REDIS_IMAGE}
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 2m
-    networks:
-      app-net:
-        ipv4_address: ${PAPERLESS_REDIS_IP}
-    restart: unless-stopped
-    stop_grace_period: 30s
-    volumes:
-      - ./redis-persistence:/data
+      - /mnt/ssd/databases/paperless:/var/lib/mysql
 
   gotenberg:
     # The gotenberg chromium route is used to convert .eml files. We do not
@@ -60,7 +60,7 @@ services:
         max-file: 2
         max-size: 2m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${PAPERLESS_GOTENBERG_IP}
     restart: unless-stopped
     stop_grace_period: 30s
@@ -75,7 +75,7 @@ services:
         max-file: 2
         max-size: 2m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${PAPERLESS_TIKA_IP}
     restart: unless-stopped
     stop_grace_period: 30s
@@ -84,18 +84,18 @@ services:
     # createsuperuser --noinput --username "${PAPERLESS_ADMIN_USER}" --email "${USER_EMAIL}"
     container_name: paperless
     depends_on:
+      cache:
+        condition: service_started
       db:
         condition: service_healthy
-      broker:
-        condition: service_started
       gotenberg:
         condition: service_started
       tika:
         condition: service_started
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8000"]
@@ -110,10 +110,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.paperless.entrypoints=web,websecure"
-      - "traefik.http.routers.paperless.rule=Host(`docs.${DOMAIN}`)"
+      - "traefik.http.routers.paperless.rule=Host(`${PAPERLESS_HOST}`)"
       - "traefik.http.routers.paperless.tls=true"
       # - "traefik.http.routers.paperless.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.paperless.tls.domains[0].main=docs.${DOMAIN}"
+      # - "traefik.http.routers.paperless.tls.domains[0].main=${PAPERLESS_HOST}"
       - "traefik.http.routers.paperless.service=paperless"
       # Services
       - "traefik.http.services.paperless.loadbalancer.server.port=8000"
@@ -123,9 +123,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${PAPERLESS_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${PAPERLESS_IP}
     ports:
       - 8000
@@ -138,14 +138,14 @@ services:
       - ./persistence/media:/usr/src/paperless/media
 
 networks:
-  app-net:
-    name: paperless-internal
+  internal-net:
+    name: internal-paperless
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${PAPERLESS_NET}
           gateway: ${PAPERLESS_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

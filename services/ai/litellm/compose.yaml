@@ -1,4 +1,28 @@
+# https://github.com/BerriAI/litellm
 services:
+  cache:
+    command: redis-server --requirepass ${LITELLM_CACHE_PASSWORD}
+    container_name: litellm-redis
+    hostname: litellm-redis
+    image: ${DEFAULT_REDIS_IMAGE}
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${LITELLM_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+
   db:
     container_name: litellm-postgres
     env_file: config/.env.db
@@ -17,47 +41,24 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${LITELLM_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
-
-  redis:
-    command: redis-server --requirepass ${LITELLM_CACHE_PASSWORD}
-    container_name: litellm-redis
-    hostname: litellm-redis
-    image: ${DEFAULT_REDIS_IMAGE}
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
-      interval: 20s
-      timeout: 15s
-      retries: 3
-      start_period: 60s
-      start_interval: 5s
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 2m
-    networks:
-      app-net:
-        ipv4_address: ${LITELLM_REDIS_IP}
-    restart: unless-stopped
-    stop_grace_period: 30s
+      - /mnt/ssd/databases/litellm:/var/lib/postgresql/data
 
   litellm:
     container_name: litellm
     depends_on:
-      db:
+      cache:
         condition: service_healthy
-      redis:
+      db:
         condition: service_healthy
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     healthcheck:  # Defines the health check configuration for the container
       test: [ "CMD", "curl", "-f", "http://localhost:4000/health/liveliness || exit 1" ]  # Command to execute for health check
@@ -71,10 +72,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.litellm.entrypoints=web,websecure"
-      - "traefik.http.routers.litellm.rule=Host(`llm.${DOMAIN}`) && PathRegexp(`^/.*`)"
+      - "traefik.http.routers.litellm.rule=Host(`${LITELLM_HOST}`) && PathRegexp(`^/.*`)"
       - "traefik.http.routers.litellm.tls=true"
       # - "traefik.http.routers.litellm.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.litellm.tls.domains[0].main=llm.${DOMAIN}"
+      # - "traefik.http.routers.litellm.tls.domains[0].main=${LITELLM_HOST}"
       - "traefik.http.routers.litellm.service=litellm"
       # Services
       - "traefik.http.services.litellm.loadbalancer.server.port=4000"
@@ -84,9 +85,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${LITELLM_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${LITELLM_IP}
       ai-net:
         ipv4_address: ${LITELLM_AI_IP}
@@ -100,15 +101,15 @@ services:
     #   - ./litellm-config.yaml:/app/config.yaml # Mount the local configuration file
 
 networks:
-  app-net:
-    name: litellm-internal
+  internal-net:
+    name: internal-litellm
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${LITELLM_NET}
           gateway: ${LITELLM_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net
   ai-net:

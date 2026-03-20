@@ -1,6 +1,6 @@
----
+# https://github.com/FreshRSS/FreshRSS
 services:
-  postgres:
+  db:
     container_name: freshrss-postgres
     env_file: config/.env.db
     healthcheck:
@@ -23,12 +23,12 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/freshrss:/var/lib/postgresql/data
 
   freshrss:
     container_name: freshrss
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
     dns:
       - 127.0.0.1
@@ -41,10 +41,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.freshrss.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.freshrss.rule=Host(`news.${DOMAIN}`)"
+      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_HOST}`)"
       - "traefik.http.routers.freshrss.tls=true"
       # - "traefik.http.routers.freshrss.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.freshrss.tls.domains[0].main=news.${DOMAIN}"
+      # - "traefik.http.routers.freshrss.tls.domains[0].main=${FRESHRSS_HOST}"
       - "traefik.http.routers.freshrss.service=freshrss"
       # Services
       - "traefik.http.services.freshrss.loadbalancer.server.port=80"

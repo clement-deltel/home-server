@@ -1,3 +1,4 @@
+# https://github.com/docusealco/docuseal
 services:
   db:
     container_name: docuseal-postgres
@@ -17,12 +18,12 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${DOCUSEAL_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
+      - /mnt/ssd/databases/docuseal:/var/lib/postgresql/data
 
   docuseal:
     container_name: docuseal
@@ -31,8 +32,8 @@ services:
         condition: service_healthy
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: docuseal
     image: ${DOCUSEAL_IMAGE}
@@ -40,10 +41,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.docuseal.entrypoints=web,websecure"
-      - "traefik.http.routers.docuseal.rule=Host(`doc.${DOMAIN}`)"
+      - "traefik.http.routers.docuseal.rule=Host(`${DOCUSEAL_HOST}`)"
       - "traefik.http.routers.docuseal.tls=true"
       # - "traefik.http.routers.docuseal.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.docuseal.tls.domains[0].main=doc.${DOMAIN}"
+      # - "traefik.http.routers.docuseal.tls.domains[0].main=${DOCUSEAL_HOST}"
       - "traefik.http.routers.docuseal.service=docuseal"
       # Services
       - "traefik.http.services.docuseal.loadbalancer.server.port=3000"
@@ -53,9 +54,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${DOCUSEAL_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${DOCUSEAL_IP}
     ports:
       - 3000
@@ -65,14 +66,14 @@ services:
       - ./persistence:/data
 
 networks:
-  app-net:
-    name: docuseal-internal
+  internal-net:
+    name: internal-docuseal
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${DOCUSEAL_NET}
           gateway: ${DOCUSEAL_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

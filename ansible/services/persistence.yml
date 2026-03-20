@@ -11,16 +11,16 @@
       # Actual
       - "{{ server_home }}/services/finances/actual/persistence"
       # AdventureLog
-      - "{{ server_home }}/services/travel/adventurelog/db-persistence"
+      - "/mnt/ssd/databases/adventurelog"
       - "{{ server_home }}/services/travel/adventurelog/persistence"
       # Affine
-      - "{{ server_home }}/services/pkms/affine/db-persistence"
+      - "/mnt/ssd/cache/affine"
+      - "/mnt/ssd/databases/affine"
       - "{{ server_home }}/services/pkms/affine/persistence"
       - "{{ server_home }}/services/pkms/affine/persistence/config"
       - "{{ server_home }}/services/pkms/affine/persistence/storage"
-      - "{{ server_home }}/services/pkms/affine/redis-persistence"
       # Authentik
-      - "{{ server_home }}/services/security/authentik/db-persistence"
+      - "/mnt/ssd/databases/authentik"
       - "{{ server_home }}/services/security/authentik/persistence"
       - "{{ server_home }}/services/security/authentik/persistence/certs"
       - "{{ server_home }}/services/security/authentik/persistence/custom-templates"
@@ -38,19 +38,19 @@
       # DBGate
       - "{{ server_home }}/services/management/databases/dbgate/persistence"
       # Dawarich
-      - "{{ server_home }}/services/travel/dawarich/db-persistence"
+      - "/mnt/ssd/databases/dawarich"
       - "{{ server_home }}/services/travel/dawarich/persistence"
       - "{{ server_home }}/services/travel/dawarich/persistence/public"
       - "{{ server_home }}/services/travel/dawarich/persistence/storage"
       - "{{ server_home }}/services/travel/dawarich/persistence/watched"
       - "{{ server_home }}/services/travel/dawarich/shared-persistence"
       # Directus
-      - "{{ server_home }}/services/other/directus/db-persistence"
+      - "/mnt/ssd/databases/directus"
       - "{{ server_home }}/services/other/directus/persistence"
       - "{{ server_home }}/services/other/directus/persistence/extensions"
       - "{{ server_home }}/services/other/directus/persistence/uploads"
       # Docuseal
-      - "{{ server_home }}/services/media/tools/docuseal/db-persistence"
+      - "/mnt/ssd/databases/docuseal"
       - "{{ server_home }}/services/media/tools/docuseal/persistence"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
@@ -64,7 +64,7 @@
       - "{{ server_home }}/services/management/code/forgejo/persistence/lfs"
       - "{{ server_home }}/services/management/code/forgejo/persistence/log"
       # FreshRSS
-      - "{{ server_home }}/services/media/storage/news/freshrss/db-persistence"
+      - "/mnt/ssd/databases/freshrss"
       - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
       # Gitea Mirror
       - "{{ server_home }}/services/management/code/gitea-mirror/persistence"
@@ -80,13 +80,13 @@
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/data"
       # Grafana
-      - "{{ server_home }}/services/monitoring/grafana/db-persistence"
-      - "{{ server_home }}/services/monitoring/grafana/influxdb-persistence"
+      - "/mnt/ssd/databases/grafana"
+      - "/mnt/ssd/databases/influxdb"
       - "{{ server_home }}/services/monitoring/grafana/persistence"
       # Grocy
       - "{{ server_home }}/services/inventory/grocy/persistence"
       # Guacamole
-      - "{{ server_home }}/services/remote/guacamole/db-persistence"
+      - "/mnt/ssd/databases/guacamole"
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence"
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence/drive"
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence/record"
@@ -102,7 +102,7 @@
       # Home Assistant
       - "{{ server_home }}/services/home/home-assistant/persistence"
       # HortusFox
-      - "{{ server_home }}/services/inventory/hortusfox/db-persistence"
+      - "/mnt/ssd/databases/hortusfox"
       - "{{ server_home }}/services/inventory/hortusfox/persistence"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/backup"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/images"
@@ -137,45 +137,48 @@
       - "{{ server_home }}/services/kopia/persistence/data"
       - "{{ server_home }}/services/kopia/persistence/logs"
       # Librum
-      - "{{ server_home }}/services/media/storage/books/librum/db-persistence"
+      - "/mnt/ssd/databases/librum"
       - "{{ server_home }}/services/media/storage/books/librum/persistence"
       # Limesurvey
-      - "{{ server_home }}/services/other/limesurvey/db-persistence"
+      - "/mnt/ssd/databases/limesurvey"
       - "{{ server_home }}/services/other/limesurvey/persistence"
       - "{{ server_home }}/services/other/limesurvey/persistence/config"
       - "{{ server_home }}/services/other/limesurvey/persistence/plugins"
       - "{{ server_home }}/services/other/limesurvey/persistence/upload"
       # LiteLLM
-      - "{{ server_home }}/services/ai/litellm/db-persistence"
+      - "/mnt/ssd/databases/litellm"
       # Mathesar
-      - "{{ server_home }}/services/pkms/mathesar/db-persistence"
+      - "/mnt/ssd/databases/mathesar"
+      - "/mnt/ssd/databases/mathesar-pkms"
       - "{{ server_home }}/services/pkms/mathesar/persistence"
       - "{{ server_home }}/services/pkms/mathesar/persistence/static"
       - "{{ server_home }}/services/pkms/mathesar/persistence/media"
-      - "{{ server_home }}/services/pkms/mathesar/pkms-db-persistence"
       # Mealie
-      - "{{ server_home }}/services/inventory/mealie/db-persistence"
+      - "/mnt/ssd/databases/mealie"
       - "{{ server_home }}/services/inventory/mealie/persistence"
       # Meme Search
-      - "{{ server_home }}/services/media/storage/pictures/meme-search/db-persistence"
+      - "/mnt/ssd/databases/meme-search"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/memes"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/itt-db"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/models"
       # Memos
-      - "{{ server_home }}/services/pkms/memos/db-persistence"
+      - "/mnt/ssd/databases/memos"
       - "{{ server_home }}/services/pkms/memos/persistence"
       # Minecraft
       - "{{ server_home }}/services/games/minecraft/persistence"
       # n8n
+      - "/mnt/ssd/databases/n8n"
       - "{{ server_home }}/services/automation/n8n/persistence"
+      - "{{ server_home }}/services/automation/n8n/persistence/config"
+      - "{{ server_home }}/services/automation/n8n/persistence/files"
       # Navidrome
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/backup"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/data"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/music"
       # Nextcloud
-      - "{{ server_home }}/services/media/storage/documents/nextcloud/db-persistence"
+      - "/mnt/ssd/databases/nextcloud"
       - "{{ server_home }}/services/media/storage/documents/nextcloud/persistence"
       - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
       # Ntfy
@@ -192,7 +195,7 @@
       # Open WebUI
       - "{{ server_home }}/services/ai/open-webui/persistence"
       # Paperless
-      - "{{ server_home }}/services/media/storage/documents/paperless/db-persistence"
+      - "/mnt/ssd/databases/paperless"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/consume"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/data"
@@ -200,7 +203,7 @@
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/media"
       - "{{ server_home }}/services/media/storage/documents/paperless/redis-persistence"
       # Photoprism
-      - "{{ server_home }}/services/media/storage/pictures/photoprism/db-persistence"
+      - "/mnt/ssd/databases/photoprism"
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence"
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/pictures"
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/storage"
@@ -243,7 +246,7 @@
       - "/mnt/ssd/databases/vaultwarden"
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
       # Wakapi
-      - "{{ server_home }}/services/management/code/wakapi/db-persistence"
+      - "/mnt/ssd/databases/wakapi"
       # Wallos
       - "{{ server_home }}/services/finances/wallos/persistence"
       - "{{ server_home }}/services/finances/wallos/persistence/db"

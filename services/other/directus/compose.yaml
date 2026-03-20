@@ -1,4 +1,28 @@
+# https://github.com/directus/directus
 services:
+  cache:
+    command: redis-server --requirepass ${DIRECTUS_CACHE_PASSWORD}
+    container_name: directus-redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: directus-redis
+    image: ${DEFAULT_REDIS_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${DIRECTUS_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+
   db:
     container_name: directus-postgres
     env_file: config/.env.db
@@ -17,47 +41,24 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${DIRECTUS_DB_IP}
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data
-
-  redis:
-    command: redis-server --requirepass ${DIRECTUS_REDIS_PASSWORD}
-    container_name: directus-redis
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
-      interval: 20s
-      timeout: 15s
-      retries: 3
-      start_period: 60s
-      start_interval: 5s
-    hostname: directus-redis
-    image: ${DEFAULT_REDIS_IMAGE}
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 2m
-    networks:
-      app-net:
-        ipv4_address: ${DIRECTUS_REDIS_IP}
-    restart: unless-stopped
-    stop_grace_period: 30s
+      - /mnt/ssd/databases/directus:/var/lib/postgresql/data
 
   directus:
     container_name: directus
     depends_on:
-      db:
+      cache:
         condition: service_healthy
-      redis:
+      db:
         condition: service_healthy
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: directus
     image: ${DIRECTUS_IMAGE}
@@ -65,10 +66,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.directus.entrypoints=web,websecure"
-      - "traefik.http.routers.directus.rule=Host(`directus.${DOMAIN}`)"
+      - "traefik.http.routers.directus.rule=Host(`${DIRECTUS_HOST}`)"
       - "traefik.http.routers.directus.tls=true"
       # - "traefik.http.routers.directus.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.directus.tls.domains[0].main=directus.${DOMAIN}"
+      # - "traefik.http.routers.directus.tls.domains[0].main=${DIRECTUS_HOST}"
       - "traefik.http.routers.directus.service=directus"
       # Services
       - "traefik.http.services.directus.loadbalancer.server.port=8055"
@@ -78,9 +79,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${DIRECTUS_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${DIRECTUS_IP}
     ports:
       - 8055
@@ -91,14 +92,14 @@ services:
       - ./persistence/extensions:/directus/extensions
 
 networks:
-  app-net:
-    name: directus-internal
+  internal-net:
+    name: internal-directus
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${DIRECTUS_NET}
           gateway: ${DIRECTUS_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

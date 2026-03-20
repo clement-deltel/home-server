@@ -46,7 +46,7 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${PHOTOPRISM_DB_IP}
     ## If MariaDB gets stuck in a restart loop, this points to a memory or filesystem issue:
     ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
@@ -57,7 +57,7 @@ services:
     stop_grace_period: 30s
     ## Never store database files on an unreliable device such as a USB flash drive, an SD card, or a shared network folder:
     volumes:
-      - ./db-persistence:/var/lib/mysql # DO NOT REMOVE
+      - /mnt/ssd/databases/photoprism:/var/lib/mysql # DO NOT REMOVE
 
   photoprism:
     container_name: photoprism
@@ -68,8 +68,8 @@ services:
         condition: service_healthy
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     ## Share hardware devices with FFmpeg and TensorFlow (optional):
     ## devices:
@@ -86,10 +86,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.photoprism.entrypoints=web,websecure"
-      - "traefik.http.routers.photoprism.rule=Host(`photoprism.${DOMAIN}`)"
+      - "traefik.http.routers.photoprism.rule=Host(`${PHOTOPRISM_HOST}`)"
       - "traefik.http.routers.photoprism.tls=true"
       # - "traefik.http.routers.photoprism.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.photoprism.tls.domains[0].main=photoprism.${DOMAIN}"
+      # - "traefik.http.routers.photoprism.tls.domains[0].main=${PHOTOPRISM_HOST}"
       - "traefik.http.routers.photoprism.service=photoprism"
       # Services
       - "traefik.http.services.photoprism.loadbalancer.server.port=2342"
@@ -99,9 +99,9 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      app-net:
+      internal-net:
         ipv4_address: ${PHOTOPRISM_INTERNAL_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${PHOTOPRISM_IP}
     ports:
       - 2342 # HTTP port
@@ -127,14 +127,14 @@ services:
     working_dir: /photoprism # do not change or remove
 
 networks:
-  app-net:
-    name: photoprism-internal
+  internal-net:
+    name: internal-photoprism
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: ${PHOTOPRISM_NET}
           gateway: ${PHOTOPRISM_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

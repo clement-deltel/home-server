@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./db-persistence:/var/lib/postgresql/data/
+      - /mnt/ssd/databases/adventurelog:/var/lib/postgresql/data/
 
   adventurelog-web:
     container_name: adventurelog-frontend
@@ -40,10 +40,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.adventurelog-frontend.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.adventurelog-frontend.rule=Host(`travel.${DOMAIN}`) && !(PathPrefix(`/media`) || PathPrefix(`/admin`) || PathPrefix(`/static`) || PathPrefix(`/accounts`))"
+      - "traefik.http.routers.adventurelog-frontend.rule=Host(`${ADVENTURELOG_HOST}`) && !(PathPrefix(`/media`) || PathPrefix(`/admin`) || PathPrefix(`/static`) || PathPrefix(`/accounts`))"
       - "traefik.http.routers.adventurelog-frontend.tls=true"
       # - "traefik.http.routers.adventurelog-frontend.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.adventurelog-frontend.tls.domains[0].main=travel.${DOMAIN}"
+      # - "traefik.http.routers.adventurelog-frontend.tls.domains[0].main=${ADVENTURELOG_HOST}"
       - "traefik.http.routers.adventurelog-frontend.service=adventurelog-frontend"
       # Services
       - "traefik.http.services.adventurelog-frontend.loadbalancer.server.port=3000"
@@ -76,10 +76,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.adventurelog-backend.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.adventurelog-backend.rule=Host(`travel.${DOMAIN}`) && (PathPrefix(`/media`) || PathPrefix(`/admin`) || PathPrefix(`/static`) || PathPrefix(`/accounts`))"
+      - "traefik.http.routers.adventurelog-backend.rule=Host(`${ADVENTURELOG_HOST}`) && (PathPrefix(`/media`) || PathPrefix(`/admin`) || PathPrefix(`/static`) || PathPrefix(`/accounts`))"
       - "traefik.http.routers.adventurelog-backend.tls=true"
       # - "traefik.http.routers.adventurelog-backend.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.adventurelog-backend.tls.domains[0].main=travel.${DOMAIN}"
+      # - "traefik.http.routers.adventurelog-backend.tls.domains[0].main=${ADVENTURELOG_HOST}"
       - "traefik.http.routers.adventurelog-backend.service=adventurelog-backend"
       # Services
       - "traefik.http.services.adventurelog-backend.loadbalancer.server.port=8000"
