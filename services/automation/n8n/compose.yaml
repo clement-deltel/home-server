@@ -1,4 +1,4 @@
-# # https://github.com/n8n-io/n8n
+# https://github.com/n8n-io/n8n
 services:
   db:
     container_name: n8n-postgres
