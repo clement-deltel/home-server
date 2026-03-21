@@ -1,17 +1,18 @@
 # https://github.com/directus/directus
 services:
   cache:
-    command: redis-server --requirepass ${DIRECTUS_CACHE_PASSWORD}
-    container_name: directus-redis
+    container_name: directus-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--requirepass ${DIRECTUS_CACHE_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 20s
       timeout: 15s
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: directus-redis
-    image: ${DEFAULT_REDIS_IMAGE}
+    hostname: directus-valkey
+    image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
       options:
@@ -22,6 +23,8 @@ services:
         ipv4_address: ${DIRECTUS_CACHE_IP}
     restart: unless-stopped
     stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/directus:/data
 
   db:
     container_name: directus-postgres

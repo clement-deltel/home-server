@@ -25,7 +25,6 @@ services:
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/cache/romm:/data
-      - ./cache-persistence:/etc/valkey
 
   db:
     container_name: romm-mariadb

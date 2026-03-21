@@ -1,10 +1,36 @@
 # https://github.com/immich-app/immich
 services:
+  cache:
+    container_name: immich-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--requirepass ${IMMICH_CACHE_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: immich-valkey
+    image: ${IMMICH_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${IMMICH_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/immich:/data
+
   db:
     container_name: immich-postgres
     env_file: config/.env.db
     hostname: immich-postgres
-    image: ${IMMICH_POSTGRES_IMAGE}
+    image: ${IMMICH_DB_IMAGE}
     logging:
       driver: json-file
       options:
@@ -17,29 +43,6 @@ services:
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/databases/immich:/var/lib/postgresql/data
-
-  redis:
-    command: redis-server --requirepass ${IMMICH_CACHE_PASSWORD}
-    container_name: immich-redis
-    hostname: immich-redis
-    image: ${IMMICH_REDIS_IMAGE}
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
-      interval: 20s
-      timeout: 15s
-      retries: 3
-      start_period: 60s
-      start_interval: 5s
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 2m
-    networks:
-      internal-net:
-        ipv4_address: ${IMMICH_REDIS_IP}
-    restart: unless-stopped
-    stop_grace_period: 30s
 
   immich-machine-learning:
     container_name: immich-machine-learning

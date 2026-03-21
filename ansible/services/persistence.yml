@@ -38,13 +38,14 @@
       # DBGate
       - "{{ server_home }}/services/management/databases/dbgate/persistence"
       # Dawarich
+      - "/mnt/ssd/cache/dawarich"
       - "/mnt/ssd/databases/dawarich"
       - "{{ server_home }}/services/travel/dawarich/persistence"
       - "{{ server_home }}/services/travel/dawarich/persistence/public"
       - "{{ server_home }}/services/travel/dawarich/persistence/storage"
       - "{{ server_home }}/services/travel/dawarich/persistence/watched"
-      - "{{ server_home }}/services/travel/dawarich/shared-persistence"
       # Directus
+      - "/mnt/ssd/cache/directus"
       - "/mnt/ssd/databases/directus"
       - "{{ server_home }}/services/development/directus/persistence"
       - "{{ server_home }}/services/development/directus/persistence/extensions"
@@ -57,7 +58,6 @@
       # Forgejo
       - "/mnt/ssd/cache/forgejo"
       - "/mnt/ssd/databases/forgejo"
-      - "{{ server_home }}/services/management/code/forgejo/cache-persistence"
       - "{{ server_home }}/services/management/code/forgejo/persistence"
       - "{{ server_home }}/services/management/code/forgejo/persistence/conf"
       - "{{ server_home }}/services/management/code/forgejo/persistence/data"
@@ -110,6 +110,7 @@
       - "{{ server_home }}/services/inventory/hortusfox/persistence/migrate"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/themes"
       # Immich
+      - "/mnt/ssd/cache/immich"
       - "/mnt/ssd/databases/immich"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
@@ -146,6 +147,7 @@
       - "{{ server_home }}/services/other/limesurvey/persistence/plugins"
       - "{{ server_home }}/services/other/limesurvey/persistence/upload"
       # LiteLLM
+      - "/mnt/ssd/cache/litellm"
       - "/mnt/ssd/databases/litellm"
       # Mathesar
       - "/mnt/ssd/databases/mathesar"
@@ -178,6 +180,7 @@
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/data"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/music"
       # Nextcloud
+      - "/mnt/ssd/cache/nextcloud"
       - "/mnt/ssd/databases/nextcloud"
       - "{{ server_home }}/services/media/storage/documents/nextcloud/persistence"
       - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
@@ -195,13 +198,13 @@
       # Open WebUI
       - "{{ server_home }}/services/ai/open-webui/persistence"
       # Paperless
+      - "/mnt/ssd/cache/paperless"
       - "/mnt/ssd/databases/paperless"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/consume"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/data"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/export"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/media"
-      - "{{ server_home }}/services/media/storage/documents/paperless/redis-persistence"
       # Photoprism
       - "/mnt/ssd/databases/photoprism"
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence"

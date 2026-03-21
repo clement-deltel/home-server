@@ -1,17 +1,18 @@
 # https://github.com/nextcloud/server
 services:
   cache:
-    command: redis-server --requirepass ${NEXTCLOUD_CACHE_PASSWORD}
-    container_name: nextcloud-redis
+    container_name: nextcloud-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--requirepass ${NEXTCLOUD_CACHE_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli --raw INCR PING"]
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 20s
       timeout: 15s
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: nextcloud-redis
-    image: ${DEFAULT_REDIS_IMAGE}
+    hostname: nextcloud-valkey
+    image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
       options:
@@ -22,6 +23,8 @@ services:
         ipv4_address: ${NEXTCLOUD_CACHE_IP}
     restart: unless-stopped
     stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/nextcloud:/data
 
   db:
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
