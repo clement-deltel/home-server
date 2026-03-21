@@ -24,9 +24,9 @@ services:
     stop_grace_period: 30s
     volumes:
       - ./shared-persistence:/data
-      
+
   db:
-    container_name: dawarich-db
+    container_name: dawarich-postgis
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DAWARICH_DB_USER}}"]
@@ -35,7 +35,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: dawarich-db
+    hostname: dawarich-postgis
     image: ${DAWARICH_DB_IMAGE}
     logging:
       driver: json-file

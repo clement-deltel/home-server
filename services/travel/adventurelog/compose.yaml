@@ -1,7 +1,7 @@
 # https://github.com/seanmorley15/AdventureLog
 services:
   db:
-    container_name: adventurelog-db
+    container_name: adventurelog-postgis
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${ADVENTURELOG_DB_USER}"]
@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: adventurelog-postgres
+    hostname: adventurelog-postgis
     image: ${ADVENTURELOG_DB_IMAGE}
     logging:
       driver: json-file

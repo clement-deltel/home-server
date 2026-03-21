@@ -1,6 +1,6 @@
 # https://github.com/FreshRSS/FreshRSS
 services:
-  db:
+  postgres:
     container_name: freshrss-postgres
     env_file: config/.env.db
     healthcheck:
@@ -28,7 +28,7 @@ services:
   freshrss:
     container_name: freshrss
     depends_on:
-      db:
+      postgres:
         condition: service_healthy
     dns:
       - 127.0.0.1

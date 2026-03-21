@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./memos:/var/opt/memos
+      - ./persistence:/var/opt/memos
 
 networks:
   internal-net:
