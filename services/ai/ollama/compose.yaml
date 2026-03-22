@@ -1,3 +1,4 @@
+# https://github.com/ollama/ollama
 services:
   ollama:
     cap_add:
@@ -15,8 +16,8 @@ services:
               capabilities: [gpu]
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     hostname: ollama
     image: ${OLLAMA_IMAGE}
     logging:
@@ -37,7 +38,7 @@ services:
       - no-new-privileges
     stop_grace_period: 30s
     volumes:
-      - ./ollama:/root/.ollama
+      - /opt/persistence/ollama:/root/.ollama
 
 networks:
   ai-net:

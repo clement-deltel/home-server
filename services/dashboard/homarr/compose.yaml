@@ -3,8 +3,8 @@ services:
     container_name: homarr
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: homarr
     image: ${HOMARR_IMAGE}
@@ -12,10 +12,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.homarr.entrypoints=web,websecure"
-      - "traefik.http.routers.homarr.rule=Host(`home.${DOMAIN}`)"
+      - "traefik.http.routers.homarr.rule=Host(`${HOMARR_HOST}`)"
       - "traefik.http.routers.homarr.tls=true"
       # - "traefik.http.routers.homarr.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.homarr.tls.domains[0].main=home.${DOMAIN}"
+      # - "traefik.http.routers.homarr.tls.domains[0].main=${HOMARR_HOST}"
       - "traefik.http.routers.homarr.service=homarr"
       # Services
       - "traefik.http.services.homarr.loadbalancer.server.port=7575"
@@ -25,19 +25,19 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${HOMARR_IP}
     ports:
       - 7575
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/configs:/app/data/configs
-      - ./persistence/data:/data
-      - ./persistence/icons:/app/public/icons
+      - /opt/persistence/homarr/configs:/app/data/configs
+      - /opt/persistence/homarr/data:/data
+      - /opt/persistence/homarr/icons:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro # Optional, only if you want docker integration
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

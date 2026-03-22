@@ -91,10 +91,10 @@
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence/drive"
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence/record"
       # Homarr
-      - "{{ server_home }}/services/dashboard/homarr/persistence"
-      - "{{ server_home }}/services/dashboard/homarr/persistence/configs"
-      - "{{ server_home }}/services/dashboard/homarr/persistence/data"
-      - "{{ server_home }}/services/dashboard/homarr/persistence/icons"
+      - "/opt/persistence/homarr"
+      - "/opt/persistence/homarr/configs"
+      - "/opt/persistence/homarr/data"
+      - "/opt/persistence/homarr/icons"
       # Homebox
       - "{{ server_home }}/services/inventory/homebox/persistence"
       # Homer
@@ -194,9 +194,9 @@
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-data"
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-etc"
       # Ollama
-      - "{{ server_home }}/services/ai/ollama/ollama"
+      - "/opt/persistence/ollama"
       # Open WebUI
-      - "{{ server_home }}/services/ai/open-webui/persistence"
+      - "/opt/persistence/open-webui"
       # Paperless
       - "/mnt/ssd/cache/paperless"
       - "/mnt/ssd/databases/paperless"
