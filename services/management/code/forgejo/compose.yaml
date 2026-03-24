@@ -104,10 +104,10 @@ services:
     stop_grace_period: 30s
     user: ${USER_UID}:${USER_GID}
     volumes:
-      - ./persistence/conf:/etc/gitea
-      - ./persistence/data:/var/lib/gitea
-      - ./persistence/lfs:/data/lfs
-      - ./persistence/log:/var/log/forgejo
+      - /opt/persistence/forgejo/conf:/etc/gitea
+      - /opt/persistence/forgejo/data:/var/lib/gitea
+      - /opt/persistence/forgejo/lfs:/data/lfs
+      - /opt/persistence/forgejo/log:/var/log/forgejo
       - /etc/localtime:/etc/localtime:ro
 
 networks:

@@ -40,7 +40,7 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./persistence:/app/data
+      - /opt/persistence/gitea-mirror:/app/data
 
 networks:
   proxy-net:

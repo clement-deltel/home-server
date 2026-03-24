@@ -58,16 +58,16 @@
       # Forgejo
       - "/mnt/ssd/cache/forgejo"
       - "/mnt/ssd/databases/forgejo"
-      - "{{ server_home }}/services/management/code/forgejo/persistence"
-      - "{{ server_home }}/services/management/code/forgejo/persistence/conf"
-      - "{{ server_home }}/services/management/code/forgejo/persistence/data"
-      - "{{ server_home }}/services/management/code/forgejo/persistence/lfs"
-      - "{{ server_home }}/services/management/code/forgejo/persistence/log"
+      - "/opt/persistence/forgejo"
+      - "/opt/persistence/forgejo/conf"
+      - "/opt/persistence/forgejo/data"
+      - "/opt/persistence/forgejo/lfs"
+      - "/opt/persistence/forgejo/log"
       # FreshRSS
       - "/mnt/ssd/databases/freshrss"
       - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
       # Gitea Mirror
-      - "{{ server_home }}/services/management/code/gitea-mirror/persistence"
+      - "/opt/persistence/gitea-mirror"
       # GitLab
       - "{{ server_home }}/services/management/code/gitlab/persistence"
       - "{{ server_home }}/services/management/code/gitlab/persistence/config"
