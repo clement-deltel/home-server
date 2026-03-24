@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ---------------------------------------------------------------------------- #
-#               ------- General ------                                         #
+#               ------- General ------
 # ---------------------------------------------------------------------------- #
 
 # Add extension $1 to all files without any extension in the current directory
@@ -75,7 +75,7 @@ function cheatsheet { curl cheat.sh/"$1"; }
 function weather { curl wttr.in/"$1"; }
 
 # ---------------------------------------------------------------------------- #
-#               ------- Server - Environment ------                            #
+#               ------- Server - Environment ------
 # ---------------------------------------------------------------------------- #
 function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
 function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
@@ -87,7 +87,7 @@ function set-services { load-env ${SERVER_HOME}/env/services.env; }
 function unset-services { unload-env ${SERVER_HOME}/env/services.env; }
 
 # ---------------------------------------------------------------------------- #
-#               ------- Bitwarden CLI ------                                   #
+#               ------- Bitwarden CLI ------
 # ---------------------------------------------------------------------------- #
 function bitwarden-create-session-fn {
   echo 'Syncing with Bitwarden vault...'
@@ -133,7 +133,7 @@ function bitwarden-open-fn {
 }
 
 # ---------------------------------------------------------------------------- #
-#               ------- Docker ------                                          #
+#               ------- Docker ------
 # ---------------------------------------------------------------------------- #
 function docker-exec-fn { docker exec -it "$1" "${2:-bash}"; }
 function docker-fn { docker "$@"; }
@@ -173,7 +173,7 @@ function docker-volume-rm-dangling-fn {
 function docker-image-rm-fn { docker image rm "$@"; }
 
 # ---------------------------------------------------------------------------- #
-#               ------- Docker Compose ------                                  #
+#               ------- Docker Compose ------
 # ---------------------------------------------------------------------------- #
 function docker-compose-fn { docker compose "$@"; }
 function docker-compose-run-fn { docker compose run "$@"; }
@@ -195,7 +195,14 @@ doppler-scope-fn () {
 doppler-secret-get-fn () { doppler secrets get "$1"; }
 
 # ---------------------------------------------------------------------------- #
-#               ------- Terraform ------                                       #
+#               ------- ntfy ------
+# ---------------------------------------------------------------------------- #
+ntfy-done-fn() {
+  doppler run --command='ntfy publish -u ${NTFY_ADMIN_USER}:${NTFY_ADMIN_PASSWORD} --wait-cmd ${NTFY_HOST}/home_server "Done!" -- $@'
+}
+
+# ---------------------------------------------------------------------------- #
+#               ------- Terraform ------
 # ---------------------------------------------------------------------------- #
 function terraform-fn { terraform "$@"; }
 function terraform-state-fn { terraform state "$@"; }

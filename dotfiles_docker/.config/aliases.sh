@@ -183,7 +183,12 @@ alias dpt='doppler tui'
 alias dply="doppler secrets download --config ansible --format yaml --name-transformer lower-snake --no-file > ${SERVER_HOME}/ansible/vars/secrets.yml"
 
 # ---------------------------------------------------------------------------- #
-#               ------- Terraform ------                                       #
+#               ------- ntfy ------
+# ---------------------------------------------------------------------------- #
+alias ntfyd=ntfy-done-fn
+
+# ---------------------------------------------------------------------------- #
+#               ------- Terraform ------
 # ---------------------------------------------------------------------------- #
 alias tf=terraform-fn
 alias tfa='terraform apply'
@@ -197,7 +202,7 @@ alias tfsh='terraform show'
 alias tfv='terraform validate'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Bash --------                                          #
+#               ------- Bash --------
 # ---------------------------------------------------------------------------- #
 alias vib='vi ~/.bashrc'
 alias srb='source ~/.bashrc'
