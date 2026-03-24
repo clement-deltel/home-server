@@ -186,9 +186,6 @@
       - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
       # Ntfy
       - "/opt/persistence/ntfy"
-      - "/opt/persistence/ntfy/cache"
-      - "/opt/persistence/ntfy/etc"
-      - "/opt/persistence/ntfy/log"
       # Obsidian LiveSync
       - "{{ server_home }}/services/pkms/obsidian/persistence"
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-data"
