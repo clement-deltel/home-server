@@ -1,6 +1,7 @@
 # https://github.com/binwiederhier/ntfy
 services:
   ntfy:
+    command: serve
     container_name: ntfy
     dns:
       - 127.0.0.1
@@ -16,10 +17,11 @@ services:
       start_period: 60s
       start_interval: 5s
     image: ${NTFY_IMAGE}
+    init: true # needed, if healthcheck is used. Prevents zombie processes
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.ntfy.entrypoints=web,websecure"
+      - "traefik.http.routers.ntfy.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.ntfy.rule=Host(`${NTFY_HOST}`)"
       - "traefik.http.routers.ntfy.tls=true"
       # - "traefik.http.routers.ntfy.tls.certresolver=letsencrypt"
@@ -42,7 +44,6 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID} # optional: Set custom user/group or uid/gid
     volumes:
-      - ./config/docker-entrypoint.sh:/docker-entrypoint.sh
       - /opt/persistence/ntfy/cache:/var/cache/ntfy
       - /opt/persistence/ntfy/etc:/etc/ntfy
       - /opt/persistence/ntfy/log:/var/log
