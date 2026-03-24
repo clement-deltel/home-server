@@ -185,10 +185,10 @@
       - "{{ server_home }}/services/media/storage/documents/nextcloud/persistence"
       - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
       # Ntfy
-      - "{{ server_home }}/services/monitoring/ntfy/persistence"
-      - "{{ server_home }}/services/monitoring/ntfy/persistence/cache"
-      - "{{ server_home }}/services/monitoring/ntfy/persistence/etc"
-      - "{{ server_home }}/services/monitoring/ntfy/persistence/log"
+      - "/mnt/persistence/ntfy"
+      - "/mnt/persistence/ntfy/cache"
+      - "/mnt/persistence/ntfy/etc"
+      - "/mnt/persistence/ntfy/log"
       # Obsidian LiveSync
       - "{{ server_home }}/services/pkms/obsidian/persistence"
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-data"
