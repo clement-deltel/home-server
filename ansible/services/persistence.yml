@@ -116,10 +116,7 @@
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/upload"
       # Jellyfin
-      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence"
-      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/library"
-      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/movies"
-      - "{{ server_home }}/services/media/storage/videos/jellyfin/persistence/tvshows"
+      - "/opt/persistence/jellyfin"
       # Jetlog
       - "{{ server_home }}/services/travel/jetlog/persistence"
       # Karakeep
@@ -277,6 +274,9 @@
       - "{{ server_home }}/services/inventory/wishlist/persistence"
       - "{{ server_home }}/services/inventory/wishlist/persistence/data"
       - "{{ server_home }}/services/inventory/wishlist/persistence/uploads"
+      # Shared - Media
+      - "/opt/media/movies"
+      - "/opt/media/tvshows"
   vars_files:
     - ../vars/main.yml
 
