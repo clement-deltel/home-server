@@ -1,3 +1,4 @@
+# https://github.com/binwiederhier/ntfy
 services:
   ntfy:
     container_name: ntfy
@@ -42,9 +43,9 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID} # optional: Set custom user/group or uid/gid
     volumes:
       - ./config/docker-entrypoint.sh:/docker-entrypoint.sh
-      - /mnt/persistence/ntfy/cache:/var/cache/ntfy
-      - /mnt/persistence/nty/etc:/etc/ntfy
-      - /mnt/persistence/ntfy/log:/var/log
+      - /opt/persistence/ntfy/cache:/var/cache/ntfy
+      - /opt/persistence/ntfy/etc:/etc/ntfy
+      - /opt/persistence/ntfy/log:/var/log
 
 networks:
   traefik-net:
