@@ -152,6 +152,7 @@ homebrew_formulas:
 - btop
 - fastfetch
 - gping
+- ntfy
 # Search
 - fzf
 - grex
