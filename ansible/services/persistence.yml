@@ -53,6 +53,8 @@
       # Docuseal
       - "/mnt/ssd/databases/docuseal"
       - "{{ server_home }}/services/media/tools/docuseal/persistence"
+      # Dozzle
+      - "/opt/persistence/dozzle"
       # Enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
       # Forgejo
@@ -387,8 +389,10 @@
       loop:
         - "{{ server_home }}/services/ai/litellm/compose.yaml"
         - "{{ server_home }}/services/ai/open-webui/compose.yaml"
+        - "{{ server_home }}/services/automation/n8n/compose.yaml"
         - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
         - "{{ server_home }}/services/dashboard/homer/compose.yaml"
+        - "{{ server_home }}/services/development/directus/compose.yaml"
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
         - "{{ server_home }}/services/finances/actual/compose.yaml"
         - "{{ server_home }}/services/finances/wallos/compose.yaml"
@@ -423,10 +427,10 @@
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
+        - "{{ server_home }}/services/monitoring/dozzle/compose.yaml"
         - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
         - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
-        - "{{ server_home }}/services/other/directus/compose.yaml"
         - "{{ server_home }}/services/other/limesurvey/compose.yaml"
         - "{{ server_home }}/services/pkms/affine/compose.yaml"
         - "{{ server_home }}/services/pkms/mathesar/compose.yaml"

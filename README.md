@@ -291,6 +291,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [RustDesk](https://rustdesk.com) - remote desktop application designed for self-hosting, as an alternative to TeamViewer. Deployed on `rustdesk.${DOMAIN}`. ([Source Code](https://github.com/rustdesk/rustdesk-server)) `Rust`
 - **Monitoring**
   - [changedetection.io](https://changedetection.io) - web page change detection, website watcher, restock monitor and notification service. Deployed on `https://detection.${DOMAIN}`. ([Source Code](https://github.com/dgtlmoon/changedetection.io)) `Python`
+  - [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. ([Source Code](https://github.com/amir20/dozzle)) `Go` `Vue` `TypeScript`
   - [Grafana](https://grafana.com) - open and composable observability and data visualization platform. Deployed on `https://grafana.${DOMAIN}`. ([Source Code](https://github.com/grafana/grafana)) `TypeScript` `Go`
   - [ntfy](https://ntfy.sh) - send push notifications to your phone or desktop using PUT/POST. Deployed on `https://notiifications.${DOMAIN}`. ([Source Code](https://github.com/binwiederhier/ntfy)) `Go` `JavaScript`
   - [Scrutiny](https://github.com/AnalogJ/scrutiny) - hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. Deployed on `https://scrutiny.${DOMAIN}`. ([Source Code](https://github.com/AnalogJ/scrutiny)) `Go`
@@ -596,7 +597,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose) - docker-compose for testing any-sync. ([Source Code](https://github.com/anyproto/any-sync-dockercompose)) `Shell` `Python`
   - [CAdvisor](https://github.com/google/cadvisor) - analyzes resource usage and performance characteristics of running containers. ([Source Code](https://github.com/google/cadvisor)) `Go`
   - [Dockge](https://dockge.kuma.pet) - docker compose.yaml stack-oriented manager. ([Source Code](https://github.com/louislam/dockge)) `TypeScript`
-  - [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. ([Source Code](https://github.com/amir20/dozzle)) `Go` `Vue` `TypeScript`
   - [Komodo](https://komo.do) - tool to build and deploy software on many servers. ([Source Code](https://github.com/moghtech/komodo)) `Rust` `TypeScript`
   - [Portainer](https://www.portainer.io) - making Docker and Kubernetes management easy. ([Source Code](https://github.com/portainer/portainer)) `TypeScript` `Go`
 - **Dashboard**

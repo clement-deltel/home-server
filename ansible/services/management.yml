@@ -3,7 +3,7 @@
   gather_facts: false
   vars:
     services:
-      - { when: true, project_src: '{{ server_home }}/services/traefik' }
+      - { when: true, project_src: '{{ server_home }}/services/proxy/traefik' }
       - { when: actual_enable, project_src: '{{ server_home }}/services/finances/actual' }
       - { when: adventurelog_enable, project_src: '{{ server_home }}/services/travel/adventurelog' }
       - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
@@ -15,6 +15,7 @@
       - { when: dawarich_enable, project_src: '{{ server_home }}/services/travel/dawarich' }
       - { when: directus_enable, project_src: '{{ server_home }}/services/development/directus' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/media/tools/docuseal' }
+      - { when: dozzle_enable, project_src: '{{ server_home }}/services/monitoring/dozzle' }
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
       - { when: forgejo_enable, project_src: '{{ server_home }}/services/management/code/forgejo' }
       - { when: freshrss_enable, project_src: '{{ server_home }}/services/media/storage/news/freshrss' }

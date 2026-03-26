@@ -1,0 +1,46 @@
+services:
+  dozzle:
+    container_name: dozzle
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    healthcheck:
+      test: ["CMD", "/dozzle", "healthcheck"]
+      interval: 3s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    hostname: dozzle
+    image: ${DOZZLE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.dozzle.entrypoints=web,websecure"
+      - "traefik.http.routers.dozzle.rule=Host(`${DOZZLE_HOST}`)"
+      - "traefik.http.routers.dozzle.tls=true"
+      # - "traefik.http.routers.dozzle.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.dozzle.tls.domains[0].main=${DOZZLE_HOST}"
+      - "traefik.http.routers.dozzle.service=dozzle"
+      # Services
+      - "traefik.http.services.dozzle.loadbalancer.server.port=5000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${DOZZLE_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/dozzle:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net

@@ -172,6 +172,7 @@ convertx_enable: true
 crowdsec_enable: true
 dawarich_enable: true
 docuseal_enable: true
+dozzle_enable: true
 enclosed_enable: true
 forgejo_enable: true
 freshrss_enable: true
