@@ -23,7 +23,7 @@ services:
       # - "traefik.http.routers.dozzle.tls.domains[0].main=${DOZZLE_HOST}"
       - "traefik.http.routers.dozzle.service=dozzle"
       # Services
-      - "traefik.http.services.dozzle.loadbalancer.server.port=5000"
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
     logging:
       driver: json-file
       options:
