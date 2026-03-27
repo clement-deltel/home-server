@@ -7,8 +7,7 @@ Collection of self hosted services for my home server setup.
 - [Pre-requisites](#pre-requisites)
 - [Getting Started](#getting-started)
 - [Hardware](#hardware)
-- [Power Supply Dimensioning](#power-supply-dimensioning)
-- [RAID](#raid)
+- [RAID \& ZFS](#raid--zfs)
 - [Domain Name](#domain-name)
 - [Port Mapping](#port-mapping)
 - [Operating System](#operating-system)
@@ -31,20 +30,33 @@ Collection of self hosted services for my home server setup.
 
 Here is a non-exhaustive list of tasks to perform prior deploying the stack:
 
-- Purchase the server hardware (refer to the [Hardware](#hardware) section more details)
+- Purchase the server hardware (refer to the [Hardware](#hardware) section for more details)
 - Purchase a domain (refer to the [Domain Name](#domain-name) section for more details)
-- Build the server, optionally with RAID support (refer to the [RAID](#raid) section for more details)
+- Build the server, optionally with RAID support (refer to the [RAID & ZFS](#raid--zfs) section for more details)
 - Configure port forwarding on your router (refer to the [Port Mapping](#port-mapping) section for more details)
 - Install the operating system of your choice on your server (refer to the [Operating System](#operating-system) section for more details)
 
-Create the account below:
+Create the accounts below:
 
-- AWS account (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details)
+- AWS account (see [AWS set up tutorial](https://docs.aws.amazon.com/streams/latest/dev/setting-up.html) for more details): AWS SES used as a SMTP relay for service-related emails.
+- [Backblaze](https://www.backblaze.com): cloud storage for offsite backups.
+- [Crowdsec](https://app.crowdsec.net): malicious traffic bouncer.
+- [Doppler](https://www.doppler.com): secret management.
 
-I use the below AWS services:
+Optionally, create also the accounts below:
 
-- **S3**: perform regular off-site backups of my services to a dedicated bucket
-- **SES**: send services-related emails to my users
+- **Artificial Intelligence**
+  - [OpenAI](https://platform.openai.com): used by Karakeep and Open WebUI.
+- **Games**
+  - [IGDB](https://www.igdb.com): used by Romm.
+  - [RetroAchievements](https://retroachievements.org): used by Romm.
+  - [SteamGrid](https://www.steamgriddb.com): used by Romm.
+- **Inventory**
+  - [Pl@ntNet](https://my.plantnet.org): used by HortusFox.
+- **Media**
+  - [Spotify](https://accounts.spotify.com): used by Navidrome.
+- **Monitoring**
+  - [OpenWeatherMap](https://openweathermap.org): used by Telegraf.
 
 ## Getting Started
 
@@ -186,7 +198,7 @@ This section covers the detail of the hardware I chose to build my home server.
     - Sequential Speed: reads/writes up to 530 / 510 MB/s
     - Random Speed: reads/writes up to 92K / 83K
     - Use Case: Operating System
-  - Disks 1&2:
+  - Disks 1 & 2:
     - Brand: Seagate
     - Model: IronWolf
     - Capacity: 4TB
@@ -222,7 +234,7 @@ This section covers the detail of the hardware I chose to build my home server.
   - Model: DLM21 White Mini Tower
   - ATX Compatibility: Micro ATX, Mini ITX
 
-## RAID
+## RAID & ZFS
 
 Disks 1 and 2 are in RAID 1 for better fault tolerance and to avoid any data loss.
 
@@ -237,7 +249,7 @@ Recommended registrars:
 
 ## Port Mapping
 
-This section covers all the ports exposed to internet. Those are the ports that must be forwarded on the router to the server hosting all services.
+This section covers all the ports exposed to the internet. Those are the ports that must be forwarded on the router to the server hosting all services.
 
 - **TCP**
   - **80**: Traefik HTTP
