@@ -19,3 +19,4 @@ services:
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/qbittorrent:/config
+      - /opt/media/downloads:/downloads
