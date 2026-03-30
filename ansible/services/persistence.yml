@@ -76,7 +76,7 @@
       - "{{ server_home }}/services/management/code/gitlab/persistence/logs"
       - "{{ server_home }}/services/management/code/gitlab/persistence/data"
       # Gluetun
-      - "{{ server_home }}/services/security/gluetun/persistence"
+      - "/opt/persistence/gluetun"
       # Gokapi
       - "{{ server_home }}/services/media/sharing/gokapi/persistence"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
@@ -215,6 +215,8 @@
       - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
       # Redis Insight
       - "{{ server_home }}/services/management/cache/redis-insight/persistence"
+      # QBittorrent
+      - "/opt/persistence/qbittorrent"
       # Romm
       - "/mnt/ssd/cache/romm"
       - "/mnt/ssd/databases/romm"

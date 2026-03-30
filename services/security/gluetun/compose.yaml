@@ -16,14 +16,23 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      # - "traefik.http.routers.gluetun.entrypoints=web,websecure"
+      # gluetun
+      - "traefik.http.routers.gluetun.entrypoints=web,websecure"
       - "traefik.http.routers.gluetun.rule=Host(`${GLUETUN_HOST}`)"
-      # - "traefik.http.routers.gluetun.tls=true"
+      - "traefik.http.routers.gluetun.tls=true"
       # - "traefik.http.routers.gluetun.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.gluetun.tls.domains[0].main=${GLUETUN_HOST}"
       - "traefik.http.routers.gluetun.service=gluetun"
+      # qbittorrent
+      - "traefik.http.routers.qbittorrent.entrypoints=web,websecure"
+      - "traefik.http.routers.qbittorrent.rule=Host(`${QBITTORRENT_HOST}`)"
+      - "traefik.http.routers.qbittorrent.tls=true"
+      # - "traefik.http.routers.qbittorrent.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.qbittorrent.tls.domains[0].main=${QBITTORRENT_HOST}"
+      - "traefik.http.routers.qbittorrent.service=qbittorrent"
       # Services
       - "traefik.http.services.gluetun.loadbalancer.server.port=8000"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
     logging:
       driver: json-file
       options:
@@ -35,14 +44,17 @@ services:
       proxy-net:
         ipv4_address: ${GLUETUN_IP}
     ports:
-      - 8000
+      - ${TORRENT_PORT}:6881 # QBittorrent
+      - ${TORRENT_PORT}:6881/udp # QBittorrent
+      - 8000 # Control Server
       # - 8388:8388/tcp # Shadowsocks
       # - 8388:8388/udp # Shadowsocks
       # - 8888:8888/tcp # HTTP proxy
+      - 8080 # QBittorrent WebUI
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/gluetun
+      - /opt/gluetun/persistence:/gluetun
 
 networks:
   arr-net:

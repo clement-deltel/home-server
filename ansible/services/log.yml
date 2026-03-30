@@ -72,6 +72,7 @@
         - "{{ server_home }}/log/media/storage/videos/jellyfin"
         - "{{ server_home }}/log/media/tools/convertx"
         - "{{ server_home }}/log/media/tools/docuseal"
+        - "{{ server_home }}/log/media/tools/qbittorrent"
         - "{{ server_home }}/log/media/tools/stirling-pdf"
         - "{{ server_home }}/log/monitoring/change-detection"
         - "{{ server_home }}/log/monitoring/dozzle"

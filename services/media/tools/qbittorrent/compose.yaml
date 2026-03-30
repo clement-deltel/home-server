@@ -1,0 +1,21 @@
+
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: qbittorrent
+    image: ${QBITTORRENT_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    network_mode: container:gluetun
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/qbittorrent:/config

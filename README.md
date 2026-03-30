@@ -343,6 +343,7 @@ This section covers all the supported services of the stack. It categorizes the 
   - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. ([Source Code](https://github.com/docusealco/docuseal)) `Ruby` `Vue` `JavaScript`
   - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. ([Source Code](https://github.com/Forceu/Gokapi)) `Go` `JavaScript`
   - [iSponsorBlockTV](https://github.com/dmunozv04/iSponsorBlockTV) - SponsorBlock client for all YouTube TV clients. ([Source Code](https://github.com/dmunozv04/iSponsorBlockTV)) `Python`
+  - [QBittorent](https://github.com/linuxserver/docker-qbittorrent) - torrent client based on the Qt toolkit and libtorrent-rasterbar library. ([Source Code](https://github.com/linuxserver/docker-qbittorrent))
   - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. ([Source Code](https://github.com/Stirling-Tools/Stirling-PDF)) `Java` `JavaScript`
 - **Management**
   - **Code**

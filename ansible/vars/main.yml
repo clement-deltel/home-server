@@ -206,6 +206,7 @@ open_webui_enable: true
 paperless_enable: true
 pihole_enable: true
 prometheus_enable: true
+qbittorrent_enable: true
 romm_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
