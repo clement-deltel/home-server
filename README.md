@@ -598,9 +598,11 @@ Here is a list of tools that could be interesting and further enhance the stack:
 
 - **Artificial Intelligence**
   - [firecrawl](https://firecrawl.dev) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
+  - [onyx](https://onyx.app) - AI platform / chat with advanced features that works with every LLM. ([Source Code](https://github.com/onyx-dot-app/onyx)) `Python` `TypeScript`
 - **Backup**
   - [Backrest](https://github.com/garethgeorge/backrest) - Backrest is a web UI and orchestrator for restic backup. ([Source Code](https://github.com/garethgeorge/backrest)) `Go` `TypeScript`
   - [Borg](https://www.borgbackup.org) - deduplicating archiver with compression and authenticated encryption. ([Source Code](https://github.com/borgbackup/borg)) `Python`
+  - [Pluton](https://usepluton.com) - backup solution for secure, encrypted backups across local and cloud storage. ([Source Code](https://github.com/plutonhq/pluton)) `TypeScript`
   - [Zerobyte](https://github.com/nicotsx/zerobyte) - backup automation for self-hosting, built on top of restic. ([Source Code](https://github.com/nicotsx/zerobyte)) `TypeScript`
 - **Containers**
   - [Any Sync Docker Compose](https://github.com/anyproto/any-sync-dockercompose) - docker-compose for testing any-sync. ([Source Code](https://github.com/anyproto/any-sync-dockercompose)) `Shell` `Python`
@@ -627,12 +629,14 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Invoice Ninja](https://invoiceninja.com) - invoice, quote, project and time-tracking app. ([Source Code](https://github.com/invoiceninja/invoiceninja)) `PHP`
   - [Maybe](https://github.com/maybe-finance/maybe) - OS for your personal finances. ([Source Code](https://github.com/maybe-finance/maybe)) `Ruby`
   - [Monetr](https://monetr.app) - budgeting application focused on planning for recurring expenses. ([Source Code](https://github.com/monetr/monetr)) `Go` `TypeScript`
+  - [MoneyPrinter](https://github.com/FujiwaraChoki/MoneyPrinterV2) - automate the process of making money online. ([Source Code](https://github.com/FujiwaraChoki/MoneyPrinterV2)) `Python`
   - [OpenBB](https://openbb.co) - financial data platform for analysts, quants and AI agents. ([Source Code](https://github.com/OpenBB-finance/OpenBB)) `Python`
   - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. ([Source Code](https://github.com/dh1011/subscription-manager)) `JavaScript` `Python`
   - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. ([Source Code](https://github.com/meceware/wapy.dev)) `JavaScript`
 - **Fitness**
   - [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
 - **Games**
+  - [En Croissant](https://encroissant.org) - the ultimate chess toolkit. ([Source Code](https://github.com/franciscoBSalgueiro/en-croissant)) `TypeScript` `Rust`
   - [Factorio](https://hub.docker.com/r/factoriotools/factorio) - headless server in a Docker container. ([Source Code](https://github.com/factoriotools/factorio-docker)) `Shell` `Python` `C`
   - [GameVault](https://gamevau.lt) - self-hosted gaming platform for drm-free games. ([Source Code](https://github.com/Phalcode/gamevault-backend)) `TypeScript`
   - [Lodestone](https://www.lodestone.cc) - server hosting tool for Minecraft and other multiplayer games. ([Source Code](https://github.com/Lodestone-Team/lodestone)) `Rust` `TypeScript`
@@ -650,6 +654,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Inventory**
   - [Bar Assistant](https://barassistant.app) - home bar management. ([Source Code](https://github.com/karlomikus/bar-assistant)) `PHP`
   - [Lubelogger](https://lubelogger.com) - vehicle maintenance and fuel mileage tracker. ([Source Code](https://github.com/hargata/lubelog)) `JavaScript` `C#`
+  - [Sprout Track](https://www.sprout-track.com) - tracker to track baby diapers, feedings, naps, pumping, and other activities. ([Source Code](https://github.com/Oak-and-Sprout/sprout-track)) `TypeScript`
   - [VoucherVault](https://github.com/l4rm4nd/VoucherVault/wiki) - store and manage vouchers, coupons, loyalty and gift cards digitally. ([Source Code](https://github.com/l4rm4nd/VoucherVault)) `Python`
   - [Warracker](https://warracker.com) - web application to manage product warranties, track expiration dates, and store related documents. ([Source Code](https://github.com/sassanix/Warracker)) `JavaScript` `Python`
 - **Location & Travel**
@@ -713,7 +718,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
       - [Paperless AI](https://clusterzx.github.io/paperless-ai) - automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents. ([Source Code](https://github.com/clusterzx/paperless-ai)) `JavaScript`
       - [Papra](https://demo.papra.app) - minimalistic document archiving platform. ([Source Code](https://github.com/papra-hq/papra)) `TypeScript`
       - [Seafile](http://seafile.com) - beyond file syncing and sharing, a new way to organize your files with extensible file properties and flexible views. ([Source Code](https://github.com/haiwen/seafile)) `C` `Python`
-    - **Photos**
+    - **Pictures**
       - [Photoview](https://photoview.github.io) - photo gallery for personal servers. ([Source Code](https://github.com/photoview/photoview)) `TypeScript` `Go`
       - [WeddingShare](https://docs.wedding-share.org) - place for guests to view and drop pictures of the big day. ([Source Code](https://github.com/Cirx08/WeddingShare)) `JavaScript` `C#`
     - **Music**
@@ -730,8 +735,10 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - Web
       - [ArchiveBox](https://archivebox.io) - web archiving that takes URLs/browser history/bookmarks/Pocket/Pinboard/etc. ([Source Code](https://github.com/ArchiveBox/ArchiveBox)) `Python`
   - **Tools**
+    - [Ashim](https://ashim-hq.github.io/ashim) - image manipulator, 45+ tools, local AI, and pipelines. ([Source Code](https://github.com/ashim-hq/ashim)) `TypeScript`
     - [BentoPDF](https://bentopdf.com) - privacy first PDF toolkit. ([Source Code](https://github.com/alam00000/bentopdf)) `JavaScript` `Fluent` `TypeScript`
     - [Cobalt](https://cobalt.tools) - best way to save what you love. ([Source Code](https://github.com/imputnet/cobalt)) `Svelte` `JavaScript` `TypeScript`
+    - [Immich Places](https://github.com/Majorfi/immich-places) - web UI addon to help assign GPS coordinates to photos. ([Source Code](https://github.com/Majorfi/immich-places)) `TypeScript` `Go`
     - [Invidious](https://invidious.io) - alternative front-end to YouTube. ([Source Code](https://github.com/iv-org/invidious)) `Crystal`
     - [Mazanoke](https://mazanoke.com) - local image optimizer that runs in your browser. ([Source Code](https://github.com/civilblur/mazanoke)) `JavaScript`
     - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. ([Source Code](https://github.com/iib0011/omni-tools)) `TypeScript`
@@ -760,6 +767,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. ([Source Code](https://github.com/laurent22/joplin)) `TypeScript` `JavaScript`
   - [Memos](https://www.usememos.com) - knowledge management and note-taking platform designed for privacy-conscious users and organizations. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`
   - [NocoDB](https://nocodb.com) - open source Airtable alternative. ([Source Code](https://github.com/nocodb/nocodb)) `TypeScript` `Vue`
+  - [Project N.O.M.A.D](https://github.com/Crosstalk-Solutions/project-nomad) - self-contained, offline survival computer packed with critical tools, knowledge, and AI to keep you informed and empowered, anytime, anywhere. ([Source Code](https://github.com/Crosstalk-Solutions/project-nomad)) `TypeScript`
   - [Teable](https://teable.io) - next gen Airtable alternative, no-code Postgres. ([Source Code](https://github.com/teableio/teable)) `TypeScript`
   - [TypeMill](https://typemill.net) - flat-file CMS based on Markdown and designed for informational websites like documentation, manuals, and handbooks. ([Source Code](https://github.com/typemill/typemill)) `JavaScript` `PHP`
 - **Project Management**
@@ -767,16 +775,20 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Rustical](https://lennart-k.github.io/rustical) - calendar server aiming to be simple, fast and passwordless. ([Source Code](https://github.com/lennart-k/rustical)) `Rust`
   - [Worklenz](https://worklenz.com) - all in one project management tool for efficient teams. ([Source Code](https://github.com/Worklenz/worklenz)) `TypeScript` `JavaScript`
 - **Proxy**
+  - [NPMPlus](https://github.com/ZoeyVid/NPMplus) - fork of nginx-proxy-manager. ([Source Code](https://github.com/ZoeyVid/NPMplus)) `TypeScript` `JavaScript`
   - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. ([Source Code](https://github.com/fosrl/pangolin)) `TypeScript`
   - [Traefik Log Dashboard](https://github.com/hhftechnology/traefik-log-dashboard) - real-time dashboard for analyzing Traefik logs with IP geolocation, status code analysis, and service metrics. ([Source Code](https://github.com/hhftechnology/traefik-log-dashboard)) `TypeScript` `Go`
 - **Remote**
   - [Defguard](https://defguard.net) - zero-trust access management with true WireGuard® 2FA/MFA. ([Source Code](https://github.com/DefGuard/defguard)) `Rust` `TypeScript`
+  - [Headscale](https://github.com/juanfont/headscale) - open source, self-hosted implementation of the Tailscale control server. ([Source Code](https://github.com/juanfont/headscale)) `Go`
   - [Shadow SOCKS](https://github.com/shadowsocks/shadowsocks-rust)
   - [Termix](https://termix.site) - Termix is a web-based server management platform with SSH terminal, tunneling, and file editing capabilities. ([Source Code](https://github.com/Termix-SSH/Termix)) `TypeScript`
   - TunnelMole:
     - [Client](https://github.com/robbie-cahill/tunnelmole-client)
     - [Service](https://github.com/robbie-cahill/tunnelmole-service)
 - **Search**
+  - [Chibisafe](https://chibisafe.app) - blazing fast file vault. ([Source Code](https://github.com/chibisafe/chibisafe)) `TypeScript`
+  - [Crowdsec Manager](https://crowdsec-manager.hhf.technology) - management interface and dashboard for CrowdSec security stack with Pangolin integration and multi proxy support. ([Source Code](https://github.com/hhftechnology/crowdsec_manager)) `TypeScript` `Go`
   - [DumbWhoIs](https://dumbwhois.dumbware.io) - dumb whois. ([Source Code](https://github.com/DumbWareio/DumbWhoIs)) `JavaScript`
   - [Whoogle](https://pypi.org/project/whoogle-search) - ad-free, privacy-respecting metasearch engine. ([Source Code](https://github.com/benbusby/whoogle-search)) `Python`
 - **Security**
