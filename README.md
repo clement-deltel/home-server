@@ -660,6 +660,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - **Location & Travel**
   - [Scratch Map](https://github.com/ad3m3r5/scratch-map) - scratch-off style map to track your travels. ([Source Code](https://github.com/ad3m3r5/scratch-map)) `JavaScript`
   - [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. ([Source Code](https://github.com/robiningelbrecht/statistics-for-strava)) `PHP`
+  - [TREK](https://demo-nomad.pakulat.org) - travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more. ([Source Code](https://github.com/mauriceboe/TREK)) `TypeScript`
   - [VFD](https://github.com/kiinami/vfd) - flight price tracking script. ([Source Code](https://github.com/kiinami/vfd)) `Python`
   - [Wanderer](https://wanderer.to) - trail database, save your adventures. ([Source Code](https://github.com/Flomp/wanderer)) `Svelte` `Go` `TypeScript`
 - **Mail**
@@ -744,6 +745,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
     - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. ([Source Code](https://github.com/iib0011/omni-tools)) `TypeScript`
     - [SmartTube](https://github.com/yuliskov/SmartTube) - browse media content with your own rules on Android TV. `Java`
     - [Vert](https://vert.sh) - next-generation file converter. ([Source Code](https://github.com/VERT-sh/VERT)) `Svelte` `TypeScript`
+    - [VoiceBox](https://voicebox.sh) - open-source AI voice studio, clone, dictate, create. ([Source Code](https://github.com/jamiepine/voicebox)) `TpeScript` `Python`
     - [WithoutBG](https://withoutbg.com) - image background removal toolkit. ([Source Code](https://github.com/withoutbg/withoutbg)) `Python` `JavaScript`
 - **Monitoring**
   - [Beszel](https://beszel.dev/) - lightweight server monitoring hub with historical data, docker stats, and alerts. ([Source Code](https://github.com/henrygd/beszel)) `Go`
@@ -758,6 +760,7 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. ([Source Code](https://github.com/SigNoz/signoz)) `TypeScript` `Go`
   - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. ([Source Code](https://github.com/louislam/uptime-kuma)) `JavaScript` `Vue`
   - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) - lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history. ([Source Code](https://github.com/aceberg/WatchYourLAN)) `TypeScript` `Go`
+  - [Znail](https://github.com/znailnetem/znail) - network emulator intended to run on a Raspberry Pi. ([Source Code](https://github.com/znailnetem/znail)) `Python`
 - **PKMS**
   - [Anytype](https://anytype.io) - the everything app for those who celebrate trust & autonomy. ([Source Code](https://github.com/anyproto/anytype-ts)) `TypeScript`
   - [ApiTable](https://aitable.ai/) - API-oriented low-code platform for building collaborative apps and better than all other Airtable open-source alternatives. ([Source Code](https://github.com/apitable/apitable)) `TypeScript` `Java`
@@ -828,5 +831,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
   - [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. ([Source Code](https://github.com/Wingysam/Christmas-Community))
 - **Other**
   - [Aeterna](https://github.com/alpyxn/aeterna) - lightweight dead man's switch. ([Source Code](https://github.com/alpyxn/aeterna)) `JavaScript` `Go`
+  - [Email Verifier](https://rapid-email-verifier.fly.dev) - privacy-first open source email verifier. ([Source Code](https://github.com/umuterturk/email-verifier)) `Go`
   - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. ([Source Code](https://github.com/monicahq/monica)) `PHP`
   - [Puter](https://puter.com) - The Internet Computer, free, open-source, and self-hostable. ([Source Code](https://github.com/HeyPuter/puter)) `JavaScript`
