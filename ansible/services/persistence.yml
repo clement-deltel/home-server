@@ -459,7 +459,7 @@
     - name: Copy Diun file input
       ansible.builtin.copy:
         src: "{{ server_home }}/services/monitoring/diun/config/images.yaml"
-        dest: "/opt/persistence/diun/images.yaml"
+        dest: "/opt/persistence/diun/config/images.yaml"
         owner: docker
         group: docker
         mode: 0640
