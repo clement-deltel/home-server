@@ -1,0 +1,35 @@
+# https://github.com/crazy-max/diun
+services:
+  diun:
+    command: serve
+    container_name: diun
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: diun
+    image: ${DIUN_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${DIUN_INTERNAL_IP}
+    restart: always
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/diun:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+networks:
+  internal-net:
+    name: internal-diun
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${DIUN_NET}
+          gateway: ${DIUN_GATEWAY}

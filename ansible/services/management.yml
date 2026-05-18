@@ -14,6 +14,7 @@
       - { when: crowdsec_enable, project_src: '{{ server_home }}/services/security/crowdsec' }
       - { when: dawarich_enable, project_src: '{{ server_home }}/services/travel/dawarich' }
       - { when: directus_enable, project_src: '{{ server_home }}/services/development/directus' }
+      - { when: diun_enable, project_src: '{{ server_home }}/services/monitoring/diun' }
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/media/tools/docuseal' }
       - { when: dozzle_enable, project_src: '{{ server_home }}/services/monitoring/dozzle' }
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }

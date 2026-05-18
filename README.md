@@ -303,6 +303,7 @@ This section covers all the supported services of the stack. It categorizes the 
     - [RustDesk](https://rustdesk.com) - remote desktop application designed for self-hosting, as an alternative to TeamViewer. ([Source Code](https://github.com/rustdesk/rustdesk-server)) `Rust`
 - **Monitoring**
   - [changedetection.io](https://changedetection.io) - web page change detection, website watcher, restock monitor and notification service. ([Source Code](https://github.com/dgtlmoon/changedetection.io)) `Python`
+  - [Diun](https://crazymax.dev/diun) - receive notifications when an image is updated on a Docker registry. ([Source Code](https://github.com/crazy-max/diun)) `Go`
   - [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. ([Source Code](https://github.com/amir20/dozzle)) `Go` `Vue` `TypeScript`
   - [Grafana](https://grafana.com) - open and composable observability and data visualization platform.  ([Source Code](https://github.com/grafana/grafana)) `TypeScript` `Go`
   - [ntfy](https://ntfy.sh) - send push notifications to your phone or desktop using PUT/POST. ([Source Code](https://github.com/binwiederhier/ntfy)) `Go` `JavaScript`

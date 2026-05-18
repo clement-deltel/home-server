@@ -50,6 +50,8 @@
       - "{{ server_home }}/services/development/directus/persistence"
       - "{{ server_home }}/services/development/directus/persistence/extensions"
       - "{{ server_home }}/services/development/directus/persistence/uploads"
+      # Diun
+      - "/opt/persistence/diun"
       # Docuseal
       - "/mnt/ssd/databases/docuseal"
       - "{{ server_home }}/services/media/tools/docuseal/persistence"
@@ -429,6 +431,7 @@
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
+        # no labels for monitoring/diun
         - "{{ server_home }}/services/monitoring/dozzle/compose.yaml"
         - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
@@ -451,6 +454,15 @@
         - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
         - "{{ server_home }}/services/travel/dawarich/compose.yaml"
         - "{{ server_home }}/services/travel/jetlog/compose.yaml"
+
+    #--- Diun
+    - name: Copy Diun file input
+      ansible.builtin.copy:
+        src: "{{ server_home }}/services/monitoring/diun/config/images.yaml"
+        dest: "/opt/persistence/diun/images.yaml"
+        owner: docker
+        group: docker
+        mode: 0640
 
     #--- Guacamole
     - name: Make initdb.sql script executable

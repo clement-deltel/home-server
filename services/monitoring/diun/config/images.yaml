@@ -1,0 +1,4 @@
+- name: docker.io/debian:trixie-slim
+  platform:
+    os: linux
+    arch: amd64
