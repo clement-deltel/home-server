@@ -3,8 +3,8 @@ services:
     container_name: actual
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: actual
     image: ${ACTUAL_IMAGE}
@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/data
+      - /opt/persistence/actual:/data
 
 networks:
   traefik-net:

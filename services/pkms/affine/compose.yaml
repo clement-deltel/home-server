@@ -92,9 +92,9 @@ services:
     stop_grace_period: 30s
     volumes:
       # custom configurations
-      - ./persistence/config:/root/.affine/config
+      - /opt/persistence/affine/config:/root/.affine/config
       # blob storage
-      - ./persistence/storage:/root/.affine/storage
+      - /opt/persistence/affine/storage:/root/.affine/storage
 
 networks:
   internal-net:

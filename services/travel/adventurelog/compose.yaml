@@ -98,7 +98,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/code/media/
+      - /opt/persistence/adventurelog:/code/media/
 
 networks:
   internal-net:

@@ -9,24 +9,24 @@
       - "{{ server_home }}/services/traefik/persistence/log"
       - "{{ server_home }}/services/traefik/persistence/plugins"
       # Actual
-      - "{{ server_home }}/services/finances/actual/persistence"
+      - "/opt/persistence/actual"
       # AdventureLog
       - "/mnt/ssd/databases/adventurelog"
-      - "{{ server_home }}/services/travel/adventurelog/persistence"
+      - "/opt/persistence/adventurelog"
       # Affine
       - "/mnt/ssd/cache/affine"
       - "/mnt/ssd/databases/affine"
-      - "{{ server_home }}/services/pkms/affine/persistence"
-      - "{{ server_home }}/services/pkms/affine/persistence/config"
-      - "{{ server_home }}/services/pkms/affine/persistence/storage"
+      - "/opt/persistence/affine"
+      - "/opt/persistence/affine/config"
+      - "/opt/persistence/affine/storage"
       # Authentik
       - "/mnt/ssd/databases/authentik"
-      - "{{ server_home }}/services/security/authentik/persistence"
-      - "{{ server_home }}/services/security/authentik/persistence/certs"
-      - "{{ server_home }}/services/security/authentik/persistence/custom-templates"
-      - "{{ server_home }}/services/security/authentik/persistence/data"
+      - "/opt/persistence/authentik"
+      - "/opt/persistence/authentik/certs"
+      - "/opt/persistence/authentik/custom-templates"
+      - "/opt/persistence/authentik/data"
       # Bytestash
-      - "{{ server_home }}/services/management/code/bytestash/persistence"
+      - "/opt/persistence/bytestash"
       # Change Detection
       - "{{ server_home }}/services/monitoring/change-detection/persistence"
       # ConvertX

@@ -48,9 +48,9 @@ services:
     user: root
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock:ro
-    - ./persistence/certs:/certs
-    - ./persistence/custom-templates:/templates
-    - ./persistence/data:/data
+    - /opt/persistence/authentik/certs:/certs
+    - /opt/persistence/authentik/custom-templates:/templates
+    - /opt/persistence/authentik/data:/data
 
   authentik_server:
     command: server
@@ -95,8 +95,8 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-    - ./persistence/data:/data
-    - ./persistence/custom-templates:/templates
+    - /opt/persistence/authentik/data:/data
+    - /opt/persistence/authentik/custom-templates:/templates
 
 networks:
   internal-net:

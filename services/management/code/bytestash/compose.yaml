@@ -45,7 +45,7 @@ services:
     stop_grace_period: 30s
     user: ${USER_UID}:${USER_GID}
     volumes:
-      - ./persistence:/data/snippets:rw
+      - /opt/persistence/bytestash:/data/snippets:rw
 
 networks:
   proxy-net:
