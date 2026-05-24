@@ -21,10 +21,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.bytestash.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.bytestash.rule=Host(`snippets.${DOMAIN}`)"
+      - "traefik.http.routers.bytestash.rule=Host(`${BYTESTASH_HOST}`)"
       - "traefik.http.routers.bytestash.tls=true"
       # - "traefik.http.routers.bytestash.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.bytestash.tls.domains[0].main=snippets.${DOMAIN}"
+      # - "traefik.http.routers.bytestash.tls.domains[0].main=${BYTESTASH_HOST}"
       - "traefik.http.routers.bytestash.service=bytestash"
       # Services
       - "traefik.http.services.bytestash.loadbalancer.server.port=5000"
