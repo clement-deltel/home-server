@@ -100,7 +100,7 @@
       - "/opt/persistence/homarr/data"
       - "/opt/persistence/homarr/icons"
       # Homebox
-      - "{{ server_home }}/services/inventory/homebox/persistence"
+      - "/opt/persistence/homebox"
       # Homer
       - "{{ server_home }}/services/dashboard/homer/persistence"
       # Home Assistant
