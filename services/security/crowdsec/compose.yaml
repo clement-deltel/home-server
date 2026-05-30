@@ -28,8 +28,8 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/data:/var/lib/crowdsec/data
-      - ./persistence/etc:/etc/crowdsec
+      - /opt/persistence/crowdsec/data:/var/lib/crowdsec/data
+      - /opt/persistence/crowdsec/etc:/etc/crowdsec
       - /var/log/auth.log:/var/log/auth.log:ro
       - /var/log/syslog:/var/log/syslog:ro
       - ${SERVER_HOME}/services/traefik/persistence/log:/var/log/traefik:ro

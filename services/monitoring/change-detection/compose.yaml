@@ -55,7 +55,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/datastore
+      - /opt/persistence/change-detection:/datastore
 
 networks:
   internal-net:

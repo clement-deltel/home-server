@@ -28,28 +28,28 @@
       # Bytestash
       - "/opt/persistence/bytestash"
       # Change Detection
-      - "{{ server_home }}/services/monitoring/change-detection/persistence"
+      - "/opt/persistence/change-detection"
       # ConvertX
-      - "{{ server_home }}/services/media/tools/convertx/persistence"
+      - "/opt/persistence/convertx"
       # CrowdSec
-      - "{{ server_home }}/services/security/crowdsec/persistence"
-      - "{{ server_home }}/services/security/crowdsec/persistence/data"
-      - "{{ server_home }}/services/security/crowdsec/persistence/etc"
+      - "/opt/persistence/crowdsec"
+      - "/opt/persistence/crowdsec/data"
+      - "/opt/persistence/crowdsec/etc"
       # DBGate
-      - "{{ server_home }}/services/management/databases/dbgate/persistence"
+      - "/opt/persistence/dbgate"
       # Dawarich
       - "/mnt/ssd/cache/dawarich"
       - "/mnt/ssd/databases/dawarich"
-      - "{{ server_home }}/services/travel/dawarich/persistence"
-      - "{{ server_home }}/services/travel/dawarich/persistence/public"
-      - "{{ server_home }}/services/travel/dawarich/persistence/storage"
-      - "{{ server_home }}/services/travel/dawarich/persistence/watched"
+      - "/opt/persistence/dawarich"
+      - "/opt/persistence/dawarich/public"
+      - "/opt/persistence/dawarich/storage"
+      - "/opt/persistence/dawarich/watched"
       # Directus
       - "/mnt/ssd/cache/directus"
       - "/mnt/ssd/databases/directus"
-      - "{{ server_home }}/services/development/directus/persistence"
-      - "{{ server_home }}/services/development/directus/persistence/extensions"
-      - "{{ server_home }}/services/development/directus/persistence/uploads"
+      - "/opt/persistence/directus"
+      - "/opt/persistence/directus/extensions"
+      - "/opt/persistence/directus/uploads"
       # Diun
       - "/opt/persistence/diun"
       # Docuseal

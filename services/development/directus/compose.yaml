@@ -91,8 +91,8 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/uploads:/directus/uploads
-      - ./persistence/extensions:/directus/extensions
+      - /opt/persistence/directus/uploads:/directus/uploads
+      - /opt/persistence/directus/extensions:/directus/extensions
 
 networks:
   internal-net:

@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/root/.dbgate
+      - /opt/persistence/dbgate:/root/.dbgate
 
 networks:
   service-net:

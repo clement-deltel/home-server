@@ -85,9 +85,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/public:/var/app/public
-      - ./persistence/storage:/var/app/storage
-      - ./persistence/watched:/var/app/tmp/imports/watched
+      - /opt/persistence/dawarich/public:/var/app/public
+      - /opt/persistence/dawarich/storage:/var/app/storage
+      - /opt/persistence/dawarich/watched:/var/app/tmp/imports/watched
 
   dawarich:
     command: ["bin/rails", "server", "-p", "3000", "-b", "::"]
@@ -152,9 +152,9 @@ services:
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/databases/dawarich:/dawarich_db_data
-      - ./persistence/public:/var/app/public
-      - ./persistence/storage:/var/app/storage
-      - ./persistence/watched:/var/app/tmp/imports/watched
+      - /opt/persistence/dawarich/public:/var/app/public
+      - /opt/persistence/dawarich/storage:/var/app/storage
+      - /opt/persistence/dawarich/watched:/var/app/tmp/imports/watched
 
 networks:
   internal-net:
