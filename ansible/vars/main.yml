@@ -166,6 +166,7 @@ homebrew_formulas:
 actual_enable: true
 adventurelog_enable: true
 authentik_enable: true
+bento_pdf_enable: true
 bytestash_enable: true
 change_detection_enable: true
 convertx_enable: true
@@ -212,7 +213,6 @@ romm_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
 searngx_enable: true
-stirling_pdf_enable: true
 unbound_enable: true
 upsnap_enable: true
 vaultwarden_enable: true
@@ -234,6 +234,7 @@ memos_enable: false
 nextcloud_enable: false
 photoprism_enable: false
 pinry_enable: false
+stirling_pdf_enable: false
 wireguard_enable: false
 
 # ---------------------------------------------------------------------------- #

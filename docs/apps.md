@@ -188,6 +188,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Media Tools
 
+- [BentoPDF](https://bentopdf.com) - privacy first PDF toolkit. ([Source Code](https://github.com/alam00000/bentopdf)) `JavaScript` `Fluent` `TypeScript`
 - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. ([Source Code](https://github.com/C4illin/ConvertX)) `TypeScript`
 - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. ([Source Code](https://github.com/docusealco/docuseal)) `Ruby` `Vue` `JavaScript`
 - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. ([Source Code](https://github.com/Forceu/Gokapi)) `Go` `JavaScript`
@@ -264,6 +265,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Artificial Intelligence
 
 - [firecrawl](https://firecrawl.dev) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
+- [odysseus](https://pewdiepie-archdaemon.github.io/odysseus) - self-hosted AI workspace. ([Source Code](https://github.com/pewdiepie-archdaemon/odysseus)) `Python` `JavaScript`
 - [onyx](https://onyx.app) - AI platform / chat with advanced features that works with every LLM. ([Source Code](https://github.com/onyx-dot-app/onyx)) `Python` `TypeScript`
 
 ### Backup
@@ -449,6 +451,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [BitPlay](https://github.com/aculix/bitplay) - stream video torrents in your web browser with ease. ([Source Code](https://github.com/aculix/bitplay)) `Go`
 - [Kodi](https://kodi.tv) - open source home theater/media center software and entertainment hub for digital media. ([Source Code](https://github.com/xbmc/xbmc)) `C++`
 - [Plex](https://www.plex.tv) - Plex Media Server Docker repo, for all your PMS docker needs. ([Source Code](https://github.com/plexinc/pms-docker))
+- [Streamyfin](https://streamyfin.app) - modern Jellyfin client. ([Source Code](https://github.com/streamyfin/streamyfin)) `TypeScript`
 - [Streamystats](https://github.com/fredrikburmester/streamystats) - statistics service for Jellyfin, providing analytics and data visualization. ([Source Code](https://github.com/fredrikburmester/streamystats)) `TypeScript`
 - Web
 - [ArchiveBox](https://archivebox.io) - web archiving that takes URLs/browser history/bookmarks/Pocket/Pinboard/etc. ([Source Code](https://github.com/ArchiveBox/ArchiveBox)) `Python`
@@ -456,7 +459,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Media Tools
 
 - [Ashim](https://ashim-hq.github.io/ashim) - image manipulator, 45+ tools, local AI, and pipelines. ([Source Code](https://github.com/ashim-hq/ashim)) `TypeScript`
-- [BentoPDF](https://bentopdf.com) - privacy first PDF toolkit. ([Source Code](https://github.com/alam00000/bentopdf)) `JavaScript` `Fluent` `TypeScript`
 - [Cobalt](https://cobalt.tools) - best way to save what you love. ([Source Code](https://github.com/imputnet/cobalt)) `Svelte` `JavaScript` `TypeScript`
 - [Immich Places](https://github.com/Majorfi/immich-places) - web UI addon to help assign GPS coordinates to photos. ([Source Code](https://github.com/Majorfi/immich-places)) `TypeScript` `Go`
 - [Invidious](https://invidious.io) - alternative front-end to YouTube. ([Source Code](https://github.com/iv-org/invidious)) `Crystal`
@@ -488,6 +490,8 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Anytype](https://anytype.io) - the everything app for those who celebrate trust & autonomy. ([Source Code](https://github.com/anyproto/anytype-ts)) `TypeScript`
 - [ApiTable](https://aitable.ai/) - API-oriented low-code platform for building collaborative apps and better than all other Airtable open-source alternatives. ([Source Code](https://github.com/apitable/apitable)) `TypeScript` `Java`
 - [BookStack](https://www.bookstackapp.com) - platform to create documentation/wiki content. ([Source Code](https://github.com/BookStackApp/BookStack)) `PHP` `TypeScript`
+- [Docs](https://github.com/suitenumerique/docs) - collaborative note taking, wiki and documentation platform that scales. ([Source Code](https://github.com/suitenumerique/docs)) `Python` `TypeScript`
+- [Epicenter](https://epicenter.so) - open-source, local-first apps. ([Source Code](https://github.com/EpicenterHQ/epicenter)) `TypeScript` `Svelte`
 - [Excalidraw](https://excalidraw.com) - virtual whiteboard for sketching hand-drawn like diagrams. ([Source Code](https://github.com/excalidraw/excalidraw)) `TypeScript`
 - [Grist](https://www.getgrist.com) - modern relational spreadsheet. ([Source Code](https://github.com/gristlabs/grist-core)) `TypeScript` `Python`
 - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. ([Source Code](https://github.com/laurent22/joplin)) `TypeScript` `JavaScript`

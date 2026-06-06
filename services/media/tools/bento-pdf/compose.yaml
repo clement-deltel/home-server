@@ -1,0 +1,48 @@
+# https://github.com/alam00000/bentopdf
+services:
+  bento-pdf:
+    container_name: bento-pdf
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    hostname: bento-pdf
+    image: ${BENTO_PDF_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.bento-pdf.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.bento-pdf.rule=Host(`${BENTO_PDF_HOST}`)"
+      - "traefik.http.routers.bento-pdf.tls=true"
+      # - "traefik.http.routers.bento-pdf.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.bento-pdf.tls.domains[0].main=${BENTO_PDF_HOST}"
+      - "traefik.http.routers.bento-pdf.middlewares=bento-pdf-headers"
+      - "traefik.http.routers.bento-pdf.service=bento-pdf"
+      # Middlewares
+      - "traefik.http.middlewares.bento-pdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin"
+      - "traefik.http.middlewares.bento-pdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp"
+      # Services
+      - "traefik.http.services.bento-pdf.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${BENTO_PDF_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net

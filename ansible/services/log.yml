@@ -70,6 +70,7 @@
         - "/mnt/hdd/log/media/storage/pictures/photoprism"
         - "/mnt/hdd/log/media/storage/pictures/pinry"
         - "/mnt/hdd/log/media/storage/videos/jellyfin"
+        - "/mnt/hdd/log/media/tools/bento-pdf"
         - "/mnt/hdd/log/media/tools/convertx"
         - "/mnt/hdd/log/media/tools/docuseal"
         - "/mnt/hdd/log/media/tools/qbittorrent"
