@@ -105,6 +105,9 @@
       - "{{ server_home }}/services/dashboard/homer/persistence"
       # Home Assistant
       - "{{ server_home }}/services/home/home-assistant/persistence"
+      # Honcho
+      - "/mnt/ssd/cache/honcho"
+      - "/mnt/ssd/databases/honcho"
       # HortusFox
       - "/mnt/ssd/databases/hortusfox"
       - "{{ server_home }}/services/inventory/hortusfox/persistence"

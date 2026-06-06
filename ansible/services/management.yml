@@ -32,6 +32,7 @@
       - { when: homebox_enable, project_src: '{{ server_home }}/services/inventory/homebox' }
       - { when: homer_enable, project_src: '{{ server_home }}/services/dashboard/homer' }
       - { when: home_assistant_enable, project_src: '{{ server_home }}/services/home/home-assistant' }
+      - { when: honcho_enable, project_src: '{{ server_home }}/services/ai/honcho' }
       - { when: hortusfox_enable, project_src: '{{ server_home }}/services/inventory/hortusfox' }
       - { when: immich_enable, project_src: '{{ server_home }}/services/media/storage/pictures/immich' }
       - { when: it_tools_enable, project_src: '{{ server_home }}/services/management/code/it-tools' }

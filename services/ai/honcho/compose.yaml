@@ -1,0 +1,206 @@
+# https://github.com/plastic-labs/honcho
+services:
+  cache:
+    container_name: honcho-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--requirepass ${HONCHO_CACHE_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: honcho-valkey
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${HONCHO_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/honcho:/data
+
+  db:
+    command: ["postgres", "-c", "max_connections=200"]
+    container_name: honcho-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${HONCHO_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: honcho-postgres
+    image: ${DEFAULT_PGVECTOR_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${HONCHO_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/honcho:/var/lib/postgresql/data
+
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: honcho-api
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #     cache:
+  #       condition: service_healthy
+  #   dns:
+  #     - 127.0.0.1
+  #     - ${DNS_SERVER_1}
+  #     - ${DNS_SERVER_2}
+  #   entrypoint: ["sh", "docker/entrypoint.sh"]
+  #   env_file: config/.env
+  #   healthcheck:
+  #     test:
+  #       [
+  #         "CMD",
+  #         "/app/.venv/bin/python",
+  #         "-c",
+  #         "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()",
+  #       ]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 10s
+  #   hostname: honcho-api
+  #   labels:
+  #     - "traefik.enable=true"
+  #     # Routers
+  #     - "traefik.http.routers.honcho.entrypoints=web-external,websecure-external"
+  #     - "traefik.http.routers.honcho.rule=Host(`${HONCHO_HOST}`)"
+  #     - "traefik.http.routers.honcho.tls=true"
+  #     # - "traefik.http.routers.honcho.tls.certresolver=letsencrypt"
+  #     # - "traefik.http.routers.honcho.tls.domains[0].main=${HONCHO_HOST}"
+  #     - "traefik.http.routers.honcho.service=honcho"
+  #     # Services
+  #     - "traefik.http.services.honcho.loadbalancer.server.port=8000"
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-file: 5
+  #       max-size: 10m
+  #   networks:
+  #     internal-net:
+  #       ipv4_address: ${HONCHO_API_IP}
+  #     proxy-net:
+  #       ipv4_address: ${HONCHO_IP}
+  #     ai-net:
+  #       ipv4_address: ${HONCHO_AI_IP}
+  #   ports:
+  #     - 8000
+  #   restart: unless-stopped
+  #   stop_grace_period: 30s
+
+  # deriver:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: honcho-deriver
+  #   depends_on:
+  #     api:
+  #       condition: service_healthy
+  #     db:
+  #       condition: service_healthy
+  #     cache:
+  #       condition: service_healthy
+  #   entrypoint: ["/app/.venv/bin/python", "-m", "src.deriver"]
+  #   env_file: config/.env
+  #   hostname: honcho-deriver
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-file: 5
+  #       max-size: 10m
+  #   networks:
+  #     internal-net:
+  #       ipv4_address: ${HONCHO_DERIVER_IP}
+  #   restart: unless-stopped
+  #   stop_grace_period: 30s
+
+  honcho:
+    container_name: honcho
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "/app/.venv/bin/python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    hostname: honcho
+    image: ${HONCHO_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.honcho.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.honcho.rule=Host(`${HONCHO_HOST}`)"
+      - "traefik.http.routers.honcho.tls=true"
+      # - "traefik.http.routers.honcho.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.honcho.tls.domains[0].main=${HONCHO_HOST}"
+      - "traefik.http.routers.honcho.service=honcho"
+      # Services
+      - "traefik.http.services.honcho.loadbalancer.server.port=8000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${HONCHO_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${HONCHO_IP}
+      ai-net:
+        ipv4_address: ${HONCHO_AI_IP}
+    ports:
+      - 8000
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  internal-net:
+    name: internal-honcho
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${HONCHO_NET}
+          gateway: ${HONCHO_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
+  ai-net:
+    external: true
+    name: ai-net
