@@ -147,6 +147,7 @@ services:
       - 127.0.0.1
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
+    # entrypoint: ["alembic", "upgrade", "head"]
     env_file: config/.env
     healthcheck:
       test:
