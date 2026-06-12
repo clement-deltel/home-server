@@ -50,6 +50,8 @@ services:
       - 8080
       # Source_code
       - ${SOURCE_CODE_SSH_PORT}:2222/tcp
+      # SFTP
+      - ${SFTP_PORT}:2223/tcp
       # RustDesk
       - ${RUSTDESK_ID_NAT_TT_PORT}:21115/tcp # ID Server - NAT type test
       - ${RUSTDESK_ID_HP_PORT}:21116/tcp # ID Server - TCP hole punching

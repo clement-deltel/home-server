@@ -1,7 +1,22 @@
 # https://github.com/dani-garcia/vaultwarden
 services:
   db:
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - SYS_NICE
+    cap_drop:
+      - ALL
     container_name: vaultwarden-mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${VAULTWARDEN_DB_ROOT_PASSWORD}"]
@@ -17,20 +32,31 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${VAULTWARDEN_DB_IP}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/databases/vaultwarden:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
   vaultwarden:
+    cap_drop:
+      - ALL
     container_name: vaultwarden
     depends_on:
       db:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -61,6 +87,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${VAULTWARDEN_INTERNAL_IP}
@@ -69,6 +96,8 @@ services:
     ports:
       - 80
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
