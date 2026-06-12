@@ -214,6 +214,7 @@ romm_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
 searngx_enable: true
+sftpgo_enable: true
 unbound_enable: true
 upsnap_enable: true
 vaultwarden_enable: true

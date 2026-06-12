@@ -22,7 +22,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Media Storage](#media-storage)
     - [Bookmarks](#bookmarks)
     - [Books](#books)
-    - [Documents](#documents)
+    - [Files](#files)
     - [Music](#music)
     - [News](#news)
     - [Pictures](#pictures)
@@ -63,7 +63,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Media Storage](#media-storage-1)
     - [Audiobooks](#audiobooks)
     - [Bookmarks](#bookmarks-1)
-    - [Documents](#documents-1)
+    - [Files](#files-1)
     - [Pictures](#pictures-1)
     - [Music](#music-1)
     - [News](#news-1)
@@ -162,10 +162,11 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Kavita](https://www.kavitareader.com) - fast, feature rich, cross platform reading server. ([Source Code](https://github.com/Kareadita/Kavita)) `C#` `TypeScript`
 - [Librum](https://librumreader.com) - manage your own online library and access it from any device anytime, anywhere. No web-interface, need to install the desktop app as well. ([Source Code](https://github.com/Librum-Reader/Librum)) `C++` `QML`
 
-#### Documents
+#### Files
 
 - [NextCloud](https://nextcloud.com) - a safe home for all your data. ([Source Code](https://github.com/nextcloud/server)) `PHP` `JavaScript`
 - [Paperless](https://docs.paperless-ngx.com) - document management system: scan, index and archive all your documents. ([Source Code](https://github.com/paperless-ngx/paperless-ngx)) `Python` `TypeScript`
+- [SFTPGo](https://sftpgo.com) - full-featured and highly configurable SFTP, HTTP/S, FTP/S and WebDAV server. ([Source Code](https://github.com/drakkan/sftpgo)) `Go`
 
 #### Music
 
@@ -220,6 +221,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Artificial Intelligence
 
+- [Honcho](https://docs.honcho.dev) - memory library for building stateful agents. ([Source Code](https://github.com/plastic-labs/honcho)) `Python`
 - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. ([Source Code](https://github.com/BerriAI/litellm)) `Python`
 - [Ollama](https://ollama.com) - get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. ([Source Code](https://github.com/ollama/ollama)) `Go`
 - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). ([Source Code](https://github.com/open-webui/open-webui)) `JavaScript` `Svelte` `Python`
@@ -423,8 +425,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. ([Source Code](https://github.com/linkwarden/linkwarden)) `TypeScript`
 
-#### Documents
+#### Files
 
+- [dufs](https://github.com/sigoden/dufs) - file server that supports static serving, uploading, searching, accessing control, webdav. ([Source Code](https://github.com/sigoden/dufs)) `Rust`
+- [filestash](https://www.filestash.app) - file management platform, universal data access layer (without FUSE). ([Source Code](https://github.com/mickael-kerjean/filestash)) `Go` `JavaScript`
 - [myDrive](https://mydrive-storage.com) - node.js and mongoDB Google Drive clone. ([Source Code](https://github.com/subnub/myDrive)) `TypeScript`
 - [OxiCloud](https://github.com/DioCrafts/OxiCloud) - ultra-fast, secure & lightweight self-hosted cloud storage — your files, photos, calendars & contacts, all in one place. ([Source Code](https://github.com/DioCrafts/OxiCloud)) `Rust` `JavaScript`
 - [Paperless AI](https://clusterzx.github.io/paperless-ai) - automated document analyzer for paperless-ngx using OpenAI API, Ollama, Deepseek-r1, Azure and all OpenAI API compatible services to automatically analyze and tag your documents. ([Source Code](https://github.com/clusterzx/paperless-ai)) `JavaScript`

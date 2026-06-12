@@ -66,6 +66,7 @@
       - { when: rustdesk_enable, project_src: '{{ server_home }}/services/remote/rustdesk' }
       - { when: scrutiny_enable, project_src: '{{ server_home }}/services/monitoring/scrutiny' }
       - { when: searngx_enable, project_src: '{{ server_home }}/services/search/searngx' }
+      - { when: searngx_enable, project_src: '{{ server_home }}/services/media/storage/files/sftpgo' }
       - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/media/tools/stirling-pdf' }
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: upsnap_enable, project_src: '{{ server_home }}/services/home/upsnap' }

@@ -240,6 +240,11 @@
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
       # SearNGX
       - "{{ server_home }}/services/search/searngx/persistence"
+      # SFTPGo
+      - "/mnt/ssd/databases/sftpgo"
+      - "/opt/persistence/sftpgo"
+      - "/opt/persistence/sftpgo/data"
+      - "/opt/persistence/sftpgo/home"
       # Stirling PDF
       - "{{ server_home }}/services/media/tools/stirling-pdf/persistence"
       - "{{ server_home }}/services/media/tools/stirling-pdf/persistence/configs"

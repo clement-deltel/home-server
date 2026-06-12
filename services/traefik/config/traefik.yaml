@@ -240,6 +240,11 @@ entryPoints:
     observability:
       accessLogs: true
 
+  sftp:
+    address: :2223/tcp
+    observability:
+      accessLogs: true
+
   rd5:
     address: :21115/tcp
     observability:

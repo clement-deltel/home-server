@@ -1,0 +1,102 @@
+# https://github.com/drakkan/sftpgo
+services:
+  database:
+    container_name: sftpgo-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SFTPGO_DB_USER}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: sftpgo-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${SFTPGO_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/sftpgo:/var/lib/postgresql/data
+
+  sftpgo:
+    container_name: sftpgo
+    depends_on:
+      database:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: sftpgo
+    image: ${SFTPGO_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      #   HTTP — WebAdmin / WebClient / REST API
+      - "traefik.http.routers.sftpgo.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.sftpgo.rule=Host(`${SFTPGO_HOST}`)"
+      - "traefik.http.routers.sftpgo.tls=true"
+      # - "traefik.http.routers.sftpgo.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.sftpgo.tls.domains[0].main=${SFTPGO_HOST}"
+      - "traefik.http.routers.sftpgo.priority=10"
+      - "traefik.http.routers.sftpgo.service=sftpgo"
+      #   HTTP — WebDAV
+      - "traefik.http.routers.sftpgo-webdav.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.sftpgo-webdav.rule=Host(`${SFTPGO_HOST}`) && PathPrefix(`/webdav`)"
+      - "traefik.http.routers.sftpgo-webdav.tls=true"
+      # - "traefik.http.routers.sftpgo-webdav.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.sftpgo-webdav.tls.domains[0].main=${SFTPGO_HOST}"
+      - "traefik.http.routers.sftpgo-webdav.priority=5"
+      - "traefik.http.routers.sftpgo-webdav.service=sftpgo-webdav"
+      #   TCP — SFTP
+      - "traefik.tcp.routers.sftpgo-sftp.entrypoints=sftp"
+      - "traefik.tcp.routers.sftpgo-sftp.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.sftpgo-sftp.service=sftpgo-sftp"
+      # Services
+      - "traefik.http.services.sftpgo.loadbalancer.server.port=8080"
+      - "traefik.http.services.sftpgo-webdav.loadbalancer.server.port=8081"
+      - "traefik.tcp.services.sftpgo-sftp.loadbalancer.server.port=2022"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${SFTPGO_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${SFTPGO_IP}
+      monitoring-net:
+        ipv4_address: ${SFTPGO_MONITORING_IP}
+    ports:
+      - 2022
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/sftpgo/data:/srv/sftpgo
+      - /opt/persistence/sftpgo/home:/var/lib/sftpgo
+
+networks:
+  internal-net:
+    name: internal-sftpgo
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SFTPGO_NET}
+          gateway: ${SFTPGO_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
+  monitoring-net:
+    external: true
+    name: monitoring-net
