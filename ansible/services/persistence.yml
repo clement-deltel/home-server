@@ -399,6 +399,7 @@
         regexp: '(^\s*)# -'
         replace: '\1-'
       loop:
+        - "{{ server_home }}/services/ai/honcho/compose.yaml"
         - "{{ server_home }}/services/ai/litellm/compose.yaml"
         - "{{ server_home }}/services/ai/open-webui/compose.yaml"
         - "{{ server_home }}/services/automation/n8n/compose.yaml"
@@ -428,6 +429,7 @@
         - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"
         - "{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml"
         - "{{ server_home }}/services/media/storage/documents/paperless/compose.yaml"
+        - "{{ server_home }}/services/media/storage/files/sftpgo/compose.yaml"
         - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
         - "{{ server_home }}/services/media/storage/news/freshrss/compose.yaml"
         - "{{ server_home }}/services/media/storage/pictures/immich/compose.yaml"
@@ -437,6 +439,7 @@
         - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
         - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
+        - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
         # no labels for monitoring/diun
