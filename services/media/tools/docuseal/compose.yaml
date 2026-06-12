@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/data
+      - /opt/persistence/docuseal:/data
 
 networks:
   internal-net:

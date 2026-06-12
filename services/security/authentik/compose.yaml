@@ -11,7 +11,6 @@ services:
       start_period: 60s
       start_interval: 5s
     hostname: authentik-postgres
-    # docker.io/library/postgres:16-alpine
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
@@ -68,9 +67,9 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      # - "traefik.http.routers.authentik.entrypoints=web,websecure"
+      - "traefik.http.routers.authentik.entrypoints=web,websecure"
       - "traefik.http.routers.authentik.rule=Host(`${AUTHENTIK_HOST}`)"
-      # - "traefik.http.routers.authentik.tls=true"
+      - "traefik.http.routers.authentik.tls=true"
       # - "traefik.http.routers.authentik.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.authentik.tls.domains[0].main=${AUTHENTIK_HOST}"
       - "traefik.http.routers.authentik.service=authentik"

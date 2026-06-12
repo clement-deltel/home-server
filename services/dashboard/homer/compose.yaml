@@ -13,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.homer.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.homer.rule=Host(`dashboard.${DOMAIN}`)"
+      - "traefik.http.routers.homer.rule=Host(`${HOMER_HOST}`)"
       - "traefik.http.routers.homer.tls=true"
       # - "traefik.http.routers.homer.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.homer.tls.domains[0].main=dashboard.${DOMAIN}"
+      # - "traefik.http.routers.homer.tls.domains[0].main=${HOMER_HOST}"
       - "traefik.http.routers.homer.middlewares=homer"
       - "traefik.http.routers.homer.service=homer"
       # Middlewares
@@ -37,7 +37,7 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./persistence:/www/assets
+      - /opt/persistence/homer:/www/assets
 
 networks:
   proxy-net:

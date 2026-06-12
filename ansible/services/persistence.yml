@@ -54,10 +54,11 @@
       - "/opt/persistence/diun"
       # Docuseal
       - "/mnt/ssd/databases/docuseal"
-      - "{{ server_home }}/services/media/tools/docuseal/persistence"
+      - "/opt/persistence/docuseal"
       # Dozzle
       - "/opt/persistence/dozzle"
       # Enclosed
+      - "/opt/persistence/enclosed"
       - "{{ server_home }}/services/security/enclosed/persistence"
       # Forgejo
       - "/mnt/ssd/cache/forgejo"
@@ -69,14 +70,14 @@
       - "/opt/persistence/forgejo/log"
       # FreshRSS
       - "/mnt/ssd/databases/freshrss"
-      - "{{ server_home }}/services/media/storage/news/freshrss/persistence"
+      - "/opt/persistence/freshrss"
       # Gitea Mirror
       - "/opt/persistence/gitea-mirror"
       # GitLab
-      - "{{ server_home }}/services/management/code/gitlab/persistence"
-      - "{{ server_home }}/services/management/code/gitlab/persistence/config"
-      - "{{ server_home }}/services/management/code/gitlab/persistence/logs"
-      - "{{ server_home }}/services/management/code/gitlab/persistence/data"
+      - "/opt/persistence/gitlab"
+      - "/opt/persistence/gitlab/config"
+      - "/opt/persistence/gitlab/data"
+      - "/opt/persistence/gitlab/log"
       # Gluetun
       - "/opt/persistence/gluetun"
       # Gokapi
@@ -102,9 +103,9 @@
       # Homebox
       - "/opt/persistence/homebox"
       # Homer
-      - "{{ server_home }}/services/dashboard/homer/persistence"
+      - "/opt/persistence/homer"
       # Home Assistant
-      - "{{ server_home }}/services/home/home-assistant/persistence"
+      - "/opt/persistence/home-assistant"
       # Honcho
       - "/mnt/ssd/cache/honcho"
       - "/mnt/ssd/databases/honcho"

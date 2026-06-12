@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/config
+      - /opt/persistence/freshrss:/config
 
 networks:
   internal-net:

@@ -11,10 +11,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.home-assistant.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.home-assistant.rule=Host(`ha.${DOMAIN}`)"
+      - "traefik.http.routers.home-assistant.rule=Host(`${HOME_ASSISTANT_HOST}`)"
       - "traefik.http.routers.home-assistant.tls=true"
       # - "traefik.http.routers.home-assistant.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.home-assistant.tls.domains[0].main=ha.${DOMAIN}"
+      # - "traefik.http.routers.home-assistant.tls.domains[0].main=${HOME_ASSISTANT_HOST}"
       - "traefik.http.routers.home-assistant.service=home-assistant"
       # Services
       - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
@@ -28,6 +28,6 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/config
+      - /opt/persistence/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro

@@ -3,8 +3,8 @@ services:
     container_name: gitlab
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
@@ -79,24 +79,24 @@ services:
       #- HTTP
       #-- Instance
       - "traefik.http.routers.gitlab.entrypoints=web,websecure"
-      - "traefik.http.routers.gitlab.rule=Host(`gitlab.${DOMAIN}`)"
+      - "traefik.http.routers.gitlab.rule=Host(`${GITLAB_HOST}`)"
       - "traefik.http.routers.gitlab.tls=true"
       # - "traefik.http.routers.gitlab.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gitlab.tls.domains[0].main=gitlab.${DOMAIN}"
+      # - "traefik.http.routers.gitlab.tls.domains[0].main=${GITLAB_HOST}"
       - "traefik.http.routers.gitlab.service=gitlab"
       #-- Pages
       - "traefik.http.routers.gitlab-pages.entrypoints=web,websecure"
-      - "traefik.http.routers.gitlab-pages.rule=Host(`pages.gitlab.${DOMAIN}`)"
+      - "traefik.http.routers.gitlab-pages.rule=Host(`${GITLAB_PAGES_HOST}`)"
       - "traefik.http.routers.gitlab-pages.tls=true"
       # - "traefik.http.routers.gitlab-pages.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gitlab-pages.tls.domains[0].main=pages.gitlab.${DOMAIN}"
+      # - "traefik.http.routers.gitlab-pages.tls.domains[0].main=${GITLAB_PAGES_HOST}"
       - "traefik.http.routers.gitlab-pages.service=gitlab-pages"
       #-- Registry
       - "traefik.http.routers.gitlab-registry.entrypoints=web,websecure"
-      - "traefik.http.routers.gitlab-registry.rule=Host(`registry.gitlab.${DOMAIN}`)"
+      - "traefik.http.routers.gitlab-registry.rule=Host(`${GITLAB_REGISTRY_HOST}`)"
       - "traefik.http.routers.gitlab-registry.tls=true"
       # - "traefik.http.routers.gitlab-registry.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gitlab-registry.tls.domains[0].main=registry.gitlab.${DOMAIN}"
+      # - "traefik.http.routers.gitlab-registry.tls.domains[0].main=${GITLAB_REGISTRY_HOST}"
       - "traefik.http.routers.gitlab-registry.service=gitlab-registry"
       #- TCP
       - "traefik.tcp.routers.gitlab-ssh.entrypoints=ssh"
@@ -124,9 +124,9 @@ services:
     shm_size: 256m
     stop_grace_period: 30s
     volumes:
-      - ./persistence/config:/etc/gitlab
-      - ./persistence/logs:/var/log/gitlab
-      - ./persistence/data:/var/opt/gitlab
+      - /opt/persistence/gitlab/config:/etc/gitlab
+      - /opt/persistence/gitlab/data:/var/opt/gitlab
+      - /opt/persistence/gitlab/log:/var/log/gitlab
 
 networks:
   traefik-net:
