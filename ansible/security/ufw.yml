@@ -36,6 +36,8 @@
       - {comment: "Traefik HTTPS External", port: 444, protocol: "any", log: false}
       - {comment: "Wazuh (TCP)", port: 1514, protocol: "tcp", log: false}
       - {comment: "Wazuh (TCP)", port: 1515, protocol: "tcp", log: false}
+      - {comment: "Forgejo SSH (TCP)", port: 2222, protocol: "tcp", log: false}
+      - {comment: "SFTPGo SFTP (TCP)", port: 2223, protocol: "tcp", log: false}
       - {comment: "Guacamole RDP", port: 3389, protocol: "any", log: false}
       - {comment: "UpSnap (TCP)", port: 8090, protocol: "tcp", log: false}
       - {comment: "Home Assistant (TCP)", port: 8123, protocol: "tcp", log: false}
