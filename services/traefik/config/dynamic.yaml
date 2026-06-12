@@ -32,7 +32,7 @@ http:
 # ---------------------------------------------------------------------------- #
     crowdsec-bouncer:
       plugin:
-        bouncer:
+        crowdsec-bouncer-traefik-plugin:
           enabled: true
           defaultDecisionSeconds: 60
           crowdsecMode: live
