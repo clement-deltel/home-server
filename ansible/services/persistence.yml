@@ -9,108 +9,108 @@
       - "{{ server_home }}/services/traefik/persistence/log"
       - "{{ server_home }}/services/traefik/persistence/plugins"
       # Actual
-      - "/opt/persistence/actual"
+      - /opt/persistence/actual
       # AdventureLog
-      - "/mnt/ssd/databases/adventurelog"
-      - "/opt/persistence/adventurelog"
+      - /mnt/ssd/databases/adventurelog
+      - /opt/persistence/adventurelog
       # Affine
-      - "/mnt/ssd/cache/affine"
-      - "/mnt/ssd/databases/affine"
-      - "/opt/persistence/affine"
-      - "/opt/persistence/affine/config"
-      - "/opt/persistence/affine/storage"
+      - /mnt/ssd/cache/affine
+      - /mnt/ssd/databases/affine
+      - /opt/persistence/affine
+      - /opt/persistence/affine/config
+      - /opt/persistence/affine/storage
       # Authentik
-      - "/mnt/ssd/databases/authentik"
-      - "/opt/persistence/authentik"
-      - "/opt/persistence/authentik/certs"
-      - "/opt/persistence/authentik/custom-templates"
-      - "/opt/persistence/authentik/data"
+      - /mnt/ssd/databases/authentik
+      - /opt/persistence/authentik
+      - /opt/persistence/authentik/certs
+      - /opt/persistence/authentik/custom-templates
+      - /opt/persistence/authentik/data
       # Bytestash
-      - "/opt/persistence/bytestash"
+      - /opt/persistence/bytestash
       # Change Detection
-      - "/opt/persistence/change-detection"
+      - /opt/persistence/change-detection
       # ConvertX
-      - "/opt/persistence/convertx"
+      - /opt/persistence/convertx
       # CrowdSec
-      - "/opt/persistence/crowdsec"
-      - "/opt/persistence/crowdsec/data"
-      - "/opt/persistence/crowdsec/etc"
+      - /opt/persistence/crowdsec
+      - /opt/persistence/crowdsec/data
+      - /opt/persistence/crowdsec/etc
       # DBGate
-      - "/opt/persistence/dbgate"
+      - /opt/persistence/dbgate
       # Dawarich
-      - "/mnt/ssd/cache/dawarich"
-      - "/mnt/ssd/databases/dawarich"
-      - "/opt/persistence/dawarich"
-      - "/opt/persistence/dawarich/public"
-      - "/opt/persistence/dawarich/storage"
-      - "/opt/persistence/dawarich/watched"
+      - /mnt/ssd/cache/dawarich
+      - /mnt/ssd/databases/dawarich
+      - /opt/persistence/dawarich
+      - /opt/persistence/dawarich/public
+      - /opt/persistence/dawarich/storage
+      - /opt/persistence/dawarich/watched
       # Directus
-      - "/mnt/ssd/cache/directus"
-      - "/mnt/ssd/databases/directus"
-      - "/opt/persistence/directus"
-      - "/opt/persistence/directus/extensions"
-      - "/opt/persistence/directus/uploads"
+      - /mnt/ssd/cache/directus
+      - /mnt/ssd/databases/directus
+      - /opt/persistence/directus
+      - /opt/persistence/directus/extensions
+      - /opt/persistence/directus/uploads
       # Diun
-      - "/opt/persistence/diun"
+      - /opt/persistence/diun
       # Docuseal
-      - "/mnt/ssd/databases/docuseal"
-      - "/opt/persistence/docuseal"
+      - /mnt/ssd/databases/docuseal
+      - /opt/persistence/docuseal
       # Dozzle
-      - "/opt/persistence/dozzle"
+      - /opt/persistence/dozzle
       # Enclosed
-      - "/opt/persistence/enclosed"
+      - /opt/persistence/enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
       # Forgejo
-      - "/mnt/ssd/cache/forgejo"
-      - "/mnt/ssd/databases/forgejo"
-      - "/opt/persistence/forgejo"
-      - "/opt/persistence/forgejo/conf"
-      - "/opt/persistence/forgejo/data"
-      - "/opt/persistence/forgejo/lfs"
-      - "/opt/persistence/forgejo/log"
+      - /mnt/ssd/cache/forgejo
+      - /mnt/ssd/databases/forgejo
+      - /opt/persistence/forgejo
+      - /opt/persistence/forgejo/conf
+      - /opt/persistence/forgejo/data
+      - /opt/persistence/forgejo/lfs
+      - /opt/persistence/forgejo/log
       # FreshRSS
-      - "/mnt/ssd/databases/freshrss"
-      - "/opt/persistence/freshrss"
+      - /mnt/ssd/databases/freshrss
+      - /opt/persistence/freshrss
       # Gitea Mirror
-      - "/opt/persistence/gitea-mirror"
+      - /opt/persistence/gitea-mirror
       # GitLab
-      - "/opt/persistence/gitlab"
-      - "/opt/persistence/gitlab/config"
-      - "/opt/persistence/gitlab/data"
-      - "/opt/persistence/gitlab/log"
+      - /opt/persistence/gitlab
+      - /opt/persistence/gitlab/config
+      - /opt/persistence/gitlab/data
+      - /opt/persistence/gitlab/log
       # Gluetun
-      - "/opt/persistence/gluetun"
+      - /opt/persistence/gluetun
       # Gokapi
       - "{{ server_home }}/services/media/sharing/gokapi/persistence"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
       - "{{ server_home }}/services/media/sharing/gokapi/persistence/data"
       # Grafana
-      - "/mnt/ssd/databases/grafana"
-      - "/mnt/ssd/databases/influxdb"
+      - /mnt/ssd/databases/grafana
+      - /mnt/ssd/databases/influxdb
       - "{{ server_home }}/services/monitoring/grafana/persistence"
       # Grocy
       - "{{ server_home }}/services/inventory/grocy/persistence"
       # Guacamole
-      - "/mnt/ssd/databases/guacamole"
+      - /mnt/ssd/databases/guacamole
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence"
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence/drive"
       - "{{ server_home }}/services/remote/guacamole/guacd-persistence/record"
       # Homarr
-      - "/opt/persistence/homarr"
-      - "/opt/persistence/homarr/configs"
-      - "/opt/persistence/homarr/data"
-      - "/opt/persistence/homarr/icons"
+      - /opt/persistence/homarr
+      - /opt/persistence/homarr/configs
+      - /opt/persistence/homarr/data
+      - /opt/persistence/homarr/icons
       # Homebox
-      - "/opt/persistence/homebox"
+      - /opt/persistence/homebox
       # Homer
-      - "/opt/persistence/homer"
+      - /opt/persistence/homer
       # Home Assistant
-      - "/opt/persistence/home-assistant"
+      - /opt/persistence/home-assistant
       # Honcho
-      - "/mnt/ssd/cache/honcho"
-      - "/mnt/ssd/databases/honcho"
+      - /mnt/ssd/cache/honcho
+      - /mnt/ssd/databases/honcho
       # HortusFox
-      - "/mnt/ssd/databases/hortusfox"
+      - /mnt/ssd/databases/hortusfox
       - "{{ server_home }}/services/inventory/hortusfox/persistence"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/backup"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/images"
@@ -118,13 +118,13 @@
       - "{{ server_home }}/services/inventory/hortusfox/persistence/migrate"
       - "{{ server_home }}/services/inventory/hortusfox/persistence/themes"
       # Immich
-      - "/mnt/ssd/cache/immich"
-      - "/mnt/ssd/databases/immich"
+      - /mnt/ssd/cache/immich
+      - /mnt/ssd/databases/immich
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
       - "{{ server_home }}/services/media/storage/pictures/immich/persistence/upload"
       # Jellyfin
-      - "/opt/persistence/jellyfin"
+      - /opt/persistence/jellyfin
       # Jetlog
       - "{{ server_home }}/services/travel/jetlog/persistence"
       # Karakeep
@@ -142,40 +142,49 @@
       - "{{ server_home }}/services/kopia/persistence/config"
       - "{{ server_home }}/services/kopia/persistence/data"
       - "{{ server_home }}/services/kopia/persistence/logs"
+      # Langfuse
+      - /mnt/ssd/cache/langfuse
+      - /mnt/ssd/databases/langfuse
+      - /opt/persistence/langfuse/
+      - /opt/persistence/langfuse/clickhouse
+      - /opt/persistence/langfuse/clickhouse/data
+      - /opt/persistence/langfuse/clickhouse/log
+      - /opt/persistence/langfuse/minio
+      - /opt/persistence/langfuse/minio/data
       # Librum
-      - "/mnt/ssd/databases/librum"
+      - /mnt/ssd/databases/librum
       - "{{ server_home }}/services/media/storage/books/librum/persistence"
       # Limesurvey
-      - "/mnt/ssd/databases/limesurvey"
+      - /mnt/ssd/databases/limesurvey
       - "{{ server_home }}/services/other/limesurvey/persistence"
       - "{{ server_home }}/services/other/limesurvey/persistence/config"
       - "{{ server_home }}/services/other/limesurvey/persistence/plugins"
       - "{{ server_home }}/services/other/limesurvey/persistence/upload"
       # LiteLLM
-      - "/mnt/ssd/cache/litellm"
-      - "/mnt/ssd/databases/litellm"
+      - /mnt/ssd/cache/litellm
+      - /mnt/ssd/databases/litellm
       # Mathesar
-      - "/mnt/ssd/databases/mathesar"
-      - "/mnt/ssd/databases/mathesar-pkms"
+      - /mnt/ssd/databases/mathesar
+      - /mnt/ssd/databases/mathesar-pkms
       - "{{ server_home }}/services/pkms/mathesar/persistence"
       - "{{ server_home }}/services/pkms/mathesar/persistence/static"
       - "{{ server_home }}/services/pkms/mathesar/persistence/media"
       # Mealie
-      - "/mnt/ssd/databases/mealie"
+      - /mnt/ssd/databases/mealie
       - "{{ server_home }}/services/inventory/mealie/persistence"
       # Meme Search
-      - "/mnt/ssd/databases/meme-search"
+      - /mnt/ssd/databases/meme-search
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/memes"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/itt-db"
       - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/models"
       # Memos
-      - "/mnt/ssd/databases/memos"
+      - /mnt/ssd/databases/memos
       - "{{ server_home }}/services/pkms/memos/persistence"
       # Minecraft
       - "{{ server_home }}/services/games/minecraft/persistence"
       # n8n
-      - "/mnt/ssd/databases/n8n"
+      - /mnt/ssd/databases/n8n
       - "{{ server_home }}/services/automation/n8n/persistence"
       - "{{ server_home }}/services/automation/n8n/persistence/config"
       - "{{ server_home }}/services/automation/n8n/persistence/files"
@@ -185,30 +194,30 @@
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/data"
       - "{{ server_home }}/services/media/storage/music/navidrome/persistence/music"
       # Nextcloud
-      - "/mnt/ssd/cache/nextcloud"
-      - "/mnt/ssd/databases/nextcloud"
+      - /mnt/ssd/cache/nextcloud
+      - /mnt/ssd/databases/nextcloud
       - "{{ server_home }}/services/media/storage/documents/nextcloud/persistence"
       - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
       # Ntfy
-      - "/opt/persistence/ntfy"
+      - /opt/persistence/ntfy
       # Obsidian LiveSync
       - "{{ server_home }}/services/pkms/obsidian/persistence"
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-data"
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-etc"
       # Ollama
-      - "/opt/persistence/ollama"
+      - /opt/persistence/ollama
       # Open WebUI
-      - "/opt/persistence/open-webui"
+      - /opt/persistence/open-webui
       # Paperless
-      - "/mnt/ssd/cache/paperless"
-      - "/mnt/ssd/databases/paperless"
+      - /mnt/ssd/cache/paperless
+      - /mnt/ssd/databases/paperless
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/consume"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/data"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/export"
       - "{{ server_home }}/services/media/storage/documents/paperless/persistence/media"
       # Photoprism
-      - "/mnt/ssd/databases/photoprism"
+      - /mnt/ssd/databases/photoprism
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence"
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/pictures"
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/storage"
@@ -222,12 +231,12 @@
       # Redis Insight
       - "{{ server_home }}/services/management/cache/redis-insight/persistence"
       # QBittorrent
-      - "/opt/persistence/qbittorrent"
+      - /opt/persistence/qbittorrent
       # Romm
-      - "/mnt/ssd/cache/romm"
-      - "/mnt/ssd/databases/romm"
-      - "/mnt/ssd/romm-library/bios"
-      - "/mnt/ssd/romm-library/roms"
+      - /mnt/ssd/cache/romm
+      - /mnt/ssd/databases/romm
+      - /mnt/ssd/romm-library/bios
+      - /mnt/ssd/romm-library/roms
       - "{{ server_home }}/services/games/romm/persistence"
       - "{{ server_home }}/services/games/romm/persistence/assets"
       - "{{ server_home }}/services/games/romm/persistence/config"
@@ -242,10 +251,10 @@
       # SearNGX
       - "{{ server_home }}/services/search/searngx/persistence"
       # SFTPGo
-      - "/mnt/ssd/databases/sftpgo"
-      - "/opt/persistence/sftpgo"
-      - "/opt/persistence/sftpgo/data"
-      - "/opt/persistence/sftpgo/home"
+      - /mnt/ssd/databases/sftpgo
+      - /opt/persistence/sftpgo
+      - /opt/persistence/sftpgo/data
+      - /opt/persistence/sftpgo/home
       # Stirling PDF
       - "{{ server_home }}/services/media/tools/stirling-pdf/persistence"
       - "{{ server_home }}/services/media/tools/stirling-pdf/persistence/configs"
@@ -255,10 +264,10 @@
       # UpSnap
       - "{{ server_home }}/services/home/upsnap/persistence"
       # Vaultwarden
-      - "/mnt/ssd/databases/vaultwarden"
+      - /mnt/ssd/databases/vaultwarden
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
       # Wakapi
-      - "/mnt/ssd/databases/wakapi"
+      - /mnt/ssd/databases/wakapi
       # Wallos
       - "{{ server_home }}/services/finances/wallos/persistence"
       - "{{ server_home }}/services/finances/wallos/persistence/db"
@@ -290,8 +299,8 @@
       - "{{ server_home }}/services/inventory/wishlist/persistence/data"
       - "{{ server_home }}/services/inventory/wishlist/persistence/uploads"
       # Shared - Media
-      - "/opt/media/movies"
-      - "/opt/media/tvshows"
+      - /opt/media/movies
+      - /opt/media/tvshows
   vars_files:
     - ../vars/main.yml
 

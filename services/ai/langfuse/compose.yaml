@@ -1,0 +1,192 @@
+# https://github.com/langfuse/langfuse
+services:
+  cache:
+    container_name: langfuse-valkey
+    command: >
+      --requirepass ${REDIS_AUTH:-myredissecret}
+      --maxmemory-policy noeviction
+    environment:
+      - VALKEY_EXTRA_FLAGS=--requirepass ${LANGFUSE_CACHE_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: langfuse-valkey
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${LANGFUSE_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/langfuse:/data
+
+  db:
+    container_name: langfuse-postgres
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LANGFUSE_DB_USERNAME}"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: langfuse-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${LANGFUSE_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/langfuse:/var/lib/postgresql/data
+
+  clickhouse:
+    container_name: langfuse-clickhouse
+    env_file: config/.env.clickhouse
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
+      interval: 5s
+      retries: 10
+      start_interval: 5s
+      start_period: 1s
+      timeout: 5s
+    hostname: langfuse-clickhouse
+    image: docker.io/clickhouse/clickhouse-server
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${LANGFUSE_CLICKHOUSE_IP}
+    ports:
+      - 8123
+      - 9000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    user: 101:101
+    volumes:
+      - /opt/persistence/langfuse/clickhouse/data:/var/lib/clickhouse
+      - /opt/persistence/langfuse/clickhouse/log:/var/log/clickhouse-server
+
+  minio:
+    # create the 'langfuse' bucket before starting the service
+    command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" --console-address ":9001" /data'
+    container_name: langfuse-minio
+    entrypoint: sh
+    env_file: config/.env.minio
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 1s
+      retries: 5
+      start_interval: 5s
+      start_period: 1s
+      timeout: 5s
+    hostname: langfuse-minio
+    image: ${LANGFUSE_MINIO_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${LANGFUSE_MINIO_IP}
+    ports:
+      - 9000
+      - 9001
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/langfuse/minio/data:/data
+
+  langfuse-worker:
+    container_name: langfuse-worker
+    depends_on: &langfuse-depends-on
+      cache:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    env_file: config/.env
+    hostname: langfuse-worker
+    image: ${LANGFUSE_WORKER_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${LANGFUSE_WORKER_IP}
+    ports:
+      - 3030
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  langfuse-web:
+    container_name: langfuse
+    depends_on: *langfuse-depends-on
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: langfuse
+    image: ${LANGFUSE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.langfuse.entrypoints=web,websecure"
+      - "traefik.http.routers.langfuse.rule=Host(`${LANGFUSE_HOST}`)"
+      - "traefik.http.routers.langfuse.tls=true"
+      # - "traefik.http.routers.langfuse.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.langfuse.tls.domains[0].main=${LANGFUSE_HOST}"
+      - "traefik.http.routers.langfuse.service=langfuse"
+      # Services
+      - "traefik.http.services.langfuse.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${LANGFUSE_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${LANGFUSE_IP}
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  internal-net:
+    name: internal-langfuse
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${LANGFUSE_NET}
+          gateway: ${LANGFUSE_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
