@@ -2,11 +2,8 @@
 services:
   cache:
     container_name: langfuse-valkey
-    command: >
-      --requirepass ${REDIS_AUTH:-myredissecret}
-      --maxmemory-policy noeviction
     environment:
-      - VALKEY_EXTRA_FLAGS=--requirepass ${LANGFUSE_CACHE_PASSWORD}
+      - VALKEY_EXTRA_FLAGS=--maxmemory-policy noeviction --requirepass ${LANGFUSE_CACHE_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 20s
@@ -59,13 +56,13 @@ services:
     env_file: config/.env.clickhouse
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
-      interval: 5s
-      retries: 10
+      interval: 20s
+      retries: 3
       start_interval: 5s
-      start_period: 1s
-      timeout: 5s
+      start_period: 60s
+      timeout: 15s
     hostname: langfuse-clickhouse
-    image: docker.io/clickhouse/clickhouse-server
+    image: ${LANGFUSE_CLICKHOUSE_IMAGE}
     logging:
       driver: json-file
       options:
@@ -92,11 +89,11 @@ services:
     env_file: config/.env.minio
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
-      interval: 1s
-      retries: 5
+      interval: 20s
+      retries: 3
       start_interval: 5s
-      start_period: 1s
-      timeout: 5s
+      start_period: 60s
+      timeout: 15s
     hostname: langfuse-minio
     image: ${LANGFUSE_MINIO_IMAGE}
     logging:
