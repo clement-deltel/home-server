@@ -28,6 +28,7 @@
         mode: 0744
       loop:
         - "/mnt/hdd/log/ai/honcho"
+        - "/mnt/hdd/log/ai/langfuse"
         - "/mnt/hdd/log/ai/litellm"
         - "/mnt/hdd/log/ai/ollama"
         - "/mnt/hdd/log/ai/open-webui"
