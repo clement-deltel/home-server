@@ -1,10 +1,11 @@
+# https://github.com/Forceu/gokapi
 services:
   gokapi:
     container_name: gokapi
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: gokapi
     image: ${GOKAPI_IMAGE}
@@ -12,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.gokapi.entrypoints=web,websecure"
-      - "traefik.http.routers.gokapi.rule=Host(`share.${DOMAIN}`)"
+      - "traefik.http.routers.gokapi.rule=Host(`${GOKAPI_HOST}`)"
       - "traefik.http.routers.gokapi.tls=true"
       # - "traefik.http.routers.gokapi.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.gokapi.tls.domains[0].main=share.${DOMAIN}"
+      # - "traefik.http.routers.gokapi.tls.domains[0].main=${GOKAPI_HOST}"
       - "traefik.http.routers.gokapi.service=gokapi"
       # Services
       - "traefik.http.services.gokapi.loadbalancer.server.port=53842"
@@ -25,17 +26,17 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${GOKAPI_IP}
     ports:
       - 53842
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/data:/app/data
-      - ./persistence/config:/app/config
+      - /opt/persistence/gokapi/data:/app/data
+      - /opt/persistence/gokapi/config:/app/config
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

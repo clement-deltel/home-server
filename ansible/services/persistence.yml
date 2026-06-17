@@ -81,20 +81,20 @@
       # Gluetun
       - /opt/persistence/gluetun
       # Gokapi
-      - "{{ server_home }}/services/media/sharing/gokapi/persistence"
-      - "{{ server_home }}/services/media/sharing/gokapi/persistence/config"
-      - "{{ server_home }}/services/media/sharing/gokapi/persistence/data"
+      - /opt/persistence/gokapi
+      - /opt/persistence/gokapi/config
+      - /opt/persistence/gokapi/data
       # Grafana
       - /mnt/ssd/databases/grafana
       - /mnt/ssd/databases/influxdb
-      - "{{ server_home }}/services/monitoring/grafana/persistence"
+      - /opt/persistence/grafana
       # Grocy
-      - "{{ server_home }}/services/inventory/grocy/persistence"
+      - /opt/persistence/grocy
       # Guacamole
       - /mnt/ssd/databases/guacamole
-      - "{{ server_home }}/services/remote/guacamole/guacd-persistence"
-      - "{{ server_home }}/services/remote/guacamole/guacd-persistence/drive"
-      - "{{ server_home }}/services/remote/guacamole/guacd-persistence/record"
+      - /opt/persistence/guacd
+      - /opt/persistence/guacd/drive
+      - /opt/persistence/guacd/record
       # Homarr
       - /opt/persistence/homarr
       - /opt/persistence/homarr/configs
@@ -111,12 +111,12 @@
       - /mnt/ssd/databases/honcho
       # HortusFox
       - /mnt/ssd/databases/hortusfox
-      - "{{ server_home }}/services/inventory/hortusfox/persistence"
-      - "{{ server_home }}/services/inventory/hortusfox/persistence/backup"
-      - "{{ server_home }}/services/inventory/hortusfox/persistence/images"
-      - "{{ server_home }}/services/inventory/hortusfox/persistence/logs"
-      - "{{ server_home }}/services/inventory/hortusfox/persistence/migrate"
-      - "{{ server_home }}/services/inventory/hortusfox/persistence/themes"
+      - /opt/persistence/hortusfox
+      - /opt/persistence/hortusfox/backup
+      - /opt/persistence/hortusfox/images
+      - /opt/persistence/hortusfox/logs
+      - /opt/persistence/hortusfox/migrate
+      - /opt/persistence/hortusfox/themes
       # Immich
       - /mnt/ssd/cache/immich
       - /mnt/ssd/databases/immich
@@ -126,7 +126,7 @@
       # Jellyfin
       - /opt/persistence/jellyfin
       # Jetlog
-      - "{{ server_home }}/services/travel/jetlog/persistence"
+      - /opt/persistence/jetlog
       # Karakeep
       - "{{ server_home }}/services/media/storage/bookmarks/karakeep/persistence"
       - "{{ server_home }}/services/media/storage/bookmarks/karakeep/meilisearch-persistence"

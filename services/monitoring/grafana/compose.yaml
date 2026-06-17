@@ -6,10 +6,10 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8086/ping"]
       interval: 20s
-      timeout: 15s
       retries: 3
-      start_period: 60s
       start_interval: 5s
+      start_period: 60s
+      timeout: 15s
     hostname: grafana-influxdb
     image: ${INFLUXDB_IMAGE}
     logging:
@@ -117,7 +117,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       # database and plugins
-      - ./persistence:/var/lib/grafana
+      - /opt/persistence/grafana:/var/lib/grafana
 
 networks:
   proxy-net:

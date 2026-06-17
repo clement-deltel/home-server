@@ -1,10 +1,11 @@
+# https://github.com/pbogre/jetlog
 services:
   jetlog:
     container_name: jetlog
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: jetlog
     image: ${JETLOG_IMAGE}
@@ -12,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.jetlog.entrypoints=web,websecure"
-      - "traefik.http.routers.jetlog.rule=Host(`fly.${DOMAIN}`)"
+      - "traefik.http.routers.jetlog.rule=Host(`${JETLOG_HOST}`)"
       - "traefik.http.routers.jetlog.tls=true"
       # - "traefik.http.routers.jetlog.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.jetlog.tls.domains[0].main=fly.${DOMAIN}"
+      # - "traefik.http.routers.jetlog.tls.domains[0].main=${JETLOG_HOST}"
       - "traefik.http.routers.jetlog.service=jetlog"
       # Services
       - "traefik.http.services.jetlog.loadbalancer.server.port=3000"
@@ -25,16 +26,16 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${JETLOG_IP}
     ports:
       - 3000
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/data
+      - /opt/persistence/jetlog:/data
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

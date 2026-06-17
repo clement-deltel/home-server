@@ -64,11 +64,11 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/images:/var/www/html/public/img
-      - ./persistence/logs:/var/www/html/app/logs
-      - ./persistence/backup:/var/www/html/public/backup
-      - ./persistence/themes:/var/www/html/public/themes
-      - ./persistence/migrate:/var/www/html/app/migrations
+      - /opt/persistence/hortusfox/images:/var/www/html/public/img
+      - /opt/persistence/hortusfox/logs:/var/www/html/app/logs
+      - /opt/persistence/hortusfox/backup:/var/www/html/public/backup
+      - /opt/persistence/hortusfox/themes:/var/www/html/public/themes
+      - /opt/persistence/hortusfox/migrate:/var/www/html/app/migrations
 
 networks:
   internal-net:
