@@ -211,11 +211,11 @@
       # Paperless
       - /mnt/ssd/cache/paperless
       - /mnt/ssd/databases/paperless
-      - "{{ server_home }}/services/media/storage/documents/paperless/persistence"
-      - "{{ server_home }}/services/media/storage/documents/paperless/persistence/consume"
-      - "{{ server_home }}/services/media/storage/documents/paperless/persistence/data"
-      - "{{ server_home }}/services/media/storage/documents/paperless/persistence/export"
-      - "{{ server_home }}/services/media/storage/documents/paperless/persistence/media"
+      - /opt/persistence/paperless
+      - /opt/persistence/paperless/consume
+      - /opt/persistence/paperless/data
+      - /opt/persistence/paperless/export
+      - /opt/persistence/paperless/media
       # Photoprism
       - /mnt/ssd/databases/photoprism
       - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence"

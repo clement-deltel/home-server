@@ -1,19 +1,16 @@
-# - Instead of SQLite (default), MariaDB is used as the database server.
-# - Apache Tika and Gotenberg servers are started with paperless and paperless
-#   is configured to use these services. These provide support for consuming
-#   Office documents (Word, Excel, Power Point and their LibreOffice counter-
-#   parts.
 # https://github.com/paperless-ngx/paperless-ngx
 services:
   cache:
     container_name: paperless-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--maxmemory-policy noeviction --requirepass ${PAPERLESS_CACHE_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 20s
-      timeout: 15s
       retries: 3
-      start_period: 60s
       start_interval: 5s
+      start_period: 60s
+      timeout: 15s
     hostname: paperless-valkey
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
@@ -30,17 +27,17 @@ services:
       - /mnt/ssd/cache/paperless:/data
 
   db:
-    container_name: paperless-mariadb
+    container_name: paperless-postgres
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${PAPERLESS_DB_ROOT_PASSWORD}"]
+      test: ["CMD-SHELL", "pg_isready -U ${PAPERLESS_DB_USER}"]
       interval: 20s
-      timeout: 15s
       retries: 3
-      start_period: 60s
       start_interval: 5s
-    hostname: paperless-mariadb
-    image: ${DEFAULT_DB_IMAGE}
+      start_period: 60s
+      timeout: 15s
+    hostname: paperless-postgres
+    image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
       options:
@@ -52,7 +49,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/paperless:/var/lib/mysql
+      - /mnt/ssd/databases/paperless:/var/lib/postgresql/data
 
   gotenberg:
     # The gotenberg chromium route is used to convert .eml files. We do not
@@ -88,11 +85,10 @@ services:
     stop_grace_period: 30s
 
   paperless:
-    # createsuperuser --noinput --username "${PAPERLESS_ADMIN_USER}" --email "${USER_EMAIL}"
     container_name: paperless
     depends_on:
       cache:
-        condition: service_started
+        condition: service_healthy
       db:
         condition: service_healthy
       gotenberg:
@@ -139,10 +135,10 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/consume:/usr/src/paperless/consume
-      - ./persistence/data:/usr/src/paperless/data
-      - ./persistence/export:/usr/src/paperless/export
-      - ./persistence/media:/usr/src/paperless/media
+      - /opt/persistence/paperless/consume:/usr/src/paperless/consume
+      - /opt/persistence/paperless/data:/usr/src/paperless/data
+      - /opt/persistence/paperless/export:/usr/src/paperless/export
+      - opt/persistence/paperless/media:/usr/src/paperless/media
 
 networks:
   internal-net:
