@@ -45,6 +45,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Backup](#backup-1)
   - [Containers](#containers)
   - [Dashboard](#dashboard-1)
+  - [Databases](#databases)
   - [DNS](#dns-1)
   - [Finances](#finances-1)
   - [Fitness](#fitness)
@@ -293,6 +294,12 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Heimdall](https://heimdall.site) - application dashboard and launcher. ([Source Code](https://github.com/linuxserver/Heimdall)) `PHP`
 - [Organizr](https://demo.organizr.app) - HTPC/Homelab Services Organizer - Written in PHP. ([Source Code](https://github.com/causefx/Organizr)) `PHP` `JavaScript`
 - [Trala](https://www.trala.fyi) -  simple, modern, and dynamic dashboard for your Traefik services. ([Source Code](https://github.com/dannybouwers/trala)) `Go`
+
+### Databases
+
+- [milvus](https://milvus.io) - high-performance, cloud-native vector database built for scalable vector ANN search. ([Source Code](https://github.com/milvus-io/milvus)) `Go` `Python` `C++`
+- [qdrant](https://qdrant.tech) - high-performance, massive-scale vector database and vector search engine for the next generation of AI. ([Source Code](https://github.com/qdrant/qdrant)) `Rust`
+- [weaviate](https://weaviate.io/developers/weaviate) - vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​. ([Source Code](https://github.com/weaviate/weaviate)) `Go`
 
 ### DNS
 
