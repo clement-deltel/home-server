@@ -1,0 +1,56 @@
+# https://github.com/NousResearch/hermes-agent
+services:
+  hermes:
+    container_name: hermes
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: hermes
+    image: ${HERMES_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      # API
+      - "traefik.http.routers.hermes-api.entrypoints=web,websecure"
+      - "traefik.http.routers.hermes-api.rule=Host(`${HERMES_API_HOST}`)"
+      - "traefik.http.routers.hermes-api.tls=true"
+      # - "traefik.http.routers.hermes-api.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.hermes-api.tls.domains[0].main=${HERMES_API_HOST}"
+      - "traefik.http.routers.hermes-api.service=hermes"
+      # Dashboard
+      - "traefik.http.routers.hermes-dashboard.entrypoints=web,websecure"
+      - "traefik.http.routers.hermes-dashboard.rule=Host(`${HERMES_DASHBOARD_HOST}`)"
+      - "traefik.http.routers.hermes-dashboard.tls=true"
+      # - "traefik.http.routers.hermes-dashboard.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.hermes-dashboard.tls.domains[0].main=${HERMES_DASHBOARD_HOST}"
+      - "traefik.http.routers.hermes-dashboard.service=hermes"
+      # Services
+      - "traefik.http.services.hermes-api.loadbalancer.server.port=8642"
+      - "traefik.http.services.hermes-dashboard.loadbalancer.server.port=9119"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${HERMES_IP}
+      ai-net:
+        ipv4_address: ${HERMES_AI_IP}
+    ports:
+      - 8642
+      - 9119
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/hermes:/data
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net
+  ai-net:
+    external: true
+    name: ai-net

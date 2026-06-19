@@ -184,6 +184,7 @@ gokapi_enable: true
 grafana_enable: true
 grocy_enable: true
 guacamole_enable: true
+hermes_enable: true
 homebox_enable: true
 homer_enable: true
 home_assistant_enable: true

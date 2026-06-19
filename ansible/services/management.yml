@@ -28,6 +28,7 @@
       - { when: grafana_enable, project_src: '{{ server_home }}/services/monitoring/grafana' }
       - { when: grocy_enable, project_src: '{{ server_home }}/services/inventory/grocy' }
       - { when: guacamole_enable, project_src: '{{ server_home }}/services/remote/guacamole' }
+      - { when: hermes_enable, project_src: '{{ server_home }}/services/ai/hermes' }
       - { when: homarr_enable, project_src: '{{ server_home }}/services/dashboard/homarr' }
       - { when: homebox_enable, project_src: '{{ server_home }}/services/inventory/homebox' }
       - { when: homer_enable, project_src: '{{ server_home }}/services/dashboard/homer' }

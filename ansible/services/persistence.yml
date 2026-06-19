@@ -95,6 +95,8 @@
       - /opt/persistence/guacd
       - /opt/persistence/guacd/drive
       - /opt/persistence/guacd/record
+      # Hermes
+      - /opt/persistence/hermes
       # Homarr
       - /opt/persistence/homarr
       - /opt/persistence/homarr/configs

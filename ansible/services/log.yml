@@ -27,6 +27,7 @@
         group: docker
         mode: 0744
       loop:
+        - "/mnt/hdd/log/ai/hermes"
         - "/mnt/hdd/log/ai/honcho"
         - "/mnt/hdd/log/ai/langfuse"
         - "/mnt/hdd/log/ai/litellm"

@@ -222,6 +222,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Artificial Intelligence
 
+- [Hermes](https://hermes-agent.nousresearch.com) - the agent that grows with you. ([Source Code](https://github.com/NousResearch/hermes-agent)) `Python` `TypeScript`
 - [Honcho](https://docs.honcho.dev) - memory library for building stateful agents. ([Source Code](https://github.com/plastic-labs/honcho)) `Python`
 - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. ([Source Code](https://github.com/BerriAI/litellm)) `Python`
 - [Ollama](https://ollama.com) - get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. ([Source Code](https://github.com/ollama/ollama)) `Go`
