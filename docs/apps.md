@@ -226,6 +226,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Honcho](https://docs.honcho.dev) - memory library for building stateful agents. ([Source Code](https://github.com/plastic-labs/honcho)) `Python`
 - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. ([Source Code](https://github.com/BerriAI/litellm)) `Python`
 - [Ollama](https://ollama.com) - get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. ([Source Code](https://github.com/ollama/ollama)) `Go`
+- [OpenConcho](https://github.com/offendingcommit/openconcho) - privacy-first desktop & web UI for self-hosted Honcho, browse memories, peers, sessions, conclusions, and chat with memory context. ([Source Code](https://github.com/offendingcommit/openconcho)) `TypeScript`
 - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). ([Source Code](https://github.com/open-webui/open-webui)) `JavaScript` `Svelte` `Python`
 
 ### Automation
@@ -300,6 +301,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [milvus](https://milvus.io) - high-performance, cloud-native vector database built for scalable vector ANN search. ([Source Code](https://github.com/milvus-io/milvus)) `Go` `Python` `C++`
 - [qdrant](https://qdrant.tech) - high-performance, massive-scale vector database and vector search engine for the next generation of AI. ([Source Code](https://github.com/qdrant/qdrant)) `Rust`
+- [turso](https://github.com/tursodatabase/turso) - in-process SQL database, compatible with SQLite ([Source Code](https://github.com/tursodatabase/turso)). `Rust`
 - [weaviate](https://weaviate.io/developers/weaviate) - vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​. ([Source Code](https://github.com/weaviate/weaviate)) `Go`
 
 ### DNS

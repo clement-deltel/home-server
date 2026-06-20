@@ -13,6 +13,7 @@ deb_architecture: { "armv6l": "armhf", "armv7l": "armhf", "aarch64": "arm64", "x
 # ---------------------------------------------------------------------------- #
 apt_repositories:
 - ppa:jonmagon/kdiskmark
+- ppa:libretro/stable
 
 apt_packages:
 # Databases
@@ -21,6 +22,8 @@ apt_packages:
 - postgresql-client-common   # execute PostgreSQL backups for multiple services
 - postgresql-client-14
 - postgresql-client-15
+# Games
+- retroarch
 # Hardware Utilities
 - kdiskmark                  # disk benchmark tool
 - lm-sensors                 # tool to monitor sensors temperature
@@ -57,6 +60,17 @@ apt_packages:
 # Dependencies
 - apache2-utils              # htpasswd utility
 - curl                       # command line tool for transferring data with URL syntax
+- libxcb-cursor0
+- libxcb-icccm4
+- libxcb-image0
+- libxcb-keysyms1
+- libxcb-randr0
+- libxcb-shape0
+- libxcb-shm0
+- libxcb-sync1
+- libxcb-xinerama0
+- qt6-wayland
+- qtwayland5
 - software-properties-common # manage the repositories that you install software from
 - unzip                      # de-archiver for .zip files
 - zip                        # archiver for .zip files
@@ -207,6 +221,7 @@ navidrome_enable: true
 ntfy_enable: true
 obsidian_enable: true
 ollama_enable: true
+openconcho_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true

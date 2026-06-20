@@ -1,0 +1,39 @@
+# https://github.com/offendingcommit/openconcho
+services:
+  openconcho:
+    container_name: openconcho
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: openconcho
+    image: ${OPENCONCHO_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.openconcho.entrypoints=web,websecure"
+      - "traefik.http.routers.openconcho.rule=Host(`${OPENCONCHO_HOST}`)"
+      - "traefik.http.routers.openconcho.tls=true"
+      # - "traefik.http.routers.openconcho.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.openconcho.tls.domains[0].main=${OPENCONCHO_HOST}"
+      - "traefik.http.routers.openconcho.service=openconcho"
+      # Services
+      - "traefik.http.services.openconcho.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${OPENCONCHO_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net
