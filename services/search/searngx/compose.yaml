@@ -1,41 +1,86 @@
+# https://github.com/searxng/searxng
 services:
-  searngx:
-    # https://github.com/searxng/searxng
-    container_name: searngx
+  cache:
+    container_name: searxng-valkey
+    environment:
+      - VALKEY_EXTRA_FLAGS=--loglevel warning --requirepass ${SEARXNG_CACHE_PASSWORD} --save 30 1
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: searxng-valkey
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${SEARXNG_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/searxng:/data
+
+  searxng:
+    container_name: searxng
+    depends_on:
+      cache:
+        condition: service_healthy
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
     env_file: config/.env
-    hostname: searngx
-    image: ${SEARNGX_IMAGE}
+    hostname: searxng
+    image: ${SEARXNG_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.searngx.entrypoints=web,websecure"
-      - "traefik.http.routers.searngx.rule=Host(`search.${DOMAIN}`)"
-      - "traefik.http.routers.searngx.tls=true"
-      # - "traefik.http.routers.searngx.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.searngx.tls.domains[0].main=search.${DOMAIN}"
-      - "traefik.http.routers.searngx.service=searngx"
+      - "traefik.http.routers.searxng.entrypoints=web,websecure"
+      - "traefik.http.routers.searxng.rule=Host(`${SEARXNG_HOST}`)"
+      - "traefik.http.routers.searxng.tls=true"
+      # - "traefik.http.routers.searxng.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.searxng.tls.domains[0].main=${SEARXNG_HOST}"
+      - "traefik.http.routers.searxng.service=searxng"
       # Services
-      - "traefik.http.services.searngx.loadbalancer.server.port=8080"
+      - "traefik.http.services.searxng.loadbalancer.server.port=8080"
     logging:
       driver: json-file
       options:
         max-file: 5
         max-size: 10m
     networks:
-      traefik-net:
-        ipv4_address: ${SEARNGX_IP}
+      internal-net:
+        ipv4_address: ${SEARXNG_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${SEARXNG_IP}
+      ai-net:
+        ipv4_address: ${SEARXNG_AI_IP}
     ports:
       - 8080
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/searngx/data
+      - /opt/persistence/searxng/config:/etc/searxng
+      - /opt/persistence/searxng/data:/var/cache/searxng
 
 networks:
-  traefik-net:
+  internal-net:
+    name: internal-searxng
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SEARXNG_NET}
+          gateway: ${SEARXNG_GATEWAY}
+  proxy-net:
     external: true
     name: traefik-net
+  ai-net:
+    external: true
+    name: ai-net

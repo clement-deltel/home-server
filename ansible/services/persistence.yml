@@ -251,7 +251,9 @@
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
       # SearNGX
-      - "{{ server_home }}/services/search/searngx/persistence"
+      - /opt/persistence/searxng
+      - /opt/persistence/searxng/config
+      - /opt/persistence/searxng/data
       # SFTPGo
       - /mnt/ssd/databases/sftpgo
       - /opt/persistence/sftpgo
