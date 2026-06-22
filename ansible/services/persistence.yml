@@ -60,6 +60,13 @@
       # Enclosed
       - /opt/persistence/enclosed
       - "{{ server_home }}/services/security/enclosed/persistence"
+      # Firecrawl
+      - /mnt/ssd/cache/firecrawl
+      - /mnt/ssd/databases/firecrawl
+      - /opt/persistence/firecrawl
+      - /opt/persistence/firecrawl/broker
+      - /opt/persistence/firecrawl/fdb-cluster
+      - /opt/persistence/firecrawl/fdb-data
       # Forgejo
       - /mnt/ssd/cache/forgejo
       - /mnt/ssd/databases/forgejo
@@ -414,9 +421,12 @@
         regexp: '(^\s*)# -'
         replace: '\1-'
       loop:
+        - "{{ server_home }}/services/ai/hermes/compose.yaml"
         - "{{ server_home }}/services/ai/honcho/compose.yaml"
+        - "{{ server_home }}/services/ai/langfuse/compose.yaml"
         - "{{ server_home }}/services/ai/litellm/compose.yaml"
         - "{{ server_home }}/services/ai/open-webui/compose.yaml"
+        - "{{ server_home }}/services/ai/openconcho/compose.yaml"
         - "{{ server_home }}/services/automation/n8n/compose.yaml"
         - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
         - "{{ server_home }}/services/dashboard/homer/compose.yaml"
@@ -471,6 +481,7 @@
         - "{{ server_home }}/services/remote/guacamole/compose.yaml"
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+        - "{{ server_home }}/services/search/firecrawl/compose.yaml"
         - "{{ server_home }}/services/search/searngx/compose.yaml"
         - "{{ server_home }}/services/security/authentik/compose.yaml"
         # no labels for security/crowdsec
