@@ -251,6 +251,7 @@
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
       # SearNGX
+      - /mnt/ssd/cache/searngx
       - /opt/persistence/searxng
       - /opt/persistence/searxng/config
       - /opt/persistence/searxng/data
