@@ -1,5 +1,4 @@
-# Upstream: https://github.com/firecrawl/firecrawl
-
+# https://github.com/firecrawl/firecrawl
 services:
   broker:
     command: rabbitmq-server
