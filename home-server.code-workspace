@@ -46,12 +46,14 @@
         "files.trimTrailingWhitespace": true,
         // Extension - Code Spell Checker
         "cSpell.words": [
+            "airtable",
             "appsec",
             "asus",
             "authentik",
             "bento",
             "bentopdf",
             "bleve",
+            "camofox",
             "chipset",
             "clickhouse",
             "codeberg",
@@ -63,7 +65,9 @@
             "diun",
             "dozzle",
             "fcgi",
+            "firecrawl",
             "forgejo",
+            "foundationdb",
             "fowner",
             "gbps",
             "gitea",
@@ -75,6 +79,7 @@
             "idletime",
             "igdb",
             "imgproxy",
+            "iperf",
             "kdiskmark",
             "lnav",
             "logflare",
@@ -85,7 +90,6 @@
             "pinry",
             "pooler",
             "postgrest",
-            "procs",
             "qbittorrent",
             "realtek",
             "requirepass",
@@ -106,7 +110,8 @@
             "tesseract",
             "timetracking",
             "umami",
-            "valkey"
+            "webdav",
+            "whois"
         ],
         // Extension - Git
         "git.allowForcePush": true,

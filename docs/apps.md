@@ -522,14 +522,14 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Project Management
 
 - [kaneo](https://kaneo.app) - open source project management. ([Source Code](https://github.com/usekaneo/kaneo)) `TypeScript`
-- [Rustical](https://lennart-k.github.io/rustical) - calendar server aiming to be simple, fast and passwordless. ([Source Code](https://github.com/lennart-k/rustical)) `Rust`
+- [Rustical](https://lennart-k.github.io/rustical) - calendar server aiming to be simple, fast and password-less. ([Source Code](https://github.com/lennart-k/rustical)) `Rust`
 - [Worklenz](https://worklenz.com) - all in one project management tool for efficient teams. ([Source Code](https://github.com/Worklenz/worklenz)) `TypeScript` `JavaScript`
 
 ### Proxy
 
 - [NPMPlus](https://github.com/ZoeyVid/NPMplus) - fork of nginx-proxy-manager. ([Source Code](https://github.com/ZoeyVid/NPMplus)) `TypeScript` `JavaScript`
 - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. ([Source Code](https://github.com/fosrl/pangolin)) `TypeScript`
-- [Traefik Log Dashboard](https://github.com/hhftechnology/traefik-log-dashboard) - real-time dashboard for analyzing Traefik logs with IP geolocation, status code analysis, and service metrics. ([Source Code](https://github.com/hhftechnology/traefik-log-dashboard)) `TypeScript` `Go`
+- [Traefik Log Dashboard](https://github.com/hhftechnology/traefik-log-dashboard) - real-time dashboard for analyzing Traefik logs with IP geo location, status code analysis, and service metrics. ([Source Code](https://github.com/hhftechnology/traefik-log-dashboard)) `TypeScript` `Go`
 
 ### Remote
 
