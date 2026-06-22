@@ -1,0 +1,30 @@
+# https://github.com/jo-inc/camofox-browser
+services:
+  camofox:
+    container_name: camofox
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: camofox
+    image: ${CAMOFOX_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      ai-net:
+        ipv4_address: ${CAMOFOX_AI_IP}
+    ports:
+      - 9377
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/camofox:/home/node/.camofox
+
+networks:
+  ai-net:
+    external: true
+    name: ai-net

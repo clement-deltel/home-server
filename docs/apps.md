@@ -149,6 +149,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Search
 
+- [Camofox](https://github.com/jo-inc/camofox-browser) - stealth headless browser for AI agents, bypass Cloudflare, bot detection, and anti-scraping. ([Source Code](https://github.com/jo-inc/camofox-browser)) `JavaScript`
 - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. ([Source Code](https://github.com/searxng/searxng)) `Python`
 
 ### Media Storage

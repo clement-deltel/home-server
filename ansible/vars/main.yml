@@ -182,6 +182,7 @@ adventurelog_enable: true
 authentik_enable: true
 bento_pdf_enable: true
 bytestash_enable: true
+camofox_enable: true
 change_detection_enable: true
 convertx_enable: true
 crowdsec_enable: true
