@@ -6,7 +6,6 @@ services:
       - 127.0.0.1
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
-    env_file: config/.env
     hostname: excalidraw
     image: ${EXCALIDRAW_IMAGE}
     labels:
@@ -28,6 +27,8 @@ services:
     networks:
       proxy-net:
         ipv4_address: ${EXCALIDRAW_IP}
+    ports:
+      - 80
     restart: always
     stop_grace_period: 30s
 
