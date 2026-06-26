@@ -218,6 +218,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Personal Knowledge Management System (PKMS)
 
 - [Affine](https://affine.pro) - knowledge base that brings planning, sorting, creating all together. Privacy first and open-source. ([Source Code](https://github.com/toeverything/AFFiNE)) `TypeScript`
+- [Excalidraw](https://excalidraw.com) - virtual whiteboard for sketching hand-drawn like diagrams. ([Source Code](https://github.com/excalidraw/excalidraw)) `TypeScript`
 - [Mathesar](https://mathesar.org) - spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. ([Source Code](https://github.com/mathesar-foundation/mathesar)) `Svelte` `TypeScript` `Python`
 - [Memos](https://github.com/usememos/memos) - note-taking service, your thoughts, your data, your control — no tracking, no ads, no subscription fees. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`
 - [Siyuan](https://b3log.org/siyuan/en) - privacy-first, self-hosted, fully open source personal knowledge management software. ([Source Code](https://github.com/siyuan-note/siyuan)) `TypeScript` `Go`
@@ -510,7 +511,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [BookStack](https://www.bookstackapp.com) - platform to create documentation/wiki content. ([Source Code](https://github.com/BookStackApp/BookStack)) `PHP` `TypeScript`
 - [Docs](https://github.com/suitenumerique/docs) - collaborative note taking, wiki and documentation platform that scales. ([Source Code](https://github.com/suitenumerique/docs)) `Python` `TypeScript`
 - [Epicenter](https://epicenter.so) - open-source, local-first apps. ([Source Code](https://github.com/EpicenterHQ/epicenter)) `TypeScript` `Svelte`
-- [Excalidraw](https://excalidraw.com) - virtual whiteboard for sketching hand-drawn like diagrams. ([Source Code](https://github.com/excalidraw/excalidraw)) `TypeScript`
 - [Grist](https://www.getgrist.com) - modern relational spreadsheet. ([Source Code](https://github.com/gristlabs/grist-core)) `TypeScript` `Python`
 - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. ([Source Code](https://github.com/laurent22/joplin)) `TypeScript` `JavaScript`
 - [Memos](https://www.usememos.com) - knowledge management and note-taking platform designed for privacy-conscious users and organizations. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`

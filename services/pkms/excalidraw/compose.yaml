@@ -1,0 +1,37 @@
+# https://github.com/excalidraw/excalidraw
+services:
+  excalidraw:
+    container_name: excalidraw
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: excalidraw
+    image: ${EXCALIDRAW_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.excalidraw.entrypoints=web,websecure"
+      - "traefik.http.routers.excalidraw.rule=Host(`${EXCALIDRAW_HOST}`)"
+      - "traefik.http.routers.excalidraw.tls=true"
+      # - "traefik.http.routers.excalidraw.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.excalidraw.tls.domains[0].main=${EXCALIDRAW_HOST}"
+      - "traefik.http.routers.excalidraw.service=excalidraw"
+      # Services
+      - "traefik.http.services.excalidraw.loadbalancer.server.port=80"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${EXCALIDRAW_IP}
+    restart: always
+    stop_grace_period: 30s
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net

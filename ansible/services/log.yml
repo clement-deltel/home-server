@@ -89,6 +89,7 @@
         - /mnt/hdd/log/monitoring/scrutiny
         - /mnt/hdd/log/other/limesurvey
         - /mnt/hdd/log/pkms/affine
+        - /mnt/hdd/log/pkms/excalidraw
         - /mnt/hdd/log/pkms/mathesar
         - /mnt/hdd/log/pkms/memos
         - /mnt/hdd/log/pkms/obsidian

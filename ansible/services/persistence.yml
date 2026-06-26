@@ -474,6 +474,7 @@
         - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
         - "{{ server_home }}/services/other/limesurvey/compose.yaml"
         - "{{ server_home }}/services/pkms/affine/compose.yaml"
+        - "{{ server_home }}/services/pkms/excalidraw/compose.yaml"
         - "{{ server_home }}/services/pkms/mathesar/compose.yaml"
         - "{{ server_home }}/services/pkms/memos/compose.yaml"
         - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
