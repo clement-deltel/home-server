@@ -1,0 +1,89 @@
+# https://github.com/lfnovo/open-notebook
+services:
+  surrealdb:
+    command: start --log info --user ${OPEN_NOTEBOOK_SURREAL_USERNAME} --pass ${OPEN_NOTEBOOK_SURREAL_PASSWORD} rocksdb:/mydata/mydatabase.db
+    container_name: open-notebook-surrealdb
+    env_file: config/.env
+    hostname: surrealdb
+    image: ${SURREALDB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${OPEN_NOTEBOOK_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    user: root  # Required for bind mounts on Linux
+    volumes:
+      - /mnt/ss/databases/open-notebook:/mydata
+
+  open_notebook:
+    container_name: open-notebook
+    depends_on:
+      surrealdb:
+        condition: service_started
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: open-notebook
+    image: ${OPEN_NOTEBOOK_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      # WebUI
+      - "traefik.http.routers.open-notebook.entrypoints=web,websecure"
+      - "traefik.http.routers.open-notebook.rule=Host(`${OPEN_NOTEBOOK_HOST}`)"
+      - "traefik.http.routers.open-notebook.tls=true"
+      # - "traefik.http.routers.open-notebook.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.open-notebook.tls.domains[0].main=${OPEN_NOTEBOOK_HOST}"
+      - "traefik.http.routers.open-notebook.service=open-notebook"
+      # REST API
+      - "traefik.http.routers.open-notebook-api.entrypoints=web,websecure"
+      - "traefik.http.routers.open-notebook-api.rule=Host(`${OPEN_NOTEBOOK_API_HOST}`)"
+      - "traefik.http.routers.open-notebook-api.tls=true"
+      # - "traefik.http.routers.open-notebook-api.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.open-notebook-api.tls.domains[0].main=${OPEN_NOTEBOOK_API_HOST}"
+      - "traefik.http.routers.open-notebook-api.service=open-notebook"
+      # Services
+      - "traefik.http.services.open-notebook.loadbalancer.server.port=8502"
+      - "traefik.http.services.open-notebook-api.loadbalancer.server.port=5055"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${OPEN_NOTEBOOK_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${OPEN_NOTEBOOK_IP}
+      ai-net:
+        ipv4_address: ${OPEN_NOTEBOOK_AI_IP}
+    ports:
+      - 8502
+      - 5055
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/open-notebook:/app/data
+
+networks:
+  internal-net:
+    name: internal-open-notebook
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${OPEN_NOTEBOOK_NET}
+          gateway: ${OPEN_NOTEBOOK_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
+  ai-net:
+    external: true
+    name: ai-net

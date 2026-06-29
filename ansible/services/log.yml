@@ -33,6 +33,7 @@
         - /mnt/hdd/log/ai/litellm
         - /mnt/hdd/log/ai/ollama
         - /mnt/hdd/log/ai/openconcho
+        - /mnt/hdd/log/ai/open-notebook
         - /mnt/hdd/log/ai/open-webui
         - /mnt/hdd/log/automation/n8n
         - /mnt/hdd/log/backup/kopia

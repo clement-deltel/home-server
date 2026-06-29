@@ -225,6 +225,7 @@ ntfy_enable: true
 obsidian_enable: true
 ollama_enable: true
 openconcho_enable: true
+open_notebook_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true

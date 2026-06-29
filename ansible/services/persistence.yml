@@ -215,6 +215,8 @@
       - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-etc"
       # Ollama
       - /opt/persistence/ollama
+      # Open Notebook
+      - /opt/persistence/open-notebook
       # Open WebUI
       - /opt/persistence/open-webui
       # Paperless
@@ -425,6 +427,7 @@
         - "{{ server_home }}/services/ai/honcho/compose.yaml"
         - "{{ server_home }}/services/ai/langfuse/compose.yaml"
         - "{{ server_home }}/services/ai/litellm/compose.yaml"
+        - "{{ server_home }}/services/ai/open-notebook/compose.yaml"
         - "{{ server_home }}/services/ai/open-webui/compose.yaml"
         - "{{ server_home }}/services/ai/openconcho/compose.yaml"
         - "{{ server_home }}/services/automation/n8n/compose.yaml"

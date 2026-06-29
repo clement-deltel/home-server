@@ -52,6 +52,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Games](#games-1)
   - [Health](#health)
   - [Home Automation](#home-automation-1)
+    - [Home Assistant](#home-assistant)
   - [Inventory](#inventory-1)
   - [Location \& Travel](#location--travel)
   - [Mail](#mail)
@@ -230,6 +231,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. ([Source Code](https://github.com/BerriAI/litellm)) `Python`
 - [Ollama](https://ollama.com) - get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models. ([Source Code](https://github.com/ollama/ollama)) `Go`
 - [OpenConcho](https://github.com/offendingcommit/openconcho) - privacy-first desktop & web UI for self-hosted Honcho, browse memories, peers, sessions, conclusions, and chat with memory context. ([Source Code](https://github.com/offendingcommit/openconcho)) `TypeScript`
+- [Open Notebook](https://www.open-notebook.ai) - open source implementation of NotebookLM with more flexibility and features. ([Source Code](https://github.com/lfnovo/open-notebook)) `TypeScript` `Python`
 - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). ([Source Code](https://github.com/open-webui/open-webui)) `JavaScript` `Svelte` `Python`
 
 ### Automation
@@ -275,6 +277,8 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [firecrawl](https://firecrawl.dev) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [odysseus](https://pewdiepie-archdaemon.github.io/odysseus) - self-hosted AI workspace. ([Source Code](https://github.com/pewdiepie-archdaemon/odysseus)) `Python` `JavaScript`
 - [onyx](https://onyx.app) - AI platform / chat with advanced features that works with every LLM. ([Source Code](https://github.com/onyx-dot-app/onyx)) `Python` `TypeScript`
+- [Surf Sense](https://www.surfsense.com) - open source, privacy focused alternative to NotebookLM for teams with no data limits. ([Source Code](https://github.com/MODSetter/SurfSense)) `Python` `TypeScript`
+- [twenty](https://twenty.com) - open alternative to Salesforce, designed for AI. ([Source Code](https://github.com/twentyhq/twenty)) `TypeScript`
 
 ### Backup
 
@@ -356,6 +360,11 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Wakezilla](https://github.com/guibeira/wakezilla) - simple Wake-on-LAN & reverse proxy toolkit — wake, route, and control your machines from anywhere. ([Source Code](https://github.com/guibeira/wakezilla)) `Rust`
 - [Wol](https://github.com/Trugamr/wol) - Wake-On-LAN tool that works via CLI and web interface. ([Source Code](https://github.com/Trugamr/wol)) `Go`
+
+#### Home Assistant
+
+- [hacs_waste_collection_schedule](https://github.com/mampfes/hacs_waste_collection_schedule) - Home Assistant integration framework for garbage collection schedules. ([Source Code](https://github.com/mampfes/hacs_waste_collection_schedule)) `Python`
+- [versatile_thermostat](https://www.versatile-thermostat.org) - full featured thermostat for Home Assistant: presets, window, motion, presence and overpowering management. ([Source Code](https://github.com/jmcollin78/versatile_thermostat)) `Python`
 
 ### Inventory
 
@@ -460,6 +469,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Ampache](https://ampache.org) - web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device. ([Source Code](https://github.com/ampache/ampache)) `PHP`
 - [Finamp (Jellyfin music client for mobile)](https://github.com/jmshrv/finamp)
 - [Koel](https://koel.dev) - a personal music streaming server that works. ([Source Code](https://github.com/koel/koel)) `PHP` `TypeScript`
+- [Navispot](https://github.com/betsha1830/navispot) - export Spotify playlists to Navidrome. ([Source Code](https://github.com/betsha1830/navispot)) `TypeScript`
 
 #### News
 
@@ -469,6 +479,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [BitPlay](https://github.com/aculix/bitplay) - stream video torrents in your web browser with ease. ([Source Code](https://github.com/aculix/bitplay)) `Go`
 - [Kodi](https://kodi.tv) - open source home theater/media center software and entertainment hub for digital media. ([Source Code](https://github.com/xbmc/xbmc)) `C++`
+- [PeerTube](https://joinpeertube.org) - activity pub-federated video streaming platform using P2P directly in your web browser. ([Source Code](https://github.com/Chocobozzz/PeerTube)) `TypeScript`
 - [Plex](https://www.plex.tv) - Plex Media Server Docker repo, for all your PMS docker needs. ([Source Code](https://github.com/plexinc/pms-docker))
 - [Streamyfin](https://streamyfin.app) - modern Jellyfin client. ([Source Code](https://github.com/streamyfin/streamyfin)) `TypeScript`
 - [Streamystats](https://github.com/fredrikburmester/streamystats) - statistics service for Jellyfin, providing analytics and data visualization. ([Source Code](https://github.com/fredrikburmester/streamystats)) `TypeScript`
@@ -498,8 +509,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. ([Source Code](https://github.com/keephq/keep)) `Python` `TypeScript`
 - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. ([Source Code](https://github.com/librespeed/speedtest)) `PHP` `JavaScript`
 - [NetAlertX](https://netalertx.com/) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. ([Source Code](https://github.com/jokob-sk/NetAlertX)) `JavaScript` `Python` `PHP`
+- [OpenSEO](https://openseo.so) - open source alternative to Semrush and Ahrefs. ([Source Code](https://github.com/every-app/open-seo)) `TypeScript`
 - [Scanopy](https://scanopy.net) - clean network diagrams. ([Source Code](https://github.com/scanopy/scanopy)) `Rust` `Svelte`
 - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. ([Source Code](https://github.com/SigNoz/signoz)) `TypeScript` `Go`
+- [Tapmap](https://olalie.github.io/tapmap) - watch your computer connect across the internet in real time. ([Source Code](https://github.com/olalie/tapmap)) `Python`
 - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. ([Source Code](https://github.com/louislam/uptime-kuma)) `JavaScript` `Vue`
 - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) - lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history. ([Source Code](https://github.com/aceberg/WatchYourLAN)) `TypeScript` `Go`
 - [Znail](https://github.com/znailnetem/znail) - network emulator intended to run on a Raspberry Pi. ([Source Code](https://github.com/znailnetem/znail)) `Python`
@@ -512,6 +525,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Docs](https://github.com/suitenumerique/docs) - collaborative note taking, wiki and documentation platform that scales. ([Source Code](https://github.com/suitenumerique/docs)) `Python` `TypeScript`
 - [Epicenter](https://epicenter.so) - open-source, local-first apps. ([Source Code](https://github.com/EpicenterHQ/epicenter)) `TypeScript` `Svelte`
 - [Grist](https://www.getgrist.com) - modern relational spreadsheet. ([Source Code](https://github.com/gristlabs/grist-core)) `TypeScript` `Python`
+- [Ignis](https://github.com/Nystik-gh/ignis) - run obsidian as a self-hosted web app. ([Source Code](https://github.com/Nystik-gh/ignis)) `JavaScript`
 - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. ([Source Code](https://github.com/laurent22/joplin)) `TypeScript` `JavaScript`
 - [Memos](https://www.usememos.com) - knowledge management and note-taking platform designed for privacy-conscious users and organizations. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`
 - [NocoDB](https://nocodb.com) - open source Airtable alternative. ([Source Code](https://github.com/nocodb/nocodb)) `TypeScript` `Vue`
@@ -527,6 +541,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Proxy
 
+- [NetBird](https://netbird.io) - connect your devices into a secure WireGuard-based overlay network with SSO, MFA and granular access controls. ([Source Code](https://github.com/netbirdio/netbird)) `Go`
 - [NPMPlus](https://github.com/ZoeyVid/NPMplus) - fork of nginx-proxy-manager. ([Source Code](https://github.com/ZoeyVid/NPMplus)) `TypeScript` `JavaScript`
 - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. ([Source Code](https://github.com/fosrl/pangolin)) `TypeScript`
 - [Traefik Log Dashboard](https://github.com/hhftechnology/traefik-log-dashboard) - real-time dashboard for analyzing Traefik logs with IP geo location, status code analysis, and service metrics. ([Source Code](https://github.com/hhftechnology/traefik-log-dashboard)) `TypeScript` `Go`
@@ -544,6 +559,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Search
 
 - [Chibisafe](https://chibisafe.app) - blazing fast file vault. ([Source Code](https://github.com/chibisafe/chibisafe)) `TypeScript`
+- [CloakBrowser](https://cloakbrowser.dev) - stealth Chromium that passes every bot detection test, drop-in Playwright replacement with source-level fingerprint patches. ([Source Code](https://github.com/CloakHQ/CloakBrowser)) `Python` `TypeScript`
 - [Crowdsec Manager](https://crowdsec-manager.hhf.technology) - management interface and dashboard for CrowdSec security stack with Pangolin integration and multi proxy support. ([Source Code](https://github.com/hhftechnology/crowdsec_manager)) `TypeScript` `Go`
 - [DumbWhoIs](https://dumbwhois.dumbware.io) - dumb whois. ([Source Code](https://github.com/DumbWareio/DumbWhoIs)) `JavaScript`
 - [Whoogle](https://pypi.org/project/whoogle-search) - ad-free, privacy-respecting metasearch engine. ([Source Code](https://github.com/benbusby/whoogle-search)) `Python`
