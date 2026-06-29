@@ -25,6 +25,11 @@ services:
     depends_on:
       surrealdb:
         condition: service_started
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: ${DEFAULT_CPU_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -68,6 +73,8 @@ services:
       - 5055
       - 8502
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/open-notebook:/app/data
