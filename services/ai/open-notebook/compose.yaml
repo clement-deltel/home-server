@@ -65,8 +65,8 @@ services:
       ai-net:
         ipv4_address: ${OPEN_NOTEBOOK_AI_IP}
     ports:
-      - 8502
       - 5055
+      - 8502
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
