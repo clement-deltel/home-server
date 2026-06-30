@@ -65,9 +65,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/plugins:/var/www/html/plugins
-      - ./persistence/upload:/var/www/html/upload
-      - ./persistence/config:/var/www/html/application/config
+      - /opt/persistence/limesurvey/plugins:/var/www/html/plugins
+      - /opt/persistence/limesurvey/upload:/var/www/html/upload
+      - /opt/persistence/limesurvey/config:/var/www/html/application/config
 
 networks:
   internal-net:

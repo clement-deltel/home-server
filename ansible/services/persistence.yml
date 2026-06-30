@@ -137,14 +137,14 @@
       # Jetlog
       - /opt/persistence/jetlog
       # Karakeep
-      - "{{ server_home }}/services/media/storage/bookmarks/karakeep/persistence"
-      - "{{ server_home }}/services/media/storage/bookmarks/karakeep/meilisearch-persistence"
+      - /opt/persistence/karakeep
+      - /opt/persistence/karakeep/meilisearch
       # Kavita
-      - "{{ server_home }}/services/media/storage/books/kavita/persistence"
-      - "{{ server_home }}/services/media/storage/books/kavita/persistence/books"
-      - "{{ server_home }}/services/media/storage/books/kavita/persistence/comics"
-      - "{{ server_home }}/services/media/storage/books/kavita/persistence/config"
-      - "{{ server_home }}/services/media/storage/books/kavita/persistence/mangas"
+      - /opt/persistence/kavita
+      - /opt/persistence/kavita/books
+      - /opt/persistence/kavita/comics
+      - /opt/persistence/kavita/config
+      - /opt/persistence/kavita/manga
       # Kopia
       - "{{ server_home }}/services/kopia/persistence"
       - "{{ server_home }}/services/kopia/persistence/cache"
@@ -154,7 +154,7 @@
       # Langfuse
       - /mnt/ssd/cache/langfuse
       - /mnt/ssd/databases/langfuse
-      - /opt/persistence/langfuse/
+      - /opt/persistence/langfuse
       - /opt/persistence/langfuse/clickhouse
       - /opt/persistence/langfuse/clickhouse/data
       - /opt/persistence/langfuse/clickhouse/log
@@ -162,13 +162,13 @@
       - /opt/persistence/langfuse/minio/data
       # Librum
       - /mnt/ssd/databases/librum
-      - "{{ server_home }}/services/media/storage/books/librum/persistence"
+      - /opt/persistence/librum
       # Limesurvey
       - /mnt/ssd/databases/limesurvey
-      - "{{ server_home }}/services/other/limesurvey/persistence"
-      - "{{ server_home }}/services/other/limesurvey/persistence/config"
-      - "{{ server_home }}/services/other/limesurvey/persistence/plugins"
-      - "{{ server_home }}/services/other/limesurvey/persistence/upload"
+      - /opt/persistence/limesurvey
+      - /opt/persistence/limesurvey/config
+      - /opt/persistence/limesurvey/plugins
+      - /opt/persistence/limesurvey/upload
       # LiteLLM
       - /mnt/ssd/cache/litellm
       - /mnt/ssd/databases/litellm

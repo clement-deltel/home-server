@@ -13,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.karakeep.entrypoints=web,websecure"
-      - "traefik.http.routers.karakeep.rule=Host(`bookmarks.${DOMAIN}`)"
+      - "traefik.http.routers.karakeep.rule=Host(`${KARAKEEP_HOST}`)"
       - "traefik.http.routers.karakeep.tls=true"
       # - "traefik.http.routers.karakeep.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.karakeep.tls.domains[0].main=bookmarks.${DOMAIN}"
+      # - "traefik.http.routers.karakeep.tls.domains[0].main=${KARAKEEP_HOST}"
       - "traefik.http.routers.karakeep.service=karakeep"
       # Services
       - "traefik.http.services.karakeep.loadbalancer.server.port=3000"
@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/data
+      - /opt/persistence/karakeep:/data
 
   chrome:
     command:
@@ -76,7 +76,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./meilisearch-persistence:/meili_data
+      - /opt/persistence/karakeep/meilisearch:/meili_data
 
 networks:
   internal-net:

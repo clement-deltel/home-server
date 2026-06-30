@@ -64,7 +64,7 @@ services:
     stop_grace_period: 30s
     volumes:
       # permissions for this directory: 999:999
-      - ./persistence:/var/lib/librum-server/librum_storage
+      - /opt/persistence/librum:/var/lib/librum-server/librum_storage
 
 networks:
   internal-net:
