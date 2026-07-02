@@ -138,6 +138,7 @@
       - /opt/persistence/jetlog
       # Karakeep
       - /opt/persistence/karakeep
+      - /opt/persistence/karakeep/data
       - /opt/persistence/karakeep/meilisearch
       # Kavita
       - /opt/persistence/kavita
