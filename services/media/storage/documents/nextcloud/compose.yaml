@@ -75,7 +75,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/var/www/html
+      - /opt/persistence/nextcloud/app:/var/www/html
 
   app:
     container_name: nextcloud
@@ -98,7 +98,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/var/www/html
+      - /opt/persistence/nextcloud/app:/var/www/html
 
   nextcloud:
     container_name: nextcloud-web
@@ -141,9 +141,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./web-persistence/Caddyfile:/etc/caddy/Caddyfile
-      - ./web-persistence/data:/data
-      - ./web-persistence/config:/config
+      - /opt/persistence/nextcloud/web/Caddyfile:/etc/caddy/Caddyfile
+      - /opt/persistence/nextcloud/web/data:/data
+      - /opt/persistence/nextcloud/web/config:/config
     volumes_from:
       - app
 

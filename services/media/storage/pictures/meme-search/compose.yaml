@@ -49,9 +49,9 @@ services:
   #   restart: unless-stopped
   #   stop_grace_period: 30s
   #   volumes:
-  #     - ./persistence/memes:/app/public/memes
-  #     - ./persistence/itt-db:/app/db
-  #     - ./persistence/models:/root/.cache/huggingface
+  #     - /opt/persistence/meme-search/memes:/app/public/memes
+  #     - /opt/persistence/meme-search/itt-db:/app/db
+  #     - /opt/persistence/meme-search/models:/root/.cache/huggingface
 
   meme_search_pro:
     container_name: meme-search
@@ -96,7 +96,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/memes:/rails/public/memes
+      - /opt/persistence/meme-search/memes:/rails/public/memes
 
 networks:
   internal-net:

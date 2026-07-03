@@ -3,8 +3,8 @@ services:
     container_name: navidrome
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: navidrome
     image: ${NAVIDROME_IMAGE}
@@ -12,10 +12,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.navidrome.entrypoints=web,websecure"
-      - "traefik.http.routers.navidrome.rule=Host(`music.${DOMAIN}`)"
+      - "traefik.http.routers.navidrome.rule=Host(`${NAVIDROME_HOST}`)"
       - "traefik.http.routers.navidrome.tls=true"
       # - "traefik.http.routers.navidrome.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.navidrome.tls.domains[0].main=music.${DOMAIN}"
+      # - "traefik.http.routers.navidrome.tls.domains[0].main=${NAVIDROME_HOST}"
       - "traefik.http.routers.navidrome.service=navidrome"
       # Services
       - "traefik.http.services.navidrome.loadbalancer.server.port=4533"
@@ -33,9 +33,9 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID} # should be owner of volumes
     volumes:
-      - ./persistence/backup:/backup
-      - ./persistence/data:/data
-      - ./persistence/music/:/music:ro
+      - /opt/persistence/navidrome/backup:/backup
+      - /opt/persistence/navidrome/data:/data
+      - /opt/persistence/navidrome/music/:/music:ro
 
 networks:
   traefik-net:

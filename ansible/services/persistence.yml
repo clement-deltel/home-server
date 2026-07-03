@@ -59,7 +59,6 @@
       - /opt/persistence/dozzle
       # Enclosed
       - /opt/persistence/enclosed
-      - "{{ server_home }}/services/security/enclosed/persistence"
       # Firecrawl
       - /mnt/ssd/cache/firecrawl
       - /mnt/ssd/databases/firecrawl
@@ -181,33 +180,34 @@
       - "{{ server_home }}/services/pkms/mathesar/persistence/media"
       # Mealie
       - /mnt/ssd/databases/mealie
-      - "{{ server_home }}/services/inventory/mealie/persistence"
+      - /opt/persistence/mealie
       # Meme Search
       - /mnt/ssd/databases/meme-search
-      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence"
-      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/memes"
-      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/itt-db"
-      - "{{ server_home }}/services/media/storage/pictures/meme-search/persistence/models"
+      - /opt/persistence/meme-search
+      - /opt/persistence/meme-search/memes
+      - /opt/persistence/meme-search/itt-db
+      - /opt/persistence/meme-search/models
       # Memos
       - /mnt/ssd/databases/memos
-      - "{{ server_home }}/services/pkms/memos/persistence"
+      - /opt/persistence/memos
       # Minecraft
       - "{{ server_home }}/services/games/minecraft/persistence"
       # n8n
       - /mnt/ssd/databases/n8n
-      - "{{ server_home }}/services/automation/n8n/persistence"
-      - "{{ server_home }}/services/automation/n8n/persistence/config"
-      - "{{ server_home }}/services/automation/n8n/persistence/files"
+      - /opt/persistence/n8n
+      - /opt/persistence/n8n/config
+      - /opt/persistence/n8n/files
       # Navidrome
-      - "{{ server_home }}/services/media/storage/music/navidrome/persistence"
-      - "{{ server_home }}/services/media/storage/music/navidrome/persistence/backup"
-      - "{{ server_home }}/services/media/storage/music/navidrome/persistence/data"
-      - "{{ server_home }}/services/media/storage/music/navidrome/persistence/music"
+      - /opt/persistence/navidrome
+      - /opt/persistence/navidrome/backup
+      - /opt/persistence/navidrome/data
+      - /opt/persistence/navidrome/music
       # Nextcloud
       - /mnt/ssd/cache/nextcloud
       - /mnt/ssd/databases/nextcloud
-      - "{{ server_home }}/services/media/storage/documents/nextcloud/persistence"
-      - "{{ server_home }}/services/media/storage/documents/nextcloud/web-persistence"
+      - /opt/persistence/nextcloud
+      - /opt/persistence/nextcloud/app
+      - /opt/persistence/nextcloud/web
       # Ntfy
       - /opt/persistence/ntfy
       # Obsidian LiveSync
