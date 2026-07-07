@@ -215,6 +215,7 @@ karakeep_enable: true
 kavita_enable: true
 kopia_enable: true
 langfuse_enable: true
+libretranslate_enable: true
 litellm_enable: true
 mathesar_enable: true
 mealie_enable: true

@@ -1,0 +1,59 @@
+# https://github.com/LibreTranslate/LibreTranslate
+services:
+  libretranslate:
+    container_name: libretranslate
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    healthcheck:
+      # "./venv/bin/python is not implemented in the cuda docker yet
+      test: ["CMD-SHELL", "./venv/bin/python scripts/healthcheck.py"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: libretranslate
+    image: ${LIBRETRANSLATE_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.libretranslate.entrypoints=web,websecure"
+      - "traefik.http.routers.libretranslate.rule=Host(`${LIBRETRANSLATE_HOST}`)"
+      - "traefik.http.routers.libretranslate.tls=true"
+      # - "traefik.http.routers.libretranslate.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.libretranslate.tls.domains[0].main=${LIBRETRANSLATE_HOST}"
+      - "traefik.http.routers.libretranslate.service=libretranslate"
+      # Services
+      - "traefik.http.services.libretranslate.loadbalancer.server.port=5000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${LIBRETRANSLATE_IP}
+    ports:
+      - 5000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    ## Uncomment this for logging in docker compose logs
+    # tty: true
+    volumes:
+     - /opt/persistence/libretranslate/keys:/app/db
+     - /opt/persistence/libretranslate/models:/home/libretranslate/.local:rw
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net

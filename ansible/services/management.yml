@@ -45,6 +45,7 @@
       - { when: karakeep_enable, project_src: '{{ server_home }}/services/media/storage/bookmarks/karakeep' }
       - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
       - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
+      - { when: libretranslate_enable, project_src: '{{ server_home }}/services/media/tools/libretranslate' }
       - { when: langfuse_enable, project_src: '{{ server_home }}/services/ai/langfuse' }
       - { when: librum_enable, project_src: '{{ server_home }}/services/media/storage/books/librum' }
       - { when: limesurvey_enable, project_src: '{{ server_home }}/services/other/limesurvey' }

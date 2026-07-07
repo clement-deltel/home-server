@@ -160,6 +160,10 @@
       - /opt/persistence/langfuse/clickhouse/log
       - /opt/persistence/langfuse/minio
       - /opt/persistence/langfuse/minio/data
+      # LibreTranslate
+      - /opt/persistence/libretranslate
+      - /opt/persistence/libretranslate/keys
+      - /opt/persistence/libretranslate/models
       # Librum
       - /mnt/ssd/databases/librum
       - /opt/persistence/librum
