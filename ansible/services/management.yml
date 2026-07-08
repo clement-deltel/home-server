@@ -85,6 +85,7 @@
       - { when: wireguard_easy_enable, project_src: '{{ server_home }}/services/remote/wg-easy' }
       - { when: wireguard_enable, project_src: '{{ server_home }}/services/remote/wireguard' }
       - { when: wishlist_enable, project_src: '{{ server_home }}/services/inventory/wishlist' }
+      - { when: yamtrack_enable, project_src: '{{ server_home }}/services/media/tools/yamtrack' }
   vars_files:
     - ../vars/main.yml
 

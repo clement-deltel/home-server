@@ -245,6 +245,7 @@ wallos_enable: true
 wazuh_enable: false
 wireguard_easy_enable: true
 wishlist_enable: true
+yamtrack_enable: true
 
 affine_enable: false
 directus_enable: false

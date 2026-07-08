@@ -82,6 +82,7 @@
         - /mnt/hdd/log/media/tools/libretranslate
         - /mnt/hdd/log/media/tools/qbittorrent
         - /mnt/hdd/log/media/tools/stirling-pdf
+        - /mnt/hdd/log/media/tools/yamtrack
         - /mnt/hdd/log/monitoring/change-detection
         - /mnt/hdd/log/monitoring/diun
         - /mnt/hdd/log/monitoring/dozzle

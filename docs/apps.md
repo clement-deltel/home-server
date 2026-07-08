@@ -201,6 +201,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [LibreTranslate](https://libretranslate.com) - translation API. ([Source Code](https://github.com/LibreTranslate/LibreTranslate)) `Python`
 - [QBittorent](https://github.com/linuxserver/docker-qbittorrent) - torrent client based on the Qt toolkit and libtorrent-rasterbar library. ([Source Code](https://github.com/linuxserver/docker-qbittorrent))
 - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. ([Source Code](https://github.com/Stirling-Tools/Stirling-PDF)) `Java` `JavaScript`
+- [Yamtrack](https://fuzzygrim.github.io/Yamtrack) - media tracker. ([Source Code](https://github.com/FuzzyGrim/Yamtrack)) `Python`
 
 ### Management
 

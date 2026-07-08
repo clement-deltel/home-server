@@ -1,0 +1,111 @@
+# https://github.com/FuzzyGrim/Yamtrack
+services:
+  cache:
+    container_name: yamtrack-cache
+    env_file: config/.env.cache
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: yamtrack-cache
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${YAMTRACK_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/yamtrack:/data
+
+  db:
+    container_name: yamtrack-db
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${YAMTRACK_DB_USERNAME}"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: yamtrack-db
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${YAMTRACK_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/yamtrack:/var/lib/postgresql/data
+
+  yamtrack:
+    container_name: yamtrack
+    depends_on:
+      cache:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/ || exit 1"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: yamtrack
+    image: ${YAMTRACK_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.yamtrack.entrypoints=web,websecure"
+      - "traefik.http.routers.yamtrack.rule=Host(`${YAMTRACK_HOST}`)"
+      - "traefik.http.routers.yamtrack.tls=true"
+      # - "traefik.http.routers.yamtrack.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.yamtrack.tls.domains[0].main=${YAMTRACK_HOST}"
+      - "traefik.http.routers.yamtrack.service=yamtrack"
+      # Services
+      - "traefik.http.services.yamtrack.loadbalancer.server.port=8000"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${YAMTRACK_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${YAMTRACK_IP}
+    ports:
+      - 8000
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  internal-net:
+    name: internal-yamtrack
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${YAMTRACK_NET}
+          gateway: ${YAMTRACK_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net

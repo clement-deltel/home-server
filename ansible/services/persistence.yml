@@ -317,6 +317,9 @@
       - "{{ server_home }}/services/inventory/wishlist/persistence"
       - "{{ server_home }}/services/inventory/wishlist/persistence/data"
       - "{{ server_home }}/services/inventory/wishlist/persistence/uploads"
+      # Yamtrack
+      - /mnt/ssd/cache/yamtrack
+      - /mnt/ssd/databases/yamtrack
       # Shared - Media
       - /opt/media/movies
       - /opt/media/tvshows
@@ -473,7 +476,9 @@
         - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
         - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
+        - "{{ server_home }}/services/media/tools/libretranslate/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
+        - "{{ server_home }}/services/media/tools/yamtrack/compose.yaml"
         - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
         # no labels for monitoring/diun
         - "{{ server_home }}/services/monitoring/dozzle/compose.yaml"
