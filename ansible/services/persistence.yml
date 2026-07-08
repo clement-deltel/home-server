@@ -264,8 +264,8 @@
       - "{{ server_home }}/services/monitoring/scrutiny/persistence"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
       - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
-      # SearNGX
-      - /mnt/ssd/cache/searngx
+      # SearXNG
+      - /mnt/ssd/cache/searxng
       - /opt/persistence/searxng
       - /opt/persistence/searxng/config
       - /opt/persistence/searxng/data
@@ -491,7 +491,7 @@
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
         - "{{ server_home }}/services/search/firecrawl/compose.yaml"
-        - "{{ server_home }}/services/search/searngx/compose.yaml"
+        - "{{ server_home }}/services/search/searxng/compose.yaml"
         - "{{ server_home }}/services/security/authentik/compose.yaml"
         # no labels for security/crowdsec
         - "{{ server_home }}/services/security/enclosed/compose.yaml"
