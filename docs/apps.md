@@ -310,6 +310,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [helix-db](https://helix-db.com) - OLTP graph-vector database. ([Source Code](https://github.com/helixdb/helix-db)) `Rust` `TypeScript` `Python`
 - [milvus](https://milvus.io) - high-performance, cloud-native vector database built for scalable vector ANN search. ([Source Code](https://github.com/milvus-io/milvus)) `Go` `Python` `C++`
+- [pgrust](https://pgrust.com) - postgres rewritten. ([Source Code](https://github.com/malisper/pgrust)) `Rust`
 - [qdrant](https://qdrant.tech) - high-performance, massive-scale vector database and vector search engine for the next generation of AI. ([Source Code](https://github.com/qdrant/qdrant)) `Rust`
 - [turso](https://github.com/tursodatabase/turso) - in-process SQL database, compatible with SQLite ([Source Code](https://github.com/tursodatabase/turso)). `Rust`
 - [weaviate](https://weaviate.io/developers/weaviate) - vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​. ([Source Code](https://github.com/weaviate/weaviate)) `Go`
