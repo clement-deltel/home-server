@@ -33,7 +33,7 @@ services:
         condition: service_healthy
     env_file: config/.env
     hostname: authentik-worker
-    image: ${AUTHENTIK_SERVER_IMAGE}
+    image: ${AUTHENTIK_IMAGE}
     logging:
       driver: json-file
       options:
@@ -63,7 +63,7 @@ services:
       - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: authentik-server
-    image: ${AUTHENTIK_SERVER_IMAGE}
+    image: ${AUTHENTIK_IMAGE}
     labels:
       - "traefik.enable=true"
       # Routers
