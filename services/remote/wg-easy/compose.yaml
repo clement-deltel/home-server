@@ -11,10 +11,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.wireguard.entrypoints=web,websecure"
-      - "traefik.http.routers.wireguard.rule=Host(`vpn.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard.rule=Host(`${WG_EASY_HOST}`)"
       - "traefik.http.routers.wireguard.tls=true"
       # - "traefik.http.routers.wireguard.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.wireguard.tls.domains[0].main=vpn.${DOMAIN}"
+      # - "traefik.http.routers.wireguard.tls.domains[0].main=${WG_EASY_HOST}"
       - "traefik.http.routers.wireguard.service=wireguard"
       # Services
       - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
@@ -40,7 +40,7 @@ services:
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
     volumes:
-      - ./persistence:/etc/wireguard
+      - /opt/persistence/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
 
 networks:

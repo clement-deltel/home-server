@@ -28,17 +28,17 @@ services:
         soft: 655360
         hard: 655360
     volumes:
-      - ./persistence/api_configuration:/var/ossec/api/configuration
-      - ./persistence/etc:/var/ossec/etc
-      - ./persistence/logs:/var/ossec/logs
-      - ./persistence/queue:/var/ossec/queue
-      - ./persistence/var_multigroups:/var/ossec/var/multigroups
-      - ./persistence/integrations:/var/ossec/integrations
-      - ./persistence/active_response:/var/ossec/active-response/bin
-      - ./persistence/agentless:/var/ossec/agentless
-      - ./persistence/wodles:/var/ossec/wodles
-      - ./filebeat-persistence/etc:/etc/filebeat
-      - ./filebeat-persistence/var:/var/lib/filebeat
+      - /opt/persistence/wazuh/wazuh/api_configuration:/var/ossec/api/configuration
+      - /opt/persistence/wazuh/wazuh/etc:/var/ossec/etc
+      - /opt/persistence/wazuh/wazuh/logs:/var/ossec/logs
+      - /opt/persistence/wazuh/wazuh/queue:/var/ossec/queue
+      - /opt/persistence/wazuh/wazuh/var_multigroups:/var/ossec/var/multigroups
+      - /opt/persistence/wazuh/wazuh/integrations:/var/ossec/integrations
+      - /opt/persistence/wazuh/wazuh/active_response:/var/ossec/active-response/bin
+      - /opt/persistence/wazuh/wazuh/agentless:/var/ossec/agentless
+      - /opt/persistence/wazuh/wazuh/wodles:/var/ossec/wodles
+      - /opt/persistence/wazuh/filebeat/etc:/etc/filebeat
+      - /opt/persistence/wazuh/filebeat/var:/var/lib/filebeat
       - ./config/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
       - ./config/wazuh_indexer_ssl_certs/wazuh.manager.pem:/etc/ssl/filebeat.pem
       - ./config/wazuh_indexer_ssl_certs/wazuh.manager-key.pem:/etc/ssl/filebeat.key
@@ -69,7 +69,7 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - ./indexer-persistence:/var/lib/wazuh-indexer
+      - /opt/persistence/wazuh/indexer:/var/lib/wazuh-indexer
       - ./config/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-indexer/certs/root-ca.pem
       - ./config/wazuh_indexer_ssl_certs/wazuh.indexer-key.pem:/usr/share/wazuh-indexer/certs/wazuh.indexer.key
       - ./config/wazuh_indexer_ssl_certs/wazuh.indexer.pem:/usr/share/wazuh-indexer/certs/wazuh.indexer.pem
@@ -122,8 +122,8 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - ./dashboard-persistence/config:/usr/share/wazuh-dashboard/data/wazuh/config
-      - ./dashboard-persistence/custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
+      - /opt/persistence/wazuh/dashboard/config:/usr/share/wazuh-dashboard/data/wazuh/config
+      - /opt/persistence/wazuh/dashboard/custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
       - ./config/wazuh_indexer_ssl_certs/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
       - ./config/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem
       - ./config/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-dashboard/certs/root-ca.pem

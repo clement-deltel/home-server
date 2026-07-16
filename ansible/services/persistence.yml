@@ -253,10 +253,10 @@
       - /mnt/ssd/databases/romm
       - /mnt/ssd/romm-library/bios
       - /mnt/ssd/romm-library/roms
-      - "{{ server_home }}/services/games/romm/persistence"
-      - "{{ server_home }}/services/games/romm/persistence/assets"
-      - "{{ server_home }}/services/games/romm/persistence/config"
-      - "{{ server_home }}/services/games/romm/persistence/resources"
+      - /opt/persistence/romm
+      - /opt/persistence/romm/assets
+      - /opt/persistence/romm/config
+      - /opt/persistence/romm/resources
       # RustDesk
       - "{{ server_home }}/services/remote/rustdesk/db-persistence"
       - "{{ server_home }}/services/remote/rustdesk/persistence"
@@ -288,35 +288,36 @@
       # Wakapi
       - /mnt/ssd/databases/wakapi
       # Wallos
-      - "{{ server_home }}/services/finances/wallos/persistence"
-      - "{{ server_home }}/services/finances/wallos/persistence/db"
-      - "{{ server_home }}/services/finances/wallos/persistence/logos"
+      - /opt/persistence/wallos
+      - /opt/persistence/wallos/db
+      - /opt/persistence/wallos/logos
       # Wazuh
-      - "{{ server_home }}/services/security/wazuh/dashboard-persistence"
-      - "{{ server_home }}/services/security/wazuh/dashboard-persistence/config"
-      - "{{ server_home }}/services/security/wazuh/dashboard-persistence/custom"
-      - "{{ server_home }}/services/security/wazuh/filebeat-persistence"
-      - "{{ server_home }}/services/security/wazuh/filebeat-persistence/etc"
-      - "{{ server_home }}/services/security/wazuh/filebeat-persistence/var"
-      - "{{ server_home }}/services/security/wazuh/indexer-persistence"
-      - "{{ server_home }}/services/security/wazuh/persistence"
-      - "{{ server_home }}/services/security/wazuh/persistence/active_response"
-      - "{{ server_home }}/services/security/wazuh/persistence/agentless"
-      - "{{ server_home }}/services/security/wazuh/persistence/api_configuration"
-      - "{{ server_home }}/services/security/wazuh/persistence/etc"
-      - "{{ server_home }}/services/security/wazuh/persistence/integrations"
-      - "{{ server_home }}/services/security/wazuh/persistence/logs"
-      - "{{ server_home }}/services/security/wazuh/persistence/queue"
-      - "{{ server_home }}/services/security/wazuh/persistence/var_multigroups"
-      - "{{ server_home }}/services/security/wazuh/persistence/wodles"
+      - /opt/persistence/wazuh
+      - /opt/persistence/wazuh/dashboard
+      - /opt/persistence/wazuh/dashboard/config
+      - /opt/persistence/wazuh/dashboard/custom
+      - /opt/persistence/wazuh/filebeat
+      - /opt/persistence/wazuh/filebeat/etc
+      - /opt/persistence/wazuh/filebeat/var
+      - /opt/persistence/wazuh/indexer
+      - /opt/persistence/wazuh/wazuh
+      - /opt/persistence/wazuh/wazuh/active_response
+      - /opt/persistence/wazuh/wazuh/agentless
+      - /opt/persistence/wazuh/wazuh/api_configuration
+      - /opt/persistence/wazuh/wazuh/etc
+      - /opt/persistence/wazuh/wazuh/integrations
+      - /opt/persistence/wazuh/wazuh/logs
+      - /opt/persistence/wazuh/wazuh/queue
+      - /opt/persistence/wazuh/wazuh/var_multigroups
+      - /opt/persistence/wazuh/wazuh/wodles
       # Wireguard Easy
-      - "{{ server_home }}/services/remote/wg-easy/persistence"
+      - /opt/persistence/wg-easy
       # Wireguard
-      - "{{ server_home }}/services/remote/wireguard/persistence"
+      - /opt/persistence/wireguard
       # Wishlist
-      - "{{ server_home }}/services/inventory/wishlist/persistence"
-      - "{{ server_home }}/services/inventory/wishlist/persistence/data"
-      - "{{ server_home }}/services/inventory/wishlist/persistence/uploads"
+      - /opt/persistence/wishlist
+      - /opt/persistence/wishlist/data
+      - /opt/persistence/wishlist/uploads
       # Yamtrack
       - /mnt/ssd/cache/yamtrack
       - /mnt/ssd/databases/yamtrack

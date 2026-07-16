@@ -13,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.wishlist.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.wishlist.rule=Host(`wish.${DOMAIN}`)"
+      - "traefik.http.routers.wishlist.rule=Host(`${WISHLIST_HOST}`)"
       - "traefik.http.routers.wishlist.tls=true"
       # - "traefik.http.routers.wishlist.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.wishlist.tls.domains[0].main=wish.${DOMAIN}"
+      # - "traefik.http.routers.wishlist.tls.domains[0].main=${WISHLIST_HOST}"
       - "traefik.http.routers.wishlist.service=wishlist"
       # Services
       - "traefik.http.services.wishlist.loadbalancer.server.port=3280"
@@ -34,9 +34,9 @@ services:
     stop_grace_period: 30s
     volumes:
       # This is where the sqlite database will be stored
-      - ./persistence/data:/usr/src/app/data
+      - /opt/persistence/wishlist/data:/usr/src/app/data
       # This is where user image uploads will be stored
-      - ./persistence/uploads:/usr/src/app/uploads
+      - /opt/persistence/wishlist/uploads:/usr/src/app/uploads
 
 networks:
   proxy-net:
