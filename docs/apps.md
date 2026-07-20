@@ -19,6 +19,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Backup](#backup)
   - [Security](#security)
   - [Search](#search)
+  - [Media Management](#media-management)
   - [Media Storage](#media-storage)
     - [Bookmarks](#bookmarks)
     - [Books](#books)
@@ -61,7 +62,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
     - [Ads](#ads)
     - [Code](#code-1)
     - [Passwords](#passwords-1)
-  - [Media Management](#media-management)
+  - [Media Management](#media-management-1)
   - [Media Storage](#media-storage-1)
     - [Audiobooks](#audiobooks)
     - [Bookmarks](#bookmarks-1)
@@ -155,6 +156,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Camofox](https://github.com/jo-inc/camofox-browser) - stealth headless browser for AI agents, bypass Cloudflare, bot detection, and anti-scraping. ([Source Code](https://github.com/jo-inc/camofox-browser)) `JavaScript`
 - [Firecrawl](https://firecrawl.dev) - API to search, scrape, and interact with the web at scale. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. ([Source Code](https://github.com/searxng/searxng)) `Python`
+
+### Media Management
+
+- [Seerr](https://docs.seerr.dev) - media request and discovery manager for Jellyfin, Plex, and Emby. ([Source Code](https://github.com/seerr-team/seerr)) `TypeScript`
 
 ### Media Storage
 
@@ -432,10 +437,9 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. ([Source Code](https://github.com/TheWicklowWolf/Lidify)) `Python` `JavaScript`
 - [MeTube](https://github.com/alexta69/metube) - YouTube downloader (web UI for youtube-dl / yt-dlp). ([Source Code](https://github.com/alexta69/metube)) `TypeScript` `Python`
 - [Profilarr](https://dictionarry.dev) - configuration management platform for Radarr/Sonarr. ([Source Code](https://github.com/Dictionarry-Hub/profilarr)) `TypeScript` `Svelte`
-- [Prowlarr](https://prowlarr.com) - . ([Source Code](https://github.com/Prowlarr/Prowlarr)) `C#` `JavaScript`
+- [Prowlarr](https://prowlarr.com) - indexer manager/proxy built on the *arr stack to integrate with your various PVR apps, supporting management of both torrent trackers and usenet indexers. ([Source Code](https://github.com/Prowlarr/Prowlarr)) `C#` `JavaScript`
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
 - [Radarr](https://radarr.video) - movie organizer/manager for usenet and torrent users. ([Source Code](https://github.com/Radarr/Radarr)) `C#` `TypeScript`
-- [Seerr](https://docs.seerr.dev) - media request and discovery manager for Jellyfin, Plex, and Emby. ([Source Code](https://github.com/seerr-team/seerr))
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 - [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. ([Source Code](https://github.com/Sonarr/Sonarr)) `C#` `TypeScript`
 - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. ([Source Code](https://github.com/mrusse/soularr)) `Python`

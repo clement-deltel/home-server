@@ -269,6 +269,9 @@
       - /opt/persistence/searxng
       - /opt/persistence/searxng/config
       - /opt/persistence/searxng/data
+      # Seerr
+      - /mnt/ssd/databases/seerr
+      - /opt/persistence/seerr
       # SFTPGo
       - /mnt/ssd/databases/sftpgo
       - /opt/persistence/sftpgo
@@ -461,6 +464,7 @@
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+        - "{{ server_home }}/services/media/rr/seerr/compose.yaml"
         - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
         - "{{ server_home }}/services/media/storage/bookmarks/karakeep/compose.yaml"
         - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"

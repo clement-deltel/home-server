@@ -62,6 +62,7 @@
         - /mnt/hdd/log/management/code/wakapi
         - /mnt/hdd/log/management/databases/dbgate
         - /mnt/hdd/log/management/passwords/vaultwarden
+        - /mnt/hdd/log/media/rr/seerr
         - /mnt/hdd/log/media/sharing/gokapi
         - /mnt/hdd/log/media/storage/bookmarks/karakeep
         - /mnt/hdd/log/media/storage/books/kavita

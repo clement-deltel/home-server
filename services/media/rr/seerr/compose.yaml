@@ -1,0 +1,91 @@
+---
+services:
+  db:
+    container_name: seerr-db
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SEERR_DB_USERNAME}"]
+      interval: 20s
+      retries: 3
+      start_interval: 5s
+      start_period: 60s
+      timeout: 15s
+    hostname: seerr-db
+    image: ${DEFAULT_POSTGRES_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${SEERR_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/seerr:/var/lib/postgresql/data
+
+  seerr:
+    container_name: seerr
+    depends_on:
+      db:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/settings/public || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    hostname: seerr
+    image: ${SEERR_IMAGE}
+    init: true
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.seerr.entrypoints=web,websecure"
+      - "traefik.http.routers.seerr.rule=Host(`${SEERR_HOST}`)"
+      - "traefik.http.routers.seerr.tls=true"
+      # - "traefik.http.routers.seerr.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.seerr.tls.domains[0].main=${SEERR_HOST}"
+      - "traefik.http.routers.seerr.service=seerr"
+      # Services
+      - "traefik.http.services.seerr.loadbalancer.server.port=5055"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${SEERR_INTERNAL_IP}
+      arr-net:
+        ipv4_address: ${SEERR_ARR_IP}
+      proxy-net:
+        ipv4_address: ${SEERR_IP}
+    ports:
+      - 5055
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/seerr:/app/config
+
+networks:
+  internal-net:
+    name: internal-seerr
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SEERR_NET}
+          gateway: ${SEERR_GATEWAY}
+  arr-net:
+    external: true
+    name: arr-net
+  proxy-net:
+    external: true
+    name: traefik-net
