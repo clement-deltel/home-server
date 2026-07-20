@@ -72,6 +72,8 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
     - [Videos](#videos-1)
   - [Media Tools](#media-tools-1)
   - [Monitoring](#monitoring-1)
+    - [Disk](#disk)
+    - [Network](#network)
   - [PKMS](#pkms)
   - [Project Management](#project-management)
   - [Proxy](#proxy)
@@ -158,7 +160,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 #### Bookmarks
 
-- [Karakeep](https://karakeep.app/) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. ([Source Code](https://github.com/karakeep-app/karakeep)) `TypeScript`
+- [Karakeep](https://karakeep.app) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. ([Source Code](https://github.com/karakeep-app/karakeep)) `TypeScript`
 - [Linkace](https://www.linkace.org) - archive to collect links of your favorite websites. ([Source Code](https://github.com/Kovah/LinkAce)) `PHP` `Blade`
 
 #### Books
@@ -278,6 +280,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [firecrawl](https://firecrawl.dev) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [odysseus](https://pewdiepie-archdaemon.github.io/odysseus) - self-hosted AI workspace. ([Source Code](https://github.com/pewdiepie-archdaemon/odysseus)) `Python` `JavaScript`
+- [OmniRoute](https://omniroute.online) - free AI gateway, one endpoint, 231+ providers. ([Source Code](https://github.com/diegosouzapw/OmniRoute)) `TypeScript`
 - [onyx](https://onyx.app) - AI platform / chat with advanced features that works with every LLM. ([Source Code](https://github.com/onyx-dot-app/onyx)) `Python` `TypeScript`
 - [Surf Sense](https://www.surfsense.com) - open source, privacy focused alternative to NotebookLM for teams with no data limits. ([Source Code](https://github.com/MODSetter/SurfSense)) `Python` `TypeScript`
 - [twenty](https://twenty.com) - open alternative to Salesforce, designed for AI. ([Source Code](https://github.com/twentyhq/twenty)) `TypeScript`
@@ -504,26 +507,33 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Monitoring
 
-- [Beszel](https://beszel.dev/) - lightweight server monitoring hub with historical data, docker stats, and alerts. ([Source Code](https://github.com/henrygd/beszel)) `Go`
-- [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. ([Source Code](https://github.com/Markbnj/cluster-iperf))
-- [Domain Monitor](https://github.com/nwesterhausen/domain-monitor) - monitor WHOIS records for specified domains. ([Source Code](https://github.com/nwesterhausen/domain-monitor)) `Go`
+- [Beszel](https://beszel.dev) - lightweight server monitoring hub with historical data, docker stats, and alerts. ([Source Code](https://github.com/henrygd/beszel)) `Go`
 - [Gatus](https://gatus.io) - automated developer-oriented status page with alerting and incident support. ([Source Code](https://github.com/TwiN/gatus)) `Go`
 - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. ([Source Code](https://github.com/healthchecks/healthchecks)) `Python`
 - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. ([Source Code](https://github.com/keephq/keep)) `Python` `TypeScript`
-- [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. ([Source Code](https://github.com/librespeed/speedtest)) `PHP` `JavaScript`
-- [NetAlertX](https://netalertx.com/) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. ([Source Code](https://github.com/jokob-sk/NetAlertX)) `JavaScript` `Python` `PHP`
 - [OpenSEO](https://openseo.so) - open source alternative to Semrush and Ahrefs. ([Source Code](https://github.com/every-app/open-seo)) `TypeScript`
-- [Scanopy](https://scanopy.net) - clean network diagrams. ([Source Code](https://github.com/scanopy/scanopy)) `Rust` `Svelte`
 - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. ([Source Code](https://github.com/SigNoz/signoz)) `TypeScript` `Go`
-- [Tapmap](https://olalie.github.io/tapmap) - watch your computer connect across the internet in real time. ([Source Code](https://github.com/olalie/tapmap)) `Python`
 - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. ([Source Code](https://github.com/louislam/uptime-kuma)) `JavaScript` `Vue`
+
+#### Disk
+
+- [doku](https://docker-disk.space) - Docker disk usage dashboard. ([Source Code](https://github.com/amerkurev/doku))
+
+#### Network
+
+- [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. ([Source Code](https://github.com/Markbnj/cluster-iperf))
+- [Domain Monitor](https://github.com/nwesterhausen/domain-monitor) - monitor WHOIS records for specified domains. ([Source Code](https://github.com/nwesterhausen/domain-monitor)) `Go`
+- [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. ([Source Code](https://github.com/librespeed/speedtest)) `PHP` `JavaScript`
+- [NetAlertX](https://netalertx.com) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. ([Source Code](https://github.com/jokob-sk/NetAlertX)) `JavaScript` `Python` `PHP`
+- [Scanopy](https://scanopy.net) - clean network diagrams. ([Source Code](https://github.com/scanopy/scanopy)) `Rust` `Svelte`
+- [Tapmap](https://olalie.github.io/tapmap) - watch your computer connect across the internet in real time. ([Source Code](https://github.com/olalie/tapmap)) `Python`
 - [WatchYourLAN](https://github.com/aceberg/WatchYourLAN) - lightweight network IP scanner, can be used to notify about new hosts and monitor host online/offline history. ([Source Code](https://github.com/aceberg/WatchYourLAN)) `TypeScript` `Go`
 - [Znail](https://github.com/znailnetem/znail) - network emulator intended to run on a Raspberry Pi. ([Source Code](https://github.com/znailnetem/znail)) `Python`
 
 ### PKMS
 
 - [Anytype](https://anytype.io) - the everything app for those who celebrate trust & autonomy. ([Source Code](https://github.com/anyproto/anytype-ts)) `TypeScript`
-- [ApiTable](https://aitable.ai/) - API-oriented low-code platform for building collaborative apps and better than all other Airtable open-source alternatives. ([Source Code](https://github.com/apitable/apitable)) `TypeScript` `Java`
+- [ApiTable](https://aitable.ai) - API-oriented low-code platform for building collaborative apps and better than all other Airtable open-source alternatives. ([Source Code](https://github.com/apitable/apitable)) `TypeScript` `Java`
 - [BookStack](https://www.bookstackapp.com) - platform to create documentation/wiki content. ([Source Code](https://github.com/BookStackApp/BookStack)) `PHP` `TypeScript`
 - [Docs](https://github.com/suitenumerique/docs) - collaborative note taking, wiki and documentation platform that scales. ([Source Code](https://github.com/suitenumerique/docs)) `Python` `TypeScript`
 - [Epicenter](https://epicenter.so) - open-source, local-first apps. ([Source Code](https://github.com/EpicenterHQ/epicenter)) `TypeScript` `Svelte`
