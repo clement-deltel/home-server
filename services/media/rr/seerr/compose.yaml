@@ -63,8 +63,8 @@ services:
     networks:
       internal-net:
         ipv4_address: ${SEERR_INTERNAL_IP}
-      arr-net:
-        ipv4_address: ${SEERR_ARR_IP}
+      rr-net:
+        ipv4_address: ${SEERR_RR_IP}
       proxy-net:
         ipv4_address: ${SEERR_IP}
     ports:
@@ -83,9 +83,9 @@ networks:
       config:
         - subnet: ${SEERR_NET}
           gateway: ${SEERR_GATEWAY}
-  arr-net:
+  rr-net:
     external: true
-    name: arr-net
+    name: rr-net
   proxy-net:
     external: true
     name: traefik-net

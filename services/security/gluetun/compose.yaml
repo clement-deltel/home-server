@@ -39,8 +39,8 @@ services:
         max-file: 5
         max-size: 10m
     networks:
-      arr-net:
-        ipv4_address: ${GLUETUN_ARR_IP}
+      rr-net:
+        ipv4_address: ${GLUETUN_RR_IP}
       proxy-net:
         ipv4_address: ${GLUETUN_IP}
     ports:
@@ -57,9 +57,9 @@ services:
       - /opt/gluetun/persistence:/gluetun
 
 networks:
-  arr-net:
+  rr-net:
     external: true
-    name: arr-net
+    name: rr-net
   proxy-net:
     external: true
     name: traefik-net
