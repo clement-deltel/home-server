@@ -1,4 +1,4 @@
-# https://github.com/Lidarr/Lidarr
+# https://github.com/morpheus65535/bazarr
 services:
   bazarr:
     container_name: bazarr

@@ -435,12 +435,14 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Media Management
 
+- [autobrr](https://autobrr.com/introduction) - modern, easy to use download automation for torrents and usenet. ([Source Code](https://github.com/autobrr/autobrr)) `Go` `TypeScript`
 - [Cleanuparr](https://github.com/Cleanuparr/Cleanuparr) - tool for automating the cleanup of unwanted or blocked files in Sonarr, Radarr, and supported download clients like qBittorrent. ([Source Code](https://github.com/Cleanuparr/Cleanuparr)) `C#`
 - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. ([Source Code](https://github.com/garanda21/deepsubx)) `TypeScript` `JavaScript`
 - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. ([Source Code](https://github.com/TheWicklowWolf/Lidify)) `Python` `JavaScript`
 - [MeTube](https://github.com/alexta69/metube) - YouTube downloader (web UI for youtube-dl / yt-dlp). ([Source Code](https://github.com/alexta69/metube)) `TypeScript` `Python`
 - [Profilarr](https://dictionarry.dev) - configuration management platform for Radarr/Sonarr. ([Source Code](https://github.com/Dictionarry-Hub/profilarr)) `TypeScript` `Svelte`
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
+- [recyclarr](https://recyclarr.dev) - automatically sync TRaSH Guides to Sonarr and Radarr. ([Source Code](https://github.com/recyclarr/recyclarr)) `C#`
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. ([Source Code](https://github.com/mrusse/soularr)) `Python`
 - [Spotizerr](https://github.com/Xoconoch/spotizerr) - spotify music downloader with a lossless twist, based on the deezspot library. ([Source Code](https://github.com/Xoconoch/spotizerr)) `Python` `TypeScript`
@@ -488,6 +490,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 #### Videos
 
 - [BitPlay](https://github.com/aculix/bitplay) - stream video torrents in your web browser with ease. ([Source Code](https://github.com/aculix/bitplay)) `Go`
+- [Jellystat](https://github.com/CyferShepard/Jellystat) - statistics app for Jellyfin. ([Source Code](https://github.com/CyferShepard/Jellystat)) `JavaScript`
 - [Kodi](https://kodi.tv) - open source home theater/media center software and entertainment hub for digital media. ([Source Code](https://github.com/xbmc/xbmc)) `C++`
 - [PeerTube](https://joinpeertube.org) - activity pub-federated video streaming platform using P2P directly in your web browser. ([Source Code](https://github.com/Chocobozzz/PeerTube)) `TypeScript`
 - [Plex](https://www.plex.tv) - Plex Media Server Docker repo, for all your PMS docker needs. ([Source Code](https://github.com/plexinc/pms-docker))

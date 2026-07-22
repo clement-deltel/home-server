@@ -72,7 +72,7 @@
       - { when: pinry_enable, project_src: '{{ server_home }}/services/media/storage/pictures/pinry' }
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/monitoring/prometheus' }
       - { when: prowlarr_enable, project_src: '{{ server_home }}/services/media/rr/prowlarr' }
-      - { when: qbittorrent_enable, project_src: '{{ server_home }}/services/media/tools/qbittorrent' }
+      - { when: qbittorrent_enable, project_src: '{{ server_home }}/services/media/downloads/qbittorrent' }
       - { when: radarr_enable, project_src: '{{ server_home }}/services/media/rr/radarr' }
       - { when: romm_enable, project_src: '{{ server_home }}/services/games/romm' }
       - { when: rustdesk_enable, project_src: '{{ server_home }}/services/remote/rustdesk' }

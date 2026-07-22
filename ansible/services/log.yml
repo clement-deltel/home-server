@@ -62,6 +62,7 @@
         - /mnt/hdd/log/management/code/wakapi
         - /mnt/hdd/log/management/databases/dbgate
         - /mnt/hdd/log/management/passwords/vaultwarden
+        - /mnt/hdd/log/media/downloads/qbittorrent
         - /mnt/hdd/log/media/rr/bazarr
         - /mnt/hdd/log/media/rr/lidarr
         - /mnt/hdd/log/media/rr/prowlarr
@@ -86,7 +87,6 @@
         - /mnt/hdd/log/media/tools/convertx
         - /mnt/hdd/log/media/tools/docuseal
         - /mnt/hdd/log/media/tools/libretranslate
-        - /mnt/hdd/log/media/tools/qbittorrent
         - /mnt/hdd/log/media/tools/stirling-pdf
         - /mnt/hdd/log/media/tools/yamtrack
         - /mnt/hdd/log/monitoring/change-detection
