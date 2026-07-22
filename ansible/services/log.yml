@@ -64,6 +64,7 @@
         - /mnt/hdd/log/management/passwords/vaultwarden
         - /mnt/hdd/log/media/rr/radarr
         - /mnt/hdd/log/media/rr/seerr
+        - /mnt/hdd/log/media/rr/sonarr
         - /mnt/hdd/log/media/sharing/gokapi
         - /mnt/hdd/log/media/storage/bookmarks/karakeep
         - /mnt/hdd/log/media/storage/books/kavita

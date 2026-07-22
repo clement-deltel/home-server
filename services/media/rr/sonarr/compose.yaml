@@ -1,0 +1,47 @@
+# https://github.com/sonarr/sonarr
+services:
+  sonarr:
+    container_name: sonarr
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: sonarr
+    image: ${SONARR_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.sonarr.entrypoints=web,websecure"
+      - "traefik.http.routers.sonarr.rule=Host(`${SONARR_HOST}`)"
+      - "traefik.http.routers.sonarr.tls=true"
+      # - "traefik.http.routers.sonarr.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.sonarr.tls.domains[0].main=${SONARR_HOST}"
+      - "traefik.http.routers.sonarr.service=sonarr"
+      # Services
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      rr-net:
+        ipv4_address: ${SONARR_RR_IP}
+      proxy-net:
+        ipv4_address: ${SONARR_IP}
+    restart: unless-stopped
+    ports:
+      - 8989
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/sonarr:/config
+      - /opt/media:/media
+
+networks:
+  rr-net:
+    external: true
+    name: rr-net
+  proxy-net:
+    external: true
+    name: traefik-net

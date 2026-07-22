@@ -161,6 +161,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Radarr](https://radarr.video) - movie organizer/manager for usenet and torrent users. ([Source Code](https://github.com/Radarr/Radarr)) `C#` `TypeScript`
 - [Seerr](https://docs.seerr.dev) - media request and discovery manager for Jellyfin, Plex, and Emby. ([Source Code](https://github.com/seerr-team/seerr)) `TypeScript`
+- [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. ([Source Code](https://github.com/Sonarr/Sonarr)) `C#` `TypeScript`
 
 ### Media Storage
 
@@ -441,7 +442,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Prowlarr](https://prowlarr.com) - indexer manager/proxy built on the *arr stack to integrate with your various PVR apps, supporting management of both torrent trackers and usenet indexers. ([Source Code](https://github.com/Prowlarr/Prowlarr)) `C#` `JavaScript`
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
-- [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. ([Source Code](https://github.com/Sonarr/Sonarr)) `C#` `TypeScript`
 - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. ([Source Code](https://github.com/mrusse/soularr)) `Python`
 - [Spotizerr](https://github.com/Xoconoch/spotizerr) - spotify music downloader with a lossless twist, based on the deezspot library. ([Source Code](https://github.com/Xoconoch/spotizerr)) `Python` `TypeScript`
 - [Syncthing](https://syncthing.net) - open source continuous file synchronization. ([Source Code](https://github.com/syncthing/syncthing)) `Go`

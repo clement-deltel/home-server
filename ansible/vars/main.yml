@@ -239,6 +239,7 @@ scrutiny_enable: true
 searxng_enable: true
 seerr_enable: true
 sftpgo_enable: true
+sonarr_enable: true
 unbound_enable: true
 upsnap_enable: true
 vaultwarden_enable: true
