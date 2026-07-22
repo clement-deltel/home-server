@@ -1,0 +1,47 @@
+# https://github.com/Lidarr/Lidarr
+services:
+  lidarr:
+    container_name: lidarr
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: lidarr
+    image: ${LIDARR_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.lidarr.entrypoints=web,websecure"
+      - "traefik.http.routers.lidarr.rule=Host(`${LIDARR_HOST}`)"
+      - "traefik.http.routers.lidarr.tls=true"
+      # - "traefik.http.routers.lidarr.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.lidarr.tls.domains[0].main=${LIDARR_HOST}"
+      - "traefik.http.routers.lidarr.service=lidarr"
+      # Services
+      - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      rr-net:
+        ipv4_address: ${LIDARR_RR_IP}
+      proxy-net:
+        ipv4_address: ${LIDARR_IP}
+    restart: unless-stopped
+    ports:
+      - 8686
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/lidarr:/config
+      - /opt/media:/media
+
+networks:
+  rr-net:
+    external: true
+    name: rr-net
+  proxy-net:
+    external: true
+    name: traefik-net
