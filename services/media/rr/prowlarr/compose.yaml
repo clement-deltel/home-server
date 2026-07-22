@@ -1,0 +1,46 @@
+# https://github.com/Prowlarr/Prowlarr
+services:
+  prowlarr:
+    container_name: prowlarr
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: prowlarr
+    image: ${PROWLARR_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.prowlarr.entrypoints=web,websecure"
+      - "traefik.http.routers.prowlarr.rule=Host(`${PROWLARR_HOST}`)"
+      - "traefik.http.routers.prowlarr.tls=true"
+      # - "traefik.http.routers.prowlarr.tls.certresolver=letsencrypt"
+      # - "traefik.http.routers.prowlarr.tls.domains[0].main=${PROWLARR_HOST}"
+      - "traefik.http.routers.prowlarr.service=prowlarr"
+      # Services
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      rr-net:
+        ipv4_address: ${PROWLARR_RR_IP}
+      proxy-net:
+        ipv4_address: ${PROWLARR_IP}
+    restart: unless-stopped
+    ports:
+      - 9696
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/prowlarr:/config
+
+networks:
+  rr-net:
+    external: true
+    name: rr-net
+  proxy-net:
+    external: true
+    name: traefik-net

@@ -159,6 +159,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Media Management
 
+- [Prowlarr](https://prowlarr.com) - indexer manager/proxy built on the *arr stack to integrate with your various PVR apps, supporting management of both torrent trackers and usenet indexers. ([Source Code](https://github.com/Prowlarr/Prowlarr)) `C#` `JavaScript`
 - [Radarr](https://radarr.video) - movie organizer/manager for usenet and torrent users. ([Source Code](https://github.com/Radarr/Radarr)) `C#` `TypeScript`
 - [Seerr](https://docs.seerr.dev) - media request and discovery manager for Jellyfin, Plex, and Emby. ([Source Code](https://github.com/seerr-team/seerr)) `TypeScript`
 - [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. ([Source Code](https://github.com/Sonarr/Sonarr)) `C#` `TypeScript`
@@ -439,7 +440,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. ([Source Code](https://github.com/TheWicklowWolf/Lidify)) `Python` `JavaScript`
 - [MeTube](https://github.com/alexta69/metube) - YouTube downloader (web UI for youtube-dl / yt-dlp). ([Source Code](https://github.com/alexta69/metube)) `TypeScript` `Python`
 - [Profilarr](https://dictionarry.dev) - configuration management platform for Radarr/Sonarr. ([Source Code](https://github.com/Dictionarry-Hub/profilarr)) `TypeScript` `Svelte`
-- [Prowlarr](https://prowlarr.com) - indexer manager/proxy built on the *arr stack to integrate with your various PVR apps, supporting management of both torrent trackers and usenet indexers. ([Source Code](https://github.com/Prowlarr/Prowlarr)) `C#` `JavaScript`
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. ([Source Code](https://github.com/mrusse/soularr)) `Python`

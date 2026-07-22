@@ -244,6 +244,8 @@
       - "{{ server_home }}/services/media/storage/pictures/pinry/persistence"
       # Prometheus
       - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
+      # Prowlarr
+      - /opt/persistence/prowlarr
       # Redis Insight
       - "{{ server_home }}/services/management/cache/redis-insight/persistence"
       # QBittorrent
@@ -469,6 +471,7 @@
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+        - "{{ server_home }}/services/media/rr/prowlarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/radarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/seerr/compose.yaml"
         - "{{ server_home }}/services/media/rr/sonarr/compose.yaml"

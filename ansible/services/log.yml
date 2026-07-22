@@ -62,6 +62,7 @@
         - /mnt/hdd/log/management/code/wakapi
         - /mnt/hdd/log/management/databases/dbgate
         - /mnt/hdd/log/management/passwords/vaultwarden
+        - /mnt/hdd/log/media/rr/prowlarr
         - /mnt/hdd/log/media/rr/radarr
         - /mnt/hdd/log/media/rr/seerr
         - /mnt/hdd/log/media/rr/sonarr
