@@ -232,10 +232,12 @@ paperless_enable: true
 pihole_enable: true
 prometheus_enable: true
 qbittorrent_enable: true
+radarr_enable: true
 romm_enable: true
 rustdesk_enable: true
 scrutiny_enable: true
 searxng_enable: true
+seerr_enable: true
 sftpgo_enable: true
 unbound_enable: true
 upsnap_enable: true

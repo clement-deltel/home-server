@@ -248,6 +248,8 @@
       - "{{ server_home }}/services/management/cache/redis-insight/persistence"
       # QBittorrent
       - /opt/persistence/qbittorrent
+      # Radarr
+      - /opt/persistence/radarr
       # Romm
       - /mnt/ssd/cache/romm
       - /mnt/ssd/databases/romm
@@ -325,6 +327,7 @@
       - /mnt/ssd/cache/yamtrack
       - /mnt/ssd/databases/yamtrack
       # Shared - Media
+      - /opt/media
       - /opt/media/movies
       - /opt/media/tvshows
   vars_files:
@@ -464,6 +467,7 @@
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+        - "{{ server_home }}/services/media/rr/radarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/seerr/compose.yaml"
         - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
         - "{{ server_home }}/services/media/storage/bookmarks/karakeep/compose.yaml"
