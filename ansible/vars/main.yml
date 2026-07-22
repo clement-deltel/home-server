@@ -180,6 +180,7 @@ homebrew_formulas:
 actual_enable: true
 adventurelog_enable: true
 authentik_enable: true
+bazarr_enable: true
 bento_pdf_enable: true
 bytestash_enable: true
 camofox_enable: true

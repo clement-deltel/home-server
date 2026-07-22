@@ -25,6 +25,8 @@
       - /opt/persistence/authentik/certs
       - /opt/persistence/authentik/custom-templates
       - /opt/persistence/authentik/data
+      # Bazarr
+      - /opt/persistence/bazarr
       # Bytestash
       - /opt/persistence/bytestash
       # Change Detection
@@ -473,6 +475,7 @@
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+        - "{{ server_home }}/services/media/rr/bazarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/lidarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/prowlarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/radarr/compose.yaml"

@@ -159,6 +159,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Media Management
 
+- [Bazarr](https://www.bazarr.media) - manage and download subtitles based on your requirements. ([Source Code](https://github.com/morpheus65535/bazarr)) `Python`
 - [Lidarr](https://lidarr.audio) - looks and smells like Sonarr but made for music. ([Source Code](https://github.com/Lidarr/Lidarr)) `C#` `JavaScript`
 - [Prowlarr](https://prowlarr.com) - indexer manager/proxy built on the *arr stack to integrate with your various PVR apps, supporting management of both torrent trackers and usenet indexers. ([Source Code](https://github.com/Prowlarr/Prowlarr)) `C#` `JavaScript`
 - [Radarr](https://radarr.video) - movie organizer/manager for usenet and torrent users. ([Source Code](https://github.com/Radarr/Radarr)) `C#` `TypeScript`
@@ -434,7 +435,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Media Management
 
-- [Bazarr](https://www.bazarr.media) - manage and download subtitles based on your requirements. ([Source Code](https://github.com/morpheus65535/bazarr)) `Python`
 - [Cleanuparr](https://github.com/Cleanuparr/Cleanuparr) - tool for automating the cleanup of unwanted or blocked files in Sonarr, Radarr, and supported download clients like qBittorrent. ([Source Code](https://github.com/Cleanuparr/Cleanuparr)) `C#`
 - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. ([Source Code](https://github.com/garanda21/deepsubx)) `TypeScript` `JavaScript`
 - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. ([Source Code](https://github.com/TheWicklowWolf/Lidify)) `Python` `JavaScript`

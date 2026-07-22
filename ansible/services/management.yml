@@ -8,6 +8,7 @@
       - { when: adventurelog_enable, project_src: '{{ server_home }}/services/travel/adventurelog' }
       - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
       - { when: authentik_enable, project_src: '{{ server_home }}/services/security/authentik' }
+      - { when: bazarr_enable, project_src: '{{ server_home }}/services/media/rr/bazarr' }
       - { when: bento_pdf_enable, project_src: '{{ server_home }}/services/media/tools/bento-pdf' }
       - { when: bytestash_enable, project_src: '{{ server_home }}/services/management/code/bytestash' }
       - { when: camofox_enable, project_src: '{{ server_home }}/services/search/camofox' }
