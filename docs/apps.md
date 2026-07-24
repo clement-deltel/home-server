@@ -377,6 +377,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Fasten Health](https://www.fastenhealth.com) - personal/family electronic medical record aggregator, designed to integrate with 100,000's of insurances/hospitals/clinics. ([Source Code](https://github.com/fastenhealth/fasten-onprem)) `Go` `TypeScript`
 - [OpenEMR](https://www.open-emr.org) - electronic health records and medical practice management solution. ([Source Code](https://github.com/openemr/openemr)) `PHP`
+- [Ovumcy](https://ovumcy.com) - menstrual cycle tracker, track periods, predict cycles, own your health data. ([Source Code](https://github.com/ovumcy/ovumcy-web)) `Go`
 
 ### Home Automation
 
@@ -597,6 +598,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Chibisafe](https://chibisafe.app) - blazing fast file vault. ([Source Code](https://github.com/chibisafe/chibisafe)) `TypeScript`
 - [CloakBrowser](https://cloakbrowser.dev) - stealth Chromium that passes every bot detection test, drop-in Playwright replacement with source-level fingerprint patches. ([Source Code](https://github.com/CloakHQ/CloakBrowser)) `Python` `TypeScript`
 - [Crowdsec Manager](https://crowdsec-manager.hhf.technology) - management interface and dashboard for CrowdSec security stack with Pangolin integration and multi proxy support. ([Source Code](https://github.com/hhftechnology/crowdsec_manager)) `TypeScript` `Go`
+- [Degoog](https://degoog-org.github.io/docs) - search engine aggregator with a comprehensive plugin/extension system. ([Source Code](https://github.com/degoog-org/degoog)) `TypeScript`
 - [DumbWhoIs](https://dumbwhois.dumbware.io) - dumb whois. ([Source Code](https://github.com/DumbWareio/DumbWhoIs)) `JavaScript`
 - [Whoogle](https://pypi.org/project/whoogle-search) - ad-free, privacy-respecting metasearch engine. ([Source Code](https://github.com/benbusby/whoogle-search)) `Python`
 
