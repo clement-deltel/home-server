@@ -19,6 +19,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Backup](#backup)
   - [Security](#security)
   - [Search](#search)
+  - [Media Download](#media-download)
   - [Media Management](#media-management)
   - [Media Storage](#media-storage)
     - [Bookmarks](#bookmarks)
@@ -66,6 +67,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Media Storage](#media-storage-1)
     - [Audiobooks](#audiobooks)
     - [Bookmarks](#bookmarks-1)
+    - [Books](#books-1)
     - [Files](#files-1)
     - [Pictures](#pictures-1)
     - [Music](#music-1)
@@ -157,6 +159,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Firecrawl](https://firecrawl.dev) - API to search, scrape, and interact with the web at scale. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. ([Source Code](https://github.com/searxng/searxng)) `Python`
 
+### Media Download
+
+- [QBittorent](https://github.com/linuxserver/docker-qbittorrent) - torrent client based on the Qt toolkit and libtorrent-rasterbar library. ([Source Code](https://github.com/linuxserver/docker-qbittorrent))
+
 ### Media Management
 
 - [Bazarr](https://www.bazarr.media) - manage and download subtitles based on your requirements. ([Source Code](https://github.com/morpheus65535/bazarr)) `Python`
@@ -211,7 +217,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. ([Source Code](https://github.com/Forceu/Gokapi)) `Go` `JavaScript`
 - [iSponsorBlockTV](https://github.com/dmunozv04/iSponsorBlockTV) - SponsorBlock client for all YouTube TV clients. ([Source Code](https://github.com/dmunozv04/iSponsorBlockTV)) `Python`
 - [LibreTranslate](https://libretranslate.com) - translation API. ([Source Code](https://github.com/LibreTranslate/LibreTranslate)) `Python`
-- [QBittorent](https://github.com/linuxserver/docker-qbittorrent) - torrent client based on the Qt toolkit and libtorrent-rasterbar library. ([Source Code](https://github.com/linuxserver/docker-qbittorrent))
 - [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. ([Source Code](https://github.com/Stirling-Tools/Stirling-PDF)) `Java` `JavaScript`
 - [Yamtrack](https://fuzzygrim.github.io/Yamtrack) - media tracker. ([Source Code](https://github.com/FuzzyGrim/Yamtrack)) `Python`
 
@@ -299,6 +304,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Backrest](https://github.com/garethgeorge/backrest) - Backrest is a web UI and orchestrator for restic backup. ([Source Code](https://github.com/garethgeorge/backrest)) `Go` `TypeScript`
 - [Borg](https://www.borgbackup.org) - deduplicating archiver with compression and authenticated encryption. ([Source Code](https://github.com/borgbackup/borg)) `Python`
+- [Databasement](https://david-crty.github.io/databasement) - database backup manager with a web UI, schedule, backup, and restore MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, MongoDB, SQLite & Redis to S3, SFTP, or local storage. ([Source Code](https://github.com/David-Crty/databasement)) `PHP` `Blade`
 - [Pluton](https://usepluton.com) - backup solution for secure, encrypted backups across local and cloud storage. ([Source Code](https://github.com/plutonhq/pluton)) `TypeScript`
 - [Zerobyte](https://github.com/nicotsx/zerobyte) - backup automation for self-hosting, built on top of restic. ([Source Code](https://github.com/nicotsx/zerobyte)) `TypeScript`
 
@@ -440,7 +446,9 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. ([Source Code](https://github.com/garanda21/deepsubx)) `TypeScript` `JavaScript`
 - [Lidify](https://github.com/TheWicklowWolf/Lidify) - music discovery tool that provides recommendations based on selected Lidarr artists, using Spotify or LastFM. ([Source Code](https://github.com/TheWicklowWolf/Lidify)) `Python` `JavaScript`
 - [MeTube](https://github.com/alexta69/metube) - YouTube downloader (web UI for youtube-dl / yt-dlp). ([Source Code](https://github.com/alexta69/metube)) `TypeScript` `Python`
+- [MusicGrabber](https://gitlab.com/g33kphr33k/musicgrabber) - Lidarr keeps that album set full, but what about all those singles you want? Well, this will help you grab them. ([Source Code](https://gitlab.com/g33kphr33k/musicgrabber)) `Python` `JavaScript`
 - [Profilarr](https://dictionarry.dev) - configuration management platform for Radarr/Sonarr. ([Source Code](https://github.com/Dictionarry-Hub/profilarr)) `TypeScript` `Svelte`
+- [qBittrr](https://feramance.github.io/qBitrr) - keep qBittorrent, Radarr, Sonarr, and your request tools chatting happily so downloads finish, import, and clean up without babysitting. ([Source Code](https://github.com/Feramance/qBitrr)) `Python` `TypeScript`
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
 - [recyclarr](https://recyclarr.dev) - automatically sync TRaSH Guides to Sonarr and Radarr. ([Source Code](https://github.com/recyclarr/recyclarr)) `C#`
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
@@ -460,6 +468,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 #### Bookmarks
 
 - [Linkwarden](https://linkwarden.app) - collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents. ([Source Code](https://github.com/linkwarden/linkwarden)) `TypeScript`
+
+#### Books
+
+- [BookOrbit](https://bookorbit.app) - library management and reading platform for ebooks, PDFs, audiobooks, and comics. ([Source Code](https://github.com/bookorbit/bookorbit)) `TypeScript` `Vue`
 
 #### Files
 
@@ -506,8 +518,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Immich Places](https://github.com/Majorfi/immich-places) - web UI addon to help assign GPS coordinates to photos. ([Source Code](https://github.com/Majorfi/immich-places)) `TypeScript` `Go`
 - [Invidious](https://invidious.io) - alternative front-end to YouTube. ([Source Code](https://github.com/iv-org/invidious)) `Crystal`
 - [Mazanoke](https://mazanoke.com) - local image optimizer that runs in your browser. ([Source Code](https://github.com/civilblur/mazanoke)) `JavaScript`
+- [Music Assitant - Server](https://music-assistant.io) - library manager that connects to your streaming services and a wide range of connected speakers. ([Source Code](https://github.com/music-assistant/server)) `Python`
 - [OmniTools](https://omnitools.app) - collection of powerful web-based tools for everyday tasks. ([Source Code](https://github.com/iib0011/omni-tools)) `TypeScript`
 - [SmartTube](https://github.com/yuliskov/SmartTube) - browse media content with your own rules on Android TV. `Java`
+- [SnapOtter](https://snapotter.com) - file-processing tool, convert, compress, OCR, transcribe & run local AI across image, video, audio, PDF & documents, via UI, REST API & pipelines. ([Source Code](https://github.com/snapotter-hq/SnapOtter)) `TypeScript`
 - [Vert](https://vert.sh) - next-generation file converter. ([Source Code](https://github.com/VERT-sh/VERT)) `Svelte` `TypeScript`
 - [VoiceBox](https://voicebox.sh) - open-source AI voice studio, clone, dictate, create. ([Source Code](https://github.com/jamiepine/voicebox)) `TpeScript` `Python`
 - [WithoutBG](https://withoutbg.com) - image background removal toolkit. ([Source Code](https://github.com/withoutbg/withoutbg)) `Python` `JavaScript`
@@ -531,6 +545,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. ([Source Code](https://github.com/Markbnj/cluster-iperf))
 - [Domain Monitor](https://github.com/nwesterhausen/domain-monitor) - monitor WHOIS records for specified domains. ([Source Code](https://github.com/nwesterhausen/domain-monitor)) `Go`
 - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. ([Source Code](https://github.com/librespeed/speedtest)) `PHP` `JavaScript`
+- [Neko Master](https://github.com/foru17/neko-master) - modern and elegant dashboard for network traffic visualization and analysis. ([Source Code](https://github.com/foru17/neko-master)) `TypeScript`
 - [NetAlertX](https://netalertx.com) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. ([Source Code](https://github.com/jokob-sk/NetAlertX)) `JavaScript` `Python` `PHP`
 - [Scanopy](https://scanopy.net) - clean network diagrams. ([Source Code](https://github.com/scanopy/scanopy)) `Rust` `Svelte`
 - [Tapmap](https://olalie.github.io/tapmap) - watch your computer connect across the internet in real time. ([Source Code](https://github.com/olalie/tapmap)) `Python`
@@ -561,6 +576,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Proxy
 
+- [FlareSoverr](https://github.com/FlareSolverr/FlareSolverr) - proxy server to bypass Cloudflare protection. ([Source Code](https://github.com/FlareSolverr/FlareSolverr)) `Python`
 - [NetBird](https://netbird.io) - connect your devices into a secure WireGuard-based overlay network with SSO, MFA and granular access controls. ([Source Code](https://github.com/netbirdio/netbird)) `Go`
 - [NPMPlus](https://github.com/ZoeyVid/NPMplus) - fork of nginx-proxy-manager. ([Source Code](https://github.com/ZoeyVid/NPMplus)) `TypeScript` `JavaScript`
 - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. ([Source Code](https://github.com/fosrl/pangolin)) `TypeScript`
