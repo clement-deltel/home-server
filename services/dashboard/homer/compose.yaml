@@ -17,10 +17,8 @@ services:
       - "traefik.http.routers.homer.tls=true"
       # - "traefik.http.routers.homer.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.homer.tls.domains[0].main=${HOMER_HOST}"
-      - "traefik.http.routers.homer.middlewares=homer"
+      - "traefik.http.routers.homer.middlewares=authentik@file"
       - "traefik.http.routers.homer.service=homer"
-      # Middlewares
-      - "traefik.http.middlewares.homer.basicauth.users=${HOMER_USER}:${HOMER_PASSWORD}"
       # Services
       - "traefik.http.services.homer.loadbalancer.server.port=8080"
     logging:
