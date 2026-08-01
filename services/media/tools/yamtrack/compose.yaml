@@ -74,7 +74,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.yamtrack.entrypoints=web,websecure"
+      - "traefik.http.routers.yamtrack.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.yamtrack.rule=Host(`${YAMTRACK_HOST}`)"
       - "traefik.http.routers.yamtrack.tls=true"
       # - "traefik.http.routers.yamtrack.tls.certresolver=letsencrypt"
