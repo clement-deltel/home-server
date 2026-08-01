@@ -62,13 +62,13 @@ services:
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
     env_file: config/.env
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/ || exit 1"]
-      interval: 20s
-      retries: 3
-      start_interval: 5s
-      start_period: 60s
-      timeout: 15s
+    # healthcheck:
+    #   test: ["CMD-SHELL", "wget -qO- http://localhost:8000/ || exit 1"]
+    #   interval: 20s
+    #   retries: 3
+    #   start_interval: 5s
+    #   start_period: 60s
+    #   timeout: 15s
     hostname: yamtrack
     image: ${YAMTRACK_IMAGE}
     labels:
