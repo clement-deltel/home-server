@@ -1,16 +1,16 @@
 # https://github.com/goauthentik/authentik
 services:
   db:
-    container_name: authentik-postgres
+    container_name: authentik-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${AUTHENTIK_DB_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U ${AUTHENTIK_DB_USERNAME}"]
       interval: 20s
       timeout: 15s
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: authentik-postgres
+    hostname: authentik-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
@@ -25,7 +25,7 @@ services:
     volumes:
       - /mnt/ssd/databases/authentik:/var/lib/postgresql/data
 
-  authentik_worker:
+  authentik-worker:
     command: worker
     container_name: authentik-worker
     depends_on:
@@ -51,7 +51,7 @@ services:
     - /opt/persistence/authentik/custom-templates:/templates
     - /opt/persistence/authentik/data:/data
 
-  authentik_server:
+  authentik-server:
     command: server
     container_name: authentik-server
     depends_on:
