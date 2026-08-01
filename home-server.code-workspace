@@ -50,6 +50,7 @@
             "appsec",
             "asus",
             "authentik",
+            "bazarr",
             "bento",
             "bentopdf",
             "bittorent",
@@ -90,6 +91,7 @@
             "iperf",
             "kdiskmark",
             "libretranslate",
+            "lidarr",
             "lnav",
             "logflare",
             "meili",
@@ -143,6 +145,7 @@
             "MD029": false, // ordered-list-item-prefix
             "MD059": false // link-text-should-be-descriptive
         },
+        // Workbench
     },
     "launch": {
         // Use IntelliSense to learn about possible attributes.

@@ -427,6 +427,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 #### Code
 
 - [Bugsink](https://www.bugsink.com) - error tracking. ([Source Code](https://github.com/bugsink/bugsink)) `Python`
+- [Buzz](https://github.com/block/buzz) - workspace where humans and agents build together, on a relay you own. ([Source Code](https://github.com/block/buzz)) `Rust` `TypeScript`
 - [Cyber Chef](https://gchq.github.io/CyberChef) - web app for encryption, encoding, compression and data analysis. ([Source Code](https://github.com/gchq/CyberChef)) `JavaScript`
 - [Gitea](https://gitea.com) - all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD. ([Source Code](https://github.com/go-gitea/gitea)) `Go`
 - [Networking Toolbox](https://networkingtoolbox.net) - . ([Source Code](https://github.com/Lissy93/networking-toolbox)) `Svelte` `TypeScript`
