@@ -43,6 +43,7 @@ services:
       internal-net:
         ipv4_address: ${AUTHENTIK_WORKER_IP}
     restart: unless-stopped
+    shm_size: 512mb
     stop_grace_period: 30s
     user: root
     volumes:
@@ -74,7 +75,7 @@ services:
       # - "traefik.http.routers.authentik.tls.domains[0].main=${AUTHENTIK_HOST}"
       - "traefik.http.routers.authentik.service=authentik"
       # Services
-      - "traefik.http.services.authentik.loadbalancer.server.port=9300"
+      - "traefik.http.services.authentik.loadbalancer.server.port=9000"
     logging:
       driver: json-file
       options:
@@ -92,6 +93,7 @@ services:
     - 9300
     - 9443
     restart: unless-stopped
+    shm_size: 512mb
     stop_grace_period: 30s
     volumes:
     - /opt/persistence/authentik/data:/data
