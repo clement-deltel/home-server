@@ -18,7 +18,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.gitea-mirror.entrypoints=web,websecure"
+      - "traefik.http.routers.gitea-mirror.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.gitea-mirror.rule=Host(`${GITEA_MIRROR_HOST}`)"
       - "traefik.http.routers.gitea-mirror.tls=true"
       # - "traefik.http.routers.gitea-mirror.tls.certresolver=letsencrypt"
