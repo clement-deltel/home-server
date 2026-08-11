@@ -1,0 +1,25 @@
+services:
+  chrome:
+    container_name: chrome
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: chrome
+    image: ${BROWSERLESS_CHROME_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      proxy-net:
+        ipv4_address: ${BROWSERLESS_CHROME_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  proxy-net:
+    external: true
+    name: traefik-net
