@@ -16,6 +16,8 @@ services:
     networks:
       proxy-net:
         ipv4_address: ${BROWSERLESS_CHROME_IP}
+    ports:
+      - 3000
     restart: unless-stopped
     stop_grace_period: 30s
 
