@@ -48,6 +48,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Containers](#containers)
   - [Dashboard](#dashboard-1)
   - [Databases](#databases)
+  - [Design](#design)
   - [DNS](#dns-1)
   - [Finances](#finances-1)
   - [Fitness](#fitness)
@@ -155,6 +156,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Search
 
+- [Browserless](https://browserless.io) - headless browsers in Docker. ([Source Code](https://github.com/browserless/browserless)) `TypeScript`
 - [Camofox](https://github.com/jo-inc/camofox-browser) - stealth headless browser for AI agents, bypass Cloudflare, bot detection, and anti-scraping. ([Source Code](https://github.com/jo-inc/camofox-browser)) `JavaScript`
 - [Firecrawl](https://firecrawl.dev) - API to search, scrape, and interact with the web at scale. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. ([Source Code](https://github.com/searxng/searxng)) `Python`
@@ -335,6 +337,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [weaviate](https://weaviate.io/developers/weaviate) - vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​. ([Source Code](https://github.com/weaviate/weaviate)) `Go`
 - [zvec](https://zvec.org) - lightweight, lightning-fast, in-process vector database. ([Source Code](github.com/alibaba/zvec)) `C++`
 
+### Design
+
+- [penpot](https://penpot.app) - open-source design platform for product teams that need scalable collaboration. ([Source Code](https://github.com/penpot/penpot)) `Clojure` `JavaScript`
+
 ### DNS
 
 - [AdGuardHome](https://adguard.com/en/adguard-home/overview.html) - network-wide ads & trackers blocking DNS server. ([Source Code](https://github.com/AdguardTeam/AdguardHome)) `Go` `TypeScript`
@@ -360,6 +366,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Fitness
 
 - [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
+- [SparkyFitness](https://codewithcj.github.io/SparkyFitness) - built for families, track food, fitness, water, and health. ([Source Code](https://github.com/CodeWithCJ/SparkyFitness)) `TypeScript`
 
 ### Games
 
@@ -368,6 +375,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [GameVault](https://gamevau.lt) - self-hosted gaming platform for drm-free games. ([Source Code](https://github.com/Phalcode/gamevault-backend)) `TypeScript`
 - [Lodestone](https://www.lodestone.cc) - server hosting tool for Minecraft and other multiplayer games. ([Source Code](https://github.com/Lodestone-Team/lodestone)) `Rust` `TypeScript`
 - [Paper](https://papermc.io/software/paper) - high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies. ([Source Code](https://github.com/PaperMC/Paper)) `Java`
+- [Pumpkin](https://pumpkinmc.org) - empowering everyone to host fast and efficient Minecraft servers. ([Source Code](https://github.com/Pumpkin-MC/Pumpkin)) `Rust`
 - [Satisfactory](https://hub.docker.com/r/wolveix/satisfactory-server) - containerized version of the Satisfactory dedicated server. ([Source Code](https://github.com/wolveix/satisfactory-server)) `Shell` `Go`
 - [Sunshine](https://app.lizardbyte.dev/Sunshine/?lng=en) - game stream host for Moonlight. ([Source Code](https://github.com/LizardByte/Sunshine)) `C++`
 - [Valheim](https://github.com/Nimdy/Dedicated_Valheim_Server_Script) - Valheim server manager. ([Source Code](https://github.com/Nimdy/Dedicated_Valheim_Server_Script)) `Shell`
@@ -409,6 +417,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [docker-mailserver](https://docker-mailserver.github.io/docker-mailserver/latest) - production-ready fullstack but simple mail server (SMTP, IMAP, LDAP, Antispam, Antivirus, etc.) running inside a container. ([Source Code](https://github.com/docker-mailserver/docker-mailserver)) `Shell`
 - [Maddy](https://maddy.email) - composable all-in-one mail server. ([Source Code](https://github.com/foxcpp/maddy)) `Go`
+- [mail-archiver](https://github.com/s1t5/mail-archiver) - web application for archiving, searching, and exporting emails from multiple accounts. ([Source Code](https://github.com/s1t5/mail-archiver)) `C#`
 - [OpenArchiver](https://openarchiver.com) - platform for legally compliant email archiving. ([Source Code](https://github.com/LogicLabs-OU/OpenArchiver)) `TypeScript` `Svelte`
 - [Piler](https://www.mailpiler.org) - email archiving application. ([Source Code](https://github.com/jsuto/piler)) `PHP`
 - [simple-login](https://simplelogin.io) - simple login back-end and web app. ([Source Code](https://github.com/simple-login/app)) `Python` `JavaScript`
@@ -453,6 +462,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [qBittrr](https://feramance.github.io/qBitrr) - keep qBittorrent, Radarr, Sonarr, and your request tools chatting happily so downloads finish, import, and clean up without babysitting. ([Source Code](https://github.com/Feramance/qBitrr)) `Python` `TypeScript`
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
 - [recyclarr](https://recyclarr.dev) - automatically sync TRaSH Guides to Sonarr and Radarr. ([Source Code](https://github.com/recyclarr/recyclarr)) `C#`
+- [sabnzbd](https://sabnzbd.org) - automated usenet download tool. ([Source Code](https://github.com/sabnzbd/sabnzbd)) `Python` `JavaScript`
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. ([Source Code](https://github.com/mrusse/soularr)) `Python`
 - [Spotizerr](https://github.com/Xoconoch/spotizerr) - spotify music downloader with a lossless twist, based on the deezspot library. ([Source Code](https://github.com/Xoconoch/spotizerr)) `Python` `TypeScript`
@@ -532,11 +542,13 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Beszel](https://beszel.dev) - lightweight server monitoring hub with historical data, docker stats, and alerts. ([Source Code](https://github.com/henrygd/beszel)) `Go`
 - [Gatus](https://gatus.io) - automated developer-oriented status page with alerting and incident support. ([Source Code](https://github.com/TwiN/gatus)) `Go`
+- [github-release-monitor](https://github.com/iamspido/github-release-monitor) - automatically monitor GitHub, GitLab and Codeberg repository releases and receive instant email and Apprise notifications. ([Source Code](https://github.com/iamspido/github-release-monitor)) `TypeScript`
 - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. ([Source Code](https://github.com/healthchecks/healthchecks)) `Python`
 - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. ([Source Code](https://github.com/keephq/keep)) `Python` `TypeScript`
 - [OpenSEO](https://openseo.so) - open source alternative to Semrush and Ahrefs. ([Source Code](https://github.com/every-app/open-seo)) `TypeScript`
 - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. ([Source Code](https://github.com/SigNoz/signoz)) `TypeScript` `Go`
 - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. ([Source Code](https://github.com/louislam/uptime-kuma)) `JavaScript` `Vue`
+- [velocirator](https://docs.velociraptor.app) - tool for collecting host based state information using The Velociraptor Query Language (VQL) queries. ([Source Code](https://github.com/Velocidex/velociraptor)) `Go`
 
 #### Disk
 
