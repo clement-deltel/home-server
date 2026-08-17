@@ -458,8 +458,10 @@
         - "{{ server_home }}/services/dashboard/homer/compose.yaml"
         - "{{ server_home }}/services/development/directus/compose.yaml"
         - "{{ server_home }}/services/dns/pihole/compose.yaml"
+        # no labels for dns/unbound
         - "{{ server_home }}/services/finances/actual/compose.yaml"
         - "{{ server_home }}/services/finances/wallos/compose.yaml"
+        # no labels for games/minecraft
         - "{{ server_home }}/services/games/romm/compose.yaml"
         - "{{ server_home }}/services/home/home-assistant/compose.yaml"
         - "{{ server_home }}/services/home/upsnap/compose.yaml"
@@ -474,7 +476,9 @@
         - "{{ server_home }}/services/management/code/gitea-mirror/compose.yaml"
         - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
         - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
+        - "{{ server_home }}/services/management/code/wakapi/compose.yaml"
         - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+        # no labels for media/download/qbittorrent
         - "{{ server_home }}/services/media/rr/bazarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/lidarr/compose.yaml"
         - "{{ server_home }}/services/media/rr/prowlarr/compose.yaml"
@@ -494,9 +498,9 @@
         - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
         - "{{ server_home }}/services/media/storage/pictures/pinry/compose.yaml"
         - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
+        - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
         - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
         - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
-        - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
         - "{{ server_home }}/services/media/tools/libretranslate/compose.yaml"
         - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
         - "{{ server_home }}/services/media/tools/yamtrack/compose.yaml"
@@ -505,6 +509,7 @@
         - "{{ server_home }}/services/monitoring/dozzle/compose.yaml"
         - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
         - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
+        # no labels for monitoring/prometheus
         - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
         - "{{ server_home }}/services/other/limesurvey/compose.yaml"
         - "{{ server_home }}/services/pkms/affine/compose.yaml"
@@ -516,6 +521,9 @@
         - "{{ server_home }}/services/remote/guacamole/compose.yaml"
         - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
         - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+        # no labels for remote/wireguard
+        # no labels for search/browserless
+        # no labels for search/camofox
         - "{{ server_home }}/services/search/firecrawl/compose.yaml"
         - "{{ server_home }}/services/search/searxng/compose.yaml"
         - "{{ server_home }}/services/security/authentik/compose.yaml"
