@@ -138,7 +138,7 @@ services:
       - /opt/persistence/paperless/consume:/usr/src/paperless/consume
       - /opt/persistence/paperless/data:/usr/src/paperless/data
       - /opt/persistence/paperless/export:/usr/src/paperless/export
-      - opt/persistence/paperless/media:/usr/src/paperless/media
+      - /opt/persistence/paperless/media:/usr/src/paperless/media
 
 networks:
   internal-net:
