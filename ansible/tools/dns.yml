@@ -48,8 +48,8 @@
       loop:
         - ""
         - "nameserver 127.0.0.1"
-        - "nameserver 45.90.28.96"
-        - "nameserver 45.90.30.96"
+        - "nameserver 45.90.28.0"
+        - "nameserver 45.90.30.0"
 
     - name: Restart resolvconf service
       ansible.builtin.systemd:
