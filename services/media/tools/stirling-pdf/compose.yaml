@@ -34,7 +34,7 @@ services:
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/stirling-pdf/tessdata:/usr/share/tessdata #Required for extra OCR languages
-      - /opt/persistence/stirling-pdf/configs:/configs
+      - /opt/persistence/stirling-pdf/config:/configs
 #      - /opt/persistence/stirling-pdf/customFiles:/customFiles/
 #      - /opt/persistence/stirling-pdf/logs:/logs/
 
