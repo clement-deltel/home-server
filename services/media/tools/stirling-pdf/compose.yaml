@@ -13,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.stirling-pdf.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.stirling-pdf.rule=Host(`pdf.${DOMAIN}`)"
+      - "traefik.http.routers.stirling-pdf.rule=Host(`${STIRLING_PDF_HOST}`)"
       - "traefik.http.routers.stirling-pdf.tls=true"
       # - "traefik.http.routers.stirling-pdf.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.stirling-pdf.tls.domains[0].main=pdf.${DOMAIN}"
+      # - "traefik.http.routers.stirling-pdf.tls.domains[0].main=${STIRLING_PDF_HOST}"
       - "traefik.http.routers.stirling-pdf.service=stirling-pdf"
       # Services
       - "traefik.http.services.stirling-pdf.loadbalancer.server.port=8080"
@@ -33,10 +33,10 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/tessdata:/usr/share/tessdata #Required for extra OCR languages
-      - ./persistence/configs:/configs
-#      - ./customFiles:/customFiles/
-#      - ./logs:/logs/
+      - /opt/persistence/stirling-pdf/tessdata:/usr/share/tessdata #Required for extra OCR languages
+      - /opt/persistence/stirling-pdf/configs:/configs
+#      - /opt/persistence/stirling-pdf/customFiles:/customFiles/
+#      - /opt/persistence/stirling-pdf/logs:/logs/
 
 networks:
   proxy-net:

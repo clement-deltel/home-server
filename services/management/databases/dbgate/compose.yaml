@@ -25,10 +25,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.dbgate.entrypoints=web,websecure"
-      - "traefik.http.routers.dbgate.rule=Host(`db.${DOMAIN}`)"
+      - "traefik.http.routers.dbgate.rule=Host(`${DBGATE_HOST}`)"
       - "traefik.http.routers.dbgate.tls=true"
       # - "traefik.http.routers.dbgate.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.dbgate.tls.domains[0].main=db.${DOMAIN}"
+      # - "traefik.http.routers.dbgate.tls.domains[0].main=${DBGATE_HOST}"
       - "traefik.http.routers.dbgate.service=dbgate"
       # Services
       - "traefik.http.services.dbgate.loadbalancer.server.port=3000"

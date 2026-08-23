@@ -21,7 +21,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus-persistence:/prometheus
+      - /opt/persistence/prometheus:/prometheus
 
 networks:
   app-net:

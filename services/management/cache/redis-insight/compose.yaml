@@ -19,10 +19,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.redis-insight.entrypoints=web,websecure"
-      - "traefik.http.routers.redis-insight.rule=Host(`cache.${DOMAIN}`)"
+      - "traefik.http.routers.redis-insight.rule=Host(`${REDIS_INSIGHT_HOST}`)"
       - "traefik.http.routers.redis-insight.tls=true"
       # - "traefik.http.routers.redis-insight.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.redis-insight.tls.domains[0].main=cache.${DOMAIN}"
+      # - "traefik.http.routers.redis-insight.tls.domains[0].main=${REDIS_INSIGHT_HOST}"
       - "traefik.http.routers.redis-insight.service=redis-insight"
       # Services
       - "traefik.http.services.redis-insight.loadbalancer.server.port=5540"
@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/data
+      - /opt/persistence/redis-insight:/data
 
 networks:
   service-net:

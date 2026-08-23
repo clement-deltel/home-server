@@ -3,8 +3,8 @@ services:
     container_name: unbound
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     healthcheck:
       test: ["CMD", "drill", "@127.0.0.11", "cloudflare.com"]
       interval: 60s
@@ -24,9 +24,9 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence:/opt/unbound/etc/unbound
-      # - ./persistence/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf:ro
-      # - ./persistence/a-records.conf:/opt/unbound/etc/unbound/a-records.conf:ro
+      - /opt/persistence/unbound:/opt/unbound/etc/unbound
+      # - /opt/persistence/unbound/forward-records.conf:/opt/unbound/etc/unbound/forward-records.conf:ro
+      # - /opt/persistence/unbound/a-records.conf:/opt/unbound/etc/unbound/a-records.conf:ro
 
 networks:
   dns-net:

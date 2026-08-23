@@ -9,8 +9,8 @@ services:
       - /dev/sda
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
     hostname: scrutiny
     image: ${SCRUTINY_IMAGE}
     labels:
@@ -18,18 +18,18 @@ services:
       # Routers
       ## Default
       - "traefik.http.routers.scrutiny.entrypoints=web,websecure"
-      - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.${DOMAIN}`) && !ClientIP(`${PUBLIC_IP}`)"
+      - "traefik.http.routers.scrutiny.rule=Host(`${SCRUTINY_HOST}`) && !ClientIP(`${PUBLIC_IP}`)"
       - "traefik.http.routers.scrutiny.tls=true"
       # - "traefik.http.routers.scrutiny.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.scrutiny.tls.domains[0].main=scrutiny.${DOMAIN}"
+      # - "traefik.http.routers.scrutiny.tls.domains[0].main=${SCRUTINY_HOST}"
       # - "traefik.http.routers.scrutiny.middlewares=scrutiny"
       - "traefik.http.routers.scrutiny.service=scrutiny"
       ## API access router without authentication
       - "traefik.http.routers.scrutiny-homer.entrypoints=web,websecure"
-      - "traefik.http.routers.scrutiny-homer.rule=Host(`scrutiny.${DOMAIN}`) && ClientIP(`${PUBLIC_IP}`) && PathPrefix(`/api/summary`)"
+      - "traefik.http.routers.scrutiny-homer.rule=Host(`${SCRUTINY_HOST}`) && ClientIP(`${PUBLIC_IP}`) && PathPrefix(`/api/summary`)"
       - "traefik.http.routers.scrutiny-homer.tls=true"
       # - "traefik.http.routers.scrutiny-homer.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.scrutiny-homer.tls.domains[0].main=scrutiny.${DOMAIN}"
+      # - "traefik.http.routers.scrutiny-homer.tls.domains[0].main=${SCRUTINY_HOST}"
       - "traefik.http.routers.scrutiny-homer.middlewares=scrutiny-cors"
       - "traefik.http.routers.scrutiny-homer.service=scrutiny"
       # Middlewares
@@ -57,8 +57,8 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/config:/opt/scrutiny/config
-      - ./persistence/influxdb:/opt/scrutiny/influxdb
+      - /opt/persistence/scrutiny/config:/opt/scrutiny/config
+      - /opt/persistence/scrutiny/influxdb:/opt/scrutiny/influxdb
       - /run/udev:/run/udev:ro
 
 networks:

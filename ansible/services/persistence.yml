@@ -238,20 +238,20 @@
       - /opt/persistence/paperless/media
       # Photoprism
       - /mnt/ssd/databases/photoprism
-      - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence"
-      - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/pictures"
-      - "{{ server_home }}/services/media/storage/pictures/photoprism/persistence/storage"
+      - "/opt/persistence/photoprism"
+      - "/opt/persistence/photoprism/pictures"
+      - "/opt/persistence/photoprism/storage"
       # Pihole
       - "{{ server_home }}/services/dns/pihole/etc-pihole"
       - "{{ server_home }}/services/dns/pihole/etc-dnsmasqd"
       # Pinry
-      - "{{ server_home }}/services/media/storage/pictures/pinry/persistence"
+      - "/opt/persistence/pinry"
       # Prometheus
-      - "{{ server_home }}/services/monitoring/prometheus/prometheus-persistence"
+      - "/opt/persistence/prometheus"
       # Prowlarr
       - /opt/persistence/prowlarr
       # Redis Insight
-      - "{{ server_home }}/services/management/cache/redis-insight/persistence"
+      - "/opt/persistence/redis-insight"
       # QBittorrent
       - /opt/persistence/qbittorrent
       # Radarr
@@ -269,9 +269,9 @@
       - "{{ server_home }}/services/remote/rustdesk/db-persistence"
       - "{{ server_home }}/services/remote/rustdesk/persistence"
       # Scrutiny
-      - "{{ server_home }}/services/monitoring/scrutiny/persistence"
-      - "{{ server_home }}/services/monitoring/scrutiny/persistence/config"
-      - "{{ server_home }}/services/monitoring/scrutiny/persistence/influxdb"
+      - "/opt/persistence/scrutiny"
+      - "/opt/persistence/scrutiny/config"
+      - "/opt/persistence/scrutiny/influxdb"
       # SearXNG
       - /mnt/ssd/cache/searxng
       - /opt/persistence/searxng
@@ -288,13 +288,13 @@
       # Sonarr
       - /opt/persistence/sonarr
       # Stirling PDF
-      - "{{ server_home }}/services/media/tools/stirling-pdf/persistence"
-      - "{{ server_home }}/services/media/tools/stirling-pdf/persistence/configs"
-      - "{{ server_home }}/services/media/tools/stirling-pdf/persistence/tessdata"
+      - "/opt/persistence/stirling-pdf"
+      - "/opt/persistence/stirling-pdf/configs"
+      - "/opt/persistence/stirling-pdf/tessdata"
       # Unbound
-      - "{{ server_home }}/services/dns/unbound/persistence"
+      - "/opt/persistence/unbound"
       # UpSnap
-      - "{{ server_home }}/services/home/upsnap/persistence"
+      - "/opt/persistence/upsnap"
       # Vaultwarden
       - /mnt/ssd/databases/vaultwarden
       - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"

@@ -3,8 +3,8 @@ services:
     container_name: upsnap
     dns:
       - 127.0.0.1
-      - 45.90.28.96
-      - 45.90.30.96
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
       - ${PIHOLE_IP}
     env_file: config/.env
     healthcheck:
@@ -20,10 +20,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.upsnap.entrypoints=web,websecure"
-      - "traefik.http.routers.upsnap.rule=Host(`wol.${DOMAIN}`)"
+      - "traefik.http.routers.upsnap.rule=Host(`${UPSNAP_HOST}`)"
       - "traefik.http.routers.upsnap.tls=true"
       # - "traefik.http.routers.upsnap.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.upsnap.tls.domains[0].main=wol.${DOMAIN}"
+      # - "traefik.http.routers.upsnap.tls.domains[0].main=${UPSNAP_HOST}"
       - "traefik.http.routers.upsnap.service=upsnap"
       # Services
       - "traefik.http.services.upsnap.loadbalancer.server.port=8090"
@@ -37,4 +37,4 @@ services:
     stop_grace_period: 30s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./persistence:/app/pb_data
+      - /opt/persistence/upsnap:/app/pb_data
