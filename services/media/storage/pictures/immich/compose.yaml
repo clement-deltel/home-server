@@ -88,10 +88,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.immich.entrypoints=web-external,websecure-external"
-      - "traefik.http.routers.immich.rule=Host(`pictures.${DOMAIN}`)"
+      - "traefik.http.routers.immich.rule=Host(`${IMMICH_HOST}`)"
       - "traefik.http.routers.immich.tls=true"
       # - "traefik.http.routers.immich.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.immich.tls.domains[0].main=pictures.${DOMAIN}"
+      # - "traefik.http.routers.immich.tls.domains[0].main=${IMMICH_HOST}"
       - "traefik.http.routers.immich.middlewares=immich-cors"
       - "traefik.http.routers.immich.service=immich"
       # Middlewares

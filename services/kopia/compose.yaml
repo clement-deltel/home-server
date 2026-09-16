@@ -13,10 +13,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.kopia.entrypoints=web,websecure"
-      - "traefik.http.routers.kopia.rule=Host(`backups.${DOMAIN}`)"
+      - "traefik.http.routers.kopia.rule=Host(`${KOPIA_HOST}`)"
       - "traefik.http.routers.kopia.tls=true"
       # - "traefik.http.routers.kopia.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.kopia.tls.domains[0].main=backups.${DOMAIN}"
+      # - "traefik.http.routers.kopia.tls.domains[0].main=${KOPIA_HOST}"
       - "traefik.http.routers.kopia.service=kopia"
       # Services
       - "traefik.http.services.kopia.loadbalancer.server.port=51515"

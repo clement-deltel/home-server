@@ -8,9 +8,9 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
-        external_url "https://gitlab.${DOMAIN}"
-        registry_external_url "https://registry.gitlab.${DOMAIN}"
-        pages_external_url "https://pages.gitlab.${DOMAIN}"
+        external_url "https://${GITLAB_HOST}"
+        registry_external_url "https://registry.${GITLAB_HOST}"
+        pages_external_url "https://pages.${GITLAB_HOST}"
         # Container Registry
         registry['enable'] = true
         gitlab_rails['registry_enabled'] = true
@@ -69,7 +69,7 @@ services:
         gitlab_rails['gitlab_email_from'] = "noreply-gitlab@${DOMAIN}"
         #gitlab_rails['gitlab_email_reply_to'] = "gitlab@${DOMAIN}"
         # SSH
-        gitlab_rails['gitlab_ssh_host'] = "gitlab.${DOMAIN}"
+        gitlab_rails['gitlab_ssh_host'] = "${GITLAB_HOST}"
         gitlab_rails['gitlab_shell_ssh_port'] = 22
     image: ${GITLAB_IMAGE}
     hostname: gitlab
