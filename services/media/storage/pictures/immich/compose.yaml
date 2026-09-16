@@ -45,9 +45,9 @@ services:
       - /mnt/ssd/databases/immich:/var/lib/postgresql/data
 
   immich-machine-learning:
-    container_name: immich-machine-learning
+    container_name: immich-ml
     env_file: config/.env
-    hostname: immich-machine-learning
+    hostname: immich-ml
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
     # Example tag: ${IMMICH_VERSION:-release}-cuda
     image: ${IMMICH_ML_IMAGE}
