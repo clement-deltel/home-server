@@ -1,7 +1,7 @@
 # https://github.com/directus/directus
 services:
   cache:
-    container_name: directus-valkey
+    container_name: directus-cache
     environment:
       - VALKEY_EXTRA_FLAGS=--requirepass ${DIRECTUS_CACHE_PASSWORD}
     healthcheck:
@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: directus-valkey
+    hostname: directus-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -27,7 +27,7 @@ services:
       - /mnt/ssd/cache/directus:/data
 
   db:
-    container_name: directus-postgres
+    container_name: directus-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DIRECTUS_DB_USER}"]
@@ -36,7 +36,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: directus-postgres
+    hostname: directus-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file

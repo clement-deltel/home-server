@@ -1,7 +1,7 @@
 # https://github.com/n8n-io/n8n
 services:
   db:
-    container_name: n8n-postgres
+    container_name: n8n-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${N8N_DB_USER}"]
@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: n8n-postgres
+    hostname: n8n-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file

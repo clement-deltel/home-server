@@ -1,7 +1,7 @@
 # https://github.com/mathesar-foundation/mathesar
 services:
   pkms-db:
-    container_name: mathesar-pkms-postgres
+    container_name: mathesar-pkms-db
     env_file: config/.env.pkms.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_PKMS_DB_USER}"]
@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: mathesar-pkms-postgres
+    hostname: mathesar-pkms-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
@@ -26,7 +26,7 @@ services:
       - /mnt/ssd/databases/mathesar-pkms:/var/lib/postgresql/data
 
   db:
-    container_name: mathesar-postgres
+    container_name: mathesar-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_DB_USER}"]
@@ -35,7 +35,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: mathesar-postgres
+    hostname: mathesar-db
     image: ${MATHESAR_DB_IMAGE}
     logging:
       driver: json-file

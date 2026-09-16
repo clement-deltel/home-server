@@ -29,7 +29,7 @@ services:
   ## see https://docs.photoprism.app/getting-started/faq/#should-i-use-sqlite-mariadb-or-mysql
   db:
     command: mariadbd --innodb-buffer-pool-size=512M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
-    container_name: photoprism-mariadb
+    container_name: photoprism-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${PHOTOPRISM_DB_ROOT_PASSWORD}"]
@@ -38,7 +38,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: photoprism-mariadb
+    hostname: photoprism-db
     image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file

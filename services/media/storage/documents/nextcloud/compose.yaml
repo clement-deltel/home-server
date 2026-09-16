@@ -1,7 +1,7 @@
 # https://github.com/nextcloud/server
 services:
   cache:
-    container_name: nextcloud-valkey
+    container_name: nextcloud-cache
     environment:
       - VALKEY_EXTRA_FLAGS=--requirepass ${NEXTCLOUD_CACHE_PASSWORD}
     healthcheck:
@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: nextcloud-valkey
+    hostname: nextcloud-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -28,7 +28,7 @@ services:
 
   db:
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
-    container_name: nextcloud-mariadb
+    container_name: nextcloud-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${NEXTCLOUD_DB_ROOT_PASSWORD}"]
@@ -37,7 +37,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: nextcloud-mariadb
+    hostname: nextcloud-db
     image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file

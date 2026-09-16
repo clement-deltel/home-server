@@ -1,7 +1,7 @@
 # https://github.com/BerriAI/litellm
 services:
   cache:
-    container_name: litellm-valkey
+    container_name: litellm-cache
     environment:
       - VALKEY_EXTRA_FLAGS=--requirepass ${LITELLM_CACHE_PASSWORD}
     healthcheck:
@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: litellm-valkey
+    hostname: litellm-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -27,7 +27,7 @@ services:
       - /mnt/ssd/cache/litellm:/data
 
   db:
-    container_name: litellm-postgres
+    container_name: litellm-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${LITELLM_DB_USER}"]
@@ -36,7 +36,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: litellm-postgres
+    hostname: litellm-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file

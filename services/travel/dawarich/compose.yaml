@@ -1,7 +1,7 @@
 # https://github.com/Freika/dawarich
 services:
   cache:
-    container_name: dawarich-valkey
+    container_name: dawarich-cache
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 20s
@@ -9,7 +9,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: dawarich-valkey
+    hostname: dawarich-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -25,7 +25,7 @@ services:
       - /mnt/ssd/cache/dawarich:/data
 
   db:
-    container_name: dawarich-postgis
+    container_name: dawarich-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DAWARICH_DB_USER}}"]
@@ -34,7 +34,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: dawarich-postgis
+    hostname: dawarich-db
     image: ${DAWARICH_DB_IMAGE}
     logging:
       driver: json-file

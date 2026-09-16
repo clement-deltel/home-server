@@ -26,7 +26,7 @@ services:
       - /opt/persistence/firecrawl/broker:/var/lib/rabbitmq
 
   cache:
-    container_name: firecrawl-valkey
+    container_name: firecrawl-cache
     environment:
       - VALKEY_EXTRA_FLAGS=--bind 0.0.0.0 --requirepass ${FIRECRAWL_CACHE_PASSWORD}
     healthcheck:
@@ -36,7 +36,7 @@ services:
       start_period: 60s
       start_interval: 5s
       timeout: 15s
-    hostname: firecrawl-valkey
+    hostname: firecrawl-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -52,7 +52,7 @@ services:
       - /mnt/ssd/cache/firecrawl:/data
 
   db:
-    container_name: firecrawl-postgres
+    container_name: firecrawl-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${FIRECRAWL_DB_USERNAME}"]
@@ -61,7 +61,7 @@ services:
       start_period: 60s
       start_interval: 5s
       timeout: 15s
-    hostname: firecrawl-postgres
+    hostname: firecrawl-db
     image: ${FIRECRAWL_DB_IMAGE}
     logging:
       driver: json-file

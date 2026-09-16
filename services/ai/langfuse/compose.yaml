@@ -1,7 +1,7 @@
 # https://github.com/langfuse/langfuse
 services:
   cache:
-    container_name: langfuse-valkey
+    container_name: langfuse-cache
     environment:
       - VALKEY_EXTRA_FLAGS=--maxmemory-policy noeviction --requirepass ${LANGFUSE_CACHE_PASSWORD}
     healthcheck:
@@ -11,7 +11,7 @@ services:
       start_interval: 5s
       start_period: 60s
       timeout: 15s
-    hostname: langfuse-valkey
+    hostname: langfuse-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -27,7 +27,7 @@ services:
       - /mnt/ssd/cache/langfuse:/data
 
   db:
-    container_name: langfuse-postgres
+    container_name: langfuse-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${LANGFUSE_DB_USERNAME}"]
@@ -36,7 +36,7 @@ services:
       start_interval: 5s
       start_period: 60s
       timeout: 15s
-    hostname: langfuse-postgres
+    hostname: langfuse-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file

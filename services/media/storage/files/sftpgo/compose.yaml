@@ -1,7 +1,7 @@
 # https://github.com/drakkan/sftpgo
 services:
   database:
-    container_name: sftpgo-postgres
+    container_name: sftpgo-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${SFTPGO_DB_USER}"]
@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: sftpgo-postgres
+    hostname: sftpgo-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file

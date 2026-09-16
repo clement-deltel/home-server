@@ -1,7 +1,7 @@
 # https://github.com/immich-app/immich
 services:
   cache:
-    container_name: immich-valkey
+    container_name: immich-cache
     environment:
       - VALKEY_EXTRA_FLAGS=--requirepass ${IMMICH_CACHE_PASSWORD}
     healthcheck:
@@ -11,7 +11,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: immich-valkey
+    hostname: immich-cache
     image: ${IMMICH_CACHE_IMAGE}
     logging:
       driver: json-file
@@ -27,9 +27,9 @@ services:
       - /mnt/ssd/cache/immich:/data
 
   db:
-    container_name: immich-postgres
+    container_name: immich-db
     env_file: config/.env.db
-    hostname: immich-postgres
+    hostname: immich-db
     image: ${IMMICH_DB_IMAGE}
     logging:
       driver: json-file

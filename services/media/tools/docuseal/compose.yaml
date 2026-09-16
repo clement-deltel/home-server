@@ -1,7 +1,7 @@
 # https://github.com/docusealco/docuseal
 services:
   db:
-    container_name: docuseal-postgres
+    container_name: docuseal-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DOCUSEAL_DB_USER}"]
@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: docuseal-postgres
+    hostname: docuseal-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file

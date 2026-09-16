@@ -47,7 +47,7 @@ services:
     stop_grace_period: 30s
 
   db:
-    container_name: grafana-postgres
+    container_name: grafana-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${GRAFANA_DB_USER}"]
@@ -56,7 +56,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: grafana-postgres
+    hostname: grafana-db
     image: ${DEFAULT_POSTGRES_IMAGE}
     logging:
       driver: json-file
