@@ -29,7 +29,7 @@
         state: present
       loop:
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_DB_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_DB_USERNAME} -l immich_db > /opt/backup/databases/immich.sql"
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${YAMTRACK_DB_PASSWORD}; pg_dumpall -c -h ${YAMTRACK_DB_IP} -U ${YAMTRACK_DB_USERNAME} -l yamtrack_db > /opt/backup/databases/yamtrack.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${YAMTRACK_DB_PASSWORD}; pg_dumpall -c -h ${YAMTRACK_DB_IP} -U ${YAMTRACK_DB_USERNAME} -l postgres > /opt/backup/databases/yamtrack.sql"
 
     - name: Monthly backup job
       ansible.builtin.cron:
