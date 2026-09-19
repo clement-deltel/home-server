@@ -31,7 +31,7 @@
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_DB_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_DB_USERNAME} -l immich_db > /opt/backup/databases/immich.sql"
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${YAMTRACK_DB_PASSWORD}; pg_dumpall -c -h ${YAMTRACK_DB_IP} -U ${YAMTRACK_DB_USERNAME} -l yamtrack_db > /opt/backup/databases/yamtrack.sql"
 
-    - name: Files monthly backup job
+    - name: Monthly backup job
       ansible.builtin.cron:
         name: "Backup databases and files (every month before 3AM): FreshRSS, Guacamole, Change Detection, Pihole"
         minute: 30
@@ -42,7 +42,7 @@
       loop:
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${FRESHRSS_DB_PASSWORD}; pg_dumpall -c -h ${FRESHRSS_DB_IP} -U ${FRESHRSS_DB_USERNAME} -l postgres > /opt/backup/databases/freshrss.sql"
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${GUACAMOLE_DB_IP} -u ${GUACAMOLE_DB_USERNAME} -p${GUACAMOLE_DB_PASSWORD} guacamole_db > /opt/backup/databases/guacamole.sql"
-        - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* /opt/backup/files/changedetection.zip
+        - "source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* /opt/backup/files/changedetection.zip"
         - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* /opt/backup/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
 
     - name: Minecraft backup job
