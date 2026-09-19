@@ -1,7 +1,7 @@
 # https://github.com/apache/guacamole-server
 services:
   db:
-    container_name: guacamole-mariadb
+    container_name: guacamole-db
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${GUACAMOLE_DB_ROOT_PASSWORD}"]
@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 60s
       start_interval: 5s
-    hostname: guacamole-mariadb
+    hostname: guacamole-db
     image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
