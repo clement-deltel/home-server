@@ -33,16 +33,18 @@
 
     - name: Monthly backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every month before 3AM): FreshRSS, Guacamole, Change Detection, Pihole"
+        name: "Backup databases and files (every month before 3AM): AdventureLog, FreshRSS, Guacamole, Change Detection, Pihole"
         minute: 30
         hour: 2
         day: 1
         job: "{{ item }}"
         state: present
       loop:
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${ADVENTURELOG_DB_PASSWORD}; pg_dumpall -c -h ${ADVENTURELOG_DB_IP} -U ${ADVENTURELOG_DB_USERNAME} -l adventurelog > /opt/backup/databases/adventurelog.sql"
+        - zip -r /opt/backup/files/adventurelog.zip /opt/persistence/adventurelog
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${FRESHRSS_DB_PASSWORD}; pg_dumpall -c -h ${FRESHRSS_DB_IP} -U ${FRESHRSS_DB_USERNAME} -l postgres > /opt/backup/databases/freshrss.sql"
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${GUACAMOLE_DB_IP} -u ${GUACAMOLE_DB_USERNAME} -p${GUACAMOLE_DB_PASSWORD} guacamole_db > /opt/backup/databases/guacamole.sql"
-        - "source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* /opt/backup/files/changedetection.zip"
+        - cp /opt/persistence/change-detection/changedetection-backup-* /opt/backup/files/changedetection.zip
         - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* /opt/backup/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
 
     - name: Minecraft backup job

@@ -41,9 +41,11 @@ services:
       # Mount local folders to snapshot
       - /opt/backup/databases:/data/databases:ro
       - /opt/backup/files:/data/files:ro
+      #- /opt/persistence/home-assistant/backups:/data/home-assistant:ro
       #- /opt/persistence/hortusfox/backup:/data/hortusfox:ro
       #- ${SERVER_HOME}/services/media/storage/pictures/immich/persistence:/data/immich:ro
       #- /opt/persistence/jellyfin:/data/jellyfin:ro
+      #- /opt/persistence/mealie/backups:/data/mealie:ro
       #- /opt/persistence/navidrome/backup:/data/navidrome:ro
       #- ${SERVER_HOME}/services/management/passwords/vaultwarden/persistence:/data/vaultwarden:ro
 
