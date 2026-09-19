@@ -35,16 +35,16 @@ services:
     stop_grace_period: 30s
     volumes:
       # Mount local folders needed by kopia
-      - ./persistence/config:/app/config
-      - ./persistence/cache:/app/cache
-      - ./persistence/logs:/app/logs
+      - /opt/persistence/kopia/cache:/app/cache
+      - /opt/persistence/kopia/config:/app/config
+      - /opt/persistence/kopia/logs:/app/logs
       # Mount local folders to snapshot
-      - ./persistence/databases:/data/databases:ro
-      - ./persistence/files:/data/files:ro
-      #- ${SERVER_HOME}/services/inventory/hortusfox/persistence/backup:/data/hortusfox:ro
+      - /opt/backup/databases:/data/databases:ro
+      - /opt/backup/files:/data/files:ro
+      #- /opt/persistence/hortusfox/backup:/data/hortusfox:ro
       #- ${SERVER_HOME}/services/media/storage/pictures/immich/persistence:/data/immich:ro
-      #- ${SERVER_HOME}/services/media/storage/videos/jellyfin/persistence:/data/jellyfin:ro
-      #- ${SERVER_HOME}/services/media/storage/music/navidrome/persistence/backup:/data/navidrome:ro
+      #- /opt/persistence/jellyfin:/data/jellyfin:ro
+      #- /opt/persistence/navidrome/backup:/data/navidrome:ro
       #- ${SERVER_HOME}/services/management/passwords/vaultwarden/persistence:/data/vaultwarden:ro
 
 networks:

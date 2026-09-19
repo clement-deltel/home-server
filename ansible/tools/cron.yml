@@ -10,27 +10,26 @@
 
     - name: Daily backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every day before 1AM): Vaultwarden, Mathesar PKMS, Paperless"
+        name: "Backup databases and files (every day before 1AM): Vaultwarden, Mathesar PKMS"
         minute: 30
         hour: 0
         job: "{{ item }}"
         state: present
       loop:
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > ${SERVER_HOME}/services/kopia/persistence/databases/vaultwarden.sql"
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${MATHESAR_PKMS_DB_PASSWORD}; pg_dumpall -c -h ${MATHESAR_PKMS_DB_IP} -U ${MATHESAR_PKMS_DB_USER} -l pkms_tables_db > ${SERVER_HOME}/services/kopia/persistence/databases/mathesar-pkms.sql"
-        - docker exec -T paperless document_exporter ../export --no-progress-bar; tar -zcf ${SERVER_HOME}/services/kopia/persistence/files/paperless.tar.gz ${SERVER_HOME}/services/media/storage/documents/paperless/persistence/export
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USERNAME} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > /opt/backup/databases/vaultwarden.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${MATHESAR_PKMS_DB_PASSWORD}; pg_dumpall -c -h ${MATHESAR_PKMS_DB_IP} -U ${MATHESAR_PKMS_DB_USERNAME} -l pkms_tables_db > /opt/backup/databases/mathesar-pkms.sql"
 
     - name: Weekly backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every week before 2AM): Immich, Gitlab"
+        name: "Backup databases and files (every week before 2AM): Immich, Yamtrack"
         minute: 30
         hour: 1
         weekday: 1
         job: "{{ item }}"
         state: present
       loop:
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_DB_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_DB_USER} -l immich_db > ${SERVER_HOME}/services/kopia/persistence/databases/immich.sql"
-        - GITLAB_BACKUP_DIR=${SERVER_HOME}/services/kopia/persistence/files/gitlab; mkdir -p ${GITLAB_BACKUP_DIR}; docker exec -t gitlab gitlab-backup create BACKUP=dump; docker cp gitlab:/var/opt/gitlab/backups/dump_gitlab_backup.tar ${GITLAB_BACKUP_DIR}; docker cp gitlab:/etc/gitlab/gitlab.rb ${GITLAB_BACKUP_DIR}; docker cp gitlab:/etc/gitlab/gitlab-secrets.json ${GITLAB_BACKUP_DIR}
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_DB_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_DB_USERNAME} -l immich_db > /opt/backup/databases/immich.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${YAMTRACK_DB_PASSWORD}; pg_dumpall -c -h ${YAMTRACK_DB_IP} -U ${YAMTRACK_DB_USERNAME} -l yamtrack_db > /opt/backup/databases/yamtrack.sql"
 
     - name: Files monthly backup job
       ansible.builtin.cron:
@@ -41,10 +40,10 @@
         job: "{{ item }}"
         state: present
       loop:
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${FRESHRSS_DB_PASSWORD}; pg_dumpall -c -h ${FRESHRSS_DB_IP} -U ${FRESHRSS_DB_USER} -l postgres > ${SERVER_HOME}/services/kopia/persistence/databases/freshrss.sql"
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${GUACAMOLE_DB_IP} -u ${GUACAMOLE_DB_USER} -p${GUACAMOLE_DB_PASSWORD} guacamole_db > ${SERVER_HOME}/services/kopia/persistence/databases/guacamole.sql"
-        - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* ${SERVER_HOME}/services/kopia/persistence/files/changedetection.zip
-        - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* ${SERVER_HOME}/services/kopia/persistence/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${FRESHRSS_DB_PASSWORD}; pg_dumpall -c -h ${FRESHRSS_DB_IP} -U ${FRESHRSS_DB_USERNAME} -l postgres > /opt/backup/databases/freshrss.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${GUACAMOLE_DB_IP} -u ${GUACAMOLE_DB_USERNAME} -p${GUACAMOLE_DB_PASSWORD} guacamole_db > /opt/backup/databases/guacamole.sql"
+        - source ${SERVER_HOME}/env/.env; cp ${SERVER_HOME}/services/monitoring/detection/persistence/changedetection-backup-* /opt/backup/files/changedetection.zip
+        - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* /opt/backup/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
 
     - name: Minecraft backup job
       ansible.builtin.cron:

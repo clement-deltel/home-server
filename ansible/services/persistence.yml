@@ -148,11 +148,10 @@
       - /opt/persistence/kavita/config
       - /opt/persistence/kavita/manga
       # Kopia
-      - "{{ server_home }}/services/kopia/persistence"
-      - "{{ server_home }}/services/kopia/persistence/cache"
-      - "{{ server_home }}/services/kopia/persistence/config"
-      - "{{ server_home }}/services/kopia/persistence/data"
-      - "{{ server_home }}/services/kopia/persistence/logs"
+      - /opt/persistence/kopia
+      - /opt/persistence/kopia/cache
+      - /opt/persistence/kopia/config
+      - /opt/persistence/kopia/logs
       # Langfuse
       - /mnt/ssd/cache/langfuse
       - /mnt/ssd/databases/langfuse
@@ -334,6 +333,10 @@
       # Yamtrack
       - /mnt/ssd/cache/yamtrack
       - /mnt/ssd/databases/yamtrack
+      # Shared - Backup
+      - /opt/backup
+      - /opt/backup/databases
+      - /opt/backup/files
       # Shared - Media
       - /opt/media
       - /opt/media/movies
