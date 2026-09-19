@@ -4,10 +4,10 @@
   vars:
     directories:
       # Traefik
-      - "{{ server_home }}/services/traefik/persistence"
-      - "{{ server_home }}/services/traefik/persistence/dynamic"
-      - "{{ server_home }}/services/traefik/persistence/log"
-      - "{{ server_home }}/services/traefik/persistence/plugins"
+      - /opt/persistence/traefik
+      - /opt/persistence/traefik/dynamic
+      - /opt/persistence/traefik/log
+      - /opt/persistence/traefik/plugins
       # Actual
       - /opt/persistence/actual
       # AdventureLog

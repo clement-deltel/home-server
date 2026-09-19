@@ -20,10 +20,10 @@ services:
       - "traefik.enable=true"
       # Routers
       - "traefik.http.routers.traefik.entrypoints=web,websecure"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_HOST}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
       - "traefik.http.routers.traefik.tls=true"
       # - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.traefik.tls.domains[0].main=traefik.${DOMAIN}"
+      # - "traefik.http.routers.traefik.tls.domains[0].main=${TRAEFIK_HOST}"
       # - "traefik.http.routers.traefik.middlewares=auth"
       - "traefik.http.routers.traefik.service=api@internal"
       # Middlewares
@@ -63,18 +63,18 @@ services:
       # Docker socket is mounted for auto-discovery of new services - read only
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # Log files
-      - ./persistence/log/access.log:/var/log/access.log
-      - ./persistence/log/traefik.log:/var/log/traefik.log
+      - /opt/persistence/traefik/log/access.log:/var/log/access.log
+      - /opt/persistence/traefik/log/traefik.log:/var/log/traefik.log
       # Static configuration file
-      - ./persistence/traefik.yaml:/etc/traefik/traefik.yaml
+      - /opt/persistence/traefik/traefik.yaml:/etc/traefik/traefik.yaml
       # Dynamic configuration directory
-      - ./persistence/dynamic:/etc/traefik/dynamic:ro
+      - /opt/persistence/traefik/dynamic:/etc/traefik/dynamic:ro
       # Plugins directory
-      - ./persistence/plugins:/plugins-storage
+      - /opt/persistence/traefik/plugins:/plugins-storage
       # users.txt - Credentials for the Traefik dashboard.
-      # - ./persistence/users.txt:/opt/dashboard/users.txt
+      # - /opt/persistence/traefik/users.txt:/opt/dashboard/users.txt
       # JSON file for certificates - It must have 600 file permissions.
-      # - ./persistence/acme.json:/letsencrypt/acme.json
+      # - /opt/persistence/traefik/acme.json:/letsencrypt/acme.json
 
   robots:
     container_name: robots
