@@ -55,7 +55,7 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${RUSTDESK_IP}
     ports:
       # Note that 21116/udp is causing connections issue with Rustdesk so we
@@ -68,6 +68,6 @@ services:
       - /opt/persistence/rustdesk/data:/data
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net
