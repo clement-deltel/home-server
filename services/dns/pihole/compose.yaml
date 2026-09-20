@@ -23,11 +23,11 @@ services:
       - "traefik.http.routers.pihole.middlewares=pihole-cors"
       - "traefik.http.routers.pihole.service=pihole"
       # Middlewares
-      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolallowmethods=GET,POST"
-      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolalloworiginlist=https://${HOMER_HOST}"
-      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.pihole-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.pihole-cors.headers.accessControlAllowHeaders=*"
+      - "traefik.http.middlewares.pihole-cors.headers.accessControlAllowMethods=GET,POST"
+      - "traefik.http.middlewares.pihole-cors.headers.accessControlAllowOriginList=https://${HOMER_HOST}"
+      - "traefik.http.middlewares.pihole-cors.headers.accessControlMaxAge=100"
+      - "traefik.http.middlewares.pihole-cors.headers.addVaryHeader=true"
       # Services
       - "traefik.http.services.pihole.loadbalancer.server.port=80"
     logging:
