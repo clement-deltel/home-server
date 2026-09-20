@@ -75,11 +75,11 @@ services:
       - "traefik.http.routers.vaultwarden.middlewares=vaultwarden-cors"
       - "traefik.http.routers.vaultwarden.service=vaultwarden"
       # Middlewares
-      - "traefik.http.middlewares.vaultwarden-cors.headers.accesscontrolallowmethods=GET"
-      - "traefik.http.middlewares.vaultwarden-cors.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.vaultwarden-cors.headers.accesscontrolalloworiginlist=https://${HOMER_HOST}"
-      - "traefik.http.middlewares.vaultwarden-cors.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.vaultwarden-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.vaultwarden-cors.headers.accessControlAllowHeaders=*"
+      - "traefik.http.middlewares.vaultwarden-cors.headers.accessControlAllowMethods=GET"
+      - "traefik.http.middlewares.vaultwarden-cors.headers.accessControlAllowOriginList=https://${HOMER_HOST}"
+      - "traefik.http.middlewares.vaultwarden-cors.headers.accessControlMaxAge=100"
+      - "traefik.http.middlewares.vaultwarden-cors.headers.addVaryHeader=true"
       # Services
       - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
     logging:

@@ -79,11 +79,11 @@ services:
       - "traefik.tcp.routers.forgejo-ssh.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.forgejo-ssh.service=forgejo-ssh"
       # Middlewares
-      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolallowmethods=GET"
-      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolalloworiginlist=https://${HOMER_HOST}"
-      - "traefik.http.middlewares.forgejo-cors.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.forgejo-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.forgejo-cors.headers.accessControlAllowHeaders=*"
+      - "traefik.http.middlewares.forgejo-cors.headers.accessControlAllowMethods=GET"
+      - "traefik.http.middlewares.forgejo-cors.headers.accessControlAllowOriginList=https://${HOMER_HOST}"
+      - "traefik.http.middlewares.forgejo-cors.headers.accessControlMaxAge=100"
+      - "traefik.http.middlewares.forgejo-cors.headers.addVaryHeader=true"
       # Services
       - "traefik.http.services.forgejo.loadbalancer.server.port=3000"
       - "traefik.tcp.services.forgejo-ssh.loadbalancer.server.port=22"
