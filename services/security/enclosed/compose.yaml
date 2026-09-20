@@ -25,7 +25,7 @@ services:
         max-file: 2
         max-size: 5m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: ${ENCLOSED_IP}
     ports:
       - 8787
@@ -35,6 +35,6 @@ services:
       - /opt/persistence/enclosed:/app/.data
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

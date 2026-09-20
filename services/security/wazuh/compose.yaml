@@ -108,7 +108,7 @@ services:
     networks:
       app-net:
         ipv4_address: ${WAZUH_DASHBOARD_IP}
-      traefik-net:
+      proxy-net:
         ipv4_address: ${WAZUH_IP}
     ports:
       - 5601
@@ -140,6 +140,6 @@ networks:
       config:
         - subnet: ${WAZUH_NET}
           gateway: ${WAZUH_GATEWAY}
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net

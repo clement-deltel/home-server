@@ -18,12 +18,12 @@ services:
         max-file: 2
         max-size: 2m
     networks:
-      traefik-net:
+      proxy-net:
         ipv4_address: 192.168.10.255
     restart: unless-stopped
     stop_grace_period: 30s
 
 networks:
-  traefik-net:
+  proxy-net:
     external: true
     name: traefik-net
