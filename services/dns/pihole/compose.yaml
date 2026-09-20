@@ -20,7 +20,14 @@ services:
       - "traefik.http.routers.pihole.tls=true"
       # - "traefik.http.routers.pihole.tls.certresolver=letsencrypt"
       # - "traefik.http.routers.pihole.tls.domains[0].main=${PIHOLE_HOST}"
+      - "traefik.http.routers.pihole.middlewares=pihole-cors"
       - "traefik.http.routers.pihole.service=pihole"
+      # Middlewares
+      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolallowmethods=GET,POST"
+      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolalloworiginlist=https://${HOMER_HOST}"
+      - "traefik.http.middlewares.pihole-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.pihole-cors.headers.addvaryheader=true"
       # Services
       - "traefik.http.services.pihole.loadbalancer.server.port=80"
     logging:
