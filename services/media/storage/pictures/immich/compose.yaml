@@ -65,7 +65,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/model-cache:/cache
+      - /opt/persistence/immich/model-cache:/cache
 
   immich-server:
     container_name: immich-server
@@ -117,7 +117,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/upload:/usr/src/app/upload
+      - /opt/persistence/immich/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
 
 networks:

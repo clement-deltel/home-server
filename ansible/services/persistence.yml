@@ -130,9 +130,9 @@
       # Immich
       - /mnt/ssd/cache/immich
       - /mnt/ssd/databases/immich
-      - "{{ server_home }}/services/media/storage/pictures/immich/persistence"
-      - "{{ server_home }}/services/media/storage/pictures/immich/persistence/model-cache"
-      - "{{ server_home }}/services/media/storage/pictures/immich/persistence/upload"
+      - /opt/persistence/immich
+      - /opt/persistence/immich/model-cache
+      - /opt/persistence/immich/upload
       # Jellyfin
       - /opt/persistence/jellyfin
       # Jetlog
@@ -182,9 +182,9 @@
       # Mathesar
       - /mnt/ssd/databases/mathesar
       - /mnt/ssd/databases/mathesar-pkms
-      - "{{ server_home }}/services/pkms/mathesar/persistence"
-      - "{{ server_home }}/services/pkms/mathesar/persistence/static"
-      - "{{ server_home }}/services/pkms/mathesar/persistence/media"
+      - /opt/persistence/mathesar
+      - /opt/persistence/mathesar/static
+      - /opt/persistence/mathesar/media
       # Mealie
       - /mnt/ssd/databases/mealie
       - /opt/persistence/mealie
@@ -198,7 +198,7 @@
       - /mnt/ssd/databases/memos
       - /opt/persistence/memos
       # Minecraft
-      - "{{ server_home }}/services/games/minecraft/persistence"
+      - /opt/persistence/minecraft
       # n8n
       - /mnt/ssd/databases/n8n
       - /opt/persistence/n8n
@@ -218,9 +218,9 @@
       # Ntfy
       - /opt/persistence/ntfy
       # Obsidian LiveSync
-      - "{{ server_home }}/services/pkms/obsidian/persistence"
-      - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-data"
-      - "{{ server_home }}/services/pkms/obsidian/persistence/couchdb-etc"
+      - /opt/persistence/obsidian
+      - /opt/persistence/obsidian/couchdb-data
+      - /opt/persistence/obsidian/couchdb-etc
       # Ollama
       - /opt/persistence/ollama
       # Open Notebook
@@ -241,8 +241,9 @@
       - /opt/persistence/photoprism/pictures
       - /opt/persistence/photoprism/storage
       # Pihole
-      - "{{ server_home }}/services/dns/pihole/etc-pihole"
-      - "{{ server_home }}/services/dns/pihole/etc-dnsmasqd"
+      - /opt/persistence/pihole
+      - /opt/persistence/pihole/etc-pihole
+      - /opt/persistence/pihole/etc-dnsmasqd
       # Pinry
       - /opt/persistence/pinry
       # Prometheus
@@ -265,8 +266,9 @@
       - /opt/persistence/romm/config
       - /opt/persistence/romm/resources
       # RustDesk
-      - "{{ server_home }}/services/remote/rustdesk/db-persistence"
-      - "{{ server_home }}/services/remote/rustdesk/persistence"
+      - /opt/persistence/rustdesk
+      - /opt/persistence/rustdesk/data
+      - /opt/persistence/rustdesk/db
       # Scrutiny
       - /opt/persistence/scrutiny
       - /opt/persistence/scrutiny/config
@@ -296,7 +298,7 @@
       - /opt/persistence/upsnap
       # Vaultwarden
       - /mnt/ssd/databases/vaultwarden
-      - "{{ server_home }}/services/management/passwords/vaultwarden/persistence"
+      - /opt/persistence/vaultwarden
       # Wakapi
       - /mnt/ssd/databases/wakapi
       # Wallos
@@ -369,15 +371,15 @@
         group: docker
         mode: 0640
       loop:
-        - "{{ server_home }}/services/traefik/persistence/log/access.log"
-        - "{{ server_home }}/services/traefik/persistence/log/traefik.log"
+        - /opt/persistence/traefik/log/access.log
+        - /opt/persistence/traefik/log/traefik.log
 
     #--- Traefik - Testing
     - name: Traefik Testing - Copy Traefik configuration file
       when: local_domain
       ansible.builtin.copy:
         src: "{{ server_home }}/services/traefik/config_local/traefik.yaml"
-        dest: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
+        dest: /opt/persistence/traefik/traefik.yaml
         owner: docker
         group: docker
         mode: 0640
@@ -389,7 +391,7 @@
 
       - name: Create traefik certificates file
         ansible.builtin.file:
-          path: "{{ server_home }}/services/traefik/persistence/acme.json"
+          path: /opt/persistence/traefik/acme.json
           state: touch
           owner: docker
           group: docker
@@ -398,14 +400,14 @@
       - name: Copy Traefik static configuration file
         ansible.builtin.copy:
           src: "{{ server_home }}/services/traefik/config/traefik.yaml"
-          dest: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
+          dest: /opt/persistence/traefik/traefik.yaml
           owner: docker
           group: docker
           mode: 0640
 
       - name: Add email to traefik.yaml
         ansible.builtin.lineinfile:
-          path: "{{ server_home }}/services/traefik/persistence/traefik.yaml"
+          path: /opt/persistence/traefik/traefik.yaml
           state: present
           search_string: 'email: ""'
           line: '  email: "{{ user_email }}"'
@@ -413,21 +415,21 @@
       - name: Copy Traefik dynamic configuration file
         ansible.builtin.copy:
           src: "{{ server_home }}/services/traefik/config/dynamic.yaml"
-          dest: "{{ server_home }}/services/traefik/persistence/dynamic/dynamic.yaml"
+          dest: /opt/persistence/traefik/dynamic/dynamic.yaml
           owner: docker
           group: docker
           mode: 0640
 
       - name: Add CrowdSec API key to dynamic.yaml
         ansible.builtin.lineinfile:
-          path: "{{ server_home }}/services/traefik/persistence/dynamic/dynamic.yaml"
+          path: /opt/persistence/traefik/dynamic/dynamic.yaml
           state: present
           search_string: 'crowdsecLapiKey: ""'
           line: '          crowdsecLapiKey: "{{ crowdsec_api_key }}"'
 
       - name: Create traefik users.txt file
         ansible.builtin.file:
-          path: "{{ server_home }}/services/traefik/persistence/users.txt"
+          path: /opt/persistence/traefik/users.txt
           state: touch
           owner: docker
           group: docker
@@ -435,7 +437,7 @@
 
       - name: Add a user to users.txt
         community.general.htpasswd:
-          path: "{{ server_home }}/services/traefik/persistence/users.txt"
+          path: /opt/persistence/traefik/users.txt
           name: "{{ traefik_user }}"
           password: "{{ traefik_password }}"
           hash_scheme: md5_crypt
@@ -560,7 +562,7 @@
     - name: Copy Ntfy server configuration file
       ansible.builtin.copy:
         src: "{{ server_home }}/services/monitoring/ntfy/config/server.yml"
-        dest: "{{ server_home }}/services/monitoring/ntfy/persistence/etc/server.yml"
+        dest: /opt/persistence/ntfy/etc/server.yml
         owner: docker
         group: docker
         mode: 0640
@@ -568,7 +570,7 @@
     #--- Pihole
     - name: Create Pihole log file
       ansible.builtin.file:
-        path: "{{ server_home }}/services/dns/pihole/pihole.log"
+        path: /opt/persistence/pihole/pihole.log
         state: touch
         owner: docker
         group: docker
@@ -578,7 +580,7 @@
     - name: Download French language pack for OCR feature
       ansible.builtin.get_url:
         url: https://github.com/tesseract-ocr/tessdata/blob/main/fra.traineddata
-        dest: "{{ server_home }}/services/media/tools/stirling-pdf/persistence/tessdata/fra.traineddata"
+        dest: /opt/persistence/stirling-pdf/tessdata/fra.traineddata"
         mode: 0740
 
     #--- Unbound
@@ -590,5 +592,5 @@
         group: docker
         mode: 0640
       loop:
-        - { src: "{{ server_home }}/services/dns/unbound/config/forward-records.conf", dst: "{{ server_home }}/services/dns/unbound/persistence/forward-records.conf" }
-        - { src: "{{ server_home }}/services/dns/unbound/config/unbound.conf", dst: "{{ server_home }}/services/dns/unbound/persistence/unbound.conf" }
+        - { src: "{{ server_home }}/services/dns/unbound/config/forward-records.conf", dst: "/opt/persistence/unbound/forward-records.conf" }
+        - { src: "{{ server_home }}/services/dns/unbound/config/unbound.conf", dst: "/opt/persistence/unbound/unbound.conf" }

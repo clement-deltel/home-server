@@ -28,7 +28,7 @@ services:
     stop_grace_period: 330s
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./persistence:/data
+      - /opt/persistence/minecraft:/data
 
 networks:
   app-net:

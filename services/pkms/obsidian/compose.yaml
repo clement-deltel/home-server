@@ -32,8 +32,8 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ./persistence/couchdb-data:/opt/couchdb/data
-      - ./persistence/couchdb-etc:/opt/couchdb/etc/local.d
+      - /opt/persistence/obsidian/couchdb-data:/opt/couchdb/data
+      - /opt/persistence/obsidian/couchdb-etc:/opt/couchdb/etc/local.d
 
 networks:
   traefik-net:

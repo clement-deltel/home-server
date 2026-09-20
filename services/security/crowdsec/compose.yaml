@@ -32,7 +32,7 @@ services:
       - /opt/persistence/crowdsec/etc:/etc/crowdsec
       - /var/log/auth.log:/var/log/auth.log:ro
       - /var/log/syslog:/var/log/syslog:ro
-      - ${SERVER_HOME}/services/traefik/persistence/log:/var/log/traefik:ro
+      - /opt/persistence/traefik/log:/var/log/traefik:ro
 
 networks:
   monitoring-net:
