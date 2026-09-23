@@ -25,8 +25,8 @@ restore_database(){
   echo "${TODAY} [INFO] File used for database recovery: ${OBJECT}" | tee -a ${LOG_FILE}
 
   # Restore database from file
-  echo "${TODAY} [INFO] gunzip -c *.gz | mysql -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db" | tee -a ${LOG_FILE}
-  gunzip -c *.gz | mysql -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USER} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db
+  echo "${TODAY} [INFO] gunzip -c *.gz | mysql -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USERNAME} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db" | tee -a ${LOG_FILE}
+  gunzip -c *.gz | mysql -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USERNAME} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db
 
   # Delete the gzip file
   rm -f ${OBJECT}
