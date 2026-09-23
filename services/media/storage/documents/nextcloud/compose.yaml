@@ -38,7 +38,7 @@ services:
       start_period: 60s
       start_interval: 5s
     hostname: nextcloud-db
-    image: ${DEFAULT_DB_IMAGE}
+    image: ${DEPRECATED_MARIADB_IMAGE}
     logging:
       driver: json-file
       options:

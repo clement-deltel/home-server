@@ -36,7 +36,7 @@ services:
       timeout: 5s
       retries: 5
     hostname: romm-db
-    image: ${DEFAULT_DB_IMAGE}
+    image: ${DEFAULT_MARIADB_IMAGE}
     logging:
       driver: json-file
       options:

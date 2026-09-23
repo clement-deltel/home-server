@@ -36,7 +36,7 @@ services:
       start_period: 60s
       timeout: 15s
     hostname: yamtrack-db
-    image: ${DEFAULT_POSTGRES_IMAGE}
+    image: ${DEPRECATED_POSTGRES_IMAGE}
     logging:
       driver: json-file
       options:
