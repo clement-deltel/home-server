@@ -44,6 +44,50 @@ services:
       - /mnt/ssd/databases/vaultwarden:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
 
+  db-upgrade:
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - SYS_NICE
+    cap_drop:
+      - ALL
+    container_name: vaultwarden-db-upgrade
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    env_file: config/.env.db-up
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${VAULTWARDEN_DB_USERNAME}"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: vaultwarden-db-upgrade
+    image: ${UPGRADE_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${VAULTWARDEN_DB_UPGRADE_IP}
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    shm_size: 128mb
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/vaultwarden-up:/var/lib/postgresql
+
   vaultwarden:
     cap_drop:
       - ALL
