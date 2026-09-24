@@ -22,8 +22,8 @@ services:
       - "traefik.http.routers.upsnap.entrypoints=web,websecure"
       - "traefik.http.routers.upsnap.rule=Host(`${UPSNAP_HOST}`)"
       - "traefik.http.routers.upsnap.tls=true"
-      # - "traefik.http.routers.upsnap.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.upsnap.tls.domains[0].main=${UPSNAP_HOST}"
+      - "traefik.http.routers.upsnap.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.upsnap.tls.domains[0].main=${UPSNAP_HOST}"
       - "traefik.http.routers.upsnap.service=upsnap"
       # Services
       - "traefik.http.services.upsnap.loadbalancer.server.port=8090"

@@ -43,8 +43,8 @@ services:
       - "traefik.http.routers.searxng.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.searxng.rule=Host(`${SEARXNG_HOST}`)"
       - "traefik.http.routers.searxng.tls=true"
-      # - "traefik.http.routers.searxng.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.searxng.tls.domains[0].main=${SEARXNG_HOST}"
+      - "traefik.http.routers.searxng.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.searxng.tls.domains[0].main=${SEARXNG_HOST}"
       - "traefik.http.routers.searxng.middlewares=authentik@file"
       - "traefik.http.routers.searxng.service=searxng"
       # Services

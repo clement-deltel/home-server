@@ -88,8 +88,8 @@ services:
   #     - "traefik.http.routers.honcho.entrypoints=web-external,websecure-external"
   #     - "traefik.http.routers.honcho.rule=Host(`${HONCHO_HOST}`)"
   #     - "traefik.http.routers.honcho.tls=true"
-  #     # - "traefik.http.routers.honcho.tls.certresolver=letsencrypt"
-  #     # - "traefik.http.routers.honcho.tls.domains[0].main=${HONCHO_HOST}"
+  #     - "traefik.http.routers.honcho.tls.certresolver=letsencrypt"
+  #     - "traefik.http.routers.honcho.tls.domains[0].main=${HONCHO_HOST}"
   #     - "traefik.http.routers.honcho.service=honcho"
   #     # Services
   #     - "traefik.http.services.honcho.loadbalancer.server.port=8000"
@@ -169,8 +169,8 @@ services:
       - "traefik.http.routers.honcho.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.honcho.rule=Host(`${HONCHO_HOST}`)"
       - "traefik.http.routers.honcho.tls=true"
-      # - "traefik.http.routers.honcho.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.honcho.tls.domains[0].main=${HONCHO_HOST}"
+      - "traefik.http.routers.honcho.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.honcho.tls.domains[0].main=${HONCHO_HOST}"
       - "traefik.http.routers.honcho.service=honcho"
       # Services
       - "traefik.http.services.honcho.loadbalancer.server.port=8000"

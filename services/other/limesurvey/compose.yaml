@@ -43,8 +43,8 @@ services:
       - "traefik.http.routers.limesurvey.entrypoints=web,websecure"
       - "traefik.http.routers.limesurvey.rule=Host(`${LIMESURVEY_HOST}`)"
       - "traefik.http.routers.limesurvey.tls=true"
-      # - "traefik.http.routers.limesurvey.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.limesurvey.tls.domains[0].main=${LIMESURVEY_HOST}"
+      - "traefik.http.routers.limesurvey.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.limesurvey.tls.domains[0].main=${LIMESURVEY_HOST}"
       - "traefik.http.routers.limesurvey.service=limesurvey"
       # Services
       - "traefik.http.services.limesurvey.loadbalancer.server.port=80"

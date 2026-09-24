@@ -115,8 +115,8 @@ services:
       - "traefik.http.routers.paperless.entrypoints=web,websecure"
       - "traefik.http.routers.paperless.rule=Host(`${PAPERLESS_HOST}`)"
       - "traefik.http.routers.paperless.tls=true"
-      # - "traefik.http.routers.paperless.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.paperless.tls.domains[0].main=${PAPERLESS_HOST}"
+      - "traefik.http.routers.paperless.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.paperless.tls.domains[0].main=${PAPERLESS_HOST}"
       - "traefik.http.routers.paperless.service=paperless"
       # Services
       - "traefik.http.services.paperless.loadbalancer.server.port=8000"

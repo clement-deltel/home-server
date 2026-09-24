@@ -70,8 +70,8 @@ services:
       - "traefik.http.routers.forgejo.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.forgejo.rule=Host(`${FORGEJO_HOST}`)"
       - "traefik.http.routers.forgejo.tls=true"
-      # - "traefik.http.routers.forgejo.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.forgejo.tls.domains[0].main=${FORGEJO_HOST}"
+      - "traefik.http.routers.forgejo.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.forgejo.tls.domains[0].main=${FORGEJO_HOST}"
       - "traefik.http.routers.forgejo.middlewares=forgejo-cors"
       - "traefik.http.routers.forgejo.service=forgejo"
       #- TCP

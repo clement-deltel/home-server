@@ -18,8 +18,8 @@ services:
       - "traefik.http.routers.pihole.entrypoints=web,websecure"
       - "traefik.http.routers.pihole.rule=Host(`${PIHOLE_HOST}`)"
       - "traefik.http.routers.pihole.tls=true"
-      # - "traefik.http.routers.pihole.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.pihole.tls.domains[0].main=${PIHOLE_HOST}"
+      - "traefik.http.routers.pihole.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.pihole.tls.domains[0].main=${PIHOLE_HOST}"
       - "traefik.http.routers.pihole.middlewares=pihole-cors"
       - "traefik.http.routers.pihole.service=pihole"
       # Middlewares

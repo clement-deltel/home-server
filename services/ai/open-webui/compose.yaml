@@ -21,8 +21,8 @@ services:
       - "traefik.http.routers.open-webui.entrypoints=web,websecure"
       - "traefik.http.routers.open-webui.rule=Host(`${OPEN_WEBUI_HOST}`)"
       - "traefik.http.routers.open-webui.tls=true"
-      # - "traefik.http.routers.open-webui.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.open-webui.tls.domains[0].main=${OPEN_WEBUI_HOST}"
+      - "traefik.http.routers.open-webui.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.open-webui.tls.domains[0].main=${OPEN_WEBUI_HOST}"
       - "traefik.http.routers.open-webui.service=open-webui"
       # Services
       - "traefik.http.services.open-webui.loadbalancer.server.port=8080"

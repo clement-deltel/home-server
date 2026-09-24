@@ -92,8 +92,8 @@ services:
       - "traefik.http.routers.wazuh.entrypoints=web,websecure"
       - "traefik.http.routers.wazuh.rule=Host(`${WAZUH_HOST}`)"
       - "traefik.http.routers.wazuh.tls=true"
-      # - "traefik.http.routers.wazuh.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.wazuh.tls.domains[0].main=${WAZUH_HOST}"
+      - "traefik.http.routers.wazuh.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.wazuh.tls.domains[0].main=${WAZUH_HOST}"
       - "traefik.http.routers.wazuh.service=wazuh"
       # Services
       - "traefik.http.services.wazuh.loadbalancer.server.port=5601"

@@ -121,8 +121,8 @@ services:
       - "traefik.http.routers.nextcloud.entrypoints=web,websecure"
       - "traefik.http.routers.nextcloud.rule=Host(`${NEXTCLOUD_HOST}`)"
       - "traefik.http.routers.nextcloud.tls=true"
-      # - "traefik.http.routers.nextcloud.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.nextcloud.tls.domains[0].main=${NEXTCLOUD_HOST}"
+      - "traefik.http.routers.nextcloud.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.nextcloud.tls.domains[0].main=${NEXTCLOUD_HOST}"
       - "traefik.http.routers.nextcloud.service=nextcloud"
       # Services
       - "traefik.http.services.nextcloud.loadbalancer.server.port=80"

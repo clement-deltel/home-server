@@ -198,8 +198,8 @@ services:
       - "traefik.http.routers.firecrawl.entrypoints=web,websecure"
       - "traefik.http.routers.firecrawl.rule=Host(`${FIRECRAWL_HOST}`)"
       - "traefik.http.routers.firecrawl.tls=true"
-      # - "traefik.http.routers.firecrawl.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.firecrawl.tls.domains[0].main=${FIRECRAWL_HOST}"
+      - "traefik.http.routers.firecrawl.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.firecrawl.tls.domains[0].main=${FIRECRAWL_HOST}"
       - "traefik.http.routers.firecrawl.service=firecrawl"
       - "traefik.http.services.firecrawl.loadbalancer.server.port=3002"
     logging:

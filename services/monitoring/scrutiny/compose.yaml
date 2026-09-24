@@ -20,21 +20,21 @@ services:
       - "traefik.http.routers.scrutiny.entrypoints=web,websecure"
       - "traefik.http.routers.scrutiny.rule=Host(`${SCRUTINY_HOST}`) && !ClientIP(`${PUBLIC_IP}`)"
       - "traefik.http.routers.scrutiny.tls=true"
-      # - "traefik.http.routers.scrutiny.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.scrutiny.tls.domains[0].main=${SCRUTINY_HOST}"
-      # - "traefik.http.routers.scrutiny.middlewares=scrutiny"
+      - "traefik.http.routers.scrutiny.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.scrutiny.tls.domains[0].main=${SCRUTINY_HOST}"
+      - "traefik.http.routers.scrutiny.middlewares=scrutiny"
       - "traefik.http.routers.scrutiny.service=scrutiny"
       ## API access router without authentication
       - "traefik.http.routers.scrutiny-homer.entrypoints=web,websecure"
       - "traefik.http.routers.scrutiny-homer.rule=Host(`${SCRUTINY_HOST}`) && ClientIP(`${PUBLIC_IP}`) && PathPrefix(`/api/summary`)"
       - "traefik.http.routers.scrutiny-homer.tls=true"
-      # - "traefik.http.routers.scrutiny-homer.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.scrutiny-homer.tls.domains[0].main=${SCRUTINY_HOST}"
+      - "traefik.http.routers.scrutiny-homer.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.scrutiny-homer.tls.domains[0].main=${SCRUTINY_HOST}"
       - "traefik.http.routers.scrutiny-homer.middlewares=scrutiny-cors"
       - "traefik.http.routers.scrutiny-homer.service=scrutiny"
       # Middlewares
       ## Auth
-      # - "traefik.http.middlewares.scrutiny.basicauth.users=${SCRUTINY_USER}:${SCRUTINY_PASSWORD}"
+      - "traefik.http.middlewares.scrutiny.basicauth.users=${SCRUTINY_USER}:${SCRUTINY_PASSWORD}"
       ## CORS
       - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowHeaders=Content-Type,Authorization"
       - "traefik.http.middlewares.scrutiny-cors.headers.accessControlAllowMethods=GET,OPTIONS"

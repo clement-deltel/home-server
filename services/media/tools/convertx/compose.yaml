@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.convertx.entrypoints=web,websecure"
       - "traefik.http.routers.convertx.rule=Host(`${CONVERTX_HOST}`)"
       - "traefik.http.routers.convertx.tls=true"
-      # - "traefik.http.routers.convertx.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.convertx.tls.domains[0].main=${CONVERTX_HOST}"
+      - "traefik.http.routers.convertx.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.convertx.tls.domains[0].main=${CONVERTX_HOST}"
       - "traefik.http.routers.convertx.service=convertx"
       # Services
       - "traefik.http.services.convertx.loadbalancer.server.port=3000"

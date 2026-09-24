@@ -13,8 +13,8 @@ services:
       - "traefik.http.routers.kavita.entrypoints=web,websecure"
       - "traefik.http.routers.kavita.rule=Host(`${KAVITA_HOST}`)"
       - "traefik.http.routers.kavita.tls=true"
-      # - "traefik.http.routers.kavita.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.kavita.tls.domains[0].main=${KAVITA_HOST}"
+      - "traefik.http.routers.kavita.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kavita.tls.domains[0].main=${KAVITA_HOST}"
       - "traefik.http.routers.kavita.service=kavita"
       # Services
       - "traefik.http.services.kavita.loadbalancer.server.port=5000"

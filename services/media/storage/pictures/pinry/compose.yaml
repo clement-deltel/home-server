@@ -14,8 +14,8 @@ services:
       - "traefik.http.routers.pinry.entrypoints=web,websecure"
       - "traefik.http.routers.pinry.rule=Host(`${PINRY_HOST}`)"
       - "traefik.http.routers.pinry.tls=true"
-      # - "traefik.http.routers.pinry.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.pinry.tls.domains[0].main=${PINRY_HOST}"
+      - "traefik.http.routers.pinry.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.pinry.tls.domains[0].main=${PINRY_HOST}"
       - "traefik.http.routers.pinry.service=pinry"
       # Services
       - "traefik.http.services.pinry.loadbalancer.server.port=80"

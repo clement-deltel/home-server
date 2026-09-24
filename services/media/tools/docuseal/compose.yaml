@@ -43,8 +43,8 @@ services:
       - "traefik.http.routers.docuseal.entrypoints=web,websecure"
       - "traefik.http.routers.docuseal.rule=Host(`${DOCUSEAL_HOST}`)"
       - "traefik.http.routers.docuseal.tls=true"
-      # - "traefik.http.routers.docuseal.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.docuseal.tls.domains[0].main=${DOCUSEAL_HOST}"
+      - "traefik.http.routers.docuseal.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.docuseal.tls.domains[0].main=${DOCUSEAL_HOST}"
       - "traefik.http.routers.docuseal.service=docuseal"
       # Services
       - "traefik.http.services.docuseal.loadbalancer.server.port=3000"

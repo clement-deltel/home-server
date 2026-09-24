@@ -71,8 +71,8 @@ services:
       - "traefik.http.routers.authentik.entrypoints=web,websecure"
       - "traefik.http.routers.authentik.rule=Host(`${AUTHENTIK_HOST}`)"
       - "traefik.http.routers.authentik.tls=true"
-      # - "traefik.http.routers.authentik.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.authentik.tls.domains[0].main=${AUTHENTIK_HOST}"
+      - "traefik.http.routers.authentik.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.authentik.tls.domains[0].main=${AUTHENTIK_HOST}"
       - "traefik.http.routers.authentik.service=authentik"
       # Services
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"

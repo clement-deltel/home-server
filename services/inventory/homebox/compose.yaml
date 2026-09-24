@@ -14,8 +14,8 @@ services:
       - "traefik.http.routers.homebox.entrypoints=web,websecure"
       - "traefik.http.routers.homebox.rule=Host(`${HOMEBOX_HOST}`)"
       - "traefik.http.routers.homebox.tls=true"
-      # - "traefik.http.routers.homebox.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.homebox.tls.domains[0].main=${HOMEBOX_HOST}"
+      - "traefik.http.routers.homebox.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.homebox.tls.domains[0].main=${HOMEBOX_HOST}"
       - "traefik.http.routers.homebox.service=homebox"
       # Services
       - "traefik.http.services.homebox.loadbalancer.server.port=7745"

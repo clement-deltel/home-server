@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.openconcho.entrypoints=web,websecure"
       - "traefik.http.routers.openconcho.rule=Host(`${OPENCONCHO_HOST}`)"
       - "traefik.http.routers.openconcho.tls=true"
-      # - "traefik.http.routers.openconcho.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.openconcho.tls.domains[0].main=${OPENCONCHO_HOST}"
+      - "traefik.http.routers.openconcho.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.openconcho.tls.domains[0].main=${OPENCONCHO_HOST}"
       - "traefik.http.routers.openconcho.service=openconcho"
       # Services
       - "traefik.http.services.openconcho.loadbalancer.server.port=8080"

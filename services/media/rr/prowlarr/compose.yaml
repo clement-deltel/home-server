@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.prowlarr.entrypoints=web,websecure"
       - "traefik.http.routers.prowlarr.rule=Host(`${PROWLARR_HOST}`)"
       - "traefik.http.routers.prowlarr.tls=true"
-      # - "traefik.http.routers.prowlarr.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.prowlarr.tls.domains[0].main=${PROWLARR_HOST}"
+      - "traefik.http.routers.prowlarr.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.prowlarr.tls.domains[0].main=${PROWLARR_HOST}"
       - "traefik.http.routers.prowlarr.service=prowlarr"
       # Services
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"

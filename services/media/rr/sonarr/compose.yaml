@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.sonarr.entrypoints=web,websecure"
       - "traefik.http.routers.sonarr.rule=Host(`${SONARR_HOST}`)"
       - "traefik.http.routers.sonarr.tls=true"
-      # - "traefik.http.routers.sonarr.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.sonarr.tls.domains[0].main=${SONARR_HOST}"
+      - "traefik.http.routers.sonarr.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.sonarr.tls.domains[0].main=${SONARR_HOST}"
       - "traefik.http.routers.sonarr.service=sonarr"
       # Services
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"

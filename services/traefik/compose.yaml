@@ -22,12 +22,12 @@ services:
       - "traefik.http.routers.traefik.entrypoints=web,websecure"
       - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_HOST}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
       - "traefik.http.routers.traefik.tls=true"
-      # - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.traefik.tls.domains[0].main=${TRAEFIK_HOST}"
-      # - "traefik.http.routers.traefik.middlewares=auth"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.traefik.tls.domains[0].main=${TRAEFIK_HOST}"
+      - "traefik.http.routers.traefik.middlewares=auth"
       - "traefik.http.routers.traefik.service=api@internal"
       # Middlewares
-      # - "traefik.http.middlewares.auth.basicauth.usersfile=/opt/dashboard/users.txt"
+      - "traefik.http.middlewares.auth.basicauth.usersfile=/opt/dashboard/users.txt"
       # Services
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
     logging:
@@ -72,9 +72,9 @@ services:
       # Plugins directory
       - /opt/persistence/traefik/plugins:/plugins-storage
       # users.txt - Credentials for the Traefik dashboard.
-      # - /opt/persistence/traefik/users.txt:/opt/dashboard/users.txt
+      - /opt/persistence/traefik/users.txt:/opt/dashboard/users.txt
       # JSON file for certificates - It must have 600 file permissions.
-      # - /opt/persistence/traefik/acme.json:/letsencrypt/acme.json
+      - /opt/persistence/traefik/acme.json:/letsencrypt/acme.json
 
   robots:
     container_name: robots

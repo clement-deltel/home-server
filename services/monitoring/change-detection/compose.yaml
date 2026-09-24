@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.change-detection.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.change-detection.rule=Host(`${CHANGE_DETECTION_HOST}`)"
       - "traefik.http.routers.change-detection.tls=true"
-      # - "traefik.http.routers.change-detection.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.change-detection.tls.domains[0].main=${CHANGE_DETECTION_HOST}"
+      - "traefik.http.routers.change-detection.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.change-detection.tls.domains[0].main=${CHANGE_DETECTION_HOST}"
       - "traefik.http.routers.change-detection.service=change-detection"
       # Services
       - "traefik.http.services.change-detection.loadbalancer.server.port=5000"

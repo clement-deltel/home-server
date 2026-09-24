@@ -73,8 +73,8 @@ services:
       - "traefik.http.routers.meme-search.entrypoints=web,websecure"
       - "traefik.http.routers.meme-search.rule=Host(`${MEME_SEARCH_HOST}`)"
       - "traefik.http.routers.meme-search.tls=true"
-      # - "traefik.http.routers.meme-search.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.meme-search.tls.domains[0].main=${MEME_SEARCH_HOST}"
+      - "traefik.http.routers.meme-search.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.meme-search.tls.domains[0].main=${MEME_SEARCH_HOST}"
       - "traefik.http.routers.meme-search.middlewares=meme-search"
       - "traefik.http.routers.meme-search.service=meme-search"
       # Middlewares

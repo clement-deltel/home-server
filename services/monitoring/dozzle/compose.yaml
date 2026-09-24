@@ -19,8 +19,8 @@ services:
       - "traefik.http.routers.dozzle.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.dozzle.rule=Host(`${DOZZLE_HOST}`)"
       - "traefik.http.routers.dozzle.tls=true"
-      # - "traefik.http.routers.dozzle.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.dozzle.tls.domains[0].main=${DOZZLE_HOST}"
+      - "traefik.http.routers.dozzle.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.dozzle.tls.domains[0].main=${DOZZLE_HOST}"
       - "traefik.http.routers.dozzle.middlewares=authentik@file"
       - "traefik.http.routers.dozzle.service=dozzle"
       # Services

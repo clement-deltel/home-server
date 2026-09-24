@@ -50,8 +50,8 @@ services:
       - "traefik.http.routers.seerr.entrypoints=web,websecure"
       - "traefik.http.routers.seerr.rule=Host(`${SEERR_HOST}`)"
       - "traefik.http.routers.seerr.tls=true"
-      # - "traefik.http.routers.seerr.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.seerr.tls.domains[0].main=${SEERR_HOST}"
+      - "traefik.http.routers.seerr.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.seerr.tls.domains[0].main=${SEERR_HOST}"
       - "traefik.http.routers.seerr.service=seerr"
       # Services
       - "traefik.http.services.seerr.loadbalancer.server.port=5055"

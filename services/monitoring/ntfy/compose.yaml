@@ -23,8 +23,8 @@ services:
       - "traefik.http.routers.ntfy.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.ntfy.rule=Host(`${NTFY_HOST}`)"
       - "traefik.http.routers.ntfy.tls=true"
-      # - "traefik.http.routers.ntfy.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.ntfy.tls.domains[0].main=${NTFY_HOST}"
+      - "traefik.http.routers.ntfy.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ntfy.tls.domains[0].main=${NTFY_HOST}"
       - "traefik.http.routers.ntfy.service=ntfy"
       # Services
       - "traefik.http.services.ntfy.loadbalancer.server.port=80"

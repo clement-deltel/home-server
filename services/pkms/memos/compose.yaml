@@ -43,8 +43,8 @@ services:
       - "traefik.http.routers.memos.entrypoints=web,websecure"
       - "traefik.http.routers.memos.rule=Host(`${MEMOS_HOST}`)"
       - "traefik.http.routers.memos.tls=true"
-      # - "traefik.http.routers.memos.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.memos.tls.domains[0].main=${MEMOS_HOST}"
+      - "traefik.http.routers.memos.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.memos.tls.domains[0].main=${MEMOS_HOST}"
       - "traefik.http.routers.memos.service=memos"
       # Services
       - "traefik.http.services.memos.loadbalancer.server.port=5230"

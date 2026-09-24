@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.jetlog.entrypoints=web,websecure"
       - "traefik.http.routers.jetlog.rule=Host(`${JETLOG_HOST}`)"
       - "traefik.http.routers.jetlog.tls=true"
-      # - "traefik.http.routers.jetlog.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.jetlog.tls.domains[0].main=${JETLOG_HOST}"
+      - "traefik.http.routers.jetlog.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.jetlog.tls.domains[0].main=${JETLOG_HOST}"
       - "traefik.http.routers.jetlog.service=jetlog"
       # Services
       - "traefik.http.services.jetlog.loadbalancer.server.port=3000"

@@ -95,8 +95,8 @@ services:
       - "traefik.http.routers.grafana.entrypoints=web,websecure"
       - "traefik.http.routers.grafana.rule=Host(`${GRAFANA_HOST}`)"
       - "traefik.http.routers.grafana.tls=true"
-      # - "traefik.http.routers.grafana.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.grafana.tls.domains[0].main=${GRAFANA_HOST}"
+      - "traefik.http.routers.grafana.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.grafana.tls.domains[0].main=${GRAFANA_HOST}"
       - "traefik.http.routers.grafana.service=grafana"
       # Services
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"

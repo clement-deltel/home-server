@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.wishlist.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.wishlist.rule=Host(`${WISHLIST_HOST}`)"
       - "traefik.http.routers.wishlist.tls=true"
-      # - "traefik.http.routers.wishlist.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.wishlist.tls.domains[0].main=${WISHLIST_HOST}"
+      - "traefik.http.routers.wishlist.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.wishlist.tls.domains[0].main=${WISHLIST_HOST}"
       - "traefik.http.routers.wishlist.service=wishlist"
       # Services
       - "traefik.http.services.wishlist.loadbalancer.server.port=3280"

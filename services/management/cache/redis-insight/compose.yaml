@@ -21,8 +21,8 @@ services:
       - "traefik.http.routers.redis-insight.entrypoints=web,websecure"
       - "traefik.http.routers.redis-insight.rule=Host(`${REDIS_INSIGHT_HOST}`)"
       - "traefik.http.routers.redis-insight.tls=true"
-      # - "traefik.http.routers.redis-insight.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.redis-insight.tls.domains[0].main=${REDIS_INSIGHT_HOST}"
+      - "traefik.http.routers.redis-insight.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.redis-insight.tls.domains[0].main=${REDIS_INSIGHT_HOST}"
       - "traefik.http.routers.redis-insight.service=redis-insight"
       # Services
       - "traefik.http.services.redis-insight.loadbalancer.server.port=5540"

@@ -88,8 +88,8 @@ services:
       - "traefik.http.routers.photoprism.entrypoints=web,websecure"
       - "traefik.http.routers.photoprism.rule=Host(`${PHOTOPRISM_HOST}`)"
       - "traefik.http.routers.photoprism.tls=true"
-      # - "traefik.http.routers.photoprism.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.photoprism.tls.domains[0].main=${PHOTOPRISM_HOST}"
+      - "traefik.http.routers.photoprism.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.photoprism.tls.domains[0].main=${PHOTOPRISM_HOST}"
       - "traefik.http.routers.photoprism.service=photoprism"
       # Services
       - "traefik.http.services.photoprism.loadbalancer.server.port=2342"

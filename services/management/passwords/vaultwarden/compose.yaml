@@ -114,8 +114,8 @@ services:
       - "traefik.http.routers.vaultwarden.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.vaultwarden.rule=Host(`${VAULTWARDEN_HOST}`)"
       - "traefik.http.routers.vaultwarden.tls=true"
-      # - "traefik.http.routers.vaultwarden.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.vaultwarden.tls.domains[0].main=${VAULTWARDEN_HOST}"
+      - "traefik.http.routers.vaultwarden.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.vaultwarden.tls.domains[0].main=${VAULTWARDEN_HOST}"
       - "traefik.http.routers.vaultwarden.middlewares=vaultwarden-cors"
       - "traefik.http.routers.vaultwarden.service=vaultwarden"
       # Middlewares

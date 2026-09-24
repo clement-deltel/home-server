@@ -77,8 +77,8 @@ services:
       - "traefik.http.routers.litellm.entrypoints=web,websecure"
       - "traefik.http.routers.litellm.rule=Host(`${LITELLM_HOST}`) && PathRegexp(`^/.*`)"
       - "traefik.http.routers.litellm.tls=true"
-      # - "traefik.http.routers.litellm.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.litellm.tls.domains[0].main=${LITELLM_HOST}"
+      - "traefik.http.routers.litellm.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.litellm.tls.domains[0].main=${LITELLM_HOST}"
       - "traefik.http.routers.litellm.service=litellm"
       # Services
       - "traefik.http.services.litellm.loadbalancer.server.port=4000"

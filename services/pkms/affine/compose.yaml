@@ -70,8 +70,8 @@ services:
       - "traefik.http.routers.affine.entrypoints=web,websecure"
       - "traefik.http.routers.affine.rule=Host(`${AFFINE_HOST}`)"
       - "traefik.http.routers.affine.tls=true"
-      # - "traefik.http.routers.affine.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.affine.tls.domains[0].main=${AFFINE_HOST}"
+      - "traefik.http.routers.affine.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.affine.tls.domains[0].main=${AFFINE_HOST}"
       - "traefik.http.routers.affine.service=affine"
       # Services
       - "traefik.http.services.affine.loadbalancer.server.port=3010"

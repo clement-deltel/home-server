@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.stirling-pdf.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.stirling-pdf.rule=Host(`${STIRLING_PDF_HOST}`)"
       - "traefik.http.routers.stirling-pdf.tls=true"
-      # - "traefik.http.routers.stirling-pdf.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.stirling-pdf.tls.domains[0].main=${STIRLING_PDF_HOST}"
+      - "traefik.http.routers.stirling-pdf.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.stirling-pdf.tls.domains[0].main=${STIRLING_PDF_HOST}"
       - "traefik.http.routers.stirling-pdf.service=stirling-pdf"
       # Services
       - "traefik.http.services.stirling-pdf.loadbalancer.server.port=8080"

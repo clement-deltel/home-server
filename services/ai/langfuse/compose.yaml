@@ -155,8 +155,8 @@ services:
       - "traefik.http.routers.langfuse.entrypoints=web,websecure"
       - "traefik.http.routers.langfuse.rule=Host(`${LANGFUSE_HOST}`)"
       - "traefik.http.routers.langfuse.tls=true"
-      # - "traefik.http.routers.langfuse.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.langfuse.tls.domains[0].main=${LANGFUSE_HOST}"
+      - "traefik.http.routers.langfuse.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.langfuse.tls.domains[0].main=${LANGFUSE_HOST}"
       - "traefik.http.routers.langfuse.service=langfuse"
       # Services
       - "traefik.http.services.langfuse.loadbalancer.server.port=3000"

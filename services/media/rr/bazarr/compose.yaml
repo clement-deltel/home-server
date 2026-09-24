@@ -15,8 +15,8 @@ services:
       - "traefik.http.routers.bazarr.entrypoints=web,websecure"
       - "traefik.http.routers.bazarr.rule=Host(`${BAZARR_HOST}`)"
       - "traefik.http.routers.bazarr.tls=true"
-      # - "traefik.http.routers.bazarr.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.bazarr.tls.domains[0].main=${BAZARR_HOST}"
+      - "traefik.http.routers.bazarr.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.bazarr.tls.domains[0].main=${BAZARR_HOST}"
       - "traefik.http.routers.bazarr.service=bazarr"
       # Services
       - "traefik.http.services.bazarr.loadbalancer.server.port=6767"

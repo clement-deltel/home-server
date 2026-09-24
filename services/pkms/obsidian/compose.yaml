@@ -14,8 +14,8 @@ services:
       - "traefik.http.routers.obsidian.entrypoints=web,websecure"
       - "traefik.http.routers.obsidian.rule=Host(`${OBSIDIAN_COUCHDB_HOST}`)"
       - "traefik.http.routers.obsidian.tls=true"
-      # - "traefik.http.routers.obsidian.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.obsidian.tls.domains[0].main=${OBSIDIAN_COUCHDB_HOST}"
+      - "traefik.http.routers.obsidian.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.obsidian.tls.domains[0].main=${OBSIDIAN_COUCHDB_HOST}"
       - "traefik.http.routers.obsidian.service=obsidian"
       # Services
       - "traefik.http.services.obsidian.loadbalancer.server.port=5984"

@@ -69,8 +69,8 @@ services:
       - "traefik.http.routers.romm.entrypoints=web,websecure"
       - "traefik.http.routers.romm.rule=Host(`${ROMM_HOST}`)"
       - "traefik.http.routers.romm.tls=true"
-      # - "traefik.http.routers.romm.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.romm.tls.domains[0].main=${ROMM_HOST}"
+      - "traefik.http.routers.romm.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.romm.tls.domains[0].main=${ROMM_HOST}"
       - "traefik.http.routers.romm.service=romm"
       # Services
       - "traefik.http.services.romm.loadbalancer.server.port=8080"

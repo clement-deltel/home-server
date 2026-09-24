@@ -71,8 +71,8 @@ services:
       - "traefik.http.routers.directus.entrypoints=web,websecure"
       - "traefik.http.routers.directus.rule=Host(`${DIRECTUS_HOST}`)"
       - "traefik.http.routers.directus.tls=true"
-      # - "traefik.http.routers.directus.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.directus.tls.domains[0].main=${DIRECTUS_HOST}"
+      - "traefik.http.routers.directus.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.directus.tls.domains[0].main=${DIRECTUS_HOST}"
       - "traefik.http.routers.directus.service=directus"
       # Services
       - "traefik.http.services.directus.loadbalancer.server.port=8055"

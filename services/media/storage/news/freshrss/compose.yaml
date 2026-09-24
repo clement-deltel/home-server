@@ -43,8 +43,8 @@ services:
       - "traefik.http.routers.freshrss.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_HOST}`)"
       - "traefik.http.routers.freshrss.tls=true"
-      # - "traefik.http.routers.freshrss.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.freshrss.tls.domains[0].main=${FRESHRSS_HOST}"
+      - "traefik.http.routers.freshrss.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.freshrss.tls.domains[0].main=${FRESHRSS_HOST}"
       - "traefik.http.routers.freshrss.service=freshrss"
       # Services
       - "traefik.http.services.freshrss.loadbalancer.server.port=80"

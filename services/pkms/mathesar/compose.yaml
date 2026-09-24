@@ -75,8 +75,8 @@ services:
       - "traefik.http.routers.mathesar.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.mathesar.rule=Host(`${MATHESAR_HOST}`)"
       - "traefik.http.routers.mathesar.tls=true"
-      # - "traefik.http.routers.mathesar.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.mathesar.tls.domains[0].main=${MATHESAR_HOST}"
+      - "traefik.http.routers.mathesar.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.mathesar.tls.domains[0].main=${MATHESAR_HOST}"
       - "traefik.http.routers.mathesar.service=mathesar"
       # Services
       - "traefik.http.services.mathesar.loadbalancer.server.port=8000"

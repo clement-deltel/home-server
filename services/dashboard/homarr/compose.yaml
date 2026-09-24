@@ -14,8 +14,8 @@ services:
       - "traefik.http.routers.homarr.entrypoints=web,websecure"
       - "traefik.http.routers.homarr.rule=Host(`${HOMARR_HOST}`)"
       - "traefik.http.routers.homarr.tls=true"
-      # - "traefik.http.routers.homarr.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.homarr.tls.domains[0].main=${HOMARR_HOST}"
+      - "traefik.http.routers.homarr.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.homarr.tls.domains[0].main=${HOMARR_HOST}"
       - "traefik.http.routers.homarr.service=homarr"
       # Services
       - "traefik.http.services.homarr.loadbalancer.server.port=7575"

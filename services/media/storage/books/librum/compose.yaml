@@ -43,8 +43,8 @@ services:
       - "traefik.http.routers.librum.entrypoints=web,websecure"
       - "traefik.http.routers.librum.rule=Host(`${LIBRUM_HOST}`)"
       - "traefik.http.routers.librum.tls=true"
-      # - "traefik.http.routers.librum.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.librum.tls.domains[0].main=${LIBRUM_HOST}"
+      - "traefik.http.routers.librum.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.librum.tls.domains[0].main=${LIBRUM_HOST}"
       - "traefik.http.routers.librum.service=librum"
       # Services
       - "traefik.http.services.librum.loadbalancer.server.port=5000"

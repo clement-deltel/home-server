@@ -9,14 +9,14 @@ services:
       # Routers
       # HTTP: 21118 - ID Server - Web client
       - "traefik.http.routers.rustdesk-rd8.rule=Host(`${RUSTDESK_HOST}`) && PathPrefix(`/ws/id`)"
-      # - "traefik.http.routers.rustdesk-rd8.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.rustdesk-rd8.tls.domains[0].main=${RUSTDESK_HOST}"
+      - "traefik.http.routers.rustdesk-rd8.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rustdesk-rd8.tls.domains[0].main=${RUSTDESK_HOST}"
       - "traefik.http.routers.rustdesk-rd8.middlewares=rustdesk-headers"
       - "traefik.http.routers.rustdesk-rd8.service=rustdesk-rd8"
       # HTTP: 21119 - Relay Server - Web client
       - "traefik.http.routers.rustdesk-rd9.rule=Host(`${RUSTDESK_HOST}`) && PathPrefix(`/ws/relay`)"
-      # - "traefik.http.routers.rustdesk-rd9.tls.certresolver=letsencrypt"
-      # - "traefik.http.routers.rustdesk-rd9.tls.domains[0].main=${RUSTDESK_HOST}"
+      - "traefik.http.routers.rustdesk-rd9.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rustdesk-rd9.tls.domains[0].main=${RUSTDESK_HOST}"
       - "traefik.http.routers.rustdesk-rd9.middlewares=rustdesk-headers"
       - "traefik.http.routers.rustdesk-rd9.service=rustdesk-rd9"
       # TCP: 21115 - ID Server - NAT type test
