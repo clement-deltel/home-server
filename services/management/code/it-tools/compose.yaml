@@ -16,6 +16,7 @@ services:
       - "traefik.http.routers.it-tools.tls=true"
       - "traefik.http.routers.it-tools.tls.certresolver=letsencrypt"
       - "traefik.http.routers.it-tools.tls.domains[0].main=${IT_TOOLS_HOST}"
+      - "traefik.http.routers.it-tools.middlewares=authentik@file"
       - "traefik.http.routers.it-tools.service=it-tools"
       # Services
       - "traefik.http.services.it-tools.loadbalancer.server.port=80"
