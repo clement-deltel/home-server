@@ -362,184 +362,6 @@
         mode: 0744
       loop: "{{ directories }}"
 
-    #--- Files
-    - name: Create traefik log files
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: touch
-        owner: docker
-        group: docker
-        mode: 0640
-      loop:
-        - /opt/persistence/traefik/log/access.log
-        - /opt/persistence/traefik/log/traefik.log
-
-    #--- Traefik - Testing
-    - name: Traefik Testing - Copy Traefik configuration file
-      when: local_domain
-      ansible.builtin.copy:
-        src: "{{ server_home }}/services/traefik/config_local/traefik.yaml"
-        dest: /opt/persistence/traefik/traefik.yaml
-        owner: docker
-        group: docker
-        mode: 0640
-
-    #--- Traefik - Production
-    - name: Traefik Production
-      when: not local_domain
-      block:
-
-      - name: Create traefik certificates file
-        ansible.builtin.file:
-          path: /opt/persistence/traefik/acme.json
-          state: touch
-          owner: docker
-          group: docker
-          mode: 0600
-
-      - name: Copy Traefik static configuration file
-        ansible.builtin.copy:
-          src: "{{ server_home }}/services/traefik/config/traefik.yaml"
-          dest: /opt/persistence/traefik/traefik.yaml
-          owner: docker
-          group: docker
-          mode: 0640
-
-      - name: Add email to traefik.yaml
-        ansible.builtin.lineinfile:
-          path: /opt/persistence/traefik/traefik.yaml
-          state: present
-          search_string: 'email: ""'
-          line: '  email: "{{ user_email }}"'
-
-      - name: Copy Traefik dynamic configuration file
-        ansible.builtin.copy:
-          src: "{{ server_home }}/services/traefik/config/dynamic.yaml"
-          dest: /opt/persistence/traefik/dynamic/dynamic.yaml
-          owner: docker
-          group: docker
-          mode: 0640
-
-      - name: Add CrowdSec API key to dynamic.yaml
-        ansible.builtin.lineinfile:
-          path: /opt/persistence/traefik/dynamic/dynamic.yaml
-          state: present
-          search_string: 'crowdsecLapiKey: ""'
-          line: '          crowdsecLapiKey: "{{ crowdsec_api_key }}"'
-
-      - name: Create traefik users.txt file
-        ansible.builtin.file:
-          path: /opt/persistence/traefik/users.txt
-          state: touch
-          owner: docker
-          group: docker
-          mode: 0640
-
-      - name: Add a user to users.txt
-        community.general.htpasswd:
-          path: /opt/persistence/traefik/users.txt
-          name: "{{ traefik_user }}"
-          password: "{{ traefik_password }}"
-          hash_scheme: md5_crypt
-          state: present
-
-    #--- Production Services
-    - name: Production - Uncomment labels and bind mounts in compose.yaml for all services
-      when: not local_domain
-      ansible.builtin.replace:
-        path: "{{ item }}"
-        regexp: '(^\s*)# -'
-        replace: '\1-'
-      loop:
-        - "{{ server_home }}/services/ai/hermes/compose.yaml"
-        - "{{ server_home }}/services/ai/honcho/compose.yaml"
-        - "{{ server_home }}/services/ai/langfuse/compose.yaml"
-        - "{{ server_home }}/services/ai/litellm/compose.yaml"
-        - "{{ server_home }}/services/ai/open-notebook/compose.yaml"
-        - "{{ server_home }}/services/ai/open-webui/compose.yaml"
-        - "{{ server_home }}/services/ai/openconcho/compose.yaml"
-        - "{{ server_home }}/services/automation/n8n/compose.yaml"
-        - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
-        - "{{ server_home }}/services/dashboard/homer/compose.yaml"
-        - "{{ server_home }}/services/development/directus/compose.yaml"
-        - "{{ server_home }}/services/dns/pihole/compose.yaml"
-        # no labels for dns/unbound
-        - "{{ server_home }}/services/finances/actual/compose.yaml"
-        - "{{ server_home }}/services/finances/wallos/compose.yaml"
-        # no labels for games/minecraft
-        - "{{ server_home }}/services/games/romm/compose.yaml"
-        - "{{ server_home }}/services/home/home-assistant/compose.yaml"
-        - "{{ server_home }}/services/home/upsnap/compose.yaml"
-        - "{{ server_home }}/services/inventory/grocy/compose.yaml"
-        - "{{ server_home }}/services/inventory/homebox/compose.yaml"
-        - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
-        - "{{ server_home }}/services/inventory/mealie/compose.yaml"
-        - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
-        - "{{ server_home }}/services/kopia/compose.yaml"
-        - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
-        - "{{ server_home }}/services/management/code/forgejo/compose.yaml"
-        - "{{ server_home }}/services/management/code/gitea-mirror/compose.yaml"
-        - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
-        - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
-        - "{{ server_home }}/services/management/code/wakapi/compose.yaml"
-        - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
-        # no labels for media/download/qbittorrent
-        - "{{ server_home }}/services/media/rr/bazarr/compose.yaml"
-        - "{{ server_home }}/services/media/rr/lidarr/compose.yaml"
-        - "{{ server_home }}/services/media/rr/prowlarr/compose.yaml"
-        - "{{ server_home }}/services/media/rr/radarr/compose.yaml"
-        - "{{ server_home }}/services/media/rr/seerr/compose.yaml"
-        - "{{ server_home }}/services/media/rr/sonarr/compose.yaml"
-        - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
-        - "{{ server_home }}/services/media/storage/bookmarks/karakeep/compose.yaml"
-        - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"
-        - "{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml"
-        - "{{ server_home }}/services/media/storage/documents/paperless/compose.yaml"
-        - "{{ server_home }}/services/media/storage/files/sftpgo/compose.yaml"
-        - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
-        - "{{ server_home }}/services/media/storage/news/freshrss/compose.yaml"
-        - "{{ server_home }}/services/media/storage/pictures/immich/compose.yaml"
-        - "{{ server_home }}/services/media/storage/pictures/meme-search/compose.yaml"
-        - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
-        - "{{ server_home }}/services/media/storage/pictures/pinry/compose.yaml"
-        - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
-        - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
-        - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
-        - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
-        - "{{ server_home }}/services/media/tools/libretranslate/compose.yaml"
-        - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
-        - "{{ server_home }}/services/media/tools/yamtrack/compose.yaml"
-        - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
-        # no labels for monitoring/diun
-        - "{{ server_home }}/services/monitoring/dozzle/compose.yaml"
-        - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
-        - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
-        # no labels for monitoring/prometheus
-        - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
-        - "{{ server_home }}/services/other/limesurvey/compose.yaml"
-        - "{{ server_home }}/services/pkms/affine/compose.yaml"
-        - "{{ server_home }}/services/pkms/excalidraw/compose.yaml"
-        - "{{ server_home }}/services/pkms/mathesar/compose.yaml"
-        - "{{ server_home }}/services/pkms/memos/compose.yaml"
-        - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
-        - "{{ server_home }}/services/proxy/traefik/compose.yaml"
-        - "{{ server_home }}/services/remote/guacamole/compose.yaml"
-        - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
-        - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
-        # no labels for remote/wireguard
-        # no labels for search/browserless
-        # no labels for search/camofox
-        - "{{ server_home }}/services/search/firecrawl/compose.yaml"
-        - "{{ server_home }}/services/search/searxng/compose.yaml"
-        - "{{ server_home }}/services/security/authentik/compose.yaml"
-        # no labels for security/crowdsec
-        - "{{ server_home }}/services/security/enclosed/compose.yaml"
-        - "{{ server_home }}/services/security/gluetun/compose.yaml"
-        - "{{ server_home }}/services/security/wazuh/compose.yaml"
-        - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
-        - "{{ server_home }}/services/travel/dawarich/compose.yaml"
-        - "{{ server_home }}/services/travel/jetlog/compose.yaml"
-
     #--- Diun
     - name: Copy Diun file input
       ansible.builtin.copy:
@@ -594,3 +416,189 @@
       loop:
         - { src: "{{ server_home }}/services/dns/unbound/config/forward-records.conf", dst: "/opt/persistence/unbound/forward-records.conf" }
         - { src: "{{ server_home }}/services/dns/unbound/config/unbound.conf", dst: "/opt/persistence/unbound/unbound.conf" }
+
+    #--- Traefik
+    - name: Create Traefik log files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: touch
+        owner: docker
+        group: docker
+        mode: 0640
+      loop:
+        - /opt/persistence/traefik/log/access.log
+        - /opt/persistence/traefik/log/traefik.log
+
+    #--- Traefik - Production
+    - name: Traefik Production
+      when: not local_domain
+      block:
+
+      - name: Create Traefik certificates file
+        ansible.builtin.file:
+          path: /opt/persistence/traefik/acme.json
+          state: touch
+          owner: docker
+          group: docker
+          mode: 0600
+
+      - name: Copy Traefik static configuration file
+        ansible.builtin.copy:
+          src: "{{ server_home }}/services/traefik/config/traefik.yaml"
+          dest: /opt/persistence/traefik/traefik.yaml
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Add email to traefik.yaml
+        ansible.builtin.lineinfile:
+          path: /opt/persistence/traefik/traefik.yaml
+          state: present
+          search_string: 'email: ""'
+          line: '  email: "{{ user_email }}"'
+
+      - name: Copy Traefik dynamic configuration file
+        ansible.builtin.copy:
+          src: "{{ server_home }}/services/traefik/config/dynamic.yaml"
+          dest: /opt/persistence/traefik/dynamic/dynamic.yaml
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Add CrowdSec API key to dynamic.yaml
+        ansible.builtin.lineinfile:
+          path: /opt/persistence/traefik/dynamic/dynamic.yaml
+          state: present
+          search_string: 'crowdsecLapiKey: ""'
+          line: '          crowdsecLapiKey: "{{ crowdsec_api_key }}"'
+
+      - name: Create Traefik users.txt file
+        ansible.builtin.file:
+          path: /opt/persistence/traefik/users.txt
+          state: touch
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Add a user to users.txt
+        community.general.htpasswd:
+          path: /opt/persistence/traefik/users.txt
+          name: "{{ traefik_user }}"
+          password: "{{ traefik_password }}"
+          hash_scheme: md5_crypt
+          state: present
+
+    #--- Traefik - Test
+    - name: Traefik Test
+      when: local_domain
+      block:
+
+      - name: Copy Traefik configuration file
+        ansible.builtin.copy:
+          src: "{{ server_home }}/services/traefik/config_local/traefik.yaml"
+          dest: /opt/persistence/traefik/traefik.yaml
+          owner: docker
+          group: docker
+          mode: 0640
+
+      - name: Comment production labels in Traefik compose.yaml
+        ansible.builtin.replace:
+          path: "{{ server_home }}/services/traefik/compose.yaml"
+          regexp: '^([ \t]*)(- .*(?:middlewares[=.]auth|users\.txt|acme\.json).*)$'
+          replace: '\1# \2'
+
+      - name: Comment production labels in compose.yaml for all services
+        ansible.builtin.replace:
+          path: "{{ item }}"
+          regexp: '^([ \t]*)(- .*(?:tls\.certresolver|tls\.domains).*)$'
+          replace: '\1# \2'
+        loop:
+          - "{{ server_home }}/services/ai/hermes/compose.yaml"
+          - "{{ server_home }}/services/ai/honcho/compose.yaml"
+          - "{{ server_home }}/services/ai/langfuse/compose.yaml"
+          - "{{ server_home }}/services/ai/litellm/compose.yaml"
+          - "{{ server_home }}/services/ai/open-notebook/compose.yaml"
+          - "{{ server_home }}/services/ai/open-webui/compose.yaml"
+          - "{{ server_home }}/services/ai/openconcho/compose.yaml"
+          - "{{ server_home }}/services/automation/n8n/compose.yaml"
+          - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
+          - "{{ server_home }}/services/dashboard/homer/compose.yaml"
+          - "{{ server_home }}/services/development/directus/compose.yaml"
+          - "{{ server_home }}/services/dns/pihole/compose.yaml"
+          # no labels for dns/unbound
+          - "{{ server_home }}/services/finances/actual/compose.yaml"
+          - "{{ server_home }}/services/finances/wallos/compose.yaml"
+          # no labels for games/minecraft
+          - "{{ server_home }}/services/games/romm/compose.yaml"
+          - "{{ server_home }}/services/home/home-assistant/compose.yaml"
+          - "{{ server_home }}/services/home/upsnap/compose.yaml"
+          - "{{ server_home }}/services/inventory/grocy/compose.yaml"
+          - "{{ server_home }}/services/inventory/homebox/compose.yaml"
+          - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
+          - "{{ server_home }}/services/inventory/mealie/compose.yaml"
+          - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
+          - "{{ server_home }}/services/kopia/compose.yaml"
+          - "{{ server_home }}/services/management/code/bytestash/compose.yaml"
+          - "{{ server_home }}/services/management/code/forgejo/compose.yaml"
+          - "{{ server_home }}/services/management/code/gitea-mirror/compose.yaml"
+          - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
+          - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
+          - "{{ server_home }}/services/management/code/wakapi/compose.yaml"
+          - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
+          # no labels for media/download/qbittorrent
+          - "{{ server_home }}/services/media/rr/bazarr/compose.yaml"
+          - "{{ server_home }}/services/media/rr/lidarr/compose.yaml"
+          - "{{ server_home }}/services/media/rr/prowlarr/compose.yaml"
+          - "{{ server_home }}/services/media/rr/radarr/compose.yaml"
+          - "{{ server_home }}/services/media/rr/seerr/compose.yaml"
+          - "{{ server_home }}/services/media/rr/sonarr/compose.yaml"
+          - "{{ server_home }}/services/media/sharing/gokapi/compose.yaml"
+          - "{{ server_home }}/services/media/storage/bookmarks/karakeep/compose.yaml"
+          - "{{ server_home }}/services/media/storage/books/kavita/compose.yaml"
+          - "{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml"
+          - "{{ server_home }}/services/media/storage/documents/paperless/compose.yaml"
+          - "{{ server_home }}/services/media/storage/files/sftpgo/compose.yaml"
+          - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
+          - "{{ server_home }}/services/media/storage/news/freshrss/compose.yaml"
+          - "{{ server_home }}/services/media/storage/pictures/immich/compose.yaml"
+          - "{{ server_home }}/services/media/storage/pictures/meme-search/compose.yaml"
+          - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
+          - "{{ server_home }}/services/media/storage/pictures/pinry/compose.yaml"
+          - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
+          - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
+          - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
+          - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
+          - "{{ server_home }}/services/media/tools/libretranslate/compose.yaml"
+          - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
+          - "{{ server_home }}/services/media/tools/yamtrack/compose.yaml"
+          - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
+          # no labels for monitoring/diun
+          - "{{ server_home }}/services/monitoring/dozzle/compose.yaml"
+          - "{{ server_home }}/services/monitoring/grafana/compose.yaml"
+          - "{{ server_home }}/services/monitoring/ntfy/compose.yaml"
+          # no labels for monitoring/prometheus
+          - "{{ server_home }}/services/monitoring/scrutiny/compose.yaml"
+          - "{{ server_home }}/services/other/limesurvey/compose.yaml"
+          - "{{ server_home }}/services/pkms/affine/compose.yaml"
+          - "{{ server_home }}/services/pkms/excalidraw/compose.yaml"
+          - "{{ server_home }}/services/pkms/mathesar/compose.yaml"
+          - "{{ server_home }}/services/pkms/memos/compose.yaml"
+          - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
+          - "{{ server_home }}/services/proxy/traefik/compose.yaml"
+          - "{{ server_home }}/services/remote/guacamole/compose.yaml"
+          - "{{ server_home }}/services/remote/rustdesk/compose.yaml"
+          - "{{ server_home }}/services/remote/wg-easy/compose.yaml"
+          # no labels for remote/wireguard
+          # no labels for search/browserless
+          # no labels for search/camofox
+          - "{{ server_home }}/services/search/firecrawl/compose.yaml"
+          - "{{ server_home }}/services/search/searxng/compose.yaml"
+          - "{{ server_home }}/services/security/authentik/compose.yaml"
+          # no labels for security/crowdsec
+          - "{{ server_home }}/services/security/enclosed/compose.yaml"
+          - "{{ server_home }}/services/security/gluetun/compose.yaml"
+          - "{{ server_home }}/services/security/wazuh/compose.yaml"
+          - "{{ server_home }}/services/traefik/compose.yaml"
+          - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
+          - "{{ server_home }}/services/travel/dawarich/compose.yaml"
+          - "{{ server_home }}/services/travel/jetlog/compose.yaml"
