@@ -30,7 +30,7 @@ services:
     container_name: litellm-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${LITELLM_DB_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U ${LITELLM_DB_USERNAME}"]
       interval: 20s
       timeout: 15s
       retries: 3

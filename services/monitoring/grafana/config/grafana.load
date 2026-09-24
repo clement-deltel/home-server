@@ -1,6 +1,6 @@
 LOAD DATABASE
   FROM sqlite://persistence/grafana.db
-  INTO postgresql://${GRAFANA_DB_USER}:${GRAFANA_DB_PASSWORD}@${GRAFANA_DB_IP}/grafana_db
+  INTO postgresql://${GRAFANA_DB_USERNAME}:${GRAFANA_DB_PASSWORD}@${GRAFANA_DB_IP}/grafana_db
 
 WITH data only, reset sequences
 

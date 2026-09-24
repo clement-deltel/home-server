@@ -4,7 +4,7 @@ services:
     container_name: mathesar-pkms-db
     env_file: config/.env.pkms.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_PKMS_DB_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_PKMS_DB_USERNAME}"]
       interval: 20s
       timeout: 15s
       retries: 3
@@ -29,7 +29,7 @@ services:
     container_name: mathesar-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_DB_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U ${MATHESAR_DB_USERNAME}"]
       interval: 20s
       timeout: 15s
       retries: 3
