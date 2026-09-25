@@ -73,7 +73,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/yamtrack-up:/var/lib/postgresql/data
+      - /mnt/ssd/databases/yamtrack-up:/var/lib/postgresql
 
   yamtrack:
     container_name: yamtrack
