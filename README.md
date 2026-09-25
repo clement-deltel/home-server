@@ -27,7 +27,7 @@ Collection of self hosted services for my home server setup.
 
 ## Pre-requisites
 
-Here is a non-exhaustive list of tasks to perform prior deploying the stack:
+Here is a non-exhaustive list of tasks to perform prior stack deployment:
 
 - Purchase the server hardware (refer to the [Hardware](#hardware) section for more details)
 - Purchase a domain (refer to the [Domain Name](#domain-name) section for more details)
@@ -45,15 +45,19 @@ Create the accounts below:
 Optionally, create also the accounts below:
 
 - **Artificial Intelligence**
-  - [OpenAI](https://platform.openai.com): used by Karakeep and Open WebUI.
+  - [OpenAI](https://platform.openai.com): used by Firecrawl, Honcho, Karakeep, and Open WebUI.
 - **Games**
-  - [IGDB](https://www.igdb.com): used by Romm.
+  - [IGDB](https://www.igdb.com): used by Romm, and Yamtrack.
   - [RetroAchievements](https://retroachievements.org): used by Romm.
   - [SteamGrid](https://www.steamgriddb.com): used by Romm.
 - **Inventory**
   - [Pl@ntNet](https://my.plantnet.org): used by HortusFox.
 - **Media**
+  - [ComicVine](https://comicvine.gamespot.com): used by Yamtrack.
+  - [Hardcover](https://hardcover.app): used by Yamtrack.
+  - [MyAnimeList](https://myanimelist.net): used by Yamtrack.
   - [Spotify](https://accounts.spotify.com): used by Navidrome.
+  - [TheMovieDB](https://www.themoviedb.org): used by Yamtrack.
 - **Monitoring**
   - [OpenWeatherMap](https://openweathermap.org): used by Telegraf.
 
@@ -74,34 +78,7 @@ curl -fLSs https://raw.githubusercontent.com/${GITHUB_USERNAME}/home-server/refs
 ```
 
 3. After pulling and configuring the home-server, the script install ansible, and then run playbooks.
-4. Ansible playbooks automatically install and configure the tools listed below:
-    - Packages Managers
-      - apt
-        - [argon2](https://github.com/P-H-C/phc-winner-argon2)
-        - [htop](https://github.com/htop-dev/htop): interactive process viewer.
-        - [lm-sensors](https://github.com/lm-sensors/lm-sensors)
-        - [nvme-cli](https://github.com/linux-nvme/nvme-cli)
-        - pwgen
-        - [smartmontools](https://github.com/smartmontools/smartmontools)
-        - [vim](https://github.com/vim/vim)
-        - [wireguard](https://github.com/WireGuard/wireguard-linux)
-      - [homebrew](https://github.com/Homebrew/brew): the missing package manager for Linux.
-        - [btop](https://github.com/aristocratos/btop): monitor of resources.
-        - [lazydocker](https://github.com/jesseduffield/lazydocker): lazier way to manage everything Docker.
-        - [lazygit](https://github.com/jesseduffield/lazygit): simple terminal UI for git commands.
-        - [lnav](https://github.com/tstack/lnav): log file navigator.
-        - [tldr](https://github.com/tldr-pages/tlrc): tldr client written in Rust.
-    - Languages
-      - Python
-    - Security
-      - [Bitwarden CLI](https://bitwarden.com/help/cli)
-    - Orchestration
-      - Docker
-    - Infrastructure as Code (IaC)
-      - [Terraform](https://github.com/hashicorp/terraform): safely and predictably create, change, and improve infrastructure.
-    - Cloud
-      - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-
+4. Ansible playbooks automatically install and configure these [apps](docs/linux.md).
 5. Log in as the Docker user and edit the configuration files:
 
 - ansible/vars/secrets.yml
