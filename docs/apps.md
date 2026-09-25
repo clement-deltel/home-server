@@ -88,6 +88,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Software Development](#software-development)
   - [Storage](#storage)
   - [Surveys](#surveys-1)
+  - [Travel](#travel-1)
   - [Trello alternative - Find a kanban board](#trello-alternative---find-a-kanban-board)
   - [Wishlist](#wishlist)
   - [Other](#other)
@@ -329,6 +330,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Databases
 
+- [Chat2DB](https://chat2db.ai) - database client and SQL workspace that connect to 40+ databases, manage data, edit and run SQL, and use your own AI model to generate, explain, and optimize queries. ([Source Code](https://github.com/OtterMind/Chat2DB)) `Java` `TypeScript`
 - [helix-db](https://helix-db.com) - OLTP graph-vector database. ([Source Code](https://github.com/helixdb/helix-db)) `Rust` `TypeScript` `Python`
 - [milvus](https://milvus.io) - high-performance, cloud-native vector database built for scalable vector ANN search. ([Source Code](https://github.com/milvus-io/milvus)) `Go` `Python` `C++`
 - [pgrust](https://pgrust.com) - postgres rewritten. ([Source Code](https://github.com/malisper/pgrust)) `Rust`
@@ -360,6 +362,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Monetr](https://monetr.app) - budgeting application focused on planning for recurring expenses. ([Source Code](https://github.com/monetr/monetr)) `Go` `TypeScript`
 - [MoneyPrinter](https://github.com/FujiwaraChoki/MoneyPrinterV2) - automate the process of making money online. ([Source Code](https://github.com/FujiwaraChoki/MoneyPrinterV2)) `Python`
 - [OpenBB](https://openbb.co) - financial data platform for analysts, quants and AI agents. ([Source Code](https://github.com/OpenBB-finance/OpenBB)) `Python`
+- [PriceBuddy](https://pricebuddy.jez.me) - tracks prices and sends you notifications when prices match your preferences. ([Source Code](https://github.com/jez500/pricebuddy)) `PHP`
 - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. ([Source Code](https://github.com/dh1011/subscription-manager)) `JavaScript` `Python`
 - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. ([Source Code](https://github.com/meceware/wapy.dev)) `JavaScript`
 
@@ -545,6 +548,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [github-release-monitor](https://github.com/iamspido/github-release-monitor) - automatically monitor GitHub, GitLab and Codeberg repository releases and receive instant email and Apprise notifications. ([Source Code](https://github.com/iamspido/github-release-monitor)) `TypeScript`
 - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. ([Source Code](https://github.com/healthchecks/healthchecks)) `Python`
 - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. ([Source Code](https://github.com/keephq/keep)) `Python` `TypeScript`
+- [OpenSearch](https://opensearch.org/docs/latest/opensearch/index) - distributed and RESTful search and observability suite that brings order to unstructured data at scale. ([Source Code](https://github.com/opensearch-project/OpenSearch)) `Java`
 - [OpenSEO](https://openseo.so) - open source alternative to Semrush and Ahrefs. ([Source Code](https://github.com/every-app/open-seo)) `TypeScript`
 - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. ([Source Code](https://github.com/SigNoz/signoz)) `TypeScript` `Go`
 - [Uptime Kuma](https://uptime.kuma.pet) - fancy monitoring tool. ([Source Code](https://github.com/louislam/uptime-kuma)) `JavaScript` `Vue`
@@ -558,6 +562,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Cluster-iPerf](https://github.com/Markbnj/cluster-iperf) - Run iperf in client or server mode on kubernetes and ECS. ([Source Code](https://github.com/Markbnj/cluster-iperf))
 - [Domain Monitor](https://github.com/nwesterhausen/domain-monitor) - monitor WHOIS records for specified domains. ([Source Code](https://github.com/nwesterhausen/domain-monitor)) `Go`
+- [LAN-Orangutan](https://lanorangutan.com) - lightweight network scanner with persistent device labeling, multi-network support, and Tailscale integration. ([Source Code](https://github.com/291-Group/LAN-Orangutan)) `Go` `JavaScript`
 - [LibreSpeed](https://librespeed.org) - speed test for HTML5 and more. ([Source Code](https://github.com/librespeed/speedtest)) `PHP` `JavaScript`
 - [Neko Master](https://github.com/foru17/neko-master) - modern and elegant dashboard for network traffic visualization and analysis. ([Source Code](https://github.com/foru17/neko-master)) `TypeScript`
 - [NetAlertX](https://netalertx.com) - network intruder and presence detector, scans for devices connected to your network and alerts you if new and unknown devices are found. ([Source Code](https://github.com/jokob-sk/NetAlertX)) `JavaScript` `Python` `PHP`
@@ -650,6 +655,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Formbricks](https://formbricks.com) - open source Qualtrics alternative. ([Source Code](https://github.com/formbricks/formbricks)) `TypeScript`
 
+### Travel
+
+- [TREK](https://demo.liketrek.com) - travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more. ([Source Code](https://github.com/liketrek/TREK)) `TypeScript`
+
 ### Trello alternative - [Find a kanban board](https://github.com/NatoBoram/docker-compose/issues/44)
 
 - [Focalboard](https://github.com/mattermost-community/focalboard) - ([Source Code](https://github.com/mattermost-community/focalboard))
@@ -670,3 +679,4 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Email Verifier](https://rapid-email-verifier.fly.dev) - privacy-first open source email verifier. ([Source Code](https://github.com/umuterturk/email-verifier)) `Go`
 - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. ([Source Code](https://github.com/monicahq/monica)) `PHP`
 - [Puter](https://puter.com) - The Internet Computer, free, open-source, and self-hostable. ([Source Code](https://github.com/HeyPuter/puter)) `JavaScript`
+- [YOURLS](https://yourls.org) - powerful and customizable URL shortener. ([Source Code](https://github.com/YOURLS/YOURLS)) `PHP`
