@@ -16,7 +16,7 @@
         job: "{{ item }}"
         state: present
       loop:
-        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${VAULTWARDEN_DB_IP} -u ${VAULTWARDEN_DB_USERNAME} -p${VAULTWARDEN_DB_PASSWORD} vaultwarden_db > /opt/backup/databases/vaultwarden.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${VAULTWARDEN_DB_PASSWORD}; pg_dumpall -c -h ${VAULTWARDEN_DB_IP} -U ${VAULTWARDEN_DB_USERNAME} -l vaultwarden > /opt/backup/databases/vaultwarden.sql"
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${MATHESAR_PKMS_DB_PASSWORD}; pg_dumpall -c -h ${MATHESAR_PKMS_DB_IP} -U ${MATHESAR_PKMS_DB_USERNAME} -l pkms_tables_db > /opt/backup/databases/mathesar-pkms.sql"
 
     - name: Weekly backup job
