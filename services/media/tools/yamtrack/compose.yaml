@@ -29,14 +29,14 @@ services:
     container_name: yamtrack-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${YAMTRACK_DB_USERNAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${YAMTRACK_DB_USERNAME} -d postgres"]
       interval: 20s
       retries: 3
       start_interval: 5s
       start_period: 60s
       timeout: 15s
     hostname: yamtrack-db
-    image: ${DEPRECATED_POSTGRES_IMAGE}
+    image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
       options:
@@ -48,32 +48,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/yamtrack:/var/lib/postgresql/data
-
-  db-up:
-    container_name: yamtrack-db-up
-    env_file: config/.env.db-up
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${YAMTRACK_DB_USERNAME}"]
-      interval: 20s
-      retries: 3
-      start_interval: 5s
-      start_period: 60s
-      timeout: 15s
-    hostname: yamtrack-db-up
-    image: ${DEFAULT_DB_IMAGE}
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 5m
-    networks:
-      internal-net:
-        ipv4_address: ${YAMTRACK_DB_IP_UP}
-    restart: unless-stopped
-    stop_grace_period: 30s
-    volumes:
-      - /mnt/ssd/databases/yamtrack-up:/var/lib/postgresql
+      - /mnt/ssd/databases/yamtrack:/var/lib/postgresql
 
   yamtrack:
     container_name: yamtrack
