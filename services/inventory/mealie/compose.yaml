@@ -4,14 +4,14 @@ services:
     container_name: mealie-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${MEALIE_DB_USERNAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${MEALIE_DB_USERNAME} -d postgres"]
       interval: 20s
       timeout: 15s
       retries: 3
       start_period: 60s
       start_interval: 5s
     hostname: mealie-db
-    image: ${DEPRECATED_POSTGRES_IMAGE}
+    image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
       options:
@@ -23,32 +23,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/mealie:/var/lib/postgresql/data
-
-  db-up:
-    container_name: mealie-db-up
-    env_file: config/.env.db-up
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${MEALIE_DB_USERNAME} -d postgres"]
-      interval: 20s
-      timeout: 15s
-      retries: 3
-      start_period: 60s
-      start_interval: 5s
-    hostname: mealie-db-up
-    image: ${DEFAULT_DB_IMAGE}
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 5m
-    networks:
-      internal-net:
-        ipv4_address: ${MEALIE_DB_IP_UP}
-    restart: unless-stopped
-    stop_grace_period: 30s
-    volumes:
-      - /mnt/ssd/databases/mealie-up:/var/lib/postgresql
+      - /mnt/ssd/databases/mealie:/var/lib/postgresql
 
   mealie:
     container_name: mealie
