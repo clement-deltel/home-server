@@ -32,10 +32,11 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
+      # Optional, only if you want docker integration
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /opt/persistence/homarr/config:/app/data/configs
       - /opt/persistence/homarr/data:/data
       - /opt/persistence/homarr/icons:/app/public/icons
-      - /var/run/docker.sock:/var/run/docker.sock:ro # Optional, only if you want docker integration
 
 networks:
   proxy-net:

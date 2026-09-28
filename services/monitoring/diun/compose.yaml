@@ -21,8 +21,8 @@ services:
     restart: always
     stop_grace_period: 30s
     volumes:
-      - /opt/persistence/diun:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/persistence/diun:/data
 
 networks:
   internal-net:
