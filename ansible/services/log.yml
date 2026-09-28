@@ -102,6 +102,7 @@
         - /mnt/hdd/log/pkms/mathesar
         - /mnt/hdd/log/pkms/memos
         - /mnt/hdd/log/pkms/obsidian
+        - /mnt/hdd/log/pkms/project-nomad
         - /mnt/hdd/log/proxy/traefik
         - /mnt/hdd/log/remote/guacamole
         - /mnt/hdd/log/remote/rustdesk

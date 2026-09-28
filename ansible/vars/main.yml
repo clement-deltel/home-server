@@ -233,6 +233,7 @@ open_notebook_enable: true
 open_webui_enable: true
 paperless_enable: true
 pihole_enable: true
+project_nomad_enable: true
 prometheus_enable: true
 prowlarr_enable: true
 qbittorrent_enable: true

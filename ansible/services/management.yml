@@ -71,6 +71,7 @@
       - { when: photoprism_enable, project_src: '{{ server_home }}/services/media/storage/pictures/photoprism' }
       - { when: pihole_enable, project_src: '{{ server_home }}/services/dns/pihole' }
       - { when: pinry_enable, project_src: '{{ server_home }}/services/media/storage/pictures/pinry' }
+      - { when: project_nomad_enable, project_src: '{{ server_home }}/services/pkms/project-nomad' }
       - { when: prometheus_enable, project_src: '{{ server_home }}/services/monitoring/prometheus' }
       - { when: prowlarr_enable, project_src: '{{ server_home }}/services/media/rr/prowlarr' }
       - { when: qbittorrent_enable, project_src: '{{ server_home }}/services/media/downloads/qbittorrent' }

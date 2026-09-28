@@ -246,6 +246,12 @@
       - /opt/persistence/pihole/etc-dnsmasqd
       # Pinry
       - /opt/persistence/pinry
+      # Project NOMAD
+      - /mnt/ssd/cache/project-nomad
+      - /mnt/ssd/databases/project-nomad
+      - /opt/persistence/project-nomad
+      - /opt/persistence/project-nomad/storage
+      - /opt/persistence/project-nomad/update
       # Prometheus
       - /opt/persistence/prometheus
       # Prowlarr
@@ -584,6 +590,7 @@
           - "{{ server_home }}/services/pkms/mathesar/compose.yaml"
           - "{{ server_home }}/services/pkms/memos/compose.yaml"
           - "{{ server_home }}/services/pkms/obsidian/compose.yaml"
+          - "{{ server_home }}/services/pkms/project-nomad/compose.yaml"
           - "{{ server_home }}/services/proxy/traefik/compose.yaml"
           - "{{ server_home }}/services/remote/guacamole/compose.yaml"
           - "{{ server_home }}/services/remote/rustdesk/compose.yaml"

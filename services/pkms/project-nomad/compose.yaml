@@ -1,0 +1,159 @@
+# https://github.com/Crosstalk-Solutions/project-nomad
+services:
+  cache:
+    container_name: nomad-cache
+    env_file: config/.env.cache
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: nomad-cache
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    networks:
+      internal-net:
+        ipv4_address: ${PROJECT_NOMAD_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/project-nomad:/data
+
+  db:
+    container_name: nomad-db
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin", "ping", "-h", "localhost"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    hostname: nomad-db
+    image: ${DEFAULT_MARIADB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${PROJECT_NOMAD_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/project-nomad:/var/lib/mysql
+
+  nomad:
+    container_name: nomad
+    depends_on:
+      cache:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Enables host.docker.internal on Linux
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    hostname: nomad
+    image: ${PROJECT_NOMAD_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.project-nomad.entrypoints=web,websecure"
+      - "traefik.http.routers.project-nomad.rule=Host(`${PROJECT_NOMAD_HOST}`)"
+      - "traefik.http.routers.project-nomad.tls=true"
+      - "traefik.http.routers.project-nomad.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.project-nomad.tls.domains[0].main=${PROJECT_NOMAD_HOST}"
+      - "traefik.http.routers.project-nomad.service=project-nomad"
+      # Services
+      - "traefik.http.services.project-nomad.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      internal-net:
+        ipv4_address: ${PROJECT_NOMAD_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${PROJECT_NOMAD_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/persistence/project-nomad/storage:/app/storage
+      # Shared volume for update communication
+      - /opt/persistence/project-nomad/update:/shared
+
+  updater:
+    # Updater is a lightweight sidecar container that allows the admin container to be updated from within it's own UI
+    container_name: nomad-updater
+    hostname: nomad-updater
+    image: ${PROJECT_NOMAD_UPDATER_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${PROJECT_NOMAD_UPDATER_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Shared volume for communication with admin container
+      - /opt/persistence/project-nomad/update:/shared
+      # Writable access to the compose file location
+      - ${SERVER_HOME}/services/pkms/project-nomad:/opt/project-nomad
+
+  disk-collector:
+    # Disk Collector is a lightweight privileged container that collects disk usage information from the host system and shares it with the admin container so it can be displayed in the UI.
+    # It requires read-only access to the host filesystem and is designed to be as secure and limited in scope as possible while still providing the necessary functionality.
+    container_name: nomad-disk-collector
+    hostname: nomad-disk-collector
+    image: ${PROJECT_NOMAD_DISK_COLLECTOR_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    networks:
+      internal-net:
+        ipv4_address: ${PROJECT_NOMAD_DISK_COLLECTOR_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      # Read-only view of host FS with rslave propagation so /sys and /proc submounts are visible
+      - /:/host:ro,rslave
+      - /opt/persistence/project-nomad/storage:/storage
+
+networks:
+  internal-net:
+    name: internal-nomad
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${PROJECT_NOMAD_NET}
+          gateway: ${PROJECT_NOMAD_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
