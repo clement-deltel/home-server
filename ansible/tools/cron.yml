@@ -21,7 +21,7 @@
 
     - name: Weekly backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every week before 2AM): Immich, Yamtrack"
+        name: "Backup databases and files (every week before 2AM): Immich, Mealie, Yamtrack"
         minute: 30
         hour: 1
         weekday: 1
@@ -29,6 +29,7 @@
         state: present
       loop:
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${IMMICH_DB_PASSWORD}; pg_dumpall -c -h ${IMMICH_DB_IP} -U ${IMMICH_DB_USERNAME} -l immich_db > /opt/backup/databases/immich.sql"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${MEALIE_DB_PASSWORD}; pg_dumpall -c -h ${MEALIE_DB_IP} -U ${MEALIE_DB_USERNAME} -l postgres > /opt/backup/databases/mealie.sql"
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${YAMTRACK_DB_PASSWORD}; pg_dumpall -c -h ${YAMTRACK_DB_IP} -U ${YAMTRACK_DB_USERNAME} -l postgres > /opt/backup/databases/yamtrack.sql"
 
     - name: Monthly backup job
