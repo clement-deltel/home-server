@@ -34,7 +34,7 @@
 
     - name: Monthly backup job
       ansible.builtin.cron:
-        name: "Backup databases and files (every month before 3AM): AdventureLog, Change Detection, FreshRSS, Guacamole, Homer, n8n, Pihole"
+        name: "Backup databases and files (every month before 3AM): AdventureLog, Change Detection, FreshRSS, Guacamole, Homer, n8n, Pihole, Wakapi"
         minute: 30
         hour: 2
         day: 1
@@ -49,6 +49,7 @@
         - zip -r /opt/backup/files/homer.zip /opt/persistence/homer
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${N8N_DB_PASSWORD}; pg_dumpall -c -h ${N8N_DB_IP} -U ${N8N_DB_USERNAME} -l postgres > /opt/backup/databases/n8n.sql"
         - "source ${SERVER_HOME}/env/.env; docker exec -w /etc/pihole pihole /bin/bash pihole -a -t; cp ${SERVER_HOME}/services/dns/pihole/etc-pihole/pi-hole-pihole-teleporter_* /opt/backup/files/pihole.tar.gz; docker exec pihole /bin/bash -c 'rm -f /etc/pihole/pi-hole-*'"
+        - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${WAKAPI_DB_PASSWORD}; pg_dumpall -c -h ${WAKAPI_DB_IP} -U ${WAKAPI_DB_USERNAME} -l postgres > /opt/backup/databases/wakapi.sql"
 
     - name: Minecraft backup job
       ansible.builtin.cron:
