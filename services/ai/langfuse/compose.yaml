@@ -31,11 +31,11 @@ services:
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${LANGFUSE_DB_USERNAME} -d postgres"]
-      interval: 20s
+      interval: 1m
+      timeout: 10s
       retries: 3
-      start_interval: 5s
       start_period: 60s
-      timeout: 15s
+      start_interval: 10s
     hostname: langfuse-db
     image: ${DEFAULT_DB_IMAGE}
     logging:

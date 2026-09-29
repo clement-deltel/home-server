@@ -5,11 +5,11 @@ services:
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${SFTPGO_DB_USER} -d postgres"]
-      interval: 20s
-      timeout: 15s
+      interval: 1m
+      timeout: 10s
       retries: 3
       start_period: 60s
-      start_interval: 5s
+      start_interval: 10s
     hostname: sftpgo-db
     image: ${DEFAULT_DB_IMAGE}
     logging:
