@@ -9,7 +9,7 @@ services:
       - ${DNS_SERVER_2}
     env_file: config/.env
     healthcheck: # optional: remember to adapt the host:port to your environment
-      test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
+      test: ["CMD", "wget", "-q", "--tries=1", "http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
       interval: 20s
       timeout: 15s
       retries: 3

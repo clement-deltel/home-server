@@ -8,7 +8,7 @@ services:
       - ${PIHOLE_IP}
     env_file: config/.env
     healthcheck:
-      test: curl -fs "http://localhost:8090/api/health" || exit 1
+      test: ["CMD", "curl", "-fs", "http://localhost:8090/api/health || exit 1"]
       interval: 20s
       timeout: 15s
       retries: 3

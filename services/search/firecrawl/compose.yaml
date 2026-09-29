@@ -136,7 +136,7 @@ services:
           memory: 4G
     env_file: config/.env.playwright
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/ || exit 1"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/ || exit 1"]
       interval: 20s
       timeout: 15s
       retries: 3
@@ -185,7 +185,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3002/ || exit 1"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:3002/ || exit 1"]
       interval: 20s
       timeout: 15s
       retries: 3

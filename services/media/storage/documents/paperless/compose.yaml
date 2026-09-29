@@ -101,7 +101,7 @@ services:
       - ${DNS_SERVER_2}
     env_file: config/.env
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8000"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000 || exit 1"]
       interval: 20s
       timeout: 15s
       retries: 3

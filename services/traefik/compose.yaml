@@ -8,7 +8,7 @@ services:
     extra_hosts:
       - host.docker.internal:172.17.0.1
     healthcheck:
-      test: ["CMD-SHELL", "traefik healthcheck"]
+      test: ["CMD", "traefik", "healthcheck"]
       interval: 20s
       timeout: 15s
       retries: 3

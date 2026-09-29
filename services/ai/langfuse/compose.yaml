@@ -55,7 +55,7 @@ services:
     container_name: langfuse-clickhouse
     env_file: config/.env.clickhouse
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123/ping || exit 1"]
       interval: 20s
       retries: 3
       start_interval: 5s
