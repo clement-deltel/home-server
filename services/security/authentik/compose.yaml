@@ -68,7 +68,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.authentik.entrypoints=web,websecure"
+      - "traefik.http.routers.authentik.entrypoints=web-external,websecure-external"
       - "traefik.http.routers.authentik.rule=Host(`${AUTHENTIK_HOST}`)"
       - "traefik.http.routers.authentik.tls=true"
       - "traefik.http.routers.authentik.tls.certresolver=letsencrypt"
