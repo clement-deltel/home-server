@@ -28,7 +28,7 @@ services:
     container_name: dawarich-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DAWARICH_DB_USER}}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DAWARICH_DB_USER} -d postgres"]
       interval: 20s
       timeout: 15s
       retries: 3

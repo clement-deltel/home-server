@@ -30,7 +30,7 @@ services:
     container_name: langfuse-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${LANGFUSE_DB_USERNAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${LANGFUSE_DB_USERNAME} -d postgres"]
       interval: 20s
       retries: 3
       start_interval: 5s
@@ -49,7 +49,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/langfuse:/var/lib/postgresql/data
+      - /mnt/ssd/databases/langfuse:/var/lib/postgresql
 
   clickhouse:
     container_name: langfuse-clickhouse

@@ -26,9 +26,9 @@ services:
 
   db:
     container_name: affine-db
-    env_file: config/.env.postgres
+    env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${AFFINE_DB_USERNAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${AFFINE_DB_USERNAME} -d postgres"]
       interval: 20s
       timeout: 15s
       retries: 3
@@ -47,7 +47,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/affine:/var/lib/postgresql/data
+      - /mnt/ssd/databases/affine:/var/lib/postgresql
 
   affine:
     command: sh -c node ./scripts/self-host-predeploy && node ./dist/index.js
