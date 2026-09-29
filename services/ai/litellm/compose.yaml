@@ -6,11 +6,11 @@ services:
       - VALKEY_EXTRA_FLAGS=--requirepass ${LITELLM_CACHE_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
-      interval: 20s
-      timeout: 15s
+      interval: 1m
+      timeout: 10s
       retries: 3
       start_period: 60s
-      start_interval: 5s
+      start_interval: 10s
     hostname: litellm-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:

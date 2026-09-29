@@ -31,11 +31,11 @@ services:
       - VALKEY_EXTRA_FLAGS=--bind 0.0.0.0 --requirepass ${FIRECRAWL_CACHE_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
-      interval: 20s
+      interval: 1m
+      timeout: 10s
       retries: 3
       start_period: 60s
-      start_interval: 5s
-      timeout: 15s
+      start_interval: 10s
     hostname: firecrawl-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:

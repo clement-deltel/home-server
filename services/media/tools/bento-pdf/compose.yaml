@@ -9,9 +9,11 @@ services:
     env_file: config/.env
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080"]
-      interval: 30s
+      interval: 1m
       timeout: 10s
       retries: 3
+      start_period: 60s
+      start_interval: 10s
     hostname: bento-pdf
     image: ${BENTO_PDF_IMAGE}
     labels:
