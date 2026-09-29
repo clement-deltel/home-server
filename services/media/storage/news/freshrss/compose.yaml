@@ -1,17 +1,17 @@
 # https://github.com/FreshRSS/FreshRSS
 services:
-  postgres:
+  db:
     container_name: freshrss-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${FRESHRSS_DB_USERNAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${FRESHRSS_DB_USERNAME} -d postgres"]
       interval: 20s
       timeout: 15s
       retries: 3
       start_period: 60s
       start_interval: 5s
     hostname: freshrss-db
-    image: ${DEPRECATED_POSTGRES_IMAGE}
+    image: ${DEFAULT_DB_IMAGE}
     logging:
       driver: json-file
       options:
@@ -23,37 +23,12 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - /mnt/ssd/databases/freshrss:/var/lib/postgresql/data
-
-  postgres-up:
-    container_name: freshrss-db-up
-    env_file: config/.env.db-up
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${FRESHRSS_DB_USERNAME} -d postgres"]
-      interval: 20s
-      timeout: 15s
-      retries: 3
-      start_period: 60s
-      start_interval: 5s
-    hostname: freshrss-db-up
-    image: ${DEFAULT_DB_IMAGE}
-    logging:
-      driver: json-file
-      options:
-        max-file: 2
-        max-size: 5m
-    networks:
-      internal-net:
-        ipv4_address: 192.168.100.4
-    restart: unless-stopped
-    stop_grace_period: 30s
-    volumes:
-      - /mnt/ssd/databases/freshrss-up:/var/lib/postgresql
+      - /mnt/ssd/databases/freshrss:/var/lib/postgresql
 
   freshrss:
     container_name: freshrss
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
     dns:
       - 127.0.0.1
