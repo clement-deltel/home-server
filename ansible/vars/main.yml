@@ -258,6 +258,8 @@ yamtrack_enable: true
 affine_enable: false
 directus_enable: false
 firefly_enable: false
+flareproxy_enable: false
+flaresolverr_enable: false
 gitlab_enable: false
 homarr_enable: false
 librum_enable: false
