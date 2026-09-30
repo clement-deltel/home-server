@@ -1,14 +1,14 @@
-# https://github.com/Flaresolverr/Flaresolverr
+# https://github.com/mimnix/FlareProxy
 services:
-  flaresolverr:
-    container_name: flaresolverr
+  flareproxy:
+    container_name: flareproxy
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
     env_file: config/.env
-    hostname: flaresolverr
-    image: ${FLARESOLVERR_IMAGE}
+    hostname: flareproxy
+    image: ${FLAREPROXY_IMAGE}
     logging:
       driver: json-file
       options:
@@ -16,13 +16,11 @@ services:
         max-size: 10m
     networks:
       proxy-net:
-        ipv4_address: ${FLARESOLVERR_IP}
+        ipv4_address: ${FLAREPROXY_IP}
     ports:
-      - 8191
+      - 8080
     restart: unless-stopped
     stop_grace_period: 30s
-    volumes:
-      - /opt/persistence/flaresolverr:/config
 
 networks:
   proxy-net:

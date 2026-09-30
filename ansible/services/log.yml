@@ -111,6 +111,8 @@
         - /mnt/hdd/log/search/browserless
         - /mnt/hdd/log/search/camofox
         - /mnt/hdd/log/search/firecrawl
+        - /mnt/hdd/log/search/flareproxy
+        - /mnt/hdd/log/search/flaresolverr
         - /mnt/hdd/log/search/searxng
         - /mnt/hdd/log/security/authentik
         - /mnt/hdd/log/security/crowdsec

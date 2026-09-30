@@ -24,6 +24,8 @@
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
       - { when: excalidraw_enable, project_src: '{{ server_home }}/services/pkms/excalidraw' }
       - { when: firecrawl_enable, project_src: '{{ server_home }}/services/search/firecrawl' }
+      - { when: flareproxy_enable, project_src: '{{ server_home }}/services/search/flareproxy' }
+      - { when: flaresolverr_enable, project_src: '{{ server_home }}/services/search/flaresolverr' }
       - { when: forgejo_enable, project_src: '{{ server_home }}/services/management/code/forgejo' }
       - { when: freshrss_enable, project_src: '{{ server_home }}/services/media/storage/news/freshrss' }
       - { when: gitea_mirror_enable, project_src: '{{ server_home }}/services/management/code/gitea-mirror' }

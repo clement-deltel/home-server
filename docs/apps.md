@@ -160,6 +160,8 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Browserless](https://browserless.io) - headless browsers in Docker. ([Source Code](https://github.com/browserless/browserless)) `TypeScript`
 - [Camofox](https://github.com/jo-inc/camofox-browser) - stealth headless browser for AI agents, bypass Cloudflare, bot detection, and anti-scraping. ([Source Code](https://github.com/jo-inc/camofox-browser)) `JavaScript`
 - [Firecrawl](https://firecrawl.dev) - API to search, scrape, and interact with the web at scale. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
+- [FlareProxy](https://github.com/mimnix/FlareProxy) - transparent http proxy adapter that seamlessly forwards client requests to FlareSolverr. ([Source Code](https://github.com/mimnix/FlareProxy)) `Python`
+- [FlareSolverr](https://github.com/Flaresolverr/Flaresolverr) - proxy server to bypass Cloudflare protection. ([Source Code](https://github.com/Flaresolverr/Flaresolverr)) `Python`
 - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. ([Source Code](https://github.com/searxng/searxng)) `Python`
 
 ### Media Download
