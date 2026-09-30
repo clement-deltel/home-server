@@ -1,13 +1,21 @@
+# https://github.com/browserless/browserless
 services:
-  chrome:
-    container_name: chrome
+  browserless:
+    container_name: browserless-multi
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
       - ${DNS_SERVER_2}
     env_file: config/.env
-    hostname: chrome
-    image: ${BROWSERLESS_CHROME_IMAGE}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
+    hostname: browserless-multi
+    image: ${BROWSERLESS_MULTI_IMAGE}
     logging:
       driver: json-file
       options:
@@ -15,7 +23,7 @@ services:
         max-size: 10m
     networks:
       proxy-net:
-        ipv4_address: ${BROWSERLESS_CHROME_IP}
+        ipv4_address: ${BROWSERLESS_MULTI_IP}
     ports:
       - 3000
     restart: unless-stopped
