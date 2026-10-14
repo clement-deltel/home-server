@@ -179,6 +179,7 @@ homebrew_formulas:
 # ---------------------------------------------------------------------------- #
 actual_enable: true
 adventurelog_enable: true
+anubis_enable: true
 authentik_enable: true
 bazarr_enable: true
 bento_pdf_enable: true

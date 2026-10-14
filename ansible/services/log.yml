@@ -115,6 +115,7 @@
         - /mnt/hdd/log/search/flaresolverr
         - /mnt/hdd/log/search/searxng
         - /mnt/hdd/log/security/authentik
+        - /mnt/hdd/log/security/anubis
         - /mnt/hdd/log/security/crowdsec
         - /mnt/hdd/log/security/enclosed
         - /mnt/hdd/log/security/gluetun

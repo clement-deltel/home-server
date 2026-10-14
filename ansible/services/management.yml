@@ -7,6 +7,7 @@
       - { when: actual_enable, project_src: '{{ server_home }}/services/finances/actual' }
       - { when: adventurelog_enable, project_src: '{{ server_home }}/services/travel/adventurelog' }
       - { when: affine_enable, project_src: '{{ server_home }}/services/pkms/affine' }
+      - { when: anubis_enable, project_src: '{{ server_home }}/services/security/anubis' }
       - { when: authentik_enable, project_src: '{{ server_home }}/services/security/authentik' }
       - { when: bazarr_enable, project_src: '{{ server_home }}/services/media/rr/bazarr' }
       - { when: bento_pdf_enable, project_src: '{{ server_home }}/services/media/tools/bento-pdf' }
