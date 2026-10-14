@@ -133,6 +133,7 @@ entryPoints:
       #-optional, default: false
       sanitizePath: true
       middlewares:
+        - anubis@docker
         - crowdsec-bouncer@file
     observability:
       #-Whether a router attached to this EntryPoint produces access-logs by default
@@ -193,6 +194,7 @@ entryPoints:
       aliasHeadersStrategy: delete
       sanitizePath: true
       middlewares:
+        - anubis@docker
         - crowdsec-bouncer@file
       tls:
         #-Apply a certificate resolver on every router attached to the entryPoint. The TLS options can be overridden per router
@@ -215,6 +217,7 @@ entryPoints:
           permanent: true
       sanitizePath: true
       middlewares:
+        - anubis@docker
         - crowdsec-bouncer@file
     observability:
       accessLogs: true
@@ -228,6 +231,7 @@ entryPoints:
       aliasHeadersStrategy: delete
       sanitizePath: true
       middlewares:
+        - anubis@docker
         - crowdsec-bouncer@file
       tls:
         certResolver: letsencrypt

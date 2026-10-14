@@ -149,6 +149,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Security
 
+- [Anubis](https://anubis.techaro.lol) - weighs the soul of incoming HTTP requests to stop AI crawlers. ([Source Code](https://github.com/TecharoHQ/anubis)) `Go`
 - [Authentik](https://goauthentik.io) - authentication glue you need. ([Source Code](https://github.com/goauthentik/authentik)) `Python` `TypeScript`
 - [CrowdSec](https://app.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. ([Source Code](https://github.com/crowdsecurity/crowdsec)) `Go` `Shell`
 - [Enclosed](https://enclosed.cc) - Minimalistic web app designed for sending private and secure notes. ([Source Code](https://github.com/CorentinTh/enclosed)) `TypeScript`
