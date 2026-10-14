@@ -56,7 +56,7 @@ providers:
 
     #-Client timeout (in seconds) for HTTP connections
     #-optional, default: "0"
-    httpClientTimeout: "300"
+    httpClientTimeout: "0"
 
     #-Watch Docker events or not
     #-optional, default: true
