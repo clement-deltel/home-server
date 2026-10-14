@@ -383,15 +383,12 @@
         group: ubuntu
         mode: 0640
 
-    - name: Add GeoIP configuration to botPolicy.yaml
+    - name: Add GeoIP account id to botPolicy.yaml
       ansible.builtin.lineinfile:
         path: /opt/persistence/anubis/config/botPolicy.yaml
         state: present
-        search_string: "{{ item.string }}"
-        line: "{{ item.line }}"
-      loop:
-        - { string: "account_id: ", line: '    account_id: "{{ geoip_account_id }}"' }
-        - { string: "license_key_env:", line: '    license_key_env: "{{ geoip_license_key }}"' }
+        search_string: "account_id: "
+        line: '    account_id: "{{ geoip_account_id }}"'
 
     #--- Diun
     - name: Copy Diun file input

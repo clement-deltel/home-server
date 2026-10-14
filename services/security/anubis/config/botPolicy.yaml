@@ -15,9 +15,9 @@ bots:
   # - import: (data)/meta/default-config.yaml
 
   # Pathological bots to deny
-  - # This correlates to data/bots/_deny-pathological.yaml in the source tree
-    # https://github.com/TecharoHQ/anubis/blob/main/data/bots/_deny-pathological.yaml
-    import: (data)/bots/_deny-pathological.yaml
+  # This correlates to data/bots/_deny-pathological.yaml in the source tree
+  # https://github.com/TecharoHQ/anubis/blob/main/data/bots/_deny-pathological.yaml
+  - import: (data)/bots/_deny-pathological.yaml
   - import: (data)/bots/aggressive-brazilian-scrapers.yaml
   - import: (data)/common/domain-fronting.yaml
 
@@ -119,7 +119,7 @@ geoip:
     path: /data/geoip/GeoLite2-Country.mmdb
   auto_update:
     account_id:
-    license_key_env:
+    license_key_env: MAXMIND_LICENSE_KEY
     interval: 24h # if not set, this is the default
 
 ## Honeypot configuration
