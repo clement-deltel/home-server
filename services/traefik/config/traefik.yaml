@@ -112,6 +112,9 @@ entryPoints:
     #-required, default:
     address: :80
     http:
+      # How the request headers whose name aliases another header name are handled before routing
+      # optional, default: keep
+      aliasHeadersStrategy: delete
       redirections:
         entryPoint:
           #- Target element to enable (permanent) redirecting of all incoming
@@ -187,6 +190,7 @@ entryPoints:
     #-optional, default: false
     asDefault: true
     http:
+      aliasHeadersStrategy: delete
       sanitizePath: true
       middlewares:
         - crowdsec-bouncer@file
@@ -203,6 +207,7 @@ entryPoints:
   web-external:
     address: :81
     http:
+      aliasHeadersStrategy: delete
       redirections:
         entryPoint:
           to: websecure-external
@@ -220,6 +225,7 @@ entryPoints:
   websecure-external:
     address: :444
     http:
+      aliasHeadersStrategy: delete
       sanitizePath: true
       middlewares:
         - crowdsec-bouncer@file
@@ -237,26 +243,36 @@ entryPoints:
 
   ssh:
     address: :2222/tcp
+    http:
+      aliasHeadersStrategy: delete
     observability:
       accessLogs: true
 
   sftp:
     address: :2223/tcp
+    http:
+      aliasHeadersStrategy: delete
     observability:
       accessLogs: true
 
   rd5:
     address: :21115/tcp
+    http:
+      aliasHeadersStrategy: delete
     observability:
       accessLogs: true
 
   rd6:
     address: :21116/tcp
+    http:
+      aliasHeadersStrategy: delete
     observability:
       accessLogs: true
 
   rd7:
     address: :21117/tcp
+    http:
+      aliasHeadersStrategy: delete
     observability:
       accessLogs: true
 
