@@ -32,6 +32,8 @@ services:
       - 8080
     restart: unless-stopped
     stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/anubis:/data
 
 networks:
   proxy-net:

@@ -19,6 +19,10 @@
       - /opt/persistence/affine
       - /opt/persistence/affine/config
       - /opt/persistence/affine/storage
+      # Anubis
+      - /opt/persistence/anubis
+      - /opt/persistence/anubis/config
+      - /opt/persistence/anubis/geoip
       # Authentik
       - /mnt/ssd/databases/authentik
       - /opt/persistence/authentik
@@ -370,6 +374,25 @@
         mode: 0744
       loop: "{{ directories }}"
 
+    #--- Anubis
+    - name: Copy Anubis bot policy file
+      ansible.builtin.copy:
+        src: "{{ server_home }}/services/security/anubis/config/botPolicy.yaml"
+        dest: /opt/persistence/anubis/config/botPolicy.yaml
+        owner: ubuntu
+        group: ubuntu
+        mode: 0640
+
+    - name: Add GeoIP configuration to botPolicy.yaml
+      ansible.builtin.lineinfile:
+        path: /opt/persistence/anubis/config/botPolicy.yaml
+        state: present
+        search_string: "{{ item.string }}"
+        line: "{{ item.line }}"
+      loop:
+        - { string: "account_id: ", line: '    account_id: "{{ geoip_account_id }}"' }
+        - { string: "license_key_env:", line: '    license_key_env: "{{ geoip_license_key_env }}"' }
+
     #--- Diun
     - name: Copy Diun file input
       ansible.builtin.copy:
@@ -602,6 +625,7 @@
           # no labels for search/camofox
           - "{{ server_home }}/services/search/firecrawl/compose.yaml"
           - "{{ server_home }}/services/search/searxng/compose.yaml"
+          - "{{ server_home }}/services/security/anubis/compose.yaml"
           - "{{ server_home }}/services/security/authentik/compose.yaml"
           # no labels for security/crowdsec
           - "{{ server_home }}/services/security/enclosed/compose.yaml"
