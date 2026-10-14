@@ -368,7 +368,7 @@ certificatesResolvers:
       #-renewal dates. It defaults to 2160 hours (90 days) to follow Let's
       #-Encrypt certificates' duration
       #-optional, default: 2160
-      certificatesDuration: 720
+      certificatesDuration: 1080
 
       #-Timeout for HTTP Client used to communicate with the ACME server
       #-optional, default: 2m
