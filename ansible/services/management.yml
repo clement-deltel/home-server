@@ -10,7 +10,7 @@
       - { when: anubis_enable, project_src: '{{ server_home }}/services/security/network/anubis' }
       - { when: authentik_enable, project_src: '{{ server_home }}/services/security/authentication/authentik' }
       - { when: bazarr_enable, project_src: '{{ server_home }}/services/media/rr/bazarr' }
-      - { when: bento_pdf_enable, project_src: '{{ server_home }}/services/media/tools/bento-pdf' }
+      - { when: bento_pdf_enable, project_src: '{{ server_home }}/services/media/pdf/bento-pdf' }
       - { when: browserless_enable, project_src: '{{ server_home }}/services/search/browserless' }
       - { when: bytestash_enable, project_src: '{{ server_home }}/services/development/code/bytestash' }
       - { when: camofox_enable, project_src: '{{ server_home }}/services/search/camofox' }
@@ -86,7 +86,7 @@
       - { when: seerr_enable, project_src: '{{ server_home }}/services/media/rr/seerr' }
       - { when: sftpgo_enable, project_src: '{{ server_home }}/services/media/storage/files/sftpgo' }
       - { when: sonarr_enable, project_src: '{{ server_home }}/services/media/rr/sonarr' }
-      - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/media/tools/stirling-pdf' }
+      - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/media/pdf/stirling-pdf' }
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }
       - { when: upsnap_enable, project_src: '{{ server_home }}/services/home/upsnap' }
       - { when: vaultwarden_enable, project_src: '{{ server_home }}/services/security/authentication/vaultwarden' }

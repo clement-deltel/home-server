@@ -573,6 +573,8 @@
           - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
           - "{{ server_home }}/services/kopia/compose.yaml"
           # no labels for media/download/qbittorrent
+          - "{{ server_home }}/services/media/pdf/bento-pdf/compose.yaml"
+          - "{{ server_home }}/services/media/pdf/stirling-pdf/compose.yaml"
           - "{{ server_home }}/services/media/rr/bazarr/compose.yaml"
           - "{{ server_home }}/services/media/rr/lidarr/compose.yaml"
           - "{{ server_home }}/services/media/rr/prowlarr/compose.yaml"
@@ -592,11 +594,9 @@
           - "{{ server_home }}/services/media/storage/pictures/photoprism/compose.yaml"
           - "{{ server_home }}/services/media/storage/pictures/pinry/compose.yaml"
           - "{{ server_home }}/services/media/storage/videos/jellyfin/compose.yaml"
-          - "{{ server_home }}/services/media/tools/bento-pdf/compose.yaml"
           - "{{ server_home }}/services/media/tools/convertx/compose.yaml"
           - "{{ server_home }}/services/media/tools/docuseal/compose.yaml"
           - "{{ server_home }}/services/media/tools/libretranslate/compose.yaml"
-          - "{{ server_home }}/services/media/tools/stirling-pdf/compose.yaml"
           - "{{ server_home }}/services/media/tools/yamtrack/compose.yaml"
           - "{{ server_home }}/services/monitoring/change-detection/compose.yaml"
           # no labels for monitoring/diun

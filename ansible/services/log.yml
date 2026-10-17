@@ -62,6 +62,8 @@
         - /mnt/hdd/log/inventory/mealie
         - /mnt/hdd/log/inventory/wishlist
         - /mnt/hdd/log/media/downloads/qbittorrent
+        - /mnt/hdd/log/media/pdf/bento-pdf
+        - /mnt/hdd/log/media/pdf/stirling-pdf
         - /mnt/hdd/log/media/rr/bazarr
         - /mnt/hdd/log/media/rr/lidarr
         - /mnt/hdd/log/media/rr/prowlarr
@@ -82,11 +84,9 @@
         - /mnt/hdd/log/media/storage/pictures/photoprism
         - /mnt/hdd/log/media/storage/pictures/pinry
         - /mnt/hdd/log/media/storage/videos/jellyfin
-        - /mnt/hdd/log/media/tools/bento-pdf
         - /mnt/hdd/log/media/tools/convertx
         - /mnt/hdd/log/media/tools/docuseal
         - /mnt/hdd/log/media/tools/libretranslate
-        - /mnt/hdd/log/media/tools/stirling-pdf
         - /mnt/hdd/log/media/tools/yamtrack
         - /mnt/hdd/log/monitoring/change-detection
         - /mnt/hdd/log/monitoring/diun
