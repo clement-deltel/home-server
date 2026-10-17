@@ -472,7 +472,7 @@
 
       - name: Copy Traefik static configuration file
         ansible.builtin.copy:
-          src: "{{ server_home }}/services/traefik/config/traefik.yaml"
+          src: "{{ server_home }}/services/proxy/traefik/config/traefik.yaml"
           dest: /opt/persistence/traefik/traefik.yaml
           owner: docker
           group: docker
@@ -487,7 +487,7 @@
 
       - name: Copy Traefik dynamic configuration file
         ansible.builtin.copy:
-          src: "{{ server_home }}/services/traefik/config/dynamic.yaml"
+          src: "{{ server_home }}/services/proxy/traefik/config/dynamic.yaml"
           dest: /opt/persistence/traefik/dynamic/dynamic.yaml
           owner: docker
           group: docker
@@ -523,7 +523,7 @@
 
       - name: Copy Traefik configuration file
         ansible.builtin.copy:
-          src: "{{ server_home }}/services/traefik/config_local/traefik.yaml"
+          src: "{{ server_home }}/services/proxy/traefik/config_local/traefik.yaml"
           dest: /opt/persistence/traefik/traefik.yaml
           owner: docker
           group: docker
@@ -531,7 +531,7 @@
 
       - name: Comment production labels in Traefik compose.yaml
         ansible.builtin.replace:
-          path: "{{ server_home }}/services/traefik/compose.yaml"
+          path: "{{ server_home }}/services/proxy/traefik/compose.yaml"
           regexp: '^([ \t]*)(- .*(?:middlewares[=.]auth|users\.txt|acme\.json).*)$'
           replace: '\1# \2'
 
@@ -628,7 +628,7 @@
           - "{{ server_home }}/services/security/enclosed/compose.yaml"
           - "{{ server_home }}/services/security/gluetun/compose.yaml"
           - "{{ server_home }}/services/security/wazuh/compose.yaml"
-          - "{{ server_home }}/services/traefik/compose.yaml"
+          - "{{ server_home }}/services/proxy/traefik/compose.yaml"
           - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
           - "{{ server_home }}/services/travel/dawarich/compose.yaml"
           - "{{ server_home }}/services/travel/jetlog/compose.yaml"
