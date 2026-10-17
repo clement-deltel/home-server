@@ -548,6 +548,7 @@
           - "{{ server_home }}/services/ai/open-notebook/compose.yaml"
           - "{{ server_home }}/services/ai/open-webui/compose.yaml"
           - "{{ server_home }}/services/ai/openconcho/compose.yaml"
+          - "{{ server_home }}/services/backup/kopia/compose.yaml"
           - "{{ server_home }}/services/dashboard/homarr/compose.yaml"
           - "{{ server_home }}/services/dashboard/homer/compose.yaml"
           - "{{ server_home }}/services/development/automation/n8n/compose.yaml"
@@ -571,7 +572,6 @@
           - "{{ server_home }}/services/inventory/hortusfox/compose.yaml"
           - "{{ server_home }}/services/inventory/mealie/compose.yaml"
           - "{{ server_home }}/services/inventory/wishlist/compose.yaml"
-          - "{{ server_home }}/services/kopia/compose.yaml"
           # no labels for media/download/qbittorrent
           - "{{ server_home }}/services/media/pdf/bento-pdf/compose.yaml"
           - "{{ server_home }}/services/media/pdf/stirling-pdf/compose.yaml"

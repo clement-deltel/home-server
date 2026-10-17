@@ -49,7 +49,7 @@
       - { when: jetlog_enable, project_src: '{{ server_home }}/services/travel/jetlog' }
       - { when: karakeep_enable, project_src: '{{ server_home }}/services/media/storage/bookmarks/karakeep' }
       - { when: kavita_enable, project_src: '{{ server_home }}/services/media/storage/books/kavita' }
-      - { when: kopia_enable, project_src: '{{ server_home }}/services/kopia' }
+      - { when: kopia_enable, project_src: '{{ server_home }}/services/backup/kopia' }
       - { when: libretranslate_enable, project_src: '{{ server_home }}/services/media/tools/libretranslate' }
       - { when: lidarr_enable, project_src: '{{ server_home }}/services/media/rr/lidarr' }
       - { when: langfuse_enable, project_src: '{{ server_home }}/services/ai/langfuse' }
