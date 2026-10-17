@@ -35,11 +35,19 @@
         - /mnt/hdd/log/ai/openconcho
         - /mnt/hdd/log/ai/open-notebook
         - /mnt/hdd/log/ai/open-webui
-        - /mnt/hdd/log/automation/n8n
         - /mnt/hdd/log/backup/kopia
         - /mnt/hdd/log/dashboard/homarr
         - /mnt/hdd/log/dashboard/homer
+        - /mnt/hdd/log/development/automation/n8n
+        - /mnt/hdd/log/development/cache/redis-insight
+        - /mnt/hdd/log/development/code/bytestash
+        - /mnt/hdd/log/development/code/forgejo
+        - /mnt/hdd/log/development/code/gitlab
+        - /mnt/hdd/log/development/databases/dbgate
         - /mnt/hdd/log/development/directus
+        - /mnt/hdd/log/development/tools/gitea-mirror
+        - /mnt/hdd/log/development/tools/it-tools
+        - /mnt/hdd/log/development/tools/wakapi
         - /mnt/hdd/log/dns/pihole
         - /mnt/hdd/log/dns/unbound
         - /mnt/hdd/log/finances/actual
@@ -53,14 +61,6 @@
         - /mnt/hdd/log/inventory/hortusfox
         - /mnt/hdd/log/inventory/mealie
         - /mnt/hdd/log/inventory/wishlist
-        - /mnt/hdd/log/management/cache/redis-insight
-        - /mnt/hdd/log/management/code/bytestash
-        - /mnt/hdd/log/management/code/forgejo
-        - /mnt/hdd/log/management/code/gitea-mirror
-        - /mnt/hdd/log/management/code/gitlab
-        - /mnt/hdd/log/management/code/it-tools
-        - /mnt/hdd/log/management/code/wakapi
-        - /mnt/hdd/log/management/databases/dbgate
         - /mnt/hdd/log/media/downloads/qbittorrent
         - /mnt/hdd/log/media/rr/bazarr
         - /mnt/hdd/log/media/rr/lidarr
