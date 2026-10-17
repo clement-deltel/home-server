@@ -61,7 +61,6 @@
         - /mnt/hdd/log/management/code/it-tools
         - /mnt/hdd/log/management/code/wakapi
         - /mnt/hdd/log/management/databases/dbgate
-        - /mnt/hdd/log/management/passwords/vaultwarden
         - /mnt/hdd/log/media/downloads/qbittorrent
         - /mnt/hdd/log/media/rr/bazarr
         - /mnt/hdd/log/media/rr/lidarr
@@ -114,11 +113,13 @@
         - /mnt/hdd/log/search/flareproxy
         - /mnt/hdd/log/search/flaresolverr
         - /mnt/hdd/log/search/searxng
-        - /mnt/hdd/log/security/authentik
-        - /mnt/hdd/log/security/anubis
-        - /mnt/hdd/log/security/crowdsec
+        - /mnt/hdd/log/security/authentication/authentik
+        - /mnt/hdd/log/security/authentication/vaultwarden
         - /mnt/hdd/log/security/enclosed
-        - /mnt/hdd/log/security/gluetun
+        - /mnt/hdd/log/security/network/anubis
+        - /mnt/hdd/log/security/network/crowdsec
+        - /mnt/hdd/log/security/network/gluetun
+        - /mnt/hdd/log/security/osint/phoneinfoga
         - /mnt/hdd/log/security/wazuh
         - /mnt/hdd/log/travel/adventurelog
         - /mnt/hdd/log/travel/dawarich

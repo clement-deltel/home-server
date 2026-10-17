@@ -377,7 +377,7 @@
     #--- Anubis
     - name: Copy Anubis bot policy file
       ansible.builtin.copy:
-        src: "{{ server_home }}/services/security/anubis/config/botPolicy.yaml"
+        src: "{{ server_home }}/services/security/network/anubis/config/botPolicy.yaml"
         dest: /opt/persistence/anubis/config/botPolicy.yaml
         owner: ubuntu
         group: ubuntu
@@ -572,7 +572,6 @@
           - "{{ server_home }}/services/management/code/gitlab/compose.yaml"
           - "{{ server_home }}/services/management/code/it-tools/compose.yaml"
           - "{{ server_home }}/services/management/code/wakapi/compose.yaml"
-          - "{{ server_home }}/services/management/passwords/vaultwarden/compose.yaml"
           # no labels for media/download/qbittorrent
           - "{{ server_home }}/services/media/rr/bazarr/compose.yaml"
           - "{{ server_home }}/services/media/rr/lidarr/compose.yaml"
@@ -622,13 +621,13 @@
           # no labels for search/camofox
           - "{{ server_home }}/services/search/firecrawl/compose.yaml"
           - "{{ server_home }}/services/search/searxng/compose.yaml"
-          - "{{ server_home }}/services/security/anubis/compose.yaml"
-          - "{{ server_home }}/services/security/authentik/compose.yaml"
-          # no labels for security/crowdsec
+          - "{{ server_home }}/services/security/authentication/authentik/compose.yaml"
+          - "{{ server_home }}/services/security/authentication/vaultwarden/compose.yaml"
           - "{{ server_home }}/services/security/enclosed/compose.yaml"
-          - "{{ server_home }}/services/security/gluetun/compose.yaml"
+          - "{{ server_home }}/services/security/network/anubis/compose.yaml"
+          # no labels for security/network/crowdsec
+          - "{{ server_home }}/services/security/network/gluetun/compose.yaml"
           - "{{ server_home }}/services/security/wazuh/compose.yaml"
-          - "{{ server_home }}/services/proxy/traefik/compose.yaml"
           - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
           - "{{ server_home }}/services/travel/dawarich/compose.yaml"
           - "{{ server_home }}/services/travel/jetlog/compose.yaml"
