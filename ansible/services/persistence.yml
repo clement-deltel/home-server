@@ -65,6 +65,12 @@
       - /opt/persistence/dozzle
       # Enclosed
       - /opt/persistence/enclosed
+      # Endurain
+      - /mnt/ssd/cache/endurain
+      - /mnt/ssd/databases/endurain
+      - /opt/persistence/endurain
+      - /opt/persistence/endurain/data
+      - /opt/persistence/endurain/log
       # Firecrawl
       - /mnt/ssd/cache/firecrawl
       - /mnt/ssd/databases/firecrawl
@@ -565,6 +571,7 @@
           - "{{ server_home }}/services/finances/wallos/compose.yaml"
           # no labels for games/minecraft
           - "{{ server_home }}/services/games/romm/compose.yaml"
+          - "{{ server_home }}/services/health/fitness/endurain/compose.yaml"
           - "{{ server_home }}/services/home/home-assistant/compose.yaml"
           - "{{ server_home }}/services/home/upsnap/compose.yaml"
           - "{{ server_home }}/services/inventory/grocy/compose.yaml"

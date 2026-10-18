@@ -23,6 +23,7 @@
       - { when: docuseal_enable, project_src: '{{ server_home }}/services/media/tools/docuseal' }
       - { when: dozzle_enable, project_src: '{{ server_home }}/services/monitoring/dozzle' }
       - { when: enclosed_enable, project_src: '{{ server_home }}/services/security/enclosed' }
+      - { when: endurain_enable, project_src: '{{ server_home }}/services/health/fitness/endurain' }
       - { when: excalidraw_enable, project_src: '{{ server_home }}/services/pkms/excalidraw' }
       - { when: firecrawl_enable, project_src: '{{ server_home }}/services/search/firecrawl' }
       - { when: flareproxy_enable, project_src: '{{ server_home }}/services/search/flareproxy' }

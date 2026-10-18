@@ -41,6 +41,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [Artificial Intelligence](#artificial-intelligence)
   - [Finances](#finances)
   - [Inventory](#inventory)
+  - [Health and Fitness](#health-and-fitness)
   - [Travel](#travel)
   - [Surveys](#surveys)
   - [Games](#games)
@@ -292,6 +293,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Mealie](https://docs.mealie.io) - recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. ([Source Code](https://github.com/mealie-recipes/mealie)) `Python` `Vue` `TypeScript`
 - [Wishlist](https://github.com/cmintey/wishlist) - wishlist application that you can share with your friends and family. ([Source Code](https://github.com/cmintey/wishlist)) `Svelte` `TypeScript`
 
+### Health and Fitness
+
+- [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
+
 ### Travel
 
 - [AdventureLog](https://adventurelog.app) - travel tracker and trip planner. ([Source Code](https://github.com/seanmorley15/AdventureLog)) `Svelte` `Python`
@@ -395,7 +400,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 #### Fitness
 
-- [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
 - [SparkyFitness](https://codewithcj.github.io/SparkyFitness) - built for families, track food, fitness, water, and health. ([Source Code](https://github.com/CodeWithCJ/SparkyFitness)) `TypeScript`
 - [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. ([Source Code](https://github.com/robiningelbrecht/statistics-for-strava)) `PHP`
 - [Wanderer](https://wanderer.to) - trail database, save your adventures. ([Source Code](https://github.com/Flomp/wanderer)) `Svelte` `Go` `TypeScript`

@@ -1,0 +1,141 @@
+# https://github.com/endurain-project/endurain
+services:
+  cache:
+    container_name: endurain-cache
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    env_file: config/.env.cache
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+      start_interval: 10s
+    hostname: endurain-cache
+    image: ${DEFAULT_CACHE_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 2m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${ENDURAIN_CACHE_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/cache/endurain:/data
+
+  db:
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - SYS_NICE
+    cap_drop:
+      - ALL
+    container_name: endurain-db
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${ENDURAIN_DB_USERNAME}"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+      start_interval: 10s
+    hostname: endurain-db
+    image: ${DEFAULT_DB_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${ENDURAIN_DB_IP}
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    shm_size: 128mb
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/endurain:/var/lib/postgresql
+
+  endurain:
+    container_name: endurain
+    depends_on:
+      cache:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: endurain
+    image: ${ENDURAIN_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.endurain.entrypoints=web,websecure"
+      - "traefik.http.routers.endurain.rule=Host(`${ENDURAIN_HOST}`)"
+      - "traefik.http.routers.endurain.tls=true"
+      - "traefik.http.routers.endurain.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.endurain.tls.domains[0].main=${ENDURAIN_HOST}"
+      - "traefik.http.routers.endurain.service=endurain"
+      # Services
+      - "traefik.http.services.endurain.loadbalancer.server.port=8080"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${ENDURAIN_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${ENDURAIN_IP}
+    ports:
+      - 8080
+    restart: unless-stopped
+    stop_grace_period: 30s
+    user: ${USER_UID}:${USER_GID}
+    volumes:
+      - /opt/persistence/endurain/data:/app/backend/data:Z
+      - /opt/persistence/endurain/log:/app/backend/logs:Z
+
+networks:
+  internal-net:
+    name: internal-endurain
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${ENDURAIN_NET}
+          gateway: ${ENDURAIN_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net
