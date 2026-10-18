@@ -7,10 +7,10 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 1m
-      timeout: 10s
       retries: 3
-      start_period: 60s
       start_interval: 10s
+      start_period: 60s
+      timeout: 10s
     hostname: honcho-cache
     image: ${DEFAULT_CACHE_IMAGE}
     logging:
@@ -33,10 +33,10 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${HONCHO_DB_USER}"]
       interval: 1m
-      timeout: 10s
       retries: 3
-      start_period: 60s
       start_interval: 10s
+      start_period: 60s
+      timeout: 10s
     hostname: honcho-db
     image: ${DEFAULT_PGVECTOR_IMAGE}
     logging:
@@ -78,9 +78,10 @@ services:
   #         "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()",
   #       ]
   #     interval: 5s
-  #     timeout: 5s
   #     retries: 5
-  #     start_period: 10s
+  #     start_interval: 10s
+  #     start_period: 60s
+  #     timeout: 5s
   #   hostname: honcho-api
   #   labels:
   #     - "traefik.enable=true"
@@ -157,10 +158,11 @@ services:
           "-c",
           "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()",
         ]
-      interval: 5s
-      timeout: 5s
+      interval: 1m
       retries: 5
-      start_period: 10s
+      start_interval: 10s
+      start_period: 60s
+      timeout: 10s
     hostname: honcho
     image: ${HONCHO_IMAGE}
     labels:
