@@ -45,6 +45,7 @@
         - zip -r /opt/backup/files/adventurelog.zip /opt/persistence/adventurelog
         - cp /opt/persistence/change-detection/changedetection-backup-* /opt/backup/files/changedetection.zip
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${FRESHRSS_DB_PASSWORD}; pg_dumpall -c -h ${FRESHRSS_DB_IP} -U ${FRESHRSS_DB_USERNAME} -l postgres > /opt/backup/databases/freshrss.sql"
+        - zip -r /opt/backup/files/freshrss.zip /opt/persistence/freshrss
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; mysqldump -h ${GUACAMOLE_DB_IP} -u ${GUACAMOLE_DB_USERNAME} -p${GUACAMOLE_DB_PASSWORD} guacamole_db > /opt/backup/databases/guacamole.sql"
         - zip -r /opt/backup/files/homer.zip /opt/persistence/homer
         - "source ${SERVER_HOME}/env/services.env; source ${SERVER_HOME}/env/cron.env; export PGPASSWORD=${N8N_DB_PASSWORD}; pg_dumpall -c -h ${N8N_DB_IP} -U ${N8N_DB_USERNAME} -l postgres > /opt/backup/databases/n8n.sql"
