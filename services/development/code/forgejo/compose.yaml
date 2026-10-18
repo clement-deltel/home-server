@@ -54,6 +54,8 @@ services:
   forgejo:
     container_name: forgejo
     depends_on:
+      cache:
+        condition: service_healthy
       db:
         condition: service_healthy
     dns:
