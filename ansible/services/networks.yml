@@ -49,7 +49,7 @@
           - subnet: "{{ rr_net }}"
             gateway: "{{ rr_gateway }}"
 
-    # docker network create --driver=bridge --attachable --subnet 192.168.220.0/24 --gateway 192.168.220.1 ai-net
+    # docker network create --driver=bridge --attachable --subnet 192.168.180.0/24 --gateway 192.168.180.1 ai-net
     - name: Create the ai-net network
       community.docker.docker_network:
         name: ai-net
