@@ -9,63 +9,62 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
   - [DNS](#dns)
     - [Ad-blocker](#ad-blocker)
     - [Recursive DNS](#recursive-dns)
+  - [Backup](#backup)
   - [Dashboard](#dashboard)
   - [Home Automation](#home-automation)
   - [Remote Access](#remote-access)
     - [VPN](#vpn)
-    - [Clientless Remote Desktop Gateway (SSH, RDP...)](#clientless-remote-desktop-gateway-ssh-rdp)
-    - [Remote Control Server](#remote-control-server)
-  - [Monitoring](#monitoring)
-  - [Backup](#backup)
-  - [Security](#security)
+    - [Remote Desktop (SSH, RDP, VNC...)](#remote-desktop-ssh-rdp-vnc)
   - [Search](#search)
-  - [Media Download](#media-download)
-  - [Media Management](#media-management)
-  - [Media Storage](#media-storage)
-    - [Bookmarks](#bookmarks)
-    - [Books](#books)
-    - [Files](#files)
-    - [Music](#music)
-    - [News](#news)
-    - [Pictures](#pictures)
-    - [Videos](#videos)
-  - [Media Tools](#media-tools)
-  - [Management](#management)
-    - [Code](#code)
-    - [Passwords](#passwords)
+  - [Monitoring](#monitoring)
+  - [Security](#security)
+    - [Authentication](#authentication)
+    - [Network](#network)
+  - [Media](#media)
+    - [Download](#download)
+    - [PDF](#pdf)
+    - [RR suite - Management](#rr-suite---management)
+    - [Storage](#storage)
+      - [Bookmarks](#bookmarks)
+      - [Books](#books)
+      - [Files](#files)
+      - [Music](#music)
+      - [News](#news)
+      - [Pictures](#pictures)
+      - [Videos](#videos)
+    - [Tools](#tools)
   - [Personal Knowledge Management System (PKMS)](#personal-knowledge-management-system-pkms)
+  - [Software Development](#software-development)
+    - [Automation](#automation)
+    - [Code](#code)
+    - [Tools](#tools-1)
   - [Artificial Intelligence](#artificial-intelligence)
-  - [Automation](#automation)
-  - [Development and Projects](#development-and-projects)
   - [Finances](#finances)
   - [Inventory](#inventory)
   - [Travel](#travel)
   - [Surveys](#surveys)
   - [Games](#games)
 - [Enhancements](#enhancements)
+  - [Ads](#ads)
   - [Artificial Intelligence](#artificial-intelligence-1)
   - [Backup](#backup-1)
   - [Containers](#containers)
   - [Dashboard](#dashboard-1)
-  - [Databases](#databases)
   - [Design](#design)
   - [DNS](#dns-1)
   - [Finances](#finances-1)
-  - [Fitness](#fitness)
   - [Games](#games-1)
   - [Health](#health)
+    - [Fitness](#fitness)
   - [Home Automation](#home-automation-1)
     - [Home Assistant](#home-assistant)
   - [Inventory](#inventory-1)
-  - [Location \& Travel](#location--travel)
+    - [Wishlist](#wishlist)
+  - [Location and Travel](#location-and-travel)
   - [Mail](#mail)
   - [Maintenance](#maintenance)
-  - [Management](#management-1)
-    - [Ads](#ads)
-    - [Code](#code-1)
-    - [Passwords](#passwords-1)
-  - [Media Management](#media-management-1)
-  - [Media Storage](#media-storage-1)
+  - [Media Management](#media-management)
+  - [Media Storage](#media-storage)
     - [Audiobooks](#audiobooks)
     - [Bookmarks](#bookmarks-1)
     - [Books](#books-1)
@@ -74,23 +73,28 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
     - [Music](#music-1)
     - [News](#news-1)
     - [Videos](#videos-1)
-  - [Media Tools](#media-tools-1)
+  - [Media Tools](#media-tools)
   - [Monitoring](#monitoring-1)
     - [Disk](#disk)
-    - [Network](#network)
+    - [Network](#network-1)
   - [PKMS](#pkms)
   - [Project Management](#project-management)
   - [Proxy](#proxy)
   - [Remote](#remote)
   - [Search](#search-1)
   - [Security](#security-1)
+    - [Authentication](#authentication-1)
+    - [OSINT](#osint)
   - [Social](#social)
-  - [Software Development](#software-development)
-  - [Storage](#storage)
+  - [Software Development](#software-development-1)
+    - [Code](#code-1)
+    - [Deployment](#deployment)
+    - [Database](#database)
+    - [Tools](#tools-2)
+  - [Storage](#storage-1)
   - [Surveys](#surveys-1)
   - [Travel](#travel-1)
   - [Trello alternative - Find a kanban board](#trello-alternative---find-a-kanban-board)
-  - [Wishlist](#wishlist)
   - [Other](#other)
 
 ## Current
@@ -109,6 +113,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Unbound](https://www.nlnetlabs.nl/projects/unbound/about)
 
+### Backup
+
+- [Kopia](https://kopia.io) - cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included. ([Source Code](https://github.com/kopia/kopia)) `Go`
+
 ### Dashboard
 
 - [Homarr](https://homarr.dev) - modern and easy to use dashboard. ([Source Code](https://github.com/homarr-labs/homarr)) `TypeScript`
@@ -126,35 +134,10 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Wireguard](https://www.wireguard.com)
 - [Wireguard Easy](https://github.com/wg-easy/wg-easy) - easiest way to run WireGuard VPN + Web-based Admin UI. ([Source Code](https://github.com/wg-easy/wg-easy)) `TypeScript` `Vue`
 
-#### Clientless Remote Desktop Gateway (SSH, RDP...)
+#### Remote Desktop (SSH, RDP, VNC...)
 
 - [Apache Guacamole](https://guacamole.apache.org) - clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. ([Source Code](https://github.com/apache/guacamole-server)) `C`
-
-#### Remote Control Server
-
 - [RustDesk](https://rustdesk.com) - remote desktop application designed for self-hosting, as an alternative to TeamViewer. ([Source Code](https://github.com/rustdesk/rustdesk-server)) `Rust`
-
-### Monitoring
-
-- [changedetection.io](https://changedetection.io) - web page change detection, website watcher, restock monitor and notification service. ([Source Code](https://github.com/dgtlmoon/changedetection.io)) `Python`
-- [Diun](https://crazymax.dev/diun) - receive notifications when an image is updated on a Docker registry. ([Source Code](https://github.com/crazy-max/diun)) `Go`
-- [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. ([Source Code](https://github.com/amir20/dozzle)) `Go` `Vue` `TypeScript`
-- [Grafana](https://grafana.com) - open and composable observability and data visualization platform.  ([Source Code](https://github.com/grafana/grafana)) `TypeScript` `Go`
-- [ntfy](https://ntfy.sh) - send push notifications to your phone or desktop using PUT/POST. ([Source Code](https://github.com/binwiederhier/ntfy)) `Go` `JavaScript`
-- [Scrutiny](https://github.com/AnalogJ/scrutiny) - hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. ([Source Code](https://github.com/AnalogJ/scrutiny)) `Go`
-
-### Backup
-
-- [Kopia](https://kopia.io) - cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included. ([Source Code](https://github.com/kopia/kopia)) `Go`
-
-### Security
-
-- [Anubis](https://anubis.techaro.lol) - weighs the soul of incoming HTTP requests to stop AI crawlers. ([Source Code](https://github.com/TecharoHQ/anubis)) `Go`
-- [Authentik](https://goauthentik.io) - authentication glue you need. ([Source Code](https://github.com/goauthentik/authentik)) `Python` `TypeScript`
-- [CrowdSec](https://app.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. ([Source Code](https://github.com/crowdsecurity/crowdsec)) `Go` `Shell`
-- [Enclosed](https://enclosed.cc) - Minimalistic web app designed for sending private and secure notes. ([Source Code](https://github.com/CorentinTh/enclosed)) `TypeScript`
-- [Gluetun](https://github.com/qdm12/gluetun-wiki) - VPN client in a thin Docker container for multiple VPN providers, and using OpenVPN or Wireguard, DNS over TLS, with a few proxy servers built-in. ([Source Code](https://github.com/qdm12/gluetun)) `Go`
-- [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. ([Source Code](https://github.com/wazuh/wazuh)) `C` `C++` `Python`
 
 ### Search
 
@@ -165,11 +148,44 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [FlareSolverr](https://github.com/Flaresolverr/Flaresolverr) - proxy server to bypass Cloudflare protection. ([Source Code](https://github.com/Flaresolverr/Flaresolverr)) `Python`
 - [SearXNG](https://docs.searxng.org) - free internet metasearch engine which aggregates results from various search services and databases, users are neither tracked nor profiled. ([Source Code](https://github.com/searxng/searxng)) `Python`
 
-### Media Download
+### Monitoring
+
+- [changedetection.io](https://changedetection.io) - web page change detection, website watcher, restock monitor and notification service. ([Source Code](https://github.com/dgtlmoon/changedetection.io)) `Python`
+- [Diun](https://crazymax.dev/diun) - receive notifications when an image is updated on a Docker registry. ([Source Code](https://github.com/crazy-max/diun)) `Go`
+- [Dozzle](https://dozzle.dev) - realtime log viewer for docker containers. ([Source Code](https://github.com/amir20/dozzle)) `Go` `Vue` `TypeScript`
+- [Grafana](https://grafana.com) - open and composable observability and data visualization platform.  ([Source Code](https://github.com/grafana/grafana)) `TypeScript` `Go`
+- [ntfy](https://ntfy.sh) - send push notifications to your phone or desktop using PUT/POST. ([Source Code](https://github.com/binwiederhier/ntfy)) `Go` `JavaScript`
+- [Prometheus](https://prometheus.io) - monitoring system and time series database. ([Source Code](https://github.com/prometheus/prometheus)) `Go` `TypeScript`
+- [Scrutiny](https://github.com/AnalogJ/scrutiny) - hard drive S.M.A.R.T monitoring, historical trends & real world failure thresholds. ([Source Code](https://github.com/AnalogJ/scrutiny)) `Go`
+
+### Security
+
+- [Enclosed](https://enclosed.cc) - Minimalistic web app designed for sending private and secure notes. ([Source Code](https://github.com/CorentinTh/enclosed)) `TypeScript`
+- [Wazuh](https://wazuh.com) - open source security platform, unified XDR and SIEM protection for endpoints and cloud workloads. ([Source Code](https://github.com/wazuh/wazuh)) `C` `C++` `Python`
+
+#### Authentication
+
+- [Authentik](https://goauthentik.io) - authentication glue you need. ([Source Code](https://github.com/goauthentik/authentik)) `Python` `TypeScript`
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - unofficial Bitwarden compatible server, formerly known as bitwarden_rs. ([Source Code](https://github.com/dani-garcia/vaultwarden)) `Rust`
+
+#### Network
+
+- [Anubis](https://anubis.techaro.lol) - weighs the soul of incoming HTTP requests to stop AI crawlers. ([Source Code](https://github.com/TecharoHQ/anubis)) `Go`
+- [CrowdSec](https://app.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. ([Source Code](https://github.com/crowdsecurity/crowdsec)) `Go` `Shell`
+- [Gluetun](https://github.com/qdm12/gluetun-wiki) - VPN client in a thin Docker container for multiple VPN providers, and using OpenVPN or Wireguard, DNS over TLS, with a few proxy servers built-in. ([Source Code](https://github.com/qdm12/gluetun)) `Go`
+
+### Media
+
+#### Download
 
 - [QBittorent](https://github.com/linuxserver/docker-qbittorrent) - torrent client based on the Qt toolkit and libtorrent-rasterbar library. ([Source Code](https://github.com/linuxserver/docker-qbittorrent))
 
-### Media Management
+#### PDF
+
+- [BentoPDF](https://bentopdf.com) - privacy first PDF toolkit. ([Source Code](https://github.com/alam00000/bentopdf)) `JavaScript` `Fluent` `TypeScript`
+- [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. ([Source Code](https://github.com/Stirling-Tools/Stirling-PDF)) `Java` `JavaScript`
+
+#### RR suite - Management
 
 - [Bazarr](https://www.bazarr.media) - manage and download subtitles based on your requirements. ([Source Code](https://github.com/morpheus65535/bazarr)) `Python`
 - [Lidarr](https://lidarr.audio) - looks and smells like Sonarr but made for music. ([Source Code](https://github.com/Lidarr/Lidarr)) `C#` `JavaScript`
@@ -178,68 +194,51 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Seerr](https://docs.seerr.dev) - media request and discovery manager for Jellyfin, Plex, and Emby. ([Source Code](https://github.com/seerr-team/seerr)) `TypeScript`
 - [Sonarr](https://sonarr.tv) - smart PVR for newsgroup and bittorrent users. ([Source Code](https://github.com/Sonarr/Sonarr)) `C#` `TypeScript`
 
-### Media Storage
+#### Storage
 
-#### Bookmarks
+##### Bookmarks
 
 - [Karakeep](https://karakeep.app) - bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search. ([Source Code](https://github.com/karakeep-app/karakeep)) `TypeScript`
 - [Linkace](https://www.linkace.org) - archive to collect links of your favorite websites. ([Source Code](https://github.com/Kovah/LinkAce)) `PHP` `Blade`
 
-#### Books
+##### Books
 
 - [Kavita](https://www.kavitareader.com) - fast, feature rich, cross platform reading server. ([Source Code](https://github.com/Kareadita/Kavita)) `C#` `TypeScript`
 - [Librum](https://librumreader.com) - manage your own online library and access it from any device anytime, anywhere. No web-interface, need to install the desktop app as well. ([Source Code](https://github.com/Librum-Reader/Librum)) `C++` `QML`
 
-#### Files
+##### Files
 
 - [NextCloud](https://nextcloud.com) - a safe home for all your data. ([Source Code](https://github.com/nextcloud/server)) `PHP` `JavaScript`
 - [Paperless](https://docs.paperless-ngx.com) - document management system: scan, index and archive all your documents. ([Source Code](https://github.com/paperless-ngx/paperless-ngx)) `Python` `TypeScript`
 - [SFTPGo](https://sftpgo.com) - full-featured and highly configurable SFTP, HTTP/S, FTP/S and WebDAV server. ([Source Code](https://github.com/drakkan/sftpgo)) `Go`
 
-#### Music
+##### Music
 
 - [Navidrome](https://www.navidrome.org) - personal streaming service. ([Source Code](https://github.com/navidrome/navidrome)) `Go` `JavaScript`
 
-#### News
+##### News
 
 - [FreshRSS](https://freshrss.org/index.html) -  news aggregator. ([Source Code](https://github.com/FreshRSS/FreshRSS)) `PHP`
 
-#### Pictures
+##### Pictures
 
 - [Immich](https://immich.app) - high performance self-hosted photo and video management solution. ([Source Code](https://github.com/immich-app/immich)) `TypeScript` `Dart` `Svelte`
 - [Meme Search](https://github.com/neonwatty/meme-search) - meme search engine and finder. ([Source Code](https://github.com/neonwatty/meme-search)) `Ruby` `Python`
 - [Photoprism](https://www.photoprism.app) - photos app for the decentralized web. ([Source Code](https://github.com/photoprism/photoprism)) `Go` `JavaScript`
 - [Pinry](https://github.com/pinry/pinry) - tiling image board system for people who want to save, tag, and share images, videos and webpages in an easy to skim through format. ([Source Code](https://github.com/pinry/pinry)) `Python`
 
-#### Videos
+##### Videos
 
 - [Jellyfin](https://jellyfin.org) - free software media system. ([Source Code](https://github.com/jellyfin/jellyfin)) `C#`
 
-### Media Tools
+#### Tools
 
-- [BentoPDF](https://bentopdf.com) - privacy first PDF toolkit. ([Source Code](https://github.com/alam00000/bentopdf)) `JavaScript` `Fluent` `TypeScript`
 - [ConvertX](https://github.com/C4illin/ConvertX) - online file converter. Supports 1000+ formats. ([Source Code](https://github.com/C4illin/ConvertX)) `TypeScript`
 - [Docuseal](https://www.docuseal.co) - open source DocuSign alternative. ([Source Code](https://github.com/docusealco/docuseal)) `Ruby` `Vue` `JavaScript`
 - [Gokapi](https://github.com/Forceu/Gokapi) - lightweight Firefox Send alternative without public upload. ([Source Code](https://github.com/Forceu/Gokapi)) `Go` `JavaScript`
 - [iSponsorBlockTV](https://github.com/dmunozv04/iSponsorBlockTV) - SponsorBlock client for all YouTube TV clients. ([Source Code](https://github.com/dmunozv04/iSponsorBlockTV)) `Python`
 - [LibreTranslate](https://libretranslate.com) - translation API. ([Source Code](https://github.com/LibreTranslate/LibreTranslate)) `Python`
-- [Stirling-PDF](https://stirlingtools.com) - allows you to perform various operations on PDF files. ([Source Code](https://github.com/Stirling-Tools/Stirling-PDF)) `Java` `JavaScript`
 - [Yamtrack](https://fuzzygrim.github.io/Yamtrack) - media tracker. ([Source Code](https://github.com/FuzzyGrim/Yamtrack)) `Python`
-
-### Management
-
-#### Code
-
-- [ByteStash](https://github.com/jordan-dalby/bytestash) - a code snippet storage solution written in React & node.js. ([Source Code](https://github.com/jordan-dalby/bytestash)) `TypeScript`
-- [Forgejo](https://forgejo.org) - Beyond coding, we forge. ([Source Code](https://codeberg.org/forgejo/forgejo)) `Go`
-- [Gitea Mirror](https://giteamirror.com) - auto-syncs GitHub repos to your self-hosted Gitea/Forgejo, with a sleek Web UI and easy Docker deployment. ([Source Code](https://github.com/RayLabsHQ/gitea-mirror)) `TypeScript`
-- [Gitlab](https://gitlab.com/gitlab-org/gitlab) `Ruby`
-- [IT-Tools](https://it-tools.tech) - collection of handy online tools for developers, with great UX. ([Source Code](https://github.com/corentinth/it-tools)) `Vue` `TypeScript`
-- [Wakapi](https://wakapi.dev) - minimalist, self-hosted WakaTime-compatible backend for coding statistics. ([Source Code](https://github.com/muety/wakapi)) `Go`
-
-#### Passwords
-
-- [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - unofficial Bitwarden compatible server, formerly known as bitwarden_rs. ([Source Code](https://github.com/dani-garcia/vaultwarden)) `Rust`
 
 ### Personal Knowledge Management System (PKMS)
 
@@ -249,8 +248,29 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Memos](https://github.com/usememos/memos) - note-taking service, your thoughts, your data, your control — no tracking, no ads, no subscription fees. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`
 - [Siyuan](https://b3log.org/siyuan/en) - privacy-first, self-hosted, fully open source personal knowledge management software. ([Source Code](https://github.com/siyuan-note/siyuan)) `TypeScript` `Go`
 
+### Software Development
+
+- [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. ([Source Code](https://github.com/directus/directus)) `TypeScript`
+
+#### Automation
+
+- [n8n](https://n8n.io) -  workflow automation platform with native AI capabilities, combine visual building with custom code, self-host or cloud, 400+ integrations. ([Source Code](https://github.com/n8n-io/n8n)) `TypeScript`
+
+#### Code
+
+- [ByteStash](https://github.com/jordan-dalby/bytestash) - a code snippet storage solution written in React & node.js. ([Source Code](https://github.com/jordan-dalby/bytestash)) `TypeScript`
+- [Forgejo](https://forgejo.org) - Beyond coding, we forge. ([Source Code](https://codeberg.org/forgejo/forgejo)) `Go`
+- [Gitlab](https://gitlab.com/gitlab-org/gitlab) `Ruby`
+
+#### Tools
+
+- [Gitea Mirror](https://giteamirror.com) - auto-syncs GitHub repos to your self-hosted Gitea/Forgejo, with a sleek Web UI and easy Docker deployment. ([Source Code](https://github.com/RayLabsHQ/gitea-mirror)) `TypeScript`
+- [IT-Tools](https://it-tools.tech) - collection of handy online tools for developers, with great UX. ([Source Code](https://github.com/corentinth/it-tools)) `Vue` `TypeScript`
+- [Wakapi](https://wakapi.dev) - minimalist, self-hosted WakaTime-compatible backend for coding statistics. ([Source Code](https://github.com/muety/wakapi)) `Go`
+
 ### Artificial Intelligence
 
+- [firecrawl](https://firecrawl.dev) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [Hermes](https://hermes-agent.nousresearch.com) - the agent that grows with you. ([Source Code](https://github.com/NousResearch/hermes-agent)) `Python` `TypeScript`
 - [Honcho](https://docs.honcho.dev) - memory library for building stateful agents. ([Source Code](https://github.com/plastic-labs/honcho)) `Python`
 - [LiteLLM](https://www.litellm.ai) - Python SDK, proxy server (LLM gateway) to call 100+ LLM APIs in OpenAI format. ([Source Code](https://github.com/BerriAI/litellm)) `Python`
@@ -258,14 +278,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [OpenConcho](https://github.com/offendingcommit/openconcho) - privacy-first desktop & web UI for self-hosted Honcho, browse memories, peers, sessions, conclusions, and chat with memory context. ([Source Code](https://github.com/offendingcommit/openconcho)) `TypeScript`
 - [Open Notebook](https://www.open-notebook.ai) - open source implementation of NotebookLM with more flexibility and features. ([Source Code](https://github.com/lfnovo/open-notebook)) `TypeScript` `Python`
 - [Open WebUI](https://openwebui.com) - user-friendly AI Interface (supports Ollama, OpenAI API, ...). ([Source Code](https://github.com/open-webui/open-webui)) `JavaScript` `Svelte` `Python`
-
-### Automation
-
-- [n8n](https://n8n.io) -  workflow automation platform with native AI capabilities, combine visual building with custom code, self-host or cloud, 400+ integrations. ([Source Code](https://github.com/n8n-io/n8n)) `TypeScript`
-
-### Development and Projects
-
-- [Directus](https://directus.io) backend for all your projects, turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth & more. ([Source Code](https://github.com/directus/directus)) `TypeScript`
 
 ### Finances
 
@@ -297,9 +309,13 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ## Enhancements
 
+### Ads
+
+- [Plausible](https://plausible.io) - simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics. ([Source Code](https://github.com/plausible/analytics)) `Elixir`
+- [Umami](https://github.com/umami-software/umami) - modern, privacy-focused alternative to Google Analytics. ([Source Code](https://github.com/umami-software/umami)) `TypeScript`
+
 ### Artificial Intelligence
 
-- [firecrawl](https://firecrawl.dev) - web data API for AI - Turn entire websites into LLM-ready markdown or structured data. ([Source Code](https://github.com/firecrawl/firecrawl)) `TypeScript` `Python`
 - [odysseus](https://pewdiepie-archdaemon.github.io/odysseus) - self-hosted AI workspace. ([Source Code](https://github.com/pewdiepie-archdaemon/odysseus)) `Python` `JavaScript`
 - [OmniRoute](https://omniroute.online) - free AI gateway, one endpoint, 231+ providers. ([Source Code](https://github.com/diegosouzapw/OmniRoute)) `TypeScript`
 - [onyx](https://onyx.app) - AI platform / chat with advanced features that works with every LLM. ([Source Code](https://github.com/onyx-dot-app/onyx)) `Python` `TypeScript`
@@ -331,17 +347,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Organizr](https://demo.organizr.app) - HTPC/Homelab Services Organizer - Written in PHP. ([Source Code](https://github.com/causefx/Organizr)) `PHP` `JavaScript`
 - [Trala](https://www.trala.fyi) -  simple, modern, and dynamic dashboard for your Traefik services. ([Source Code](https://github.com/dannybouwers/trala)) `Go`
 
-### Databases
-
-- [Chat2DB](https://chat2db.ai) - database client and SQL workspace that connect to 40+ databases, manage data, edit and run SQL, and use your own AI model to generate, explain, and optimize queries. ([Source Code](https://github.com/OtterMind/Chat2DB)) `Java` `TypeScript`
-- [helix-db](https://helix-db.com) - OLTP graph-vector database. ([Source Code](https://github.com/helixdb/helix-db)) `Rust` `TypeScript` `Python`
-- [milvus](https://milvus.io) - high-performance, cloud-native vector database built for scalable vector ANN search. ([Source Code](https://github.com/milvus-io/milvus)) `Go` `Python` `C++`
-- [pgrust](https://pgrust.com) - postgres rewritten. ([Source Code](https://github.com/malisper/pgrust)) `Rust`
-- [qdrant](https://qdrant.tech) - high-performance, massive-scale vector database and vector search engine for the next generation of AI. ([Source Code](https://github.com/qdrant/qdrant)) `Rust`
-- [turso](https://github.com/tursodatabase/turso) - in-process SQL database, compatible with SQLite ([Source Code](https://github.com/tursodatabase/turso)). `Rust`
-- [weaviate](https://weaviate.io/developers/weaviate) - vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​. ([Source Code](https://github.com/weaviate/weaviate)) `Go`
-- [zvec](https://zvec.org) - lightweight, lightning-fast, in-process vector database. ([Source Code](github.com/alibaba/zvec)) `C++`
-
 ### Design
 
 - [penpot](https://penpot.app) - open-source design platform for product teams that need scalable collaboration. ([Source Code](https://github.com/penpot/penpot)) `Clojure` `JavaScript`
@@ -369,11 +374,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. ([Source Code](https://github.com/dh1011/subscription-manager)) `JavaScript` `Python`
 - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. ([Source Code](https://github.com/meceware/wapy.dev)) `JavaScript`
 
-### Fitness
-
-- [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
-- [SparkyFitness](https://codewithcj.github.io/SparkyFitness) - built for families, track food, fitness, water, and health. ([Source Code](https://github.com/CodeWithCJ/SparkyFitness)) `TypeScript`
-
 ### Games
 
 - [En Croissant](https://encroissant.org) - the ultimate chess toolkit. ([Source Code](https://github.com/franciscoBSalgueiro/en-croissant)) `TypeScript` `Rust`
@@ -393,6 +393,13 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [OpenEMR](https://www.open-emr.org) - electronic health records and medical practice management solution. ([Source Code](https://github.com/openemr/openemr)) `PHP`
 - [Ovumcy](https://ovumcy.com) - menstrual cycle tracker, track periods, predict cycles, own your health data. ([Source Code](https://github.com/ovumcy/ovumcy-web)) `Go`
 
+#### Fitness
+
+- [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
+- [SparkyFitness](https://codewithcj.github.io/SparkyFitness) - built for families, track food, fitness, water, and health. ([Source Code](https://github.com/CodeWithCJ/SparkyFitness)) `TypeScript`
+- [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. ([Source Code](https://github.com/robiningelbrecht/statistics-for-strava)) `PHP`
+- [Wanderer](https://wanderer.to) - trail database, save your adventures. ([Source Code](https://github.com/Flomp/wanderer)) `Svelte` `Go` `TypeScript`
+
 ### Home Automation
 
 - [Wakezilla](https://github.com/guibeira/wakezilla) - simple Wake-on-LAN & reverse proxy toolkit — wake, route, and control your machines from anywhere. ([Source Code](https://github.com/guibeira/wakezilla)) `Rust`
@@ -411,13 +418,15 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [VoucherVault](https://github.com/l4rm4nd/VoucherVault/wiki) - store and manage vouchers, coupons, loyalty and gift cards digitally. ([Source Code](https://github.com/l4rm4nd/VoucherVault)) `Python`
 - [Warracker](https://warracker.com) - web application to manage product warranties, track expiration dates, and store related documents. ([Source Code](https://github.com/sassanix/Warracker)) `JavaScript` `Python`
 
-### Location & Travel
+#### Wishlist
+
+- [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. ([Source Code](https://github.com/Wingysam/Christmas-Community))
+
+### Location and Travel
 
 - [Scratch Map](https://github.com/ad3m3r5/scratch-map) - scratch-off style map to track your travels. ([Source Code](https://github.com/ad3m3r5/scratch-map)) `JavaScript`
-- [Statistics for Strava](https://statistics-for-strava.robiningelbrecht.be/dashboard) - statistics generated using Strava data. ([Source Code](https://github.com/robiningelbrecht/statistics-for-strava)) `PHP`
 - [TREK](https://demo-nomad.pakulat.org) - travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more. ([Source Code](https://github.com/mauriceboe/TREK)) `TypeScript`
 - [VFD](https://github.com/kiinami/vfd) - flight price tracking script. ([Source Code](https://github.com/kiinami/vfd)) `Python`
-- [Wanderer](https://wanderer.to) - trail database, save your adventures. ([Source Code](https://github.com/Flomp/wanderer)) `Svelte` `Go` `TypeScript`
 
 ### Mail
 
@@ -431,30 +440,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Maintenance
 
 - [olivetin](https://olivetin.app) -  safe and simple access to predefined shell commands from a web interface. ([Source Code](https://github.com/OliveTin/OliveTin)) `Go` `JavaScript`
-
-### Management
-
-#### Ads
-
-- [Plausible](https://plausible.io) - simple, open source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics. ([Source Code](https://github.com/plausible/analytics)) `Elixir`
-- [Umami](https://github.com/umami-software/umami) - modern, privacy-focused alternative to Google Analytics. ([Source Code](https://github.com/umami-software/umami)) `TypeScript`
-
-#### Code
-
-- [Bugsink](https://www.bugsink.com) - error tracking. ([Source Code](https://github.com/bugsink/bugsink)) `Python`
-- [Buzz](https://github.com/block/buzz) - workspace where humans and agents build together, on a relay you own. ([Source Code](https://github.com/block/buzz)) `Rust` `TypeScript`
-- [Cyber Chef](https://gchq.github.io/CyberChef) - web app for encryption, encoding, compression and data analysis. ([Source Code](https://github.com/gchq/CyberChef)) `JavaScript`
-- [Gitea](https://gitea.com) - all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD. ([Source Code](https://github.com/go-gitea/gitea)) `Go`
-- [Networking Toolbox](https://networkingtoolbox.net) - . ([Source Code](https://github.com/Lissy93/networking-toolbox)) `Svelte` `TypeScript`
-- [OpenGist](https://opengist.io) - pastebin powered by Git, open-source alternative to Github Gist. ([Source Code](https://github.com/thomiceli/opengist)) `Go` `TypeScript`
-- [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
-- [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. ([Source Code](https://github.com/getsentry/self-hosted)) `Shell` `Python`
-- [woodpecker](https://woodpecker-ci.org) - simple, yet powerful CI/CD engine with great extensibility. ([Source Code](https://github.com/woodpecker-ci/woodpecker)) `Go`
-- [Ziit](https://ziit.app/login) - swiss army knife of code time tracking. ([Source Code](https://github.com/0PandaDEV/Ziit)) `TypeScript` `Vue`
-
-#### Passwords
-
-- [AliasVault](https://www.aliasvault.net) - end-to-end encrypted password manager with a built-in alias generator and email server. ([Source Code](https://github.com/lanedirt/AliasVault)) `C#` `TypeScript`
 
 ### Media Management
 
@@ -543,6 +528,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Vert](https://vert.sh) - next-generation file converter. ([Source Code](https://github.com/VERT-sh/VERT)) `Svelte` `TypeScript`
 - [VoiceBox](https://voicebox.sh) - open-source AI voice studio, clone, dictate, create. ([Source Code](https://github.com/jamiepine/voicebox)) `TpeScript` `Python`
 - [WithoutBG](https://withoutbg.com) - image background removal toolkit. ([Source Code](https://github.com/withoutbg/withoutbg)) `Python` `JavaScript`
+- [YOURLS](https://yourls.org) - powerful and customizable URL shortener. ([Source Code](https://github.com/YOURLS/YOURLS)) `PHP`
 
 ### Monitoring
 
@@ -625,18 +611,26 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Security
 
-- [Authelia](https://www.authelia.com) - single sign-on multi-factor portal for web apps, now OpenID certified. ([Source Code](https://github.com/authelia/authelia)) `Go` `TypeScript`
 - [Certwarden](https://www.certwarden.com) -  centralized ACME client. ([Source Code](https://github.com/gregtwallace/certwarden))
 - [Cloudflared](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel) - cloudflare tunnel client. ([Source Code](https://github.com/cloudflare/cloudflared)) `Go`
 - [fail2ban-ui](https://fail2ban-ui.com) - web interface for operating Fail2Ban across one or more Linux hosts. ([Source Code](https://github.com/swissmakers/fail2ban-ui)) `Go` `JavaScript`
 - [GlitchTip](https://gitlab.com/glitchtip/glitchtip-backend) - Sentry API compatible error tracking platform. ([Source Code](https://gitlab.com/glitchtip/glitchtip-backend)) `Python`
-- [Keycloak](https://www.keycloak.org) - identity and access management for modern applications and services. ([Source Code](https://github.com/keycloak/keycloak)) `Java`
 - [Krawl](https://demo.krawlme.com/das_dashboard) - cloud native web deception server and anti-crawler that creates fake web applications with low-hanging vulnerabilities and realistic, randomly generated decoy data. ([Source Code](https://github.com/BlessedRebuS/Krawl)) `Python` `JavaScript`
 - [Maltrail](https://github.com/stamparm/maltrail) - malicious traffic detection system. ([Source Code](https://github.com/stamparm/maltrail)) `Python` `JavaScript`
 - [Patterns: OWASP CRS and Bad Bot Detection for Web Servers](https://github.com/fabriziosalmi/patterns) - Automated OWASP CRS and Bad Bot Detection for Nginx, Apache, Traefik and HaProxy. ([Source Code](https://github.com/fabriziosalmi/patterns)) `Python`
+
+#### Authentication
+
+- [AliasVault](https://www.aliasvault.net) - end-to-end encrypted password manager with a built-in alias generator and email server. ([Source Code](https://github.com/lanedirt/AliasVault)) `C#` `TypeScript`
+- [Authelia](https://www.authelia.com) - single sign-on multi-factor portal for web apps, now OpenID certified. ([Source Code](https://github.com/authelia/authelia)) `Go` `TypeScript`
+- [Keycloak](https://www.keycloak.org) - identity and access management for modern applications and services. ([Source Code](https://github.com/keycloak/keycloak)) `Java`
 - [Tinyauth](https://tinyauth.app) - simplest way to protect your apps with a login screen. ([Source Code](https://github.com/steveiliop56/tinyauth)) `Go` `TypeScript`
-- [Web-Check](https://web-check.xyz) - all-in-one OSINT tool for analyzing any website. ([Source Code](https://github.com/Lissy93/web-check)) `TypeScript` `JavaScript`
 - [Zitadel](https://zitadel.com) - identity infrastructure, simplified for you. ([Source Code](https://github.com/zitadel/zitadel)) `Go` `TypScript`
+
+#### OSINT
+
+- [Email Verifier](https://rapid-email-verifier.fly.dev) - privacy-first open source email verifier. ([Source Code](https://github.com/umuterturk/email-verifier)) `Go`
+- [Web-Check](https://web-check.xyz) - all-in-one OSINT tool for analyzing any website. ([Source Code](https://github.com/Lissy93/web-check)) `TypeScript` `JavaScript`
 
 ### Social
 
@@ -644,10 +638,40 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Software Development
 
-- [ChartDB](https://chartdb.io) - . ([Source Code](https://github.com/chartdb/chartdb)) `TypeScript`
+- [Bugsink](https://www.bugsink.com) - error tracking. ([Source Code](https://github.com/bugsink/bugsink)) `Python`
+- [Buzz](https://github.com/block/buzz) - workspace where humans and agents build together, on a relay you own. ([Source Code](https://github.com/block/buzz)) `Rust` `TypeScript`
 - [Code Server](https://coder.com) - VS Code in the browser. ([Source Code](https://github.com/coder/code-server)) `TypeScript` `Shell`
+- [Cyber Chef](https://gchq.github.io/CyberChef) - web app for encryption, encoding, compression and data analysis. ([Source Code](https://github.com/gchq/CyberChef)) `JavaScript`
+- [OpenGist](https://opengist.io) - pastebin powered by Git, open-source alternative to Github Gist. ([Source Code](https://github.com/thomiceli/opengist)) `Go` `TypeScript`
+- [Sentry](https://sentry.io/welcome) - feature-complete and packaged up for low-volume deployments and proofs-of-concept. ([Source Code](https://github.com/getsentry/self-hosted)) `Shell` `Python`
+- [woodpecker](https://woodpecker-ci.org) - simple, yet powerful CI/CD engine with great extensibility. ([Source Code](https://github.com/woodpecker-ci/woodpecker)) `Go`
+
+#### Code
+
+- [Gitea](https://gitea.com) - all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD. ([Source Code](https://github.com/go-gitea/gitea)) `Go`
+- [PyPI Server](https://hub.docker.com/r/pypiserver/pypiserver) - minimal PyPI server for uploading & downloading packages with pip. Source code [here](https://github.com/pypiserver/pypiserver). `Python`
+
+#### Deployment
+
 - [Coolify](https://coolify.io) - self-hostable PaaS alternative to Vercel, Heroku & Netlify. ([Source Code](https://github.com/coollabsio/coolify)) `PHP` `Blade`
 - [DevPush](https://devpu.sh) - like Vercel, but open source and for all languages. ([Source Code](https://github.com/hunvreus/devpush)) `Python`
+
+#### Database
+
+- [Chat2DB](https://chat2db.ai) - database client and SQL workspace that connect to 40+ databases, manage data, edit and run SQL, and use your own AI model to generate, explain, and optimize queries. ([Source Code](https://github.com/OtterMind/Chat2DB)) `Java` `TypeScript`
+- [ChartDB](https://chartdb.io) - database diagrams editor to visualize and design your DB with a single query. ([Source Code](https://github.com/chartdb/chartdb)) `TypeScript`
+- [helix-db](https://helix-db.com) - OLTP graph-vector database. ([Source Code](https://github.com/helixdb/helix-db)) `Rust` `TypeScript` `Python`
+- [milvus](https://milvus.io) - high-performance, cloud-native vector database built for scalable vector ANN search. ([Source Code](https://github.com/milvus-io/milvus)) `Go` `Python` `C++`
+- [pgrust](https://pgrust.com) - postgres rewritten. ([Source Code](https://github.com/malisper/pgrust)) `Rust`
+- [qdrant](https://qdrant.tech) - high-performance, massive-scale vector database and vector search engine for the next generation of AI. ([Source Code](https://github.com/qdrant/qdrant)) `Rust`
+- [turso](https://github.com/tursodatabase/turso) - in-process SQL database, compatible with SQLite ([Source Code](https://github.com/tursodatabase/turso)). `Rust`
+- [weaviate](https://weaviate.io/developers/weaviate) - vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​. ([Source Code](https://github.com/weaviate/weaviate)) `Go`
+- [zvec](https://zvec.org) - lightweight, lightning-fast, in-process vector database. ([Source Code](github.com/alibaba/zvec)) `C++`
+
+#### Tools
+
+- [Networking Toolbox](https://networkingtoolbox.net) -  100+ offline-first networking tools and utilities. ([Source Code](https://github.com/Lissy93/networking-toolbox)) `Svelte` `TypeScript`
+- [Ziit](https://ziit.app/login) - swiss army knife of code time tracking. ([Source Code](https://github.com/0PandaDEV/Ziit)) `TypeScript` `Vue`
 
 ### Storage
 
@@ -672,14 +696,8 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Vikunja](https://vikunja.io) - to-do app to organize your life. ([Source Code](https://github.com/go-vikunja/vikunja)) `Go` `Vue` `TypeScript`
 - [Wekan](https://wekan.fi) - open-source kanban. ([Source Code](https://github.com/wekan/wekan)) `JavaScript`
 
-### Wishlist
-
-- [Christmas Community](https://github.com/Wingysam/Christmas-Community) - Christmas lists for families. ([Source Code](https://github.com/Wingysam/Christmas-Community))
-
 ### Other
 
 - [Aeterna](https://github.com/alpyxn/aeterna) - lightweight dead man's switch. ([Source Code](https://github.com/alpyxn/aeterna)) `JavaScript` `Go`
-- [Email Verifier](https://rapid-email-verifier.fly.dev) - privacy-first open source email verifier. ([Source Code](https://github.com/umuterturk/email-verifier)) `Go`
 - [Monica](https://beta.monicahq.com/login) - Personal CRM. Remember everything about your friends, family and business relationships. ([Source Code](https://github.com/monicahq/monica)) `PHP`
 - [Puter](https://puter.com) - The Internet Computer, free, open-source, and self-hostable. ([Source Code](https://github.com/HeyPuter/puter)) `JavaScript`
-- [YOURLS](https://yourls.org) - powerful and customizable URL shortener. ([Source Code](https://github.com/YOURLS/YOURLS)) `PHP`
