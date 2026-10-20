@@ -27,7 +27,22 @@ services:
       - /mnt/ssd/cache/langfuse:/data
 
   db:
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - SYS_NICE
+    cap_drop:
+      - ALL
     container_name: langfuse-db
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${LANGFUSE_DB_USERNAME} -d postgres"]
@@ -43,10 +58,14 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${LANGFUSE_DB_IP}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    shm_size: 128mb
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/databases/langfuse:/var/lib/postgresql
