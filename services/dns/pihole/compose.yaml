@@ -23,10 +23,10 @@ services:
           cpus: ${DEFAULT_CPU_LIMIT}
           memory: ${DEFAULT_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
-    dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+    # dns:
+    #   - 127.0.0.1
+    #   - ${DNS_SERVER_1}
+    #   - ${DNS_SERVER_2}
     env_file: config/.env
     hostname: pihole
     image: ${PIHOLE_IMAGE}
