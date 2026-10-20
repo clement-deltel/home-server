@@ -1,6 +1,12 @@
 # https://github.com/endurain-project/endurain
 services:
   cache:
+    cap_add:
+      - DAC_OVERRIDE
+      - SETGID
+      - SETUID
+    cap_drop:
+      - ALL
     container_name: endurain-cache
     deploy:
       resources:
@@ -28,6 +34,8 @@ services:
       internal-net:
         ipv4_address: ${ENDURAIN_CACHE_IP}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/cache/endurain:/data

@@ -7,13 +7,13 @@ services:
       - SETUID
     cap_drop:
       - ALL
+    container_name: yamtrack-cache
     deploy:
       resources:
         limits:
           cpus: ${DEFAULT_CPU_LIMIT}
           memory: ${DEFAULT_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
-    container_name: yamtrack-cache
     env_file: config/.env.cache
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]

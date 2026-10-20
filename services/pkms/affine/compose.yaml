@@ -1,7 +1,19 @@
 # https://github.com/toeverything/AFFiNE
 services:
   cache:
+    cap_add:
+      - DAC_OVERRIDE
+      - SETGID
+      - SETUID
+    cap_drop:
+      - ALL
     container_name: affine-cache
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
       interval: 1m
@@ -16,10 +28,13 @@ services:
       options:
         max-file: 2
         max-size: 2m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${AFFINE_CACHE_IP}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /mnt/ssd/cache/affine:/data
