@@ -1,6 +1,8 @@
 # https://github.com/beetbox/beets
 services:
   beets:
+    cap_drop:
+      - ALL
     container_name: beets
     dns:
       - 127.0.0.1

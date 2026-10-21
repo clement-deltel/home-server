@@ -1,7 +1,15 @@
 # https://github.com/Prowlarr/Prowlarr
 services:
   prowlarr:
+    cap_drop:
+      - ALL
     container_name: prowlarr
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -25,6 +33,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       rr-net:
         ipv4_address: ${PROWLARR_RR_IP}
@@ -33,7 +42,10 @@ services:
     ports:
       - 9696
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
+    user: ${USER_UID}:${USER_GID}
     volumes:
       - /opt/persistence/prowlarr:/config
 
