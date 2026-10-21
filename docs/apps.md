@@ -216,6 +216,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ##### Music
 
 - [Navidrome](https://www.navidrome.org) - personal streaming service. ([Source Code](https://github.com/navidrome/navidrome)) `Go` `JavaScript`
+- [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 
 ##### News
 
@@ -458,7 +459,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [qui](https://getqui.com) - qBittorrent web UI: manage multiple instances, automate torrent workflows, and cross-seed across trackers. ([Source Code](https://github.com/autobrr/qui)) `Go` `TypeScript`
 - [recyclarr](https://recyclarr.dev) - automatically sync TRaSH Guides to Sonarr and Radarr. ([Source Code](https://github.com/recyclarr/recyclarr)) `C#`
 - [sabnzbd](https://sabnzbd.org) - automated usenet download tool. ([Source Code](https://github.com/sabnzbd/sabnzbd)) `Python` `JavaScript`
-- [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 - [Soularr](https://soularr.net) - script that connects Lidarr with Soulseek. ([Source Code](https://github.com/mrusse/soularr)) `Python`
 - [Spotizerr](https://github.com/Xoconoch/spotizerr) - spotify music downloader with a lossless twist, based on the deezspot library. ([Source Code](https://github.com/Xoconoch/spotizerr)) `Python` `TypeScript`
 - [Syncthing](https://syncthing.net) - open source continuous file synchronization. ([Source Code](https://github.com/syncthing/syncthing)) `Go`

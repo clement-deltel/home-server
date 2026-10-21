@@ -86,6 +86,7 @@
       - { when: searxng_enable, project_src: '{{ server_home }}/services/search/searxng' }
       - { when: seerr_enable, project_src: '{{ server_home }}/services/media/rr/seerr' }
       - { when: sftpgo_enable, project_src: '{{ server_home }}/services/media/storage/files/sftpgo' }
+      - { when: slskd_enable, project_src: '{{ server_home }}/services/media/storage/music/slskd' }
       - { when: sonarr_enable, project_src: '{{ server_home }}/services/media/rr/sonarr' }
       - { when: stirling_pdf_enable, project_src: '{{ server_home }}/services/media/pdf/stirling-pdf' }
       - { when: unbound_enable, project_src: '{{ server_home }}/services/dns/unbound' }

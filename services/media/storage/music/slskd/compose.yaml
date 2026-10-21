@@ -1,0 +1,51 @@
+# https://github.com/slskd/slskd
+services:
+  slskd:
+    container_name: slskd
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env
+    hostname: slskd
+    image: ${SLSKD_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.slskd.entrypoints=web,websecure"
+      - "traefik.http.routers.slskd.rule=Host(`${SLSKD_HOST}`)"
+      - "traefik.http.routers.slskd.tls=true"
+      - "traefik.http.routers.slskd.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.slskd.tls.domains[0].main=${SLSKD_HOST}"
+      - "traefik.http.routers.slskd.service=slskd"
+      # Services
+      - "traefik.http.services.slskd.loadbalancer.server.port=5030"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      rr-net:
+        ipv4_address: ${SLSKD_RR_IP}
+      proxy-net:
+        ipv4_address: ${SLSKD_IP}
+    ports:
+      - 5030
+      - 50300
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 30s
+    user: ${USER_UID}:${USER_GID}
+    volumes:
+      - /opt/persistence/slskd:/app
+      - /opt/media/music:/music
+
+networks:
+  rr-net:
+    external: true
+    name: rr-net
+  proxy-net:
+    external: true
+    name: traefik-net
