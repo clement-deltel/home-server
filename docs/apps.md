@@ -215,6 +215,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ##### Music
 
+- [Beets](https://beets.io) - music library manager and MusicBrainz tagger. ([Source Code](https://github.com/beetbox/beets)) `Python`
 - [Navidrome](https://www.navidrome.org) - personal streaming service. ([Source Code](https://github.com/navidrome/navidrome)) `Go` `JavaScript`
 - [Slskd](https://github.com/slskd/slskd) - modern client-server application for the Soulseek file sharing network. ([Source Code](https://github.com/slskd/slskd)) `C#`
 

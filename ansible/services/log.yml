@@ -78,6 +78,7 @@
         - /mnt/hdd/log/media/storage/documents/nextcloud
         - /mnt/hdd/log/media/storage/documents/paperless
         - /mnt/hdd/log/media/storage/files/sftpgo
+        - /mnt/hdd/log/media/storage/music/beets
         - /mnt/hdd/log/media/storage/music/navidrome
         - /mnt/hdd/log/media/storage/music/slskd
         - /mnt/hdd/log/media/storage/news/freshrss

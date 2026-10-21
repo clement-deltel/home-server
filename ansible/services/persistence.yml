@@ -41,6 +41,8 @@
       - /opt/persistence/crowdsec
       - /opt/persistence/crowdsec/data
       - /opt/persistence/crowdsec/etc
+      # Beets
+      - /opt/persistence/beets
       # DBGate
       - /opt/persistence/dbgate
       # Dawarich
@@ -361,6 +363,8 @@
       - /opt/backup/files
       # Shared - Media
       - /opt/media
+      - /opt/media/downloads
+      - /opt/media/downloads/music
       - /opt/media/movies
       - /opt/media/music
       - /opt/media/tvshows
@@ -597,6 +601,7 @@
           - "{{ server_home }}/services/media/storage/documents/nextcloud/compose.yaml"
           - "{{ server_home }}/services/media/storage/documents/paperless/compose.yaml"
           - "{{ server_home }}/services/media/storage/files/sftpgo/compose.yaml"
+          - "{{ server_home }}/services/media/storage/music/beets/compose.yaml"
           - "{{ server_home }}/services/media/storage/music/navidrome/compose.yaml"
           - "{{ server_home }}/services/media/storage/music/slskd/compose.yaml"
           - "{{ server_home }}/services/media/storage/news/freshrss/compose.yaml"

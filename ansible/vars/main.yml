@@ -182,6 +182,7 @@ adventurelog_enable: true
 anubis_enable: true
 authentik_enable: true
 bazarr_enable: true
+beets_enable: true
 bento_pdf_enable: true
 browserless_enable: true
 bytestash_enable: true
@@ -246,6 +247,7 @@ scrutiny_enable: true
 searxng_enable: true
 seerr_enable: true
 sftpgo_enable: true
+slskd_enable: true
 sonarr_enable: true
 unbound_enable: true
 upsnap_enable: true

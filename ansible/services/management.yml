@@ -10,6 +10,7 @@
       - { when: anubis_enable, project_src: '{{ server_home }}/services/security/network/anubis' }
       - { when: authentik_enable, project_src: '{{ server_home }}/services/security/authentication/authentik' }
       - { when: bazarr_enable, project_src: '{{ server_home }}/services/media/rr/bazarr' }
+      - { when: beets_enable, project_src: '{{ server_home }}/services/media/storage/music/beets' }
       - { when: bento_pdf_enable, project_src: '{{ server_home }}/services/media/pdf/bento-pdf' }
       - { when: browserless_enable, project_src: '{{ server_home }}/services/search/browserless' }
       - { when: bytestash_enable, project_src: '{{ server_home }}/services/development/code/bytestash' }
