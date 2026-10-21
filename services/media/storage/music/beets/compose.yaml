@@ -46,8 +46,8 @@ services:
     user: ${USER_UID}:${USER_GID}
     volumes:
       - /opt/persistence/beets:/config
-      - /opt/media/music:/music
       - /opt/media/downloads/music:/downloads
+      - /opt/media/music:/music
 
 networks:
   rr-net:

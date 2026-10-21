@@ -34,9 +34,11 @@ services:
       - 8686
     restart: unless-stopped
     stop_grace_period: 30s
+    user: ${USER_UID}:${USER_GID}
     volumes:
       - /opt/persistence/lidarr:/config
-      - /opt/media:/media
+      - /opt/media/downloads/music:/downloads
+      - /opt/media/music:/music
 
 networks:
   rr-net:
