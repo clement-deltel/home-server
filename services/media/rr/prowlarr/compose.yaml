@@ -30,9 +30,9 @@ services:
         ipv4_address: ${PROWLARR_RR_IP}
       proxy-net:
         ipv4_address: ${PROWLARR_IP}
-    restart: unless-stopped
     ports:
       - 9696
+    restart: unless-stopped
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/prowlarr:/config

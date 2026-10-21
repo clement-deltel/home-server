@@ -30,9 +30,9 @@ services:
         ipv4_address: ${SONARR_RR_IP}
       proxy-net:
         ipv4_address: ${SONARR_IP}
-    restart: unless-stopped
     ports:
       - 8989
+    restart: unless-stopped
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/sonarr:/config

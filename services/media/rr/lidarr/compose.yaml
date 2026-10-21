@@ -30,9 +30,9 @@ services:
         ipv4_address: ${LIDARR_RR_IP}
       proxy-net:
         ipv4_address: ${LIDARR_IP}
-    restart: unless-stopped
     ports:
       - 8686
+    restart: unless-stopped
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/lidarr:/config

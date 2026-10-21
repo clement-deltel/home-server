@@ -30,9 +30,9 @@ services:
         ipv4_address: ${BAZARR_RR_IP}
       proxy-net:
         ipv4_address: ${BAZARR_IP}
-    restart: unless-stopped
     ports:
       - 6767
+    restart: unless-stopped
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/bazarr:/config
