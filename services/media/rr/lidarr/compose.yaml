@@ -1,6 +1,9 @@
 # https://github.com/Lidarr/Lidarr
 services:
   lidarr:
+    cap_add:
+      - SETGID
+      - SETUID
     cap_drop:
       - ALL
     container_name: lidarr
@@ -45,7 +48,6 @@ services:
     security_opt:
       - no-new-privileges:true
     stop_grace_period: 30s
-    user: ${USER_UID}:${USER_GID}
     volumes:
       - /opt/persistence/lidarr:/config
       - /opt/media/downloads/music:/downloads
