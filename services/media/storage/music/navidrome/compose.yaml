@@ -35,7 +35,7 @@ services:
     volumes:
       - /opt/persistence/navidrome/backup:/backup
       - /opt/persistence/navidrome/data:/data
-      - /opt/persistence/navidrome/music/:/music:ro
+      - /opt/media/music/:/music:ro
 
 networks:
   proxy-net:
