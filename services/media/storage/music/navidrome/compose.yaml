@@ -31,7 +31,7 @@ services:
       - 4533
     restart: unless-stopped
     stop_grace_period: 30s
-    user: ${DOCKER_UID}:${DOCKER_GID} # should be owner of volumes
+    user: ${USER_UID}:${USER_GID} # should be owner of volumes
     volumes:
       - /opt/persistence/navidrome/backup:/backup
       - /opt/persistence/navidrome/data:/data
