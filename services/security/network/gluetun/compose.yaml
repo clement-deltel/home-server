@@ -1,8 +1,13 @@
-# https://github.com/qdm12/gluetun
+# https://github.com/passteque/gluetun
 services:
   gluetun:
     cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
       - NET_ADMIN
+      - NET_RAW
+      - SETGID
+      - SETUID
     cap_drop:
       - ALL
     container_name: gluetun

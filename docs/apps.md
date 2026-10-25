@@ -173,7 +173,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Anubis](https://anubis.techaro.lol) - weighs the soul of incoming HTTP requests to stop AI crawlers. ([Source Code](https://github.com/TecharoHQ/anubis)) `Go`
 - [CrowdSec](https://app.crowdsec.net) - open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI. ([Source Code](https://github.com/crowdsecurity/crowdsec)) `Go` `Shell`
-- [Gluetun](https://github.com/qdm12/gluetun-wiki) - VPN client in a thin Docker container for multiple VPN providers, and using OpenVPN or Wireguard, DNS over TLS, with a few proxy servers built-in. ([Source Code](https://github.com/qdm12/gluetun)) `Go`
+- [Gluetun](https://github.com/qdm12/gluetun-wiki) - VPN client in a thin Docker container for multiple VPN providers, and using OpenVPN or Wireguard, DNS over TLS, with a few proxy servers built-in. ([Source Code](https://github.com/passteque/gluetun)) `Go`
 
 ### Media
 
