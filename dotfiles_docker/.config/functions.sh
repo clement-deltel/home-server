@@ -38,36 +38,6 @@ function sep { find . -name '*.csv' -exec sed -i 's/;/,/g' {} \;; }
 # Tail with continuous monitoring of a given file with syntax highlighting
 function tailc { tail -f "$1" | batcat -l log --paging=never; }
 
-# Host Info
-
-# IP addresses
-function my-ip {
-  MY_IP=$(/sbin/ifconfig enp8s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
-}
-
-# Full summary
-function ii {
-  RED='\e[31m'
-  NC='\e[39m'
-  echo -e "\nYou are logged on ${RED}$(hostname)"
-  echo -e "\nAdditional information:$NC"
-  uname -a
-  echo -e "\n${RED}Users logged on:$NC"
-  w -h
-  echo -e "\n${RED}Current date:$NC"
-  date
-  echo -e "\n${RED}Machine stats:$NC"
-  uptime
-  echo -e "\n${RED}Memory stats:$NC"
-  free
-  my-ip 2>&-
-  echo -e "\n${RED}Local IP Address:$NC"
-  echo "${MY_IP:-"Not connected"}"
-  echo -e "\n${RED}Public IP Address:$NC"
-  echo "$(curl -s ifconfig.me)"
-  echo
-}
-
 # Online cheatsheet
 function cheatsheet { curl cheat.sh/"$1"; }
 
@@ -193,6 +163,46 @@ doppler-scope-fn () {
 }
 
 doppler-secret-get-fn () { doppler secrets get "$1"; }
+
+# ---------------------------------------------------------------------------- #
+#               ------- Network ------
+# ---------------------------------------------------------------------------- #
+
+# IP addresses
+function local-ip {
+  LOCAL_IP=$(/sbin/ifconfig enp6s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
+  export LOCAL_IP
+}
+
+# Alternative public IP URL: ifconfig.me
+function public-ip {
+  PUBLIC_IP=$(curl -s ipinfo.io/ip)
+  export PUBLIC_IP
+}
+
+# Full summary
+function ii {
+  RED='\e[31m'
+  NC='\e[39m'
+  echo -e "\nYou are logged on ${RED}$(hostname)"
+  echo -e "\nAdditional information:$NC"
+  uname -a
+  echo -e "\n${RED}Users logged on:$NC"
+  w -h
+  echo -e "\n${RED}Current date:$NC"
+  date
+  echo -e "\n${RED}Machine stats:$NC"
+  uptime
+  echo -e "\n${RED}Memory stats:$NC"
+  free
+  local-ip 2>&-
+  echo -e "\n${RED}Local IP Address:$NC"
+  echo "${LOCAL_IP:-"Not connected"}"
+  public-ip 2>&-
+  echo -e "\n${RED}Public IP Address:$NC"
+  echo "${PUBLIC_IP:-"Not connected"}"
+  echo
+}
 
 # ---------------------------------------------------------------------------- #
 #               ------- ntfy ------

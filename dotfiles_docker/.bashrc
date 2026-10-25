@@ -162,8 +162,6 @@ eval "$(zoxide init bash --cmd cd)"
 #               ------- Server --------                                        #
 # ---------------------------------------------------------------------------- #
 export SERVER_HOME=/opt/home-server
-
-export PUBLIC_IP=$(curl -s https://ipinfo.io/ip)
 export PATH=${SERVER_HOME}/scripts/all:${SERVER_HOME}/scripts/backup:${SERVER_HOME}/scripts/restore:${PATH}
 
 # ---------------------------------------------------------------------------- #
