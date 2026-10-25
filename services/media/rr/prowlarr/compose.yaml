@@ -45,7 +45,6 @@ services:
     security_opt:
       - no-new-privileges:true
     stop_grace_period: 30s
-    user: ${USER_UID}:${USER_GID}
     volumes:
       - /opt/persistence/prowlarr:/config
 
