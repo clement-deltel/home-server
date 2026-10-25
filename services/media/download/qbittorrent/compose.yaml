@@ -1,7 +1,15 @@
 
 services:
   qbittorrent:
+    cap_drop:
+      - ALL
     container_name: qbittorrent
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -14,8 +22,11 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     network_mode: container:gluetun
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/qbittorrent:/config
