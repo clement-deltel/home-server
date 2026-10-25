@@ -2,6 +2,7 @@
 services:
   lidarr:
     cap_add:
+      - CHOWN
       - SETGID
       - SETUID
     cap_drop:

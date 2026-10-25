@@ -1,6 +1,12 @@
 # https://github.com/Prowlarr/Prowlarr
 services:
   prowlarr:
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE   # root init scripts touching files it doesn't own
+      - FOWNER         # chmod on files owned by another UID
+      - SETGID
+      - SETUID
     cap_drop:
       - ALL
     container_name: prowlarr
