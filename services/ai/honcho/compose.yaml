@@ -18,7 +18,7 @@ services:
       - VALKEY_EXTRA_FLAGS=--requirepass ${HONCHO_CACHE_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
-      interval: 1m
+      interval: 60s
       retries: 3
       start_interval: 10s
       start_period: 60s
@@ -47,7 +47,7 @@ services:
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${HONCHO_DB_USER}"]
-      interval: 1m
+      interval: 60s
       retries: 3
       start_interval: 10s
       start_period: 60s
@@ -173,7 +173,7 @@ services:
           "-c",
           "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()",
         ]
-      interval: 1m
+      interval: 60s
       retries: 5
       start_interval: 10s
       start_period: 60s

@@ -43,7 +43,7 @@ services:
       - VALKEY_EXTRA_FLAGS=--bind 0.0.0.0 --requirepass ${FIRECRAWL_CACHE_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
-      interval: 1m
+      interval: 60s
       timeout: 10s
       retries: 3
       start_period: 60s
@@ -71,7 +71,7 @@ services:
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${FIRECRAWL_DB_USERNAME} -d postgres"]
-      interval: 1m
+      interval: 60s
       timeout: 10s
       retries: 3
       start_period: 60s

@@ -4,7 +4,7 @@ services:
     env_file: config/.env.db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${MEME_SEARCH_DB_USER} -d meme_search"]
-      interval: 1m
+      interval: 60s
       timeout: 10s
       retries: 3
       start_period: 60s
