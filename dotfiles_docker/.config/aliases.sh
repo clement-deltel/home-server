@@ -95,13 +95,13 @@ alias cd..='cd ..'
 alias :q='exit'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Users --------                                         #
+#               ------- Users --------
 # ---------------------------------------------------------------------------- #
 alias root='sudo su -'
 alias doc='sudo su - docker'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Bitwarden CLI ------                                   #
+#               ------- Bitwarden CLI ------
 # ---------------------------------------------------------------------------- #
 alias bwl='bw lock'
 alias bwli=bitwarden-login-fn
@@ -113,7 +113,7 @@ alias bwst='bw status | jq'
 alias bwsy='bw sync'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Docker ------                                          #
+#               ------- Docker ------
 # ---------------------------------------------------------------------------- #
 alias d=docker-fn
 alias dcrme=docker-rm-exited-fn
@@ -144,7 +144,7 @@ alias dvls='docker volume ls'
 alias lzd='lazydocker'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Docker Compose ------                                  #
+#               ------- Docker Compose ------
 # ---------------------------------------------------------------------------- #
 alias catco='cat compose.yaml'
 alias vico='vim compose.yaml'
@@ -181,6 +181,11 @@ alias dpsg=doppler-secret-get-fn
 alias dpt='doppler tui'
 
 alias dply="doppler secrets download --config ansible --format yaml --name-transformer lower-snake --no-file > ${SERVER_HOME}/ansible/vars/secrets.yml"
+
+# ---------------------------------------------------------------------------- #
+#               ------- env ------
+# ---------------------------------------------------------------------------- #
+catenv='cat .env 2>/dev/null || cat config/.env 2>/dev/null'
 
 # ---------------------------------------------------------------------------- #
 #               ------- ntfy ------
