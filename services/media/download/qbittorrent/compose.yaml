@@ -1,6 +1,12 @@
-
+# https://docs.linuxserver.io/images/docker-qbittorrent/
+# dns and hostname sections have to be disabled in container network mode
 services:
   qbittorrent:
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETGID
+      - SETUID
     cap_drop:
       - ALL
     container_name: qbittorrent
@@ -10,12 +16,12 @@ services:
           cpus: ${DEFAULT_CPU_LIMIT}
           memory: ${DEFAULT_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
-    dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+    # dns:
+    #   - 127.0.0.1
+    #   - ${DNS_SERVER_1}
+    #   - ${DNS_SERVER_2}
     env_file: config/.env
-    hostname: qbittorrent
+    # hostname: qbittorrent
     image: ${QBITTORRENT_IMAGE}
     logging:
       driver: json-file
