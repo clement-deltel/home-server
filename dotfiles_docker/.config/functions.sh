@@ -170,14 +170,14 @@ doppler-secret-get-fn () { doppler secrets get "$1"; }
 
 # IP addresses
 function local-ip {
-  LOCAL_IP=$(/sbin/ifconfig enp6s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
-  export LOCAL_IP
+  export LOCAL_IP=$(/sbin/ifconfig enp6s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
+  echo ${LOCAL_IP}
 }
 
 # Alternative public IP URL: ifconfig.me
 function public-ip {
-  PUBLIC_IP=$(curl -s ipinfo.io/ip)
-  export PUBLIC_IP
+  export PUBLIC_IP=$(curl -s ipinfo.io/ip)
+  echo ${PUBLIC_IP}
 }
 
 # Full summary
