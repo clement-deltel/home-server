@@ -26,6 +26,8 @@ services:
       - "traefik.http.routers.karakeep.service=karakeep"
       # Services
       - "traefik.http.services.karakeep.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${KARAKEEP_HOST}"
     logging:
       driver: json-file
       options:
@@ -52,6 +54,7 @@ services:
       - --disable-dev-shm-usage
       - --disable-gpu
       - --hide-scrollbars
+      - --no-sandbox
       - --window-size=1440,900
     container_name: karakeep-chrome
     deploy:
@@ -62,6 +65,7 @@ services:
           pids: ${DEFAULT_PID_LIMIT}
     hostname: karakeep-chrome
     image: ${KARAKEEP_CHROME_IMAGE}
+    init: true
     logging:
       driver: json-file
       options:
