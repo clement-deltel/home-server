@@ -2,6 +2,12 @@ services:
   karakeep:
     # https://github.com/karakeep-app/karakeep
     container_name: karakeep
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -25,6 +31,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${KARAKEEP_INTERNAL_IP}
@@ -33,19 +40,26 @@ services:
     ports:
       - 3000
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/karakeep/data:/data
 
   chrome:
     command:
-      - --no-sandbox
-      - --disable-gpu
+      - --disable-blink-features=AutomationControlled
       - --disable-dev-shm-usage
-      - --remote-debugging-address=0.0.0.0
-      - --remote-debugging-port=9222
+      - --disable-gpu
       - --hide-scrollbars
+      - --window-size=1440,900
     container_name: karakeep-chrome
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     hostname: karakeep-chrome
     image: ${KARAKEEP_CHROME_IMAGE}
     logging:
@@ -53,15 +67,24 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${KARAKEEP_CHROME_IP}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
 
   meilisearch:
     # https://github.com/meilisearch/meilisearch
     container_name: karakeep-meilisearch
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env
     hostname: karakeep-meilisearch
     image: ${MEILISEARCH_IMAGE}
@@ -70,10 +93,13 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${KARAKEEP_MEILISEARCH_IP}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
     volumes:
       - /opt/persistence/karakeep/meilisearch:/meili_data
