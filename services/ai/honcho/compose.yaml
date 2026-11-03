@@ -191,6 +191,8 @@ services:
       - "traefik.http.routers.honcho.service=honcho"
       # Services
       - "traefik.http.services.honcho.loadbalancer.server.port=8000"
+      # Dozzle
+      - "dev.dozzle.url=https://${HONCHO_HOST}"
     logging:
       driver: json-file
       options:

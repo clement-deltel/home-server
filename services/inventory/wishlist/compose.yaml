@@ -20,6 +20,8 @@ services:
       - "traefik.http.routers.wishlist.service=wishlist"
       # Services
       - "traefik.http.services.wishlist.loadbalancer.server.port=3280"
+      # Dozzle
+      - "dev.dozzle.url=https://${WISHLIST_HOST}"
     logging:
       driver: json-file
       options:

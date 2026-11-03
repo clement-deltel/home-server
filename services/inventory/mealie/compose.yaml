@@ -72,6 +72,8 @@ services:
       - "traefik.http.middlewares.mealie.ratelimit.burst=100"
       # Services
       - "traefik.http.services.mealie.loadbalancer.server.port=9000"
+      # Dozzle
+      - "dev.dozzle.url=https://${MEALIE_HOST}"
     logging:
       driver: json-file
       options:

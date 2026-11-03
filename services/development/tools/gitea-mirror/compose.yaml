@@ -26,6 +26,8 @@ services:
       - "traefik.http.routers.gitea-mirror.service=gitea-mirror"
       # Services
       - "traefik.http.services.gitea-mirror.loadbalancer.server.port=4321"
+      # Dozzle
+      - "dev.dozzle.url=https://${GITEA_MIRROR_HOST}"
     logging:
       driver: json-file
       options:

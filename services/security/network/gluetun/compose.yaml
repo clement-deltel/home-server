@@ -46,6 +46,8 @@ services:
       # Services
       - "traefik.http.services.gluetun.loadbalancer.server.port=8000"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${GLUETUN_HOST}"
     logging:
       driver: json-file
       options:

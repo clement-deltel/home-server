@@ -20,6 +20,8 @@ services:
       - "traefik.http.routers.convertx.service=convertx"
       # Services
       - "traefik.http.services.convertx.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${CONVERTX_HOST}"
     logging:
       driver: json-file
       options:

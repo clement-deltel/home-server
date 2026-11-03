@@ -119,6 +119,8 @@ services:
       - "traefik.http.routers.grafana.service=grafana"
       # Services
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${GRAFANA_HOST}"
     logging:
       driver: json-file
       options:

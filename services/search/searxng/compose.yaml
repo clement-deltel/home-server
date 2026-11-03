@@ -64,6 +64,8 @@ services:
       - "traefik.http.routers.searxng.service=searxng"
       # Services
       - "traefik.http.services.searxng.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${SEARXNG_HOST}"
     logging:
       driver: json-file
       options:

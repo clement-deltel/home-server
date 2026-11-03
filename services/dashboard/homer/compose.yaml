@@ -21,6 +21,8 @@ services:
       - "traefik.http.routers.homer.service=homer"
       # Services
       - "traefik.http.services.homer.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${HOMER_HOST}"
     logging:
       driver: json-file
       options:

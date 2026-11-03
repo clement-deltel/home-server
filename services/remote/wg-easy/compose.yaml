@@ -18,6 +18,8 @@ services:
       - "traefik.http.routers.wireguard.service=wireguard"
       # Services
       - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
+      # Dozzle
+      - "dev.dozzle.url=https://${WG_EASY_HOST}"
     logging:
       driver: json-file
       options:

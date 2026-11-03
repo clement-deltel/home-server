@@ -82,6 +82,8 @@ services:
       - "traefik.http.middlewares.vaultwarden-cors.headers.addVaryHeader=true"
       # Services
       - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
+      # Dozzle
+      - "dev.dozzle.url=https://${VAULTWARDEN_HOST}"
     logging:
       driver: json-file
       options:

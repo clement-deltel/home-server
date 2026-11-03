@@ -30,6 +30,8 @@ services:
       - "traefik.http.middlewares.auth.basicauth.usersfile=/opt/dashboard/users.txt"
       # Services
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${TRAEFIK_HOST}"
     logging:
       driver: json-file
       options:

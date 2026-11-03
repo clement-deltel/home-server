@@ -20,6 +20,8 @@ services:
       - "traefik.http.routers.anubis.service=anubis"
       # Services
       - "traefik.http.services.anubis.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${ANUBIS_HOST}"
     logging:
       driver: json-file
       options:

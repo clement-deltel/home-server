@@ -123,6 +123,8 @@ services:
       # Services
       - "traefik.http.services.forgejo.loadbalancer.server.port=3000"
       - "traefik.tcp.services.forgejo-ssh.loadbalancer.server.port=22"
+      # Dozzle
+      - "dev.dozzle.url=https://${FORGEJO_HOST}"
     logging:
       driver: json-file
       options:

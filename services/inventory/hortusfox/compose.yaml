@@ -49,6 +49,8 @@ services:
       - "traefik.http.routers.hortusfox.service=hortusfox"
       # Services
       - "traefik.http.services.hortusfox.loadbalancer.server.port=80"
+      # Dozzle
+      - "dev.dozzle.url=https://${HORTUSFOX_HOST}"
     logging:
       driver: json-file
       options:

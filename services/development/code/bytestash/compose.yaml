@@ -28,6 +28,8 @@ services:
       - "traefik.http.routers.bytestash.service=bytestash"
       # Services
       - "traefik.http.services.bytestash.loadbalancer.server.port=5000"
+      # Dozzle
+      - "dev.dozzle.url=https://${BYTESTASH_HOST}"
     logging:
       driver: json-file
       options:

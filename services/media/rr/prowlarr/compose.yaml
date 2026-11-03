@@ -34,6 +34,8 @@ services:
       - "traefik.http.routers.prowlarr.service=prowlarr"
       # Services
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+      # Dozzle
+      - "dev.dozzle.url=https://${PROWLARR_HOST}"
     logging:
       driver: json-file
       options:

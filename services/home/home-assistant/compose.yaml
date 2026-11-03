@@ -18,6 +18,8 @@ services:
       - "traefik.http.routers.home-assistant.service=home-assistant"
       # Services
       - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
+      # Dozzle
+      - "dev.dozzle.url=https://${HOME_ASSISTANT_HOST}"
     logging:
       driver: json-file
       options:

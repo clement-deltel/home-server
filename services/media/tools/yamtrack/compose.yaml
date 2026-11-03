@@ -118,6 +118,8 @@ services:
       - "traefik.http.routers.yamtrack.service=yamtrack"
       # Services
       - "traefik.http.services.yamtrack.loadbalancer.server.port=8000"
+      # Dozzle
+      - "dev.dozzle.url=https://${YAMTRACK_HOST}"
     logging:
       driver: json-file
       options:

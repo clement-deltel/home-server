@@ -47,6 +47,8 @@ services:
       - "traefik.http.routers.adventurelog-frontend.service=adventurelog-frontend"
       # Services
       - "traefik.http.services.adventurelog-frontend.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${ADVENTURELOG_HOST}"
     logging:
       driver: json-file
       options:
@@ -83,6 +85,8 @@ services:
       - "traefik.http.routers.adventurelog-backend.service=adventurelog-backend"
       # Services
       - "traefik.http.services.adventurelog-backend.loadbalancer.server.port=8000"
+      # Dozzle
+      - "dev.dozzle.url=https://${ADVENTURELOG_HOST}"
     logging:
       driver: json-file
       options:

@@ -20,6 +20,8 @@ services:
       - "traefik.http.routers.kopia.service=kopia"
       # Services
       - "traefik.http.services.kopia.loadbalancer.server.port=51515"
+      # Dozzle
+      - "dev.dozzle.url=https://${KOPIA_HOST}"
     logging:
       driver: json-file
       options:

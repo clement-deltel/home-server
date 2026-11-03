@@ -19,6 +19,8 @@ services:
       - "traefik.http.routers.homebox.service=homebox"
       # Services
       - "traefik.http.services.homebox.loadbalancer.server.port=7745"
+      # Dozzle
+      - "dev.dozzle.url=https://${HOMEBOX_HOST}"
     logging:
       driver: json-file
       options:

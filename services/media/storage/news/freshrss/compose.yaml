@@ -67,6 +67,8 @@ services:
       - "traefik.http.routers.freshrss.service=freshrss"
       # Services
       - "traefik.http.services.freshrss.loadbalancer.server.port=80"
+      # Dozzle
+      - "dev.dozzle.url=https://${FRESHRSS_HOST}"
     logging:
       driver: json-file
       options:

@@ -68,6 +68,8 @@ services:
       - "traefik.http.routers.wakapi.service=wakapi"
       # Services
       - "traefik.http.services.wakapi.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${WAKAPI_HOST}"
     logging:
       driver: json-file
       options:

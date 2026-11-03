@@ -31,6 +31,8 @@ services:
       - "traefik.http.middlewares.bento-pdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp"
       # Services
       - "traefik.http.services.bento-pdf.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${BENTO_PDF_HOST}"
     logging:
       driver: json-file
       options:

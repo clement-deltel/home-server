@@ -95,6 +95,8 @@ services:
       - "traefik.http.routers.authentik.service=authentik"
       # Services
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"
+      # Dozzle
+      - "dev.dozzle.url=https://${AUTHENTIK_HOST}"
     logging:
       driver: json-file
       options:

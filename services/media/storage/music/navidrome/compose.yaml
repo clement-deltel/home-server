@@ -19,6 +19,8 @@ services:
       - "traefik.http.routers.navidrome.service=navidrome"
       # Services
       - "traefik.http.services.navidrome.loadbalancer.server.port=4533"
+      # Dozzle
+      - "dev.dozzle.url=https://${NAVIDROME_HOST}"
     logging:
       driver: json-file
       options:

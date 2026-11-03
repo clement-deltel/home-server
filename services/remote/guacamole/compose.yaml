@@ -74,6 +74,8 @@ services:
       - "traefik.http.middlewares.guacamole.addprefix.prefix=/guacamole"
       # Services
       - "traefik.http.services.guacamole.loadBalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${GUACAMOLE_HOST}"
     links:
       - guacd
     logging:

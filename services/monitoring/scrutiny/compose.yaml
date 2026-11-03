@@ -43,6 +43,8 @@ services:
       - "traefik.http.middlewares.scrutiny-cors.headers.addVaryHeader=true"
       # Services
       - "traefik.http.services.scrutiny.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${SCRUTINY_HOST}"
     logging:
       driver: json-file
       options:

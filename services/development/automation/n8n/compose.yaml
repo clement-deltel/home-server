@@ -77,6 +77,8 @@ services:
       - "traefik.http.middlewares.n8n.headers.STSSeconds=315360000"
       # Services
       - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+      # Dozzle
+      - "dev.dozzle.url=https://${N8N_HOST}"
     logging:
       driver: json-file
       options:

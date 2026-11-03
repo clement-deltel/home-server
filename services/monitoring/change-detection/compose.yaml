@@ -20,6 +20,8 @@ services:
       - "traefik.http.routers.change-detection.service=change-detection"
       # Services
       - "traefik.http.services.change-detection.loadbalancer.server.port=5000"
+      # Dozzle
+      - "dev.dozzle.url=https://${CHANGE_DETECTION_HOST}"
     logging:
       driver: json-file
       options:

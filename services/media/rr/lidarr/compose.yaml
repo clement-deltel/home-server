@@ -32,6 +32,8 @@ services:
       - "traefik.http.routers.lidarr.service=lidarr"
       # Services
       - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+      # Dozzle
+      - "dev.dozzle.url=https://${LIDARR_HOST}"
     logging:
       driver: json-file
       options:
