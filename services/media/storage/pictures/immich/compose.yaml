@@ -43,6 +43,12 @@ services:
 
   db:
     container_name: immich-db
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     hostname: immich-db
     image: ${IMMICH_DB_IMAGE}
@@ -51,6 +57,7 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${IMMICH_DB_IP}
@@ -61,6 +68,12 @@ services:
 
   immich-machine-learning:
     container_name: immich-ml
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env
     hostname: immich-ml
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
@@ -74,6 +87,7 @@ services:
       options:
         max-file: 2
         max-size: 2m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${IMMICH_ML_IP}
@@ -89,6 +103,12 @@ services:
         condition: service_healthy
       cache:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: 1g
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -124,6 +144,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: 1g
     networks:
       internal-net:
         ipv4_address: ${IMMICH_INTERNAL_IP}
