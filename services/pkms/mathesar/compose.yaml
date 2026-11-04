@@ -123,6 +123,7 @@ networks:
   internal-net:
     name: internal-mathesar
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

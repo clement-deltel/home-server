@@ -214,6 +214,7 @@ networks:
   internal-net:
     name: internal-honcho
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

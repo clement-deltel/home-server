@@ -162,6 +162,7 @@ networks:
   internal-net:
     name: internal-immich
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

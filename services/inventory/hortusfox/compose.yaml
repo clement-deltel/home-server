@@ -76,6 +76,7 @@ networks:
   internal-net:
     name: internal-hortusfox
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

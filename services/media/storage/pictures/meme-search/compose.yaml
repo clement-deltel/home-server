@@ -102,6 +102,7 @@ networks:
   internal-net:
     name: internal-meme-search
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

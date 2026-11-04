@@ -90,6 +90,7 @@ networks:
   internal-net:
     name: internal-freshrss
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

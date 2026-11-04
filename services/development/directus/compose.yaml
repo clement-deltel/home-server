@@ -132,6 +132,7 @@ networks:
   internal-net:
     name: internal-directus
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

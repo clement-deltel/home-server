@@ -134,6 +134,7 @@ networks:
   internal-net:
     name: internal-affine
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

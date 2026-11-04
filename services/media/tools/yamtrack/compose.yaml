@@ -142,6 +142,7 @@ networks:
   internal-net:
     name: internal-yamtrack
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

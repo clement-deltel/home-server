@@ -88,6 +88,7 @@ networks:
   internal-net:
     name: internal-memos
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

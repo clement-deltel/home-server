@@ -139,6 +139,7 @@ networks:
   internal-net:
     name: internal-endurain
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

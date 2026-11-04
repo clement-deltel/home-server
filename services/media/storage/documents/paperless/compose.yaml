@@ -178,6 +178,7 @@ networks:
   internal-net:
     name: internal-paperless
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

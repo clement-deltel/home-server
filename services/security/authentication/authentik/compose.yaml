@@ -138,6 +138,7 @@ networks:
   internal-net:
     name: internal-authentik
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

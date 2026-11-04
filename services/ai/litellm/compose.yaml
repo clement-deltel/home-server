@@ -141,6 +141,7 @@ networks:
   internal-net:
     name: internal-litellm
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

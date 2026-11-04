@@ -119,6 +119,7 @@ networks:
   internal-net:
     name: internal-guacamole
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

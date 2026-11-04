@@ -109,6 +109,7 @@ networks:
   internal-net:
     name: internal-vaultwarden
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

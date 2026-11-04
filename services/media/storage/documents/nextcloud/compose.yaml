@@ -166,6 +166,7 @@ networks:
   internal-net:
     name: internal-nextcloud
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

@@ -73,6 +73,7 @@ networks:
   internal-net:
     name: internal-limesurvey
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

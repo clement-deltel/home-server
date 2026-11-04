@@ -95,6 +95,7 @@ networks:
   internal-net:
     name: internal-mealie
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

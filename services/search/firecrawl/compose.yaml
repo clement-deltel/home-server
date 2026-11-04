@@ -245,6 +245,7 @@ networks:
   internal-net:
     name: internal-firecrawl
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

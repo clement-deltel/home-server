@@ -152,6 +152,7 @@ networks:
   internal-net:
     name: internal-forgejo
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

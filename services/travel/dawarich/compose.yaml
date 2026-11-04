@@ -175,6 +175,7 @@ networks:
   internal-net:
     name: internal-dawarich
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

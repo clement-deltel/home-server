@@ -112,6 +112,7 @@ networks:
   internal-net:
     name: internal-karakeep
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

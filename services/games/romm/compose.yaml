@@ -114,6 +114,7 @@ networks:
   internal-net:
     name: internal-romm
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

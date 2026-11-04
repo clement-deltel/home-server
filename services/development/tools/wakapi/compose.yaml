@@ -89,6 +89,7 @@ networks:
   internal-net:
     name: internal-wakapi
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:

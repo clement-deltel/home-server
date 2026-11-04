@@ -108,6 +108,7 @@ networks:
   internal-net:
     name: internal-n8n
     driver: bridge
+    internal: true
     ipam:
       driver: default
       config:
