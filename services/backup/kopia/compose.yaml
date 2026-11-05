@@ -60,6 +60,67 @@ services:
       #- /opt/persistence/prowlarr/backups:/data/prowlarr:ro
       #- /opt/persistence/vaultwarden:/data/vaultwarden:ro
 
+  kopia-aws:
+    command: server start --disable-csrf-token-checks --insecure --address=0.0.0.0:51515
+    container_name: kopia-aws
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env.aws
+    hostname: kopia-aws
+    image: ${KOPIA_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.kopia.entrypoints=web,websecure"
+      - "traefik.http.routers.kopia-aws.rule=Host(`${KOPIA_AWS_HOST}`)"
+      - "traefik.http.routers.kopia-aws.tls=true"
+      - "traefik.http.routers.kopia-aws.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kopia-aws.tls.domains[0].main=${KOPIA_AWS_HOST}"
+      - "traefik.http.routers.kopia-aws.service=kopia-aws"
+      # Services
+      - "traefik.http.services.kopia-aws.loadbalancer.server.port=51515"
+      # Dozzle
+      - "dev.dozzle.url=https://${KOPIA_AWS_HOST}"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      proxy-net:
+        ipv4_address: ${KOPIA_AWS_IP}
+    # Setup the server that provides the web gui
+    ports:
+      - 51515
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      # Mount local folders needed by kopia
+      - /opt/persistence/kopia-aws/cache:/app/cache
+      - /opt/persistence/kopia-aws/config:/app/config
+      - /opt/persistence/kopia-aws/logs:/app/logs
+      # Mount local folders to snapshot
+      - /opt/backup/databases:/data/databases:ro
+      - /opt/backup/files:/data/files:ro
+      #- /opt/persistence/home-assistant/backups:/data/home-assistant:ro
+      #- /opt/persistence/hortusfox/backup:/data/hortusfox:ro
+      #- /opt/persistence/immich:/data/immich:ro
+      #- /opt/persistence/jellyfin:/data/jellyfin:ro
+      #- /opt/persistence/lidarr/backups:/data/lidarr:ro
+      #- /opt/persistence/mealie/backups:/data/mealie:ro
+      #- /opt/persistence/navidrome/backup:/data/navidrome:ro
+      #- /opt/persistence/prowlarr/backups:/data/prowlarr:ro
+      #- /opt/persistence/vaultwarden:/data/vaultwarden:ro
+
 networks:
   proxy-net:
     external: true
