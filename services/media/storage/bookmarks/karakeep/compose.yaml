@@ -62,7 +62,7 @@ services:
         limits:
           cpus: ${DEFAULT_CPU_LIMIT}
           memory: ${DEFAULT_MEM_LIMIT}
-          pids: ${DEFAULT_PID_LIMIT}
+          pids: 1000
     hostname: karakeep-chrome
     image: ${KARAKEEP_CHROME_IMAGE}
     init: true
