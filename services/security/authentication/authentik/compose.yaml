@@ -138,7 +138,7 @@ networks:
   internal-net:
     name: internal-authentik
     driver: bridge
-    internal: true
+    # internal: true # does not work, if enabled authentik look for the database in the monitoring-net network? first it finds (GRAFANA_DB_IP), it tries to connect there and fails.
     ipam:
       driver: default
       config:
