@@ -19,7 +19,7 @@ services:
           pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${N8N_DB_USERNAME} -d postgres"]
+      test: ["CMD", "pg_isready", "-U", "${N8N_DB_USERNAME}", "-d", "postgres"]
       interval: 60s
       timeout: 10s
       retries: 3

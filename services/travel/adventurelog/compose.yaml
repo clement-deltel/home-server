@@ -4,7 +4,7 @@ services:
     container_name: adventurelog-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${ADVENTURELOG_DB_USER}"]
+      test: ["CMD", "pg_isready", "-U", "${ADVENTURELOG_DB_USER}"]
       interval: 60s
       timeout: 10s
       retries: 3

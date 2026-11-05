@@ -16,7 +16,7 @@ services:
           pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.cache
     healthcheck:
-      test: ["CMD-SHELL", "valkey-cli --raw INCR PING"]
+      test: ["CMD", "valkey-cli", "--raw", "INCR", "PING"]
       interval: 60s
       timeout: 10s
       retries: 3

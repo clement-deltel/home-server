@@ -3,7 +3,7 @@ services:
     container_name: meme-search-pgvector
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${MEME_SEARCH_DB_USER} -d meme_search"]
+      test: ["CMD", "pg_isready", "-U", "${MEME_SEARCH_DB_USER}", "-d", "meme_search"]
       interval: 60s
       timeout: 10s
       retries: 3

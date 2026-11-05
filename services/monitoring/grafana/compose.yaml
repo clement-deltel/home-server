@@ -4,7 +4,7 @@ services:
     container_name: grafana-influxdb
     env_file: config/.env.influxdb
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8086/ping || exit 1"]
+      test: ["CMD", "curl", "-f", "http://localhost:8086/ping"]
       interval: 20s
       retries: 3
       start_interval: 5s
@@ -65,7 +65,7 @@ services:
           pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${GRAFANA_DB_USERNAME} -d postgres"]
+      test: ["CMD", "pg_isready", "-U", "${GRAFANA_DB_USERNAME}", "-d", "postgres"]
       interval: 60s
       timeout: 10s
       retries: 3
