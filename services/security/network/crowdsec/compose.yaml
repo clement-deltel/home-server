@@ -2,6 +2,12 @@
 services:
   crowdsec:
     container_name: crowdsec
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -13,11 +19,15 @@ services:
       - 7422 # appsec waf endpoint
     hostname: crowdsec
     image: ${CROWDSEC_IMAGE}
+    labels:
+      # Dozzle
+      - "dev.dozzle.url=https://app.crowdsec.net"
     logging:
       driver: json-file
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       monitoring-net:
         ipv4_address: ${CROWDSEC_MONITORING_IP}
