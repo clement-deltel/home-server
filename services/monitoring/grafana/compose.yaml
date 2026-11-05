@@ -2,6 +2,12 @@ services:
   # https://github.com/influxdata/influxdb
   influxdb:
     container_name: grafana-influxdb
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.influxdb
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8086/ping"]
@@ -17,6 +23,7 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       monitoring-net:
         ipv4_address: ${INFLUXDB_IP}
@@ -33,6 +40,12 @@ services:
   renderer:
     container_name: grafana-image-renderer
     env_file: config/.env.renderer
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: 100m
+          pids: ${DEFAULT_PID_LIMIT}
     hostname: grafana-image-renderer
     image: ${GRAFANA_IMAGE_RENDERER_IMAGE}
     logging:
@@ -40,6 +53,7 @@ services:
       options:
         max-file: 2
         max-size: 2m
+    memswap_limit: 100m
     networks:
       monitoring-net:
         ipv4_address: ${GRAFANA_RENDERER_IP}
@@ -100,6 +114,12 @@ services:
         condition: service_healthy
       renderer:
         condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -126,6 +146,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       monitoring-net:
         ipv4_address: ${GRAFANA_MONITORING_IP}

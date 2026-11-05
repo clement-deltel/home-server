@@ -2,6 +2,12 @@
 services:
   wishlist:
     container_name: wishlist
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -27,6 +33,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       proxy-net:
         ipv4_address: ${WISHLIST_IP}

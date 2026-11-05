@@ -1,6 +1,12 @@
 services:
   unbound:
     container_name: unbound
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: 100m
+          pids: ${DEFAULT_PID_LIMIT}
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
@@ -15,6 +21,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
+    memswap_limit: 100m
     networks:
       dns-net:
         ipv4_address: ${UNBOUND_DNS_IP}
