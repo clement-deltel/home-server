@@ -47,8 +47,10 @@ services:
       #- /opt/persistence/hortusfox/backup:/data/hortusfox:ro
       #- /opt/persistence/immich:/data/immich:ro
       #- /opt/persistence/jellyfin:/data/jellyfin:ro
+      #- /opt/persistence/lidarr/backups:/data/lidarr:ro
       #- /opt/persistence/mealie/backups:/data/mealie:ro
       #- /opt/persistence/navidrome/backup:/data/navidrome:ro
+      #- /opt/persistence/prowlarr/backups:/data/prowlarr:ro
       #- /opt/persistence/vaultwarden:/data/vaultwarden:ro
 
 networks:
