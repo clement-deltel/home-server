@@ -79,7 +79,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.kopia.entrypoints=web,websecure"
+      - "traefik.http.routers.kopia-aws.entrypoints=web,websecure"
       - "traefik.http.routers.kopia-aws.rule=Host(`${KOPIA_AWS_HOST}`)"
       - "traefik.http.routers.kopia-aws.tls=true"
       - "traefik.http.routers.kopia-aws.tls.certresolver=letsencrypt"
