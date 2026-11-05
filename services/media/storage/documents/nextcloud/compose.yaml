@@ -46,7 +46,7 @@ services:
     container_name: nextcloud-db
     env_file: config/.env.db
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${NEXTCLOUD_DB_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${NEXTCLOUD_DB_ROOT_PASSWORD}"]
       interval: 20s
       timeout: 15s
       retries: 3
