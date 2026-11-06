@@ -2,6 +2,12 @@
 services:
   db:
     container_name: hortusfox-db
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: 100m
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${HORTUSFOX_DB_ROOT_PASSWORD}"]
@@ -17,6 +23,7 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: 100m
     networks:
       internal-net:
         ipv4_address: ${HORTUSFOX_DB_IP}
