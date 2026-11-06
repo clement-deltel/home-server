@@ -5,7 +5,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: ${DEFAULT_CPU_LIMIT}
+          cpus: 2
           memory: 1g
           pids: ${DEFAULT_PID_LIMIT}
     dns:
