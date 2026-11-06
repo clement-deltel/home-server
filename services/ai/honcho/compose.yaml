@@ -12,7 +12,7 @@ services:
       resources:
         limits:
           cpus: ${DEFAULT_CPU_LIMIT}
-          memory: ${DEFAULT_MEM_LIMIT}
+          memory: ${DEFAULT_CACHE_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
     environment:
       - VALKEY_EXTRA_FLAGS=--requirepass ${HONCHO_CACHE_PASSWORD}
@@ -30,7 +30,7 @@ services:
       options:
         max-file: 2
         max-size: 2m
-    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    memswap_limit: ${DEFAULT_CACHE_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${HONCHO_CACHE_IP}
@@ -44,6 +44,12 @@ services:
   db:
     command: ["postgres", "-c", "max_connections=200"]
     container_name: honcho-db
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
     env_file: config/.env.db
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${HONCHO_DB_USER}"]
@@ -59,6 +65,7 @@ services:
       options:
         max-file: 2
         max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
     networks:
       internal-net:
         ipv4_address: ${HONCHO_DB_IP}
