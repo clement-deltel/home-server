@@ -1,0 +1,50 @@
+# https://github.com/floci-io/floci
+services:
+  home-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: home-server
+    hostname: home-server
+    image: home-server:latest
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: 192.168.1.2
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  floci:
+    container_name: floci
+    env_file: config/.env.floci
+    image: floci/floci:2.4.0
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    networks:
+      app-net:
+        ipv4_address: 192.168.1.3
+    ports:
+      - 4500:4500            # Floci UI
+      - 4566:4566            # AWS Emulator
+      # - 4577:4577            # Azure Emulator
+      # - 4588:4588            # GCP Emulator
+      # - 4599:4599            # OCI Emulator
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  app-net:
+    name: home-server-internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
