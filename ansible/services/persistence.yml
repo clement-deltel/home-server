@@ -41,6 +41,8 @@
       - /opt/persistence/crowdsec
       - /opt/persistence/crowdsec/data
       - /opt/persistence/crowdsec/etc
+      # CrowdSec WebUI
+      - /opt/persistence/crowdsec-webui
       # Beets
       - /opt/persistence/beets
       # DBGate

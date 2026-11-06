@@ -121,6 +121,7 @@
         - /mnt/hdd/log/security/enclosed
         - /mnt/hdd/log/security/network/anubis
         - /mnt/hdd/log/security/network/crowdsec
+        - /mnt/hdd/log/security/network/crowdsec-webui
         - /mnt/hdd/log/security/network/gluetun
         - /mnt/hdd/log/security/osint/phoneinfoga
         - /mnt/hdd/log/security/wazuh
