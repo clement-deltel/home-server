@@ -2,6 +2,9 @@ services:
   # https://github.com/TheDuffman85/crowdsec-web-ui
   crowdsec-webui:
     container_name: crowdsec-webui
+    depends_on:
+      crowdsec:
+        condition: service_started
     deploy:
       resources:
         limits:
