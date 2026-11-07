@@ -250,6 +250,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Excalidraw](https://excalidraw.com) - virtual whiteboard for sketching hand-drawn like diagrams. ([Source Code](https://github.com/excalidraw/excalidraw)) `TypeScript`
 - [Mathesar](https://mathesar.org) - spreadsheet-like interface that lets users of all technical skill levels view, edit, query, and collaborate on Postgres data directly. ([Source Code](https://github.com/mathesar-foundation/mathesar)) `Svelte` `TypeScript` `Python`
 - [Memos](https://github.com/usememos/memos) - note-taking service, your thoughts, your data, your control — no tracking, no ads, no subscription fees. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`
+- [Project N.O.M.A.D](https://github.com/Crosstalk-Solutions/project-nomad) - self-contained, offline survival computer packed with critical tools, knowledge, and AI to keep you informed and empowered, anytime, anywhere. ([Source Code](https://github.com/Crosstalk-Solutions/project-nomad)) `TypeScript`
 - [Siyuan](https://b3log.org/siyuan/en) - privacy-first, self-hosted, fully open source personal knowledge management software. ([Source Code](https://github.com/siyuan-note/siyuan)) `TypeScript` `Go`
 
 ### Software Development
@@ -381,6 +382,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [PriceBuddy](https://pricebuddy.jez.me) - tracks prices and sends you notifications when prices match your preferences. ([Source Code](https://github.com/jez500/pricebuddy)) `PHP`
 - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. ([Source Code](https://github.com/dh1011/subscription-manager)) `JavaScript` `Python`
 - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. ([Source Code](https://github.com/meceware/wapy.dev)) `JavaScript`
+- [Wealthfolio](https://wealthfolio.app) - personal finance tracker, investments, net worth, spending, and simulations. ([Source Code](https://github.com/wealthfolio/wealthfolio)) `Rust` `TypeScript`
 
 ### Games
 
@@ -576,9 +578,8 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Grist](https://www.getgrist.com) - modern relational spreadsheet. ([Source Code](https://github.com/gristlabs/grist-core)) `TypeScript` `Python`
 - [Ignis](https://github.com/Nystik-gh/ignis) - run obsidian as a self-hosted web app. ([Source Code](https://github.com/Nystik-gh/ignis)) `JavaScript`
 - [Joplin](https://joplinapp.org) - privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS. ([Source Code](https://github.com/laurent22/joplin)) `TypeScript` `JavaScript`
-- [Memos](https://www.usememos.com) - knowledge management and note-taking platform designed for privacy-conscious users and organizations. ([Source Code](https://github.com/usememos/memos)) `Go` `TypeScript`
 - [NocoDB](https://nocodb.com) - open source Airtable alternative. ([Source Code](https://github.com/nocodb/nocodb)) `TypeScript` `Vue`
-- [Project N.O.M.A.D](https://github.com/Crosstalk-Solutions/project-nomad) - self-contained, offline survival computer packed with critical tools, knowledge, and AI to keep you informed and empowered, anytime, anywhere. ([Source Code](https://github.com/Crosstalk-Solutions/project-nomad)) `TypeScript`
+- [OpenFlowKit](https://openflowkit.com) - diagram canvas, draw it, write it as code, ask any AI model to edit it live over MCP, or map a GitHub repo with every arrow cited to a file and line. ([Source Code](https://github.com/openflowkit/openflowkit)) `TypeScript`
 - [Teable](https://teable.io) - next gen Airtable alternative, no-code Postgres. ([Source Code](https://github.com/teableio/teable)) `TypeScript`
 - [TypeMill](https://typemill.net) - flat-file CMS based on Markdown and designed for informational websites like documentation, manuals, and handbooks. ([Source Code](https://github.com/typemill/typemill)) `JavaScript` `PHP`
 
@@ -590,7 +591,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Proxy
 
-- [FlareSoverr](https://github.com/FlareSolverr/FlareSolverr) - proxy server to bypass Cloudflare protection. ([Source Code](https://github.com/FlareSolverr/FlareSolverr)) `Python`
 - [NetBird](https://netbird.io) - connect your devices into a secure WireGuard-based overlay network with SSO, MFA and granular access controls. ([Source Code](https://github.com/netbirdio/netbird)) `Go`
 - [NPMPlus](https://github.com/ZoeyVid/NPMplus) - fork of nginx-proxy-manager. ([Source Code](https://github.com/ZoeyVid/NPMplus)) `TypeScript` `JavaScript`
 - [Pangolin](https://digpangolin.com) - tunneled mesh reverse proxy server with identity and access control and dashboard UI. ([Source Code](https://github.com/fosrl/pangolin)) `TypeScript`
@@ -610,7 +610,6 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Chibisafe](https://chibisafe.app) - blazing fast file vault. ([Source Code](https://github.com/chibisafe/chibisafe)) `TypeScript`
 - [CloakBrowser](https://cloakbrowser.dev) - stealth Chromium that passes every bot detection test, drop-in Playwright replacement with source-level fingerprint patches. ([Source Code](https://github.com/CloakHQ/CloakBrowser)) `Python` `TypeScript`
-- [Crowdsec Manager](https://crowdsec-manager.hhf.technology) - management interface and dashboard for CrowdSec security stack with Pangolin integration and multi proxy support. ([Source Code](https://github.com/hhftechnology/crowdsec_manager)) `TypeScript` `Go`
 - [Degoog](https://degoog-org.github.io/docs) - search engine aggregator with a comprehensive plugin/extension system. ([Source Code](https://github.com/degoog-org/degoog)) `TypeScript`
 - [DumbWhoIs](https://dumbwhois.dumbware.io) - dumb whois. ([Source Code](https://github.com/DumbWareio/DumbWhoIs)) `JavaScript`
 - [Whoogle](https://pypi.org/project/whoogle-search) - ad-free, privacy-respecting metasearch engine. ([Source Code](https://github.com/benbusby/whoogle-search)) `Python`
@@ -619,6 +618,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 - [Certwarden](https://www.certwarden.com) -  centralized ACME client. ([Source Code](https://github.com/gregtwallace/certwarden))
 - [Cloudflared](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel) - cloudflare tunnel client. ([Source Code](https://github.com/cloudflare/cloudflared)) `Go`
+- [Crowdsec Manager](https://crowdsec-manager.hhf.technology) - management interface and dashboard for CrowdSec security stack with Pangolin integration and multi proxy support. ([Source Code](https://github.com/hhftechnology/crowdsec_manager)) `TypeScript` `Go`
 - [fail2ban-ui](https://fail2ban-ui.com) - web interface for operating Fail2Ban across one or more Linux hosts. ([Source Code](https://github.com/swissmakers/fail2ban-ui)) `Go` `JavaScript`
 - [GlitchTip](https://gitlab.com/glitchtip/glitchtip-backend) - Sentry API compatible error tracking platform. ([Source Code](https://gitlab.com/glitchtip/glitchtip-backend)) `Python`
 - [Krawl](https://demo.krawlme.com/das_dashboard) - cloud native web deception server and anti-crawler that creates fake web applications with low-hanging vulnerabilities and realistic, randomly generated decoy data. ([Source Code](https://github.com/BlessedRebuS/Krawl)) `Python` `JavaScript`
