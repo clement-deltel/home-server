@@ -119,7 +119,7 @@ networks:
   internal-net:
     name: internal-guacamole
     driver: bridge
-    internal: true
+    # internal: true # does not work, if enabled guacd can't successfully perform a SSH handshake
     ipam:
       driver: default
       config:
