@@ -162,7 +162,7 @@ networks:
   internal-net:
     name: internal-immich
     driver: bridge
-    internal: true
+    # internal: true # does not work, if enabled immich can't find the cache service
     ipam:
       driver: default
       config:
