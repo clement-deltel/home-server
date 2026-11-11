@@ -12,7 +12,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.stirling-pdf.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.stirling-pdf.entrypoints=web,websecure"
       - "traefik.http.routers.stirling-pdf.rule=Host(`${STIRLING_PDF_HOST}`)"
       - "traefik.http.routers.stirling-pdf.tls=true"
       - "traefik.http.routers.stirling-pdf.tls.certresolver=letsencrypt"

@@ -18,7 +18,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.change-detection.entrypoints=web-external,websecure-external"
+      - "traefik.http.routers.change-detection.entrypoints=web,websecure"
       - "traefik.http.routers.change-detection.rule=Host(`${CHANGE_DETECTION_HOST}`)"
       - "traefik.http.routers.change-detection.tls=true"
       - "traefik.http.routers.change-detection.tls.certresolver=letsencrypt"
