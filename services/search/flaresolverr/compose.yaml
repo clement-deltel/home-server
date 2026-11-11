@@ -7,7 +7,7 @@ services:
         limits:
           cpus: ${DEFAULT_CPU_LIMIT}
           memory: ${DEFAULT_MEM_LIMIT}
-          pids: ${DEFAULT_PID_LIMIT}
+          pids: 500
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
