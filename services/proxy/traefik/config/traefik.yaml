@@ -222,6 +222,10 @@ entryPoints:
     observability:
       accessLogs: true
     transport:
+      respondingTimeouts:
+        readTimeout: 300s
+        writeTimeout: 300s
+        idleTimeout: 300s
       lifeCycle:
         graceTimeOut: 30s
 
