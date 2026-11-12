@@ -43,16 +43,17 @@ http:
       plugin:
         crowdsec-bouncer-traefik-plugin:
           enabled: true
-          defaultDecisionSeconds: 60
           crowdsecMode: live
+          crowdsecAppsecBodyLimit: 1073741824 # 1GB
           crowdsecAppsecEnabled: true # <--- here you can enable appsec waf
-          crowdsecAppsecHost: crowdsec:7422
           crowdsecAppsecFailureBlock: true
+          crowdsecAppsecHost: crowdsec:7422
           crowdsecAppsecUnreachableBlock: true
           crowdsecLapiKey:
           crowdsecLapiHost: crowdsec:8080
           crowdsecLapiScheme: http
           crowdsecLapiTLSInsecureVerify: false
+          defaultDecisionSeconds: 60
           forwardedHeadersTrustedIPs:
             # private class ranges
             - 10.0.0.0/8
