@@ -12,16 +12,24 @@ http:
     anubis:
       forwardAuth:
         address: http://anubis:8080
+        authRequestHeaders:
+          - User-Agent
+          - Accept
+          - Accept-Language
+          - Accept-Encoding
+          - Cookie
+          - Authorization
+          - X-Real-Ip
+          - X-Forwarded-For
         maxResponseBodySize: 1048576   # 1 MiB
         trustForwardHeader: true
+
 # ---------------------------------------------------------------------------- #
 #               ------- Authentik --------
 # ---------------------------------------------------------------------------- #
     authentik:
       forwardAuth:
         address: http://authentik-server:9000/outpost.goauthentik.io/auth/traefik
-        maxResponseBodySize: 1048576   # 1 MiB
-        trustForwardHeader: true
         authResponseHeaders:
           - X-authentik-username
           - X-authentik-groups
@@ -35,6 +43,8 @@ http:
           - X-authentik-meta-provider
           - X-authentik-meta-app
           - X-authentik-meta-version
+        maxResponseBodySize: 1048576   # 1 MiB
+        trustForwardHeader: true
 
 # ---------------------------------------------------------------------------- #
 #               ------- Crowdsec --------
@@ -43,8 +53,7 @@ http:
       plugin:
         crowdsec-bouncer-traefik-plugin:
           enabled: true
-          crowdsecMode: live
-          crowdsecAppsecBodyLimit: 1073741824 # 1GB
+          crowdsecAppsecBodyLimit: 1073741824 # 1 GiB
           crowdsecAppsecEnabled: true # <--- here you can enable appsec waf
           crowdsecAppsecFailureBlock: true
           crowdsecAppsecHost: crowdsec:7422
@@ -53,14 +62,15 @@ http:
           crowdsecLapiHost: crowdsec:8080
           crowdsecLapiScheme: http
           crowdsecLapiTLSInsecureVerify: false
+          crowdsecMode: live
           defaultDecisionSeconds: 60
+          clientTrustedIPs:
+            # private class ranges
+            - 192.168.0.0/16
           forwardedHeadersTrustedIPs:
             # private class ranges
             - 10.0.0.0/8
             - 172.16.0.0/12
-            - 192.168.0.0/16
-          clientTrustedIPs:
-            # private class ranges
             - 192.168.0.0/16
 
 # ---------------------------------------------------------------------------- #
