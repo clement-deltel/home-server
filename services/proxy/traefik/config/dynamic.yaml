@@ -12,6 +12,7 @@ http:
     anubis:
       forwardAuth:
         address: http://anubis:8080
+        maxResponseBodySize: 1048576   # 1 MiB
         trustForwardHeader: true
 # ---------------------------------------------------------------------------- #
 #               ------- Authentik --------
