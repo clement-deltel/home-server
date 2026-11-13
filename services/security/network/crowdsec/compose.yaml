@@ -1,53 +1,4 @@
 services:
-  # https://github.com/TheDuffman85/crowdsec-web-ui
-  crowdsec-webui:
-    container_name: crowdsec-webui
-    depends_on:
-      crowdsec:
-        condition: service_started
-    deploy:
-      resources:
-        limits:
-          cpus: ${DEFAULT_CPU_LIMIT}
-          memory: ${DEFAULT_MEM_LIMIT}
-          pids: ${DEFAULT_PID_LIMIT}
-    dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
-    env_file: config/.env.webui
-    hostname: crowdsec-webui
-    image: ${CROWDSEC_WEBUI_IMAGE}
-    labels:
-      - "traefik.enable=true"
-      # Routers
-      - "traefik.http.routers.crowdsec-webui.entrypoints=web,websecure"
-      - "traefik.http.routers.crowdsec-webui.rule=Host(`${CROWDSEC_WEBUI_HOST}`)"
-      - "traefik.http.routers.crowdsec-webui.tls=true"
-      - "traefik.http.routers.crowdsec-webui.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.crowdsec-webui.tls.domains[0].main=${CROWDSEC_WEBUI_HOST}"
-      - "traefik.http.routers.crowdsec-webui.service=crowdsec-webui"
-      # Services
-      - "traefik.http.services.crowdsec-webui.loadbalancer.server.port=3000"
-      # Dozzle
-      - "dev.dozzle.url=https://${CROWDSEC_WEBUI_HOST}"
-    logging:
-      driver: json-file
-      options:
-        max-file: 5
-        max-size: 10m
-    memswap_limit: ${DEFAULT_MEM_LIMIT}
-    networks:
-      proxy-net:
-        ipv4_address: ${CROWDSEC_WEBUI_IP}
-    ports:
-      - 3000
-    restart: unless-stopped
-    stop_grace_period: 30s
-    volumes:
-      - /opt/persistence/crowdsec-webui:/app/data
-
-
   # https://github.com/crowdsecurity/crowdsec
   crowdsec:
     container_name: crowdsec
@@ -92,6 +43,54 @@ services:
       - /var/log/auth.log:/var/log/auth.log:ro
       - /var/log/syslog:/var/log/syslog:ro
       - /opt/persistence/traefik/log:/var/log/traefik:ro
+
+  # https://github.com/TheDuffman85/crowdsec-web-ui
+  crowdsec-webui:
+    container_name: crowdsec-webui
+    depends_on:
+      crowdsec:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: 1g
+          pids: ${DEFAULT_PID_LIMIT}
+    dns:
+      - 127.0.0.1
+      - ${DNS_SERVER_1}
+      - ${DNS_SERVER_2}
+    env_file: config/.env.webui
+    hostname: crowdsec-webui
+    image: ${CROWDSEC_WEBUI_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.crowdsec-webui.entrypoints=web,websecure"
+      - "traefik.http.routers.crowdsec-webui.rule=Host(`${CROWDSEC_WEBUI_HOST}`)"
+      - "traefik.http.routers.crowdsec-webui.tls=true"
+      - "traefik.http.routers.crowdsec-webui.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.crowdsec-webui.tls.domains[0].main=${CROWDSEC_WEBUI_HOST}"
+      - "traefik.http.routers.crowdsec-webui.service=crowdsec-webui"
+      # Services
+      - "traefik.http.services.crowdsec-webui.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${CROWDSEC_WEBUI_HOST}"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    memswap_limit: 1g
+    networks:
+      proxy-net:
+        ipv4_address: ${CROWDSEC_WEBUI_IP}
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/crowdsec-webui:/app/data
 
 networks:
   monitoring-net:
