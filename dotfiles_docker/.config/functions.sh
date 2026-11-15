@@ -107,6 +107,26 @@ function bitwarden-open-fn {
 # ---------------------------------------------------------------------------- #
 function docker-exec-fn { docker exec -it "$1" "${2:-bash}"; }
 function docker-fn { docker "$@"; }
+function docker-image-dupes-fn() {
+  docker-image-repositories-fn | awk 'NR==1 { print; next }
+              { c[$2]++; l[NR]=$0; r[NR]=$2 }
+              END { for (i=2; i<=NR; i++) if (c[r[i]] > 1) print l[i] }'
+}
+function docker-image-repositories-fn() {
+  {
+    printf 'IMAGE ID\tREPOSITORY\tTAG\tSIZE\tCREATED\tCONTAINERS\n'
+    docker images --format '{{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}\t{{.Containers}}' \
+    | awk -F'\t' '
+        $2 != "<none>" {
+          r = $2
+          n = split(r, p, "/")
+          if (n == 1) r = "docker.io/library/" r
+          else if (p[1] !~ /[.:]/ && p[1] != "localhost") r = "docker.io/" r
+          print $1 "\t" r "\t" $3 "\t" $4 "\t" $5 "\t" $6
+        }' \
+    | sort -s -t$'\t' -k2,2
+  } | column -t -s$'\t'
+}
 function docker-image-rm-dangling-fn {
     IMGS=$(docker images --filter 'dangling=true' -q --no-trunc)
     [[ -n ${IMGS} ]] && docker rmi ${IMGS} || echo 'no dangling images.'
@@ -141,6 +161,8 @@ function docker-volume-rm-dangling-fn {
 }
 
 function docker-image-rm-fn { docker image rm "$@"; }
+function docker-network-inspect-fn { docker network inspect "$1"; }
+function docker-volume-inspect-fn { docker volume inspect "$1"; }
 
 # ---------------------------------------------------------------------------- #
 #               ------- Docker Compose ------

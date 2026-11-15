@@ -119,7 +119,9 @@ alias d=docker-fn
 alias dcrme=docker-rm-exited-fn
 alias dex=docker-exec-fn
 alias di=docker-inspect-fn
-alias dim='docker images | (sed -u 1q; sort)'
+alias dim='docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}\t{{.Containers}}" | (sed -u 1q; sort -s -k2,2)'
+alias dimr=docker-image-repositories-fn
+alias dimd=docker-image-dupes-fn
 alias dip=docker-ip-fn
 alias dirmd=docker-image-rm-dangling-fn
 alias dl=docker-logs-fn
@@ -136,9 +138,11 @@ alias dvrm=docker-volume-rm-fn
 alias dvrmd=docker-volume-rm-dangling-fn
 
 alias dirm=docker-image-rm-fn
+alias dni=docker-network-inspect-fn
 alias dnls='docker network ls'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
+alias dvi=docker-volume-inspect-fn
 alias dvls='docker volume ls'
 
 alias lzd='lazydocker'
