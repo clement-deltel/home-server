@@ -14,8 +14,7 @@ services:
           cpus: ${DEFAULT_CPU_LIMIT}
           memory: ${DEFAULT_CACHE_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
-    environment:
-      - VALKEY_EXTRA_FLAGS=--requirepass ${HONCHO_CACHE_PASSWORD}
+    env_file: config/.env.cache
     healthcheck:
       test: ["CMD", "valkey-cli", "--raw", "INCR", "PING"]
       interval: 60s
