@@ -71,9 +71,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: ${DEFAULT_CPU_LIMIT}
-          memory: ${DEFAULT_MEM_LIMIT}
-          pids: ${DEFAULT_PID_LIMIT}
+          cpus: 2
+          memory: 1g
+          pids: 500
     env_file: config/.env
     hostname: immich-ml
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
@@ -87,7 +87,7 @@ services:
       options:
         max-file: 2
         max-size: 2m
-    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    memswap_limit: 1g
     networks:
       internal-net:
         ipv4_address: ${IMMICH_ML_IP}
@@ -108,7 +108,7 @@ services:
         limits:
           cpus: 2
           memory: 2g
-          pids: ${DEFAULT_PID_LIMIT}
+          pids: 500
     dns:
       - 127.0.0.1
       - ${DNS_SERVER_1}
