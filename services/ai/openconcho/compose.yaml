@@ -26,6 +26,8 @@ services:
       - "traefik.http.routers.openconcho.service=openconcho"
       # Services
       - "traefik.http.services.openconcho.loadbalancer.server.port=8080"
+      # Dozzle
+      - "dev.dozzle.url=https://${OPENCONCHO_HOST}"
     logging:
       driver: json-file
       options:
