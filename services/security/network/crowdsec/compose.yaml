@@ -9,9 +9,8 @@ services:
           memory: ${DEFAULT_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     env_file: config/.env
     expose:
       - 8080 # http api for bouncers
@@ -57,9 +56,8 @@ services:
           memory: 1g
           pids: ${DEFAULT_PID_LIMIT}
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - 192.168.68.10
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     env_file: config/.env.webui
     hostname: crowdsec-webui
     image: ${CROWDSEC_WEBUI_IMAGE}

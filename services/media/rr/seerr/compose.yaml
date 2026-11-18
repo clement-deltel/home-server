@@ -58,9 +58,8 @@ services:
           memory: ${DEFAULT_MEM_LIMIT}
           pids: ${DEFAULT_PID_LIMIT}
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     env_file: config/.env
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5055/api/v1/settings/public || exit 1"]

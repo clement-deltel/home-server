@@ -93,9 +93,8 @@ services:
       db:
         condition: service_healthy
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     env_file: config/.env
     healthcheck:  # Defines the health check configuration for the container
       test: [ "CMD", "curl", "-f", "http://localhost:4000/health/liveliness || exit 1" ]  # Command to execute for health check

@@ -4,9 +4,8 @@ services:
   redis-insight:
     container_name: redis-insight
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     environment:
       - RI_REDIS_HOST0=cache
       - RI_REDIS_PORT0=6379

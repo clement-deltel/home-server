@@ -120,9 +120,8 @@ services:
           cpus: ${DAWARICH_CPU_LIMIT:-0.50}
           memory: ${DAWARICH_MEMORY_LIMIT:-4G}
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     entrypoint: web-entrypoint.sh
     env_file: config/.env
     healthcheck:

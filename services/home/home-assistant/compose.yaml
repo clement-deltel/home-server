@@ -8,9 +8,8 @@ services:
           memory: 1g
           pids: ${DEFAULT_PID_LIMIT}
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     hostname: home-assistant
     image: ${HOME_ASSISTANT_IMAGE}
     labels:

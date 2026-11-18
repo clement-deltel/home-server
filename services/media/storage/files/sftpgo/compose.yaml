@@ -50,9 +50,8 @@ services:
       database:
         condition: service_healthy
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     env_file: config/.env
     hostname: sftpgo
     image: ${SFTPGO_IMAGE}

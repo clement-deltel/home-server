@@ -192,8 +192,20 @@ doppler-secret-get-fn () { doppler secrets get "$1"; }
 
 # IP addresses
 function local-ip {
-  export LOCAL_IP=$(/sbin/ifconfig enp6s0 | awk '/inet/ { print $2 }' | sed -e s/addr://)
-  echo ${LOCAL_IP}
+  local interface="${1:-enp6s0}"
+  export LOCAL_IP=$(ip -4 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
+}
+
+function local-ipv4 {
+  local interface="${1:-enp6s0}"
+  export LOCAL_IPV4=$(ip -4 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
+  echo ${LOCAL_IPV4}
+}
+
+function local-ipv6 {
+  local interface="${1:-enp6s0}"
+  export LOCAL_IPV6=$(ip -6 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
+  echo ${LOCAL_IPV6}
 }
 
 # Alternative public IP URL: ifconfig.me

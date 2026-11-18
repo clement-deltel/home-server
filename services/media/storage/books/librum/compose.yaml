@@ -31,9 +31,8 @@ services:
       db:
         condition: service_healthy # Ensures the DB is up before the server.
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     env_file: config/.env
     hostname: librum
     image: ${LIBRUM_IMAGE}

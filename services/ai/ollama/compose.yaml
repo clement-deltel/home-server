@@ -15,9 +15,8 @@ services:
               count: all
               capabilities: [gpu]
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     hostname: ollama
     image: ${OLLAMA_IMAGE}
     logging:

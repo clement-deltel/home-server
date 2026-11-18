@@ -174,3 +174,4 @@ source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/completions.sh
 source_if_exists ${SERVER_HOME}/dotfiles_docker/.config/functions.sh
 
 set-services
+local-ip

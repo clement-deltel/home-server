@@ -4,9 +4,8 @@ services:
   dbgate:
     container_name: dbgate
     dns:
-      - 127.0.0.1
-      - ${DNS_SERVER_1}
-      - ${DNS_SERVER_2}
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
     environment:
       - CONNECTIONS=0
       - LABEL_0=ConnectionName
