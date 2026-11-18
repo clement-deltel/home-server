@@ -12,6 +12,7 @@ deb_architecture: { "armv6l": "armhf", "armv7l": "armhf", "aarch64": "arm64", "x
 #               ------- APT ------
 # ---------------------------------------------------------------------------- #
 apt_repositories:
+- ppa:awesometic/ppa
 - ppa:jonmagon/kdiskmark
 - ppa:libretro/stable
 
@@ -38,6 +39,7 @@ apt_packages:
 - ethtool
 - mtr
 - net-tools                  # networking toolkit
+- realtek-r8125-dkms         # network driver for Realtek RTL8125 NICs
 # Remote Access
 - lightdm                    # RustDesk remote access pre-requisite
 - wireguard                  # VPN
@@ -60,6 +62,7 @@ apt_packages:
 # Dependencies
 - apache2-utils              # htpasswd utility
 - curl                       # command line tool for transferring data with URL syntax
+- dkms
 - libxcb-cursor0
 - libxcb-icccm4
 - libxcb-image0
@@ -69,6 +72,7 @@ apt_packages:
 - libxcb-shm0
 - libxcb-sync1
 - libxcb-xinerama0
+- linux-headers-generic-hwe-22.04
 - qt6-wayland
 - qtwayland5
 - software-properties-common # manage the repositories that you install software from
