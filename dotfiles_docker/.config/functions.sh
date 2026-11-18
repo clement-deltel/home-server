@@ -198,13 +198,13 @@ function local-ip {
 
 function local-ipv4 {
   local interface="${1:-enp6s0}"
-  export LOCAL_IPV4=$(ip -4 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
+  LOCAL_IPV4=$(ip -4 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
   echo ${LOCAL_IPV4}
 }
 
 function local-ipv6 {
   local interface="${1:-enp6s0}"
-  export LOCAL_IPV6=$(ip -6 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
+  LOCAL_IPV6=$(ip -6 -o addr show "$interface" | awk '{ print $4 }' | cut -d/ -f1 | head -n1)
   echo ${LOCAL_IPV6}
 }
 
