@@ -300,6 +300,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Health and Fitness
 
 - [Endurain](https://docs.endurain.com) - fitness tracking service designed to give users full control over their data and hosting environment. ([Source Code](https://github.com/endurain-project/endurain)) `Python`
+- [OpenGym](https://opengym.ch) - gym & body-weight tracker, plan routines, log workouts, see which muscles are trained, import from Strong/Hevy/FitNotes. ([Source Code](https://github.com/DuarteSantos8/openGym)) `JavaScript`
 
 ### Travel
 

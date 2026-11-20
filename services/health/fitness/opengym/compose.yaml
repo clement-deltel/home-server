@@ -1,0 +1,113 @@
+# https://github.com/DuarteSantos8/openGym
+services:
+  api:
+    container_name: opengym-api
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    env_file: config/.env
+    hostname: opengym-api
+    image: ${OPENGYM_API_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${OPENGYM_API_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /opt/persistence/opengym/data:/data
+      - /opt/persistence/opengym/coach-auth:/coach-auth
+
+  mcp:
+    container_name: opengym-mcp
+    depends_on:
+      api:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    env_file: config/.env.mcp
+    hostname: opengym-mcp
+    image: ${OPENGYM_MCP_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${OPENGYM_MCP_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  web:
+    container_name: opengym-web
+    depends_on:
+      api:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    dns:
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
+    env_file: config/.env.web
+    hostname: opengym-web
+    image: ${OPENGYM_WEB_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.opengym.entrypoints=web,websecure"
+      - "traefik.http.routers.opengym.rule=Host(`${OPENGYM_HOST}`)"
+      - "traefik.http.routers.opengym.tls=true"
+      - "traefik.http.routers.opengym.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.opengym.tls.domains[0].main=${OPENGYM_HOST}"
+      - "traefik.http.routers.opengym.service=opengym"
+      # Services
+      - "traefik.http.services.opengym.loadbalancer.server.port=80"
+      # Dozzle
+      - "dev.dozzle.url=https://${OPENGYM_HOST}"
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${OPENGYM_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${OPENGYM_IP}
+    ports:
+      - 80
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  internal-net:
+    name: internal-opengym
+    driver: bridge
+    internal: true
+    ipam:
+      driver: default
+      config:
+        - subnet: ${OPENGYM_NET}
+          gateway: ${OPENGYM_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net

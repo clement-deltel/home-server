@@ -239,6 +239,10 @@
       - /opt/persistence/obsidian/couchdb-etc
       # Ollama
       - /opt/persistence/ollama
+      # OpenGym
+      - /opt/persistence/opengym
+      - /opt/persistence/opengym/coach-auth
+      - /opt/persistence/opengym/data
       # Open Notebook
       - /opt/persistence/open-notebook
       # Open WebUI
@@ -581,6 +585,7 @@
           # no labels for games/minecraft
           - "{{ server_home }}/services/games/romm/compose.yaml"
           - "{{ server_home }}/services/health/fitness/endurain/compose.yaml"
+          - "{{ server_home }}/services/health/fitness/opengym/compose.yaml"
           - "{{ server_home }}/services/home/home-assistant/compose.yaml"
           - "{{ server_home }}/services/home/upsnap/compose.yaml"
           - "{{ server_home }}/services/inventory/grocy/compose.yaml"
@@ -643,7 +648,7 @@
           - "{{ server_home }}/services/security/authentication/vaultwarden/compose.yaml"
           - "{{ server_home }}/services/security/enclosed/compose.yaml"
           - "{{ server_home }}/services/security/network/anubis/compose.yaml"
-          # no labels for security/network/crowdsec
+          - "{{ server_home }}/services/security/network/crowdsec/compose.yaml"
           - "{{ server_home }}/services/security/network/gluetun/compose.yaml"
           - "{{ server_home }}/services/security/wazuh/compose.yaml"
           - "{{ server_home }}/services/travel/adventurelog/compose.yaml"
