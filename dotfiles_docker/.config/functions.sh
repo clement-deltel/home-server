@@ -45,18 +45,6 @@ function cheatsheet { curl cheat.sh/"$1"; }
 function weather { curl wttr.in/"$1"; }
 
 # ---------------------------------------------------------------------------- #
-#               ------- Server - Environment ------
-# ---------------------------------------------------------------------------- #
-function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
-function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
-
-function set-env { load-env ${SERVER_HOME}/env/secrets.env; load-env ${SERVER_HOME}/env/services.env; }
-function unset-env { unload-env ${SERVER_HOME}/env/services.env; unload-env ${SERVER_HOME}/env/secrets.env; }
-
-function set-services { load-env ${SERVER_HOME}/env/services.env; }
-function unset-services { unload-env ${SERVER_HOME}/env/services.env; }
-
-# ---------------------------------------------------------------------------- #
 #               ------- Bitwarden CLI ------
 # ---------------------------------------------------------------------------- #
 function bitwarden-create-session-fn {
@@ -185,6 +173,18 @@ doppler-scope-fn () {
 }
 
 doppler-secret-get-fn () { doppler secrets get "$1"; }
+
+# ---------------------------------------------------------------------------- #
+#               ------- env ------
+# ---------------------------------------------------------------------------- #
+function load-env { export $(grep -v '^#' "$1" | xargs -d '\n'); }
+function unload-env { unset $(grep -v '^#' "$1" | sed -E 's/(.*)=.*/\1/' | xargs); }
+
+function set-env { load-env ${SERVER_HOME}/env/secrets.env; load-env ${SERVER_HOME}/env/services.env; }
+function unset-env { unload-env ${SERVER_HOME}/env/services.env; unload-env ${SERVER_HOME}/env/secrets.env; }
+
+function set-services { load-env ${SERVER_HOME}/env/services.env; }
+function unset-services { unload-env ${SERVER_HOME}/env/services.env; }
 
 # ---------------------------------------------------------------------------- #
 #               ------- Network ------
