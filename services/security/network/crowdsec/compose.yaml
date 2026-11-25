@@ -42,10 +42,12 @@ services:
       # SSH
       - /var/log/auth.log:/var/log/auth.log:ro
       - /var/log/syslog:/var/log/syslog:ro
-      # Docker Services
+      # Docker Services - Log
       - /opt/persistence/home-assistant/home-assistant.log:/var/log/home-assistant.log:ro
       - /opt/persistence/traefik/log:/var/log/traefik:ro
       - /opt/persistence/vaultwarden/vaultwarden.log:/var/log/vaultwarden.log:ro
+      # Docker Services - Socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
   # https://github.com/TheDuffman85/crowdsec-web-ui
   crowdsec-webui:
