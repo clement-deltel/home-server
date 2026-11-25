@@ -41,6 +41,7 @@
       - /opt/persistence/crowdsec
       - /opt/persistence/crowdsec/data
       - /opt/persistence/crowdsec/etc
+      - /opt/persistence/crowdsec/etc/acquis.d
       # CrowdSec WebUI
       - /opt/persistence/crowdsec-webui
       # Beets
@@ -408,6 +409,21 @@
         state: present
         search_string: "account_id: "
         line: '    account_id: "{{ geoip_account_id }}"'
+
+    #--- Crowdsec
+    - name: Copy Crowdsec configuration files
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dst }}"
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
+      loop:
+        - { src: "{{ server_home }}/services/security/network/crowdsec/config/appsec.yaml", dst: "/opt/persistence/crowdsec/etc/acquis.d/appsec.yaml" }
+        - { src: "{{ server_home }}/services/security/network/crowdsec/config/home-assistant.yaml", dst: "/opt/persistence/crowdsec/etc/acquis.d/home-assistant.yaml" }
+        - { src: "{{ server_home }}/services/security/network/crowdsec/config/sshd.yaml", dst: "/opt/persistence/crowdsec/etc/acquis.d/sshd.yaml" }
+        - { src: "{{ server_home }}/services/security/network/crowdsec/config/traefik.yaml", dst: "/opt/persistence/crowdsec/etc/acquis.d/traefik.yaml" }
+        - { src: "{{ server_home }}/services/security/network/crowdsec/config/vaultwarden.yaml", dst: "/opt/persistence/crowdsec/etc/acquis.d/vaultwarden.yaml" }
 
     #--- Diun
     - name: Copy Diun file input

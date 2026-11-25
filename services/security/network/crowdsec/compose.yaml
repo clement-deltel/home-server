@@ -39,9 +39,13 @@ services:
     volumes:
       - /opt/persistence/crowdsec/data:/var/lib/crowdsec/data
       - /opt/persistence/crowdsec/etc:/etc/crowdsec
+      # SSH
       - /var/log/auth.log:/var/log/auth.log:ro
       - /var/log/syslog:/var/log/syslog:ro
+      # Docker Services
+      - /opt/persistence/home-assistant/home-assistant.log:/var/log/home-assistant.log:ro
       - /opt/persistence/traefik/log:/var/log/traefik:ro
+      - /opt/persistence/vaultwarden/vaultwarden.log:/var/log/vaultwarden.log:ro
 
   # https://github.com/TheDuffman85/crowdsec-web-ui
   crowdsec-webui:
