@@ -287,6 +287,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 ### Finances
 
 - [Actual](https://actualbudget.com) - local-first personal finance app. ([Source Code](https://github.com/actualbudget/actual)) `TypeScript`
+- [OpenStock](https://openstock-ods.vercel.app) - alternative to expensive market platforms, track real-time prices, set personalized alerts, and explore detailed company insights. ([Source Code](https://github.com/Open-Dev-Society/OpenStock)) `TypeScript`
 - [Wallos](https://wallosapp.com) - open-source personal subscription tracker. ([Source Code](https://github.com/ellite/wallos)) `PHP` `JavaScript`
 
 ### Inventory
@@ -382,6 +383,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [OpenBB](https://openbb.co) - financial data platform for analysts, quants and AI agents. ([Source Code](https://github.com/OpenBB-finance/OpenBB)) `Python`
 - [PriceBuddy](https://pricebuddy.jez.me) - tracks prices and sends you notifications when prices match your preferences. ([Source Code](https://github.com/jez500/pricebuddy)) `PHP`
 - [Subscription Manager](https://github.com/dh1011/subscription-manager) - keep track of your subscriptions and manage your expenses. ([Source Code](https://github.com/dh1011/subscription-manager)) `JavaScript` `Python`
+- [sure](https://sure.am) - personal finance app for everyone. ([Source Code](https://github.com/we-promise/sure)) `Ruby`
 - [Wapy.dev](https://www.wapy.dev) - track, manage and optimize your recurring expenses in one powerful and human readable dashboard. ([Source Code](https://github.com/meceware/wapy.dev)) `JavaScript`
 - [Wealthfolio](https://wealthfolio.app) - personal finance tracker, investments, net worth, spending, and simulations. ([Source Code](https://github.com/wealthfolio/wealthfolio)) `Rust` `TypeScript`
 
@@ -391,6 +393,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Factorio](https://hub.docker.com/r/factoriotools/factorio) - headless server in a Docker container. ([Source Code](https://github.com/factoriotools/factorio-docker)) `Shell` `Python` `C`
 - [GameVault](https://gamevau.lt) - self-hosted gaming platform for drm-free games. ([Source Code](https://github.com/Phalcode/gamevault-backend)) `TypeScript`
 - [Lodestone](https://www.lodestone.cc) - server hosting tool for Minecraft and other multiplayer games. ([Source Code](https://github.com/Lodestone-Team/lodestone)) `Rust` `TypeScript`
+- [Minecraft Server Manager](https://minecraft-server-manager.com) - control panel for Minecraft servers, support modpacks, backups, schedules, live map, player analytics. ([Source Code](https://github.com/anefzaoui/minecraft-server-manager)) `JavaScript`
 - [Paper](https://papermc.io/software/paper) - high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies. ([Source Code](https://github.com/PaperMC/Paper)) `Java`
 - [Pumpkin](https://pumpkinmc.org) - empowering everyone to host fast and efficient Minecraft servers. ([Source Code](https://github.com/Pumpkin-MC/Pumpkin)) `Rust`
 - [Satisfactory](https://hub.docker.com/r/wolveix/satisfactory-server) - containerized version of the Satisfactory dedicated server. ([Source Code](https://github.com/wolveix/satisfactory-server)) `Shell` `Go`
@@ -453,6 +456,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 
 ### Media Management
 
+- [aurral](https://aurral.org) - find new music, get it, and play it. ([Source Code](https://github.com/lklynet/aurral)) `TypeScript`
 - [autobrr](https://autobrr.com/introduction) - modern, easy to use download automation for torrents and usenet. ([Source Code](https://github.com/autobrr/autobrr)) `Go` `TypeScript`
 - [Cleanuparr](https://github.com/Cleanuparr/Cleanuparr) - tool for automating the cleanup of unwanted or blocked files in Sonarr, Radarr, and supported download clients like qBittorrent. ([Source Code](https://github.com/Cleanuparr/Cleanuparr)) `C#`
 - [DeepSubX](https://github.com/garanda21/deepsubx) - uses the DeepL API to translate subtitles for TV shows and movies in your library. ([Source Code](https://github.com/garanda21/deepsubx)) `TypeScript` `JavaScript`
@@ -469,6 +473,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [Syncthing](https://syncthing.net) - open source continuous file synchronization. ([Source Code](https://github.com/syncthing/syncthing)) `Go`
 - [Tdarr](https://home.tdarr.io) - distributed transcode automation using FFmpeg/HandBrake + audio/video library analytics + video health checking. ([Source Code](https://github.com/HaveAGitGat/Tdarr)) `Makefile`
 - [Tubifarry](https://github.com/TypNull/Tubifarry) - Lidarr plugin that enhances your music library by fetching music from YouTube, integrating with Slskd for Soulseek access, automating Spotify playlist imports, converting files, and retrieving soundtracks from Radarr and Sonarr. ([Source Code](https://github.com/TypNull/Tubifarry)) `C#`
+- [Tunarr](https://tunarr.com) - create a classic TV experience using your own media, IPTV backed by Plex/Jellyfin/Emby/NFO. ([Source Code](https://github.com/chrisbenincasa/tunarr)) `TypeScript`
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - feature-rich command-line audio/video downloader. ([Source Code](https://github.com/yt-dlp/yt-dlp)) `Python`
 
 ### Media Storage
@@ -546,6 +551,7 @@ Here is a list of self-hosted apps that I am currently using, that could be inte
 - [github-release-monitor](https://github.com/iamspido/github-release-monitor) - automatically monitor GitHub, GitLab and Codeberg repository releases and receive instant email and Apprise notifications. ([Source Code](https://github.com/iamspido/github-release-monitor)) `TypeScript`
 - [Healthchecks](https://healthchecks.io) - cron job and background task monitoring service. ([Source Code](https://github.com/healthchecks/healthchecks)) `Python`
 - [Keep](https://www.keephq.dev) - open-source AIOps and alert management platform. ([Source Code](https://github.com/keephq/keep)) `Python` `TypeScript`
+- [OpenHaystack](https://owlink.org) - build your own 'AirTags', framework for tracking personal Bluetooth devices via Apple's massive Find My network. ([Source Code](https://github.com/seemoo-lab/openhaystack)) `Swift` `Dart`
 - [OpenSearch](https://opensearch.org/docs/latest/opensearch/index) - distributed and RESTful search and observability suite that brings order to unstructured data at scale. ([Source Code](https://github.com/opensearch-project/OpenSearch)) `Java`
 - [OpenSEO](https://openseo.so) - open source alternative to Semrush and Ahrefs. ([Source Code](https://github.com/every-app/open-seo)) `TypeScript`
 - [Signoz](https://signoz.io) - observability platform native to OpenTelemetry with logs, traces and metrics in a single application. ([Source Code](https://github.com/SigNoz/signoz)) `TypeScript` `Go`

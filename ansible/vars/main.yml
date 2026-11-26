@@ -237,6 +237,7 @@ obsidian_enable: true
 ollama_enable: true
 openconcho_enable: true
 opengym_enable: true
+openstock_enable: true
 open_notebook_enable: true
 open_webui_enable: true
 paperless_enable: true

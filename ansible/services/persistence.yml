@@ -244,6 +244,8 @@
       - /opt/persistence/opengym
       - /opt/persistence/opengym/coach-auth
       - /opt/persistence/opengym/data
+      # OpenStock
+      - /mnt/ssd/databases/openstock
       # Open Notebook
       - /opt/persistence/open-notebook
       # Open WebUI

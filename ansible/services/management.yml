@@ -71,6 +71,7 @@
       - { when: ollama_enable, project_src: '{{ server_home }}/services/ai/ollama' }
       - { when: openconcho_enable, project_src: '{{ server_home }}/services/ai/openconcho' }
       - { when: opengym_enable, project_src: '{{ server_home }}/services/health/fitness/opengym' }
+      - { when: openstock_enable, project_src: '{{ server_home }}/services/finances/openstock' }
       - { when: open_notebook_enable, project_src: '{{ server_home }}/services/ai/open-notebook' }
       - { when: open_webui_enable, project_src: '{{ server_home }}/services/ai/open-webui' }
       - { when: paperless_enable, project_src: '{{ server_home }}/services/media/storage/documents/paperless' }

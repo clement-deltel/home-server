@@ -1,0 +1,90 @@
+services:
+  db:
+    container_name: openstock-db
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    env_file: config/.env.db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    hostname: openstock-db
+    image: ${DEFAULT_MONGO_IMAGE}
+    logging:
+      driver: json-file
+      options:
+        max-file: 2
+        max-size: 5m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${OPENSTOCK_DB_IP}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - /mnt/ssd/databases/openstock:/data/db
+
+  openstock:
+    container_name: openstock
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: ${DEFAULT_CPU_LIMIT}
+          memory: ${DEFAULT_MEM_LIMIT}
+          pids: ${DEFAULT_PID_LIMIT}
+    dns:
+      - ${LOCAL_IP}
+      - ${PUBLIC_FALLBACK_DNS_SERVER}
+    env_file: config/.env
+    hostname: openstock
+    image: ${OPENSTOCK_IMAGE}
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.openstock.entrypoints=web,websecure"
+      - "traefik.http.routers.openstock.rule=Host(`${OPENSTOCK_HOST}`)"
+      - "traefik.http.routers.openstock.tls=true"
+      - "traefik.http.routers.openstock.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.openstock.tls.domains[0].main=${OPENSTOCK_HOST}"
+      - "traefik.http.routers.openstock.service=openstock"
+      # Services
+      - "traefik.http.services.openstock.loadbalancer.server.port=3000"
+      # Dozzle
+      - "dev.dozzle.url=https://${OPENSTOCK_HOST}"
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    memswap_limit: ${DEFAULT_MEM_LIMIT}
+    networks:
+      internal-net:
+        ipv4_address: ${OPENSTOCK_INTERNAL_IP}
+      proxy-net:
+        ipv4_address: ${OPENSTOCK_IP}
+    ports:
+      - 3000
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+networks:
+  internal-net:
+    name: internal-openstock
+    driver: bridge
+    internal: true
+    ipam:
+      driver: default
+      config:
+        - subnet: ${OPENSTOCK_NET}
+          gateway: ${OPENSTOCK_GATEWAY}
+  proxy-net:
+    external: true
+    name: traefik-net

@@ -51,6 +51,7 @@
         - /mnt/hdd/log/dns/pihole
         - /mnt/hdd/log/dns/unbound
         - /mnt/hdd/log/finances/actual
+        - /mnt/hdd/log/finances/openstock
         - /mnt/hdd/log/finances/wallos
         - /mnt/hdd/log/games/minecraft
         - /mnt/hdd/log/games/romm
