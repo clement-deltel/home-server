@@ -1,3 +1,4 @@
+# https://github.com/Open-Dev-Society/OpenStock
 services:
   db:
     container_name: openstock-db
