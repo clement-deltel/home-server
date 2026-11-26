@@ -1,6 +1,8 @@
 # https://github.com/RayLabsHQ/gitea-mirror
 services:
   gitea-mirror:
+    cap_drop:
+      - ALL
     container_name: gitea-mirror
     deploy:
       resources:
@@ -45,8 +47,10 @@ services:
     ports:
       - 4321
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     stop_grace_period: 30s
-    user: ${DOCKER_UID}:${DOCKER_GID}
+    user: ${USER_UID}:${USER_GID}
     volumes:
       - /opt/persistence/gitea-mirror:/app/data
 
